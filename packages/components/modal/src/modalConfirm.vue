@@ -1,0 +1,119 @@
+<template>
+    <ClModal class="cl-modal-confirm"
+             :class="[
+                icon && `cl-modal-confirm--${icon}`,
+                type && `cl-modal-confirm--${type}`
+             ]"
+             v-model="visible"
+             :width="width"
+             footer-hide
+             :closable="false" @cancel="handlerButtonCancel">
+        <div class="cl-modal-confirm__header" v-if="title">
+            <div class="cl-modal-confirm__icon"><i :class="iconClass"></i></div>
+            <div class="cl-modal-confirm__title">{{title}}</div>
+        </div>
+        <div class="cl-modal-confirm__content">
+            <div class="cl-modal-confirm_item" v-for="(content, index) in contentText" :key="index" v-html="content"></div>
+        </div>
+        <div class="cl-modal-confirm__footer">
+            <ClButton @click="handlerButtonCancel" v-if="icon === 'confirm' && localCancelText">{{localCancelText}}</ClButton>
+            <ClButton type="primary" :loading='okButtonLoading' @click="handlerButtonOk" v-if="localOkText">{{localOkText}}</ClButton>
+        </div>
+    </ClModal>
+</template>
+
+<script>
+    import ClModal from './modal.vue'
+    import ClButton from '../../button/src/button.vue'
+  export default {
+    name: "ClModalConfirm",
+    data() {
+      return {
+        visible: false,
+        width: 350,
+        title: '',
+        content: [],
+        okText: '',
+        cancelText: '',
+        okButtonLoading: false,
+        icon: '',
+        type: '',//布局类型  两种(default, left)
+      }
+    },
+    computed: {
+      localOkText(){
+        return this.okText === null ? null : (this.okText ? this.okText : '确定');
+      },
+      localCancelText(){
+        return this.cancelText === null ? null : (this.cancelText ? this.cancelText : '取消');
+      },
+      iconClass(){
+        let result;
+        switch (this.icon) {
+          case 'info':
+            result = 'cl-icon-info-solid';
+            break;
+          case 'success':
+            result = 'cl-icon-circle-success-solid';
+            break;
+          case 'warning':
+            result = 'cl-icon-warning-solid';
+            break;
+          case 'error':
+            result = 'cl-icon-circle-close-solid';
+            break;
+          case 'confirm':
+            result = 'cl-icon-question-solid';
+            break;
+          default:
+            result = 'cl-icon-question-solid';
+            break;
+        }
+        return result;
+      },
+      contentText(){
+        let content = [];
+        if(typeof this.content === 'string'){
+          content = [this.content];
+        }else if(Array.isArray(this.content)){
+          content = this.content;
+        }
+        return content;
+      }
+    },
+    components: {
+      ClModal,
+      ClButton
+    },
+    created() {
+    },
+    mounted() {
+    },
+    methods: {
+      show(value){
+        this.visible = value;
+      },
+      handlerButtonCancel(){
+        this.visible = false;
+        this.okButtonLoading = false;
+        this.onCancel();
+      },
+      handlerButtonOk(){
+        if(this.loading){
+          this.okButtonLoading = true;
+        }else{
+          this.visible = false;
+        }
+        this.onOk();
+      },
+      remove(){
+        this.visible = false;
+        this.okButtonLoading = false;
+        this.onRemove();
+      },
+      onOk(){},
+      onCancel(){},
+      onRemove(){}
+    }
+  }
+</script>

@@ -1,0 +1,53 @@
+
+@import "../var";
+@import "../config";
+
+@mixin button-class($type){
+  $button-class: $namespace + '-button' + $modifier-separator + $type;
+
+  &.#{$button-class}{
+    @content;
+  }
+}
+
+@mixin button-type($background-color, $font-color, $border-color ){
+  background-color: $background-color;
+  color: $font-color;
+  border-color: $border-color;
+
+  & [class*='cl-icon-'] {
+    color: $font-color;
+  }
+
+  &:hover,
+  &:focus{
+    color: $--color-white;
+    background-color: mix($--color-white, $background-color, $--button-hover-percent);
+    border-color: mix($--color-white, $border-color, $--button-hover-percent);
+  }
+
+  &:active{
+    color: $--color-white;
+    background-color: mix($--color-black, $background-color, $--button-active-percent);
+    border-color: mix($--color-black, $border-color, $--button-active-percent);
+  }
+
+  &.is-disabled {
+    &,
+    &:hover,
+    &:focus,
+    &:active {
+      cursor: not-allowed;
+      color: $--color-white;
+      background-color: mix($background-color, $--color-white);
+      border-color: mix($border-color, $--color-white);
+    }
+  }
+
+}
+
+@mixin button-size($padding-vertical, $padding-horizontal, $font-size, $border-radius){
+  padding: $padding-vertical $padding-horizontal;
+  font-size: $font-size;
+  border-radius: $border-radius;
+}

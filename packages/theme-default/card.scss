@@ -1,0 +1,66 @@
+@import "./config/var";
+@import "./config/mixins/index.scss";
+
+@include c(card){
+  box-sizing: border-box;
+  border: $--border-default;
+  border-radius: $--border-radius-default;
+  overflow: hidden;
+  background-color: $--color-white;
+  font-size: $--font-size-default;
+  transition: all $--animation-time;
+  position: relative;
+
+  &:hover,
+  &:focus,
+  &:active{
+    box-shadow: $--box-shadow-content;
+    border-color: mix($--color-white, $--border-color-default, 20%);
+  }
+
+  @include m(noHover){
+    &:hover,
+    &:focus,
+    &:active{
+      box-shadow: none;
+      border: $--border-default;
+    }
+  }
+
+  @include m(noBorder){
+    border: none;
+  }
+
+  @include e(header){
+    padding: $--card-padding-vertical $--card-padding-horizontal;
+    border-bottom: $--border-default;
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    font-size: $--font-size-title;
+    @include e(header-title){
+      color: $--color-text-title;
+      font-weight: 500;
+      box-sizing: border-box;
+      width: 100%;
+      flex: 1;
+      @include utils-ellipsis()
+    }
+    @include e(header-extra){
+      box-sizing: border-box;
+      float: right;
+    }
+    &::after{
+      content: '';
+      display: block;
+      clear: both;
+    }
+  }
+  @include e(body){
+    padding: $--card-padding-vertical $--card-padding-horizontal;
+  }
+  @include e(footer){
+    padding: $--card-padding-vertical $--card-padding-horizontal;
+    border-top: $--border-default;
+  }
+}

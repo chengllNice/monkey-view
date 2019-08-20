@@ -1,0 +1,123 @@
+@import "./config/var";
+@import "./config/mixins/index.scss";
+@import "./config/mixins/buttonMixins";
+
+
+@include c(button){
+  display: inline-block;
+  line-height: 1;
+  outline: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+  border-width: $--border-width-default;
+  border-style: $--border-style-default;
+  border-color: $--border-color-default;
+
+  & [class*='cl-icon-'] {
+    color: $--color-white;
+    & + span {
+      margin-left: 5px;
+    }
+  }
+
+  @include button-type($--button-background-color-default, $--button-font-color-default, $--button-border-color-default);
+  @include button-size($--button-padding-vertical-default, $--button-padding-horizontal-default, $--button-font-size-default, $--button-radius-default);
+
+  &:hover,
+  &:focus{
+    color: $--button-font-color-default;
+    background-color: $--button-background-color-default;
+    border-color: mix($--color-black, $--button-border-color-default, $--button-hover-percent);
+  }
+
+  &:active{
+    color: $--button-font-color-default;
+    background-color: $--button-background-color-default;
+    border-color: mix($--color-black, $--button-border-color-default, $--button-active-percent);
+  }
+
+  &.is-disabled {
+    &,
+    &:hover,
+    &:focus,
+    &:active {
+      cursor: not-allowed;
+      color: $--button-font-color-disabled;
+      background-color: $--button-background-color-disabled;
+      border-color: $--button-border-color-disabled;
+    }
+  }
+
+
+  @include button-class(primary){
+    @include button-type($--button-background-color-primary, $--button-font-color-primary, $--button-border-color-primary);
+  }
+
+  @include button-class(danger){
+    @include button-type($--button-background-color-danger, $--button-font-color-danger, $--button-border-color-danger);
+  }
+
+  @include button-class(warning){
+    @include button-type($--button-background-color-warning, $--button-font-color-warning, $--button-border-color-warning);
+  }
+
+  @include button-class(success){
+    @include button-type($--button-background-color-success, $--button-font-color-success, $--button-border-color-success);
+  }
+
+  @include button-class(info){
+    @include button-type($--button-background-color-info, $--button-font-color-info, $--button-border-color-info);
+  }
+
+  @include button-class(text){
+    @include button-type($--button-background-color-text, $--button-font-color-text, $--button-border-color-text);
+
+    &:hover,
+    &:focus{
+      color: mix($--color-white, $--button-font-color-text, $--button-hover-percent);
+      background-color: transparent;
+      border-color: transparent;
+    }
+
+    &:active{
+      color: mix($--color-black, $--button-font-color-text, $--button-hover-percent);
+      background-color: transparent;
+      border-color: transparent;
+    }
+
+    &.is-disabled {
+      &,
+      &:hover,
+      &:focus,
+      &:active {
+        cursor: not-allowed;
+        color: $--color-text-disabled;
+        background-color: transparent;
+        border-color: transparent;
+      }
+    }
+  }
+
+  @include button-class(small){
+    @include button-size($--button-padding-vertical-small, $--button-padding-horizontal-small, $--button-font-size-small, $--button-radius-small);
+  }
+
+  @include button-class(mini){
+    @include button-size($--button-padding-vertical-mini, $--button-padding-horizontal-mini, $--button-font-size-mini, $--button-radius-mini);
+  }
+
+  @include button-class(large){
+    @include button-size($--button-padding-vertical-large, $--button-padding-horizontal-large, $--button-font-size-large, $--button-radius-large);
+  }
+
+  @include button-class(block){
+    width: 100%;
+    display: block;
+  }
+
+  @include button-class(circle){
+    padding: $--button-padding-vertical-default;
+    border-radius: $--border-radius-circle;
+  }
+}

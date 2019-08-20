@@ -1,0 +1,23 @@
+@import "./base";
+
+@keyframes scaleIn-keyframe {
+  from{
+    transform: scale(0);
+  }
+  to{
+    transform: scale(1);
+  }
+}
+
+@keyframes scaleOut-keyframe {
+  from{
+    transform: scale(1);
+  }
+  to{
+    transform: scale(0);
+  }
+}
+
+@include animation-base(scale, scale){
+  animation-timing-function: linear;
+}

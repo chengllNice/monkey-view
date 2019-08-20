@@ -1,0 +1,221 @@
+<template>
+    <div class="cl-progress"
+         :class="[
+            type && `cl-progress--${type}`,
+            status && `cl-progress--${status}`,
+            outerInfoShow && 'cl-progress--show-info',
+         ]"
+         role="progressbar"
+         :aria-valuenow="percent"
+         aria-valuemin="0"
+         aria-valuemax="100">
+        <div class="cl-progress__wrap" v-if="type === 'line'">
+            <div class="cl-progress__rail" :style="railStyle">
+                <div class="cl-progress__bar" :style="barStyle">
+                    <span class="cl-progress__inside" :style="valueStyle" v-if="infoInside">
+                        <slot>{{valueFormat(percent)}}</slot>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="cl-progress__circle" :style="{height: circleWidth + 'px', width: circleWidth + 'px'}" v-else>
+            <svg viewBox="0 0 100 100">
+                <path class="cl-progress__circle-track" :d="trackPath" :stroke="railStroke" :stroke-width="relativeStrokeWidth" fill="none"></path>
+                <path class="cl-progress__circle-path" :d="trackPath" stroke-linecap="round" :stroke="barStroke" :stroke-width="relativeStrokeWidth" fill="none" :style="circlePathStyle"></path>
+            </svg>
+        </div>
+
+        <span class="cl-progress__value" v-if="outerInfoShow" :style="valueStyle">
+            <slot>
+                <span v-if="!iconClass">{{valueFormat(percent)}}</span>
+                <i class="cl-progress__icon" v-if="iconClass" :class="iconClass"></i>
+            </slot>
+        </span>
+    </div>
+</template>
+
+<script>
+  export default {
+    name: "ClProgress",
+    props: {
+      percent: {
+        type: Number,
+        default: 0,
+        required: true,
+        validator(value){
+          return value >= 0 && value <= 100
+        }
+      },
+      type: {
+        type: String,
+        default: 'line',
+        validator(value){
+          return ['line', 'circle'].includes(value)
+        }
+      },
+      strokeWidth: {
+        type: [String, Number],
+        default: 10,
+        validator(value){
+          return parseFloat(value) > 0
+        }
+      },
+      status: String,
+      valueFormat: {
+        type: Function,
+        default: function (value) {
+          return value + '%'
+        }
+      },
+      showInfo: {
+        type: Boolean,
+        default: true
+      },
+      infoInside: Boolean,//只在line模式下有效
+      railColor: String,
+      barColor: String,
+      width: {
+        type: [String, Number],
+        default: 126
+      },//circle模式下有效
+    },
+    data() {
+      return {}
+    },
+    computed: {
+      railStyle(){
+        let style = {
+          'border-radius': parseFloat(this.strokeWidth) + 'px',
+          'background-color': this.railColor
+        };
+        if(this.vertical){
+          style = {
+            ...style,
+            'width': parseFloat(this.strokeWidth) + 'px',
+          }
+        }else{
+          style = {
+            ...style,
+            'height': parseFloat(this.strokeWidth) + 'px',
+            'line-height': parseFloat(this.strokeWidth) + 'px',
+          }
+        }
+        return style
+      },
+      barStyle(){
+        let style = {
+          ...this.railStyle,
+          'background-color': this.barColor,
+        };
+        if(this.vertical){
+          style = {
+            ...style,
+            'height': this.percent + '%',
+          }
+        }else{
+          style = {
+            ...style,
+            'width': this.percent + '%'
+          }
+        }
+        return style;
+      },
+      valueStyle(){
+        let style = {};
+        let fontSize = Math.max((parseFloat(this.strokeWidth) / 2), 12);
+        if(this.type === 'circle' && this.iconClass){
+          fontSize = Math.max((this.circleWidth * 0.1 + 2), 16);
+        }
+        style = {
+          'line-height': parseFloat(this.strokeWidth) + 'px',
+          'font-size': fontSize + 'px',
+        };
+        return style;
+      },
+      outerInfoShow(){
+        if(this.type === 'line' && this.infoInside){
+          return false
+        }else{
+          return this.showInfo
+        }
+      },
+      iconClass(){
+        let className = '';
+        switch (this.status) {
+          case 'success':
+            className = 'cl-icon-circle-success-solid';
+            break;
+          case 'error':
+            className = 'cl-icon-circle-close-solid';
+            break;
+          case 'warning':
+            className = 'cl-icon-warning-solid';
+            break;
+        }
+        return className
+      },
+      relativeStrokeWidth() {
+        return (this.strokeWidth / this.circleWidth * 100).toFixed(1);
+      },
+      trackPath() {
+        const radius = parseInt(50 - parseFloat(this.relativeStrokeWidth) / 2, 10);
+
+        return `M 50 50 m 0 -${radius} a ${radius} ${radius} 0 1 1 0 ${radius * 2} a ${radius} ${radius} 0 1 1 0 -${radius * 2}`;
+      },
+      perimeter() {
+        const radius = 50 - parseFloat(this.relativeStrokeWidth) / 2;
+        return 2 * Math.PI * radius;
+      },
+      circlePathStyle() {
+        const perimeter = this.perimeter;
+        return {
+          strokeDasharray: `${perimeter}px,${perimeter}px`,
+          strokeDashoffset: (1 - this.percent / 100) * perimeter + 'px',
+          transition: 'stroke-dashoffset 0.6s ease 0s, stroke 0.6s ease'
+        };
+      },
+      railStroke(){
+        let ret;
+        if (this.railColor) {
+          ret = this.railColor;
+        } else {
+          ret = '#f5f7fa'
+        }
+        return ret;
+      },
+      barStroke() {
+        let ret;
+        if (this.barColor) {
+          ret = this.barColor;
+        } else {
+          switch (this.status) {
+            case 'success':
+              ret = '#42b983';
+              break;
+            case 'error':
+              ret = '#ed4014';
+              break;
+            case 'warning':
+              ret = '#f8ac59';
+              break;
+            default:
+              ret = '#2d8cf0';
+          }
+        }
+        return ret;
+      },
+      circleWidth(){
+        return parseFloat(this.width)
+      }
+    },
+    components: {},
+    created() {
+    },
+    mounted() {
+    },
+    methods: {
+
+    }
+  }
+</script>

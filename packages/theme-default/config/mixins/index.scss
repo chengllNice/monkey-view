@@ -1,0 +1,69 @@
+
+@import "../config";
+
+@mixin c($name){
+  $C: $namespace + '-' + $name !global;
+
+  .#{$C}{
+    @content;
+  }
+}
+
+@mixin e($element, $root: true){
+  $selector: &;
+  $currentSeletor: '';
+  @each $key in $element {
+    $currentSeletor: #{$currentSeletor + '.' + $C + $el-separator + $key + ','};
+  }
+
+  @if($root){
+    @at-root {
+      #{$currentSeletor} {
+        @content;
+      }
+    }
+  }@else {
+    #{$currentSeletor} {
+      @content;
+    }
+  }
+}
+
+@mixin m($element, $root: true){
+  $selector: &;
+  $currentSeletor: '';
+  @each $key in $element {
+    $currentSeletor: #{$currentSeletor + '.' + $C + $modifier-separator + $key + ','};
+  }
+
+  @if($root){
+    @at-root {
+      #{$currentSeletor} {
+        @content;
+      }
+    }
+  }@else {
+    #{$currentSeletor} {
+      @content;
+    }
+  }
+}
+
+
+@mixin when($state) {
+  @at-root {
+    &.#{$status-prefix + $state} {
+      @content;
+    }
+  }
+}
+
+@mixin utils-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin utils-rotate {
+  transform: rotate(-180deg);
+}

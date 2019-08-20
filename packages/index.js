@@ -1,0 +1,71 @@
+import Vue from 'vue'
+
+import ClButton from './components/button'
+import ClButtonGroup from './components/button-group'
+import ClCheckbox from './components/checkbox'
+import ClCheckboxGroup from './components/checkbox-group'
+import ClRadio from './components/radio'
+import ClRadioGroup from './components/radio-group'
+import ClInput from './components/input'
+import ClSelect from './components/select'
+import ClOption from './components/option'
+import ClOptionGroup from './components/option-group'
+import ClUpload from './components/upload'
+import ClSwitch from './components/switch'
+import ClSlider from './components/slider'
+import ClModal from './components/modal'
+import ClMessage from './components/message'
+import ClPopover from './components/popover'
+import ClTooltip from './components/tooltip'
+import ClProgress from './components/progress'
+import ClTag from './components/tag'
+import ClBadge from './components/badge'
+import ClScroll from './components/scroll'
+import ClAlter from './components/alert'
+import ClCard from './components/card'
+import ClDrawer from './components/drawer'
+import ClTable from './components/table'
+
+const components = {
+  ClButton,
+  ClButtonGroup,
+  ClCheckbox,
+  ClCheckboxGroup,
+  ClRadio,
+  ClRadioGroup,
+  ClInput,
+  ClSelect,
+  ClOption,
+  ClOptionGroup,
+  ClUpload,
+  ClSwitch,
+  ClSlider,
+  ClModal,
+  ClPopover,
+  ClTooltip,
+  ClProgress,
+  ClTag,
+  ClBadge,
+  ClScroll,
+  ClAlter,
+  ClCard,
+  ClDrawer,
+  ClTable
+};
+
+const install = (Vue) => {
+  Object.keys(components).forEach(key=>{
+    Vue.component(key, components[key])
+  });
+
+  Vue.prototype.$Modal = ClModal.$Modal;
+  Vue.prototype.$Message = ClMessage;
+};
+
+if(typeof window !== 'undefined' && window.Vue){
+  install(window.Vue)
+}else{
+  install(Vue)
+}
+
+export default components;

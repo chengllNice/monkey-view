@@ -1,0 +1,170 @@
+
+@import "./config/var";
+@import "./config/mixins/index.scss";
+
+
+@mixin tag-color($font-color, $border-color, $type: ''){
+  color: $font-color;
+  border-color: $border-color;
+  background-color: $border-color;
+  @include e(icon, false){
+    color: $font-color;
+  }
+
+  @if($type == 'o'){
+    background-color: mix($border-color, $--color-white, $--button-active-percent);
+  }@else if($type == 'ghost') {
+    background-color: transparent;
+  }@else if($type == 'ghost-o') {
+    background-color: transparent;
+    @include e(icon, false){
+      color: $font-color;
+    }
+  }
+}
+
+
+@include c(tag){
+  display: inline-block;
+  border-width: 1px;
+  border-style: solid;
+  box-sizing: border-box;
+  cursor: pointer;
+  margin: 0 5px;
+  border-color: $--tag-border-color-default;
+  border-radius: $--border-radius-default;
+  font-size: $--tag-font-size-default;
+  color: $--tag-font-color-default;
+  background-color: $--tag-background-color-default;
+  padding: 0 $--tag-padding-horizontal-default;
+  height: $--tag-height-default;
+  line-height: $--tag-height-default;
+
+  &:hover{
+    opacity: $--tag-hover-opacity;
+  }
+
+  @include e(text, false){
+
+  }
+
+  @include e(icon, false){
+    font-size: $--tag-font-size-default;
+    color: $--color-white;
+    margin-left: $--tag-padding-horizontal-default;
+    transform: scale(#{$--tag-font-size-default / ($--font-size-default + 2px)});
+    opacity: $--tag-hover-opacity;
+
+    &:hover{
+      opacity: 1;
+    }
+  }
+
+  @include m(large){
+    font-size: $--tag-font-size-large;
+    padding: 0 $--tag-padding-horizontal-large;
+    height: $--tag-height-large;
+    line-height: $--tag-height-large;
+  }
+
+  @include m(small){
+    font-size: $--tag-font-size-small;
+    padding: 0 $--tag-padding-horizontal-small;
+    height: $--tag-height-small;
+    line-height: $--tag-height-small;
+  }
+
+  @include m(default){
+    @include e(icon, false){
+      color: $--tag-font-color-default;
+    }
+  }
+
+  @include m(success){
+    @include tag-color($--color-white,$--color-success);
+  }
+
+  @include m(danger){
+    @include tag-color($--color-white,$--color-danger);
+  }
+
+  @include m(primary){
+    @include tag-color($--color-white,$--color-primary);
+  }
+
+  @include m(warning){
+    @include tag-color($--color-white,$--color-warning);
+  }
+
+  @include m(info){
+    @include tag-color($--color-white,$--color-info);
+  }
+
+  @include m(success-o){
+    @include tag-color($--color-success,$--color-success,'o');
+  }
+
+  @include m(danger-o){
+    @include tag-color($--color-danger,$--color-danger,'o');
+  }
+
+  @include m(primary-o){
+    @include tag-color($--color-primary,$--color-primary,'o');
+  }
+
+  @include m(warning-o){
+    @include tag-color($--color-warning,$--color-warning,'o');
+  }
+
+  @include m(info-o){
+    @include tag-color($--color-info,$--color-info,'o');
+  }
+}
+
+.cl-tag--ghost.cl-tag--default{
+  @include tag-color($--tag-font-color-default,$--tag-font-color-default,'ghost');
+}
+
+.cl-tag--ghost.cl-tag--primary{
+  @include tag-color($--color-primary,$--color-primary,'ghost');
+}
+
+.cl-tag--ghost.cl-tag--danger{
+  @include tag-color($--color-danger,$--color-danger,'ghost');
+}
+
+.cl-tag--ghost.cl-tag--success{
+  @include tag-color($--color-success,$--color-success,'ghost');
+}
+
+.cl-tag--ghost.cl-tag--warning{
+  @include tag-color($--color-warning,$--color-warning,'ghost');
+}
+
+.cl-tag--ghost.cl-tag--info{
+  @include tag-color($--color-info,$--color-info,'ghost');
+}
+
+.cl-tag--ghost.cl-tag--default-o{
+  @include tag-color($--tag-font-color-default,$--tag-font-color-default,'ghost-o');
+}
+
+.cl-tag--ghost.cl-tag--primary-o{
+  @include tag-color($--color-primary,$--color-primary,'ghost-o');
+}
+
+.cl-tag--ghost.cl-tag--danger-o{
+  @include tag-color($--color-danger,$--color-danger,'ghost-o');
+}
+
+.cl-tag--ghost.cl-tag--success-o{
+  @include tag-color($--color-success,$--color-success,'ghost-o');
+}
+
+.cl-tag--ghost.cl-tag--warning-o{
+  @include tag-color($--color-warning,$--color-warning,'ghost-o');
+}
+
+.cl-tag--ghost.cl-tag--info-o{
+  @include tag-color($--color-info,$--color-info,'ghost-o');
+}

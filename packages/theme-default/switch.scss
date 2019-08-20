@@ -1,0 +1,177 @@
+@import "./config/var";
+@import "./config/mixins/index.scss";
+@import "./config/animations/rotate.scss";
+
+@include c(switch){
+  display: inline-block;
+  box-sizing: border-box;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  font-size: $--font-size-default;
+  width: $--switch-width-default;
+  height: $--switch-height-default;
+  line-height: $--switch-height-default;
+  background-color: $--switch-background-color-default;
+  border-radius: $--switch-height-default;
+  transition: all $--animation-time;
+  @include utils-ellipsis();
+
+  &::before{
+    content: '';
+    display: none;
+    width: #{$--switch-height-default / 2};
+    height: #{$--switch-height-default / 2};
+    box-sizing: border-box;
+    border-radius: 50%;
+    background-color: transparent;
+    position: absolute;
+    left: #{($--switch-height-default - 4px) / 2 + 2px - ($--switch-height-default / 4)};
+    right: auto;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 1;
+    border: 1px solid $--border-color-primary;
+    border-color: transparent transparent transparent $--border-color-primary;
+    animation: rotateInfinite 2s linear infinite;
+  }
+
+  &::after{
+    content: '';
+    display: inline-block;
+    position: absolute;
+    left: 2px;
+    top: 0;
+    bottom: 0;
+    right: auto;
+    margin: auto;
+    transition: all $--animation-time;
+    width: #{$--switch-height-default - 4px};
+    height: #{$--switch-height-default - 4px};
+    border-radius: #{$--switch-height-default - 4px};
+    background-color: $--color-white;
+    box-shadow: $--box-shadow-default;
+  }
+
+  &:not(.is-disabled):not(.is-loading):active:after {
+    width: #{$--switch-height-default - 4px + ($--switch-height-default - 4px) / 2};
+  }
+
+  @include e(inner){
+    display: inline-block;
+    color: $--color-white;
+    height: 100%;
+    vertical-align: middle;
+    position: absolute;
+    left: auto;
+    right: #{$--switch-height-default / 4 + 2px};
+  }
+
+  @include m(small){
+    width: $--switch-width-small;
+    height: $--switch-height-small;
+    line-height: $--switch-height-small;
+    border-radius: $--switch-height-small;
+
+    &::before{
+      width: #{$--switch-height-small / 2};
+      height: #{$--switch-height-small / 2};
+      left: #{($--switch-height-small - 4px) / 2 + 2px - ($--switch-height-small / 4)};
+    }
+
+    &::after{
+      width: #{$--switch-height-small - 4px};
+      height: #{$--switch-height-small - 4px};
+      border-radius: #{$--switch-height-small - 4px};
+    }
+    &:not(.is-disabled):not(.is-loading):active:after {
+      width: #{$--switch-height-small - 4px + ($--switch-height-small - 4px) / 2};
+    }
+
+    @include e(inner, false){
+      right: #{$--switch-height-small / 4 + 2px};
+    }
+  }
+
+  @include m(large){
+    width: $--switch-width-large;
+    height: $--switch-height-large;
+    line-height: $--switch-height-large;
+    border-radius: $--switch-height-large;
+    &::before{
+      width: #{$--switch-height-large / 2};
+      height: #{$--switch-height-large / 2};
+      left: #{($--switch-height-large - 4px) / 2 + 2px - ($--switch-height-large / 4)};
+    }
+
+    &::after{
+      width: #{$--switch-height-large - 4px};
+      height: #{$--switch-height-large - 4px};
+      border-radius: #{$--switch-height-large - 4px};
+    }
+    &:not(.is-disabled):not(.is-loading):active:after {
+      width: #{$--switch-height-large - 4px + ($--switch-height-large - 4px) / 2};
+    }
+
+    @include e(inner, false){
+      right: #{$--switch-height-large / 4 + 2px};
+    }
+  }
+
+  @include when(checked){
+    background-color: $--switch-background-color-checked;
+
+    &::before{
+      right: #{($--switch-height-default - 4px) / 2 + 2px - ($--switch-height-default / 4)};
+      left: auto;
+    }
+
+    &::after{
+      left: auto;
+      right: 2px;
+    }
+
+    @include e(inner, false){
+      left: #{$--switch-height-default / 4};
+      right: auto;
+    }
+
+    @include m(small, false){
+      &::before{
+        right: #{($--switch-height-small - 4px) / 2 + 2px - ($--switch-height-small / 4)};
+        left: auto;
+      }
+      &::after{
+        width: #{$--switch-height-small - 4px};
+        left: auto;
+        right: 2px;
+      }
+    }
+
+    @include m(large, false){
+      &::before{
+        right: #{($--switch-height-large - 4px) / 2 + 2px - ($--switch-height-large / 4)};
+        left: auto;
+        transform: translateX(50%);
+      }
+      &::after{
+        width: #{$--switch-height-large - 4px};
+        left: auto;
+        right: 2px;
+      }
+    }
+  }
+
+  @include when(disabled){
+    cursor: not-allowed;
+    opacity: 0.4;
+  }
+
+  @include when(loading){
+    opacity: 0.4;
+    &::before{
+      display: inline-block;
+    }
+  }
+}

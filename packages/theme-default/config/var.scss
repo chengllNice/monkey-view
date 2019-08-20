@@ -1,0 +1,313 @@
+
+/*-----Common Var-----*/
+$--line-height-default: 1.5 !default;
+
+$--color-default: #515a6e !default;
+$--color-primary: #2d8cf0 !default;
+$--color-danger: #ed4014 !default;
+$--color-warning: #f8ac59 !default;
+$--color-success: #19be6b !default;
+//$--color-success: #42b983 !default;
+$--color-info: #13c2c2 !default;
+//$--color-info: #2db7f5 !default;
+$--color-white: #ffffff !default;
+$--color-black: #000000 !default;
+$--animation-time: 0.2s;
+
+$--color-text-default: #515a6e !default;
+$--color-text-placeholder: #c0c4cc !default;
+$--color-text-disabled: #c0c4cc !default;
+$--color-text-primary: #ffffff !default;
+$--color-text-danger: #ffffff !default;
+$--color-text-warning: #ffffff !default;
+$--color-text-success: #ffffff !default;
+$--color-text-info: #ffffff !default;
+$--color-text-title: #17233d !default;
+$--color-text-legend: #999999 !default;
+
+$--border-color-default: #dcdee2 !default;
+$--border-color-disabled: #c5c8ce !default;
+$--border-color-primary: #2d8cf0 !default;
+$--border-color-danger: #ed4014 !default;
+$--border-color-warning: #f8ac59 !default;
+$--border-color-success: #19be6b !default;
+//$--border-color-success: #42b983 !default;
+$--border-color-info: #13c2c2 !default;
+
+$--background-color-base: #f5f7fa !default;
+$--background-color-disabled: #c5c8ce !default;
+
+
+/*-----border-----*/
+$--border-width-default: 1px !default;
+$--border-style-default: solid !default;
+$--border-radius-default: 2px !default;
+$--border-radius-circle: 100% !default;
+$--border-default: $--border-width-default $--border-style-default $--border-color-default !default;
+
+
+/*-----box-shadow-----*/
+$--box-shadow-default: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04) !default;
+//card
+$--box-shadow-content: 0 1px 6px rgba(0, 0, 0, 0.2) !default;
+
+
+/*-----font-----*/
+$--font-size-base: 12px !default;
+$--font-size-default: 12px !default;
+$--font-size-small: 12px !default;
+$--font-size-mini: 10px !default;
+$--font-size-large: 14px !default;
+$--font-size-title: 16px !default;
+
+
+/*-----zIndex-----*/
+$--dialog-z-index: 2000 !default;
+$--popover-z-index: 1000 !default;
+
+/*-----opacity-----*/
+$--opacity-disabled: 0.4;
+
+
+
+/*-----table-----*/
+$--table-head-th-background-color: #f8f8f9 !default;
+$--table-head-th-height: 40px !default;
+$--table-head-th-border: $--border-default !default;
+$--table-cell-padding-horizontal: 18px !default;
+
+
+/*-----upload-----*/
+$--upload-picture-icon-font-size: 20px !default;
+$--upload-picture-card-width: 104px !default;
+$--upload-picture-card-height: 104px !default;
+$--upload-picture-padding: 10px !default;
+$--upload-picture-margin: 10px !default;
+$--upload-picture-height: 84px !default;
+
+
+/*-----badge-----*/
+$--badge-sup-height: 20px !default;
+
+/*-----card-----*/
+$--card-padding-vertical: 12px !default;
+$--card-padding-horizontal: 18px !default;
+
+
+/*-----alter-----*/
+$--alter-padding-vertical: 8px !default;
+$--alter-padding-horizontal: 16px !default;
+$--alter-padding-with-icon-horizontal: 38px !default;
+$--alter-padding-with-description-horizontal: 69px !default;
+
+/*-----modal-----*/
+$--modal-cover-background-color: rgba(0,0,0,0.4) !default;
+$--modal-vertical-padding: 12px !default;
+$--modal-horizontal-padding: 18px !default;
+$--modal-close-icon-font-size: 14px !default;
+$--modal-header-font-size: 14px !default;
+$--modal-confirm-icon-font-size: 40px !default;
+$--modal-confirm-title-font-size: $--font-size-title !default;
+$--modal-confirm-content-font-size: 14px !default;
+
+/*-----message-----*/
+$--message-icon-font-size: 16px !default;
+$--message-vertical-padding: 8px !default;
+$--message-horizontal-padding: 16px !default;
+
+
+/*-----tag-----*/
+$--tag-font-size-default: $--font-size-default !default;
+$--tag-font-color-default: $--color-text-default !default;
+$--tag-border-color-default: $--border-color-default !default;
+$--tag-background-color-default: $--background-color-base !default;
+$--tag-hover-opacity: 0.85 !default;
+$--tag-height-default: 22px !default;
+$--tag-padding-horizontal-default: 6px !default;
+
+$--tag-height-small: 18px !default;
+$--tag-font-size-small: $--font-size-small !default;
+$--tag-padding-horizontal-small: 4px !default;
+
+$--tag-height-large: 28px !default;
+$--tag-font-size-large: $--font-size-large !default;
+$--tag-padding-horizontal-large: 10px !default;
+
+
+
+/*-----popover-----*/
+$--popover-arrow-width: 6px !default;
+$--popover-min-width: 150px !default;
+
+
+/*------tooltip-----*/
+$--tooltip-background-color-default: rgba(0,0,0,0.85) !default;
+
+/*-----slider-----*/
+$--slider-rail-height: 4px !default;
+$--slider-rail-vertical-margin: 16px !default;
+$--slider-rail-background-color: $--background-color-base !default;
+$--slider-bar-background-color: $--color-primary !default;
+
+/*-----progress-----*/
+$--progress-rail-background-color: $--background-color-base !default;
+
+
+/*-----switch-----*/
+$--switch-width-default: 44px !default;
+$--switch-width-small: 36px !default;
+$--switch-width-large: 56px !default;
+$--switch-height-default: 22px !default;
+$--switch-height-small: 18px !default;
+$--switch-height-large: 24px !default;
+$--switch-background-color-default: #cccccc !default;
+$--switch-background-color-checked: $--color-primary !default;
+
+
+/*----select----*/
+$--select-option-text-color: $--color-text-default !default;
+$--select-option-padding-right-mutiple: 36px !default;
+$--select-option-font-size: $--font-size-default !default;
+$--select-option-background-color-hover: $--background-color-base !default;
+$--select-drop-down-max-height: 200px !default;
+
+
+/*-----input-----*/
+$--input-radius: $--border-radius-default !default;
+$--input-border: $--border-default !default;
+$--input-border-color-hover: $--color-primary !default;
+$--input-background-color: $--color-white !default;
+$--input-font-color: $--color-text-default !default;
+$--input-background-color-append-prepend: $--background-color-base !default;
+
+$--input-font-color-disabled: $--color-text-disabled !default;
+$--input-border-color-disabled: $--border-color-disabled !default;
+$--input-background-color-disabled: #f3f3f3 !default;
+
+$--input-padding-height-default: 32px !default;
+$--input-padding-vertical-default: 5px !default;
+$--input-padding-horizontal-default: 8px !default;
+$--input-padding-icon-default: 36px !default;
+$--input-font-size-default: $--font-size-default !default;
+
+$--input-padding-height-small: 28px !default;
+$--input-padding-vertical-small: 4px !default;
+$--input-padding-horizontal-small: 5px !default;
+$--input-padding-icon-small: 32px !default;
+$--input-font-size-small: $--font-size-small !default;
+
+$--input-padding-height-large: 35px !default;
+$--input-padding-vertical-large: 6px !default;
+$--input-padding-horizontal-large: 10px !default;
+$--input-padding-icon-large: 40px !default;
+$--input-font-size-large: $--font-size-large !default;
+
+
+
+/*-----radio-----*/
+$--radio-radius: $--border-radius-circle !default;
+$--radio-border: $--border-default !default;
+$--radio-border-color-hover: $--color-primary !default;
+$--radio-background-color: $--color-white !default;
+
+$--radio-border-color-checked: $--color-primary !default;
+$--radio-background-color-checked: $--color-primary !default;
+$--radio-font-color-checked: $--color-primary !default;
+
+$--radio-border-color-disabled: $--border-color-disabled !default;
+$--radio-background-color-disabled: $--background-color-base !default;
+$--radio-icon-color-disabled: $--color-text-disabled !default;
+$--radio-font-color-disabled: $--color-text-disabled !default;
+
+$--radio-input-width-default: 12px !default;
+$--radio-input-height-default: 12px !default;
+
+$--radio-input-width-small: 10px !default;
+$--radio-input-height-small: 10px !default;
+
+$--radio-input-width-large: 14px !default;
+$--radio-input-height-large: 14px !default;
+
+
+/*-----checkbox-----*/
+$--checkbox-radius: $--border-radius-default !default;
+$--checkbox-border: $--border-default !default;
+$--checkbox-border-color-hover: $--color-primary !default;
+$--checkbox-background-color: $--color-white !default;
+
+$--checkbox-border-color-checked: $--color-primary !default;
+$--checkbox-background-color-checked: $--color-primary !default;
+$--checkbox-font-color-checked: $--color-primary !default;
+
+$--checkbox-border-color-disabled: $--border-color-disabled !default;
+$--checkbox-background-color-disabled: $--background-color-base !default;
+$--checkbox-icon-color-disabled: $--color-text-disabled !default;
+$--checkbox-font-color-disabled: $--color-text-disabled !default;
+
+$--checkbox-input-width-default: 12px !default;
+$--checkbox-input-height-default: 12px !default;
+
+$--checkbox-input-width-small: 10px !default;
+$--checkbox-input-height-small: 10px !default;
+
+$--checkbox-input-width-large: 14px !default;
+$--checkbox-input-height-large: 14px !default;
+
+
+
+
+/*-----button-----*/
+$--button-font-size-default: $--font-size-default !default;
+$--button-padding-vertical-default: 8px !default;
+$--button-padding-horizontal-default: 15px !default;
+$--button-radius-default: $--border-radius-default !default;
+
+$--button-font-size-small: $--font-size-small !default;
+$--button-padding-vertical-small: 5px !default;
+$--button-padding-horizontal-small: 10px !default;
+$--button-radius-small: $--border-radius-default !default;
+
+$--button-font-size-mini: $--font-size-mini !default;
+$--button-padding-vertical-mini: 4px !default;
+$--button-padding-horizontal-mini: 10px !default;
+$--button-radius-mini: $--border-radius-default !default;
+
+$--button-font-size-large: $--font-size-large !default;
+$--button-padding-vertical-large: 10px !default;
+$--button-padding-horizontal-large: 18px !default;
+$--button-radius-large: $--border-radius-default !default;
+
+$--button-font-color-default: $--color-text-default !default;
+$--button-background-color-default: $--color-white !default;
+$--button-border-color-default: $--border-color-default !default;
+
+$--button-font-color-primary: $--color-text-primary !default;
+$--button-background-color-primary: $--color-primary !default;
+$--button-border-color-primary: $--border-color-primary !default;
+
+$--button-font-color-danger: $--color-text-danger !default;
+$--button-background-color-danger: $--color-danger !default;
+$--button-border-color-danger: $--border-color-danger !default;
+
+$--button-font-color-warning: $--color-text-warning !default;
+$--button-background-color-warning: $--color-warning !default;
+$--button-border-color-warning: $--border-color-warning !default;
+
+$--button-font-color-success: $--color-text-success !default;
+$--button-background-color-success: $--color-success !default;
+$--button-border-color-success: $--border-color-success !default;
+
+$--button-font-color-info: $--color-text-info !default;
+$--button-background-color-info: $--color-info !default;
+$--button-border-color-info: $--border-color-info !default;
+
+$--button-font-color-text: $--color-primary !default;
+$--button-background-color-text: transparent !default;
+$--button-border-color-text: transparent !default;
+
+$--button-font-color-disabled: $--color-text-disabled !default;
+$--button-background-color-disabled: $--color-white !default;
+$--button-border-color-disabled: $--border-color-disabled !default;
+
+$--button-hover-percent: 20% !default;
+$--button-active-percent: 10% !default;

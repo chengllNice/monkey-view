@@ -1,0 +1,368 @@
+@import "./config/var";
+@import "./config/mixins/index.scss";
+
+@include c(input){
+  display: inline-table;
+  line-height: 1;
+  transition: all 0.2s;
+  position: relative;
+  width: 100%;
+
+
+  @include e(source, false){
+    display: table-cell;
+    outline: none;
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: $--input-radius;
+    background-color: $--input-background-color;
+    border: $--input-border;
+    padding-left: $--input-padding-horizontal-default;
+    padding-right: $--input-padding-horizontal-default;
+    padding-top: 0;
+    padding-bottom: 0;
+    height: $--input-padding-height-default;
+    font-size: $--input-font-size-default;
+    color: $--input-font-color;
+    transition: all 0.2s;
+    position: relative;
+
+    &::placeholder{
+      color: $--color-text-placeholder;
+    }
+
+    &:hover,
+    &:focus,
+    &:active{
+      border-color: $--input-border-color-hover;
+    }
+
+    &:focus{
+      box-shadow: 0 0 0 2px mix($--input-border-color-hover, $--color-white, $--button-hover-percent);
+    }
+  }
+
+  @include e(append-color, false){
+    cursor: default;
+    border: $--input-border;
+    background-color: $--input-background-color-append-prepend;
+  }
+  @include e((prepend, append), false){
+    display: table-cell;
+    box-sizing: border-box;
+    vertical-align: bottom;
+    width: 1px;
+    position: relative;
+    height: $--input-padding-height-default;
+    padding: $--button-padding-vertical-default $--button-padding-horizontal-default;
+  }
+  @include e(prepend, false){
+    border: $--input-border;
+    border-right: none;
+    cursor: default;
+    border-radius: $--input-radius;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    background-color: $--input-background-color-append-prepend;
+  }
+  @include e(append, false){
+    border-left: none;
+    border-radius: $--input-radius;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  @include e((prefix,suffix), false){
+    position: absolute;
+    left: 1px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 2;
+    text-align: center;
+    height: calc(100% - 2px);
+    width: #{$--input-padding-icon-default - 2px};
+    box-sizing: border-box;
+    @include e((limit,suffix-inner,prefix-inner), false){
+      padding: 0 5px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      line-height: $--input-padding-height-default;
+      box-sizing: border-box;
+      color: $--input-font-color;
+      @include utils-ellipsis();
+      @include e(search){
+        cursor: pointer;
+      }
+    }
+
+    @include e((prefix-step,suffix-step), false){
+      border-left: $--input-border;
+      cursor: pointer;
+      background: $--background-color-base;
+      &:hover,
+      &:focus,
+      &:active{
+        color: $--color-primary;
+      }
+
+      &:active{
+        background: mix($--color-black, $--background-color-base, $--button-active-percent);
+      }
+    }
+
+    @include e(suffix-step-right, false){
+      padding: 0;
+      &:hover,
+      &:focus,
+      &:active{
+        color: $--input-font-color;
+      }
+      &:active{
+        background: $--background-color-base;
+      }
+      @include e((suffix-step-right-down, suffix-step-right-up), false){
+        display: block;
+        height: calc( 100% / 2 );
+        &:hover,
+        &:focus,
+        &:active{
+          color: $--color-primary;
+        }
+        &:active{
+          background: mix($--color-black, $--background-color-base, $--button-active-percent);
+        }
+        i{
+          vertical-align: top;
+          transform: scale(0.8);
+        }
+      }
+      @include e(suffix-step-right-up, false){
+        border-bottom: $--input-border;
+        i{
+          vertical-align: super;
+        }
+      }
+    }
+
+
+    @include e(prefix-step, false){
+      border-right: $--input-border;
+      border-left: none;
+    }
+  }
+  @include e(suffix, false){
+    left: auto;
+    right: 1px;
+  }
+
+  @include e(source-prefix, false){
+    padding-left: $--input-padding-icon-default;
+  }
+
+  @include e(source-suffix, false){
+    padding-right: $--input-padding-icon-default;
+  }
+
+  @include e(source-prepend, false){
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  @include e(source-append, false){
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  @include m(small){
+    @include e(source, false){
+      padding-left: $--input-padding-horizontal-small;
+      padding-right: $--input-padding-horizontal-small;
+      height: $--input-padding-height-small;
+      font-size: $--input-font-size-small;
+    }
+    @include e((prepend, append), false){
+      height: $--input-padding-height-small;
+      padding: $--button-padding-vertical-small $--button-padding-horizontal-small;
+    }
+    @include e((prefix,suffix), false){
+      width: #{$--input-padding-icon-small - 2px};
+      @include e((limit,suffix-inner,prefix-inner), false){
+        line-height: $--input-padding-height-small;
+      }
+    }
+    @include e(source-prefix, false){
+      padding-left: $--input-padding-icon-small;
+    }
+
+    @include e(source-suffix, false){
+      padding-right: $--input-padding-icon-small;
+    }
+  }
+
+  @include m(large){
+    @include e(source, false){
+      padding-left: $--input-padding-horizontal-large;
+      padding-right: $--input-padding-horizontal-large;
+      height: $--input-padding-height-large;
+      font-size: $--input-font-size-large;
+    }
+    @include e((prepend, append), false){
+      height: $--input-padding-height-large;
+      padding: $--button-padding-vertical-large $--button-padding-horizontal-large;
+    }
+    @include e((prefix,suffix), false){
+      width: #{$--input-padding-icon-large - 2px};
+      @include e((limit,suffix-inner,prefix-inner), false){
+        line-height: $--input-padding-height-large;
+      }
+    }
+    @include e(source-prefix, false){
+      padding-left: $--input-padding-icon-large;
+    }
+
+    @include e(source-suffix, false){
+      padding-right: $--input-padding-icon-large;
+    }
+  }
+
+  @include e(append-button-wrap, false){
+    padding: 0;
+    @include e(append-button, false){
+      border-left: none;
+      height: 100%;
+      border-radius: $--input-radius;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+
+  @include when(disabled){
+    cursor: not-allowed;
+    @include e(source, false){
+      cursor: not-allowed;
+      background-color: $--input-background-color-disabled;
+      border-color: $--input-border-color-disabled;
+      color: $--input-font-color-disabled;
+
+      &:hover,
+      &:focus,
+      &:active{
+        border-color: $--input-border-color-disabled;
+      }
+    }
+
+    @include e((prefix-step,suffix-step), false){
+      cursor: not-allowed;
+      &:hover,
+      &:focus,
+      &:active{
+        color: $--input-font-color;
+      }
+
+      &:active{
+        background: $--background-color-base;
+      }
+    }
+  }
+}
+
+@include c(input-search){
+
+}
+
+@include c(input-number){
+
+}
+
+@include c(textarea){
+  display: inline-block;
+  width: auto;
+
+  @include e(source, false){
+    outline: none;
+    box-sizing: border-box;
+    transition: all 0.2s;
+    height: auto;
+    border-radius: $--input-radius;
+    background-color: $--input-background-color;
+    border: $--input-border;
+    padding-left: $--input-padding-horizontal-default;
+    padding-right: $--input-padding-horizontal-default;
+    padding-top: $--input-padding-vertical-default;
+    padding-bottom: $--input-padding-vertical-default;
+    font-size: $--input-font-size-default;
+    color: $--input-font-color;
+    min-height: $--input-padding-height-default;
+
+
+    &::placeholder{
+      color: $--color-text-placeholder;
+    }
+
+    &:hover,
+    &:focus,
+    &:active{
+      border-color: $--input-border-color-hover;
+    }
+
+    &:focus{
+      box-shadow: 0 0 0 2px mix($--input-border-color-hover, $--color-white, $--button-hover-percent);
+    }
+  }
+
+  @include e(suffix, false){
+    position: absolute;
+    right: $--input-padding-horizontal-default;
+    bottom: $--input-padding-vertical-default;
+    text-align: center;
+    height: auto;
+    width: $--input-padding-icon-default;
+  }
+
+  @include when(disabled){
+    cursor: not-allowed;
+    @include e(source, false){
+      cursor: not-allowed;
+      background-color: $--input-background-color-disabled;
+      border-color: $--input-border-color-disabled;
+      color: $--input-font-color-disabled;
+
+      &:hover,
+      &:focus,
+      &:active{
+        border-color: $--input-border-color-disabled;
+      }
+    }
+  }
+
+  @include m(small){
+    @include e(source, false){
+      padding-left: $--input-padding-horizontal-small;
+      padding-right: $--input-padding-horizontal-small;
+      height: $--input-padding-height-small;
+      font-size: $--input-font-size-small;
+    }
+    @include e(suffix, false){
+      right: $--input-padding-horizontal-small;
+      bottom: $--input-padding-vertical-small;
+    }
+  }
+
+  @include m(large){
+    @include e(source, false){
+      padding-left: $--input-padding-horizontal-large;
+      padding-right: $--input-padding-horizontal-large;
+      height: $--input-padding-height-large;
+      font-size: $--input-font-size-large;
+    }
+    @include e(suffix, false){
+      right: $--input-padding-horizontal-large;
+      bottom: $--input-padding-vertical-large;
+    }
+  }
+}

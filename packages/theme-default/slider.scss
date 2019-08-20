@@ -1,0 +1,94 @@
+@import "./config/var";
+@import "./config/mixins/index";
+
+$slider-handle-height: #{$--slider-rail-height + 10px};
+
+@include c(slider){
+  position: relative;
+  line-height: normal;
+  cursor: pointer;
+  width: 100%;
+  height: auto;
+
+  @include e(rail){
+    width: 100%;
+    position: relative;
+    height: $--slider-rail-height;
+    margin: $--slider-rail-vertical-margin 0;
+    background-color: $--slider-rail-background-color;
+    border-radius: $--slider-rail-height;
+    &:hover,
+    &:active{
+      background-color: mix($--color-black, $--color-white, $--button-active-percent);
+    }
+  }
+
+  @include e(bar){
+    position: absolute;
+    background-color: $--slider-bar-background-color;
+    height: $--slider-rail-height;
+    border-radius: $--slider-rail-height;
+  }
+
+  @include e(handle){
+    position: absolute;
+    top: -#{($--slider-rail-height + 10px) / 2 - $--slider-rail-height / 2};
+    transform: translateX(-($--slider-rail-height + 10px)/2);
+    height: $slider-handle-height;
+    cursor: pointer;
+  }
+
+  @include e(handle-rel){
+    width: $slider-handle-height;
+    height: $slider-handle-height;
+    border-radius: 100%;
+    border-width: $--slider-rail-height;
+    border-style: solid;
+    border-color: $--slider-bar-background-color;
+    box-sizing: border-box;
+    background-color: $--color-white;
+
+    &:hover,
+    &:active{
+      box-shadow: 0 0 0 4px mix($--color-primary, $--color-white, $--button-hover-percent);
+    }
+  }
+
+  @include when(vertical){
+    height: 100%;
+    width: auto;
+    @include e(rail, false){
+      width: $--slider-rail-height;
+      height: 100%;
+      margin: 0 $--slider-rail-vertical-margin;
+    }
+    @include e(bar){
+      bottom: 0;
+    }
+    @include e(handle, false){
+      left: #{$--slider-rail-height / 2};
+      top: auto;
+      bottom: 0;
+    }
+  }
+
+  @include when(disabled){
+    cursor: not-allowed;
+    opacity: $--opacity-disabled;
+    @include e(rail, false){
+      &:hover,
+      &:active{
+        background-color: $--slider-rail-background-color;
+      }
+    }
+    @include e(handle, false){
+      cursor: not-allowed;
+      @include e(handle-rel, false){
+        &:hover,
+        &:active{
+          box-shadow: none;
+        }
+      }
+    }
+  }
+}

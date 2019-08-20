@@ -1,0 +1,231 @@
+@import "./config/var";
+@import "./config/mixins/index";
+
+$picture-thumbnial-height: #{$--upload-picture-height - $--upload-picture-padding * 2 - 2px};
+
+@include c(upload){
+  display: block;
+  @include e(input){
+    display: none;
+
+  }
+
+  @include e(target){
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  @include e(picture-card){
+    width: $--upload-picture-card-width;
+    height: $--upload-picture-card-height;
+    border: $--border-default;
+    border-style: dashed;
+    vertical-align: top;
+    color: $--color-text-legend;
+    border-radius: $--border-radius-default;
+    transition: all $--animation-time;
+
+    &:hover,
+    &:focus,
+    &:active{
+      border-color: $--border-color-primary;
+    }
+
+    @include e(target-slot, false){
+      margin-top: 50%;
+      transform: translateY(-50%);
+    }
+
+    i{
+      font-size: 32px;
+      color: $--color-text-legend;
+    }
+  }
+
+  @include e(dragOver){
+    border-width: 2px;
+    border-color: $--border-color-primary;
+  }
+}
+
+@include c(upload-list){
+  display: inline-block;
+  width: 100%;
+  @include e(item){
+    padding: 4px;
+    box-sizing: border-box;
+    margin-top: $--upload-picture-margin;
+    position: relative;
+    overflow: hidden;
+    transition: background-color $--animation-time;
+    border-radius: $--border-radius-default;
+
+    &:hover,
+    &:focus,
+    &:active{
+      color: $--color-primary;
+      background-color: $--background-color-base;
+    }
+  }
+
+  @include e(file){
+    cursor: pointer;
+    display: inline-block;
+    line-height: normal;
+    box-sizing: border-box;
+    vertical-align: middle;
+    width: 100%;
+  }
+
+  @include e(file-name){
+    display: inline-block;
+    width: 100%;
+    @include utils-ellipsis();
+  }
+
+  @include e(remove){
+    opacity: 0;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+    transition: opacity $--animation-time;
+  }
+
+  @include e(picture-cover, false){
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    text-align: center;
+    transition: opacity $--animation-time;
+
+    &:hover{
+      opacity: 1;
+    }
+  }
+
+  @include e(picture-progress){
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $--background-color-base;
+  }
+
+  @include e(picture-progress-inner){
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+  }
+
+  @include e(preview){
+    color: $--color-white;
+    font-size: $--upload-picture-icon-font-size;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-100%, -50%);
+    transition: color $--animation-time;
+
+    &:hover{
+      color: $--color-primary;
+    }
+  }
+
+  @include e(delete){
+    color: $--color-white;
+    font-size: $--upload-picture-icon-font-size;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(0%, -50%);
+    transition: color $--animation-time;
+
+    &:hover{
+      color: $--color-primary;
+    }
+  }
+
+  @include m(text){
+    @include e(item, false){
+      &:hover,&:focus,&:active{
+        @include e(remove, false){
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  @include m(picture-card){
+    display: inline;
+    vertical-align: top;
+    margin: 0;
+    @include e(item, false){
+      display: inline-block;
+      width: $--upload-picture-card-width;
+      height: $--upload-picture-card-height;
+      padding: $--upload-picture-padding;
+      margin: 0 $--upload-picture-margin $--upload-picture-margin 0;
+      border: $--border-default;
+      box-sizing: border-box;
+      @include e(thumbnial, false){
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  @include m(picture){
+    display: block;
+    @include e(file, false){
+      display: block;
+      position: relative;
+      box-sizing: border-box;
+      max-width: 100%;
+      margin-left: $--upload-picture-margin;
+    }
+    @include e(hide-progress, false){
+      line-height: $picture-thumbnial-height;
+    }
+    @include e(file-name, false){
+      //line-height: $picture-thumbnial-height;
+    }
+    @include e(remove, false){
+      top: $--upload-picture-padding;
+    }
+    @include e(item, false){
+      display: block;
+      width: 100%;
+      height: $--upload-picture-height;
+      padding: $--upload-picture-padding;
+      padding-left: #{$--upload-picture-height - $--upload-picture-padding - 2px};
+      margin: $--upload-picture-margin 0 0 0;
+      border: $--border-default;
+      box-sizing: border-box;
+
+      &:hover,&:focus,&:active{
+        @include e(remove, false){
+          opacity: 1;
+        }
+      }
+      @include e(thumbnial, false){
+        width: $picture-thumbnial-height;
+        height: $picture-thumbnial-height;
+        margin-left: -$picture-thumbnial-height;
+        display: inline-block;
+        float: left;
+      }
+    }
+  }
+}

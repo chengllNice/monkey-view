@@ -1,0 +1,296 @@
+@import "./config/var";
+@import "./config/mixins/index.scss";
+
+@include c(select){
+  display: inline-block;
+  width: 100%;
+
+  @include e(drop-down-inner){
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    border: $--border-default;
+    border-radius: $--border-radius-default;
+    box-shadow: $--box-shadow-default;
+    background-color: $--color-white;
+  }
+
+  @include e(reference){
+
+  }
+
+  @include e(option-list){
+    box-sizing: border-box;
+  }
+
+  @include e(empty){
+    box-sizing: border-box;
+    text-align: center;
+    padding: 7px 16px;
+    font-size: $--select-option-font-size;
+    color: $--color-text-disabled;
+    @include utils-ellipsis();
+  }
+
+  @include e(loading){
+    box-sizing: border-box;
+    text-align: center;
+    padding: 7px 16px;
+    font-size: $--select-option-font-size;
+    color: $--color-text-disabled;
+    @include utils-ellipsis();
+    & > i{
+      margin-right: 10px;
+    }
+  }
+
+  @include when(disabled){
+    cursor: not-allowed;
+    .cl-select-el__input{
+      cursor: not-allowed;
+    }
+  }
+
+  @include e(el){
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    width: 100%;
+    @include e(el-input){
+      cursor: pointer;
+      input{
+        cursor: pointer;
+      }
+    }
+    @include e(el-icon){
+      transition: $--animation-time;
+    }
+    @include e(el-icon-rotate){
+      @include utils-rotate();
+    }
+
+    @include e(el-placeholder){
+      display: inline-block;
+      width: 100%;
+      height: $--input-padding-height-default;
+      line-height: $--input-padding-height-default;
+      color: $--color-text-placeholder;
+    }
+
+    @include e(el-suffix){
+      position: absolute;
+      right: 1px;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      text-align: center;
+      height: calc(100% - 2px);
+      width: #{$--input-padding-icon-default - 2px};
+
+      @include e(el-suffix-inner){
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    @include e(el-multiple){
+      outline: none;
+      box-sizing: border-box;
+      width: 100%;
+      text-align: left;
+      vertical-align: middle;
+      position: relative;
+      display: inline-block;
+      border-radius: $--input-radius;
+      background-color: $--input-background-color;
+      border: $--input-border;
+      padding-left: $--input-padding-horizontal-default;
+      padding-right: $--input-padding-icon-default;
+      padding-top: 0;
+      padding-bottom: 0;
+      height: $--input-padding-height-default;
+      font-size: $--input-font-size-default;
+      color: $--input-font-color;
+
+      &:hover,
+      &:focus,
+      &:active{
+        border-color: $--input-border-color-hover;
+      }
+
+      &:focus{
+        box-shadow: 0 0 0 2px mix($--input-border-color-hover, $--color-white, $--button-hover-percent);
+      }
+    }
+
+    @include e(el-multiple-tag){
+      outline: none;
+      display: inline-block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      text-align: left;
+      box-sizing: border-box;
+      overflow: hidden;
+      z-index: 2;
+      padding-left: $--input-padding-horizontal-default;
+      padding-right: $--input-padding-icon-default;
+
+      @include e(el-multiple-tag-item, false){
+        margin-top: $--input-padding-vertical-default;
+        margin-bottom: $--input-padding-vertical-default;
+        margin-left: 0;
+        margin-right: 5px;
+      }
+
+      &:hover,
+      &:focus,
+      &:active{
+        & + .cl-select__el-multiple {
+          border-color: $--input-border-color-hover;
+        }
+      }
+
+      &:focus{
+        & + .cl-select__el-multiple {
+          box-shadow: 0 0 0 2px mix($--input-border-color-hover, $--color-white, $--button-hover-percent);
+        }
+      }
+    }
+
+    @include e(el-multiple-input){
+      border-color: transparent;
+      outline: none;
+      max-width: 100%;
+      min-width: 32px;
+      background-color: transparent;
+      cursor: pointer;
+      box-sizing: border-box;
+      font-size: $--input-font-size-default;
+      color: $--input-font-color;
+    }
+  }
+
+  @include m(large){
+    .cl-option,.cl-option-group{
+      font-size: $--font-size-large;
+    }
+    @include e(el, false){
+      font-size: $--font-size-large;
+      @include e(el-multiple){
+        height: $--input-padding-height-large;
+      }
+    }
+  }
+
+  @include m(small){
+    .cl-option,.cl-option-group{
+      font-size: $--font-size-small;
+      //padding: 5px 13px;
+    }
+    @include e(el, false){
+      font-size: $--font-size-small;
+      @include e((el-multiple, el-placeholder)){
+        height: $--input-padding-height-small;
+        line-height: $--input-padding-height-small;
+      }
+    }
+  }
+}
+
+@include c(drop-down){
+  display: inline-block;
+  padding: 5px 0;
+  box-sizing: border-box;
+  z-index: $--popover-z-index;
+}
+
+@include c(option){
+  display: block;
+  width: 100%;
+  padding: 7px 16px;
+  position: relative;
+  box-sizing: border-box;
+  text-align: left;
+  cursor: pointer;
+  line-height: normal;
+  font-size: $--select-option-font-size;
+  color: $--select-option-text-color;
+  transition: all $--animation-time;
+  background-color: $--color-white;
+  //@include utils-ellipsis();
+
+  @include when(selected){
+    color: $--color-primary;
+    background-color: $--select-option-background-color-hover;
+  }
+
+  @include e(text){
+    display: inline-block;
+    width: 100%;
+    @include utils-ellipsis();
+  }
+
+  @include e(multiple){
+    padding-right: $--select-option-padding-right-mutiple;
+    @include when(selected){
+      background-color: transparent;
+    }
+  }
+
+  @include e(icon){
+    position: absolute;
+    right: #{$--select-option-padding-right-mutiple / 2};
+    top: 50%;
+    transform: translateY(-50%);
+    color: $--color-primary;
+  }
+
+  &:hover{
+    background-color: $--select-option-background-color-hover;
+  }
+
+  @include when(disabled){
+    cursor: not-allowed;
+    color: $--color-text-disabled;
+    background-color: transparent;
+  }
+
+  &.is-disabled.is-selected{
+    color: $--color-primary;
+    background-color: transparent;
+  }
+}
+
+@include c(option-group){
+  display: block;
+  width: 100%;
+  position: relative;
+  box-sizing: border-box;
+  text-align: left;
+  //cursor: pointer;
+  line-height: normal;
+  font-size: $--select-option-font-size;
+  color: $--select-option-text-color;
+  transition: all $--animation-time;
+  background-color: $--color-white;
+  @include utils-ellipsis();
+
+  @include e(title){
+    padding: 7px 16px;
+    color: $--color-text-legend;
+  }
+
+  @include e(wrap){
+    .cl-option{
+      padding-left: 32px;
+      padding-right: 32px;
+    }
+  }
+}
+
+

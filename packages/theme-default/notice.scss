@@ -1,0 +1,6 @@
+@import "./config/var";
+@import "./config/mixins/index.scss";
+
+@include c(notice){
+
+}

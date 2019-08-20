@@ -1,0 +1,173 @@
+@import "./config/var";
+@import "./config/mixins/index";
+
+@include c(popover) {
+  display: inline-block;
+
+  @include e(target, false) {
+    display: inline-block;
+    position: relative;
+  }
+
+  @include e(arrow, false) {
+    width: 0;
+    height: 0;
+    position: absolute;
+    border-color: transparent;
+    border-style: solid;
+    border-width: #{$--popover-arrow-width + 1px};
+    &::after {
+      content: ' ';
+      width: 0;
+      height: 0;
+      position: absolute;
+      border-color: transparent;
+      border-style: solid;
+      border-width: $--popover-arrow-width;
+    }
+  }
+
+  @include e(popper, false){
+    display: inline-block;
+    z-index: $--popover-z-index;
+
+    @include e(content, false) {
+      position: relative;
+      text-align: left;
+      box-sizing: border-box;
+      border: $--border-default;
+      border-radius: $--border-radius-default;
+      box-shadow: $--box-shadow-default;
+      background-color: $--color-white;
+      min-width: $--popover-min-width;
+    }
+
+    &[x-placement^="top"], &[x-placement^="bottom"] {
+      padding: 10px 0;
+    }
+    &[x-placement^="left"], &[x-placement^="right"] {
+      padding: 0 10px;
+    }
+
+    &[x-placement^="top"] {
+      @include e(arrow, false) {
+        bottom: -#{$--popover-arrow-width + 1px};
+        border-top: $--border-default;
+        border-width: $--popover-arrow-width $--popover-arrow-width 0;
+        &::after{
+          bottom: 1px;
+          margin-left: -$--popover-arrow-width;
+          border-bottom-width: 0;
+          border-top-width: $--popover-arrow-width;
+          border-top-color: #fff;
+        }
+      }
+    }
+
+    &[x-placement^="bottom"] {
+      @include e(arrow, false) {
+        top: -#{$--popover-arrow-width + 1px};
+        border-bottom: $--border-default;
+        border-width: 0 $--popover-arrow-width $--popover-arrow-width;
+        &::after{
+          top: 1px;
+          margin-left: -$--popover-arrow-width;
+          border-top-width: 0;
+          border-bottom-width: $--popover-arrow-width;
+          border-bottom-color: #fff;
+        }
+      }
+    }
+
+    &[x-placement="top"], &[x-placement="bottom"] {
+      @include e(arrow, false) {
+        left: 50%;
+        margin-left: -$--popover-arrow-width;
+      }
+    }
+
+    &[x-placement="top-start"], &[x-placement="bottom-start"] {
+      @include e(arrow, false) {
+        left: 16px;
+      }
+    }
+
+    &[x-placement="top-end"], &[x-placement="bottom-end"] {
+      @include e(arrow, false) {
+        right: 7px;
+      }
+    }
+
+    &[x-placement^="left"] {
+      @include e(arrow, false) {
+        right: -#{$--popover-arrow-width + 1px};
+        border-left: $--border-default;
+        border-width: $--popover-arrow-width 0 $--popover-arrow-width $--popover-arrow-width;
+        &::after{
+          right: 1px;
+          margin-top: -$--popover-arrow-width;
+          border-right-width: 0;
+          border-left-width: $--popover-arrow-width;
+          border-left-color: #fff;
+        }
+      }
+    }
+
+    &[x-placement^="right"] {
+      @include e(arrow, false) {
+        left: -#{$--popover-arrow-width + 1px};
+        border-right: $--border-default;
+        border-width: $--popover-arrow-width $--popover-arrow-width $--popover-arrow-width 0;
+        &::after{
+          left: 1px;
+          margin-top: -$--popover-arrow-width;
+          border-left-width: 0;
+          border-right-width: $--popover-arrow-width;
+          border-right-color: #fff;
+        }
+      }
+    }
+
+    &[x-placement="left"], &[x-placement="right"] {
+      @include e(arrow, false) {
+        top: 50%;
+        margin-top: -$--popover-arrow-width;
+      }
+    }
+
+    &[x-placement="left-start"], &[x-placement="right-start"] {
+      @include e(arrow, false) {
+        top: 7px;
+      }
+    }
+
+    &[x-placement="left-end"], &[x-placement="right-end"] {
+      @include e(arrow, false) {
+        bottom: 7px;
+      }
+    }
+
+  }
+
+
+  @include e(inner, false) {
+    @include e(title, false) {
+      padding: 8px 16px;
+      font-weight: 500;
+      border-bottom: $--border-default;
+      font-size: $--font-size-title;
+      color: $--color-text-title;
+    }
+
+    @include e(body, false) {
+      padding: 8px 16px;
+      white-space: nowrap;
+    }
+    @include e(body-wrap, false) {
+      word-break: break-all;
+      word-wrap: break-word;
+      white-space: normal;
+      overflow:hidden;
+    }
+  }
+}

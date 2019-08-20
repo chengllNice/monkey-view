@@ -1,0 +1,34 @@
+
+@import "./config/var";
+@import "./config/mixins/index.scss";
+
+@include c(table){
+  table{
+    width: 100%;
+  }
+  th, td{
+    box-sizing: border-box;
+    text-align: left;
+    border-bottom: $--table-head-th-border;
+    @include utils-ellipsis();
+  }
+  th{
+    background-color: $--table-head-th-background-color;
+    height: $--table-head-th-height;
+  }
+}
+
+@include c(table-head){
+  width: 100%;
+}
+
+@include c(table-body){
+
+}
+
+@include c(table-cell){
+  display: inline-block;
+  padding-left: $--table-cell-padding-horizontal;
+  padding-right: $--table-cell-padding-horizontal;
+  @include utils-ellipsis();
+}

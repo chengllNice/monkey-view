@@ -1,0 +1,49 @@
+@import "./config/var";
+@import "./config/mixins/index.scss";
+
+@include c(message){
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: $--color-white;
+  box-shadow: $--box-shadow-default;
+  padding: $--message-vertical-padding $--message-horizontal-padding;
+  font-size: $--font-size-default;
+  border-radius: $--border-radius-default;
+  transition: top $--animation-time;
+
+  @include e(icon){
+    margin-right: 5px;
+    font-size: $--message-icon-font-size;
+  }
+
+  @include e(content){
+    vertical-align: text-bottom;
+  }
+
+  @include m(info){
+    @include e(icon, false){
+      color: $--color-info;
+    }
+  }
+  @include m(success){
+    @include e(icon, false){
+      color: $--color-success;
+    }
+  }
+  @include m(error){
+    @include e(icon, false){
+      color: $--color-danger;
+    }
+  }
+  @include m(warning){
+    @include e(icon, false){
+      color: $--color-warning;
+    }
+  }
+  @include m(loading){
+    @include e(icon, false){
+      color: $--color-default;
+    }
+  }
+}
