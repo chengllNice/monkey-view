@@ -4,12 +4,13 @@
 @include c(popover) {
   display: inline-block;
 
-  @include e(target, false) {
+  @include e(target) {
     display: inline-block;
     position: relative;
+    vertical-align: middle;
   }
 
-  @include e(arrow, false) {
+  @include e(arrow) {
     width: 0;
     height: 0;
     position: absolute;
@@ -27,11 +28,11 @@
     }
   }
 
-  @include e(popper, false){
+  @include e(popper){
     display: inline-block;
     z-index: $--popover-z-index;
 
-    @include e(content, false) {
+    @include e(content) {
       position: relative;
       text-align: left;
       box-sizing: border-box;
@@ -50,7 +51,7 @@
     }
 
     &[x-placement^="top"] {
-      @include e(arrow, false) {
+      .cl-popover__arrow {
         bottom: -#{$--popover-arrow-width + 1px};
         border-top: $--border-default;
         border-width: $--popover-arrow-width $--popover-arrow-width 0;
@@ -65,7 +66,7 @@
     }
 
     &[x-placement^="bottom"] {
-      @include e(arrow, false) {
+      .cl-popover__arrow {
         top: -#{$--popover-arrow-width + 1px};
         border-bottom: $--border-default;
         border-width: 0 $--popover-arrow-width $--popover-arrow-width;
@@ -80,26 +81,26 @@
     }
 
     &[x-placement="top"], &[x-placement="bottom"] {
-      @include e(arrow, false) {
+      .cl-popover__arrow {
         left: 50%;
         margin-left: -$--popover-arrow-width;
       }
     }
 
     &[x-placement="top-start"], &[x-placement="bottom-start"] {
-      @include e(arrow, false) {
+      .cl-popover__arrow {
         left: 16px;
       }
     }
 
     &[x-placement="top-end"], &[x-placement="bottom-end"] {
-      @include e(arrow, false) {
+      .cl-popover__arrow {
         right: 7px;
       }
     }
 
     &[x-placement^="left"] {
-      @include e(arrow, false) {
+      .cl-popover__arrow {
         right: -#{$--popover-arrow-width + 1px};
         border-left: $--border-default;
         border-width: $--popover-arrow-width 0 $--popover-arrow-width $--popover-arrow-width;
@@ -114,7 +115,7 @@
     }
 
     &[x-placement^="right"] {
-      @include e(arrow, false) {
+      .cl-popover__arrow {
         left: -#{$--popover-arrow-width + 1px};
         border-right: $--border-default;
         border-width: $--popover-arrow-width $--popover-arrow-width $--popover-arrow-width 0;
@@ -129,20 +130,20 @@
     }
 
     &[x-placement="left"], &[x-placement="right"] {
-      @include e(arrow, false) {
+      .cl-popover__arrow {
         top: 50%;
         margin-top: -$--popover-arrow-width;
       }
     }
 
     &[x-placement="left-start"], &[x-placement="right-start"] {
-      @include e(arrow, false) {
+      .cl-popover__arrow {
         top: 7px;
       }
     }
 
     &[x-placement="left-end"], &[x-placement="right-end"] {
-      @include e(arrow, false) {
+      .cl-popover__arrow {
         bottom: 7px;
       }
     }
@@ -150,7 +151,7 @@
   }
 
 
-  @include e(inner, false) {
+  @include e(inner) {
     @include e(title, false) {
       padding: 8px 16px;
       font-weight: 500;
@@ -168,6 +169,24 @@
       word-wrap: break-word;
       white-space: normal;
       overflow:hidden;
+    }
+  }
+
+  @include e(confirm) {
+    @include e(title, false) {
+      border: none;
+      font-size: 12px;
+      padding-top: 16px;
+      i{
+        color: $--color-warning;
+        font-size: 12px;
+        margin-right: 5px;
+      }
+    }
+
+    @include e(body, false) {
+      text-align: right;
+      padding-bottom: 16px;
     }
   }
 }

@@ -49,10 +49,10 @@
   }
 
   @include e(icon, false){
-    font-size: $--tag-font-size-default;
+    font-size: #{$--tag-font-size-default - 2px};
     color: $--color-white;
     margin-left: $--tag-padding-horizontal-default;
-    transform: scale(#{$--tag-font-size-default / ($--font-size-default + 2px)});
+    transform: scale(0.75);
     opacity: $--tag-hover-opacity;
 
     &:hover{
@@ -65,6 +65,10 @@
     padding: 0 $--tag-padding-horizontal-large;
     height: $--tag-height-large;
     line-height: $--tag-height-large;
+    @include e(icon, false){
+      font-size: #{$--tag-font-size-large - 2px};
+      margin-left: $--tag-padding-horizontal-large;
+    }
   }
 
   @include m(small){
@@ -72,6 +76,10 @@
     padding: 0 $--tag-padding-horizontal-small;
     height: $--tag-height-small;
     line-height: $--tag-height-small;
+    @include e(icon, false){
+      font-size: #{$--tag-font-size-small - 2px};
+      margin-left: $--tag-padding-horizontal-small;
+    }
   }
 
   @include m(default){
@@ -98,6 +106,10 @@
 
   @include m(info){
     @include tag-color($--color-white,$--color-info);
+  }
+
+  @include m(default-o){
+    @include tag-color($--tag-font-color-default,$--tag-font-color-default,'o');
   }
 
   @include m(success-o){
@@ -167,4 +179,13 @@
 
 .cl-tag--ghost.cl-tag--info-o{
   @include tag-color($--color-info,$--color-info,'ghost-o');
+}
+
+.cl-tag:not(.is-checked){
+  background-color: transparent;
+  border-color: transparent;
+  color: $--tag-font-color-default;
+  .cl-tag__icon{
+    color: $--tag-font-color-default;
+  }
 }

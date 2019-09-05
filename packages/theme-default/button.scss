@@ -37,7 +37,7 @@
     border-color: mix($--color-black, $--button-border-color-default, $--button-active-percent);
   }
 
-  &.is-disabled {
+  &.is-disabled, &.is-loading {
     &,
     &:hover,
     &:focus,
@@ -46,6 +46,14 @@
       color: $--button-font-color-disabled;
       background-color: $--button-background-color-disabled;
       border-color: $--button-border-color-disabled;
+    }
+  }
+  &.is-loading{
+    &,
+    &:hover,
+    &:focus,
+    &:active{
+      cursor: default;
     }
   }
 
@@ -86,7 +94,7 @@
       border-color: transparent;
     }
 
-    &.is-disabled {
+    &.is-disabled, &.is-loading {
       &,
       &:hover,
       &:focus,
@@ -96,19 +104,42 @@
         background-color: transparent;
         border-color: transparent;
       }
+      & [class*='cl-icon-'] {
+        color: $--color-text-disabled;
+      }
+    }
+    &.is-loading{
+      &,
+      &:hover,
+      &:focus,
+      &:active {
+        cursor: default;
+      }
     }
   }
 
   @include button-class(small){
     @include button-size($--button-padding-vertical-small, $--button-padding-horizontal-small, $--button-font-size-small, $--button-radius-small);
+    @include button-class(circle){
+      padding: $--button-padding-vertical-small;
+      border-radius: 24px;
+    }
   }
 
   @include button-class(mini){
     @include button-size($--button-padding-vertical-mini, $--button-padding-horizontal-mini, $--button-font-size-mini, $--button-radius-mini);
+    @include button-class(circle){
+      padding: $--button-padding-vertical-mini;
+      border-radius: 20px;
+    }
   }
 
   @include button-class(large){
     @include button-size($--button-padding-vertical-large, $--button-padding-horizontal-large, $--button-font-size-large, $--button-radius-large);
+    @include button-class(circle){
+      padding: $--button-padding-vertical-large;
+      border-radius: 36px;
+    }
   }
 
   @include button-class(block){
@@ -118,6 +149,6 @@
 
   @include button-class(circle){
     padding: $--button-padding-vertical-default;
-    border-radius: $--border-radius-circle;
+    border-radius: 30px;
   }
 }

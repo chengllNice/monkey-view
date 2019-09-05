@@ -2,11 +2,13 @@
 @import "./config/mixins/index.scss";
 
 @include c(input){
-  display: inline-table;
-  line-height: 1;
+  display: table;
+  line-height: normal;
   transition: all 0.2s;
   position: relative;
   width: 100%;
+  vertical-align: middle;
+  border-collapse: separate;
 
 
   @include e(source, false){
@@ -50,11 +52,19 @@
   @include e((prepend, append), false){
     display: table-cell;
     box-sizing: border-box;
-    vertical-align: bottom;
+    vertical-align: middle;
     width: 1px;
     position: relative;
     height: $--input-padding-height-default;
     padding: $--button-padding-vertical-default $--button-padding-horizontal-default;
+    .cl-select{
+      margin: -#{$--button-padding-vertical-default + 2px} -#{$--button-padding-horizontal-default + 1px};
+      vertical-align: middle;
+      input{
+        background-color: transparent;
+        border: none;
+      }
+    }
   }
   @include e(prepend, false){
     border: $--input-border;
@@ -94,7 +104,7 @@
       line-height: $--input-padding-height-default;
       box-sizing: border-box;
       color: $--input-font-color;
-      @include utils-ellipsis();
+      //@include utils-ellipsis();
       @include e(search){
         cursor: pointer;
       }
@@ -178,6 +188,35 @@
     border-bottom-right-radius: 0;
   }
 
+  @include m(mini){
+    @include e(source, false){
+      padding-left: $--input-padding-horizontal-mini;
+      padding-right: $--input-padding-horizontal-mini;
+      height: $--input-padding-height-mini;
+      font-size: $--input-font-size-mini;
+    }
+    @include e((prepend, append), false){
+      height: $--input-padding-height-mini;
+      padding: $--button-padding-vertical-mini $--button-padding-horizontal-mini;
+      .cl-select{
+        margin: -#{$--button-padding-vertical-mini + 2px} -#{$--button-padding-horizontal-mini + 1px};
+      }
+    }
+    @include e((prefix,suffix), false){
+      width: #{$--input-padding-icon-mini - 2px};
+      @include e((limit,suffix-inner,prefix-inner), false){
+        line-height: $--input-padding-height-mini;
+      }
+    }
+    @include e(source-prefix, false){
+      padding-left: $--input-padding-icon-mini;
+    }
+
+    @include e(source-suffix, false){
+      padding-right: $--input-padding-icon-mini;
+    }
+  }
+
   @include m(small){
     @include e(source, false){
       padding-left: $--input-padding-horizontal-small;
@@ -188,6 +227,9 @@
     @include e((prepend, append), false){
       height: $--input-padding-height-small;
       padding: $--button-padding-vertical-small $--button-padding-horizontal-small;
+      .cl-select{
+        margin: -#{$--button-padding-vertical-small + 2px} -#{$--button-padding-horizontal-small + 1px};
+      }
     }
     @include e((prefix,suffix), false){
       width: #{$--input-padding-icon-small - 2px};
@@ -214,6 +256,9 @@
     @include e((prepend, append), false){
       height: $--input-padding-height-large;
       padding: $--button-padding-vertical-large $--button-padding-horizontal-large;
+      .cl-select{
+        margin: -#{$--button-padding-vertical-large + 2px} -#{$--button-padding-horizontal-large + 1px};
+      }
     }
     @include e((prefix,suffix), false){
       width: #{$--input-padding-icon-large - 2px};
@@ -281,9 +326,11 @@
 
 @include c(textarea){
   display: inline-block;
-  width: auto;
+  width: 100%;
 
   @include e(source, false){
+    max-width: 100%;
+    width: 100%;
     outline: none;
     box-sizing: border-box;
     transition: all 0.2s;

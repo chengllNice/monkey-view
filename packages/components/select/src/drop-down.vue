@@ -41,7 +41,8 @@
     data() {
       return {
         visible: false,
-        expandStyle: {}
+        // expandStyle: {},
+        width: '',
       }
     },
     watch: {
@@ -70,6 +71,12 @@
         }
         return false
       },
+      expandStyle(){
+        return {
+          width: this.dropdownMatchSelectWidth ? this.width : 'auto',
+          minWidth: this.width,
+        }
+      },
     },
     components: {},
     created() {
@@ -77,15 +84,13 @@
     mounted() {
       this.visible = this.value;
       this.$nextTick(()=>{
-        this.setExpandStyle();
+        this.setWidth();
       });
     },
     methods: {
-      setExpandStyle(){
-        let width = this.selectParentEl && this.selectParentEl.$el && (this.selectParentEl.$el.offsetWidth || 0);
-        this.expandStyle = {
-          width: this.dropdownMatchSelectWidth ? (width + 'px') : 'auto',
-        }
+      setWidth(){
+        let width = this.$parent && this.$parent.$el && (this.$parent.$el.offsetWidth || 0);
+        this.width = width + 'px';
       },
       createPopper(){
         if(isServer) return;
@@ -109,20 +114,18 @@
         !options.modifiers.offset && (options.modifiers.offset = {});
         options.onCreate = () => {
           this.$nextTick(this.updatePopper);
-          // this.$emit('created', this);
         };
 
         this.popperJS = new Popper(reference, clPopper, options);
       },
       updatePopper(){
         if(isServer) return;
-        // console.log('=====',this.popperJS)
+        this.setWidth();
         this.popperJS ? this.popperJS.update() : this.$nextTick(this.createPopper());
       }
     },
     updated (){
       this.$nextTick(()=>{
-        // this.setExpandStyle();
         this.updatePopper();
       });
     },

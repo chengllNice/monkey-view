@@ -6,7 +6,7 @@
                 type && `cl-alter--${type}`,
                 isDescription && `cl-alter--with-des`,
                 showIcon && `cl-alter--with-icon`,
-                effect && `cl-alter--${effect}`
+                theme && `cl-alter--${theme}`
              ]">
             <span class="cl-alter__icon" v-if="showIcon">
                 <slot name="icon">
@@ -41,7 +41,7 @@
       },
       showIcon: Boolean,
       closable: Boolean,
-      effect: {
+      theme: {
         type: String,
         default: 'light',
         validator(value){

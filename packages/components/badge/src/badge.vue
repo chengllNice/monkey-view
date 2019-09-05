@@ -16,7 +16,7 @@
     name: "ClBadge",
     props:{
       dot: Boolean,
-      count: Number,
+      count: [Number, String],
       overflowCount: {
         type: Number,
         default: 99
@@ -38,7 +38,7 @@
     },
     computed: {
       supShow(){
-        return this.showZero || this.count !== 0;
+        return this.showZero || parseFloat(this.count) !== 0;
       },
       supText(){
         let text = '';
@@ -46,10 +46,10 @@
           text = ''
         }else if(this.text){
           text = this.text
-        }else if(this.count > this.overflowCount){
+        }else if(parseFloat(this.count) > this.overflowCount){
           text = this.overflowCount + '+'
         }else{
-          text = this.count
+          text = parseFloat(this.count)
         }
         return text;
       },
@@ -83,7 +83,7 @@
       },
       supTitle(){
         if(this.dot || this.status) return '';
-        return this.title || this.text || this.count
+        return this.title || this.text || parseFloat(this.count)
       }
     },
     components: {},

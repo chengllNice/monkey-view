@@ -68,6 +68,57 @@ $--popover-z-index: 1000 !default;
 /*-----opacity-----*/
 $--opacity-disabled: 0.4;
 
+/*-----response-media-----*/
+$--sm: 576px !default;
+$--md: 768px !default;
+$--lg: 992px !default;
+$--xl: 1200px !default;
+$--xxl: 1920px !default;
+$--media-points: (
+  'xs': (max-width: $--sm - 1),
+  'sm': (min-width: $--sm),
+  'md': (min-width: $--md),
+  'lg': (min-width: $--lg),
+  'xl': (min-width: $--xl),
+  'xxl': (min-width: $--xxl),
+);
+
+
+
+/*-----collapse-----*/
+$--collapse-item-header-height: 38px !default;
+$--collapse-item-header-background-color: $--background-color-base !default;
+
+/*-----menu-----*/
+$--menu-item-height-default: 40px !default;
+$--menu-item-height-small: 35px !default;
+$--menu-item-height-large: 48px !default;
+$--menu-item-padding-vertical-default: 20px !default;
+$--menu-item-padding-vertical-small: 10px !default;
+$--menu-item-padding-vertical-large: 30px !default;
+
+$--menu-theme-light-background-color: $--color-white;
+$--menu-theme-light-children-background-color: $--color-white;
+$--menu-theme-light-active-background-color: mix($--color-white, $--color-primary, 90%) !default;
+$--menu-theme-light-active-border-color: mix($--color-white, $--color-primary, 80%) !default;
+$--menu-theme-light-font-color: $--color-text-default !default;
+$--menu-theme-light-horizontal-border-color: $--border-color-primary !default;
+$--menu-theme-light-group-title-font-color: #909399 !default;
+
+$--menu-theme-dark-background-color: #344058 !default;
+$--menu-theme-dark-active-background-color: #252d3d !default;
+$--menu-theme-dark-active-border-color: #6f7b80 !default;
+$--menu-theme-dark-font-color: rgba(255,255,255,0.8) !default;
+$--menu-theme-dark-horizontal-border-color: #6f7b80 !default;
+$--menu-theme-dark-group-title-font-color: #909399 !default;
+
+$--menu-theme-green-background-color: #009688 !default;
+$--menu-theme-green-active-background-color: #02b7a5 !default;
+$--menu-theme-green-active-border-color: #2bf8e5 !default;
+$--menu-theme-green-font-color: $--color-white !default;
+$--menu-theme-green-horizontal-border-color: #2bf8e5 !default;
+$--menu-theme-green-group-title-font-color: #c1cecd !default;
+
 
 
 /*-----table-----*/
@@ -78,7 +129,7 @@ $--table-cell-padding-horizontal: 18px !default;
 
 
 /*-----upload-----*/
-$--upload-picture-icon-font-size: 20px !default;
+$--upload-picture-icon-font-size: 14px !default;
 $--upload-picture-card-width: 104px !default;
 $--upload-picture-card-height: 104px !default;
 $--upload-picture-padding: 10px !default;
@@ -190,6 +241,12 @@ $--input-padding-horizontal-default: 8px !default;
 $--input-padding-icon-default: 36px !default;
 $--input-font-size-default: $--font-size-default !default;
 
+$--input-padding-height-mini: 24px !default;
+$--input-padding-vertical-mini: 2px !default;
+$--input-padding-horizontal-mini: 4px !default;
+$--input-padding-icon-mini: 26px !default;
+$--input-font-size-mini: $--font-size-mini !default;
+
 $--input-padding-height-small: 28px !default;
 $--input-padding-vertical-small: 4px !default;
 $--input-padding-horizontal-small: 5px !default;
@@ -244,14 +301,14 @@ $--checkbox-background-color-disabled: $--background-color-base !default;
 $--checkbox-icon-color-disabled: $--color-text-disabled !default;
 $--checkbox-font-color-disabled: $--color-text-disabled !default;
 
-$--checkbox-input-width-default: 12px !default;
-$--checkbox-input-height-default: 12px !default;
+$--checkbox-input-width-default: 14px !default;
+$--checkbox-input-height-default: 14px !default;
 
-$--checkbox-input-width-small: 10px !default;
-$--checkbox-input-height-small: 10px !default;
+$--checkbox-input-width-small: 12px !default;
+$--checkbox-input-height-small: 12px !default;
 
-$--checkbox-input-width-large: 14px !default;
-$--checkbox-input-height-large: 14px !default;
+$--checkbox-input-width-large: 16px !default;
+$--checkbox-input-height-large: 16px !default;
 
 
 

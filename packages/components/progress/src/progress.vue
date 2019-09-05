@@ -21,8 +21,20 @@
 
         <div class="cl-progress__circle" :style="{height: circleWidth + 'px', width: circleWidth + 'px'}" v-else>
             <svg viewBox="0 0 100 100">
-                <path class="cl-progress__circle-track" :d="trackPath" :stroke="railStroke" :stroke-width="relativeStrokeWidth" fill="none"></path>
-                <path class="cl-progress__circle-path" :d="trackPath" stroke-linecap="round" :stroke="barStroke" :stroke-width="relativeStrokeWidth" fill="none" :style="circlePathStyle"></path>
+                <path class="cl-progress__circle-track"
+                      :d="trackPath"
+                      :stroke="railStroke"
+                      stroke-linecap="round"
+                      :stroke-width="relativeStrokeWidth"
+                      fill="none"
+                      :style="dashPathStyle"></path>
+                <path class="cl-progress__circle-path"
+                      :d="trackPath"
+                      :stroke="barStroke"
+                      stroke-linecap="round"
+                      :stroke-width="relativeStrokeWidth"
+                      fill="none"
+                      :style="circlePathStyle"></path>
             </svg>
         </div>
 
@@ -51,7 +63,7 @@
         type: String,
         default: 'line',
         validator(value){
-          return ['line', 'circle'].includes(value)
+          return ['line', 'circle', 'dashboard'].includes(value)
         }
       },
       strokeWidth: {
@@ -87,7 +99,7 @@
       railStyle(){
         let style = {
           'border-radius': parseFloat(this.strokeWidth) + 'px',
-          'background-color': this.railColor
+          'background': this.railColor
         };
         if(this.vertical){
           style = {
@@ -106,7 +118,7 @@
       barStyle(){
         let style = {
           ...this.railStyle,
-          'background-color': this.barColor,
+          'background': this.barColor,
         };
         if(this.vertical){
           style = {
@@ -155,23 +167,45 @@
         }
         return className
       },
+      radius() {
+        if (this.type === 'circle' || this.type === 'dashboard') {
+          return parseInt(50 - parseFloat(this.relativeStrokeWidth) / 2, 10);
+        } else {
+          return 0;
+        }
+      },
       relativeStrokeWidth() {
         return (this.strokeWidth / this.circleWidth * 100).toFixed(1);
       },
       trackPath() {
-        const radius = parseInt(50 - parseFloat(this.relativeStrokeWidth) / 2, 10);
-
-        return `M 50 50 m 0 -${radius} a ${radius} ${radius} 0 1 1 0 ${radius * 2} a ${radius} ${radius} 0 1 1 0 -${radius * 2}`;
+        const radius = this.radius;
+        const isDashboard = this.type === 'dashboard';
+        return `
+            M 50 50
+            m 0 ${isDashboard ? '' : '-'}${radius}
+            a ${radius} ${radius} 0 1 1 0 ${isDashboard ? '-' : ''}${radius * 2}
+            a ${radius} ${radius} 0 1 1 0 ${isDashboard ? '' : '-'}${radius * 2}`;
       },
       perimeter() {
-        const radius = 50 - parseFloat(this.relativeStrokeWidth) / 2;
-        return 2 * Math.PI * radius;
+        return 2 * Math.PI * this.radius;
+      },
+      rate() {
+        return this.type === 'dashboard' ? 0.75 : 1;
+      },
+      strokeDashoffset() {
+        const offset = -1 * this.perimeter * (1 - this.rate) / 2;
+        return `${offset}px`;
+      },
+      dashPathStyle(){
+        return {
+          strokeDasharray: `${this.perimeter * this.rate}px, ${this.perimeter}px`,
+          strokeDashoffset: this.strokeDashoffset
+        };
       },
       circlePathStyle() {
-        const perimeter = this.perimeter;
         return {
-          strokeDasharray: `${perimeter}px,${perimeter}px`,
-          strokeDashoffset: (1 - this.percent / 100) * perimeter + 'px',
+          strokeDasharray: `${this.perimeter * this.rate * (this.percent / 100) }px, ${this.perimeter}px`,
+          strokeDashoffset: this.strokeDashoffset,
           transition: 'stroke-dashoffset 0.6s ease 0s, stroke 0.6s ease'
         };
       },

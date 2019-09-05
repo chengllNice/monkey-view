@@ -325,6 +325,12 @@
         if (this.type !== 'textarea' || !this.autosize) return;
         let {minRows, maxRows} = this.autosize;
         this.expandStyle = calcTextareaHeight(this.getInputEl(), minRows, maxRows);
+      },
+      focus(){
+        setTimeout(()=>{
+          this.$refs.textarea && this.$refs.textarea.focus();
+          this.$refs.input && this.$refs.input.focus();
+        });
       }
     }
   }

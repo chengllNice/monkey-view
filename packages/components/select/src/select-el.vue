@@ -142,6 +142,7 @@
       },
       handlerInput(e){
         this.inputValueLength = this.$refs.multipleInput.value.length;
+        this.$nextTick(this.getMultipleStyle());
         this.$emit('input-change', e.target.value);
       },
       selectedLabel() {

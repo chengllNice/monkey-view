@@ -109,6 +109,19 @@
       margin: 0;
     }
   }
+
+  @include m(dashboard){
+    width: auto;
+    @include e(value, false){
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 0;
+      width: 100%;
+      text-align: center;
+      margin: 0;
+    }
+  }
 }
 
 

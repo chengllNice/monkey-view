@@ -32,7 +32,7 @@
     border-color: mix($--color-black, $border-color, $--button-active-percent);
   }
 
-  &.is-disabled {
+  &.is-disabled, &.is-loading {
     &,
     &:hover,
     &:focus,
@@ -43,7 +43,14 @@
       border-color: mix($border-color, $--color-white);
     }
   }
-
+  &.is-loading{
+    &,
+    &:hover,
+    &:focus,
+    &:active{
+      cursor: default;
+    }
+  }
 }
 
 @mixin button-size($padding-vertical, $padding-horizontal, $font-size, $border-radius){

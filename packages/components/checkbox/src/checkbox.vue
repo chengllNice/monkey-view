@@ -77,6 +77,7 @@
     created() {
     },
     mounted() {
+      this.$nextTick(this.updateModel());
     },
     methods: {
       handleChange(){
@@ -97,7 +98,15 @@
       },
       updateIsChecked(value){
         this.isChecked = value === this.trueValue ? true : false;
-      }
+      },
+      updateModel(){
+        if(this.parentGroup && Array.isArray(this.parentGroup.value)){
+          this.model = this.parentGroup.value.includes(this.label);
+          this.updateIsChecked(this.model);
+        }else{
+          this.model = this.value;
+        }
+      },
     },
     watch: {
       value: function (newVal) {
@@ -110,9 +119,8 @@
           throw 'Value should be trueValue or falseValue';
         }
       },
-      'parentGroup.value': function (newVal) {
-        this.model = newVal.includes(this.label);
-        this.updateIsChecked(this.model);
+      'parentGroup.value': function () {
+        this.updateModel();
       },
       model: function (newVal) {
         this.updateIsChecked(newVal);

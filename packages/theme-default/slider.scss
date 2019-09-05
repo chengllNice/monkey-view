@@ -57,6 +57,7 @@ $slider-handle-height: #{$--slider-rail-height + 10px};
   @include when(vertical){
     height: 100%;
     width: auto;
+    display: inline-block;
     @include e(rail, false){
       width: $--slider-rail-height;
       height: 100%;
@@ -81,9 +82,13 @@ $slider-handle-height: #{$--slider-rail-height + 10px};
         background-color: $--slider-rail-background-color;
       }
     }
+    @include e(bar, false){
+      //opacity: $--opacity-disabled;
+    }
     @include e(handle, false){
       cursor: not-allowed;
       @include e(handle-rel, false){
+        //border-color: rgba(45, 140, 240, 0.4);
         &:hover,
         &:active{
           box-shadow: none;

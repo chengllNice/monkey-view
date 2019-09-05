@@ -61,6 +61,9 @@
         type: [String, Number],
         default: 520
       },
+      height: {
+        type: [String, Number],
+      },
       value: Boolean,
       fullscreen: Boolean,
       footerHide: Boolean,
@@ -148,8 +151,12 @@
     },
     methods: {
       renderToHtml(){
-        if(typeof this.renderHtml === 'boolean' && !this.renderHtml) return;
-        this.renderHtml.appendChild(this.$el);
+        if((typeof this.renderHtml === 'boolean' && this.renderHtml === false) || !this.renderHtml) return;
+        if((typeof this.renderHtml === 'boolean' && this.renderHtml === true)){
+          document.body.appendChild(this.$el);
+        }else{
+          this.renderHtml.appendChild(this.$el);
+        }
       },
       modalBodyResize(){
         if(!this.$refs.modal) return;
@@ -170,6 +177,9 @@
         }else if(this.bodyScroll){
           if((modalHeight + modalTop + diffHeight) > modalWrapHeight){
             bodyHeigt = (modalWrapHeight - modalHeaderHeight - modalFooterHeight - modalTop - diffHeight) + 'px';
+          }
+          if(this.height && parseFloat(this.height) && parseFloat(bodyHeigt) > parseFloat(this.height)){
+            bodyHeigt = parseFloat(this.height) + 'px';
           }
         }
 

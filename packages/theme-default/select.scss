@@ -57,6 +57,7 @@
     cursor: pointer;
     position: relative;
     width: 100%;
+    vertical-align: middle;
     @include e(el-input){
       cursor: pointer;
       input{
@@ -65,6 +66,7 @@
     }
     @include e(el-icon){
       transition: $--animation-time;
+      font-size: 10px;
     }
     @include e(el-icon-rotate){
       @include utils-rotate();
@@ -111,7 +113,8 @@
       padding-right: $--input-padding-icon-default;
       padding-top: 0;
       padding-bottom: 0;
-      height: $--input-padding-height-default;
+      height: #{$--input-padding-height-default + 4px};
+      line-height: #{$--input-padding-height-default + 4px};
       font-size: $--input-font-size-default;
       color: $--input-font-color;
 
@@ -145,6 +148,7 @@
         margin-bottom: $--input-padding-vertical-default;
         margin-left: 0;
         margin-right: 5px;
+        vertical-align: middle;
       }
 
       &:hover,
@@ -163,7 +167,7 @@
     }
 
     @include e(el-multiple-input){
-      border-color: transparent;
+      border: none;
       outline: none;
       max-width: 100%;
       min-width: 32px;
@@ -172,6 +176,7 @@
       box-sizing: border-box;
       font-size: $--input-font-size-default;
       color: $--input-font-color;
+      height: #{$--input-padding-height-default - 10px};
     }
   }
 
@@ -182,7 +187,11 @@
     @include e(el, false){
       font-size: $--font-size-large;
       @include e(el-multiple){
-        height: $--input-padding-height-large;
+        height: #{$--input-padding-height-large + 4px};
+        line-height: #{$--input-padding-height-large + 4px};
+      }
+      @include e(el-multiple-input, false){
+        height: #{$--input-padding-height-large - 10px};
       }
     }
   }
@@ -195,8 +204,11 @@
     @include e(el, false){
       font-size: $--font-size-small;
       @include e((el-multiple, el-placeholder)){
-        height: $--input-padding-height-small;
-        line-height: $--input-padding-height-small;
+        height: #{$--input-padding-height-small + 4px};
+        line-height: #{$--input-padding-height-small + 4px};
+      }
+      @include e(el-multiple-input, false){
+        height: #{$--input-padding-height-small - 10px};
       }
     }
   }
@@ -207,6 +219,7 @@
   padding: 5px 0;
   box-sizing: border-box;
   z-index: $--popover-z-index;
+  width: inherit;
 }
 
 @include c(option){

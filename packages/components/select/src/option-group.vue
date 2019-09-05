@@ -47,7 +47,7 @@
           let optionShowArr = [];
           for (let option of this.$slots.default){
             let cOption = option.componentInstance;
-            let tag = option.componentOptions.tag;
+            let tag = cOption.componentName || option.componentOptions.tag;
             if(tag === 'ClOption'){
               optionShowArr.push(cOption.isShow);
             }

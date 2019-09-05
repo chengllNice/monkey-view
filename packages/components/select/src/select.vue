@@ -204,7 +204,7 @@
         }
         if(!this.multiple){
           this.currentSelectedOption = currentSelectedOption && currentSelectedOption.length ? [currentSelectedOption[0]] : [];
-          this.visible = false;
+          this.visible = this.visible || false;
         }
       },
       handlerSelectElClick(){
@@ -310,7 +310,7 @@
             let optionShowArr = [];
             for (let option of this.$slots.default){
               let cOption = option.componentInstance;
-              let tag = option.componentOptions.tag;
+              let tag = cOption.componentName || option.componentOptions.tag;
               if(cOption && (tag === 'ClOption' || tag === 'ClOptionGroup')){
                 optionShowArr.push(cOption.isShow);
               }

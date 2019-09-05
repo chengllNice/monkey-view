@@ -1,5 +1,7 @@
 import Vue from 'vue'
 
+import ClLayout from './components/layout'
+import ClMenu from './components/menu'
 import ClButton from './components/button'
 import ClButtonGroup from './components/button-group'
 import ClCheckbox from './components/checkbox'
@@ -25,8 +27,19 @@ import ClAlter from './components/alert'
 import ClCard from './components/card'
 import ClDrawer from './components/drawer'
 import ClTable from './components/table'
+import ClCollapse from './components/collapse'
+import { ClRow, ClCol} from './components/grid'
 
 const components = {
+  ClLayout,
+  ClSider: ClLayout.Sider,
+  ClHeader: ClLayout.Header,
+  ClFooter: ClLayout.Footer,
+  ClContent: ClLayout.Content,
+  ClMenu,
+  ClMenuItem: ClMenu.MenuItem,
+  ClMenuGroup: ClMenu.MenuGroup,
+  ClSubmenu: ClMenu.Submenu,
   ClButton,
   ClButtonGroup,
   ClCheckbox,
@@ -50,7 +63,12 @@ const components = {
   ClAlter,
   ClCard,
   ClDrawer,
-  ClTable
+  ClTable,
+  ClCollapse,
+  ClCollapseItem: ClCollapse.Item,
+  ClRow,
+  ClCol,
+  ClMessage
 };
 
 const install = (Vue) => {

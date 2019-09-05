@@ -36,6 +36,7 @@
         okText: '',
         cancelText: '',
         okButtonLoading: false,
+        loading: false,
         icon: '',
         type: '',//布局类型  两种(default, left)
       }

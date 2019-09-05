@@ -3,9 +3,11 @@
          :class="[
             size && 'cl-tag--' + size,
             noCustomColor && 'cl-tag--' + color,
-            ghost && 'cl-tag--ghost'
+            ghost && 'cl-tag--ghost',
+            isChecked && 'is-checked'
         ]"
-        :style="customStyle">
+        :style="customStyle"
+         @click.stop="handlerClick">
             <span class="cl-tag__text"><slot></slot></span>
             <i v-if="closable" :class="iconClass" :style="iconStyle" @click.stop="handlerClose"></i>
     </div>
@@ -18,6 +20,11 @@
       size: String,
       closable: Boolean,
       ghost: Boolean,
+      checkable: Boolean,
+      checked: {
+        type: Boolean,
+        default: true
+      },
       color: {
         type: String,
         default: 'default'
@@ -25,7 +32,8 @@
     },
     data() {
       return {
-        isHover: false
+        isHover: false,
+        isChecked: this.checked,
       }
     },
     computed: {
@@ -73,6 +81,17 @@
     methods: {
       handlerClose(){
         this.$emit('close')
+      },
+      handlerClick(){
+        if(this.checkable){
+            this.isChecked = !this.isChecked;
+        }
+        this.$emit('click');
+      }
+    },
+    watch: {
+      checked: function (newVal) {
+        this.isChecked = newVal;
       }
     }
   }

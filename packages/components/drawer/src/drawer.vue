@@ -176,9 +176,14 @@
     },
     methods: {
       renderToHtml(){
-        if(typeof this.renderHtml === 'boolean' && !this.renderHtml) return;
-        this.renderHtml.appendChild(this.$el);
+        if((typeof this.renderHtml === 'boolean' && this.renderHtml === false) || !this.renderHtml) return;
+        if((typeof this.renderHtml === 'boolean' && this.renderHtml === true)){
+          document.body.appendChild(this.$el);
+        }else{
+          this.renderHtml.appendChild(this.$el);
+        }
       },
+
       drawerBodyResize(){
         if(!this.$refs.drawer) return;
         let drawerHeight =  this.$refs.drawer.offsetHeight;

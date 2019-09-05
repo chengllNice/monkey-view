@@ -5,11 +5,11 @@
   display: inline-block;
 
   @include e(target, false) {
-    display: inline-block;
+    display: block;
     position: relative;
   }
 
-  @include e(arrow, false) {
+  @include e(arrow) {
     width: $--popover-arrow-width;
     height: $--popover-arrow-width;
     position: absolute;
@@ -17,12 +17,13 @@
     transform: rotate(45deg);
   }
 
-  @include e(popper, false){
+  @include e(popper){
     display: inline-block;
     z-index: $--popover-z-index;
     color: $--color-white;
 
-    @include e(content, false) {
+
+    @include e(content) {
       position: relative;
       text-align: left;
       box-sizing: border-box;
@@ -40,63 +41,63 @@
     }
 
     &[x-placement^="top"] {
-      @include e(arrow, false) {
+      .cl-tooltip__arrow{
         bottom: -#{$--popover-arrow-width - 2px};
       }
     }
 
     &[x-placement^="bottom"] {
-      @include e(arrow, false) {
+      .cl-tooltip__arrow{
         top: -#{$--popover-arrow-width - 2px};
       }
     }
 
     &[x-placement="top"], &[x-placement="bottom"] {
-      @include e(arrow, false) {
+      .cl-tooltip__arrow{
         left: 50%;
         margin-left: -#{$--popover-arrow-width / 2};
       }
     }
 
     &[x-placement="top-start"], &[x-placement="bottom-start"] {
-      @include e(arrow, false) {
+      .cl-tooltip__arrow{
         left: 16px;
       }
     }
 
     &[x-placement="top-end"], &[x-placement="bottom-end"] {
-      @include e(arrow, false) {
+      .cl-tooltip__arrow{
         right: 16px;
       }
     }
 
     &[x-placement^="left"] {
-      @include e(arrow, false) {
+      .cl-tooltip__arrow{
         right: -#{$--popover-arrow-width - 2px};
       }
     }
 
     &[x-placement^="right"] {
-      @include e(arrow, false) {
+      .cl-tooltip__arrow{
         left: -#{$--popover-arrow-width - 2px};
       }
     }
 
     &[x-placement="left"], &[x-placement="right"] {
-      @include e(arrow, false) {
+      .cl-tooltip__arrow{
         top: 50%;
         margin-top: -#{$--popover-arrow-width / 2};
       }
     }
 
     &[x-placement="left-start"], &[x-placement="right-start"] {
-      @include e(arrow, false) {
+      .cl-tooltip__arrow{
         top: 7px;
       }
     }
 
     &[x-placement="left-end"], &[x-placement="right-end"] {
-      @include e(arrow, false) {
+      .cl-tooltip__arrow{
         bottom: 7px;
       }
     }
@@ -104,7 +105,7 @@
   }
 
 
-  @include e(inner, false) {
+  @include e(inner) {
     padding: 5px 10px;
     overflow: hidden;
   }

@@ -16,6 +16,50 @@ $picture-thumbnial-height: #{$--upload-picture-height - $--upload-picture-paddin
     cursor: pointer;
   }
 
+  @include e(tip){
+    margin-top: 8px;
+    font-size: $--font-size-default;
+    color: $--color-default;
+  }
+
+  @include e(drag){
+    border-width: 1px;
+    border-style: dashed;
+    border-color: $--border-color-default;
+    text-align: center;
+    border-radius: $--border-radius-default;
+    font-style: $--font-size-large;
+    position: relative;
+
+    &.cl-upload__text{
+      display: block;
+      padding: 20px 0;
+    }
+
+    &:hover,
+    &:focus,
+    &:active{
+      border-color: $--border-color-primary;
+    }
+
+    //@include e(target-slot, false){
+    //  transform: translateY(50%);
+    //}
+
+    i{
+      font-size: 32px;
+      color: $--color-text-legend;
+    }
+  }
+
+  @include e(text){
+
+  }
+
+  @include e(picture){
+    //display: block;
+  }
+
   @include e(picture-card){
     width: $--upload-picture-card-width;
     height: $--upload-picture-card-height;
@@ -26,15 +70,8 @@ $picture-thumbnial-height: #{$--upload-picture-height - $--upload-picture-paddin
     border-radius: $--border-radius-default;
     transition: all $--animation-time;
 
-    &:hover,
-    &:focus,
-    &:active{
-      border-color: $--border-color-primary;
-    }
-
     @include e(target-slot, false){
-      margin-top: 50%;
-      transform: translateY(-50%);
+      transform: translateY(50%);
     }
 
     i{
@@ -44,7 +81,7 @@ $picture-thumbnial-height: #{$--upload-picture-height - $--upload-picture-paddin
   }
 
   @include e(dragOver){
-    border-width: 2px;
+    border-width: 1px;
     border-color: $--border-color-primary;
   }
 }

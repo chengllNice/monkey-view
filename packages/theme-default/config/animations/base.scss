@@ -24,3 +24,7 @@
     }
   }
 }
+
+.slide-transition{
+  transition: height $--animation-time ease-in-out;
+}

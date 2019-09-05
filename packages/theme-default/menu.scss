@@ -1,0 +1,308 @@
+@import "./config/var";
+@import "./config/mixins/index.scss";
+
+@mixin theme($background-color, $font-color, $background-color-hover, $font-color-hover, $group-font-color){
+  background-color: $background-color;
+  color: $font-color;
+
+  a{
+    color: $font-color;
+  }
+  .cl-menu-group__title{
+    &, a{
+      color: $group-font-color;
+    }
+  }
+
+  .cl-menu-item, .cl-submenu .cl-submenu__title{
+    &, a{
+      color: $font-color;
+    }
+    &:hover{
+      background-color: $background-color-hover;
+      &, a{
+        color: $font-color-hover;
+      }
+    }
+  }
+  .cl-menu-item.is-active{
+    background-color: $background-color-hover;
+    &, a{
+      color: $font-color-hover;
+    }
+  }
+  .cl-menu-item.is-disabled, .cl-submenu.is-disabled .cl-submenu__title{
+    &, a{
+      color: $font-color;
+    }
+    &:hover{
+      background-color: transparent;
+      &, a{
+        color: $font-color;
+      }
+    }
+  }
+}
+
+@mixin theme-horizontal($background-color, $font-color, $background-color-hover, $border-color, $group-font-color, $font-color-hover){
+  background-color: $background-color;
+  color: $font-color;
+
+  a{
+    color: $font-color;
+  }
+
+  .cl-menu-group__title{
+    &, a{
+      color: $group-font-color;
+    }
+  }
+
+  .cl-menu-item, .cl-submenu .cl-submenu__title{
+    &, a{
+      color: $font-color;
+    }
+
+    &:hover{
+      background-color: $background-color-hover;
+      border-bottom-color: $border-color;
+      &, a{
+        color: $font-color-hover;
+      }
+    }
+  }
+  .cl-menu-item.is-active, .cl-submenu.is-active{
+    border-bottom-color: $border-color;
+    &, a{
+      color: $font-color-hover;
+    }
+    &>.cl-submenu__title{
+      background-color: $background-color-hover;
+      border-bottom-color: $border-color;
+      color: $font-color-hover;
+    }
+  }
+  .cl-menu-item.is-disabled, .cl-submenu.is-disabled .cl-submenu__title{
+    &, a{
+      color: $font-color;
+    }
+    &:hover{
+      background-color: transparent;
+      border-bottom-color: transparent;
+      &, a{
+        color: $font-color;
+      }
+    }
+  }
+}
+
+@include c(menu){
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  @include m(light){
+    border-right: 1px solid #dcdee2;
+    border-bottom: none;
+    @include theme($--menu-theme-light-background-color, $--menu-theme-light-font-color, $--menu-theme-light-active-background-color, $--color-primary, $--menu-theme-light-group-title-font-color)
+  }
+  @include m(dark){
+    @include theme($--menu-theme-dark-background-color, $--menu-theme-dark-font-color, $--menu-theme-dark-active-background-color, $--color-white, $--menu-theme-dark-group-title-font-color)
+  }
+  @include m(green){
+    @include theme($--menu-theme-green-background-color, $--menu-theme-green-font-color, $--menu-theme-green-active-background-color, $--color-white, $--menu-theme-green-group-title-font-color)
+  }
+
+  @include m(horizontal){
+    &::after{
+      content: '';
+      display: block;
+      clear: both;
+    }
+    .cl-menu-item, .cl-submenu{
+      float: left;
+      width: auto;
+      border-bottom: 2px solid transparent;
+      .cl-menu-item, .cl-submenu{
+        float: none;
+        border: none;
+      }
+    }
+    .cl-submenu{
+      border: none;
+    }
+    .cl-submenu__title{
+      border-bottom: 2px solid transparent;
+    }
+    &.cl-menu--light{
+      border-bottom: 1px solid #dcdee2;
+      border-right: none;
+      background-color: $--menu-theme-light-background-color;
+      @include theme-horizontal($--menu-theme-light-background-color, $--menu-theme-light-font-color, $--menu-theme-light-active-background-color,$--menu-theme-light-horizontal-border-color, $--menu-theme-light-group-title-font-color,$--color-primary)
+    }
+    &.cl-menu--dark{
+      .cl-submenu__drop-inner{
+        border-color: $--menu-theme-dark-background-color;
+        background-color: $--menu-theme-dark-background-color;
+      }
+      @include theme-horizontal($--menu-theme-dark-background-color, $--menu-theme-dark-font-color, $--menu-theme-dark-active-background-color, $--menu-theme-dark-horizontal-border-color, $--menu-theme-dark-group-title-font-color, $--color-white)
+    }
+    &.cl-menu--green{
+      .cl-submenu__drop-inner{
+        border-color: $--menu-theme-green-background-color;
+        background-color: $--menu-theme-green-background-color;
+      }
+      @include theme-horizontal($--menu-theme-green-background-color, $--menu-theme-green-font-color, $--menu-theme-green-active-background-color, $--menu-theme-green-horizontal-border-color, $--menu-theme-green-group-title-font-color, $--color-white)
+    }
+  }
+
+  @include m(default){
+    font-size: $--font-size-default;
+    .cl-menu-item, .cl-submenu__title, .cl-menu-group__title{
+      height: $--menu-item-height-default;
+      line-height: $--menu-item-height-default;
+      padding-left: $--menu-item-padding-vertical-default;
+      padding-right: $--menu-item-padding-vertical-default;
+    }
+    .cl-submenu__title{
+      padding-left: $--menu-item-padding-vertical-default;
+      padding-right: #{$--menu-item-padding-vertical-default * 2};
+    }
+    .cl-submenu__title-slide-icon{
+      right: $--menu-item-padding-vertical-default;
+      font-size: #{$--font-size-default - 2px};
+    }
+    .cl-menu-group .cl-menu-item{
+      padding-left: #{$--menu-item-padding-vertical-default + $--menu-item-padding-vertical-default / 2};
+      padding-right: #{$--menu-item-padding-vertical-default + $--menu-item-padding-vertical-default / 2};
+    }
+  }
+
+  @include m(small){
+    font-size: $--font-size-small;
+    .cl-menu-item, .cl-submenu__title, .cl-menu-group__title{
+      height: $--menu-item-height-small;
+      line-height: $--menu-item-height-small;
+      padding-left: $--menu-item-padding-vertical-small;
+      padding-right: $--menu-item-padding-vertical-small;
+    }
+    .cl-submenu__title{
+      padding-left: $--menu-item-padding-vertical-small;
+      padding-right: #{$--menu-item-padding-vertical-small * 2};
+    }
+    .cl-submenu__title-slide-icon{
+      right: $--menu-item-padding-vertical-small;
+      font-size: #{$--font-size-small - 2px};
+    }
+    .cl-menu-group .cl-menu-item{
+      padding-left: #{$--menu-item-padding-vertical-small + $--menu-item-padding-vertical-small / 2};
+      padding-right: #{$--menu-item-padding-vertical-small + $--menu-item-padding-vertical-small / 2};
+    }
+  }
+
+  @include m(large){
+    font-size: $--font-size-large;
+    .cl-menu-item, .cl-submenu__title, .cl-menu-group__title{
+      height: $--menu-item-height-large;
+      line-height: $--menu-item-height-large;
+      padding-left: $--menu-item-padding-vertical-large;
+      padding-right: $--menu-item-padding-vertical-large;
+    }
+    .cl-submenu__title{
+      padding-left: $--menu-item-padding-vertical-large;
+      padding-right: #{$--menu-item-padding-vertical-large * 2};
+    }
+    .cl-submenu__title-slide-icon{
+      right: $--menu-item-padding-vertical-large;
+      font-size: #{$--font-size-large - 2px};
+    }
+    .cl-menu-group .cl-menu-item{
+      padding-left: #{$--menu-item-padding-vertical-large + $--menu-item-padding-vertical-large / 2};
+      padding-right: #{$--menu-item-padding-vertical-large + $--menu-item-padding-vertical-large / 2};
+    }
+  }
+}
+
+@include c(menu-item){
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  //border-left: 2px solid transparent;
+  cursor: pointer;
+  transition: all $--animation-time ease-in-out;
+  @include utils-ellipsis();
+
+  a{
+    transition: all $--animation-time ease-in-out;
+  }
+
+  & [class*='cl-icon-'] {
+    //font-size: $--font-size-large;
+    vertical-align: middle;
+    & + span {
+      margin-left: 10px;
+      vertical-align: middle;
+      display: inline-block;
+      @include utils-ellipsis();
+    }
+  }
+
+  @include when(disabled){
+    opacity: $--opacity-disabled;
+    cursor: not-allowed;
+    background-color: transparent !important;
+  }
+}
+
+@include c(menu-group){
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+@include c(submenu){
+  & [class*='cl-icon-'] {
+    vertical-align: middle;
+    & + span {
+      margin-left: 10px;
+      vertical-align: middle;
+      display: inline-block;
+      @include utils-ellipsis();
+    }
+  }
+
+  @include e(title){
+    box-sizing: border-box;
+    @include utils-ellipsis();
+    position: relative;
+    cursor: pointer;
+  }
+  @include e(title-slide-icon){
+    position: absolute;
+    top: 50%;
+    transform: translate(50%, -50%);
+    transition: transform $--animation-time ease-in-out;
+  }
+
+  @include m(opened){
+    &>*>.cl-submenu__title-slide-icon{
+      transform: translate(50%, -50%) rotate(180deg);
+    }
+  }
+
+  @include e(drop-inner){
+    box-shadow: $--box-shadow-default;
+    border-radius: $--border-radius-default;
+    border: $--border-default;
+    background-color: $--color-white;
+    width: 100%;
+    position: relative;
+  }
+
+  @include when(disabled){
+    @include e(title, false){
+      opacity: $--opacity-disabled;
+      cursor: not-allowed;
+      background-color: transparent !important;
+    }
+  }
+}

@@ -2,16 +2,18 @@
     <div class="cl-checkbox-group">
         <span v-if="$slots.default"><slot></slot></span>
         <ClCheckbox v-else-if="options && options.length"
-                 v-for="item in options"
-                 :key="item.value"
-                 :name="item.name"
-                 :disabled="item.disabled"
-                 :label="item.value">{{item.label}}</ClCheckbox>
+                    v-for="item in options"
+                    :key="item.value"
+                    :name="item.name"
+                    :disabled="item.disabled"
+                    :label="item.value">{{item.label}}
+        </ClCheckbox>
     </div>
 </template>
 
 <script>
-    import ClCheckbox from './checkbox.vue'
+  import ClCheckbox from './checkbox.vue'
+
   export default {
     name: "ClCheckboxGroup",
     props: {
@@ -34,7 +36,7 @@
     mounted() {
     },
     methods: {
-      dispatch(type, label, value){
+      dispatch(type, label, value) {
         let index = this.value.indexOf(label);
         index > -1 && this.value.splice(index, 1);
         value && this.value.push(label);
@@ -49,7 +51,3 @@
     // }
   }
 </script>
-
-<style scoped>
-
-</style>

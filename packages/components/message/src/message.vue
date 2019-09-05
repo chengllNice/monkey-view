@@ -9,7 +9,7 @@
              @mouseenter="clearTimer"
              @mouseleave="startTimer">
             <i class="cl-message__icon" :class="iconClass" v-if="iconClass"></i>
-            <span class="cl-message__content">{{message}}</span>
+            <span class="cl-message__content" v-html="message"></span>
         </div>
     </transition>
 </template>

@@ -8,7 +8,8 @@
         <div :class="[
                 'cl-upload__target',
                 listType && `cl-upload__${listType}`,
-                drag && dragOver && 'cl-upload__dragOver'
+                drag && 'cl-upload__drag',
+                drag && dragOver && 'cl-upload__dragOver',
             ]"
              @drop.prevent="onDrop"
              @dragover.prevent="dragOver = true"
@@ -161,7 +162,7 @@
       },
       uploadFile(files){
         if(this.limit && (this.uploadFiles.length + files.length) > this.limit){
-          this.onExceed && this.onExceed(files, this.uploadFiles);
+          this.onExceed && this.onExceed('limit', files, this.uploadFiles);
           return;
         }
 
@@ -178,13 +179,13 @@
       upload(file){
         if(this.maxSize){
           if(file.size > this.maxSize * 1024){
-            this.onExceed && this.onExceed(file, this.uploadFiles);
+            this.onExceed && this.onExceed('size', file, this.uploadFiles);
             return;
           }
         }
 
         if(!this.formatFileType(file)){
-          this.onExceed(file, this.uploadFiles);
+          this.onExceed('type', file, this.uploadFiles);
           return;
         }
 

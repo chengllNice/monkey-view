@@ -4,6 +4,7 @@
 
 @include c(button-group){
   display: inline-block;
+  font-size: 0;//解决换行间隔的问题
 
   @include c(button){
     position: relative;
