@@ -2,6 +2,8 @@
 
 ### 一套基于Vue2.0的高质量的UI框架，前期开发中，暂时不支持npm安装
 
+说明：md-loader借鉴elementUI的md-loader开发实现。
+
 ## Docs
 
 已经完善部分文档，后期组件文档会继续更新。
