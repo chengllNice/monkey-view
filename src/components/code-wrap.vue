@@ -108,6 +108,9 @@
         padding: 0 10px;
         position: relative;
         font-size: 14px;
+        a{
+            opacity: 0;
+        }
         &>span{
             position: relative;
             background-color: #ffffff;

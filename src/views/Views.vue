@@ -7,14 +7,15 @@
             </ClSider>
             <ClContent class="views-main-content">
                 <div class="view-main-content-card">
-                    <cl-row :gutter="16">
-                        <cl-col style="padding: 16px;">
-                            <router-view></router-view>
-                        </cl-col>
-                        <cl-col span="3">
-                            <anchors-link></anchors-link>
-                        </cl-col>
-                    </cl-row>
+                    <router-view></router-view>
+                    <!--<cl-row :gutter="16">-->
+                        <!--<cl-col style="padding: 16px;">-->
+                            <!--<router-view></router-view>-->
+                        <!--</cl-col>-->
+                        <!--<cl-col span="3">-->
+                            <!--<anchors-link></anchors-link>-->
+                        <!--</cl-col>-->
+                    <!--</cl-row>-->
                 </div>
                 <ClFooter>
                     <CFooter></CFooter>
@@ -65,7 +66,10 @@
             background-color: #ffffff;
             overflow: auto;
             position: relative;
-            padding: 8px 0 8px 16px;
+            /*padding: 8px 0 8px 16px;*/
+            .view-main-content-card{
+                padding: 16px;
+            }
         }
     }
 </style>
