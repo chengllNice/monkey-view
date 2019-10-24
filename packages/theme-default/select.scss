@@ -75,8 +75,8 @@
     @include e(el-placeholder){
       display: inline-block;
       width: 100%;
-      height: $--input-padding-height-default;
-      line-height: $--input-padding-height-default;
+      height: $--input-height-default;
+      line-height: $--input-height-default;
       color: $--color-text-placeholder;
     }
 
@@ -88,7 +88,7 @@
       margin: auto;
       text-align: center;
       height: calc(100% - 2px);
-      width: #{$--input-padding-icon-default - 2px};
+      width: $--input-suffix-width;
 
       @include e(el-suffix-inner){
         position: absolute;
@@ -110,11 +110,11 @@
       background-color: $--input-background-color;
       border: $--input-border;
       padding-left: $--input-padding-horizontal-default;
-      padding-right: $--input-padding-icon-default;
+      padding-right: #{$--input-suffix-width + $--input-padding-horizontal-default};;
       padding-top: 0;
       padding-bottom: 0;
-      height: #{$--input-padding-height-default + 4px};
-      line-height: #{$--input-padding-height-default + 4px};
+      height: $--input-height-default;
+      line-height: $--input-height-default;
       font-size: $--input-font-size-default;
       color: $--input-font-color;
 
@@ -141,11 +141,11 @@
       overflow: hidden;
       z-index: 2;
       padding-left: $--input-padding-horizontal-default;
-      padding-right: $--input-padding-icon-default;
+      padding-right: #{$--input-suffix-width + $--input-padding-horizontal-default};
 
       @include e(el-multiple-tag-item, false){
-        margin-top: $--input-padding-vertical-default;
-        margin-bottom: $--input-padding-vertical-default;
+        margin-top: #{($--input-height-default - $--tag-height-default) / 2};
+        margin-bottom: #{($--input-height-default - $--tag-height-default) / 2};
         margin-left: 0;
         margin-right: 5px;
         vertical-align: middle;
@@ -176,22 +176,31 @@
       box-sizing: border-box;
       font-size: $--input-font-size-default;
       color: $--input-font-color;
-      height: #{$--input-padding-height-default - 10px};
+      height: #{$--input-height-default - 10px};
     }
   }
 
   @include m(large){
+    height: 50px;
     .cl-option,.cl-option-group{
       font-size: $--font-size-large;
     }
-    @include e(el, false){
+    .cl-select__el{
       font-size: $--font-size-large;
-      @include e(el-multiple){
-        height: #{$--input-padding-height-large + 4px};
-        line-height: #{$--input-padding-height-large + 4px};
+      .cl-select__el-multiple{
+        height: $--input-height-large;
+        line-height: $--input-height-large;
       }
-      @include e(el-multiple-input, false){
-        height: #{$--input-padding-height-large - 10px};
+      .cl-select__el-placeholder{
+        height: #{$--input-height-large - 2px};
+        line-height: #{$--input-height-large - 2px};
+      }
+      .cl-select__el-multiple-input{
+        height: #{$--input-height-large - 10px};
+      }
+      .cl-select__el-multiple-tag .cl-select__el-multiple-tag-item{
+        margin-top: #{($--input-height-large - $--tag-height-large) / 2};
+        margin-bottom: #{($--input-height-large - $--tag-height-large) / 2};
       }
     }
   }
@@ -199,16 +208,47 @@
   @include m(small){
     .cl-option,.cl-option-group{
       font-size: $--font-size-small;
-      //padding: 5px 13px;
     }
-    @include e(el, false){
+    .cl-select__el{
       font-size: $--font-size-small;
-      @include e((el-multiple, el-placeholder)){
-        height: #{$--input-padding-height-small + 4px};
-        line-height: #{$--input-padding-height-small + 4px};
+      .cl-select__el-multiple{
+        height: $--input-height-small;
+        line-height: $--input-height-small;
       }
-      @include e(el-multiple-input, false){
-        height: #{$--input-padding-height-small - 10px};
+      .cl-select__el-placeholder{
+        height: #{$--input-height-small - 2px};
+        line-height: #{$--input-height-small - 2px};
+      }
+      .cl-select__el-multiple-input{
+        height: #{$--input-height-small - 10px};
+      }
+      .cl-select__el-multiple-tag .cl-select__el-multiple-tag-item{
+        margin-top: #{($--input-height-small - $--tag-height-small) / 2};
+        margin-bottom: #{($--input-height-small - $--tag-height-small) / 2};
+      }
+    }
+  }
+
+  @include m(mini){
+    .cl-option,.cl-option-group{
+      font-size: $--font-size-mini;
+    }
+    .cl-select__el{
+      font-size: $--font-size-mini;
+      .cl-select__el-multiple{
+        height: $--input-height-mini;
+        line-height: $--input-height-mini;
+      }
+      .cl-select__el-placeholder{
+        height: #{$--input-height-mini - 2px};
+        line-height: #{$--input-height-mini - 2px};
+      }
+      .cl-select__el-multiple-input{
+        height: #{$--input-height-mini - 10px};
+      }
+      .cl-select__el-multiple-tag .cl-select__el-multiple-tag-item{
+        margin-top: #{($--input-height-mini - $--tag-height-mini) / 2};
+        margin-bottom: #{($--input-height-mini - $--tag-height-mini) / 2};
       }
     }
   }

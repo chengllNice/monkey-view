@@ -22,7 +22,7 @@
   }
 
   @include button-type($--button-background-color-default, $--button-font-color-default, $--button-border-color-default);
-  @include button-size($--button-padding-vertical-default, $--button-padding-horizontal-default, $--button-font-size-default, $--button-radius-default);
+  @include button-size($--button-height-default, $--button-padding-horizontal-default, $--button-font-size-default, $--button-radius-default);
 
   &:hover,
   &:focus{
@@ -119,26 +119,38 @@
   }
 
   @include button-class(small){
-    @include button-size($--button-padding-vertical-small, $--button-padding-horizontal-small, $--button-font-size-small, $--button-radius-small);
+    @include button-size($--button-height-small, $--button-padding-horizontal-small, $--button-font-size-small, $--button-radius-small);
     @include button-class(circle){
-      padding: $--button-padding-vertical-small;
-      border-radius: 24px;
+      width: $--button-height-small;
+      border-radius: $--button-height-small;
+    }
+    @include button-class(circle-text){
+      width: auto;
+      padding: 0 $--button-padding-horizontal-small;
     }
   }
 
   @include button-class(mini){
-    @include button-size($--button-padding-vertical-mini, $--button-padding-horizontal-mini, $--button-font-size-mini, $--button-radius-mini);
+    @include button-size($--button-height-mini, $--button-padding-horizontal-mini, $--button-font-size-mini, $--button-radius-mini);
     @include button-class(circle){
-      padding: $--button-padding-vertical-mini;
-      border-radius: 20px;
+      width: $--button-height-mini;
+      border-radius: $--button-height-mini;
+    }
+    @include button-class(circle-text){
+      width: auto;
+      padding: 0 $--button-padding-horizontal-mini;
     }
   }
 
   @include button-class(large){
-    @include button-size($--button-padding-vertical-large, $--button-padding-horizontal-large, $--button-font-size-large, $--button-radius-large);
+    @include button-size($--button-height-large, $--button-padding-horizontal-large, $--button-font-size-large, $--button-radius-large);
     @include button-class(circle){
-      padding: $--button-padding-vertical-large;
-      border-radius: 36px;
+      width: $--button-height-large;
+      border-radius: $--button-height-large;
+    }
+    @include button-class(circle-text){
+      width: auto;
+      padding: 0 $--button-padding-horizontal-large;
     }
   }
 
@@ -148,7 +160,13 @@
   }
 
   @include button-class(circle){
-    padding: $--button-padding-vertical-default;
-    border-radius: 30px;
+    padding: 0;
+    text-align: center;
+    width: $--button-height-default;
+    border-radius: $--button-height-default;
+  }
+  @include button-class(circle-text){
+    width: auto;
+    padding: 0 $--button-padding-horizontal-default;
   }
 }

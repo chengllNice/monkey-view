@@ -33,6 +33,11 @@
     display: none;
   }
 
+  @include e(overhidden){
+    height: 100%;
+    overflow: hidden;
+  }
+
   @include e(content){
     width: 100%;
     background-color: $--color-white;

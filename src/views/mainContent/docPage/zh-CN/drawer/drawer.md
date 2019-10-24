@@ -64,7 +64,7 @@
         }
       },
       methods: {
-        openDrawer(type, placement){
+        openDrawer(placement){
             this.placement = placement;
             this.drawerPosition = true;
           }

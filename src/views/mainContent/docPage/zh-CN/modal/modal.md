@@ -205,8 +205,8 @@
 
 ```html
 <template>
-    <cl-button type="primary" @click="modalBase = true">基础modal</cl-button>
-    <cl-modal v-model="modalBase" title="Common Modal Title">
+    <cl-button type="primary" @click="modalBase = true">全屏显示</cl-button>
+    <cl-modal v-model="modalBase" title="Common Modal Title" fullscreen>
         <p>Content of dialog</p>
         <p>Content of dialog</p>
         <p>Content of dialog</p>

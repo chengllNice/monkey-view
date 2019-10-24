@@ -1,6 +1,6 @@
 <template>
     <div class="ButtonView">
-        <div>
+        <!--<div>
             <h4>size</h4>
             mini:<ClButton type="info" size="mini">你好</ClButton>
             small:<ClButton type="info" size="small">你好</ClButton>
@@ -137,7 +137,11 @@
                 <ClButton type="info" icon="cl-icon-plus" circle></ClButton>
                 <ClButton type="info" icon="cl-icon-plus" circle></ClButton>
             </ClButtonGroup>
-        </div>
+        </div>-->
+
+        <ClButton type="info" icon="cl-icon-plus" circle></ClButton>
+        <ClButton type="info" icon="cl-icon-plus" circle>BUtton</ClButton>
+        <ClButton type="info" circle><i class="cl-icon-plus"></i>BUtton</ClButton>
 
         <div class="viewDes">
             <h3>API</h3>

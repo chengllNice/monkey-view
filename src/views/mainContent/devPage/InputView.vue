@@ -47,6 +47,9 @@
             <ClInput v-model="textareaValueBase" placeholder="placeholder" type="textarea"></ClInput>
             disabled<ClInput v-model="textareaValueDisabled" placeholder="placeholder" type="textarea" disabled></ClInput>
             maxLength:20<ClInput v-model="textareaValueMaxLength" placeholder="placeholder" type="textarea" :maxLength="20"></ClInput>
+            maxLength:20<ClInput v-model="textareaValueMaxLength" size="mini" placeholder="placeholder" type="textarea" :maxLength="20" showLimitLabel></ClInput>
+            maxLength:20<ClInput v-model="textareaValueMaxLength" size="small" placeholder="placeholder" type="textarea" :maxLength="20" showLimitLabel></ClInput>
+            maxLength:20<ClInput v-model="textareaValueMaxLength" size="large" placeholder="placeholder" type="textarea" :maxLength="20" showLimitLabel></ClInput>
             maxLength:20,showLimitLabel<ClInput v-model="textareaValueMaxLengthShowLimitLabel" placeholder="placeholder" type="textarea" :maxLength="20" showLimitLabel></ClInput>
             rows:5, cols:300<ClInput v-model="textareaValueRowsCols" placeholder="placeholder" type="textarea" :rows="5" :cols="30"></ClInput>
             autosize:true<ClInput v-model="textareaValueAutosize" placeholder="placeholder" type="textarea" autosize></ClInput>

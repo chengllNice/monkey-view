@@ -1,5 +1,14 @@
 <template>
     <div class="SelectView">
+<!--        <ClSelect size="mini" v-model="selectValueBase4" :option="optionBaseEmpty" @change="handlerChange"></ClSelect>-->
+<!--        <ClSelect size="small" v-model="selectValueBase4" :option="optionBaseEmpty" @change="handlerChange"></ClSelect>-->
+<!--        <ClSelect v-model="selectValueBase4" :option="optionBaseEmpty" @change="handlerChange"></ClSelect>-->
+<!--        <ClSelect size="large" v-model="selectValueBase4" :option="optionBaseEmpty" @change="handlerChange"></ClSelect>-->
+<!--        <ClSelect size="mini" v-model="selectValueMultiple2" multiple valueLable :option="optionMultiple" @change="handlerChange"></ClSelect>-->
+<!--        <ClSelect size="small" v-model="selectValueMultiple2" multiple valueLable :option="optionMultiple" @change="handlerChange"></ClSelect>-->
+<!--        <ClSelect v-model="selectValueMultiple2" multiple valueLable :option="optionMultiple" @change="handlerChange"></ClSelect>-->
+<!--        <ClSelect size="large" v-model="selectValueMultiple2" multiple valueLable :option="optionMultiple" @change="handlerChange"></ClSelect>-->
+
         <div class="view">
             <h2>基础</h2>
 
@@ -120,6 +129,10 @@
 
         <div class="view">
             <h2>可搜索</h2>
+            <ClSelect size="mini" v-model="selectValueSearch2" :option="optionSearch" filterable clearable @change="handlerChange"></ClSelect>
+            <ClSelect size="small" v-model="selectValueSearch2" :option="optionSearch" filterable clearable @change="handlerChange"></ClSelect>
+            <ClSelect v-model="selectValueSearch2" :option="optionSearch" filterable clearable @change="handlerChange"></ClSelect>
+            <ClSelect size="large" v-model="selectValueSearch2" :option="optionSearch" filterable clearable @change="handlerChange"></ClSelect>
 
             <p>可搜索单选可清空slots:option</p>
             <ClSelect v-model="selectValueSearch1" filterable clearable @change="handlerChange">

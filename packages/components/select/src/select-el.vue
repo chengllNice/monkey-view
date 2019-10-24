@@ -26,7 +26,7 @@
             <ClTag class="cl-select__el-multiple-tag-item"
                    v-for="item in values"
                    :key="item.value"
-                   :size="selectSize === 'small' ? 'small': 'default'"
+                   :size="tagSize"
                    closable
                    @close="tagClose(item)">{{item.label}}
             </ClTag>
@@ -61,140 +61,143 @@
 </template>
 
 <script>
-  import ClInput from '../../input/src/input.vue'
-  import ClTag from '../../tag/src/tag.vue'
+    import ClInput from '../../input/src/input.vue'
+    import ClTag from '../../tag/src/tag.vue'
 
-  export default {
-    name: "select-el",
-    props: {
-      values: Array,
-      name: String,
-      size: String,
-      disabled: Boolean,
-      placeholder: String,
-      visible: Boolean,
-      isOptionGroup: Boolean,
-      filterable: Boolean,
-      clearable: Boolean,
-      multiple: Boolean,
-      dropDown: {}
-    },
-    data() {
-      return {
-        cValue: '',
-        isHover: false,
-        multipleStyle: {},
-        inputValueLength: 0,
-      }
-    },
-    computed: {
-      selectSize() {
-        return this.size
-      },
-      selectDisabled() {
-        return this.disabled
-      },
-      selectReadonly() {
-        return this.filterable ? false : true
-      },
-      selectElPlaceholder() {
-        let placeholder = this.placeholder || '请选择';
-        if (this.multiple) {
-          placeholder = this.values && this.values.length ? '' : placeholder
-        }
-        return placeholder
-      },
-      isClearable() {
-        return this.clearable && this.cValue && this.isHover
-      },
-      inputStyle(){
-        if(!this.values.length){
-          return {width: '100%'}
-        }
-        if(this.multiple && this.filterable){
-          let inputValueLength = this.inputValueLength * 12 + 32;
-          return {width: inputValueLength + 'px'};
-        }
-        return {};
-      },
-    },
-    components: {
-      ClInput,
-      ClTag
-    },
-    created() {
-    },
-    mounted() {
-    },
-    methods: {
-      handlerClick(e) {
-        if (this.selectDisabled) return;
-        this.$emit('click', e)
-      },
-      handlerChange(value) {
-        this.$emit('input-change', value)
-      },
-      handlerFocus() {
-        this.$emit('input-focus')
-      },
-      handlerBlur() {
-        this.$emit('input-blur')
-      },
-      handlerInput(e){
-        this.inputValueLength = this.$refs.multipleInput.value.length;
-        this.$nextTick(this.getMultipleStyle());
-        this.$emit('input-change', e.target.value);
-      },
-      selectedLabel() {
-        if (this.multiple && this.values.length) return '';
-        return this.selectSingleLabel()
-      },
-      selectSingleLabel() {
-        let selectedOption = this.values[0];
-        return selectedOption ? selectedOption.label : ''
-      },
-      handlerClear() {
-        this.cValue = '';
-        this.$emit('input-clear')
-      },
-      tagClose(data) {
-        if(this.multiple && this.filterable && this.visible){
-          this.$refs.multipleInput.focus()
-        }
-        this.$emit('tag-close', data)
-      },
-      getMultipleStyle() {
-        let style = {};
-        setTimeout(() => {
-          if (this.multiple && this.values.length) {
-            let height = this.$refs.selectMultipleTag.offsetHeight;
-            style = {
-              height: height + 'px'
-            }
-          }
-          this.multipleStyle = style;
-          if (this.dropDown && this.dropDown.hasOwnProperty('updatePopper')) {
-            this.dropDown.updatePopper();
-          }
-        })
-      },
-    },
-    watch: {
-      values: {
-        handler() {
-          this.cValue = this.selectedLabel();
-          this.$nextTick(this.getMultipleStyle());
+    export default {
+        name: "select-el",
+        props: {
+            values: Array,
+            name: String,
+            size: String,
+            disabled: Boolean,
+            placeholder: String,
+            visible: Boolean,
+            isOptionGroup: Boolean,
+            filterable: Boolean,
+            clearable: Boolean,
+            multiple: Boolean,
+            dropDown: {}
         },
-        deep: true
-      },
-      visible: function (newVal) {
-        if (!newVal) {
-          this.cValue = this.selectedLabel();
+        data() {
+            return {
+                cValue: '',
+                isHover: false,
+                multipleStyle: {},
+                inputValueLength: 0,
+            }
+        },
+        computed: {
+            selectSize() {
+                return this.size
+            },
+            tagSize() {
+                return this.selectSize
+            },
+            selectDisabled() {
+                return this.disabled
+            },
+            selectReadonly() {
+                return this.filterable ? false : true
+            },
+            selectElPlaceholder() {
+                let placeholder = this.placeholder || '请选择';
+                if (this.multiple) {
+                    placeholder = this.values && this.values.length ? '' : placeholder
+                }
+                return placeholder
+            },
+            isClearable() {
+                return this.clearable && this.cValue && this.isHover
+            },
+            inputStyle() {
+                if (!this.values.length) {
+                    return {width: '100%'}
+                }
+                if (this.multiple && this.filterable) {
+                    let inputValueLength = this.inputValueLength * 12 + 32;
+                    return {width: inputValueLength + 'px'};
+                }
+                return {};
+            },
+        },
+        components: {
+            ClInput,
+            ClTag
+        },
+        created() {
+        },
+        mounted() {
+        },
+        methods: {
+            handlerClick(e) {
+                if (this.selectDisabled) return;
+                this.$emit('click', e)
+            },
+            handlerChange(value) {
+                this.$emit('input-change', value)
+            },
+            handlerFocus() {
+                this.$emit('input-focus')
+            },
+            handlerBlur() {
+                this.$emit('input-blur')
+            },
+            handlerInput(e) {
+                this.inputValueLength = this.$refs.multipleInput.value.length;
+                this.$nextTick(this.getMultipleStyle());
+                this.$emit('input-change', e.target.value);
+            },
+            selectedLabel() {
+                if (this.multiple && this.values.length) return '';
+                return this.selectSingleLabel()
+            },
+            selectSingleLabel() {
+                let selectedOption = this.values[0];
+                return selectedOption ? selectedOption.label : ''
+            },
+            handlerClear() {
+                this.cValue = '';
+                this.$emit('input-clear')
+            },
+            tagClose(data) {
+                if (this.multiple && this.filterable && this.visible) {
+                    this.$refs.multipleInput.focus()
+                }
+                this.$emit('tag-close', data)
+            },
+            getMultipleStyle() {
+                let style = {};
+                setTimeout(() => {
+                    if (this.multiple && this.values.length) {
+                        let height = this.$refs.selectMultipleTag.offsetHeight;
+                        style = {
+                            height: height + 'px'
+                        }
+                    }
+                    this.multipleStyle = style;
+                    if (this.dropDown && this.dropDown.hasOwnProperty('updatePopper')) {
+                        this.dropDown.updatePopper();
+                    }
+                })
+            },
+        },
+        watch: {
+            values: {
+                handler() {
+                    this.cValue = this.selectedLabel();
+                    this.$nextTick(this.getMultipleStyle());
+                },
+                deep: true
+            },
+            visible: function (newVal) {
+                if (!newVal) {
+                    this.cValue = this.selectedLabel();
+                }
+                if (this.multiple && this.filterable) {
+                    newVal ? this.$refs.multipleInput.focus() : this.$refs.multipleInput.blur();
+                }
+            }
         }
-        if(this.multiple && this.filterable){
-          newVal ? this.$refs.multipleInput.focus() : this.$refs.multipleInput.blur();
-        }
-      }
     }
-  }
 </script>
