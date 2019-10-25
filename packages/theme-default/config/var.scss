@@ -2,6 +2,15 @@
 /*-----Common Var-----*/
 $--line-height-default: 1.5 !default;
 
+
+/*-----Height-----*/
+//适用于button input select
+$height-mini: 24px !default;
+$height-small: 28px !default;
+$height-default: 32px !default;
+$height-large: 36px !default;
+
+/*-----Color-----*/
 $--color-default: #515a6e !default;
 $--color-primary: #2d8cf0 !default;
 $--color-danger: #ed4014 !default;
@@ -167,16 +176,28 @@ $--message-vertical-padding: 8px !default;
 $--message-horizontal-padding: 16px !default;
 
 
+/*-----notice-----*/
+$--notice-icon-font-size: 16px !default;
+$--notice-padding: 16px !default;
+$--notice-padding-with-icon-horizontal: 38px !default;
+$--notice-padding-with-content-icon-horizontal: 69px !default;
+
+
 /*-----tag-----*/
-$--tag-font-size-default: $--font-size-default !default;
 $--tag-font-color-default: $--color-text-default !default;
 $--tag-border-color-default: $--border-color-default !default;
 $--tag-background-color-default: $--background-color-base !default;
 $--tag-hover-opacity: 0.85 !default;
-$--tag-height-default: 22px !default;
+
+$--tag-height-default: 24px !default;
+$--tag-font-size-default: $--font-size-default !default;
 $--tag-padding-horizontal-default: 6px !default;
 
-$--tag-height-small: 18px !default;
+$--tag-height-mini: 16px !default;
+$--tag-font-size-mini: $--font-size-mini !default;
+$--tag-padding-horizontal-mini: 2px !default;
+
+$--tag-height-small: 20px !default;
 $--tag-font-size-small: $--font-size-small !default;
 $--tag-padding-horizontal-small: 4px !default;
 
@@ -230,33 +251,30 @@ $--input-border-color-hover: $--color-primary !default;
 $--input-background-color: $--color-white !default;
 $--input-font-color: $--color-text-default !default;
 $--input-background-color-append-prepend: $--background-color-base !default;
+$--input-suffix-width: 36px !default;
 
 $--input-font-color-disabled: $--color-text-disabled !default;
 $--input-border-color-disabled: $--border-color-disabled !default;
 $--input-background-color-disabled: #f3f3f3 !default;
 
-$--input-padding-height-default: 32px !default;
+$--input-height-default: $height-default !default;
 $--input-padding-vertical-default: 5px !default;
 $--input-padding-horizontal-default: 8px !default;
-$--input-padding-icon-default: 36px !default;
 $--input-font-size-default: $--font-size-default !default;
 
-$--input-padding-height-mini: 24px !default;
+$--input-height-mini: $height-mini !default;
 $--input-padding-vertical-mini: 2px !default;
 $--input-padding-horizontal-mini: 4px !default;
-$--input-padding-icon-mini: 26px !default;
 $--input-font-size-mini: $--font-size-mini !default;
 
-$--input-padding-height-small: 28px !default;
+$--input-height-small: $height-small !default;
 $--input-padding-vertical-small: 4px !default;
 $--input-padding-horizontal-small: 5px !default;
-$--input-padding-icon-small: 32px !default;
 $--input-font-size-small: $--font-size-small !default;
 
-$--input-padding-height-large: 35px !default;
+$--input-height-large: $height-large !default;
 $--input-padding-vertical-large: 6px !default;
 $--input-padding-horizontal-large: 10px !default;
-$--input-padding-icon-large: 40px !default;
 $--input-font-size-large: $--font-size-large !default;
 
 
@@ -315,24 +333,24 @@ $--checkbox-input-height-large: 16px !default;
 
 /*-----button-----*/
 $--button-font-size-default: $--font-size-default !default;
-$--button-padding-vertical-default: 8px !default;
 $--button-padding-horizontal-default: 15px !default;
 $--button-radius-default: $--border-radius-default !default;
+$--button-height-default: $height-default !default;
 
 $--button-font-size-small: $--font-size-small !default;
-$--button-padding-vertical-small: 5px !default;
 $--button-padding-horizontal-small: 10px !default;
 $--button-radius-small: $--border-radius-default !default;
+$--button-height-small: $height-small !default;
 
 $--button-font-size-mini: $--font-size-mini !default;
-$--button-padding-vertical-mini: 4px !default;
 $--button-padding-horizontal-mini: 10px !default;
 $--button-radius-mini: $--border-radius-default !default;
+$--button-height-mini: $height-mini !default;
 
 $--button-font-size-large: $--font-size-large !default;
-$--button-padding-vertical-large: 10px !default;
 $--button-padding-horizontal-large: 18px !default;
 $--button-radius-large: $--border-radius-default !default;
+$--button-height-large: $height-large !default;
 
 $--button-font-color-default: $--color-text-default !default;
 $--button-background-color-default: $--color-white !default;

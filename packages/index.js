@@ -17,6 +17,7 @@ import ClSwitch from './components/switch'
 import ClSlider from './components/slider'
 import ClModal from './components/modal'
 import ClMessage from './components/message'
+import ClNotice from './components/notice'
 import ClPopover from './components/popover'
 import ClTooltip from './components/tooltip'
 import ClProgress from './components/progress'
@@ -68,9 +69,10 @@ const components = {
   ClCollapseItem: ClCollapse.Item,
   ClRow,
   ClCol,
-  ClMessage,
   ClTabs,
   ClTabPane,
+  // ClMessage,
+  // ClNotice
 };
 
 const install = (Vue) => {
@@ -80,6 +82,7 @@ const install = (Vue) => {
 
   Vue.prototype.$Modal = ClModal.$Modal;
   Vue.prototype.$Message = ClMessage;
+  Vue.prototype.$Notice = ClNotice;
 };
 
 if(typeof window !== 'undefined' && window.Vue){

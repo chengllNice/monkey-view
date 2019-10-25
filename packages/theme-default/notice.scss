@@ -2,5 +2,57 @@
 @import "./config/mixins/index.scss";
 
 @include c(notice){
+  position: fixed;
+  margin-right: 24px;
+  z-index: $--dialog-z-index;
+  line-height: 1;
+  transition: all $--animation-time;
 
+  border-radius: $--border-radius-default;
+  overflow: hidden;
+  background-color: #ffffff;
+  padding: $--notice-padding;
+  box-shadow: $--box-shadow-default;
+
+
+  @include e(icon){
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%);
+  }
+
+  @include m(icon){
+    padding-left: $--notice-padding-with-content-icon-horizontal;
+    .cl-notice__icon{
+      left: #{$--notice-padding-with-content-icon-horizontal / 2};
+    }
+    &.cl-notice--only-title{
+      padding-left: $--notice-padding-with-icon-horizontal;
+      .cl-notice__icon{
+        left: #{$--notice-padding-with-icon-horizontal / 2};
+      }
+    }
+  }
+
+  @include e(title){
+    font-size: $--font-size-title;
+    color: $--color-text-title;
+    padding-right: 10px;
+    margin-bottom: 10px;
+  }
+
+  @include e(content){
+
+  }
+
+  @include e(close){
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    cursor: pointer;
+    color: $--color-text-default;
+    &:hover{
+      color: $--color-text-title;
+    }
+  }
 }

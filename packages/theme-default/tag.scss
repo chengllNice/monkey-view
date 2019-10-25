@@ -83,6 +83,17 @@
     }
   }
 
+  @include m(mini){
+    font-size: $--tag-font-size-mini;
+    padding: 0 $--tag-padding-horizontal-mini;
+    height: $--tag-height-mini;
+    line-height: $--tag-height-mini;
+    @include e(icon, false){
+      font-size: #{$--tag-font-size-mini - 2px};
+      margin-left: $--tag-padding-horizontal-mini;
+    }
+  }
+
   @include m(default){
     @include e(icon, false){
       color: $--tag-font-color-default;
