@@ -54,11 +54,14 @@
 
 :::demo 尺寸
 
-支持三种尺寸，设置 `size`为 `small` `large`实现大尺寸和小尺寸，不设置为默认尺寸。
+支持三种尺寸，设置 `size`为 `mini` `small` `large`实现迷你尺寸、小尺寸和大尺寸，不设置为默认尺寸。
 
 ```html
 <template>
     <cl-row :gutter="10">
+        <cl-col>
+            <cl-input size="mini" placeholder="mini placeholder" v-model="valueSizeMini"></cl-input>
+        </cl-col>
         <cl-col>
             <cl-input size="small" placeholder="small placeholder" v-model="valueSizeSmall"></cl-input>
         </cl-col>
@@ -74,6 +77,7 @@
     export default {
       data(){
         return {
+          valueSizeMini: '',
           valueSizeSmall: '',
           valueSizeDefault: '',
           valueSizeLarge: '',

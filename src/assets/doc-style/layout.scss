@@ -38,15 +38,21 @@
 .doc-layout-menu-tooltip{
   display: block;
 }
+.doc-layout-menu-name{
+  width: auto;
+  transition: all 0.2s ease-in-out;
+  margin: auto;
+  display: inline-block;
+}
+.doc-layout-menu-icon{
+  transition: all 0.2s ease-in-out;
+}
 .doc-layout-sider-close{
-  text-align: center;
   .doc-layout-menu-icon{
-    transition: all 0.2s ease-in-out;
     font-size: 18px;
   }
   .doc-layout-menu-name{
     width: 0;
-    transition: all 0.1s;
-    margin: auto;
+    display: none !important;
   }
 }

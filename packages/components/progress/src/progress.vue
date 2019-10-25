@@ -32,7 +32,7 @@
                       :d="trackPath"
                       :stroke="barStroke"
                       stroke-linecap="round"
-                      :stroke-width="relativeStrokeWidth"
+                      :stroke-width="percent ? relativeStrokeWidth : 0"
                       fill="none"
                       :style="circlePathStyle"></path>
             </svg>
@@ -181,10 +181,10 @@
         const radius = this.radius;
         const isDashboard = this.type === 'dashboard';
         return `
-            M 50 50
-            m 0 ${isDashboard ? '' : '-'}${radius}
-            a ${radius} ${radius} 0 1 1 0 ${isDashboard ? '-' : ''}${radius * 2}
-            a ${radius} ${radius} 0 1 1 0 ${isDashboard ? '' : '-'}${radius * 2}`;
+            M 50, 50
+            m 0, ${isDashboard ? '' : '-'}${radius}
+            a ${radius} ${radius} 0 1 1 0, ${isDashboard ? '-' : ''}${radius * 2}
+            a ${radius} ${radius} 0 1 1 0, ${isDashboard ? '' : '-'}${radius * 2}`;
       },
       perimeter() {
         return 2 * Math.PI * this.radius;
@@ -206,7 +206,7 @@
         return {
           strokeDasharray: `${this.perimeter * this.rate * (this.percent / 100) }px, ${this.perimeter}px`,
           strokeDashoffset: this.strokeDashoffset,
-          transition: 'stroke-dashoffset 0.6s ease 0s, stroke 0.6s ease'
+          transition: 'stroke-dasharray 0.6s ease 0s, stroke 0.6s ease'
         };
       },
       railStroke(){

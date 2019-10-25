@@ -53,6 +53,7 @@
     color: $--color-white;
     margin-left: $--tag-padding-horizontal-default;
     transform: scale(0.75);
+    transform-origin: top;
     opacity: $--tag-hover-opacity;
 
     &:hover{

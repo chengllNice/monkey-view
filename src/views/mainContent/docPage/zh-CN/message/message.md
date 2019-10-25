@@ -7,7 +7,7 @@
 
 :::demo 基础用法
 
-普通提示，默认3秒后消失。显示位置距离视口顶部20px。可选类型提示 `info `success` `warning` `error` 。
+普通提示，默认3秒后消失。显示位置距离视口顶部20px。可选类型提示 `info` `success` `warning` `error` 。
 
 ```html
 <template>

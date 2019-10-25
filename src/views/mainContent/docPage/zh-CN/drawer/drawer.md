@@ -38,7 +38,7 @@
 
 :::demo 不同位置滑出的抽屉
 
-通过设置 `placement`属性可以控制抽屉滑出的位置。可选值为 `left` `right` `top` `bottom`。
+通过设置 `placement`属性可以控制抽屉滑出的位置。可选值为 `left` `right` `top` `bottom`。垂直方向滑出时默认height为260px。
 
 ```html
 <template>
@@ -64,10 +64,10 @@
         }
       },
       methods: {
-        openDrawer(type, placement){
-            this.placement = placement;
-            this.drawerPosition = true;
-          }
+        openDrawer(placement){
+          this.placement = placement;
+          this.drawerPosition = true;
+        }
       }
     }
 </script>

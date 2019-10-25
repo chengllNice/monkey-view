@@ -65,7 +65,6 @@
             background-color: #ffffff;
             overflow: auto;
             position: relative;
-            padding: 8px 0 8px 16px;
         }
     }
 </style>

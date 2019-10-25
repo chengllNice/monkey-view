@@ -23,6 +23,7 @@ import devNotice from '../views/mainContent/devPage/NoticeView.vue'
 import devTable from '../views/mainContent/devPage/TableView.vue'
 import devCollapse from '../views/mainContent/devPage/CollapseView.vue'
 import devGrid from '../views/mainContent/devPage/GridView.vue'
+import devTabs from '../views/mainContent/devPage/TabsView.vue'
 
 let routers = [
   {
@@ -149,6 +150,11 @@ let routers = [
     path: '/dev/grid',
     name: 'devGrid',
     component: devGrid
+  },
+  {
+    path: '/dev/tabs',
+    name: 'devTabs',
+    component: devTabs
   },
 ];
 

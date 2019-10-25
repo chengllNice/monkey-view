@@ -172,6 +172,9 @@
           this.timer && clearTimeout(this.timer);
           this.wrapShow = true;
         }
+        setTimeout(()=>{
+          this.drawerBodyResize();
+        })
       }
     },
     methods: {
@@ -192,12 +195,12 @@
 
         let drawerFooterHeight =  !this.footerHide && this.$refs.drawerFooter.offsetHeight;
 
-        let bodyHeigt = 'auto';
+        let bodyHeight = 'auto';
 
-        bodyHeigt = (drawerHeight - drawerHeaderHeight - drawerFooterHeight) + 'px';
+        bodyHeight = (drawerHeight - drawerHeaderHeight - drawerFooterHeight) + 'px';
 
         this.bodyStyle = {
-          height: bodyHeigt
+          height: bodyHeight
         }
       },
       setShowHead(){

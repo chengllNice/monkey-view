@@ -248,14 +248,21 @@
     .doc-layout-sider-close{
         text-align: center;
     }
+    .doc-layout-menu-name{
+      width: auto;
+      transition: all 0.2s ease-in-out;
+      margin: auto;
+      display: inline-block;
+    }
     .doc-layout-menu-icon{
-        transition: all 0.2s ease-in-out;
+      transition: all 0.2s ease-in-out;
+    }
+    .doc-layout-sider-close .doc-layout-menu-icon{
         font-size: 18px;
     }
-    .doc-layout-menu-name{
+    .doc-layout-sider-close .doc-layout-menu-name{
         width: 0;
-        transition: all 0.1s;
-        margin: auto;
+        display: none !important;
     }
 </style>
 

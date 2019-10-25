@@ -42,7 +42,7 @@
 
     &[x-placement^="top"] {
       .cl-tooltip__arrow{
-        bottom: -#{$--popover-arrow-width - 2px};
+        bottom: -#{$--popover-arrow-width - 3px};
       }
     }
 

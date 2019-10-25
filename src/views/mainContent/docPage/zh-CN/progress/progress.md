@@ -105,6 +105,12 @@
 
 ```html
 <template>
+    <cl-progress :percent="percent" type="circle"></cl-progress>
+    <cl-button-group>
+        <cl-button icon="cl-icon-plus" @click="percentChange('plus')"></cl-button>
+        <cl-button icon="cl-icon-minus" @click="percentChange('minus')"></cl-button>
+    </cl-button-group>
+    <br>
     <cl-progress :percent="25" type="circle"></cl-progress>
     <cl-progress :percent="25" type="circle" width="100"></cl-progress>
     <cl-progress :percent="25" type="circle" width="100" strokeWidth="5"></cl-progress>
@@ -113,7 +119,25 @@
     <cl-progress :percent="25" type="circle" status="error"></cl-progress>
     <cl-progress :percent="25" type="circle" status="warning"></cl-progress>
 </template>
-
+<script>
+    export default {
+      data(){
+        return {
+          percent: 0
+        }
+      },
+      methods: {
+        percentChange(type){
+          this.percent = type === 'plus' ? this.percent + 10 : this.percent - 10;
+          if(this.percent > 100){
+            this.percent = 100
+          }else if(this.percent < 0){
+            this.percent = 0
+          }
+        }
+      }
+    }
+</script>
 ```
 
 :::

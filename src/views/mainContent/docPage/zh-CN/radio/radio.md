@@ -87,12 +87,12 @@
 
 :::demo disable状态
 
-设置 `disbaled`属性可以实现禁用。可以给 `checkbox`组件添加 `disabled`属性实现禁用。组合使用时可以给 Group 组件添加 `disabled`属性实现该组合下的所有子项禁用；也可以单独给某个子项设置 `disabled`属性实现某一项的禁用。
+设置 `disbaled`属性可以实现禁用。可以给 `radio`组件添加 `disabled`属性实现禁用。组合使用时可以给 Group 组件添加 `disabled`属性实现该组合下的所有子项禁用；也可以单独给某个子项设置 `disabled`属性实现某一项的禁用。
 
 ```html
 <template>
     <h4>单独使用禁用</h4>
-    <cl-radio disabled  v-model="disabledSingle">DisabledCheckbox</cl-radio>
+    <cl-radio disabled  v-model="disabledSingle">DisabledRadio</cl-radio>
     <p>{{disabledSingle}}</p>
 
     <h4>组合使用禁用</h4>
@@ -197,7 +197,7 @@
 | value | String, Number, Boolean | 指定当前选中的radio，使用v-model双向绑定。使用 `options` 属性时选中的是选项`value`的值。使用`slot`的`radio`时选中的是指定`label`的值。 | - |
 | disabled | Boolean | 组合中的所有`radio`全部禁用 | - |
 | size | String | 组合中所有`radio`的尺寸 | - |
-| options | Array | 类似`[{value: '0', label: 'checkbox', disabled: true}]`这样的数组，其中`value`指定当前项是否选中，`label`为当前项的文字描述，`disabled`可选，控制禁用状态 | - |
+| options | Array | 类似`[{value: '0', label: 'radio', disabled: true}]`这样的数组，其中`value`指定当前项是否选中，`label`为当前项的文字描述，`disabled`可选，控制禁用状态 | - |
 
 
 ### RadioGroup event

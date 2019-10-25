@@ -1,6 +1,7 @@
 <template>
     <div :class="rowClass" :style="rowStyle">
         <slot></slot>
+        <!--<div style="clear: both;"></div>-->
     </div>
 </template>
 

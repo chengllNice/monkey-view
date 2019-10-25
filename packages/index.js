@@ -29,7 +29,7 @@ import ClDrawer from './components/drawer'
 import ClTable from './components/table'
 import ClCollapse from './components/collapse'
 import { ClRow, ClCol} from './components/grid'
-
+import {ClTabs, ClTabPane } from './components/tabs'
 const components = {
   ClLayout,
   ClSider: ClLayout.Sider,
@@ -68,7 +68,9 @@ const components = {
   ClCollapseItem: ClCollapse.Item,
   ClRow,
   ClCol,
-  ClMessage
+  ClMessage,
+  ClTabs,
+  ClTabPane,
 };
 
 const install = (Vue) => {

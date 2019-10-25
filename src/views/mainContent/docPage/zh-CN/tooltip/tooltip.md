@@ -30,48 +30,48 @@
 ```html
 <template>
     <div class="doc-margin-l10" style="text-align: center;width: 300px">
-        <cl-tooltip title="提示" placement="top-start" content="content">
+        <cl-tooltip placement="top-start" content="content">
             <cl-button>上左</cl-button>
         </cl-tooltip>
-        <cl-tooltip title="提示" placement="top" content="content">
+        <cl-tooltip placement="top" content="content">
             <cl-button>上边</cl-button>
         </cl-tooltip>
-        <cl-tooltip title="提示" placement="top-end" content="content">
+        <cl-tooltip placement="top-end" content="content">
             <cl-button>上右</cl-button>
         </cl-tooltip>
     </div>
     <div class="doc-margin-l10 doc-tooltip-placement">
-        <cl-tooltip title="提示" placement="left-start" content="content">
+        <cl-tooltip placement="left-start" content="content">
             <cl-button>左上</cl-button>
         </cl-tooltip>
-        <cl-tooltip title="提示" placement="right-start" content="content">
+        <cl-tooltip placement="right-start" content="content">
             <cl-button>右上</cl-button>
         </cl-tooltip>
     </div>
     <div class="doc-margin-l10 doc-tooltip-placement">
-        <cl-tooltip title="提示" placement="left" content="content">
+        <cl-tooltip placement="left" content="content">
             <cl-button>左边</cl-button>
         </cl-tooltip>
-        <cl-tooltip title="提示" placement="right" content="content">
+        <cl-tooltip placement="right" content="content">
             <cl-button>右边</cl-button>
         </cl-tooltip>
     </div>
     <div class="doc-margin-l10 doc-tooltip-placement">
-        <cl-tooltip title="提示" placement="left-end" content="content">
+        <cl-tooltip placement="left-end" content="content">
             <cl-button>左下</cl-button>
         </cl-tooltip>
-        <cl-tooltip title="提示" placement="right-end" content="content">
+        <cl-tooltip placement="right-end" content="content">
             <cl-button>右下</cl-button>
         </cl-tooltip>
     </div>
     <div class="doc-margin-l10" style="text-align: center;width: 300px">
-        <cl-tooltip title="提示" placement="bottom-start" content="content">
+        <cl-tooltip placement="bottom-start" content="content">
             <cl-button>下左</cl-button>
         </cl-tooltip>
-        <cl-tooltip title="提示" placement="bottom" content="content">
+        <cl-tooltip placement="bottom" content="content">
             <cl-button>下边</cl-button>
         </cl-tooltip>
-        <cl-tooltip title="提示" placement="bottom-end" content="content">
+        <cl-tooltip placement="bottom-end" content="content">
             <cl-button>下右</cl-button>
         </cl-tooltip>
     </div>
@@ -102,12 +102,8 @@
 
 ```html
 <template>
-    <cl-tooltip content="这是提示文字">
+    <cl-tooltip content="这是提示文字" background-color="#2d8cf0" text-color="rgba(255,255,255,0.75)">
         <cl-button type="text" size="mini">鼠标经过时会有文字提示</cl-button>
-    </cl-tooltip>
-    <br>
-    <cl-tooltip content="这是一个长文本提示，超出会换行" maxWidth="120px">
-        <cl-button type="text" size="mini">最大宽度超出120px时会自动换行</cl-button>
     </cl-tooltip>
 </template>
 ```
