@@ -1,9 +1,10 @@
 <template>
     <div class="MessageView">
-        <ClButton @click="openMessage('info')">info</ClButton>
-        <ClButton @click="openMessage('success')">success</ClButton>
-        <ClButton @click="openMessage('warning')">warning</ClButton>
-        <ClButton @click="openMessage('error')">error</ClButton>
+        <ClButton type="primary" @click="openMessage('info', 0)">不关闭，手动5s后关闭</ClButton>
+        <ClButton type="info" @click="openMessage('info')">info</ClButton>
+        <ClButton type="success" @click="openMessage('success')">success</ClButton>
+        <ClButton type="warning" @click="openMessage('warning')">warning</ClButton>
+        <ClButton type="danger" @click="openMessage('error')">error</ClButton>
         <ClButton @click="openMessage('loading')">loading</ClButton>
 
 
@@ -12,6 +13,7 @@
             <h4>message props</h4>
             <p>通过一下实例方法调用：</p>
             <ul>
+                <li>this.$Message.config(config)</li>
                 <li>this.$Message.info(config)</li>
                 <li>this.$Message.success(config)</li>
                 <li>this.$Message.warning(config)</li>
@@ -49,40 +51,47 @@
 </template>
 
 <script>
-  import ClButton from 'cl-ui/packages/components/button/src/button.vue'
-  export default {
-    name: "MessageView",
-    data() {
-      return {}
-    },
-    computed: {},
-    components: {
-      ClButton
-    },
-    created() {
-    },
-    mounted() {
-    },
-    methods: {
-      openMessage(type){
-        // this.$Message[type]('this is a message', 5000);
-        let a = this.$Message[type]({
-          top: 50,
-          duration: 0,
-          message: 'this is a config message',
-          onClose(){
-            console.log('close--')
-          }
-        });
-        setTimeout(()=>{
-          a.close();
-        },5000)
-      }
+    import ClButton from 'cl-ui/packages/components/button/src/button.vue'
+
+    export default {
+        name: "MessageView",
+        data() {
+            return {}
+        },
+        computed: {},
+        components: {
+            ClButton
+        },
+        created() {
+        },
+        mounted() {
+            this.$Message.config({
+                top: 40,
+                duration: 4000,
+                messageItemDis: 30,
+            })
+        },
+        methods: {
+            openMessage(type, duration) {
+                // this.$Message[type]('this is a message', 5000);
+                let a = this.$Message[type]({
+                    duration: duration === 0 ? 0 : 3000,
+                    content: 'this is a config message',
+                    onClose() {
+                        console.log('close--')
+                    }
+                });
+                if (duration === 0) {
+                    setTimeout(() => {
+                        a.close();
+                    }, 5000)
+                }
+            }
+        }
     }
-  }
 </script>
 <style lang="scss">
-    .MessageView{
+    .MessageView {
         text-align: left;
     }
 </style>

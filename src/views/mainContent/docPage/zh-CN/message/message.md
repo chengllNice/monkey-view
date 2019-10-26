@@ -11,10 +11,10 @@
 
 ```html
 <template>
-    <cl-button @click="openMessage('info')">info</cl-button>
-    <cl-button @click="openMessage('success')">success</cl-button>
-    <cl-button @click="openMessage('warning')">warning</cl-button>
-    <cl-button @click="openMessage('error')">error</cl-button>
+    <cl-button type="info" @click="openMessage('info')">info</cl-button>
+    <cl-button type="success" @click="openMessage('success')">success</cl-button>
+    <cl-button type="warning" @click="openMessage('warning')">warning</cl-button>
+    <cl-button type="danger" @click="openMessage('error')">error</cl-button>
 </template>
 <script>
     export default {
@@ -55,7 +55,7 @@ loading状态。异步在某个合适的时机移除。
         loading(){
             let msg = this.$Message.loading({
               duration: 0,
-              message: 'this is a loading message',
+              content: 'this is a loading message',
             });
             setTimeout(()=>{
               msg.close();
@@ -69,6 +69,39 @@ loading状态。异步在某个合适的时机移除。
 
 :::
 
+
+:::demo 带背景色的提示
+
+设置`background`属性可以实现带有背景色的提示。
+
+```html
+<template>
+    <cl-button type="info" @click="openMessage('info')">info</cl-button>
+    <cl-button type="success" @click="openMessage('success')">success</cl-button>
+    <cl-button type="warning" @click="openMessage('warning')">warning</cl-button>
+    <cl-button type="danger" @click="openMessage('error')">error</cl-button>
+</template>
+<script>
+    export default {
+      data(){
+        return {
+          
+        }
+      },
+      methods: {
+        openMessage(type){
+            this.$Message[type]({
+                content: `this is a ${type} backgroundColor`,
+                background: true,
+            })
+        }
+      }
+    }
+</script>
+
+```
+
+:::
 
 
 :::demo 自定义配置
@@ -89,9 +122,8 @@ loading状态。异步在某个合适的时机移除。
       methods: {
         configMessage(){
             this.$Message.info({
-              top: 50,
               duration: 3000,
-              message: '<span>this is a config message</span>',
+              content: '<span>this is a config message</span>',
               // 触发关闭时的回调
               onClose(){
                 console.log('message close');
@@ -128,7 +160,20 @@ loading状态。异步在某个合适的时机移除。
 
 | 属性 | 类型 | 说明 | 默认值 |
 | ---- | ---- | ---- | ---- |
-| message | String | 提示内容，支持html字符串 | - |
+| content | String | 提示内容，支持html字符串 | - |
 | duration | Number | 自动关闭的延时，单位秒，值为0时不关闭 | 3000 |
-| top | Number | 距离顶部的距离，单位px | - |
+| background | Boolean | 是否显示背景色 | false |
 | onClose | Function | 关闭时的回调 | - |
+
+
+另外提供全局配置的方法：
+
+- `this.$Message.config(config)`
+
+参数`config`为对象。具体配置如下：
+
+| 属性 | 类型 | 说明 | 默认值 |
+| ---- | ---- | ---- | ---- |
+| top | Number | 第一个message提示信息距离顶部的距离，单位px | 20 |
+| duration | Number | 自动关闭的延时，单位秒，值为0时不关闭 | 3000 |
+| messageItemDis | Number | 每个message提示信息之间的距离 | 10 |

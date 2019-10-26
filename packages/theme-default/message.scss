@@ -22,21 +22,33 @@
   }
 
   @include m(info){
+    &.cl-message--background{
+      background-color: mix($--color-info, $--color-white, 10%);
+    }
     @include e(icon, false){
       color: $--color-info;
     }
   }
   @include m(success){
+    &.cl-message--background{
+      background-color: mix($--color-success, $--color-white, 10%);
+    }
     @include e(icon, false){
       color: $--color-success;
     }
   }
   @include m(error){
+    &.cl-message--background{
+      background-color: mix($--color-danger, $--color-white, 10%);
+    }
     @include e(icon, false){
       color: $--color-danger;
     }
   }
   @include m(warning){
+    &.cl-message--background{
+      background-color: mix($--color-warning, $--color-white, 10%);
+    }
     @include e(icon, false){
       color: $--color-warning;
     }

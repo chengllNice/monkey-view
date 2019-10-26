@@ -1,9 +1,12 @@
 <template>
-    <transition name="DrawerMoveRight" @after-leave="handleAfterLeave">
+    <transition :name="transitionName" @after-leave="handleAfterLeave">
         <div class="cl-notice"
              :class="[
-                type && type !== 'open' && 'cl-notice--icon',
+                type && type !== 'open' && `cl-notice--${type}`,
+                type && type !== 'open' && `cl-notice--type`,
                 isOnlyTitle && 'cl-notice--only-title',
+                placement && `cl-notice--${placement}`,
+                background && `cl-notice--background`,
              ]"
              :style="noticeStyle"
              v-show="visible">
@@ -24,26 +27,68 @@
         name: "ClNotice",
         data() {
             return {
+                placement: '',//出现的位置
                 type: 'open',//默认值
                 isOnlyTitle: false,//是否只有标题
                 title: '',
                 content: '',
                 duration: 0,
+                background: false,
                 closable: true,
                 top: 85,
-                currentTop: 85,
+                currentPosition: 85,
                 width: '350px',
                 visible: false,
                 closed: false,
-                onCloseComputed: function () {},
-                onClose: function () {},
+                timer: null,
+                onCloseComputed: function () {
+                },
+                onClose: function () {
+                },
             }
         },
         computed: {
-            noticeStyle(){
-                return {top: parseFloat(this.currentTop) + 'px', right: 0, width: parseFloat(this.width) + 'px'}
+            noticeStyle() {
+                let left = 0;
+                let right = 0;
+                let top = 0;
+                let bottom = 0;
+                let width = this.width;
+
+                if(['topLeft', 'bottomLeft'].includes(this.placement)){
+                    left = 0;
+                    right = 'auto';
+                }
+                if(['topRight', 'bottomRight'].includes(this.placement)){
+                    left = 'auto';
+                    right = 0;
+                }
+                if(['bottomRight', 'bottomLeft'].includes(this.placement)){
+                    bottom = this.currentPosition + 'px';
+                    top = 'auto';
+                }
+                if(['topRight', 'topLeft'].includes(this.placement)){
+                    top = this.currentPosition + 'px';
+                    bottom = 'auto';
+                }
+                return {
+                    top: top,
+                    bottom: bottom,
+                    left: left,
+                    right: right,
+                    width: width
+                }
             },
-            iconClass(){
+            transitionName() {
+                let name = '';
+                if(['topLeft', 'bottomLeft'].includes(this.placement)){
+                    name = 'DrawerMoveLeft'
+                }else{
+                    name = 'DrawerMoveRight'
+                }
+                return name;
+            },
+            iconClass() {
                 let icon = '';
                 switch (this.type) {
                     case 'success':
@@ -71,30 +116,30 @@
             // });
         },
         methods: {
-            handlerClose(){
+            handlerClose() {
                 this.close();
             },
-            show(){
+            show() {
                 this.visible = true;
                 this.startTimer();
             },
-            close(){
+            close() {
                 this.closed = true;
                 this.visible = false;
-                this.onCloseComputed();
+                this.onCloseComputed(this.placement);
                 this.onClose();
             },
-            startTimer(){
-                if(this.duration > 0){
-                    this.timer = setTimeout(()=>{
+            startTimer() {
+                if (this.duration > 0) {
+                    this.timer = setTimeout(() => {
                         !this.closed && this.close();
                     }, this.duration)
                 }
             },
-            clearTimer(){
+            clearTimer() {
                 this.timer && clearTimeout(this.timer);
             },
-            handleAfterLeave(){
+            handleAfterLeave() {
                 this.clearTimer();
                 this.$el.parentNode.removeChild(this.$el);
             }

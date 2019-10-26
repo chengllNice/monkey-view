@@ -310,7 +310,7 @@
             let optionShowArr = [];
             for (let option of this.$slots.default){
               let cOption = option.componentInstance;
-              let tag = cOption.componentName || option.componentOptions.tag;
+              let tag = cOption && (cOption.componentName || option.componentOptions.tag);
               if(cOption && (tag === 'ClOption' || tag === 'ClOptionGroup')){
                 optionShowArr.push(cOption.isShow);
               }
