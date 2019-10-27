@@ -84,7 +84,6 @@
     methods: {
       handlerClick() {
         if (this.disabled) return;
-        console.log('====rrr')
         this.parentEmit('ClMenu', 'on-update-active-key', this.cKey);
       },
     },

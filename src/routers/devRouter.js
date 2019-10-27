@@ -24,138 +24,144 @@ import devTable from '../views/mainContent/devPage/TableView.vue'
 import devCollapse from '../views/mainContent/devPage/CollapseView.vue'
 import devGrid from '../views/mainContent/devPage/GridView.vue'
 import devTabs from '../views/mainContent/devPage/TabsView.vue'
+import devTree from '../views/mainContent/devPage/TreeView.vue'
 
 let routers = [
-  {
-    path: '/dev/home',
-    name: 'devHome',
-    component: devHome
-  },
-  {
-    path: '/dev/layout',
-    name: 'devLayout',
-    component: devLayout
-  },
-  {
-    path: '/dev/menu',
-    name: 'devMenu',
-    component: devMenu
-  },
-  {
-    path: '/dev/input',
-    name: 'devInput',
-    component: devInput
-  },
-  {
-    path: '/dev/select',
-    name: 'devSelect',
-    component: devSelect
-  },
-  {
-    path: '/dev/button',
-    name: 'devButton',
-    component: devButton
-  },
-  {
-    path: '/dev/badge',
-    name: 'devBadge',
-    component: devBadge
-  },
-  {
-    path: '/dev/checkbox',
-    name: 'devCheckbox',
-    component: devCheckbox
-  },
-  {
-    path: '/dev/radio',
-    name: 'devRadio',
-    component: devRadio
-  },
-  {
-    path: '/dev/switch',
-    name: 'devSwitch',
-    component: devSwitch
-  },
-  {
-    path: '/dev/slider',
-    name: 'devSlider',
-    component: devSlider
-  },
-  {
-    path: '/dev/upload',
-    name: 'devUpload',
-    component: devUpload
-  },
-  {
-    path: '/dev/popover',
-    name: 'devPopover',
-    component: devPopover
-  },
-  {
-    path: '/dev/tooltip',
-    name: 'devTooltip',
-    component: devTooltip
-  },
-  {
-    path: '/dev/tag',
-    name: 'devTag',
-    component: devTag
-  },
-  {
-    path: '/dev/modal',
-    name: 'devModal',
-    component: devModal
-  },
-  {
-    path: '/dev/message',
-    name: 'devMessage',
-    component: devMessage
-  },
-  {
-    path: '/dev/notice',
-    name: 'devNotice',
-    component: devNotice
-  },
-  {
-    path: '/dev/progress',
-    name: 'devProgress',
-    component: devProgress
-  },
-  {
-    path: '/dev/alter',
-    name: 'devAlter',
-    component: devAlter
-  },
-  {
-    path: '/dev/card',
-    name: 'devCard',
-    component: devCard
-  },
-  {
-    path: '/dev/drawer',
-    name: 'devDrawer',
-    component: devDrawer
-  },
-  {
-    path: '/dev/table',
-    name: 'devTable',
-    component: devTable
-  },
-  {
-    path: '/dev/collapse',
-    name: 'devCollapse',
-    component: devCollapse
-  },
-  {
-    path: '/dev/grid',
-    name: 'devGrid',
-    component: devGrid
-  },
-  {
-    path: '/dev/tabs',
-    name: 'devTabs',
-    component: devTabs
-  },
+    {
+        path: '/dev/home',
+        name: 'devHome',
+        component: devHome
+    },
+    {
+        path: '/dev/layout',
+        name: 'devLayout',
+        component: devLayout
+    },
+    {
+        path: '/dev/menu',
+        name: 'devMenu',
+        component: devMenu
+    },
+    {
+        path: '/dev/input',
+        name: 'devInput',
+        component: devInput
+    },
+    {
+        path: '/dev/select',
+        name: 'devSelect',
+        component: devSelect
+    },
+    {
+        path: '/dev/button',
+        name: 'devButton',
+        component: devButton
+    },
+    {
+        path: '/dev/badge',
+        name: 'devBadge',
+        component: devBadge
+    },
+    {
+        path: '/dev/checkbox',
+        name: 'devCheckbox',
+        component: devCheckbox
+    },
+    {
+        path: '/dev/radio',
+        name: 'devRadio',
+        component: devRadio
+    },
+    {
+        path: '/dev/switch',
+        name: 'devSwitch',
+        component: devSwitch
+    },
+    {
+        path: '/dev/slider',
+        name: 'devSlider',
+        component: devSlider
+    },
+    {
+        path: '/dev/upload',
+        name: 'devUpload',
+        component: devUpload
+    },
+    {
+        path: '/dev/popover',
+        name: 'devPopover',
+        component: devPopover
+    },
+    {
+        path: '/dev/tooltip',
+        name: 'devTooltip',
+        component: devTooltip
+    },
+    {
+        path: '/dev/tag',
+        name: 'devTag',
+        component: devTag
+    },
+    {
+        path: '/dev/modal',
+        name: 'devModal',
+        component: devModal
+    },
+    {
+        path: '/dev/message',
+        name: 'devMessage',
+        component: devMessage
+    },
+    {
+        path: '/dev/notice',
+        name: 'devNotice',
+        component: devNotice
+    },
+    {
+        path: '/dev/progress',
+        name: 'devProgress',
+        component: devProgress
+    },
+    {
+        path: '/dev/alter',
+        name: 'devAlter',
+        component: devAlter
+    },
+    {
+        path: '/dev/card',
+        name: 'devCard',
+        component: devCard
+    },
+    {
+        path: '/dev/drawer',
+        name: 'devDrawer',
+        component: devDrawer
+    },
+    {
+        path: '/dev/table',
+        name: 'devTable',
+        component: devTable
+    },
+    {
+        path: '/dev/collapse',
+        name: 'devCollapse',
+        component: devCollapse
+    },
+    {
+        path: '/dev/grid',
+        name: 'devGrid',
+        component: devGrid
+    },
+    {
+        path: '/dev/tabs',
+        name: 'devTabs',
+        component: devTabs
+    },
+    {
+        path: '/dev/tree',
+        name: 'devTree',
+        component: devTree
+    },
 ];
 
 export default routers;
