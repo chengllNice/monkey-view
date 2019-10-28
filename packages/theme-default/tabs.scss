@@ -12,8 +12,8 @@
   }
   @include e(container){
     flex: 1;
-    margin-bottom: -1px;
     width: 100%;
+    margin-bottom: -1px;
   }
   @include e(nav){
     display: inline-block;
@@ -23,6 +23,10 @@
     display: inline-block;
     cursor: pointer;
     position: relative;
+    background-color: $--color-white;
+    border-bottom: $--border-default;
+    border-top-left-radius: $--border-radius-default;
+    border-top-right-radius: $--border-radius-default;
     &:not(.cl-tabs__nav-item-disabled):hover{
       color: $--color-primary;
     }
@@ -51,7 +55,7 @@
     &:after{
       content: '';
       position: absolute;
-      bottom: 0;
+      bottom: -1px;
       left: 0;
       width: 100%;
       border-bottom: 2px solid $--color-primary;
@@ -104,6 +108,10 @@
     }
   }
 
+  @include e(wrap){
+    overflow: hidden;
+    background-color: $--background-color-base;
+  }
   @include e(content){
     display: flex;
   }
@@ -118,7 +126,7 @@
     }
     .cl-tabs__nav-item{
       padding: 4px 12px;
-      margin-right: 5px;
+      margin-right: 4px;
       &:nth-last-of-type(1){
         margin: 0;
       }
@@ -131,7 +139,7 @@
     }
     .cl-tabs__nav-item{
       padding: 6px 14px;
-      margin-right: 10px;
+      margin-right: 8px;
       &:nth-last-of-type(1){
         margin: 0;
       }
@@ -144,7 +152,7 @@
     }
     .cl-tabs__nav-item{
       padding: 8px 16px;
-      margin-right: 15px;
+      margin-right: 12px;
       &:nth-last-of-type(1){
         margin: 0;
       }
@@ -157,7 +165,7 @@
     }
     .cl-tabs__nav-item{
       padding: 8px 16px;
-      margin-right: 20px;
+      margin-right: 16px;
       &:nth-last-of-type(1){
         margin: 0;
       }
@@ -180,7 +188,7 @@
   }
 
   @include m(border){
-    .cl-tab-pane{
+    .cl-tabs__wrap{
       border-left: $--border-default;
       border-right: $--border-default;
       border-bottom: $--border-default;
@@ -192,4 +200,5 @@
   width: 100%;
   padding: 16px;
   flex-shrink: 0;
+  background-color: $--color-white;
 }

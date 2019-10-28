@@ -8,6 +8,7 @@
          ]">
         <div :class="[
             'cl-tabs__header',
+            navBackground && 'cl-tabs__header',
         ]">
             <div class="cl-tabs__container">
                 <cl-scroll size="small" :scrollOption="scrollOption">
@@ -19,6 +20,7 @@
                              ]"
                              v-for="item in labelList"
                              :key="item.cKey"
+                             :style="navItemStyle"
                              @click="tabClick(item)">
                             <div class="cl-tabs__nav-item-name" v-html="item.label"></div>
                             <i v-if="closable" class="cl-tabs__close cl-icon-close"></i>
@@ -30,8 +32,10 @@
                 <slot name="extra"></slot>
             </div>
         </div>
-        <div class="cl-tabs__content" :class="[animation && 'cl-tabs__content-animation']" :style="contentStyle">
-            <slot></slot>
+        <div class="cl-tabs__wrap">
+            <div class="cl-tabs__content" :class="[animation && 'cl-tabs__content-animation']" :style="contentStyle">
+                <slot></slot>
+            </div>
         </div>
     </div>
 </template>
@@ -66,6 +70,23 @@
                 }
             },
             border: Boolean,//pane是否需要边框
+            navBackground: {
+                type: String,
+                default: ''
+            },//nav背景色
+            navActiveColor: {
+                type: String,
+                default: ''
+            },//nav鼠标hover和active的颜色
+            navStyle: {
+                type: Object,
+                default(){
+                    return {
+                        background: '',
+                        activeColor: '',
+                    }
+                }
+            },//自定义nav样式
             animation: {
                 type: Boolean,
                 default: true
@@ -91,6 +112,11 @@
                 let x = (this.activeTabIndex * 100);
                 return {
                     transform: `translateX(${-x}%)`
+                }
+            },
+            navItemStyle(){
+                return {
+                    backgroundColor: this.navBackground ? this.navBackground : '',
                 }
             }
         },
