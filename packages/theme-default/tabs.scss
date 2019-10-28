@@ -5,71 +5,191 @@
   width: 100%;
   @include e(header){
     @include clear-float;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     border-bottom: $--border-default;
   }
   @include e(container){
-    float: left;
+    flex: 1;
+    margin-bottom: -1px;
+    width: 100%;
   }
   @include e(nav){
     display: inline-block;
+    white-space: nowrap;
   }
   @include e(nav-item){
     display: inline-block;
-    padding: 8px 16px;
-    margin-right: 16px;
     cursor: pointer;
-
-    &:hover{
+    position: relative;
+    &:not(.cl-tabs__nav-item-disabled):hover{
       color: $--color-primary;
     }
+  }
+  @include e(nav-item-name){
+    display: inline-block;
   }
   @include e(close){
     font-size: 10px;
     transform-origin: top;
     transform: scale(0.8);
-    cursor: pointer;
     margin-left: 10px;
-    color: $--color-default;
+    vertical-align: middle;
+    color: $--color-text-default;
 
     &:hover{
-      color: #333333;
+      color: $--color-text-title;
     }
   }
   @include e(extra){
-    float: right;
+
   }
 
-  @include e(header-left){
-    @include e(container, false){
-      float: left;
-    }
-    @include e(extra, false){
-      float: right;
-    }
-  }
-  @include e(header-center){
-    @include e(container, false){
-      float: none;
-    }
-    @include e(extra, false){
-      float: right;
+  @include e(nav-item-active){
+    color: $--color-primary;
+    &:after{
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      border-bottom: 2px solid $--color-primary;
     }
   }
-  @include e(header-right){
+  @include e(nav-item-disabled){
+    color: $--color-text-disabled;
+    cursor: not-allowed;
+    .cl-tabs__close{
+      color: $--color-text-disabled;
+      &:hover{
+        color: $--color-text-disabled;
+      }
+    }
+    &.cl-tabs__nav-item-active:after{
+      border-bottom: 2px solid $--border-color-disabled;
+    }
+  }
+
+  @include m(left){
     @include e(container, false){
-      float: right;
+      align-items: flex-start;
+      order: 0;
     }
     @include e(extra, false){
-      float: left;
+      align-items: flex-end;
+      order: 1;
+    }
+  }
+  @include m(center){
+    @include e(container, false){
+      align-items: center;
+      order: 0;
+      text-align: center;
+    }
+    @include e(extra, false){
+      align-items: flex-end;
+      order: 1;
+    }
+  }
+  @include m(right){
+    @include e(container, false){
+      align-items: flex-end;
+      order: 1;
+      text-align: right;
+    }
+    @include e(extra, false){
+      align-items: flex-start;
+      order: 0;
     }
   }
 
   @include e(content){
-    overflow: hidden;
+    display: flex;
+  }
+  @include e(content-animation){
+    transition: all $--animation-time;
+  }
+
+
+  @include m(mini){
+    .cl-tabs__header{
+      font-size: $--font-size-mini;
+    }
+    .cl-tabs__nav-item{
+      padding: 4px 12px;
+      margin-right: 5px;
+      &:nth-last-of-type(1){
+        margin: 0;
+      }
+    }
+  }
+
+  @include m(small){
+    .cl-tabs__header{
+      font-size: $--font-size-small;
+    }
+    .cl-tabs__nav-item{
+      padding: 6px 14px;
+      margin-right: 10px;
+      &:nth-last-of-type(1){
+        margin: 0;
+      }
+    }
+  }
+
+  @include m(default){
+    .cl-tabs__header{
+      font-size: $--font-size-default;
+    }
+    .cl-tabs__nav-item{
+      padding: 8px 16px;
+      margin-right: 15px;
+      &:nth-last-of-type(1){
+        margin: 0;
+      }
+    }
+  }
+
+  @include m(large){
+    .cl-tabs__header{
+      font-size: $--font-size-large;
+    }
+    .cl-tabs__nav-item{
+      padding: 8px 16px;
+      margin-right: 20px;
+      &:nth-last-of-type(1){
+        margin: 0;
+      }
+    }
+  }
+
+
+  @include m(card){
+    .cl-tabs__nav-item{
+      border-top: $--border-default;
+      border-left: $--border-default;
+      border-right: $--border-default;
+      border-top-left-radius: $--border-radius-default;
+      border-top-right-radius: $--border-radius-default;
+      margin-right: 4px;
+      &.cl-tabs__nav-item-active:after{
+        border-bottom: 2px solid $--color-white;
+      }
+    }
+  }
+
+  @include m(border){
+    .cl-tab-pane{
+      border-left: $--border-default;
+      border-right: $--border-default;
+      border-bottom: $--border-default;
+    }
   }
 }
 
 @include c(tab-pane){
   width: 100%;
   padding: 16px;
+  flex-shrink: 0;
 }

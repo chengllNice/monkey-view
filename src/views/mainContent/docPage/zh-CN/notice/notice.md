@@ -189,7 +189,7 @@
 | ---- | ---- | ---- | ---- |
 | title | String | 通知标题 | - |
 | content | String | 通知内容，支持html字符串 | - |
-| duration | Number | 自动关闭的延时，单位毫秒，值为0时不关闭 | 4500 |
+| duration | Number | 自动关闭的延时，单位ms，值为0时不关闭 | 4500 |
 | background | Boolean | 是否显示背景色 | false |
 | onClose | Function | 关闭时的回调 | - |
 
@@ -202,7 +202,7 @@
 
 | 属性 | 类型 | 说明 | 默认值 |
 | ---- | ---- | ---- | ---- |
-| top | Number | 第一个message提示信息距离顶部的距离，单位px | 20 |
-| duration | Number | 自动关闭的延时，单位秒，值为0时不关闭 | 3000 |
-| noticeItemDis | Number | 每个message提示信息之间的距离 | 10 |
+| position | Number | 第一个notice提示信息距离顶部或者底部的距离，单位px | 85 |
+| duration | Number | 自动关闭的延时，单位ms，值为0时不关闭 | 4500 |
+| noticeItemDis | Number | 每个notice提示信息之间的距离 | 10 |
 | placement | String | 出现的位置，可选值 `topLeft` `topRight` `bottomLeft` `BottomRight` | topRight |

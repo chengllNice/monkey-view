@@ -14,12 +14,12 @@ let defaultNoConfigOptions = {
     type: 'open',//值有success error warning info open 默认为open
     isOnlyTitle: false,//是否只有title
     currentPosition: 85,//当前notice距离顶部的top值 或者距离底部的bottom值
-    onCloseComputed: function () {},//计算当前notice距离顶部的top值
+    onCloseComputed: function () {},//计算当前notice距离顶部的top值 或者距离底部的bottom值
 };
 
 // 提供全局配置的参数
 let globalConfigOptions = {
-    top: 85,//第一个notice距离顶部的top值
+    position: 85,//第一个notice距离顶部或者底部的距离
     noticeItemDis: 10,//每个notice之间的间距
     duration: 4500,//自动关闭的延时
     placement: 'topRight',//出现的位置 topLeft topRight bottomLeft BottomRight 默认topRight
@@ -109,7 +109,7 @@ const notice = (type, options) => {
 
 const configGlobal = (options) => {
     globalConfigOptions = Object.assign({}, globalConfigOptions, options);
-    defaultNoConfigOptions.currentPosition = globalConfigOptions.top;
+    defaultNoConfigOptions.currentPosition = globalConfigOptions.position;
 };
 
 let exportObj = {};

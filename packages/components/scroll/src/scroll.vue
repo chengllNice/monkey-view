@@ -60,11 +60,16 @@
     },
     computed: {
       options(){
-        let ops = this.ops;
+        let ops = JSON.parse(JSON.stringify(this.ops));
         if(this.size === 'small'){
           ops.bar.size = '4px'
         }
-        return Object.assign({}, ops, this.scrollOption);
+        Object.keys(this.scrollOption).forEach(key=>{
+            Object.keys(this.scrollOption[key]).forEach(_key=>{
+                ops[key][_key] = this.scrollOption[key][_key]
+            })
+        });
+        return Object.assign({}, ops);
       }
     },
     components: {
