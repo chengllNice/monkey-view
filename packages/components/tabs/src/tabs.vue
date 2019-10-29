@@ -25,7 +25,7 @@
                             <div class="cl-tabs__nav-item"
                                  :style="navItemStyle(item)">
                                 <div class="cl-tabs__nav-item-name" v-html="item.label"></div>
-                                <i v-if="closable" class="cl-tabs__close cl-icon-close"></i>
+                                <i v-if="closable" class="cl-tabs__close cl-icon-close" @click.stop="close(item)"></i>
                             </div>
                         </div>
                     </div>
@@ -36,7 +36,7 @@
             </div>
         </div>
         <div class="cl-tabs__wrap">
-            <div class="cl-tabs__content" :class="[animation && 'cl-tabs__content-animation']" :style="contentStyle">
+            <div ref="tabContent" class="cl-tabs__content" :class="[animation && 'cl-tabs__content-animation']" :style="contentStyle">
                 <slot></slot>
             </div>
         </div>
@@ -125,7 +125,7 @@
                     if(this.activeTabIndex === item.index){
                         style = {...style, backgroundColor: activeBackground, color: activeColor}
                     }
-                    if(item.hover){
+                    if(item.hover && !item.disabled){
                         style = {
                             ...style,
                             color: activeColor
@@ -171,6 +171,11 @@
         methods: {
             getTabs() {
                 const labelList = findComponentDirectChildrens(this, 'ClTabPane');
+                labelList.sort((a, b) => {
+                    if(a.order && b.order){
+                        return a.order - b.order
+                    }
+                });
                 return labelList;
             },
             updateLabelList() {
@@ -182,15 +187,34 @@
                         label: item.labelValue,
                         disabled: item.disabled,
                         hover: false,
-                    })
+                        el: item
+                    });
                 });
-                if(this.labelList && this.labelList.length){
+                this.updateActiveTabIndex(this.value);
+            },
+            updateActiveTabIndex(value){
+                let activePane = this.labelList.filter(item=>{
+                    return item.cKey === value
+                });
+                this.activeTabIndex = '';
+                if(activePane && activePane.length){
+                    this.activeTabIndex = activePane[0].index;
+                }else if(this.labelList.length){
                     this.activeTabIndex = this.labelList[0].index;
                 }
             },
             tabClick(tabData){
                 if(tabData.disabled) return;
                 this.activeTabIndex = tabData.index;
+                this.$emit('tab-click', tabData.cKey);
+            },
+            close(tabData){
+                this.$refs.tabContent.removeChild(tabData.el.$el);
+                tabData.el && tabData.el.$destroy();
+
+                this.updateLabelList();
+
+                this.$emit('tab-remove', tabData.cKey);
             },
             navItemMouseEnter(tabData){
                 tabData.hover = true;
@@ -200,8 +224,16 @@
             }
         },
         watch: {
-            value(){
-
+            value(newVal){
+                this.updateActiveTabIndex(newVal);
+            },
+            activeTabIndex(newVal){
+                let activePane = this.labelList.filter(item=>{
+                    return item.index === newVal
+                });
+                if(activePane && activePane.length){
+                    this.$emit('input', activePane[0].cKey)
+                }
             }
         }
     }

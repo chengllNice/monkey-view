@@ -22,7 +22,8 @@
                 type: String,
                 required: true
             },
-            disabled: Boolean
+            disabled: Boolean,
+            order: Number,//在pane使用v-if时并不会按照预期的顺序进行排序，此时可以使用order属性设置顺序（此值需要大于0并且不可重复）
         },
         data() {
             return {
@@ -50,7 +51,8 @@
             },
             tabPaneStyle(){
                 return {
-                    visibility: this.tabPaneIndex === this.parentTabsComponent.activeTabIndex ? 'visible' : 'hidden'
+                    visibility: this.tabPaneIndex === this.parentTabsComponent.activeTabIndex ? 'visible' : 'hidden',
+                    order: this.tabPaneIndex
                 }
             }
         },
@@ -58,10 +60,17 @@
         created() {
         },
         mounted() {
-            this.$nextTick(()=>{
-                this.parentEmit('ClTabs', 'on-update-label-list');
-            })
+            this.triggerUpdate();
         },
-        methods: {}
+        methods: {
+            triggerUpdate(){
+                this.$nextTick(()=>{
+                    this.parentEmit('ClTabs', 'on-update-label-list');
+                })
+            }
+        },
+        beforeDestroy(){
+            this.triggerUpdate();
+        }
     }
 </script>
