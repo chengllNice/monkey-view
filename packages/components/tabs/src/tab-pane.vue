@@ -9,9 +9,10 @@
 
 <script>
     import {findComponent} from "../../../utils/tool";
-
+    import Emitter from '../../../mixins/emitter'
     export default {
         name: "ClTabPane",
+        mixins: [Emitter],
         props: {
             label: {
                 type: String,
@@ -57,7 +58,9 @@
         created() {
         },
         mounted() {
-
+            this.$nextTick(()=>{
+                this.parentEmit('ClTabs', 'on-update-label-list');
+            })
         },
         methods: {}
     }

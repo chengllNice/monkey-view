@@ -8,22 +8,25 @@
          ]">
         <div :class="[
             'cl-tabs__header',
-            navBackground && 'cl-tabs__header',
         ]">
-            <div class="cl-tabs__container">
+            <div class="cl-tabs__nav-wrap">
                 <cl-scroll size="small" :scrollOption="scrollOption">
                     <div class="cl-tabs__nav">
-                        <div class="cl-tabs__nav-item"
-                             :class="[
+                        <div :class="[
+                                'cl-tabs__nav-item-wrap',
                                 activeTabIndex === item.index && 'cl-tabs__nav-item-active',
                                 item.disabled && 'cl-tabs__nav-item-disabled',
                              ]"
                              v-for="item in labelList"
                              :key="item.cKey"
-                             :style="navItemStyle"
+                             @mouseenter="navItemMouseEnter(item)"
+                             @mouseleave="navItemMouseLeave(item)"
                              @click="tabClick(item)">
-                            <div class="cl-tabs__nav-item-name" v-html="item.label"></div>
-                            <i v-if="closable" class="cl-tabs__close cl-icon-close"></i>
+                            <div class="cl-tabs__nav-item"
+                                 :style="navItemStyle(item)">
+                                <div class="cl-tabs__nav-item-name" v-html="item.label"></div>
+                                <i v-if="closable" class="cl-tabs__close cl-icon-close"></i>
+                            </div>
                         </div>
                     </div>
                 </cl-scroll>
@@ -42,9 +45,11 @@
 
 <script>
     import {findComponentDirectChildrens} from "../../../utils/tool";
+    import Emitter from '../../../mixins/emitter'
 
     export default {
         name: "ClTabs",
+        mixins: [Emitter],
         props: {
             value: String,
             size: {
@@ -69,21 +74,17 @@
                     return ['left', 'center', 'right'].includes(value)
                 }
             },
-            border: Boolean,//pane是否需要边框
-            navBackground: {
-                type: String,
-                default: ''
-            },//nav背景色
-            navActiveColor: {
-                type: String,
-                default: ''
-            },//nav鼠标hover和active的颜色
+            border: Boolean,//是否需要边框
             navStyle: {
                 type: Object,
                 default(){
                     return {
-                        background: '',
+                        defaultBackground: '',
+                        activeBackground: '',
+                        defaultColor: '',
                         activeColor: '',
+                        defaultBorderColor: '',
+                        activeBorderColor: '',
                     }
                 }
             },//自定义nav样式
@@ -115,8 +116,47 @@
                 }
             },
             navItemStyle(){
-                return {
-                    backgroundColor: this.navBackground ? this.navBackground : '',
+                return function(item){
+                    let {defaultBackground, activeBackground, defaultColor, activeColor, defaultBorderColor, activeBorderColor} = this.navStyle;
+                    let style = {
+                        backgroundColor: defaultBackground ? defaultBackground : '',
+                        color: defaultColor ? defaultColor : '',
+                    };
+                    if(this.activeTabIndex === item.index){
+                        style = {...style, backgroundColor: activeBackground, color: activeColor}
+                    }
+                    if(item.hover){
+                        style = {
+                            ...style,
+                            color: activeColor
+                        }
+                    }
+                    if(this.type === 'card'){
+                        if(defaultBorderColor){
+                            style = {
+                                ...style,
+                                borderTopWidth: '2px',
+                                borderTopStyle: 'solid',
+                                borderTopColor: defaultBorderColor,
+                                borderLeftColor: defaultBorderColor,
+                                borderRightColor: defaultBorderColor,
+                            };
+                        }
+                        if(this.activeTabIndex === item.index){
+                            style = {
+                                ...style,
+                                borderTopColor: activeBorderColor,
+                                borderLeftColor: activeBorderColor,
+                                borderRightColor: activeBorderColor,
+                            }
+                        }
+                    }else if(this.type === 'line' && activeBorderColor && this.activeTabIndex === item.index){
+                        style = {
+                            ...style,
+                            borderBottomColor: activeBorderColor,
+                        }
+                    }
+                    return style;
                 }
             }
         },
@@ -124,7 +164,9 @@
         created() {
         },
         mounted() {
-            this.updateLabelList();
+            this.$on('on-update-label-list', () => {
+                this.updateLabelList();
+            });
         },
         methods: {
             getTabs() {
@@ -139,13 +181,27 @@
                         cKey: item.cKey,
                         label: item.labelValue,
                         disabled: item.disabled,
+                        hover: false,
                     })
                 });
-                this.activeTabIndex = this.labelList[0].index;
+                if(this.labelList && this.labelList.length){
+                    this.activeTabIndex = this.labelList[0].index;
+                }
             },
             tabClick(tabData){
                 if(tabData.disabled) return;
                 this.activeTabIndex = tabData.index;
+            },
+            navItemMouseEnter(tabData){
+                tabData.hover = true;
+            },
+            navItemMouseLeave(tabData){
+                tabData.hover = false;
+            }
+        },
+        watch: {
+            value(){
+
             }
         }
     }
