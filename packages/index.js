@@ -33,6 +33,7 @@ import {ClRow, ClCol} from './components/grid'
 import {ClTabs, ClTabPane} from './components/tabs'
 import ClTree from './components/tree'
 import ClPage from './components/page'
+import ClList from './components/list'
 
 const components = {
     ClLayout,
@@ -76,6 +77,8 @@ const components = {
     ClTabPane,
     ClTree,
     ClPage,
+    ClList,
+    ClListItem: ClList.item,
 };
 
 const install = (Vue) => {
