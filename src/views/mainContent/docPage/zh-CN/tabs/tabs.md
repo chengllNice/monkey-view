@@ -283,6 +283,31 @@
 :::
 
 
+:::demo 禁用动画效果
+
+`animation`属性控制是否使用动画效果，默认true。
+
+```html
+<template>
+    <cl-tabs :animation="false" type="card">
+        <cl-tab-pane label="标签一" c-key="1">
+            标签一内容
+        </cl-tab-pane>
+        <cl-tab-pane label="标签二" c-key="2">
+            标签二内容
+        </cl-tab-pane>
+        <cl-tab-pane c-key="3">
+            <div slot="label">标签三</div>
+            标签三内容
+        </cl-tab-pane>
+    </cl-tabs>
+</template>
+
+```
+
+:::
+
+
 :::demo 自定义样式
 
 `nav-style`属性设置支持自定义样式，详细配置见API。

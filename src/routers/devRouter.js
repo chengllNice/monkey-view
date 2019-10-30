@@ -25,6 +25,7 @@ import devCollapse from '../views/mainContent/devPage/CollapseView.vue'
 import devGrid from '../views/mainContent/devPage/GridView.vue'
 import devTabs from '../views/mainContent/devPage/TabsView.vue'
 import devTree from '../views/mainContent/devPage/TreeView.vue'
+import devPage from '../views/mainContent/devPage/PageView.vue'
 
 let routers = [
     {
@@ -161,6 +162,11 @@ let routers = [
         path: '/dev/tree',
         name: 'devTree',
         component: devTree
+    },
+    {
+        path: '/dev/page',
+        name: 'devPage',
+        component: devPage
     },
 ];
 

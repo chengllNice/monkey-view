@@ -28,6 +28,7 @@ const docTable = () => import(`../views/mainContent/docPage/${env}/table/table.m
 const docCollapse = () => import(`../views/mainContent/docPage/${env}/collapse/collapse.md`);
 const docGrid = () => import(`../views/mainContent/docPage/${env}/grid/grid.md`);
 const docTabs = () => import(`../views/mainContent/docPage/${env}/tabs/tabs.md`);
+const docPage = () => import(`../views/mainContent/docPage/${env}/page/page.md`);
 
 let routers = [
     {
@@ -159,6 +160,11 @@ let routers = [
         path: `${env}/doc/tabs`,
         name: 'docTabs',
         component: docTabs
+    },
+    {
+        path: `${env}/doc/page`,
+        name: 'docPage',
+        component: docPage
     },
 ];
 

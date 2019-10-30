@@ -1,6 +1,6 @@
 <template>
     <ClLayout class="views">
-        <ClHeader><CHeader></CHeader></ClHeader>
+        <ClHeader class="views-header"><CHeader></CHeader></ClHeader>
         <ClLayout class="views-layout">
             <ClSider hide-trigger>
                 <LeftNav></LeftNav>
@@ -57,9 +57,14 @@
     .views {
         height: 100%;
         overflow: hidden;
+        .views-header{
+            background-color: #ffffff;
+            box-shadow: 0 2px 2px #e7eae5;
+        }
         .views-layout{
             flex: 1;
             overflow: hidden;
+            margin-top: 10px;
         }
         .views-main-content {
             background-color: #ffffff;
