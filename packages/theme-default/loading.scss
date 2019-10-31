@@ -39,7 +39,7 @@
   }
 
   @include m(mini){
-    .cl-loading__icon{
+    .cl-loading__icon, .cl-loading__icon-svg{
       width: $--loading-size-mini;
       height: $--loading-size-mini;
     }
@@ -49,7 +49,7 @@
   }
 
   @include m(small){
-    .cl-loading__icon{
+    .cl-loading__icon, .cl-loading__icon-svg{
       width: $--loading-size-small;
       height: $--loading-size-small;
     }
@@ -59,7 +59,7 @@
   }
 
   @include m(default){
-    .cl-loading__icon{
+    .cl-loading__icon, .cl-loading__icon-svg{
       width: $--loading-size-default;
       height: $--loading-size-default;
     }
@@ -69,7 +69,7 @@
   }
 
   @include m(large){
-    .cl-loading__icon{
+    .cl-loading__icon, .cl-loading__icon-svg{
       width: $--loading-size-large;
       height: $--loading-size-large;
     }

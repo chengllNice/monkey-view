@@ -9,8 +9,10 @@
              ]"
              v-if="showLoading">
             <div class="cl-loading__content">
+
                 <slot>
                     <i v-if="type === 'loading1'" class="cl-icon-loading1 cl-rotate cl-loading__icon-font"></i>
+                    <loading-svg :type="type" :size="size" class="cl-loading__icon-svg" v-else-if="showLoadingSvg"></loading-svg>
                     <div v-else class="cl-loading__icon"></div>
                 </slot>
                 <div class="cl-loading__text" v-if="text || $slots.text"><slot name="text">{{text}}</slot></div>
@@ -20,6 +22,7 @@
 </template>
 
 <script>
+    import LoadingSvg from './loading-svg'
     export default {
         name: "ClLoading",
         props: {
@@ -29,9 +32,9 @@
             },
             type: {
                 type: String,
-                default: 'default',
+                default: 'loading5',
                 validator(value) {
-                    return ['default', 'loading1'].includes(value);
+                    return ['default', 'loading1', 'loading2', 'loading3', 'loading4', 'loading5'].includes(value);
                 }
             },
             text: String,
@@ -56,12 +59,18 @@
                 showLoading: this.visible
             }
         },
+        components: {
+            LoadingSvg
+        },
         methods: {
             show(){
                 this.showLoading = true;
             },
             close(){
                 this.showLoading = false;
+            },
+            showLoadingSvg(){
+                return ['loading2', 'loading3', 'loading4', 'loading5'].includes(this.type)
             }
         },
         watch: {
