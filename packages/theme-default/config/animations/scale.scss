@@ -21,3 +21,7 @@
 @include animation-base(scale, scale){
   animation-timing-function: linear;
 }
+
+@include animation-base(loading-scale, loading-scale){
+  animation-timing-function: linear;
+}

@@ -2,22 +2,24 @@
     <div :class="[
         'cl-list-item',
         parentListComponent.size && `cl-list-item--${parentListComponent.size}`,
+        parentListComponent.split && `cl-list-item--split`,
+        parentListComponent.hover && `cl-list-item--hover`,
         currentType === 'meta' && `cl-list-item--meta`,
     ]">
-        <slot v-if="currentType === 'default'"></slot>
         <template v-if="currentType === 'meta'">
-            <div class="cl-list-item__avatar">
+            <div class="cl-list-item__avatar" v-if="avatar || $slots.avatar">
                 <slot name="avatar"><img :src="avatar" alt=""></slot>
             </div>
             <div class="cl-list-item__content">
-                <div class="cl-list-item__title"><slot name="title">{{title}}</slot></div>
-                <div class="cl-list-item__description"><slot name="description">{{description}}</slot></div>
+                <div class="cl-list-item__title" v-if="title || $slots.title"><slot name="title">{{title}}</slot></div>
+                <div class="cl-list-item__description" v-if="description || $slots.description"><slot name="description">{{description}}</slot></div>
                 <slot></slot>
             </div>
-            <div class="cl-list-item__extra">
+            <div class="cl-list-item__extra" v-if="$slots.extra">
                 <slot name="extra"></slot>
             </div>
         </template>
+        <slot v-else></slot>
     </div>
 </template>
 
@@ -30,10 +32,7 @@
         props: {
             type: {
                 type: String,
-                default: 'default',
-                validator(value){
-                    return ['meta', 'default'].includes(value)
-                }
+                default: '',//可选值meta default
             },
             title: String,
             description: String,
@@ -47,7 +46,7 @@
         },
         computed: {
             currentType(){
-                return this.parentListComponent.type === 'meta' ? this.parentListComponent.type : this.type;
+                return this.type ? this.type : this.parentListComponent.type;
             }
         },
         components: {

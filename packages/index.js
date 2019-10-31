@@ -34,6 +34,7 @@ import {ClTabs, ClTabPane} from './components/tabs'
 import ClTree from './components/tree'
 import ClPage from './components/page'
 import ClList from './components/list'
+import ClLoading from './components/loading'
 
 const components = {
     ClLayout,
@@ -79,6 +80,7 @@ const components = {
     ClPage,
     ClList,
     ClListItem: ClList.item,
+    ClLoading: ClLoading,
 };
 
 const install = (Vue) => {
@@ -89,12 +91,19 @@ const install = (Vue) => {
     Vue.prototype.$Modal = ClModal.$Modal;
     Vue.prototype.$Message = ClMessage;
     Vue.prototype.$Notice = ClNotice;
+    Vue.prototype.$Loading = ClLoading.instance;
+};
+
+const directive = (Vue) => {
+    Vue.directive('loading', ClLoading.directive);
 };
 
 if (typeof window !== 'undefined' && window.Vue) {
-    install(window.Vue)
+    install(window.Vue);
+    directive(window.Vue);
 } else {
-    install(Vue)
+    install(Vue);
+    directive(Vue);
 }
 
 export default components;

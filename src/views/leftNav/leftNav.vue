@@ -84,6 +84,13 @@
                                 link: '/grid',
                                 query: {},
                             },
+                            {
+                                key: 'list',
+                                name: 'List列表',
+                                icon: 'cl-icon-list',
+                                link: '/list',
+                                query: {},
+                            },
                         ]
                     },
                     {
@@ -254,6 +261,19 @@
                                 name: 'Progress进度条',
                                 icon: 'cl-icon-minus',
                                 link: '/progress',
+                                query: {},
+                            },
+                        ]
+                    },
+                    {
+                        type: 'other',
+                        name: '其他',
+                        childrens: [
+                            {
+                                key: 'loading',
+                                name: 'Loading加载中',
+                                icon: 'cl-icon-loading1',
+                                link: '/loading',
                                 query: {},
                             },
                         ]

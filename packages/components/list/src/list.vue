@@ -4,36 +4,38 @@
         border && 'cl-list--border',
         size && `cl-list--${size}`,
     ]">
-        <div class="cl-list__header">
+        <div class="cl-list__header" v-if="header || $slots.header">
             <slot name="header">{{header}}</slot>
         </div>
         <div class="cl-list__content">
             <slot></slot>
         </div>
-        <div class="cl-list__footer">
+        <div class="cl-list__footer" v-if="footer || $slots.footer">
             <slot name="footer">{{footer}}</slot>
         </div>
     </div>
 </template>
 
 <script>
-    import {findComponentDirectChildrens} from "../../../utils/tool";
-    import Emitter from '../../../mixins/emitter'
 
     export default {
         name: "ClList",
-        mixins: [Emitter],
         props: {
             border: Boolean,
+            hover: {
+                type: Boolean,
+                default: true
+            },//是否需要hover效果
+            split: {
+                type: Boolean,
+                default: true
+            },//是否显示分割线
             header: String,
             footer: String,
             loading: Boolean,
             type: {
                 type: String,
-                default: 'default',
-                validator(value){
-                    return ['meta', 'default'].includes(value)
-                }
+                default: '',//可选值meta
             },
             size: {
                 type: String,
@@ -57,7 +59,3 @@
         methods: {}
     }
 </script>
-
-<style scoped>
-
-</style>

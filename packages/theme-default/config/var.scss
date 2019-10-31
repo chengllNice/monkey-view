@@ -77,6 +77,7 @@ $--font-size-title: 16px !default;
 /*-----zIndex-----*/
 $--dialog-z-index: 2000 !default;
 $--popover-z-index: 1000 !default;
+$--loading-z-index: 2001 !default;
 
 /*-----opacity-----*/
 $--opacity-disabled: 0.4;
@@ -98,6 +99,13 @@ $--media-points: (
 
 
 
+/*-----loading-----*/
+$--loading-size-mini: $height-mini !default;
+$--loading-size-small: $height-small !default;
+$--loading-size-default: $height-default !default;
+$--loading-size-large: $height-large !default;
+
+
 /*-----list-----*/
 $--list-item-padding-vertical-mini: 6px !default;
 $--list-item-padding-horizontal-mini: 12px !default;
@@ -111,6 +119,7 @@ $--list-item-avatar-width-mini: $height-mini !default;
 $--list-item-avatar-width-small: $height-small !default;
 $--list-item-avatar-width-default: $height-default !default;
 $--list-item-avatar-width-large: $height-large !default;
+$--list-item-background-color-hover: $--background-color-base !default;
 
 /*-----collapse-----*/
 $--collapse-item-header-height: 38px !default;

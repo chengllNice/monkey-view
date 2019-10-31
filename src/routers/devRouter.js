@@ -27,6 +27,7 @@ import devTabs from '../views/mainContent/devPage/TabsView.vue'
 import devTree from '../views/mainContent/devPage/TreeView.vue'
 import devPage from '../views/mainContent/devPage/PageView.vue'
 import devList from '../views/mainContent/devPage/ListView.vue'
+import devLoading from '../views/mainContent/devPage/LoadingView.vue'
 
 let routers = [
     {
@@ -173,6 +174,11 @@ let routers = [
         path: '/dev/list',
         name: 'devList',
         component: devList
+    },
+    {
+        path: '/dev/loading',
+        name: 'devLoading',
+        component: devLoading
     },
 ];
 
