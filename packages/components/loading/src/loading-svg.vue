@@ -32,21 +32,21 @@
     </svg>
 
     <svg v-else-if="type === 'loading5'" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" :viewBox="svgViewBox" enable-background="new 0 0 0 0" xml:space="preserve">
-    <rect :x="svgCx[0]" :fill="svgColor" :width="svgR" :height="svgWidth" transform="rotate(0 3 50)">
-        <animate attributeName="height" attributeType="XML" dur="1s" values="6; 20; 6" repeatCount="indefinite"></animate>
-    </rect>
-    <rect :x="svgCx[1]" :fill="svgColor" :width="svgR" :height="svgWidth" transform="rotate(0 20 50)">
-        <animate attributeName="height" attributeType="XML" dur="1s" values="6; 20; 6" repeatCount="indefinite" begin="0.1s"></animate>
-    </rect>
-    <rect :x="svgCx[2]" :fill="svgColor" :width="svgR" :height="svgWidth" transform="rotate(0 40 50)">
-        <animate attributeName="height" attributeType="XML" dur="1s" values="6; 20; 6" repeatCount="indefinite" begin="0.3s"></animate>
-    </rect>
+        <rect :x="svgCx[0]" :fill="svgColor" :width="svgR" :height="svgWidth" :transform="`rotate(180 ${svgR + svgCx[0] - 2.5} ${svgCy})`">
+            <animate attributeName="height" attributeType="XML" dur="1s" values="6; 20; 6" repeatCount="indefinite"></animate>
+        </rect>
+        <rect :x="svgCx[1]" :fill="svgColor" :width="svgR" :height="svgWidth" :transform="`rotate(180 ${svgR + svgCx[1] - 2.5} ${svgCy})`">
+            <animate attributeName="height" attributeType="XML" dur="1s" values="6; 20; 6" repeatCount="indefinite" begin="0.1s"></animate>
+        </rect>
+        <rect :x="svgCx[2]" :fill="svgColor" :width="svgR" :height="svgWidth" :transform="`rotate(180 ${svgR + svgCx[2] - 2.5} ${svgCy})`">
+            <animate attributeName="height" attributeType="XML" dur="1s" values="6; 20; 6" repeatCount="indefinite" begin="0.3s"></animate>
+        </rect>
     </svg>
 </template>
 
 <script>
     export default {
-        name: "loading-2",
+        name: "loadingSvg",
         props: {
             type: String,
             size: String,

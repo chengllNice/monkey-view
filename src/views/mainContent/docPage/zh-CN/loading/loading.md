@@ -45,15 +45,17 @@
 
 :::demo 不同类型
 
-设置`type`属性实现不同类型的loading。
+设置`type`属性实现不同类型的loading，内部提供六种loading效果，可以根据需要使用。
 
 ```html
 <template>
     <cl-row>
+        <cl-col><cl-loading size="mini" :visible="loading" /></cl-col>
         <cl-col><cl-loading type="loading1" size="mini" :visible="loading" /></cl-col>
-        <cl-col><cl-loading type="loading1" size="small" :visible="loading" /></cl-col>
-        <cl-col><cl-loading type="loading1" :visible="loading" /></cl-col>
-        <cl-col><cl-loading type="loading1" size="large" :visible="loading" /></cl-col>
+        <cl-col><cl-loading type="loading2" size="small" :visible="loading" /></cl-col>
+        <cl-col><cl-loading type="loading3" :visible="loading" /></cl-col>
+        <cl-col><cl-loading type="loading4" size="large" :visible="loading" /></cl-col>
+        <cl-col><cl-loading type="loading5" size="large" :visible="loading" /></cl-col>
     </cl-row>
 </template>
 <script>
@@ -140,9 +142,13 @@
 :::
 
 
-:::demo 实例方法
+:::demo 服务方式
 
-可以使用实例方法实现loading加载效果，此时loading是全屏加载。只可以配置`size` `text`属性，详细配置见API。
+可以使用实例方法实现loading加载效果，此时loading是全屏加载。只可以配置`type` `size` `text`属性。
+
+配置参数`option`为对象或者字符串。其中为字符串时只可配置加载文字描述。为对象时如下：
+
+`{text: '', size: '', type: ''}`
 
 ```html
 <template>
@@ -162,7 +168,8 @@
                 if(size && text){
                     config = {
                         size: size || '',
-                        text: text || ''
+                        text: text || '',
+                        type: 'default',
                     };
                 }   
                 this.$Loading.open(config);
@@ -182,7 +189,11 @@
 
 :::demo 指令实现
 
-可以使用`v-loading`指令实现加载效果。可以添加指令配置参数，其中第一个参数为loading的size尺寸，第二个参数为loading的text文字。
+可以使用`v-loading`指令实现加载效果。
+
+指令方式相对于添加指令的元素进行定位。
+
+可以添加指令配置参数，其中第一个参数为loading的type，第二个参数为loading的size尺寸，第三个参数为loading的text文字。
 
 ```html
 <template>
@@ -199,7 +210,7 @@
     </cl-switch>
 
     <h4>添加配置参数使用</h4>
-    <div class="doc-loading-fix-wrap" v-loading:large:加载中="loading1">
+    <div class="doc-loading-fix-wrap" v-loading:loading2:large:加载中="loading1">
         <div>content</div>
         <div>content</div>
         <div>content</div>
@@ -238,24 +249,18 @@
 
 | 属性 | 类型 | 说明 | 默认值 |
 | ---- | ---- | ---- | ---- |
-| page | Number | 当前页 | 1 |
-| total | Number | 数据总量 | 0 |
-| pageSize | Number | 每页条数 | 10 |
-| pageSizeOption | Array | 配置可选择的每页条数，建议不要超过4项 | [10, 20, 30, 40] |
-| maxPage | Number | 最多显示分页数量，超出时折叠 | 5 |
-| size | String | 分页尺寸，可选值 `mini` | default |
-| background | Boolean | 是否显示背景色 | - |
-| border | Boolean | 是否显示边框 | - |
-| hidenOnlySinglePage | Boolean | 当只有一页或者数据量为0时是否显示分页，设置为true则不显示 | - |
-| preText | String | 上一页文字，替换上一页的图标 | - |
-| nextText | String | 下一页文字，替换下一页的图标 | - |
-| order | String | 分页排序及显示对应功能，各值使用逗号隔开。例如：`total, page, pageSize, jump` | - |
-| totalText | String | 设置总数据量的显示方式，其中`total`为占位符，替换总数据量 | 共 total 条 |
-| pageSizeText | String | 设置每页条数选择项的显示方式，其中`pageSize`为占位符，替换总数据量 | pageSize 条/页 |
+| visible | Boolean | 是否显示loading | false |
+| type | String | loading类型，可选值 `default` `loading1` `loading2` `loading3` `loading4` `loading5`   | default |
+| text | String | 文字描述 | - |
+| size | String | 尺寸，可选值 `mini` `small` `default` `large` | default |
+| fix | Boolean | 相对于已定位的父及元素定位，指令模式下相对于添加指令的元素定位 | false |
+| fullscreen | Boolean | 全屏显示，指令模式下不能设置，服务模式下默认为全屏显示 | false |
+| color | String | 自定义loading颜色，服务和指令模式下不能设置 | - |
 
 
-### Page event
+### Loading slot
 
-| 事件名 | 说明 | 返回值 |
-| ---- | ---- | ---- |
-| change | 当前页和每页条数变化时出发 | page, pageSize |
+| 名称 | 说明 |
+| ---- | ---- |
+| - | loading图标 |
+| text | loading文字描述 |

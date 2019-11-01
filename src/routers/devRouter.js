@@ -28,6 +28,7 @@ import devTree from '../views/mainContent/devPage/TreeView.vue'
 import devPage from '../views/mainContent/devPage/PageView.vue'
 import devList from '../views/mainContent/devPage/ListView.vue'
 import devLoading from '../views/mainContent/devPage/LoadingView.vue'
+import devBackTop from '../views/mainContent/devPage/BackTopView.vue'
 
 let routers = [
     {
@@ -179,6 +180,11 @@ let routers = [
         path: '/dev/loading',
         name: 'devLoading',
         component: devLoading
+    },
+    {
+        path: '/dev/back-top',
+        name: 'devBackTop',
+        component: devBackTop
     },
 ];
 

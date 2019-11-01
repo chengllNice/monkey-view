@@ -214,9 +214,3 @@
     methods: {}
   }
 </script>
-
-<style lang="scss" scoped>
-.ButtonView{
-
-}
-</style>

@@ -1,0 +1,15 @@
+@import "./config/var";
+@import "./config/mixins/index.scss";
+
+@include c(back-top){
+  position: fixed;
+  border-radius: $--border-radius-default;
+  overflow: hidden;
+  cursor: pointer;
+
+  @include e(inner){
+    background-color: rgba(0, 0, 0, 0.75);
+    padding: 10px 16px;
+    color: $--color-white;
+  }
+}

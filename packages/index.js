@@ -35,6 +35,7 @@ import ClTree from './components/tree'
 import ClPage from './components/page'
 import ClList from './components/list'
 import ClLoading from './components/loading'
+import ClBackTop from './components/back-top'
 
 const components = {
     ClLayout,
@@ -81,6 +82,7 @@ const components = {
     ClList,
     ClListItem: ClList.item,
     ClLoading: ClLoading,
+    ClBackTop,
 };
 
 const install = (Vue) => {

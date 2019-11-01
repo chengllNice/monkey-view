@@ -13,7 +13,8 @@ let defaultNoConfigOptions = {
 // 可配置项的默认值
 let defaultOptions = {
     text: '',
-    size: 'default'
+    type: 'default',
+    size: 'default',
 };
 
 const initInstall = (opts) => {

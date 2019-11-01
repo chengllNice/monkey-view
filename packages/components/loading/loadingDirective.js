@@ -12,8 +12,9 @@ let defaultOptions = {
     size: 'default'
 };
 let defaultSize = ['mini', 'small', 'default', 'large'];
+let defaultType = ['default', 'loading1', 'loading2', 'loading3', 'loading4', 'loading5'];
 
-const initInstall = (el, size, text, expression) => {
+const initInstall = (el, type, size, text, expression) => {
     let instance = new ClLoadingInstance({
         el: document.createElement('div'),
     });
@@ -23,6 +24,9 @@ const initInstall = (el, size, text, expression) => {
     });
     el.appendChild(instance.$el);
     let config = JSON.parse(JSON.stringify(defaultOptions));
+    if(type){
+        config = Object.assign({}, config, {type});
+    }
     if(size){
         config = Object.assign({}, config, {size});
     }
@@ -44,9 +48,11 @@ export default {
         let arg = binding.arg ? binding.arg.split(':') : '';
         let size = 'default';
         let text = '';
-        if(arg && arg[0] && defaultSize.includes(arg[0])) size = arg[0];
-        if(arg && arg[1]) text = arg[1];
-        let loading = initInstall(el, size, text, expression);
+        let type = '';
+        if(arg && arg[0] && defaultType.includes(arg[0])) type = arg[0];
+        if(arg && arg[1] && defaultSize.includes(arg[1])) size = arg[1];
+        if(arg && arg[2]) text = arg[2];
+        let loading = initInstall(el, type, size, text, expression);
         value && loading.show();
         !value && loading.close();
     },
