@@ -64,16 +64,6 @@
 @include c(row){
   display: block;
   position: relative;
-  //overflow: hidden;
-
-  //&:after{
-  //  content: '';
-  //  width:0;
-  //  height:0;
-  //  visibility:hidden;
-  //  display: block;
-  //  clear: both;
-  //}
 
   @include clear-float;
 

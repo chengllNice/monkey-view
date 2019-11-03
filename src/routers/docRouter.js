@@ -31,6 +31,8 @@ const docTabs = () => import(`../views/mainContent/docPage/${env}/tabs/tabs.md`)
 const docPage = () => import(`../views/mainContent/docPage/${env}/page/page.md`);
 const docList = () => import(`../views/mainContent/docPage/${env}/list/list.md`);
 const docLoading = () => import(`../views/mainContent/docPage/${env}/loading/loading.md`);
+const docBackTop = () => import(`../views/mainContent/docPage/${env}/back-top/back-top.md`);
+const docAffix = () => import(`../views/mainContent/docPage/${env}/affix/affix.md`);
 
 let routers = [
     {
@@ -177,6 +179,16 @@ let routers = [
         path: `${env}/doc/loading`,
         name: 'docLoading',
         component: docLoading
+    },
+    {
+        path: `${env}/doc/back-top`,
+        name: 'docBackTop',
+        component: docBackTop
+    },
+    {
+        path: `${env}/doc/affix`,
+        name: 'docAffix',
+        component: docAffix
     },
 ];
 

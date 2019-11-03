@@ -276,6 +276,20 @@
                                 link: '/loading',
                                 query: {},
                             },
+                            {
+                                key: 'back-top',
+                                name: 'BackTop回到顶部',
+                                icon: 'cl-icon-up',
+                                link: '/back-top',
+                                query: {},
+                            },
+                            {
+                                key: 'affix',
+                                name: 'Affix图钉',
+                                icon: 'cl-icon-up',
+                                link: '/affix',
+                                query: {},
+                            },
                         ]
                     },
                 ],

@@ -42,6 +42,7 @@
 
 @include c(list){
   background-color: $--color-white;
+  position: relative;
 
   @include e(header){
     border-bottom: $--border-default;

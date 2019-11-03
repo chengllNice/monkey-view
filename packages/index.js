@@ -36,6 +36,7 @@ import ClPage from './components/page'
 import ClList from './components/list'
 import ClLoading from './components/loading'
 import ClBackTop from './components/back-top'
+import ClAffix from './components/affix'
 
 const components = {
     ClLayout,
@@ -81,8 +82,10 @@ const components = {
     ClPage,
     ClList,
     ClListItem: ClList.item,
+    ClListRow: ClList.row,
     ClLoading: ClLoading,
     ClBackTop,
+    ClAffix,
 };
 
 const install = (Vue) => {

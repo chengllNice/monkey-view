@@ -172,6 +172,71 @@
 
 
 
+:::demo 异步加载数据
+
+设置`loading`属性可以显示加载中的动画。
+
+```html
+<template>
+    <cl-list type="meta" border :split="false" :loading="loading" header="异步加载列表">
+        <cl-list-item v-for="item in dataList" :key="item.id" :title="item.title" :description="item.description">
+            <div slot="extra">
+                <cl-button type="text" size="mini"><i class="cl-icon-delete1" @click="deleteData(item)"></i></cl-button>
+            </div>
+        </cl-list-item>
+    </cl-list>
+    <cl-button v-if="!noMore" block :disabled="loading" @click="loadData">加载更多</cl-button>
+</template>
+<script>
+    export default {
+        data(){
+            return {
+                dataList: [],
+                loading: false,
+                noMore: false,
+            }
+        },
+        mounted(){
+            this.$nextTick(()=>{
+                this.loadData();
+            })
+        },
+        methods: {
+            loadData(){
+                this.loading = true;
+                setTimeout(()=>{
+                    let len = this.dataList.length;
+                    let startId = len ? (this.dataList[len - 1].id + 1) : 0;
+                    for (let i = startId; i < startId + 3; i++){
+                        this.dataList.push({
+                            id: i,
+                            title: 'title' + i,
+                            description: 'description' + i
+                        })
+                    } 
+                    this.loading = false;
+                    this.dataList.length > 20 && (this.noMore = true);
+                }, 1000);
+            },
+            deleteData(data){
+                let index = this.dataList.findIndex(item=>{
+                    return item.id === data.id
+                });
+                if(index > -1){
+                    this.dataList.splice(index, 1);
+                    this.$Message.info(`id为${data.id}删除成功`);
+                }
+            }
+        }
+    }
+</script>
+
+```
+
+:::
+
+
+
 
 
 ## API
@@ -187,6 +252,7 @@
 | footer | String | 列表低部信息 | - |
 | type | String | 列表类型，可选值 `meta` | - |
 | size | String | 列表尺寸，可选值 `mini` `small` `mini` `default` | default |
+| loading | Boolean | 数据加载中 | - |
 
 
 ### ListItem props

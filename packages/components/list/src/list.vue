@@ -13,6 +13,7 @@
         <div class="cl-list__footer" v-if="footer || $slots.footer">
             <slot name="footer">{{footer}}</slot>
         </div>
+        <cl-loading fix :visible="loading" />
     </div>
 </template>
 
@@ -37,6 +38,14 @@
                 type: String,
                 default: '',//可选值meta
             },
+            gutter: {
+                type: [String, Number],
+                default: 10
+            },//list-row类型时item列之间的间隔，此时type属性不起作用
+            labelWidth: {
+                type: [String, Number],
+                default: 100
+            },//list-row类型时有效
             size: {
                 type: String,
                 default: 'default',

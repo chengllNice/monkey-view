@@ -9,7 +9,7 @@
 </template>
 
 <script>
-    import {on, off} from "../../../utils/dom";
+    import {on, off, scrollTop} from "../../../utils/dom";
 
     export default {
         name: "ClBackTop",
@@ -19,7 +19,7 @@
               default: ''
             },//设置需要监听滚动的元素的类名，此类名需要唯一
             height: {
-                type: Number,
+                type: [String, Number],
                 default: 400
             },
             bottom: {
@@ -66,46 +66,40 @@
         },
         methods: {
             scrollHandler() {
-                let scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;;
+                let scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
                 if(this.target){
                     scrollTop = this.targetElement.scrollTop;
                 }
-                this.visible = scrollTop >= this.height;
+                this.visible = scrollTop >= parseInt(this.height);
             },
             backTopClick(){
-
-
-                // if (!window.requestAnimationFrame) {
-                //     window.requestAnimationFrame = (
-                //         window.webkitRequestAnimationFrame ||
-                //         window.mozRequestAnimationFrame ||
-                //         window.msRequestAnimationFrame ||
-                //         function (callback) {
-                //             return window.setTimeout(callback, 1000/60);
-                //         }
-                //     );
-                // }
-
-                clearInterval(time);
-
-                let scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;;
+                let scrollTopForm = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
                 if(this.target){
-                    scrollTop = this.targetElement.scrollTop;
+                    scrollTopForm = this.targetElement.scrollTop;
                 }
-                console.log(scrollTop,'scrollTop')
-                let allDuration = 450;
-                let step = Math.ceil(scrollTop / allDuration);
-                let duration = Math.ceil(allDuration / scrollTop);
-                let time = setInterval(()=>{
-                    if(scrollTop > 0){
-                        scrollTop = scrollTop - step;
-                        this.targetElement.scrollTop = scrollTop;
-                    }else{
-                        clearInterval(time);
-                    }
-                }, duration);
+                scrollTop(this.targetElement, scrollTopForm, 0, this.duration);
 
-                this.$emit('on-click');
+                // clearInterval(time);
+                //
+                //
+                // let allDuration = this.duration;
+                // let step = Math.ceil(scrollTop / allDuration);
+                // let duration = Math.ceil(allDuration / scrollTop);
+                // if(duration < 10){
+                //     let dis = 10 / duration;
+                //     step = step * dis;
+                //     duration = 10;
+                // }
+                // let time = setInterval(()=>{
+                //     if(scrollTop > 0){
+                //         scrollTop = scrollTop - step;
+                //         this.targetElement.scrollTop = scrollTop;
+                //     }else{
+                //         clearInterval(time);
+                //     }
+                // }, duration);
+
+                this.$emit('click');
             }
         }
     }

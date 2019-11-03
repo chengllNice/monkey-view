@@ -1,5 +1,11 @@
 <template>
-    <div :class="[
+    <cl-col v-if="parentListRowComponent">
+        <cl-row>
+            <cl-col>{{label}}</cl-col>
+            <cl-col><slot>{{value}}</slot></cl-col>
+        </cl-row>
+    </cl-col>
+    <div v-else :class="[
         'cl-list-item',
         parentListComponent.size && `cl-list-item--${parentListComponent.size}`,
         parentListComponent.split && `cl-list-item--split`,
@@ -24,7 +30,7 @@
 </template>
 
 <script>
-    import {findComponent} from "../../../utils/tool";
+    import {findComponent, findComponentDirect} from "../../../utils/tool";
     import Emitter from '../../../mixins/emitter'
     export default {
         name: "ClListItem",
@@ -35,6 +41,8 @@
                 default: '',//可选值meta default
             },
             title: String,
+            label: String,//list-row类型时可用
+            value: String,//list-row类型时可用
             description: String,
             avatar: String,
         },
@@ -42,6 +50,7 @@
             return {
                 componentName: 'ClListItem',
                 parentListComponent: findComponent(this, 'ClList'),
+                parentListRowComponent: findComponentDirect(this, 'ClListRow'),
             }
         },
         computed: {
@@ -55,11 +64,8 @@
         created() {
         },
         mounted() {
+
         },
         methods: {}
     }
 </script>
-
-<style scoped>
-
-</style>

@@ -3,6 +3,9 @@ import Vue from 'vue'
 
 const isServer = Vue.prototype.$isServer;
 
+/**
+ * 绑定事件
+ */
 export const on = (function () {
   if(isServer) return function () {};
   if(document.addEventListener){
@@ -20,6 +23,9 @@ export const on = (function () {
   }
 })();
 
+/**
+ * 解除绑定的事件
+ */
 export const off = (function () {
   if(isServer) return;
   if(document.removeEventListener){
@@ -36,3 +42,43 @@ export const off = (function () {
     }
   }
 })();
+
+
+/**
+ * scrollTop animation
+ * @param el 滚动元素
+ * @param from 开始位置
+ * @param to 结束位置
+ * @param duration 总时间
+ */
+export const scrollTop = (el, from = 0, to, duration = 500) => {
+    if (!window.requestAnimationFrame) {
+        window.requestAnimationFrame = (
+            window.webkitRequestAnimationFrame ||
+            window.mozRequestAnimationFrame ||
+            window.msRequestAnimationFrame ||
+            function (cb) {
+                return window.setTimeout(cb, 1000 / 60)
+            }
+        )
+    }
+    let step = Math.ceil(Math.abs(from - to) / duration * 50);
+
+    let scrollTo = (start, end, step) => {
+        if(start === end) return;
+
+        let dis = (start + step > end) ? end : start + step;
+        if(start > end){
+            dis = (start - step < end) ? end : start - step;
+        }
+        console.log(el, dis,'dis',step)
+
+        if(el === window){
+            window.scrollTo(dis, dis);
+        }else{
+            el.scrollTop = dis;
+        }
+        window.requestAnimationFrame(() => scrollTo(dis, end, step));
+    };
+    scrollTo(from, to, step);
+};

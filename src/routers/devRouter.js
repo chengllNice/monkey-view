@@ -29,6 +29,7 @@ import devPage from '../views/mainContent/devPage/PageView.vue'
 import devList from '../views/mainContent/devPage/ListView.vue'
 import devLoading from '../views/mainContent/devPage/LoadingView.vue'
 import devBackTop from '../views/mainContent/devPage/BackTopView.vue'
+import devAffix from '../views/mainContent/devPage/AffixView.vue'
 
 let routers = [
     {
@@ -185,6 +186,11 @@ let routers = [
         path: '/dev/back-top',
         name: 'devBackTop',
         component: devBackTop
+    },
+    {
+        path: '/dev/affix',
+        name: 'devAffix',
+        component: devAffix
     },
 ];
 

@@ -1,5 +1,9 @@
-
-// 最近的父级元素
+/**
+ * 最近的父级元素
+ * @param context
+ * @param componentName
+ * @returns {*}
+ */
 export const findComponent = (context, componentName) => {
   if(!context || !componentName) return;
 
@@ -14,7 +18,29 @@ export const findComponent = (context, componentName) => {
   return false;
 };
 
-// 所有父级元素
+
+/**
+ * 直接父级元素
+ * @param context
+ * @param componentName
+ * @returns {*}
+ */
+export const findComponentDirect = (context, componentName) => {
+    if(!context || !componentName) return;
+
+    let parent = context.$parent;
+    if(parent.componentName === componentName){
+        return parent;
+    }
+    return false;
+};
+
+/**
+ * 所有父级元素
+ * @param context
+ * @param componentName
+ * @returns {*}
+ */
 export const findComponents = (context, componentName) => {
   if(!context || !componentName) return;
 
@@ -27,7 +53,12 @@ export const findComponents = (context, componentName) => {
   return parents;
 };
 
-// 所有children
+/**
+ * 所有children
+ * @param context
+ * @param componentName
+ * @returns {*}
+ */
 export const findComponentChildrens = (context, componentName) => {
   if(!context || !componentName) return;
 
@@ -38,7 +69,12 @@ export const findComponentChildrens = (context, componentName) => {
   }, []);
 };
 
-// 所有直接子元素
+/**
+ * 所有直接子元素
+ * @param context
+ * @param componentName
+ * @returns {Int32Array | * | Uint32Array | T[] | Int8Array | Float64Array | BigUint64Array | Uint8Array | Int16Array | BigInt64Array | Float32Array | Uint8ClampedArray | Uint16Array}
+ */
 export const findComponentDirectChildrens = (context, componentName) => {
   if(!context || !componentName) return;
   return context.$children.filter(item=>{
@@ -47,7 +83,12 @@ export const findComponentDirectChildrens = (context, componentName) => {
   })
 };
 
-// 所有兄弟元素
+/**
+ * 所有兄弟元素
+ * @param context
+ * @param componentName
+ * @returns {Int32Array | * | Uint32Array | T[] | Int8Array | Float64Array | BigUint64Array | Uint8Array | Int16Array | BigInt64Array | Float32Array | Uint8ClampedArray | Uint16Array}
+ */
 export const findBrothersComponents = (context, componentName) => {
   if(!context || !componentName) return;
   let component = context.$parent.$children.filter(item=>{
@@ -61,3 +102,4 @@ export const findBrothersComponents = (context, componentName) => {
   component.splice(currentIndex, 1);
   return component;
 };
+
