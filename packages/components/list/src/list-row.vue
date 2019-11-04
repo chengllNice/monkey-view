@@ -1,25 +1,45 @@
 <template>
-    <cl-row class="cl-list-row">
+    <div class="cl-list-row" :style="rowStyle">
         <slot></slot>
-    </cl-row>
+    </div>
 </template>
 
 <script>
+    import {findComponent, findComponentDirectChildrens} from "../../../utils/tool";
+    import Emitter from '../../../mixins/emitter'
     export default {
         name: "ClListRow",
+        mixins: [Emitter],
         data() {
             return {
-                componentName: 'ClListRow'
+                componentName: 'ClListRow',
+                parentListComponent: findComponent(this, 'ClList'),
+                itemLen: '',//list-item的数量
             }
         },
-        computed: {},
+        computed: {
+            rowStyle(){
+                return {
+                    marginLeft: -this.parentListComponent.gutter / 2 + 'px',
+                    marginRight: -this.parentListComponent.gutter / 2 + 'px',
+                }
+            }
+        },
         components: {
 
         },
         created() {
         },
         mounted() {
+            this.$on('on-update-item-len', () => {
+                this.parentEmit('ClList', 'on-update-item-width', this.updateItemWidth());
+            })
         },
-        methods: {}
+        methods: {
+            updateItemWidth() {
+                let listItemChildren = findComponentDirectChildrens(this, 'ClListItem');
+                return listItemChildren.length;
+            }
+        }
     }
 </script>

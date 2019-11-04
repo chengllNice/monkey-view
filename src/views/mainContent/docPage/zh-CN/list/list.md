@@ -172,6 +172,61 @@
 
 
 
+:::demo 详情列表
+
+详情列表。
+
+```html
+<template>
+    <cl-list size="large" header="详情列表">
+        <cl-list-row v-for="(itemRow, indexRow) in dataList" :key="indexRow">
+            <cl-list-item v-for="item in itemRow" :key="item.id" :label="item.label" :value="item.value"></cl-list-item>
+        </cl-list-row>
+    </cl-list>
+    <cl-list :split="false" :hover="false" header="详情列表">
+        <cl-list-row v-for="(itemRow, indexRow) in dataList" :key="indexRow">
+            <cl-list-item v-for="item in itemRow" :key="item.id" :label="item.label" :value="item.value"></cl-list-item>
+        </cl-list-row>
+    </cl-list>
+</template>
+<script>
+    export default {
+        data(){
+            return {
+                dataList: [],
+            }
+        },
+        mounted(){
+            this.$nextTick(()=>{
+                this.loadData();
+            })
+        },
+        methods: {
+            loadData(){
+                setTimeout(()=>{
+                    for (let row = 0; row < 3; row++){
+                        let rowList = [];
+                        for(let col = 0; col < 3; col++){
+                            rowList.push({
+                                id: row + '' + col,
+                                label: `label${row}-${col}:`,
+                                value: `value${row}-${col}`
+                            })
+                        }   
+                        this.dataList.push(rowList)        
+                    } 
+                }, 1000);
+            },
+        }
+    }
+</script>
+
+```
+
+:::
+
+
+
 :::demo 异步加载数据
 
 设置`loading`属性可以显示加载中的动画。
@@ -250,9 +305,10 @@
 | split | Boolean | 是否显示item的分割线 | true |
 | header | String | 列表头部信息 | - |
 | footer | String | 列表低部信息 | - |
-| type | String | 列表类型，可选值 `meta` | - |
+| type | String | 列表类型，可选值 `meta`。详情列表时无效 | - |
 | size | String | 列表尺寸，可选值 `mini` `small` `mini` `default` | default |
 | loading | Boolean | 数据加载中 | - |
+
 
 
 ### ListItem props
@@ -261,9 +317,11 @@
 | 属性 | 类型 | 说明 | 默认值 |
 | ---- | ---- | ---- | ---- |
 | type | String | 列表类型，可选值 `meta` | - |
-| title | String | 列表项标题，列表或者item的 `type` 值为`meta`时可用 | - |
-| description | String | 列表项描述，列表或者item的 `type` 值为`meta`时可用 | - |
+| title | String | 列表项标题，列表或者item的 `type` 值为`meta`时可用。详情列表时无效 | - |
+| description | String | 列表项描述，列表或者item的 `type` 值为`meta`时可用。详情列表时无效 | - |
 | avatar | String | 列表项图片，列表或者item的 `type` 值为`meta`时可用 | - |
+| label | String | 详情列表时有效 | - |
+| value | String | 详情列表时有效 | - |
 
 
 ### ListItem slot
@@ -271,7 +329,9 @@
 | 名称 | 说明 |
 | ---- | ---- |
 | - | 列表项内容 |
-| avatar | 自定义列表项图片信息 |
-| title | 自定义列表项标题信息 |
-| description | 自定义列表项描述信息 |
-| extra | 自定义列表项额外扩展 |
+| avatar | 自定义列表项图片信息，详情列表时无效 |
+| title | 自定义列表项标题信息，详情列表时无效 |
+| description | 自定义列表项描述信息，详情列表时无效 |
+| label | 详情列表时有效 |
+| value | 详情列表时有效 |
+| extra | 自定义列表项额外扩展，详情列表时无效 |

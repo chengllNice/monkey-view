@@ -3,6 +3,7 @@
         'cl-list',
         border && 'cl-list--border',
         size && `cl-list--${size}`,
+        split && `cl-list--split`,
     ]">
         <div class="cl-list__header" v-if="header || $slots.header">
             <slot name="header">{{header}}</slot>
@@ -56,14 +57,26 @@
         },
         data() {
             return {
-                componentName: 'ClList'
+                componentName: 'ClList',
+                everyRowItemLen: [],//每一个list-row下item的数量的数组
+                itemWidth: '0%'
             }
         },
-        computed: {},
+        computed: {
+        },
         components: {},
         created() {
         },
         mounted() {
+            this.$on('on-update-item-width', (len) => {
+                this.everyRowItemLen.push(len);
+                let sortArr = this.everyRowItemLen.sort((a, b) => {
+                    return a - b;
+                }).reverse();
+                if(sortArr && sortArr.length){
+                    this.itemWidth = 100 / sortArr[0] + '%'
+                }
+            })
         },
         methods: {}
     }

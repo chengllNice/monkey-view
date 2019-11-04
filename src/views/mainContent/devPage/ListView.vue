@@ -16,6 +16,11 @@
                 <cl-list-item label="label8" value="value"></cl-list-item>
                 <cl-list-item label="label9" value="value"></cl-list-item>
             </cl-list-row>
+            <cl-list-row>
+                <cl-list-item label="label10" value="value">
+                    <div slot="value">valuevaluevaluevaluevaluevalue</div>
+                </cl-list-item>
+            </cl-list-row>
         </cl-list>
 
         <!--<h4>size border</h4>-->
