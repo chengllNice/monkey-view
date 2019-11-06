@@ -30,6 +30,7 @@ import devList from '../views/mainContent/devPage/ListView.vue'
 import devLoading from '../views/mainContent/devPage/LoadingView.vue'
 import devBackTop from '../views/mainContent/devPage/BackTopView.vue'
 import devAffix from '../views/mainContent/devPage/AffixView.vue'
+import devDatePicker from '../views/mainContent/devPage/DatePickerView.vue'
 
 let routers = [
     {
@@ -191,6 +192,11 @@ let routers = [
         path: '/dev/affix',
         name: 'devAffix',
         component: devAffix
+    },
+    {
+        path: '/dev/date-picker',
+        name: 'devDatePicker',
+        component: devDatePicker
     },
 ];
 

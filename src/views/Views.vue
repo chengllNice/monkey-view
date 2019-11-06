@@ -20,7 +20,7 @@
                         </cl-col>
                     </cl-row>
                 </div>
-                <ClFooter>
+                <ClFooter class="views-main-content-footer">
                     <CFooter></CFooter>
                 </ClFooter>
             </ClContent>
@@ -83,6 +83,9 @@
         .view-main-content-card {
             overflow: hidden;
             padding: 8px 0 8px 16px;
+        }
+        .views-main-content-footer{
+            margin-top: 50px;
         }
     }
 </style>

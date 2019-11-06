@@ -99,6 +99,12 @@ $--media-points: (
 );
 
 
+/*-----date-picker-----*/
+$--date-picker-date-height-mini: 30px !default;
+$--date-picker-date-height-small: 34px !default;
+$--date-picker-date-height-default: 38px !default;
+$--date-picker-date-height-large: 42px !default;
+
 
 /*-----loading-----*/
 $--loading-size-mini: $height-mini !default;
