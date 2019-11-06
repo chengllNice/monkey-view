@@ -1,5 +1,6 @@
 
 export const zero = (value) => {
+    if(isNaN(parseInt(value)) || !value.toString()) return value;
     if(value < 10){
         value = '0' + value;
     }
@@ -12,7 +13,7 @@ export const zero = (value) => {
  * @param format
  * @returns {string|*}
  */
-export const dateFormat = (forDate, format = 'YYYYMMDD') => {
+export const dateFormat = (forDate, format = 'YYYY/MM/DD') => {
     if(!forDate || !format) return forDate;
     forDate = new Date(forDate);
 
@@ -45,7 +46,7 @@ export const dateOrMonth = (forYear, forMonth) => {
     let result = [];
     let year = forDate.getFullYear();
     let month = forDate.getMonth();
-    let nowDate = zero(new Date().getDate());
+    let nowDate = dateFormat(new Date());
 
     // 获取当前月第一天的日期
     let firstDate = new Date(year, month, 1);
@@ -64,8 +65,9 @@ export const dateOrMonth = (forYear, forMonth) => {
                 year: firstDateCopy.getFullYear().toString(),
                 month: zero(firstDateCopy.getMonth() + 1),
                 date: zero(firstDateCopy.getDate()),
-                isNowDate: nowDate === zero(firstDateCopy.getDate()),
+                isNowDate: false,
                 isNowMonth: false,
+                key: dateFormat(firstDateCopy)
             });
         }
         result.reverse();
@@ -75,8 +77,9 @@ export const dateOrMonth = (forYear, forMonth) => {
         year: firstDate.getFullYear().toString(),
         month: zero(firstDate.getMonth() + 1),
         date: zero(firstDate.getDate()),
-        isNowDate: nowDate === zero(firstDate.getDate()),
+        isNowDate: nowDate === dateFormat(firstDate),
         isNowMonth: true,
+        key: dateFormat(firstDate)
     });
     for (let i = 1; i < currentTotalDay; i++){
         firstDate.setDate(firstDate.getDate() + 1);
@@ -84,21 +87,25 @@ export const dateOrMonth = (forYear, forMonth) => {
             year: firstDate.getFullYear().toString(),
             month: zero(firstDate.getMonth() + 1),
             date: zero(firstDate.getDate()),
-            isNowDate: nowDate === zero(firstDate.getDate()),
+            isNowDate: nowDate === dateFormat(firstDate),
             isNowMonth: true,
+            key: dateFormat(firstDate)
         });
     }
 
-    if(endDay < 6){
+
+    if(endDay < 6 || result.length < 6 * 7){
         let endDateCopy = endDate;
-        for (let i = 0; i < 6 - endDay; i++){
+        let num = Math.max(6 - endDay, 42 - result.length);
+        for (let i = 0; i < num; i++){
             endDateCopy.setDate(endDateCopy.getDate() + 1);
             result.push({
                 year: endDateCopy.getFullYear().toString(),
                 month: zero(endDateCopy.getMonth() + 1),
                 date: zero(endDateCopy.getDate()),
-                isNowDate: nowDate === zero(endDateCopy.getDate()),
+                isNowDate: false,
                 isNowMonth: false,
+                key: dateFormat(endDateCopy)
             });
         }
     }

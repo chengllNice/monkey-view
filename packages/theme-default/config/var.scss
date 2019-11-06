@@ -100,10 +100,15 @@ $--media-points: (
 
 
 /*-----date-picker-----*/
-$--date-picker-date-height-mini: 30px !default;
-$--date-picker-date-height-small: 34px !default;
-$--date-picker-date-height-default: 38px !default;
-$--date-picker-date-height-large: 42px !default;
+$--date-picker-date-height-mini: 22px !default;
+$--date-picker-date-height-small: 24px !default;
+$--date-picker-date-height-default: 26px !default;
+$--date-picker-date-height-large: 28px !default;
+$--date-picker-date-margin-mini: 4px !default;
+$--date-picker-date-margin-small: 5px !default;
+$--date-picker-date-margin-default: 6px !default;
+$--date-picker-date-margin-large: 7px !default;
+$--date-picker-no-now-month-color: $--color-text-placeholder !default;
 
 
 /*-----loading-----*/

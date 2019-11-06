@@ -3,7 +3,7 @@
             'cl-date-picker',
             size && `cl-date-picker--${size}`
          ]"
-         v-click-outside.capture="handleClose">
+         v-click-outside="handleClose">
         <div class="cl-date-picker__reference" ref="reference">
             <cl-input v-model="dateValue"
                       readonly
@@ -16,9 +16,13 @@
                       :reference="this.$refs.reference"
                       :placement="placement"
                       :dropdownMatchSelectWidth="false"
+                      @click.native="isClose = false"
                       v-model="visible">
                 <div class="cl-date-picker__drop-down-inner">
-                    <cl-date-pane :size="size" :format="format"></cl-date-pane>
+                    <cl-date-pane :size="size"
+                                  :format="format"
+                                  v-model="dateValue"
+                                  @closeDatePane="visible = false"></cl-date-pane>
                 </div>
             </DropDown>
         </transition>
@@ -34,6 +38,7 @@
         name: "ClDatePicker",
         directives: {clickOutside},
         props: {
+            value: [String, Array],
             type: {
                 type: String,
                 default: 'date',
@@ -66,7 +71,8 @@
         data(){
             return {
                 dateValue: '',
-                visible: true
+                visible: true,
+                isClose: false,
             }
         },
         components: {
@@ -83,6 +89,8 @@
                 this.visible = !this.visible;
             },
             handleClose(){
+                if(!this.isClose) return;
+                console.log('=ddd==ddd')
                 this.visible = false;
             },
             openDropDown(){
