@@ -18,6 +18,11 @@ export default {
             weekList: dateObj.week,
             monthList: dateObj.month,
             yearList: [],
+            currentDate: {
+                year: new Date().getFullYear().toString(),
+                month: (new Date().getMonth() + 1).toString(),
+                date: new Date().getDate().toString()
+            }
         }
     },
     computed: {
@@ -41,42 +46,29 @@ export default {
 
     },
     methods: {
+        closeDatePane(){
+            this.$emit('closeDatePane');
+        },
+        // 获取指定年月下的所有日期
+        setDateList(){
+            this.dateList = dateOrMonth(this.year, this.month);
+        },
         selectDate(date){
             this.setDateList(date.key);
             this.$emit('updateDate', date.key);
             this.$emit('closeDatePane');
             this.$emit('input', [date.key]);
         },
-        closeDatePane(){
-            this.$emit('closeDatePane');
+        setYearList(year){
+            this.yearList = yearListInit(year || this.year);
         },
-
-        // 获取指定年月下的所有日期
-        setDateList(){
-            let dateList = dateOrMonth(this.year, this.month);
-            let tempArr = [];
-            this.dateList = [];
-            dateList.forEach((item, index)=>{
-                tempArr.push(item);
-                if((index + 1) % 7 === 0){
-                    this.dateList.push(tempArr);
-                    tempArr = [];
-                }
-            });
+        selectYear(year){
+            // this.year = year.id;
+            this.$emit('update-year', year.id);
         },
-        setYearList(){
-            let yearList = yearListInit(this.year);
-            let tempArr = [];
-            this.yearList = [];
-            yearList.forEach((item, index)=>{
-                tempArr.push(item);
-                if((index + 1) % 3 === 0){
-                    this.yearList.push(tempArr);
-                    tempArr = [];
-                }else if(index === yearList.length-1){
-                    this.yearList.push(tempArr);
-                }
-            })
+        selectMonth(month){
+            // this.month = month.id;
+            this.$emit('update-month', month.id);
         },
         // 格式化日期格式
         formatDateValue(value) {

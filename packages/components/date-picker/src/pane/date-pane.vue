@@ -31,12 +31,14 @@
                                :type="dateType"
                                :year="year"
                                :month="month"
+                               @update-year="updateYear"
                                v-show="dateType === 'year'"></cl-date-pane-year>
             <cl-date-pane-month v-model="selectedMonth"
                                 :size="size"
                                 :type="dateType"
                                 :year="year"
                                 :month="month"
+                                @update-month="updateMonth"
                                 v-show="dateType === 'month'"></cl-date-pane-month>
         </div>
     </div>
@@ -64,43 +66,6 @@
                 selectedMonth: [],
                 year: '',
                 month: '',
-                weekList: [
-                    {
-                        id: '0',
-                        key: 'week0',
-                        name: '日'
-                    },
-                    {
-                        id: '1',
-                        key: 'week1',
-                        name: '一'
-                    },
-                    {
-                        id: '2',
-                        key: 'week2',
-                        name: '二'
-                    },
-                    {
-                        id: '3',
-                        key: 'week3',
-                        name: '三'
-                    },
-                    {
-                        id: '4',
-                        key: 'week4',
-                        name: '四'
-                    },
-                    {
-                        id: '5',
-                        key: 'week5',
-                        name: '五'
-                    },
-                    {
-                        id: '6',
-                        key: 'week6',
-                        name: '六'
-                    }
-                ]
             }
         },
         computed: {
@@ -108,7 +73,10 @@
                 return ['date', 'daterange'].includes(this.dateType)
             },
             headerMonthShow(){
-                return this.dateType !== 'year'
+                return !['year', 'month'].includes(this.dateType)
+            },
+            yearJumpStep(){
+                return ['year'].includes(this.dateType) ? 10 : 1;
             }
         },
         components: {
@@ -124,13 +92,13 @@
                 let month;
                 switch (type) {
                     case 'pre-year':
-                        this.year = zero(parseInt(this.year) - 1);
+                        this.year = zero(parseInt(this.year) - this.yearJumpStep);
                         break;
                     case 'pre-month':
                         month = parseInt(this.month) - 1;
                         if(month < 1){
                             month = 12;
-                            this.year = parseInt(this.year) - 1;
+                            this.year = zero(parseInt(this.year) - 1);
                         }
                         this.month = zero(month);
                         break;
@@ -138,12 +106,12 @@
                         month = parseInt(this.month) + 1;
                         if(month > 12){
                             month = 1;
-                            this.year = parseInt(this.year) + 1;
+                            this.year = zero(parseInt(this.year) + 1);
                         }
                         this.month = zero(month);
                         break;
                     case 'next-year':
-                        this.year = zero(parseInt(this.year) + 1);
+                        this.year = zero(parseInt(this.year) + this.yearJumpStep);
                         break;
                 }
             },
@@ -158,6 +126,14 @@
                 if(date) nowDate = new Date(date);
                 this.year = dateFormat(nowDate, 'YYYY');
                 this.month = dateFormat(nowDate, 'MM');
+            },
+            updateYear(year){
+                this.year = year;
+                this.selectMonth();
+            },
+            updateMonth(month){
+                this.month = month;
+                this.dateType = 'date';
             },
             closeDatePane(){
                 this.$emit('closeDatePane');

@@ -3,16 +3,14 @@
             'cl-date-pane-year',
             size && `cl-date-pane-year--${size}`
          ]">
-        <div class="cl-date-pane-year__row" v-for="(yearItem, index) in yearList" :key="index">
-            <span v-for="_year in yearItem"
-                  :key="_year.key"
-                  :class="[
-                        'cl-date-pane-year__col',
-                        _year === year && 'cl-date-pane-year__now',
-                        value.includes(_year.id) && 'cl-date-pane-year__selected'
-                  ]"
-                  @click.stop="selectDate(date)">{{_year.name}}</span>
-        </div>
+        <span v-for="_year in yearList"
+              :key="_year.key"
+              :class="[
+                    'cl-date-pane-year__col',
+                    _year.id === currentDate.year && 'cl-date-pane-year__now',
+                    value.includes(_year.id) && 'cl-date-pane-year__selected'
+              ]"
+              @click.stop="selectYear(_year)">{{_year.name}}</span>
     </div>
 </template>
 
@@ -22,20 +20,21 @@
     export default {
         name: "ClDatePaneYear",
         mixins: [dateMixins],
-        data(){
-            return {
-
-            }
+        data() {
+            return {}
         },
         mounted() {
             this.setYearList();
         },
-        methods: {
-
-        },
+        methods: {},
         watch: {
-            year(){
-                this.setYearList();
+            year() {
+                if (this.type === 'year') {
+                    this.setYearList();
+                }
+            },
+            type(newVal) {
+                newVal === 'year' && this.setYearList();
             }
         }
     }

@@ -129,6 +129,7 @@
 
   @include e(body){
     padding: 10px;
+    word-break: break-all;
   }
 
   @include m(mini){
@@ -150,18 +151,19 @@
 
 
 @include c(date-pane-date){
-  @include e(date-wrap){
-    span{
-      display: inline-block;
-      text-align: center;
-      border-radius: $--border-radius-default;
-    }
+  @include e(week){
+    border: 1px solid transparent;
+    display: inline-block;
+    text-align: center;
   }
   @include e(date){
     color: $--color-text-default;
     cursor: pointer;
     transition: all $--animation-time;
     border: 1px solid transparent;
+    display: inline-block;
+    text-align: center;
+    border-radius: $--border-radius-default;
     &:not(.cl-date-pane-date__no-now-month):not(.cl-date-pane-date__selected):hover{
       background-color: mix($--color-primary, $--color-white, 20%);
     }
@@ -203,13 +205,11 @@
 
 
 @include c(date-pane-year){
-  @include e(row){
-    span{
-      display: inline-block;
-      text-align: center;
-      vertical-align: middle;
-      border-radius: $--border-radius-default;
-    }
+  @include e(col){
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: $--border-radius-default;
   }
   @include e(col){
     color: $--color-text-default;
@@ -249,5 +249,44 @@
 
 
 @include c(date-pane-month){
+  @include e(col){
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: $--border-radius-default;
+  }
+  @include e(col){
+    color: $--color-text-default;
+    cursor: pointer;
+    transition: all $--animation-time;
+    border: 1px solid transparent;
+    &:not(.cl-date-pane-month__selected):hover{
+      background-color: mix($--color-primary, $--color-white, 20%);
+    }
+  }
+  @include e(now){
+    color: $--color-primary;
+  }
 
+  @include e(selected){
+    border: 1px solid $--color-primary;
+    background-color: $--color-primary;
+    color: $--color-white;
+  }
+
+  @include m(mini){
+    @include date-pane-date-month-size(mini);
+  }
+
+  @include m(small){
+    @include date-pane-date-month-size(small);
+  }
+
+  @include m(default){
+    @include date-pane-date-month-size(default);
+  }
+
+  @include m(large){
+    @include date-pane-date-month-size(large);
+  }
 }

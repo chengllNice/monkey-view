@@ -100,20 +100,14 @@ $--media-points: (
 
 
 /*-----date-picker-----*/
-$--date-picker-date-height-mini: 22px !default;
-$--date-picker-date-height-small: 24px !default;
-$--date-picker-date-height-default: 26px !default;
-$--date-picker-date-height-large: 28px !default;
+$--date-picker-pane-date-width-mini: 272px !default;
+$--date-picker-pane-date-width-small: 293px !default;
+$--date-picker-pane-date-width-default: 314px !default;
+$--date-picker-pane-date-width-large: 335px !default;
 
-$--date-picker-date-year-height-mini: 38px !default;
-$--date-picker-date-year-height-small: 40px !default;
-$--date-picker-date-year-height-default: 42px !default;
-$--date-picker-date-year-height-large: 44px !default;
+$--date-picker-pane-padding: 10px !default;
+$--date-picker-pane-margin: 6px !default;
 
-$--date-picker-date-margin-mini: 4px !default;
-$--date-picker-date-margin-small: 5px !default;
-$--date-picker-date-margin-default: 6px !default;
-$--date-picker-date-margin-large: 7px !default;
 $--date-picker-no-now-month-color: $--color-text-placeholder !default;
 
 

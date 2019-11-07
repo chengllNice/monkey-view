@@ -2,63 +2,63 @@
 export const dateObj = {
     month: [
         {
-            id: '0',
-            key: 'month0',
-            name: '1月'
-        },
-        {
             id: '1',
             key: 'month1',
-            name: '2月'
+            name: '1月'
         },
         {
             id: '2',
             key: 'month2',
-            name: '3月'
+            name: '2月'
         },
         {
             id: '3',
             key: 'month3',
-            name: '4月'
+            name: '3月'
         },
         {
             id: '4',
             key: 'month4',
-            name: '5月'
+            name: '4月'
         },
         {
             id: '5',
             key: 'month5',
-            name: '6月'
+            name: '5月'
         },
         {
             id: '6',
             key: 'month6',
-            name: '7月'
+            name: '6月'
         },
         {
             id: '7',
             key: 'month7',
-            name: '8月'
+            name: '7月'
         },
         {
             id: '8',
             key: 'month8',
-            name: '9月'
+            name: '8月'
         },
         {
             id: '9',
             key: 'month9',
-            name: '10月'
+            name: '9月'
         },
         {
             id: '10',
             key: 'month10',
-            name: '11月'
+            name: '10月'
         },
         {
             id: '11',
             key: 'month11',
+            name: '11月'
+        },
+        {
+            id: '12',
+            key: 'month12',
             name: '12月'
         }
     ],
