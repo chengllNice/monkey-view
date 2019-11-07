@@ -3,9 +3,9 @@
             'cl-date-picker',
             size && `cl-date-picker--${size}`
          ]"
-         v-click-outside="handleClose">
+         v-click-outside.capture="handleClickOutside">
         <div class="cl-date-picker__reference" ref="reference">
-            <cl-input v-model="dateValue"
+            <cl-input v-model="dateInputValue"
                       readonly
                       :placeholder="placeholder"
                       @click.native="handleFocus"></cl-input>
@@ -16,12 +16,13 @@
                       :reference="this.$refs.reference"
                       :placement="placement"
                       :dropdownMatchSelectWidth="false"
-                      @click.native="isClose = false"
+                      :render-html="renderHtml"
                       v-model="visible">
                 <div class="cl-date-picker__drop-down-inner">
                     <cl-date-pane :size="size"
                                   :format="format"
                                   v-model="dateValue"
+                                  :type="type"
                                   @closeDatePane="visible = false"></cl-date-pane>
                 </div>
             </DropDown>
@@ -33,6 +34,7 @@
     import {directive as clickOutside} from 'v-click-outside-x';
     import DropDown from '../../select/src/drop-down.vue'
     import ClDatePane from './pane/date-pane.vue'
+    import {dateFormat} from "../../../utils/date";
 
     export default {
         name: "ClDatePicker",
@@ -43,7 +45,7 @@
                 type: String,
                 default: 'date',
                 validator(value){
-                    return ['date', 'daterange'].includes(value)
+                    return ['date', 'daterange', 'datetime', 'datetimerange', 'year', 'month'].includes(value)
                 }
             },
             placeholder: String,
@@ -66,13 +68,19 @@
             format: {
                 type: String,
                 default: '',
+            },
+            renderHtml: {
+                type: [HTMLElement, Boolean],
+                default: function () {
+                    return true
+                }
             }
         },
         data(){
             return {
-                dateValue: '',
+                dateValue: [],
+                dateInputValue: '',
                 visible: true,
-                isClose: false,
             }
         },
         components: {
@@ -88,13 +96,41 @@
                 }
                 this.visible = !this.visible;
             },
-            handleClose(){
-                if(!this.isClose) return;
-                console.log('=ddd==ddd')
-                this.visible = false;
+            handleClickOutside(event){
+                if(this.visible){
+                    if(this.renderHtml !== false){
+                        const {$el} = this.$refs.dropDown;
+                        if ($el === event.target || $el.contains(event.target)) {
+                            return;
+                        }
+                    }
+                }
+                this.closeDropDownPane(false);
             },
-            openDropDown(){
+            closeDropDownPane(visible){
+                this.visible = visible;
+            },
+            openDropDownPane(){
 
+            },
+            updateInputValue(){
+                if(this.type.includes('range')){
+                    let date1 = dateFormat(this.dateValue[0], this.format);
+                    let date2 = dateFormat(this.dateValue[1], this.format);
+                    this.dateInputValue = `${date1} - ${date2}`;
+                }else{
+                    this.dateInputValue = dateFormat(this.dateValue[0], this.format);
+                }
+            }
+        },
+        watch: {
+            dateValue(newVal){
+                this.updateInputValue();
+                if(this.type.includes('range')){
+                    this.$emit('input', newVal);
+                }else{
+                    this.$emit('input', newVal[0])
+                }
             }
         }
     }

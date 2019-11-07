@@ -1,0 +1,85 @@
+
+@import "../../config/var";
+@import "../../config/mixins/index.scss";
+
+@function size-common($size, $field){
+  $font-size: $--font-size-default;
+  $height: $height-default;
+  $date-margin: $--date-picker-date-margin-default;
+  $year-margin: $--date-picker-date-year-height-default;
+
+  $return-value: '';
+  @if($size == 'mini'){
+    $font-size: $--font-size-mini;
+    $height: $height-mini;
+    $date-margin: $--date-picker-date-margin-mini;
+    $year-margin: $--date-picker-date-year-height-mini;
+  }@else if($size == 'small'){
+    $font-size: $--font-size-small;
+    $height: $height-small;
+    $date-margin: $--date-picker-date-margin-small;
+    $year-margin: $--date-picker-date-year-height-small;
+  }@else if($size == 'large'){
+    $font-size: $--font-size-large;
+    $height: $height-large;
+    $date-margin: $--date-picker-date-margin-large;
+    $year-margin: $--date-picker-date-year-height-large;
+  }
+
+  @if($field == 'font-size'){
+    $return-value: $font-size;
+  }@else if($field == 'height'){
+    $return-value: $height;
+  }@else if($field == 'margin'){
+    $return-value: $date-margin;
+  }@else if($field == 'year-height'){
+    $return-value: $year-margin;
+  }
+  @return $return-value;
+}
+
+@mixin date-picker-size($size){
+  font-size: size-common($size, 'font-size');
+  height: size-common($size, 'height');
+  line-height: size-common($size, 'height');
+}
+
+@mixin date-pane-size($size){
+
+  .cl-date-pane__header{
+    @include date-picker-size($size);
+    font-size: #{size-common($size, 'font-size') + 2px};
+    margin: size-common($size, 'margin') 0;
+    i{
+      font-size: #{size-common($size, 'font-size') / 1.2};
+    }
+  }
+}
+
+@mixin date-pane-date-size($size){
+  $date-height: size-common($size, 'height');
+  $date-margin: size-common($size, 'margin');
+  .cl-date-pane-date__date,.cl-date-pane-date__week{
+    width: $date-height;
+    height: $date-height;
+    line-height: $date-height;
+    margin: $date-margin;
+  }
+}
+
+
+@mixin date-pane-date-year-size($size){
+  $year-height: size-common($size, 'year-height');
+  $year-margin: size-common($size, 'margin');
+  .cl-date-pane-year__col{
+    width: $year-height;
+    height: #{$year-height / 1.5};
+    line-height: #{$year-height / 1.5};
+    margin: $year-margin;
+  }
+}
+
+
+@mixin date-pane-date-month-size($size){
+
+}

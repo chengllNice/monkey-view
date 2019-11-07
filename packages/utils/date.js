@@ -1,7 +1,110 @@
+// 常量
+export const dateObj = {
+    month: [
+        {
+            id: '0',
+            key: 'month0',
+            name: '1月'
+        },
+        {
+            id: '1',
+            key: 'month1',
+            name: '2月'
+        },
+        {
+            id: '2',
+            key: 'month2',
+            name: '3月'
+        },
+        {
+            id: '3',
+            key: 'month3',
+            name: '4月'
+        },
+        {
+            id: '4',
+            key: 'month4',
+            name: '5月'
+        },
+        {
+            id: '5',
+            key: 'month5',
+            name: '6月'
+        },
+        {
+            id: '6',
+            key: 'month6',
+            name: '7月'
+        },
+        {
+            id: '7',
+            key: 'month7',
+            name: '8月'
+        },
+        {
+            id: '8',
+            key: 'month8',
+            name: '9月'
+        },
+        {
+            id: '9',
+            key: 'month9',
+            name: '10月'
+        },
+        {
+            id: '10',
+            key: 'month10',
+            name: '11月'
+        },
+        {
+            id: '11',
+            key: 'month11',
+            name: '12月'
+        }
+    ],
+    week: [
+        {
+            id: '0',
+            key: 'week0',
+            name: '日'
+        },
+        {
+            id: '1',
+            key: 'week1',
+            name: '一'
+        },
+        {
+            id: '2',
+            key: 'week2',
+            name: '二'
+        },
+        {
+            id: '3',
+            key: 'week3',
+            name: '三'
+        },
+        {
+            id: '4',
+            key: 'week4',
+            name: '四'
+        },
+        {
+            id: '5',
+            key: 'week5',
+            name: '五'
+        },
+        {
+            id: '6',
+            key: 'week6',
+            name: '六'
+        }
+    ],
+};
+
 
 export const zero = (value) => {
-    if(isNaN(parseInt(value)) || !value.toString()) return value;
-    if(value < 10){
+    if (isNaN(parseInt(value)) || !value.toString()) return value;
+    if (value < 10) {
         value = '0' + value;
     }
     return value.toString();
@@ -14,7 +117,7 @@ export const zero = (value) => {
  * @returns {string|*}
  */
 export const dateFormat = (forDate, format = 'YYYY/MM/DD') => {
-    if(!forDate || !format) return forDate;
+    if (!forDate || !format) return forDate;
     forDate = new Date(forDate);
 
     let year = forDate.getFullYear();
@@ -36,11 +139,11 @@ export const dateFormat = (forDate, format = 'YYYY/MM/DD') => {
 export const dateOrMonth = (forYear, forMonth) => {
 
     let forDate;
-    if(!forYear) return forYear;
-    if(forMonth){
+    if (!forYear) return forYear;
+    if (forMonth) {
         forDate = new Date(forYear, forMonth - 1, 1);
-    }else{
-        return ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
+    } else {
+        return dateObj.month;
     }
 
     let result = [];
@@ -57,9 +160,9 @@ export const dateOrMonth = (forYear, forMonth) => {
     //当前月天数
     let currentTotalDay = endDate.getDate() - firstDate.getDate() + 1;
 
-    if(firstDay > 0){
+    if (firstDay > 0) {
         let firstDateCopy = new Date(year, month, 1);
-        for (let i = 0; i < firstDay; i++){
+        for (let i = 0; i < firstDay; i++) {
             firstDateCopy.setDate(firstDateCopy.getDate() - 1);
             result.push({
                 year: firstDateCopy.getFullYear().toString(),
@@ -81,7 +184,7 @@ export const dateOrMonth = (forYear, forMonth) => {
         isNowMonth: true,
         key: dateFormat(firstDate)
     });
-    for (let i = 1; i < currentTotalDay; i++){
+    for (let i = 1; i < currentTotalDay; i++) {
         firstDate.setDate(firstDate.getDate() + 1);
         result.push({
             year: firstDate.getFullYear().toString(),
@@ -94,10 +197,10 @@ export const dateOrMonth = (forYear, forMonth) => {
     }
 
 
-    if(endDay < 6 || result.length < 6 * 7){
+    if (endDay < 6 || result.length < 6 * 7) {
         let endDateCopy = endDate;
         let num = Math.max(6 - endDay, 42 - result.length);
-        for (let i = 0; i < num; i++){
+        for (let i = 0; i < num; i++) {
             endDateCopy.setDate(endDateCopy.getDate() + 1);
             result.push({
                 year: endDateCopy.getFullYear().toString(),
@@ -110,5 +213,29 @@ export const dateOrMonth = (forYear, forMonth) => {
         }
     }
 
+    return result;
+};
+
+
+export const yearListInit = (forYear) => {
+    if(!forYear || forYear.length !== 4) return [];
+    let result = [];
+    let yearSplitArr = forYear.split('');
+    let startYear = [];//四位的年份字符串
+    startYear[0] = yearSplitArr[0];
+    startYear[1] = yearSplitArr[1];
+    startYear[2] = yearSplitArr[2];
+    startYear[3] = '0';
+    startYear = parseInt(startYear.join(''));
+
+
+    for (let i = 0; i <= 9; i++){
+        result.push({
+            id: startYear.toString(),
+            key: `year${startYear}`,
+            name: startYear.toString(),
+        });
+        startYear++;
+    }
     return result;
 };

@@ -1,54 +1,55 @@
 @import "./config/var";
 @import "./config/mixins/index.scss";
+@import "./config/mixins/dateMixins.scss";
 
 
-@mixin date-pick-size($size){
-  $font-size: $--font-size-default;
-  $height: $height-default;
-  $date-height: $--date-picker-date-height-default;
-  $date-margin: $--date-picker-date-margin-default;
-
-  @if($size == 'mini'){
-    $font-size: $--font-size-mini;
-    $height: $height-mini;
-    $date-height: $--date-picker-date-height-mini;
-    $date-margin: $--date-picker-date-margin-mini;
-  }@else if($size == 'small'){
-    $font-size: $--font-size-small;
-    $height: $height-small;
-    $date-height: $--date-picker-date-height-small;
-    $date-margin: $--date-picker-date-margin-small;
-  }@else if($size == 'large'){
-    $font-size: $--font-size-large;
-    $height: $height-large;
-    $date-height: $--date-picker-date-height-large;
-    $date-margin: $--date-picker-date-margin-large;
-  }
-  font-size: $font-size;
-  height: $height;
-  line-height: $height;
-
-  &.cl-date-pane{
-    height: auto;
-    line-height: normal;
-  }
-  .cl-date-pane__header{
-    font-size: #{$font-size + 2px};
-    height: $height;
-    line-height: $height;
-    margin: $date-margin 0;
-    i{
-      font-size: #{$font-size / 1.2};
-    }
-  }
-
-  .cl-date-pane__body span{
-    width: $date-height;
-    height: $date-height;
-    line-height: $date-height;
-    margin: $date-margin;
-  }
-}
+//@mixin date-pick-size($size){
+//  $font-size: $--font-size-default;
+//  $height: $height-default;
+//  $date-height: $--date-picker-date-height-default;
+//  $date-margin: $--date-picker-date-margin-default;
+//
+//  @if($size == 'mini'){
+//    $font-size: $--font-size-mini;
+//    $height: $height-mini;
+//    $date-height: $--date-picker-date-height-mini;
+//    $date-margin: $--date-picker-date-margin-mini;
+//  }@else if($size == 'small'){
+//    $font-size: $--font-size-small;
+//    $height: $height-small;
+//    $date-height: $--date-picker-date-height-small;
+//    $date-margin: $--date-picker-date-margin-small;
+//  }@else if($size == 'large'){
+//    $font-size: $--font-size-large;
+//    $height: $height-large;
+//    $date-height: $--date-picker-date-height-large;
+//    $date-margin: $--date-picker-date-margin-large;
+//  }
+//  font-size: $font-size;
+//  height: $height;
+//  line-height: $height;
+//
+//  &.cl-date-pane{
+//    height: auto;
+//    line-height: normal;
+//  }
+//  .cl-date-pane__header{
+//    font-size: #{$font-size + 2px};
+//    height: $height;
+//    line-height: $height;
+//    margin: $date-margin 0;
+//    i{
+//      font-size: #{$font-size / 1.2};
+//    }
+//  }
+//
+//  .cl-date-pane__body span{
+//    width: $date-height;
+//    height: $date-height;
+//    line-height: $date-height;
+//    margin: $date-margin;
+//  }
+//}
 
 @include c(date-picker){
   display: block;
@@ -68,19 +69,19 @@
   }
 
   @include m(mini){
-    @include date-pick-size(mini);
+    @include date-picker-size(mini);
   }
 
   @include m(small){
-    @include date-pick-size(small);
+    @include date-picker-size(small);
   }
 
   @include m(default){
-    @include date-pick-size(default);
+    @include date-picker-size(default);
   }
 
   @include m(large){
-    @include date-pick-size(large);
+    @include date-picker-size(large);
   }
 }
 
@@ -92,8 +93,11 @@
     text-align: center;
     border-bottom: $--border-default;
   }
-  @include e(header-date){
-
+  @include e(header-date-label){
+    cursor: pointer;
+    &:hover{
+      color: $--color-primary;
+    }
   }
   @include e(header-pre){
     float: left;
@@ -127,6 +131,25 @@
     padding: 10px;
   }
 
+  @include m(mini){
+    @include date-pane-size(mini);
+  }
+
+  @include m(small){
+    @include date-pane-size(small);
+  }
+
+  @include m(default){
+    @include date-pane-size(default);
+  }
+
+  @include m(large){
+    @include date-pane-size(large);
+  }
+}
+
+
+@include c(date-pane-date){
   @include e(date-wrap){
     span{
       display: inline-block;
@@ -134,24 +157,27 @@
       border-radius: $--border-radius-default;
     }
   }
-
   @include e(date){
     color: $--color-text-default;
     cursor: pointer;
     transition: all $--animation-time;
-    &:not(.cl-date-pane__no-now-month):not(.cl-date-pane__selected):hover{
+    border: 1px solid transparent;
+    &:not(.cl-date-pane-date__no-now-month):not(.cl-date-pane-date__selected):hover{
       background-color: mix($--color-primary, $--color-white, 20%);
     }
   }
-
   @include e(now-date){
-    border: 1px solid $--color-primary;
     color: $--color-primary;
   }
 
   @include e(selected){
+    border: 1px solid $--color-primary;
     background-color: $--color-primary;
     color: $--color-white;
+    &.cl-date-pane-date__no-now-month{
+      background-color: $--color-white;
+      color: $--date-picker-no-now-month-color;
+    }
   }
 
   @include e(no-now-month){
@@ -159,18 +185,69 @@
   }
 
   @include m(mini){
-    @include date-pick-size(mini);
+    @include date-pane-date-size(mini);
   }
 
   @include m(small){
-    @include date-pick-size(small);
+    @include date-pane-date-size(small);
   }
 
   @include m(default){
-    @include date-pick-size(default);
+    @include date-pane-date-size(default);
   }
 
   @include m(large){
-    @include date-pick-size(large);
+    @include date-pane-date-size(large);
   }
+}
+
+
+@include c(date-pane-year){
+  @include e(row){
+    span{
+      display: inline-block;
+      text-align: center;
+      vertical-align: middle;
+      border-radius: $--border-radius-default;
+    }
+  }
+  @include e(col){
+    color: $--color-text-default;
+    cursor: pointer;
+    transition: all $--animation-time;
+    border: 1px solid transparent;
+    &:not(.cl-date-pane-year__selected):hover{
+      background-color: mix($--color-primary, $--color-white, 20%);
+    }
+  }
+  @include e(now){
+    color: $--color-primary;
+  }
+
+  @include e(selected){
+    border: 1px solid $--color-primary;
+    background-color: $--color-primary;
+    color: $--color-white;
+  }
+
+  @include m(mini){
+    @include date-pane-date-year-size(mini);
+  }
+
+  @include m(small){
+    @include date-pane-date-year-size(small);
+  }
+
+  @include m(default){
+    @include date-pane-date-year-size(default);
+  }
+
+  @include m(large){
+    @include date-pane-date-year-size(large);
+  }
+}
+
+
+@include c(date-pane-month){
+
 }
