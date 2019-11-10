@@ -3,32 +3,115 @@
 @import "./config/mixins/index.scss";
 
 @include c(table){
+  overflow: hidden;
   table{
     width: 100%;
+    table-layout: fixed;
   }
   th, td{
     box-sizing: border-box;
     text-align: left;
     border-bottom: $--table-head-th-border;
-    @include utils-ellipsis();
+    min-width: 0;
+    background-color: $--color-white;
+    padding-top: $--table-cell-padding-vertical-default;
+    padding-bottom: $--table-cell-padding-vertical-default;
   }
   th{
     background-color: $--table-head-th-background-color;
-    height: $--table-head-th-height;
+  }
+  td{
+    @include utils-ellipsis();
+    transition: background-color $--animation-time;
+  }
+
+  @include e(head){
+    width: 100%;
+    table{
+      border-top-left-radius: $--border-radius-default;
+      border-top-right-radius: $--border-radius-default;
+    }
+    .cl-table-cell{
+      text-overflow: inherit;
+    }
+  }
+  @include e(body){
+    width: 100%;
+    table{
+      border-bottom-left-radius: $--border-radius-default;
+      border-bottom-right-radius: $--border-radius-default;
+    }
+  }
+
+  @include m(hide){
+    display: none;
+  }
+
+  @include m(border){
+    table{
+      border-top: $--border-default;
+      border-left: $--border-default;
+    }
+    .cl-table__head table{
+      border-bottom: none;
+    }
+    .cl-table__body table{
+      border-top: none;
+    }
+    th, td{
+      border-right: $--border-default;
+      border-bottom: $--border-default;
+    }
   }
 }
 
-@include c(table-head){
-  width: 100%;
-}
 
-@include c(table-body){
+@include c(table-row){
+  @include m(stripe){
+    &:not(.cl-table-row--hover):nth-of-type(even) td{
+      background-color: $--table-head-th-background-color;
+    }
+  }
 
+  @include m(hover){
+    & td{
+      background-color: mix($--color-primary, $--color-white, 10%);
+    }
+  }
 }
 
 @include c(table-cell){
-  display: inline-block;
-  padding-left: $--table-cell-padding-horizontal;
-  padding-right: $--table-cell-padding-horizontal;
-  @include utils-ellipsis();
+  padding-left: $--table-cell-padding-horizontal-default;
+  padding-right: $--table-cell-padding-horizontal-default;
+  white-space: normal;
+  word-break: break-all;
+  overflow: hidden;
+
+  @include m(ellipsis){
+    @include utils-ellipsis;
+  }
+
+  @include m(left){
+    text-align: left;
+  }
+  @include m(center){
+    text-align: center;
+  }
+  @include m(right){
+    text-align: right;
+  }
+
+  @include e(checkbox){
+    margin: 0;
+  }
+
+  @include e(tooltip){
+    max-width: 100%;
+    span{
+      display: inline-block;
+      width: 100%;
+      vertical-align: middle;
+      @include utils-ellipsis();
+    }
+  }
 }

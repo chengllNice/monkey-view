@@ -27,4 +27,7 @@ export const deepClone = (data) => {
 };
 
 
+export const getElStyleByKey = (element, key) => {
+    if(!element || !key) return;
+};
 
