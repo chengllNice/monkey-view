@@ -6,9 +6,9 @@
         <span v-for="_year in yearList"
               :key="_year.key"
               :class="[
-                    'cl-date-pane-year__col',
-                    _year.id === currentDate.year && 'cl-date-pane-year__now',
-                    value.includes(_year.id) && 'cl-date-pane-year__selected'
+                    'cl-date-pane-item__col',
+                    _year.id === currentDate.year && 'cl-date-pane-item__now',
+                    year === _year.id && 'cl-date-pane-item__selected'
               ]"
               @click.stop="selectYear(_year)">{{_year.name}}</span>
     </div>
@@ -26,7 +26,12 @@
         mounted() {
             this.setYearList();
         },
-        methods: {},
+        methods: {
+            selectYear(year){
+                this.$emit('update-year', year.id);
+                this.$emit('input', year.id);
+            },
+        },
         watch: {
             year() {
                 if (this.type === 'year') {

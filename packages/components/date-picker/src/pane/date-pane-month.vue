@@ -6,9 +6,9 @@
         <span v-for="_month in monthList"
               :key="_month.key"
               :class="[
-                    'cl-date-pane-month__col',
-                    _month.id === currentDate.month && currentDate.year === year && 'cl-date-pane-month__now',
-                    value.includes(_month.id) && 'cl-date-pane-month__selected'
+                    'cl-date-pane-item__col',
+                    _month.id === currentDate.month && currentDate.year === year && 'cl-date-pane-item__now',
+                    _month.id === month && 'cl-date-pane-item__selected'
               ]"
               @click.stop="selectMonth(_month)">{{_month.name}}</span>
     </div>
@@ -27,7 +27,10 @@
         mounted() {
         },
         methods: {
-
+            selectMonth(month){
+                this.$emit('update-month', month.id);
+                this.$emit('input', month.id);
+            },
         },
         watch: {
 

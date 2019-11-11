@@ -20,8 +20,8 @@ export default {
             yearList: [],
             currentDate: {
                 year: new Date().getFullYear().toString(),
-                month: (new Date().getMonth() + 1).toString(),
-                date: new Date().getDate().toString()
+                month: zero((new Date().getMonth() + 1)),
+                date: zero(new Date().getDate())
             }
         }
     },
@@ -40,6 +40,9 @@ export default {
                 }
             }
             return result;
+        },
+        isRange(){
+            return this.type.includes('range');
         }
     },
     mounted() {
@@ -49,26 +52,15 @@ export default {
         closeDatePane(){
             this.$emit('closeDatePane');
         },
-        // 获取指定年月下的所有日期
+        // 获取日期列表
         setDateList(){
+            if(!this.year || !this.month) return;
             this.dateList = dateOrMonth(this.year, this.month);
         },
-        selectDate(date){
-            this.setDateList(date.key);
-            this.$emit('updateDate', date.key);
-            this.$emit('closeDatePane');
-            this.$emit('input', [date.key]);
-        },
+        // 获取年份列表
         setYearList(year){
+            if(!year && !this.year) return;
             this.yearList = yearListInit(year || this.year);
-        },
-        selectYear(year){
-            // this.year = year.id;
-            this.$emit('update-year', year.id);
-        },
-        selectMonth(month){
-            // this.month = month.id;
-            this.$emit('update-month', month.id);
         },
         // 格式化日期格式
         formatDateValue(value) {

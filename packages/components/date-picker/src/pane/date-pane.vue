@@ -1,147 +1,186 @@
 <template>
-    <div :class="[
-            'cl-date-pane',
-            size && `cl-date-pane--${size}`
-         ]">
-        <div class="cl-date-pane__header">
-            <span class="cl-date-pane__header-pre">
-                <i class="cl-icon-arrow-left" @click.stop="jumpDate('pre-year')"></i>
-                <i class="cl-icon-left" @click.stop="jumpDate('pre-month')" v-if="dateChangeIconShow"></i>
-            </span>
-            <span class="cl-date-pane__header-date">
-                <span class="cl-date-pane__header-date-label" @click.stop="selectYear">{{this.year}}年</span>
-                <span class="cl-date-pane__header-date-label" @click.stop="selectMonth" v-if="headerMonthShow">{{this.month}}月</span>
-            </span>
-            <span class="cl-date-pane__header-next">
-                <i class="cl-icon-right" @click.stop="jumpDate('next-month')" v-if="dateChangeIconShow"></i>
-                <i class="cl-icon-arrow-right" @click.stop="jumpDate('next-year')"></i>
-            </span>
-        </div>
-        <div class="cl-date-pane__body">
-            <cl-date-pane-date v-model="selectedDate"
-                               :size="size"
-                               :type="dateType"
-                               :year="year"
-                               :month="month"
-                               @closeDatePane="closeDatePane"
-                               @updateDate="updateDate"
-                               v-show="dateType === 'date'"></cl-date-pane-date>
-            <cl-date-pane-year v-model="selectedYear"
-                               :size="size"
-                               :type="dateType"
-                               :year="year"
-                               :month="month"
-                               @update-year="updateYear"
-                               v-show="dateType === 'year'"></cl-date-pane-year>
-            <cl-date-pane-month v-model="selectedMonth"
-                                :size="size"
-                                :type="dateType"
-                                :year="year"
-                                :month="month"
-                                @update-month="updateMonth"
-                                v-show="dateType === 'month'"></cl-date-pane-month>
-        </div>
+    <div class="cl-date-pane">
+        <cl-date-pane-single class="cl-date-pane__left"
+                             :index="datePane0.id"
+                             :year="datePane0.year"
+                             :month="datePane0.month"
+                             :is-range="isRange"
+                             :size="size"
+                             :format="format"
+                             :type="type"
+                             @update-value="updateValue"
+                             @update-date="updateDate"></cl-date-pane-single>
+        <cl-date-pane-single class="cl-date-pane__right"
+                             v-if="isRange"
+                             :index="datePane1.id"
+                             :year="datePane1.year"
+                             :month="datePane1.month"
+                             :is-range="isRange"
+                             :size="size"
+                             :format="format"
+                             :type="type"
+                             @update-value="updateValue"
+                             @update-date="updateDate"></cl-date-pane-single>
     </div>
 </template>
 
 <script>
-    import ClDatePaneDate from './date-pane-date'
-    import ClDatePaneYear from './date-pane-year'
-    import ClDatePaneMonth from './date-pane-month'
+    import ClDatePaneSingle from './date-pane-single'
     import {zero, dateFormat} from "../../../../utils/date";
 
     export default {
         name: "ClDatePane",
         props: {
-            value: [String, Array],
+            value: Array,
             size: String,
             type: String,
             format: String,
+            isRange: Boolean,
         },
         data(){
             return {
-                dateType: this.type,
-                selectedDate: [],
-                selectedYear: [],
-                selectedMonth: [],
-                year: '',
-                month: '',
+                datePane0: {
+                    id: '0',
+                    year: '',
+                    month: '',
+                    value: []
+                },
+                datePane1: {
+                    id: '1',
+                    year: '',
+                    month: '',
+                    value: []
+                },
+                nowDate: new Date()
             }
         },
         computed: {
-            dateChangeIconShow(){
-                return ['date', 'daterange'].includes(this.dateType)
-            },
-            headerMonthShow(){
-                return !['year', 'month'].includes(this.dateType)
-            },
-            yearJumpStep(){
-                return ['year'].includes(this.dateType) ? 10 : 1;
-            }
+
         },
         components: {
-            ClDatePaneDate,
-            ClDatePaneYear,
-            ClDatePaneMonth
+            ClDatePaneSingle
         },
         mounted() {
-            this.updateDate();
+            this.$nextTick(()=>{
+                this.dealValue();
+            })
         },
         methods: {
-            jumpDate(type){
-                let month;
+            dealValue(){
+                if(!this.value || !this.value.length){
+                    this.initYearAndMonth(this.nowDate, null);
+                }else {
+                    if(this.isRange){
+                        let startDate = new Date(this.value[0]);
+                        let endDate = new Date(this.value[1]);
+                        if(startDate.getMonth() === endDate.getMonth()){
+                            this.datePane0.value = this.value;
+                        }else{
+                            this.datePane0.value = this.value[0];
+                            this.datePane1.value = this.value[1];
+                        }
+                        this.initYearAndMonth(this.value[0], this.value[1]);
+                    }else{
+                        this.datePane0.value = this.value;
+                        this.initYearAndMonth(this.value[0], null);
+                    }
+                }
+            },
+            initYearAndMonth(startDate, endDate){
+                let nowDate1 = new Date(startDate);
+                let nowDate2;
+                if(endDate){
+                    nowDate2 = new Date(endDate);
+                }else{
+                    nowDate2 = new Date(new Date(startDate).setMonth(nowDate1.getMonth() + 1));
+                }
+                this.datePane0.year = dateFormat(nowDate1, 'YYYY');
+                this.datePane0.month = dateFormat(nowDate1, 'MM');
+                this.datePane1.year = dateFormat(nowDate2, 'YYYY');
+                this.datePane1.month = dateFormat(nowDate2, 'MM');
+            },
+            updateDate(obj){
+                let {type, year, month, jumpStep, index, isUpdateRightDate} = obj;
+                this.updateDateCommon(obj);
+
+                if(this.isRange && isUpdateRightDate){
+                    let updateFlag = type.includes('year') ? 'year' : 'month';
+                    let isUpdateRange = false;
+                    if(updateFlag === 'month'){
+                        let datePane0Time = new Date(this.datePane0.year, this.datePane0.month);
+                        let datePane1Time = new Date(this.datePane1.year, this.datePane1.month);
+                        if(datePane1Time <= datePane0Time){
+                            isUpdateRange = true;
+                        }
+                    }
+                    if(this.datePane1[updateFlag] <= this.datePane0[updateFlag] && updateFlag === 'year') isUpdateRange = true;
+
+                    let otherYear = parseInt(year);
+                    let otherMonth = parseInt(month);
+                    switch (type) {
+                        case 'pre-month':
+                            otherMonth = otherMonth - 1;
+                            if(otherMonth < 1){
+                                otherMonth = 12;
+                            }
+                            break;
+                        case 'next-month':
+                            otherMonth = otherMonth + 1;
+                            if(otherMonth > 12){
+                                otherMonth = 1;
+                            }
+                            break;
+                    }
+
+                    let otherObj = {
+                        type: type,
+                        year: otherYear,
+                        month: otherMonth,
+                        jumpStep: jumpStep,
+                        index: index === '1' ? '0' : '1',
+                    };
+                    isUpdateRange && this.updateDateCommon(otherObj);
+                }
+            },
+            updateDateCommon(obj){
+                let {type, year, month, jumpStep, index} = obj;
                 switch (type) {
                     case 'pre-year':
-                        this.year = zero(parseInt(this.year) - this.yearJumpStep);
+                        this[`datePane${index}`].year = zero(parseInt(year) - jumpStep);
                         break;
                     case 'pre-month':
-                        month = parseInt(this.month) - 1;
+                        month = parseInt(month) - 1;
                         if(month < 1){
                             month = 12;
-                            this.year = zero(parseInt(this.year) - 1);
+                            this[`datePane${index}`].year = zero(parseInt(year) - 1);
                         }
-                        this.month = zero(month);
+                        this[`datePane${index}`].month = zero(month);
                         break;
                     case 'next-month':
-                        month = parseInt(this.month) + 1;
+                        month = parseInt(month) + 1;
                         if(month > 12){
                             month = 1;
-                            this.year = zero(parseInt(this.year) + 1);
+                            this[`datePane${index}`].year = zero(parseInt(year) + 1);
                         }
-                        this.month = zero(month);
+                        this[`datePane${index}`].month = zero(month);
                         break;
                     case 'next-year':
-                        this.year = zero(parseInt(this.year) + this.yearJumpStep);
+                        this[`datePane${index}`].year = zero(parseInt(year) + jumpStep);
                         break;
                 }
             },
-            selectYear(){
-                this.dateType = 'year';
-            },
-            selectMonth(){
-                this.dateType = 'month';
-            },
-            updateDate(date){
-                let nowDate = new Date();
-                if(date) nowDate = new Date(date);
-                this.year = dateFormat(nowDate, 'YYYY');
-                this.month = dateFormat(nowDate, 'MM');
-            },
-            updateYear(year){
-                this.year = year;
-                this.selectMonth();
-            },
-            updateMonth(month){
-                this.month = month;
-                this.dateType = 'date';
-            },
-            closeDatePane(){
-                this.$emit('closeDatePane');
-            },
+            updateValue(index, date){
+                // let year = new Date(date).getFullYear();
+                // let month = new Date(date).getMonth() + 1;
+                if(this[`datePane${index}`].value.length === 2){
+                    this[`datePane${index}`].value = date;
+                }
+                this[`datePane${index}`].value.push(date);
+            }
         },
         watch: {
-            selectedDate(newVal){
-                this.$emit('input', newVal);
+            value(newVal, oldVal){
+                if(JSON.stringify(newVal) !== JSON.stringify(oldVal)) this.dealValue();
             }
         }
     }

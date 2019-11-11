@@ -19,11 +19,12 @@
                       :render-html="renderHtml"
                       v-model="visible">
                 <div class="cl-date-picker__drop-down-inner">
-                    <cl-date-pane :size="size"
+                    <cl-date-pane index="0"
+                                  :size="size"
                                   :format="format"
                                   v-model="dateValue"
-                                  :type="type"
-                                  @closeDatePane="visible = false"></cl-date-pane>
+                                  :is-range="isRange"
+                                  :type="type" />
                 </div>
             </DropDown>
         </transition>
@@ -33,6 +34,8 @@
 <script>
     import {directive as clickOutside} from 'v-click-outside-x';
     import DropDown from '../../select/src/drop-down.vue'
+    // import ClDatePaneSingle from './pane/date-pane-single.vue'
+    // import ClDatePaneRange from './pane/date-pane-range.vue'
     import ClDatePane from './pane/date-pane.vue'
     import {dateFormat} from "../../../utils/date";
 
@@ -43,7 +46,7 @@
             value: [String, Array],
             type: {
                 type: String,
-                default: 'date',
+                default: 'daterange',
                 validator(value){
                     return ['date', 'daterange', 'datetime', 'datetimerange', 'year', 'month'].includes(value)
                 }
@@ -83,6 +86,11 @@
                 visible: true,
             }
         },
+        computed: {
+            isRange(){
+                return this.type.includes('range');
+            }
+        },
         components: {
             DropDown,
             ClDatePane
@@ -114,22 +122,22 @@
 
             },
             updateInputValue(){
-                if(this.type.includes('range')){
+                if(this.isRange){
                     let date1 = dateFormat(this.dateValue[0], this.format);
                     let date2 = dateFormat(this.dateValue[1], this.format);
                     this.dateInputValue = `${date1} - ${date2}`;
                 }else{
                     this.dateInputValue = dateFormat(this.dateValue[0], this.format);
                 }
-            }
+            },
         },
         watch: {
             dateValue(newVal){
                 this.updateInputValue();
-                if(this.type.includes('range')){
+                if(this.isRange){
                     this.$emit('input', newVal);
                 }else{
-                    this.$emit('input', newVal[0])
+                    this.$emit('input', newVal[0]);
                 }
             }
         }
