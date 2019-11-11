@@ -9,7 +9,11 @@
                              :key="index"
                              @mouseenter.native="trMouseEnter(row.__index)"
                              @mouseleave.native="trMouseLeave(row.__index)">
-                    <td v-for="column in columns" :key="column.__id">
+                    <td v-for="column in columns"
+                        :key="column.__id"
+                        :class="[
+                            fixed && column.fixed !== fixed && 'is-hidden'
+                        ]">
                         <cl-table-cell :row="row" :column="column"></cl-table-cell>
                     </td>
                 </cl-table-tr>
@@ -26,6 +30,7 @@
     export default {
         name: "ClTableBody",
         mixins: [tableMixins],
+        inject: ['tableRoot'],
         props: {
             data: {
                 type: Array,
@@ -42,6 +47,7 @@
             colgroupColumns: Array,
             columnsWidth: Object,
             bodyStyle: Object,
+            fixed: String
         },
         data() {
             return {}
@@ -64,12 +70,12 @@
         methods: {
             trMouseEnter(__id){
                 console.log('====dddd', __id);
-                this.$parent.setCloneDataDefaultProps({
+                this.tableRoot.setCloneDataDefaultProps({
                     __isHover: true
                 }, [__id])
             },
             trMouseLeave(__id){
-                this.$parent.setCloneDataDefaultProps({
+                this.tableRoot.setCloneDataDefaultProps({
                     __isHover: false
                 }, [__id])
             }

@@ -26,8 +26,22 @@ export const deepClone = (data) => {
     return result;
 };
 
+/**
+ * 获取滚动条的宽度
+ * @returns {number}
+ */
+export const getScrollBarWidth = () => {
+    let div = document.createElement('div');
+    div.style.width = '100px';
+    div.style.height = '100px';
+    div.style.overflow = 'scroll';
 
-export const getElStyleByKey = (element, key) => {
-    if(!element || !key) return;
+    document.body.appendChild(div);
+
+    let scrollBarWidth = div.offsetWidth - div.clientWidth;
+
+    document.body.removeChild(div);
+
+    return scrollBarWidth;
 };
 

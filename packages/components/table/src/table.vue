@@ -14,14 +14,41 @@
                                :head-style="headStyle"></cl-table-head>
             </div>
             <div class="cl-table__body"
+                 :class="[
+                    showHorizontalScrollBar && 'cl-table__body-overflowX'
+                 ]"
                  ref="body"
-                 :style="bodyWrapStyle">
-                <cl-table-body :columns="bodyCloneColumns"
+                 :style="bodyWrapStyle"
+                 @scroll="bodyScrollHandle">
+                <cl-table-body ref='tbody'
+                               :columns="bodyCloneColumns"
                                :colgroup-columns="bodyCloneColumns"
                                :data="cloneData"
                                :columns-width="columnsWidth"
                                :body-style="bodyStyle"></cl-table-body>
             </div>
+            <cl-table-fixed v-if='isFixedLeft'
+                            fixed="left"
+                            ref="fixedTableLeft"
+                            :head-columns="headCloneColumns"
+                            :body-columns="bodyCloneColumns"
+                            :colgroup-columns="bodyCloneColumns"
+                            :data="cloneData"
+                            :columns-width="columnsWidth"
+                            :head-style="headStyle"
+                            :body-style="bodyStyle"
+                            :bodyWrapStyle="bodyWrapStyle"></cl-table-fixed>
+            <cl-table-fixed v-if='isFixedRight'
+                            fixed="right"
+                            ref="fixedTableRight"
+                            :head-columns="fixedRightHeadCloneColumns"
+                            :body-columns="fixedRightBodyCloneColumns"
+                            :colgroup-columns="fixedRightBodyCloneColumns"
+                            :data="cloneData"
+                            :columns-width="columnsWidth"
+                            :head-style="headStyle"
+                            :bodyWrapStyle="bodyWrapStyle"
+                            :body-style="bodyStyle"></cl-table-fixed>
             <div class="cl-table__footer" ref="footer"></div>
         </div>
     </div>
@@ -30,13 +57,15 @@
 <script>
     import ClTableHead from './table-head.vue'
     import ClTableBody from './table-body.vue'
+    import ClTableFixed from './table-fixed'
     import {
         randomStr,
         getAllColumns,
         setGroupTableHead,
         setCloneColumnsDefaultProps,
-        removeBodyColumnsHaveChildren} from "./util";
-    import {deepClone} from "../../../utils/global";
+        removeBodyColumnsHaveChildren,
+        sortFixedColumns} from "./util";
+    import {deepClone, getScrollBarWidth} from "../../../utils/global";
     import {on, off} from "../../../utils/dom";
     import elementResizeDetectorMaker from 'element-resize-detector';
 
@@ -71,14 +100,21 @@
         data() {
             return {
                 bodyCloneColumns: [],//去除带有children的列
+                fixedRightBodyCloneColumns: [],
                 columnRows: [],
                 headCloneColumns: [],
+                fixedRightHeadCloneColumns: [],
                 cloneData: deepClone(this.data),
                 statusData: {},//状态数据map 包括checked hover 等状态
                 columnsWidth: {},
                 observer: null,
                 tableWidth: '',
                 bodyHeight: '',
+                showHorizontalScrollBar: false,
+                showVerticalScrollBar: false,
+                scrollBarWidth: getScrollBarWidth(),
+                isFixedLeft: false,
+                isFixedRight: false,
                 ready: false,
             }
         },
@@ -100,7 +136,7 @@
             },
             bodyStyle(){
                 let style = {};
-                if(this.tableWidth) style.width = this.tableWidth + 'px';
+                if(this.tableWidth) style.width = this.tableWidth - (this.showVerticalScrollBar ? this.scrollBarWidth : 0) + 'px';
                 return style;
             },
             bodyWrapStyle(){
@@ -108,7 +144,6 @@
                 if(this.height){
                     style = {
                         height: this.bodyHeight + 'px',
-                        overflow: 'auto'
                     }
                 }
                 return style
@@ -116,7 +151,8 @@
         },
         components: {
             ClTableHead,
-            ClTableBody
+            ClTableBody,
+            ClTableFixed
         },
         created() {
         },
@@ -179,6 +215,7 @@
                 let hasWidthColumns = [];//有宽度的列
                 let maxWidthColumns = [];//设置最大宽的列
                 let minWidthColumns = [];//设置最小宽的列
+                let noMaxWidthAndWidthColumns = [];//没有设置最大宽的列
                 let noWidthAndMaxWidthAndminWidthColumns = [];//没有设置宽度、最大宽、最小宽的列
                 this.bodyCloneColumns.forEach(itemCol => {
                     if(itemCol.width){
@@ -192,8 +229,9 @@
                     if(itemCol.maxWidth){
                         maxWidthColumns.push(itemCol)
                     }
-                    if(!itemCol.width && !itemCol.maxWidth && !itemCol.minWidth){
-                        noWidthAndMaxWidthAndminWidthColumns.push(itemCol)
+                    if(!itemCol.width && !itemCol.maxWidth){
+                        noMaxWidthAndWidthColumns.push(itemCol);
+                        !itemCol.minWidth && noWidthAndMaxWidthAndminWidthColumns.push(itemCol);
                     }
                     if(itemCol.width || itemCol.minWidth){
                         let itemWidth = itemCol.width ? parseFloat(itemCol.width) : 0;
@@ -203,12 +241,15 @@
                     itemCol.__width = null;
                 });
 
-                usableWidth = tableWidth - unusableWidth;
-                let noWidthColumsLen = noWidthColumns.length;
+                usableWidth = tableWidth - unusableWidth - (this.showVerticalScrollBar ? this.scrollBarWidth : 0);
+
+
+                let usableLength = noWidthColumns.length;
                 let avgColumnsWidth = 0;
-                if(usableWidth > 0 && noWidthColumsLen > 0){
-                    avgColumnsWidth = usableWidth / noWidthColumsLen;
+                if(usableWidth > 0 && usableLength > 0){
+                    avgColumnsWidth = usableWidth / usableLength;
                 }
+                // console.log(tableWidth,'tableWidthtableWidth',usableWidth,avgColumnsWidth)
 
                 // --[width] width;
                 // [minWidth] avgW  & min
@@ -232,6 +273,8 @@
                             }
                         }else if(colums.minWidth && colums.maxWidth){
                             width = Math.min((parseFloat(colums.minWidth) + avgColumnsWidth), parseFloat(colums.maxWidth));
+                            usableWidth -= width;
+                            usableLength--;
                         }else{
                             if(colums.minWidth){
                                 width = parseFloat(colums.minWidth + avgColumnsWidth);
@@ -239,28 +282,40 @@
                             if(colums.maxWidth){
                                 width = Math.min(width, parseFloat(colums.maxWidth));
                             }
+                            usableWidth -= width;
+                            usableLength--;
                         }
                     }
 
                     width = Math.floor(width);
                     colums.__width = width;
-                    usableWidth -= width;
                     columsWidths[colums.__id] = {
                         width: width
                     }
                 }
-                // console.log(usableWidth,'usableWidth',JSON.stringify(columsWidths))
+                // console.log(usableWidth,'usableWidth',JSON.parse(JSON.stringify(columsWidths)))
 
-                // if(usableWidth > 0){
-                //     noWidthColumsLen = noWidthColumns.length;
-                //     if(noWidthColumsLen > 0){
-                //
-                //     }
-                //     for (let i = 0; i < noWidthColumsLen; i++){
-                //         let noWidthCol = noWidthColumns[i];
-                //
-                //     }
-                // }
+                // 如果还有剩余的宽度给没有设置width和maxWidth的列分配
+                if(usableWidth > 0){
+                    usableLength = noMaxWidthAndWidthColumns.length;
+                    if(usableLength > 0) avgColumnsWidth = parseInt(usableWidth / usableLength);
+                    for (let i = 0; i < usableLength; i++){
+                        let colums = noMaxWidthAndWidthColumns[i];
+                        let width = colums.__width + avgColumnsWidth;
+
+                        if(usableLength > 1){
+                            usableLength--;
+                            usableWidth -= avgColumnsWidth;
+                        }else{
+                            usableWidth = 0;
+                        }
+
+                        colums.__width = width;
+                        columsWidths[colums.__id] = {
+                            width: width
+                        }
+                    }
+                }
                 this.tableWidth = this.bodyCloneColumns.map(col => col.__width).reduce((a, b) => a + b, 0);
                 this.columnsWidth = columsWidths;
                 this.fixedHead();
@@ -296,10 +351,23 @@
                 if(this.height){
                     let headerHeight = this.$refs.header.offsetHeight;
                     let footerHeight = this.$refs.footer.offsetHeight;
-                    console.log(headerHeight,'headerHeight')
 
                     this.bodyHeight = parseInt(this.height) - headerHeight - footerHeight;
                 }
+                this.fixedBody();
+            },
+            fixedBody(){
+                let bodyWidth = this.$refs.body.offsetWidth;
+                let bodyHeight = this.$refs.body.offsetHeight;
+                let tbodyWidth = this.$refs.tbody.$el.offsetWidth;
+                let tbodyHeight = this.$refs.tbody.$el.offsetHeight;
+                this.showHorizontalScrollBar = tbodyWidth > bodyWidth;
+                this.showVerticalScrollBar = tbodyHeight > bodyHeight;
+            },
+            bodyScrollHandle(event){
+                this.$refs.header.scrollLeft = event.target.scrollLeft;
+                console.log(this.$refs.fixedTableLeft.$refs.fixedBody,'this.$refs.fixedTableLeft.$refs.fixedBody')
+                this.$refs.fixedTableLeft.$refs.fixedBody.scrollTop = event.target.scrollTop;
             }
         },
         watch: {
@@ -317,11 +385,24 @@
             columns: {
                 handler(newVal){
                     const setColumnsId = this.setColumnsId(newVal);
-                    const commonColumns = setCloneColumnsDefaultProps(setColumnsId);
+                    const defaultCommonColumns = setCloneColumnsDefaultProps(setColumnsId);
+                    const commonColumns = sortFixedColumns(defaultCommonColumns);
+                    const fixedRightCommonColumns = sortFixedColumns(defaultCommonColumns, 'right');
+                    commonColumns.forEach(item=>{
+                        if(item.fixed && item.fixed === 'left'){
+                            this.isFixedLeft = true;
+                        }else if(item.fixed && item.fixed === 'right'){
+                            this.isFixedRight = true;
+                        }
+                    });
                     this.allColumns = getAllColumns(setColumnsId);
 
                     this.bodyCloneColumns = removeBodyColumnsHaveChildren(commonColumns);
                     this.headCloneColumns = setGroupTableHead(commonColumns);
+
+                    this.fixedRightBodyCloneColumns = removeBodyColumnsHaveChildren(fixedRightCommonColumns);
+                    this.fixedRightHeadCloneColumns = setGroupTableHead(fixedRightCommonColumns);
+
                     this.handleResize();
                 },
                 deep: true,

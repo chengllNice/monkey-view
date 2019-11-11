@@ -121,3 +121,38 @@ export const removeBodyColumnsHaveChildren = (columns) => {
     });
     return newBodyCloneColumns;
 };
+
+
+export const sortFixedColumns = (columns, fixedType) => {
+    let left = [];
+    let center = [];
+    let right = [];
+    let result = [];
+    columns.filter(item=>{
+        if(item.fixed && item.fixed === 'left'){
+            left.push(item);
+        }else if(item.fixed && item.fixed === 'right'){
+            right.push(item);
+        }else{
+            center.push(item)
+        }
+    });
+
+    if(fixedType && fixedType === 'right'){
+        result.push(...right, ...center, ...left);
+    }else{
+        result.push(...left, ...center, ...right);
+    }
+    return result;
+};
+
+
+export const fixedIds = (columns, fixedType) => {
+    let ids = [];
+    columns.forEach(item=>{
+        if(item.__width && item.fixed && item.fixed === fixedType){
+            ids.push(item.__id)
+        }
+    });
+    return ids;
+};

@@ -11,11 +11,15 @@
   th, td{
     box-sizing: border-box;
     text-align: left;
+    overflow: hidden;
     border-bottom: $--table-head-th-border;
     min-width: 0;
     background-color: $--color-white;
     padding-top: $--table-cell-padding-vertical-default;
     padding-bottom: $--table-cell-padding-vertical-default;
+    &.is-hidden{
+      visibility: hidden;
+    }
   }
   th{
     background-color: $--table-head-th-background-color;
@@ -25,8 +29,13 @@
     transition: background-color $--animation-time;
   }
 
+  @include e(wrap){
+    position: relative;
+  }
+
   @include e(head){
     width: 100%;
+    overflow: hidden;
     table{
       border-top-left-radius: $--border-radius-default;
       border-top-right-radius: $--border-radius-default;
@@ -42,6 +51,9 @@
       border-bottom-right-radius: $--border-radius-default;
     }
   }
+  @include e(body-overflowX){
+    overflow-x: auto;
+  }
 
   @include m(hide){
     display: none;
@@ -52,16 +64,36 @@
       border-top: $--border-default;
       border-left: $--border-default;
     }
-    .cl-table__head table{
+    .cl-table__head table, .cl-table-fixed__head table{
       border-bottom: none;
     }
-    .cl-table__body table{
+    .cl-table__body table, .cl-table-fixed__body table{
       border-top: none;
     }
     th, td{
       border-right: $--border-default;
       border-bottom: $--border-default;
     }
+  }
+}
+
+@include c(table-fixed){
+  position: absolute;
+  top: 0;
+  overflow: hidden;
+  @include m(left){
+    left: 0;
+    z-index: 2;
+    box-shadow: 2px 0 6px -2px rgba(0,0,0,.2);
+  }
+  @include m(right){
+    right: 0;
+    z-index: 3;
+    box-shadow: -2px 0 6px -2px rgba(0,0,0,.2);
+  }
+
+  @include e(body){
+    overflow: hidden;
   }
 }
 
