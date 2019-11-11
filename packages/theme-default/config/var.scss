@@ -171,9 +171,19 @@ $--menu-theme-green-group-title-font-color: #c1cecd !default;
 
 /*-----table-----*/
 $--table-head-th-background-color: #f8f8f9 !default;
-$--table-head-th-height: 40px !default;
 $--table-head-th-border: $--border-default !default;
-$--table-cell-padding-horizontal: 18px !default;
+
+$--table-cell-padding-horizontal-mini: 10px !default;
+$--table-cell-padding-vertical-mini: 4px !default;
+
+$--table-cell-padding-horizontal-small: 14px !default;
+$--table-cell-padding-vertical-small: 6px !default;
+
+$--table-cell-padding-horizontal-default: 18px !default;
+$--table-cell-padding-vertical-default: 8px !default;
+
+$--table-cell-padding-horizontal-large: 22px !default;
+$--table-cell-padding-vertical-large: 10px !default;
 
 
 /*-----upload-----*/

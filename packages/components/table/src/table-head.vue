@@ -1,60 +1,70 @@
 <template>
-    <table cellspacing="0" cellpadding="0" border="0">
+    <table cellspacing="0" cellpadding="0" border="0" :style="tableHeadStyle">
         <colgroup>
-            <col v-for="(columns, index) in columns" :key="columns.__id">
+            <col v-for="column in colgroupColumns" :key="column.__id" :width="setColWidth(column)">
         </colgroup>
         <thead>
-            <tr v-for="(cols, rowIndex) in headRow" :key="rowIndex">
-                <th v-for="(columns, index) in cols" :key="columns.__id">
-                    <div class="cl-table-cell cl-table-head__cell">
-                        <template>
-                            <span>{{columns.title}}</span>
-                            <!--<ClTooltip placement="bottom">-->
-                                <!--<div slot="content">-->
-                                    <!--<span>{{columns.title}}</span>-->
-                                <!--</div>-->
-                            <!--</ClTooltip>-->
-                        </template>
-                    </div>
-                </th>
-            </tr>
+            <template v-for="(row, index) in columns">
+                <cl-table-tr type="head" :row="row[0]" :key="index">
+                    <th v-for="column in row"
+                        :key="column.__id"
+                        :rowspan="column.rowSpan"
+                        :colspan="column.colSpan">
+                        <cl-table-head-cell :column="column"></cl-table-head-cell>
+                    </th>
+                </cl-table-tr>
+            </template>
         </thead>
     </table>
 </template>
 
 <script>
+    import ClTableTr from './table-tr.vue'
+    import ClTableCell from './table-cell.vue'
+    import ClTableHeadCell from './table-head-cell'
     import ClTooltip from '../../tooltip/src/tooltip.vue'
-  export default {
-    name: "ClTableHead",
-    props: {
-      data: {
-        type: Array,
-        default: function () {
-          return []
-        }
-      },
-      columns: {
-        type: Array,
-        default: function () {
-          return []
-        }
-      },
-    },
-    data() {
-      return {}
-    },
-    computed: {
-      headRow(){
-        return [this.columns]
-      }
-    },
-    components: {
-      ClTooltip
-    },
-    created() {
-    },
-    mounted() {
-    },
-    methods: {}
-  }
+    import tableMixins from './table-mixins'
+
+    export default {
+        name: "ClTableHead",
+        mixins: [tableMixins],
+        props: {
+            data: {
+                type: Array,
+                default: function () {
+                    return []
+                }
+            },
+            columns: {
+                type: Array,
+                default: function () {
+                    return []
+                }
+            },
+            colgroupColumns: Array,
+            columnsWidth: Object,
+            headStyle: Object,
+        },
+        data() {
+            return {}
+        },
+        computed: {
+            tableHeadStyle(){
+                let style = {};
+                if(this.headStyle && this.headStyle.width) style.width = this.headStyle.width
+                return style;
+            }
+        },
+        components: {
+            ClTooltip,
+            ClTableTr,
+            ClTableCell,
+            ClTableHeadCell
+        },
+        created() {
+        },
+        mounted() {
+        },
+        methods: {}
+    }
 </script>
