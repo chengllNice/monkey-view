@@ -101,11 +101,8 @@
         },
         data() {
             return {
-                bodyCloneColumns: [],//去除带有children的列
-                fixedRightBodyCloneColumns: [],
+                commonColumns: [],
                 columnRows: [],
-                headCloneColumns: [],
-                fixedRightHeadCloneColumns: [],
                 cloneData: deepClone(this.data),
                 statusData: {},//状态数据map 包括checked hover 等状态
                 columnsWidth: {},
@@ -152,6 +149,22 @@
                     }
                 }
                 return style
+            },
+            bodyCloneColumns(){
+                const commonColumns = sortFixedColumns(this.commonColumns);
+                return removeBodyColumnsHaveChildren(commonColumns);
+            },
+            headCloneColumns(){
+                const commonColumns = sortFixedColumns(this.commonColumns);
+                return setGroupTableHead(commonColumns);
+            },
+            fixedRightBodyCloneColumns(){
+                const fixedRightCommonColumns = sortFixedColumns(this.commonColumns, 'right');
+                return removeBodyColumnsHaveChildren(fixedRightCommonColumns);
+            },
+            fixedRightHeadCloneColumns(){
+                const fixedRightCommonColumns = sortFixedColumns(this.commonColumns, 'right');
+                return setGroupTableHead(fixedRightCommonColumns);
             }
         },
         components: {
@@ -388,6 +401,24 @@
                 } else {
                     body.scrollLeft = body.scrollLeft - 10;
                 }
+            },
+            sortHandle(columns, type){
+                const key = columns.key;
+                const __id = columns.__id;
+                let commonColumns = deepClone(this.commonColumns);
+                commonColumns.forEach(item=>{
+                    if(item.__id === __id){
+                        item.__sortOrder = type;
+                    }
+                });
+                this.cloneData.sort((a, b)=>{
+                    if(type === 'ascend'){
+                        return a[key] > b[key] ? 1 : -1;
+                    }else{
+                        return a[key] < b[key] ? 1 : -1;
+                    }
+                });
+                this.commonColumns = commonColumns;
             }
         },
         watch: {
@@ -405,23 +436,16 @@
             columns: {
                 handler(newVal){
                     const setColumnsId = this.setColumnsId(newVal);
-                    const defaultCommonColumns = setCloneColumnsDefaultProps(setColumnsId);
-                    const commonColumns = sortFixedColumns(defaultCommonColumns);
-                    const fixedRightCommonColumns = sortFixedColumns(defaultCommonColumns, 'right');
-                    commonColumns.forEach(item=>{
+                    this.commonColumns = setCloneColumnsDefaultProps(setColumnsId);
+                    this.commonColumns.forEach(item=>{
                         if(item.fixed && item.fixed === 'left'){
                             this.isFixedLeft = true;
                         }else if(item.fixed && item.fixed === 'right'){
                             this.isFixedRight = true;
                         }
                     });
+
                     this.allColumns = getAllColumns(setColumnsId);
-
-                    this.bodyCloneColumns = removeBodyColumnsHaveChildren(commonColumns);
-                    this.headCloneColumns = setGroupTableHead(commonColumns);
-
-                    this.fixedRightBodyCloneColumns = removeBodyColumnsHaveChildren(fixedRightCommonColumns);
-                    this.fixedRightHeadCloneColumns = setGroupTableHead(fixedRightCommonColumns);
 
                     this.handleResize();
                 },

@@ -106,6 +106,7 @@ export const setCloneColumnsDefaultProps = (cols) => {
 
         column.__index = index;
         column.__width = Math.max(columnsWidth, columnsMinWidth);
+        column.__sortOrder = column.sortOrder || false;
     });
 
     return columns;

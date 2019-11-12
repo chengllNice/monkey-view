@@ -157,3 +157,30 @@
     }
   }
 }
+
+@include c(table-head-cell){
+  @include e(sort){
+    display: inline-block;
+    vertical-align: middle;
+    i{
+      display: block;
+      font-size: 12px;
+      transform: scale(0.6);
+      cursor: pointer;
+      color: $--color-text-placeholder;
+
+      &:nth-of-type(1){
+        transform-origin: bottom;
+      }
+      &:nth-of-type(2){
+        transform-origin: top;
+      }
+      &:hover{
+        color: $--color-primary;
+      }
+    }
+    i.cl-table-head-cell__sort-active{
+      color: $--color-primary;
+    }
+  }
+}

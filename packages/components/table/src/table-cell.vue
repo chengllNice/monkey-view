@@ -2,7 +2,7 @@
     <div :class="[
             'cl-table-cell',
             (column.ellipsis || column.tooltip) && 'cl-table-cell--ellipsis',
-            column.align && `cl-table-cell--${column.align}`
+            column.align && `cl-table-cell--${column.align}`,
          ]">
         <template v-if="renderType === 'normal'">
             <template v-if="column.tooltip">

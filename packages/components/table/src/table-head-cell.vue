@@ -14,7 +14,10 @@
         </template>
         <template v-if="renderType === 'normal'">
             {{column.title}}
-            <span><i class="cl-icon-caretup"></i><i class="cl-icon-caretdown"></i></span>
+            <span v-if="column.sortOrder" class="cl-table-head-cell__sort">
+                <i class="cl-icon-caretup" :class="[column.__sortOrder === 'ascend' && 'cl-table-head-cell__sort-active']" @click.stop="sortHandle('ascend')"></i>
+                <i class="cl-icon-caretdown" :class="[column.__sortOrder === 'descend' && 'cl-table-head-cell__sort-active']" @click.stop="sortHandle('descend')"></i>
+            </span>
         </template>
     </div>
 </template>
@@ -61,6 +64,9 @@
             },
             checkboxChange(value){
                 this.tableRoot.allCheckboxChange(this.column, value);
+            },
+            sortHandle(type){
+                this.tableRoot.sortHandle(this.column, type);
             }
         }
     }

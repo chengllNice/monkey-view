@@ -12,7 +12,7 @@
                     <td v-for="column in columns"
                         :key="column.__id"
                         :class="[
-                            fixed && column.fixed !== fixed && 'is-hidden'
+                            fixed && column.fixed !== fixed && 'is-hidden',
                         ]">
                         <cl-table-cell :row="row" :column="column"></cl-table-cell>
                     </td>
