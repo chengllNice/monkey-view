@@ -9,6 +9,9 @@
                          :disabled="column.defaultStatusProps.isDisabled"
                          @change="checkboxChange"></cl-checkbox>
         </template>
+        <template v-if="renderType === 'index'">
+            #
+        </template>
         <template v-if="renderType === 'normal'">
             {{column.title}}
         </template>
@@ -46,6 +49,9 @@
                         break;
                     case 'selection':
                         this.renderType = 'selection';
+                        break;
+                    case 'index':
+                        this.renderType = 'index';
                         break;
                     default:
                         this.renderType = 'normal';

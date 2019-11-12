@@ -21,6 +21,9 @@
                          :disabled="row.defaultStatusProps.isDisabled"
                          @change="checkboxChange"></cl-checkbox>
         </template>
+        <template v-if="renderType === 'index'">
+            {{row.__index + 1}}
+        </template>
     </div>
 </template>
 
@@ -69,6 +72,12 @@
                         break;
                     case 'selection':
                         this.renderType = 'selection';
+                        break;
+                    case 'html':
+                        this.renderType = 'html';
+                        break;
+                    case 'index':
+                        this.renderType = 'index';
                         break;
                     default:
                         this.renderType = 'normal';

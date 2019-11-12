@@ -15,7 +15,8 @@
             </div>
             <div class="cl-table__body"
                  :class="[
-                    showHorizontalScrollBar && 'cl-table__body-overflowX'
+                    showHorizontalScrollBar && 'cl-table__body-overflowX',
+                    (!cloneData || !cloneData.length) && 'cl-table__body-empty'
                  ]"
                  ref="body"
                  :style="bodyWrapStyle"
@@ -92,10 +93,11 @@
             },
             border: {
                 type: Boolean,
-                default: true
+                default: false
             },
             stripe: Boolean,//斑马纹
             height: [String, Number],//设置高度后head固定
+            emptyText: String,
         },
         data() {
             return {
@@ -119,6 +121,9 @@
             }
         },
         computed: {
+            localEmptyText(){
+                return this.emptyText ? this.emptyText : '暂无数据';
+            },
             tableStyle(){
                 let style = {};
                 if(this.height) style = {height: parseFloat(this.height) + 'px'};
@@ -162,11 +167,16 @@
                 this.ready = true;
             });
             on(window, 'resize', this.handleResize);
+            on(this.$refs.header, 'mousewheel', this.mouseScroll);
+            on(this.$refs.header, 'DOMMouseScroll', this.mouseScroll);
             this.observer = elementResizeDetectorMaker();
             this.observer.listenTo(this.$el, this.handleResize);
         },
         beforeDestroy() {
             this.observer && this.observer.removeListener(this.$el, this.handleResize);
+            off(window, 'resize', this.handleResize);
+            off(this.$refs.header, 'mousewheel', this.mouseScroll);
+            off(this.$refs.header, 'DOMMouseScroll', this.mouseScroll);
         },
         methods: {
             setColumnsId(columns) {
@@ -366,8 +376,18 @@
             },
             bodyScrollHandle(event){
                 this.$refs.header.scrollLeft = event.target.scrollLeft;
-                console.log(this.$refs.fixedTableLeft.$refs.fixedBody,'this.$refs.fixedTableLeft.$refs.fixedBody')
                 this.$refs.fixedTableLeft.$refs.fixedBody.scrollTop = event.target.scrollTop;
+                this.$refs.fixedTableRight.$refs.fixedBody.scrollTop = event.target.scrollTop;
+            },
+            mouseScroll(event){
+                const deltaX = event.deltaX;
+                const body = this.$refs.body;
+
+                if (deltaX > 0) {
+                    body.scrollLeft = body.scrollLeft + 10;
+                } else {
+                    body.scrollLeft = body.scrollLeft - 10;
+                }
             }
         },
         watch: {

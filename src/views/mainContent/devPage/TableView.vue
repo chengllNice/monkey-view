@@ -1,6 +1,21 @@
 <template>
     <div class="TableView">
-        <p>基础</p>
+        <p>基础--无数据</p>
+
+        <ClTable :columns="columnsBase"
+                 :data="dataBaseEmpty"
+                 stripe
+                 @select="selectChange"
+                 @select-all="selectAllChange"
+                 @cancel-select-all="cancelSelectAllChange"
+                 @cancel-select="cancelSelectChange"
+                 @selection-change="selectionChange">
+            <template slot="operation" slot-scope="data">
+                <cl-button type="danger" size="mini" @click="delClick(data)">DEL</cl-button>
+            </template>
+        </ClTable>
+
+        <h4>基础</h4>
         <ClTable :columns="columnsBase"
                  :data="dataBase"
                  stripe
@@ -23,7 +38,12 @@
         name: "TableView",
         data() {
             return {
+                dataBaseEmpty: [],
                 columnsBase: [
+                    {
+                        type: 'index',
+                        width: 60,
+                    },
                     {
                         type: 'selection',
                         width: 60,
@@ -35,6 +55,7 @@
                         align: 'right',
                         fixed: 'left',
                         width: 200,
+                        sortOrder: true,
                     },
                     {
                         key: 'name',
@@ -73,6 +94,7 @@
                         key: 'operation',
                         title: 'operation',
                         slot: 'operation',
+                        fixed: 'right',
                         width: 100
                     }
                 ],

@@ -60,10 +60,7 @@
   }
 
   @include m(border){
-    table{
-      border-top: $--border-default;
-      border-left: $--border-default;
-    }
+    border: $--border-default;
     .cl-table__head table, .cl-table-fixed__head table{
       border-bottom: none;
     }
@@ -75,12 +72,20 @@
       border-bottom: $--border-default;
     }
   }
+
+  @include e(body-empty){
+    td{
+      text-align: center;
+    }
+  }
 }
 
 @include c(table-fixed){
   position: absolute;
   top: 0;
-  overflow: hidden;
+  @include e(content){
+    overflow: hidden;
+  }
   @include m(left){
     left: 0;
     z-index: 2;
@@ -94,6 +99,11 @@
 
   @include e(body){
     overflow: hidden;
+  }
+  @include e(right-col){
+    position: absolute;
+    top: 0;
+    background-color: $--table-head-th-background-color;
   }
 }
 

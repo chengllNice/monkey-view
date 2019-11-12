@@ -1,5 +1,5 @@
 <template>
-    <table cellspacing="0" cellpadding="0" border="0" :style="tableBodyStyle">
+    <table v-if="data && data.length" cellspacing="0" cellpadding="0" border="0" :style="tableBodyStyle">
         <colgroup>
             <col v-for="column in colgroupColumns" :key="column.__id" :width="setColWidth(column)">
         </colgroup>
@@ -18,6 +18,16 @@
                     </td>
                 </cl-table-tr>
             </template>
+        </tbody>
+    </table>
+    <table v-else cellspacing="0" cellpadding="0" border="0" :style="tableBodyStyle">
+        <tbody>
+            <tr>
+                <td :class="[
+                        fixed && 'is-hidden'
+                    ]"
+                    :colspan="colgroupColumns.length">暂无数据</td>
+            </tr>
         </tbody>
     </table>
 </template>
@@ -69,7 +79,6 @@
         },
         methods: {
             trMouseEnter(__id){
-                console.log('====dddd', __id);
                 this.tableRoot.setCloneDataDefaultProps({
                     __isHover: true
                 }, [__id])
