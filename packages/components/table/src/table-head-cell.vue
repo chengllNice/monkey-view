@@ -14,6 +14,7 @@
         </template>
         <template v-if="renderType === 'normal'">
             {{column.title}}
+            <span><i class="cl-icon-caretup"></i><i class="cl-icon-caretdown"></i></span>
         </template>
     </div>
 </template>
