@@ -42,10 +42,12 @@
                 columnsBase: [
                     {
                         type: 'index',
+                        key: 'index',
                         width: 60,
                     },
                     {
                         type: 'selection',
+                        key: 'selection',
                         width: 60,
                         align: 'center'
                     },
@@ -61,6 +63,7 @@
                         key: 'name',
                         title: 'name',
                         width: 300,
+                        sortOrder: 'descend'
                         // tooltip: true,
                     },
                     {

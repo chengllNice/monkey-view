@@ -15,7 +15,6 @@
             </div>
             <div class="cl-table__body"
                  :class="[
-                    showHorizontalScrollBar && 'cl-table__body-overflowX',
                     (!cloneData || !cloneData.length) && 'cl-table__body-empty'
                  ]"
                  ref="body"
@@ -103,7 +102,8 @@
             return {
                 commonColumns: [],
                 columnRows: [],
-                cloneData: deepClone(this.data),
+                cloneData: [],
+                commonData: [],
                 statusData: {},//状态数据map 包括checked hover 等状态
                 columnsWidth: {},
                 observer: null,
@@ -226,6 +226,7 @@
                     }
                 });
                 this.cloneData = cloneData;
+                this.commonData = deepClone(cloneData);
             },
             // 设置列宽度及table宽度
             handleResize(){
@@ -316,7 +317,7 @@
                         width: width
                     }
                 }
-                // console.log(usableWidth,'usableWidth',JSON.parse(JSON.stringify(columsWidths)))
+
 
                 // 如果还有剩余的宽度给没有设置width和maxWidth的列分配
                 if(usableWidth > 0){
@@ -326,12 +327,19 @@
                         let colums = noMaxWidthAndWidthColumns[i];
                         let width = colums.__width + avgColumnsWidth;
 
-                        if(usableLength > 1){
-                            usableLength--;
-                            usableWidth -= avgColumnsWidth;
-                        }else{
-                            usableWidth = 0;
+                        colums.__width = width;
+                        columsWidths[colums.__id] = {
+                            width: width
                         }
+                    }
+                }
+
+                if(usableWidth > 0){
+                    usableLength = this.bodyCloneColumns.length;
+                    if(usableLength > 0) avgColumnsWidth = parseInt(usableWidth / usableLength);
+                    for (let i = 0; i < usableLength; i++){
+                        let colums = this.bodyCloneColumns[i];
+                        let width = colums.__width + avgColumnsWidth;
 
                         colums.__width = width;
                         columsWidths[colums.__id] = {
@@ -339,6 +347,7 @@
                         }
                     }
                 }
+
                 this.tableWidth = this.bodyCloneColumns.map(col => col.__width).reduce((a, b) => a + b, 0);
                 this.columnsWidth = columsWidths;
                 this.fixedHead();
@@ -409,15 +418,23 @@
                 commonColumns.forEach(item=>{
                     if(item.__id === __id){
                         item.__sortOrder = type;
+                    }else if(item.__sortOrder){
+                        item.__sortOrder = true;//把其他排序清除
                     }
                 });
-                this.cloneData.sort((a, b)=>{
-                    if(type === 'ascend'){
-                        return a[key] > b[key] ? 1 : -1;
-                    }else{
-                        return a[key] < b[key] ? 1 : -1;
-                    }
-                });
+                if(type === 'ascend' || type === 'descend'){
+                    let cloneData = deepClone(this.cloneData);
+                    cloneData.sort((a, b)=>{
+                        if(type === 'ascend'){
+                            return a[key] > b[key] ? 1 : -1;
+                        }else if(type === 'descend'){
+                            return a[key] < b[key] ? 1 : -1;
+                        }
+                    });
+                    this.cloneData = cloneData;
+                }else{
+                    this.cloneData = deepClone(this.commonData);
+                }
                 this.commonColumns = commonColumns;
             }
         },
@@ -425,6 +442,7 @@
             data: {
                 handler(newVal){
                     this.cloneData = deepClone(newVal);
+                    this.commonData = deepClone(newVal);
                     this.setCloneDataDefaultProps();
                     this.$nextTick(()=>{
                         this.handleResize();

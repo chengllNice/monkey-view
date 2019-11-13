@@ -1,5 +1,5 @@
 <template>
-    <table cellspacing="0" cellpadding="0" border="0" :style="tableHeadStyle">
+    <table cellspacing="0" cellpadding="0" border="0" class="cl-table-head" :style="tableHeadStyle">
         <colgroup>
             <col v-for="column in colgroupColumns" :key="column.__id" :width="setColWidth(column)">
             <col v-if="$parent.showVerticalScrollBar" :width="$parent.scrollBarWidth">
@@ -10,10 +10,12 @@
                     <th v-for="column in row"
                         :key="column.__id"
                         :class="[
-                            fixed && column.fixed !== fixed && 'is-hidden'
+                            fixed && column.fixed !== fixed && 'is-hidden',
+                            column.__sortOrder && 'cl-table-head__sort'
                         ]"
                         :rowspan="column.rowSpan"
-                        :colspan="column.colSpan">
+                        :colspan="column.colSpan"
+                        @click.stop="sortHandle(column)">
                         <cl-table-head-cell :column="column"></cl-table-head-cell>
                     </th>
                     <th v-if="$parent.showVerticalScrollBar" :rowspan="columns.length"></th>
@@ -33,6 +35,7 @@
     export default {
         name: "ClTableHead",
         mixins: [tableMixins],
+        inject: ['tableRoot'],
         props: {
             data: {
                 type: Array,
@@ -71,6 +74,19 @@
         },
         mounted() {
         },
-        methods: {}
+        methods: {
+            sortHandle(column){
+                if(!column.__sortOrder) return;
+                let type = true;
+                if(column.__sortOrder === 'ascend'){
+                    type = 'descend';
+                }else if(column.__sortOrder === 'descend'){
+                    type = true;
+                }else{
+                    type = 'ascend';
+                }
+                this.tableRoot.sortHandle(column, type);
+            }
+        }
     }
 </script>

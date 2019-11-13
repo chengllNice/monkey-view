@@ -72,8 +72,12 @@
             fixedBodyWrapStyle(){
                 let style = {};
                 if(this.bodyWrapStyle && this.bodyWrapStyle.height) {
+                    let height = 0;
+                    if(this.$parent.showHorizontalScrollBar){
+                        height = getScrollBarWidth();
+                    }
                     style = {
-                        height: parseInt(this.bodyWrapStyle.height) - getScrollBarWidth() + 'px'
+                        height: parseInt(this.bodyWrapStyle.height) - height + 'px'
                     }
                 }
                 return style

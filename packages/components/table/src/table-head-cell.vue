@@ -32,7 +32,8 @@
         inject: ['tableRoot'],
         data() {
             return {
-                renderType: 'normal'
+                renderType: 'normal',
+                isDefaultSort: null,//初始化时默认的排序方式
             }
         },
         computed: {},
@@ -66,7 +67,27 @@
                 this.tableRoot.allCheckboxChange(this.column, value);
             },
             sortHandle(type){
+                if(!['ascend', 'descend'].includes(type)) return;
                 this.tableRoot.sortHandle(this.column, type);
+            }
+        },
+        watch: {
+            column: {
+                handler(newVal){
+                    if(this.isDefaultSort === null && newVal.__sortOrder){
+                        this.isDefaultSort = newVal.__sortOrder;
+                    }
+                },
+                deep: true,
+                immediate: true,
+            },
+            isDefaultSort: {
+                handler(newVal){
+                    this.$nextTick(()=>{
+                        this.sortHandle(newVal);
+                    });
+                },
+                immediate: true
             }
         }
     }

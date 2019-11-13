@@ -12,6 +12,7 @@
     box-sizing: border-box;
     text-align: left;
     overflow: hidden;
+    transition: background-color $--animation-time;
     border-bottom: $--table-head-th-border;
     min-width: 0;
     background-color: $--color-white;
@@ -26,7 +27,6 @@
   }
   td{
     @include utils-ellipsis();
-    transition: background-color $--animation-time;
   }
 
   @include e(wrap){
@@ -46,6 +46,7 @@
   }
   @include e(body){
     width: 100%;
+    overflow: auto;
     table{
       border-bottom-left-radius: $--border-radius-default;
       border-bottom-right-radius: $--border-radius-default;
@@ -104,6 +105,15 @@
     position: absolute;
     top: 0;
     background-color: $--table-head-th-background-color;
+  }
+}
+
+@include c(table-head){
+  @include e(sort){
+    cursor: pointer;
+    &:hover{
+      background-color: mix($--color-black, $--table-head-th-background-color, 10%);
+    }
   }
 }
 
