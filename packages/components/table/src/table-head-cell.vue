@@ -14,7 +14,8 @@
         </template>
         <template v-if="renderType === 'normal'">
             {{column.title}}
-            <span v-if="column.sortOrder" class="cl-table-head-cell__sort">
+            <span v-if="column.sortOrder && sortOrderType.includes(column.sortOrder)"
+                  class="cl-table-head-cell__sort">
                 <i class="cl-icon-caretup" :class="[column.__sortOrder === 'ascend' && 'cl-table-head-cell__sort-active']" @click.stop="sortHandle('ascend')"></i>
                 <i class="cl-icon-caretdown" :class="[column.__sortOrder === 'descend' && 'cl-table-head-cell__sort-active']" @click.stop="sortHandle('descend')"></i>
             </span>
@@ -28,6 +29,7 @@
         name: "ClTableHeadCell",
         props: {
             column: Object,
+            sortOrderType: Array
         },
         inject: ['tableRoot'],
         data() {
@@ -67,8 +69,9 @@
                 this.tableRoot.allCheckboxChange(this.column, value);
             },
             sortHandle(type){
-                if(!['ascend', 'descend'].includes(type)) return;
-                this.tableRoot.sortHandle(this.column, type);
+                if(this.column.sortOrder && this.column.sortOrder !== 'remote'){
+                    this.tableRoot.sortHandle(this.column, type);
+                }
             }
         },
         watch: {
@@ -84,7 +87,7 @@
             isDefaultSort: {
                 handler(newVal){
                     this.$nextTick(()=>{
-                        this.sortHandle(newVal);
+                        newVal !== true && this.sortHandle(newVal);
                     });
                 },
                 immediate: true

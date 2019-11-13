@@ -76,6 +76,7 @@
                         key: 'grade',
                         title: 'grade',
                         width: 300,
+                        sortOrder: 'remote'
                     },
                     {
                         key: 'company',

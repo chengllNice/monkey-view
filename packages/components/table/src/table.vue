@@ -411,9 +411,9 @@
                     body.scrollLeft = body.scrollLeft - 10;
                 }
             },
-            sortHandle(columns, type){
-                const key = columns.key;
-                const __id = columns.__id;
+            sortHandle(column, type){
+                const key = column.key;
+                const __id = column.__id;
                 let commonColumns = deepClone(this.commonColumns);
                 commonColumns.forEach(item=>{
                     if(item.__id === __id){
@@ -422,20 +422,23 @@
                         item.__sortOrder = true;//把其他排序清除
                     }
                 });
-                if(type === 'ascend' || type === 'descend'){
-                    let cloneData = deepClone(this.cloneData);
-                    cloneData.sort((a, b)=>{
-                        if(type === 'ascend'){
-                            return a[key] > b[key] ? 1 : -1;
-                        }else if(type === 'descend'){
-                            return a[key] < b[key] ? 1 : -1;
-                        }
-                    });
-                    this.cloneData = cloneData;
-                }else{
-                    this.cloneData = deepClone(this.commonData);
+                if(type !== 'remote'){
+                    if(type === 'ascend' || type === 'descend'){
+                        let cloneData = deepClone(this.cloneData);
+                        cloneData.sort((a, b)=>{
+                            if(type === 'ascend'){
+                                return a[key] > b[key] ? 1 : -1;
+                            }else if(type === 'descend'){
+                                return a[key] < b[key] ? 1 : -1;
+                            }
+                        });
+                        this.cloneData = cloneData;
+                    }else{
+                        this.cloneData = deepClone(this.commonData);
+                    }
                 }
                 this.commonColumns = commonColumns;
+                this.$emit('sort-change', column, type);
             }
         },
         watch: {
