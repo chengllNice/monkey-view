@@ -414,6 +414,7 @@
             sortHandle(column, type){
                 const key = column.key;
                 const __id = column.__id;
+                const sortOrder = column.sortOrder;
                 let commonColumns = deepClone(this.commonColumns);
                 commonColumns.forEach(item=>{
                     if(item.__id === __id){
@@ -422,7 +423,7 @@
                         item.__sortOrder = true;//把其他排序清除
                     }
                 });
-                if(type !== 'remote'){
+                if(type !== 'remote' && sortOrder !== 'remote'){
                     if(type === 'ascend' || type === 'descend'){
                         let cloneData = deepClone(this.cloneData);
                         cloneData.sort((a, b)=>{

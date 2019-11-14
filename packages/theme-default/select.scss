@@ -10,10 +10,6 @@
     width: 100%;
     box-sizing: border-box;
     overflow: hidden;
-    border: $--border-default;
-    border-radius: $--border-radius-default;
-    box-shadow: $--box-shadow-default;
-    background-color: $--color-white;
   }
 
   @include e(reference){
@@ -258,8 +254,13 @@
   display: inline-block;
   padding: 5px 0;
   box-sizing: border-box;
+  overflow: hidden;
   z-index: $--popover-z-index;
   width: inherit;
+  border: $--border-default;
+  border-radius: $--border-radius-default;
+  box-shadow: $--box-shadow-default;
+  background-color: $--color-white;
 }
 
 @include c(option){

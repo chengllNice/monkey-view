@@ -138,6 +138,7 @@
   white-space: normal;
   word-break: break-all;
   overflow: hidden;
+  display: inline-block;
 
   @include m(ellipsis){
     @include utils-ellipsis;

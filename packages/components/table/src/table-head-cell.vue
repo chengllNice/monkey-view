@@ -14,10 +14,26 @@
         </template>
         <template v-if="renderType === 'normal'">
             {{column.title}}
+            <!--排序-->
             <span v-if="column.sortOrder && sortOrderType.includes(column.sortOrder)"
                   class="cl-table-head-cell__sort">
                 <i class="cl-icon-caretup" :class="[column.__sortOrder === 'ascend' && 'cl-table-head-cell__sort-active']" @click.stop="sortHandle('ascend')"></i>
                 <i class="cl-icon-caretdown" :class="[column.__sortOrder === 'descend' && 'cl-table-head-cell__sort-active']" @click.stop="sortHandle('descend')"></i>
+            </span>
+
+            <!--过滤-->
+            <span v-if="column.filters" class="cl-table-head-cell__filter">
+                <i class="cl-icon-filter-solid" ref="reference" @click.stop="filterShow"></i>
+                <DropDown v-show="visible"
+                          ref="dropDown"
+                          :reference="this.$refs.reference"
+                          :dropdownMatchSelectWidth="false"
+                          placement="bottom"
+                          v-model="visible">
+                    <cl-list size="mini" :split="false">
+                        <cl-list-item v-for="item in column.filters" :key="item.value">{{item.label}}</cl-list-item>
+                    </cl-list>
+                </DropDown>
             </span>
         </template>
     </div>
@@ -25,6 +41,9 @@
 
 <script>
     import ClCheckbox from '../../checkbox/src/checkbox'
+    import DropDown from '../../select/src/drop-down.vue'
+    import ClList from '../../list/src/list.vue'
+    import ClListItem from '../../list/src/list-item.vue'
     export default {
         name: "ClTableHeadCell",
         props: {
@@ -36,11 +55,15 @@
             return {
                 renderType: 'normal',
                 isDefaultSort: null,//初始化时默认的排序方式
+                visible: false,
             }
         },
         computed: {},
         components: {
-            ClCheckbox
+            ClCheckbox,
+            DropDown,
+            ClList,
+            ClListItem
         },
         created() {
         },
@@ -69,9 +92,10 @@
                 this.tableRoot.allCheckboxChange(this.column, value);
             },
             sortHandle(type){
-                if(this.column.sortOrder && this.column.sortOrder !== 'remote'){
-                    this.tableRoot.sortHandle(this.column, type);
-                }
+                this.tableRoot.sortHandle(this.column, type);
+            },
+            filterShow(){
+                this.visible = !this.visible;
             }
         },
         watch: {
@@ -87,7 +111,7 @@
             isDefaultSort: {
                 handler(newVal){
                     this.$nextTick(()=>{
-                        newVal !== true && this.sortHandle(newVal);
+                        newVal && newVal !== true && newVal !== 'remote' && this.sortHandle(newVal);
                     });
                 },
                 immediate: true

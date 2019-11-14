@@ -63,8 +63,27 @@
                         key: 'name',
                         title: 'name',
                         width: 300,
-                        sortOrder: 'descend'
+                        // sortOrder: 'descend'
                         // tooltip: true,
+                        filters: [
+                            {
+                                label: 'name0',
+                                value: '0'
+                            },
+                            {
+                                label: 'name1',
+                                value: '1'
+                            },
+                            {
+                                label: 'name1',
+                                value: '2'
+                            },
+                            {
+                                label: 'name3',
+                                value: '3'
+                            }
+                        ],
+                        filterMultiple: false,
                     },
                     {
                         key: 'age',
