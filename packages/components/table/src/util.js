@@ -97,9 +97,8 @@ export const setCloneColumnsDefaultProps = (cols) => {
     let columns = deepClone(getAllColumns(cols));
 
     columns.forEach((column, index)=>{
-        column.defaultStatusProps = column.defaultStatusProps || {};
-        column.defaultStatusProps.isChecked = column.defaultStatusProps.isChecked || false;
-        column.defaultStatusProps.isDisabled = column.defaultStatusProps.isDisabled || false;
+        column.__isChecked = column.isChecked || false;//全选的状态
+        column.__isDisabled = column.isDisabled || false;//全选的状态
 
         let columnsWidth = column.width ? parseFloat(column.width) : '';
         let columnsMinWidth = column.minWidth ? parseFloat(column.minWidth) : '';
@@ -107,6 +106,8 @@ export const setCloneColumnsDefaultProps = (cols) => {
         column.__index = index;
         column.__width = Math.max(columnsWidth, columnsMinWidth);
         column.__sortOrder = column.sortOrder || false;
+        column.__filterCheckedValues = [];//筛选项的value值，数组类型
+        column.__isFilterChecked = false;//是否确认筛选
     });
 
     return columns;
@@ -156,4 +157,31 @@ export const fixedIds = (columns, fixedType) => {
         }
     });
     return ids;
+};
+
+
+export const emitDataFormat = (data) => {
+    let type = data instanceof Array ? 'array' : (data instanceof Object ? 'object' : '');
+    if(!type) return;
+    let result = type === 'array' ? [] : {};
+    if(type === 'array'){
+        data.forEach(item=>{
+            if(item instanceof Object){
+                let obj = {};
+                Object.keys(item).forEach(key=>{
+                    if(typeof key === 'string' && !key.includes('__')){
+                        obj[key] = item[key]
+                    }
+                });
+                result.push(obj);
+            }
+        });
+    }else{
+        Object.keys(data).forEach(key=>{
+            if(typeof key === 'string' && !key.includes('__')){
+                result[key] = data[key]
+            }
+        });
+    }
+    return result;
 };

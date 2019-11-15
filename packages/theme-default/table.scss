@@ -170,27 +170,74 @@
 }
 
 @include c(table-head-cell){
-  @include e(sort){
+  @include e(icon){
     display: inline-block;
     vertical-align: middle;
     i{
       display: block;
       font-size: 12px;
-      transform: scale(0.6);
       cursor: pointer;
       color: $--color-text-placeholder;
+      &:hover{
+        color: $--color-primary;
+      }
+    }
+    i.cl-table-head-cell__icon-active{
+      color: $--color-primary;
+    }
+  }
 
+  @include e(sort){
+    i{
+      transform: scale(0.6);
       &:nth-of-type(1){
         transform-origin: bottom;
       }
       &:nth-of-type(2){
         transform-origin: top;
       }
-      &:hover{
-        color: $--color-primary;
-      }
     }
-    i.cl-table-head-cell__sort-active{
+  }
+
+  @include e(filter){
+
+  }
+
+  @include e(filter-list){
+    border: $--border-default;
+    border-radius: $--border-radius-default;
+    box-shadow: $--box-shadow-default;
+    background-color: $--color-white;
+    font-weight: normal;
+  }
+
+  @include e(filter-footer){
+    padding: 7px 16px;
+    border-top: $--border-default;
+    &>:nth-last-child(1){
+      float: right;
+      margin-left: 10px;
+    }
+  }
+
+  @include e(filter-item){
+    display: block;
+    width: 100%;
+    padding: 7px 16px;
+    position: relative;
+    box-sizing: border-box;
+    text-align: left;
+    cursor: pointer;
+    line-height: normal;
+    font-size: $--font-size-default;
+    color: $--color-text-default;
+    transition: all $--animation-time;
+    background-color: $--color-white;
+    &:hover{
+      background-color: $--backgorund-color-hover;
+    }
+    &.cl-table-head-cell__filter-item-active{
+      background-color: $--backgorund-color-hover;
       color: $--color-primary;
     }
   }

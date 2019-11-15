@@ -103,7 +103,7 @@
   @include m(light){
     border-right: 1px solid #dcdee2;
     border-bottom: none;
-    @include theme($--menu-theme-light-background-color, $--menu-theme-light-font-color, $--menu-theme-light-active-background-color, $--color-primary, $--menu-theme-light-group-title-font-color)
+    @include theme($--menu-theme-light-background-color, $--menu-theme-light-font-color, $--backgorund-color-hover, $--color-primary, $--menu-theme-light-group-title-font-color)
   }
   @include m(dark){
     @include theme($--menu-theme-dark-background-color, $--menu-theme-dark-font-color, $--menu-theme-dark-active-background-color, $--color-white, $--menu-theme-dark-group-title-font-color)
@@ -137,7 +137,7 @@
       border-bottom: 1px solid #dcdee2;
       border-right: none;
       background-color: $--menu-theme-light-background-color;
-      @include theme-horizontal($--menu-theme-light-background-color, $--menu-theme-light-font-color, $--menu-theme-light-active-background-color,$--menu-theme-light-horizontal-border-color, $--menu-theme-light-group-title-font-color,$--color-primary)
+      @include theme-horizontal($--menu-theme-light-background-color, $--menu-theme-light-font-color, $--backgorund-color-hover,$--menu-theme-light-horizontal-border-color, $--menu-theme-light-group-title-font-color,$--color-primary)
     }
     &.cl-menu--dark{
       .cl-submenu__drop-inner{

@@ -49,6 +49,7 @@ $--border-color-info: #13c2c2 !default;
 
 $--background-color-base: #f5f7fa !default;
 $--background-color-disabled: #c5c8ce !default;
+$--backgorund-color-hover: mix($--color-white, $--color-primary, 90%) !default;
 
 
 /*-----border-----*/
@@ -147,7 +148,7 @@ $--menu-item-padding-vertical-large: 30px !default;
 
 $--menu-theme-light-background-color: $--color-white;
 $--menu-theme-light-children-background-color: $--color-white;
-$--menu-theme-light-active-background-color: mix($--color-white, $--color-primary, 90%) !default;
+$--menu-theme-light-active-background-color: $--backgorund-color-hover !default;
 $--menu-theme-light-active-border-color: mix($--color-white, $--color-primary, 80%) !default;
 $--menu-theme-light-font-color: $--color-text-default !default;
 $--menu-theme-light-horizontal-border-color: $--border-color-primary !default;
@@ -289,7 +290,6 @@ $--switch-background-color-checked: $--color-primary !default;
 $--select-option-text-color: $--color-text-default !default;
 $--select-option-padding-right-mutiple: 36px !default;
 $--select-option-font-size: $--font-size-default !default;
-$--select-option-background-color-hover: $--background-color-base !default;
 $--select-drop-down-max-height: 200px !default;
 
 

@@ -17,8 +17,8 @@
         </template>
         <template v-if="renderType === 'selection'">
             <cl-checkbox class="cl-table-cell__checkbox"
-                         v-model="row.defaultStatusProps.isChecked"
-                         :disabled="row.defaultStatusProps.isDisabled"
+                         v-model="row.__isChecked"
+                         :disabled="row.__isDisabled"
                          @change="checkboxChange"></cl-checkbox>
         </template>
         <template v-if="renderType === 'index'">

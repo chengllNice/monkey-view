@@ -42,7 +42,7 @@
             renderHtml: {
                 type: [HTMLElement, Boolean],
                 default: function () {
-                    return document.body
+                    return false
                 }
             }
         },

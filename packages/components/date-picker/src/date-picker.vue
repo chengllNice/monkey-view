@@ -75,7 +75,7 @@
             renderHtml: {
                 type: [HTMLElement, Boolean],
                 default: function () {
-                    return true
+                    return false
                 }
             }
         },

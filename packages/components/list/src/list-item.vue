@@ -7,7 +7,7 @@
         currentType === 'meta' && `cl-list-item--meta`,
         parentListRowComponent && `cl-list-item--row`,
     ]"
-         :style="itemStyle">
+         :style="itemStyle" @click="clickHandle">
         <div class="cl-list-item__row" v-if="parentListRowComponent">
             <div class="cl-list-item__label" :style="labelStyle"><slot name="label">{{label}}</slot></div>
             <div class="cl-list-item__value"><slot name="value">{{value}}</slot></div>
@@ -93,6 +93,10 @@
                 }
             })
         },
-        methods: {}
+        methods: {
+            clickHandle(){
+                this.$emit('click')
+            }
+        }
     }
 </script>

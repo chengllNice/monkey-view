@@ -1,20 +1,16 @@
 
 export default {
-    name: 'ClTableSlot',
+    name: 'ClTableSlotHead',
     functional: true,
     inject: ['tableRoot'],
     props: {
         column: Object,
-        __id: String,
-        row: Object
     },
     render(h, context){
-        const r = context.injections.tableRoot.$scopedSlots[context.props.column.slot];
+        const r = context.injections.tableRoot.$scopedSlots[context.props.column.slotHead];
         if(r){
             return h('div', r({
-                row: context.props.row,
                 column: context.props.column,
-                __id: context.props.__id
             }));
         }
         return null;

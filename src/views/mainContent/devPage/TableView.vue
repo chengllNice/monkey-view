@@ -19,7 +19,7 @@
         <ClTable :columns="columnsBase"
                  :data="dataBase"
                  stripe
-                 height="400px"
+                 @filter-change="filterChange"
                  @select="selectChange"
                  @select-all="selectAllChange"
                  @cancel-select-all="cancelSelectAllChange"
@@ -27,6 +27,9 @@
                  @selection-change="selectionChange">
             <template slot="operation" slot-scope="data">
                 <cl-button type="danger" size="mini" @click="delClick(data)">DEL</cl-button>
+            </template>
+            <template slot="operationHead" slot-scope="data">
+                {{data.column.title}}
             </template>
         </ClTable>
 
@@ -58,6 +61,7 @@
                         fixed: 'left',
                         width: 200,
                         sortOrder: true,
+                        className: 'aa'
                     },
                     {
                         key: 'name',
@@ -83,13 +87,32 @@
                                 value: '3'
                             }
                         ],
-                        filterMultiple: false,
+                        filterMultiple: true,
+                        sortOrder: true,
                     },
                     {
                         key: 'age',
                         title: 'age',
                         width: 300,
-                        hide: true,
+                        // hide: true,
+                        filters: [
+                            {
+                                label: 'age0',
+                                value: '0'
+                            },
+                            {
+                                label: 'age1',
+                                value: '1'
+                            },
+                            {
+                                label: 'age1',
+                                value: '2'
+                            },
+                            {
+                                label: 'age3',
+                                value: '3'
+                            }
+                        ],
                     },
                     {
                         key: 'grade',
@@ -117,6 +140,7 @@
                         key: 'operation',
                         title: 'operation',
                         slot: 'operation',
+                        slotHead: 'operationHead',
                         fixed: 'right',
                         width: 100
                     }
@@ -142,6 +166,7 @@
                       grade1: 'grade1-children1' + i,
                       grade2: 'grade1-children2' + i,
                       grade3: 'grade1-children3' + i,
+                      isChecked: i === 1,
                   })
               }
             },
@@ -162,6 +187,9 @@
             },
             delClick(data){
                 console.log(data,'ddd')
+            },
+            filterChange(column, filterItem, allFilterColumns){
+                console.log(column,filterItem, allFilterColumns, 'filterChange')
             }
         }
     }

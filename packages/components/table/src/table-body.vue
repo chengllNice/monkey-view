@@ -13,6 +13,7 @@
                         :key="column.__id"
                         :class="[
                             fixed && column.fixed !== fixed && 'is-hidden',
+                            column.className && `${column.className}`
                         ]">
                         <cl-table-cell :row="row" :column="column"></cl-table-cell>
                     </td>

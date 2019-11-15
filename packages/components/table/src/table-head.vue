@@ -11,11 +11,12 @@
                         :key="column.__id"
                         :class="[
                             fixed && column.fixed !== fixed && 'is-hidden',
-                            sortOrderType.includes(column.__sortOrder) && column.__sortOrder && 'cl-table-head__sort'
+                            sortOrderType.includes(column.__sortOrder) && column.__sortOrder && 'cl-table-head__sort',
+                            column.className && `${column.className}`
                         ]"
                         :rowspan="column.rowSpan"
                         :colspan="column.colSpan"
-                        @click.stop="sortHandle(column)">
+                        @click.self="sortHandle(column)">
                         <cl-table-head-cell :column="column" :sortOrderType="sortOrderType"></cl-table-head-cell>
                     </th>
                     <th v-if="$parent.showVerticalScrollBar" :rowspan="columns.length"></th>

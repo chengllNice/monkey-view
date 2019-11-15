@@ -5,34 +5,64 @@
          ]">
         <template v-if="renderType === 'selection'">
             <cl-checkbox class="cl-table-cell__checkbox"
-                         v-model="column.defaultStatusProps.isChecked"
-                         :disabled="column.defaultStatusProps.isDisabled"
+                         v-model="column.__isChecked"
+                         :disabled="column.__isDisabled"
                          @change="checkboxChange"></cl-checkbox>
         </template>
         <template v-if="renderType === 'index'">
             #
         </template>
         <template v-if="renderType === 'normal'">
-            {{column.title}}
+            <table-slot-head v-if="column.slotHead" :column="column"></table-slot-head>
+            <template v-else>{{column.title}}</template>
             <!--排序-->
             <span v-if="column.sortOrder && sortOrderType.includes(column.sortOrder)"
-                  class="cl-table-head-cell__sort">
-                <i class="cl-icon-caretup" :class="[column.__sortOrder === 'ascend' && 'cl-table-head-cell__sort-active']" @click.stop="sortHandle('ascend')"></i>
-                <i class="cl-icon-caretdown" :class="[column.__sortOrder === 'descend' && 'cl-table-head-cell__sort-active']" @click.stop="sortHandle('descend')"></i>
+                  class="cl-table-head-cell__icon cl-table-head-cell__sort">
+                <i class="cl-icon-caretup" :class="[column.__sortOrder === 'ascend' && 'cl-table-head-cell__icon-active']" @click.self="sortHandle('ascend')"></i>
+                <i class="cl-icon-caretdown" :class="[column.__sortOrder === 'descend' && 'cl-table-head-cell__icon-active']" @click.self="sortHandle('descend')"></i>
             </span>
 
             <!--过滤-->
-            <span v-if="column.filters" class="cl-table-head-cell__filter">
-                <i class="cl-icon-filter-solid" ref="reference" @click.stop="filterShow"></i>
+            <span v-if="column.filters && Array.isArray(column.filters)"
+                  class="cl-table-head-cell__icon cl-table-head-cell__filter"
+                  v-click-outside.capture="handleClickOutside">
+                <i class="cl-icon-filter-solid"
+                   :class="[
+                        column.__isFilterChecked && 'cl-table-head-cell__icon-active'
+                   ]"
+                   ref="reference"
+                   @click.stop="filterShow"></i>
                 <DropDown v-show="visible"
                           ref="dropDown"
                           :reference="this.$refs.reference"
                           :dropdownMatchSelectWidth="false"
                           placement="bottom"
                           v-model="visible">
-                    <cl-list size="mini" :split="false">
-                        <cl-list-item v-for="item in column.filters" :key="item.value">{{item.label}}</cl-list-item>
-                    </cl-list>
+                    <div v-if="!column.filterMultiple" class="cl-table-head-cell__filter-list">
+                        <div class="cl-table-head-cell__filter-item"
+                                      :class="[!column.__filterCheckedValues.length && 'cl-table-head-cell__filter-item-active']"
+                                      @click.self="filterHandle()">全部</div>
+                        <div class="cl-table-head-cell__filter-item"
+                                      :class="[column.__filterCheckedValues.includes(item.value) && 'cl-table-head-cell__filter-item-active']"
+                                      v-for="item in column.filters"
+                                      :key="item.value"
+                                      @click.self="filterHandle(item)">{{item.label}}</div>
+                    </div>
+
+                    <div v-else-if="column.filterMultiple" class="cl-table-head-cell__filter-list">
+                        <cl-checkbox-group v-model="filterMultipleValue">
+                            <div class="cl-table-head-cell__filter-item"
+                                 :class="[column.__filterCheckedValues.includes(item.value) && 'cl-table-head-cell__filter-item-active']"
+                                 v-for="item in column.filters"
+                                 :key="item.value">
+                                    <cl-checkbox :label="item.value">{{item.label}}</cl-checkbox>
+                            </div>
+                        </cl-checkbox-group>
+                        <div class="cl-table-head-cell__filter-footer">
+                            <cl-button size="mini" type="primary" @click="filterMultiple">筛选</cl-button>
+                            <cl-button size="mini" @click="resetFilterMultiple">重置</cl-button>
+                        </div>
+                    </div>
                 </DropDown>
             </span>
         </template>
@@ -41,11 +71,14 @@
 
 <script>
     import ClCheckbox from '../../checkbox/src/checkbox'
+    import ClCheckboxGroup from '../../checkbox/src/checkbox-group'
+    import ClButton from '../../button/src/button'
     import DropDown from '../../select/src/drop-down.vue'
-    import ClList from '../../list/src/list.vue'
-    import ClListItem from '../../list/src/list-item.vue'
+    import tableSlotHead from './table-slot-head'
+    import {directive as clickOutside} from 'v-click-outside-x';
     export default {
         name: "ClTableHeadCell",
+        directives: {clickOutside},
         props: {
             column: Object,
             sortOrderType: Array
@@ -56,14 +89,16 @@
                 renderType: 'normal',
                 isDefaultSort: null,//初始化时默认的排序方式
                 visible: false,
+                filterMultipleValue: [],
             }
         },
         computed: {},
         components: {
             ClCheckbox,
+            ClCheckboxGroup,
+            ClButton,
             DropDown,
-            ClList,
-            ClListItem
+            tableSlotHead
         },
         created() {
         },
@@ -72,11 +107,8 @@
         },
         methods: {
             setRenderType(){
-                let type = this.column.headSlot ? 'slot' : this.column.type;
+                let type = this.column.type;
                 switch (type) {
-                    case 'slot':
-                        this.renderType = 'slot';
-                        break;
                     case 'selection':
                         this.renderType = 'selection';
                         break;
@@ -96,6 +128,22 @@
             },
             filterShow(){
                 this.visible = !this.visible;
+            },
+            handleClickOutside(){
+                this.visible = false;
+            },
+            filterHandle(filterItem){
+                this.tableRoot.filterHandle('single', this.column, filterItem ? [filterItem.value] : []);
+                this.visible = false;
+            },
+            filterMultiple(){
+                this.tableRoot.filterHandle('multiple', this.column, this.filterMultipleValue);
+                this.visible = false;
+            },
+            resetFilterMultiple(){
+                this.filterMultipleValue = [];
+                this.tableRoot.filterHandle('multiple', this.column, []);
+                this.visible = false;
             }
         },
         watch: {
