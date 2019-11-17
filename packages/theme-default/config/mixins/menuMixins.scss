@@ -1,0 +1,140 @@
+@import "../../config/var";
+@import "../../config/mixins/index.scss";
+
+@mixin menuSize($size){
+  $font-size: $--font-size-default;
+  $height: $--menu-item-height-default;
+  $padding-vertical: $--menu-item-padding-vertical-default;
+
+  @if($size == 'mini'){
+    $font-size: $--font-size-mini;
+    $height: $--menu-item-height-mini;
+    $padding-vertical: $--menu-item-padding-vertical-mini;
+  }@else if($size == 'small'){
+    $font-size: $--font-size-small;
+    $height: $--menu-item-height-small;
+    $padding-vertical: $--menu-item-padding-vertical-small;
+  }@else if($size == 'large'){
+    $font-size: $--font-size-large;
+    $height: $--menu-item-height-large;
+    $padding-vertical: $--menu-item-padding-vertical-large;
+  }
+
+  font-size: $font-size;
+
+  .cl-menu-item, .cl-submenu__title, .cl-menu-group__title{
+    height: $height;
+    line-height: $height;
+  }
+  .cl-menu-item, .cl-menu-group__title{
+    padding-left: $padding-vertical;
+    padding-right: $padding-vertical;
+  }
+  .cl-submenu__title{
+    padding-left: $padding-vertical;
+    padding-right: #{$padding-vertical * 2};
+  }
+  .cl-submenu__title-slide-icon{
+    right: $padding-vertical;
+    font-size: #{$font-size - 2px};
+  }
+  .cl-menu-group .cl-menu-item{
+    padding-left: #{$padding-vertical + $padding-vertical / 2};
+    padding-right: #{$padding-vertical + $padding-vertical / 2};
+  }
+}
+
+@mixin theme($background-color, $font-color, $background-color-hover, $font-color-hover, $group-font-color){
+  background-color: $background-color;
+  color: $font-color;
+
+  a{
+    color: $font-color;
+  }
+  .cl-menu-group__title{
+    &, a{
+      color: $group-font-color;
+    }
+  }
+
+  .cl-menu-item, .cl-submenu .cl-submenu__title{
+    &, a{
+      color: $font-color;
+    }
+    &:hover{
+      background-color: $background-color-hover;
+      &, a{
+        color: $font-color-hover;
+      }
+    }
+  }
+  .cl-menu-item.is-active{
+    background-color: $background-color-hover;
+    &, a{
+      color: $font-color-hover;
+    }
+  }
+  .cl-menu-item.is-disabled, .cl-submenu.is-disabled .cl-submenu__title{
+    &, a{
+      color: $font-color;
+    }
+    &:hover{
+      background-color: transparent;
+      &, a{
+        color: $font-color;
+      }
+    }
+  }
+}
+
+@mixin theme-horizontal($background-color, $font-color, $background-color-hover, $border-color, $group-font-color, $font-color-hover){
+  background-color: $background-color;
+  color: $font-color;
+
+  a{
+    color: $font-color;
+  }
+
+  .cl-menu-group__title{
+    &, a{
+      color: $group-font-color;
+    }
+  }
+
+  .cl-menu-item, .cl-submenu .cl-submenu__title{
+    &, a{
+      color: $font-color;
+    }
+
+    &:hover{
+      background-color: $background-color-hover;
+      border-bottom-color: $border-color;
+      &, a{
+        color: $font-color-hover;
+      }
+    }
+  }
+  .cl-menu-item.is-active, .cl-submenu.is-active{
+    border-bottom-color: $border-color;
+    &, a{
+      color: $font-color-hover;
+    }
+    &>.cl-submenu__title{
+      background-color: $background-color-hover;
+      border-bottom-color: $border-color;
+      color: $font-color-hover;
+    }
+  }
+  .cl-menu-item.is-disabled, .cl-submenu.is-disabled .cl-submenu__title{
+    &, a{
+      color: $font-color;
+    }
+    &:hover{
+      background-color: transparent;
+      border-bottom-color: transparent;
+      &, a{
+        color: $font-color;
+      }
+    }
+  }
+}

@@ -49,7 +49,13 @@
                 type: [Number, String, Boolean],
                 default: false
             },
-            size: String,
+            size: {
+                type: String,
+                default: 'default',
+                validator(value){
+                    return ['mini', 'small', 'default', 'large'].includes(value)
+                }
+            },
         },
         data() {
             return {

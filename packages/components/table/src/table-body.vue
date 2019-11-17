@@ -5,7 +5,8 @@
         </colgroup>
         <tbody>
             <template v-for="(row, index) in data">
-                <cl-table-tr :row="row"
+                <cl-table-tr type='body'
+                             :row="row"
                              :key="index"
                              @mouseenter.native="trMouseEnter(row.__index)"
                              @mouseleave.native="trMouseLeave(row.__index)">
@@ -13,11 +14,22 @@
                         :key="column.__id"
                         :class="[
                             fixed && column.fixed !== fixed && 'is-hidden',
-                            column.className && `${column.className}`
-                        ]">
+                            column.className
+                        ]"
+                        @click.stop="rowClick(row, column)"
+                        @dblclick.stop="rowDbCkick(row, column)">
                         <cl-table-cell :row="row" :column="column"></cl-table-cell>
                     </td>
                 </cl-table-tr>
+                <tr v-if="row.__isExpand" :key="index + '-expand'">
+                    <td :colspan="colgroupColumns.length"
+                        :class="[
+                            'cl-table-td__expand',
+                            fixed && 'is-hidden'
+                        ]">
+                        <cl-table-expand :row="emitDataFormat(row)" :columns="emitDataFormat(columns)"></cl-table-expand>
+                    </td>
+                </tr>
             </template>
         </tbody>
     </table>
@@ -37,6 +49,8 @@
     import ClTableTr from './table-tr.vue'
     import ClTableCell from './table-cell.vue'
     import tableMixins from './table-mixins'
+    import ClTableExpand from './table-expand'
+    import {emitDataFormat} from "./util";
 
     export default {
         name: "ClTableBody",
@@ -61,7 +75,9 @@
             fixed: String
         },
         data() {
-            return {}
+            return {
+                emitDataFormat: emitDataFormat,
+            }
         },
         computed: {
             tableBodyStyle(){
@@ -72,7 +88,8 @@
         },
         components: {
             ClTableTr,
-            ClTableCell
+            ClTableCell,
+            ClTableExpand
         },
         created() {
         },
@@ -80,14 +97,24 @@
         },
         methods: {
             trMouseEnter(__id){
+                if(!this.tableRoot.hover) return;
                 this.tableRoot.setCloneDataDefaultProps({
                     __isHover: true
                 }, [__id])
             },
             trMouseLeave(__id){
+                if(!this.tableRoot.hover) return;
                 this.tableRoot.setCloneDataDefaultProps({
                     __isHover: false
                 }, [__id])
+            },
+            rowClick(row, column){
+                this.tableRoot.rowClick(row, column);
+                this.tableRoot.cellClick(row, column);
+            },
+            rowDbCkick(row, column){
+                this.tableRoot.rowDbCkick(row, column);
+                this.tableRoot.cellDbCkick(row, column);
             }
         }
     }

@@ -34,6 +34,7 @@
 
 ```html
 <template>
+    <cl-switch v-model="valueMini" size="mini"></cl-switch>
     <cl-switch v-model="valueSmall" size="small"></cl-switch>
     <cl-switch v-model="valueDefault"></cl-switch>
     <cl-switch v-model="valueLarge" size="large"></cl-switch>
@@ -42,6 +43,7 @@
     export default {
       data(){
         return {
+          valueMini: false,
           valueSmall: false,
           valueDefault: true,
           valueLarge: false,
@@ -175,7 +177,7 @@
 | trueValue | String, Number, Boolean | 指定选中时的值 | true |
 | falseValue | String, Number, Boolean | 指定没有选中时的值 | false |
 | name | String | 原生name属性 | - |
-| size | String | 尺寸，可选值`small` `default` `large`或者不设置 | - |
+| size | String | 尺寸，可选值 `mini` `small` `default` `large`或者不设置 | - |
 | checkedColor | String | 可以自定义选中时的颜色 | - |
 | uncheckedColor | String | 可以自定义没有选中时的颜色 | - |
 | disabled | Boolean | 禁用选项 | - |

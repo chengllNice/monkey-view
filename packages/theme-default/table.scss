@@ -2,8 +2,51 @@
 @import "./config/var";
 @import "./config/mixins/index.scss";
 
+@mixin tableSize($size){
+  $padding-left: $--table-cell-padding-horizontal-default;
+  $padding-right: $--table-cell-padding-horizontal-default;
+
+  $padding-top: $--table-cell-padding-vertical-default;
+  $padding-bottom: $--table-cell-padding-vertical-default;
+
+  $font-size: $--font-size-default;
+
+  @if($size == 'mini'){
+    $padding-left: $--table-cell-padding-horizontal-mini;
+    $padding-right: $--table-cell-padding-horizontal-mini;
+    $padding-top: $--table-cell-padding-vertical-mini;
+    $padding-bottom: $--table-cell-padding-vertical-mini;
+    $font-size: $--font-size-mini;
+  }@else if($size == 'small'){
+    $padding-left: $--table-cell-padding-horizontal-small;
+    $padding-right: $--table-cell-padding-horizontal-small;
+    $padding-top: $--table-cell-padding-vertical-small;
+    $padding-bottom: $--table-cell-padding-vertical-small;
+    $font-size: $--font-size-small;
+  }@else if($size == 'large'){
+    $padding-left: $--table-cell-padding-horizontal-large;
+    $padding-right: $--table-cell-padding-horizontal-large;
+    $padding-top: $--table-cell-padding-vertical-large;
+    $padding-bottom: $--table-cell-padding-vertical-large;
+    $font-size: $--font-size-large;
+  }
+
+  .cl-table-cell{
+    padding-left: $padding-left;
+    padding-right: $padding-right;
+  }
+  th, td{
+    padding-top: $padding-top;
+    padding-bottom: $padding-bottom;
+  }
+
+  font-size: $font-size;
+}
+
 @include c(table){
   overflow: hidden;
+  line-height: normal;
+  position: relative;
   table{
     width: 100%;
     table-layout: fixed;
@@ -12,12 +55,11 @@
     box-sizing: border-box;
     text-align: left;
     overflow: hidden;
+    vertical-align: middle;
     transition: background-color $--animation-time;
     border-bottom: $--table-head-th-border;
     min-width: 0;
     background-color: $--color-white;
-    padding-top: $--table-cell-padding-vertical-default;
-    padding-bottom: $--table-cell-padding-vertical-default;
     &.is-hidden{
       visibility: hidden;
     }
@@ -27,6 +69,10 @@
   }
   td{
     @include utils-ellipsis();
+    &.cl-table-td__expand{
+      word-break: break-all;
+      white-space: normal;
+    }
   }
 
   @include e(wrap){
@@ -79,6 +125,19 @@
       text-align: center;
     }
   }
+
+  @include m(mini){
+    @include tableSize(mini);
+  }
+  @include m(small){
+    @include tableSize(small);
+  }
+  @include m(default){
+    @include tableSize(default);
+  }
+  @include m(large){
+    @include tableSize(large);
+  }
 }
 
 @include c(table-fixed){
@@ -119,8 +178,8 @@
 
 
 @include c(table-row){
-  @include m(stripe){
-    &:not(.cl-table-row--hover):nth-of-type(even) td{
+  @include m(stripe-1){
+    &:not(.cl-table-row--hover) td{
       background-color: $--table-head-th-background-color;
     }
   }
@@ -133,12 +192,35 @@
 }
 
 @include c(table-cell){
-  padding-left: $--table-cell-padding-horizontal-default;
-  padding-right: $--table-cell-padding-horizontal-default;
   white-space: normal;
   word-break: break-all;
   overflow: hidden;
-  display: inline-block;
+  //display: inline-block;
+  vertical-align: middle;
+
+  @include e(icon){
+    display: inline-block;
+    vertical-align: middle;
+    transition: all $--animation-time;
+    i{
+      display: block;
+      font-size: 12px;
+      cursor: pointer;
+      color: $--color-text-placeholder;
+      &:hover{
+        color: $--color-primary;
+      }
+    }
+    i.cl-table-cell__icon-active{
+      color: $--color-primary;
+    }
+  }
+
+  @include e(expand){
+    i{
+      transform: rotate(90deg);
+    }
+  }
 
   @include m(ellipsis){
     @include utils-ellipsis;
@@ -170,21 +252,9 @@
 }
 
 @include c(table-head-cell){
-  @include e(icon){
-    display: inline-block;
-    vertical-align: middle;
-    i{
-      display: block;
-      font-size: 12px;
-      cursor: pointer;
-      color: $--color-text-placeholder;
-      &:hover{
-        color: $--color-primary;
-      }
-    }
-    i.cl-table-head-cell__icon-active{
-      color: $--color-primary;
-    }
+
+  .cl-table-cell__icon{
+    margin-left: 5px;
   }
 
   @include e(sort){

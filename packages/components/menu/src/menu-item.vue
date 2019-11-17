@@ -85,6 +85,7 @@
       handlerClick() {
         if (this.disabled) return;
         this.parentEmit('ClMenu', 'on-update-active-key', this.cKey);
+        this.parentEmit('ClSubmenu', 'on-close-dropdown');
       },
     },
     watch: {

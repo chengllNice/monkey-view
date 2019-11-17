@@ -5,7 +5,7 @@
          ]"
          :style="styleObj">
         <div class="cl-table-fixed__content">
-            <div class="cl-table-fixed__head" ref="fixedHeader">
+            <div class="cl-table-fixed__head" ref="fixedHeader" v-show="showHeader">
                 <cl-table-head :fixed='fixed'
                                :columns="headColumns"
                                :colgroup-columns="bodyColumns"
@@ -47,6 +47,7 @@
             headStyle: Object,
             bodyStyle: Object,
             bodyWrapStyle: Object,
+            showHeader: Boolean
         },
         data(){
             return {

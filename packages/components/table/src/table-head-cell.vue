@@ -16,19 +16,19 @@
             <table-slot-head v-if="column.slotHead" :column="column"></table-slot-head>
             <template v-else>{{column.title}}</template>
             <!--排序-->
-            <span v-if="column.sortOrder && sortOrderType.includes(column.sortOrder)"
-                  class="cl-table-head-cell__icon cl-table-head-cell__sort">
-                <i class="cl-icon-caretup" :class="[column.__sortOrder === 'ascend' && 'cl-table-head-cell__icon-active']" @click.self="sortHandle('ascend')"></i>
-                <i class="cl-icon-caretdown" :class="[column.__sortOrder === 'descend' && 'cl-table-head-cell__icon-active']" @click.self="sortHandle('descend')"></i>
+            <span v-if="column.sort && sortType.includes(column.sort)"
+                  class="cl-table-cell__icon cl-table-head-cell__sort">
+                <i class="cl-icon-caretup" :class="[column.__sort === 'ascend' && 'cl-table-cell__icon-active']" @click.self="sortHandle('ascend')"></i>
+                <i class="cl-icon-caretdown" :class="[column.__sort === 'descend' && 'cl-table-cell__icon-active']" @click.self="sortHandle('descend')"></i>
             </span>
 
             <!--过滤-->
             <span v-if="column.filters && Array.isArray(column.filters)"
-                  class="cl-table-head-cell__icon cl-table-head-cell__filter"
+                  class="cl-table-cell__icon cl-table-head-cell__filter"
                   v-click-outside.capture="handleClickOutside">
                 <i class="cl-icon-filter-solid"
                    :class="[
-                        column.__isFilterChecked && 'cl-table-head-cell__icon-active'
+                        column.__isFilterChecked && 'cl-table-cell__icon-active'
                    ]"
                    ref="reference"
                    @click.stop="filterShow"></i>
@@ -81,7 +81,7 @@
         directives: {clickOutside},
         props: {
             column: Object,
-            sortOrderType: Array
+            sortType: Array
         },
         inject: ['tableRoot'],
         data() {
@@ -133,6 +133,7 @@
                 this.visible = false;
             },
             filterHandle(filterItem){
+                console.log(filterItem,'filterHandle')
                 this.tableRoot.filterHandle('single', this.column, filterItem ? [filterItem.value] : []);
                 this.visible = false;
             },
@@ -149,8 +150,8 @@
         watch: {
             column: {
                 handler(newVal){
-                    if(this.isDefaultSort === null && newVal.__sortOrder){
-                        this.isDefaultSort = newVal.__sortOrder;
+                    if(this.isDefaultSort === null && newVal.__sort){
+                        this.isDefaultSort = newVal.__sort;
                     }
                 },
                 deep: true,

@@ -184,6 +184,7 @@
     </cl-menu>
     <h4>切换尺寸</h4>
     <cl-radio-group v-model="menuSize">
+        <cl-radio label="mini"></cl-radio>
         <cl-radio label="small"></cl-radio>
         <cl-radio label="default"></cl-radio>
         <cl-radio label="large"></cl-radio>

@@ -2,31 +2,86 @@
 @import "./config/mixins/index.scss";
 @import "./config/animations/rotate.scss";
 
+@mixin switchSize($size){
+  $width: $--switch-width-default;
+  $height: $--switch-height-default;
+  $font-size: $--font-size-default;
+  @if($size == 'mini'){
+    $width: $--switch-width-mini;
+    $height: $--switch-height-mini;
+    $font-size: $--font-size-mini;
+  }@else if($size == 'small'){
+    $width: $--switch-width-small;
+    $height: $--switch-height-small;
+    $font-size: $--font-size-small;
+  }@else if($size == 'large'){
+    $width: $--switch-width-large;
+    $height: $--switch-height-large;
+    $font-size: $--font-size-large;
+  }
+  width: $width;
+  height: $height;
+  line-height: $height;
+  border-radius: $height;
+  font-size: $font-size;
+
+  &::before{
+    width: #{$height / 2};
+    height: #{$height / 2};
+    left: #{($height - 4px) / 2 + 2px - ($height / 4)};
+  }
+
+  &::after{
+    width: #{$height - 4px};
+    height: #{$height - 4px};
+    border-radius: #{$height - 4px};
+  }
+
+  &:not(.is-disabled):not(.is-loading):active:after {
+    width: #{$height - 4px + ($height - 4px) / 2};
+  }
+
+  .cl-switch__inner{
+    right: #{$height / 4 + 2px};
+  }
+
+  &.is-checked{
+    &::before{
+      right: #{($height - 4px) / 2 + 2px - ($height / 4)};
+      left: auto;
+      transform: translateX(50%);
+    }
+
+    &::after{
+      width: #{$height - 4px};
+      left: auto;
+      right: 2px;
+    }
+
+    .cl-switch__inner{
+      left: #{$height / 4};
+      right: auto;
+    }
+  }
+}
+
 @include c(switch){
   display: inline-block;
   box-sizing: border-box;
   position: relative;
   cursor: pointer;
   outline: none;
-  font-size: $--font-size-default;
-  width: $--switch-width-default;
-  height: $--switch-height-default;
-  line-height: $--switch-height-default;
   background-color: $--switch-background-color-default;
-  border-radius: $--switch-height-default;
   transition: all $--animation-time;
   @include utils-ellipsis();
 
   &::before{
     content: '';
     display: none;
-    width: #{$--switch-height-default / 2};
-    height: #{$--switch-height-default / 2};
     box-sizing: border-box;
     border-radius: 50%;
     background-color: transparent;
     position: absolute;
-    left: #{($--switch-height-default - 4px) / 2 + 2px - ($--switch-height-default / 4)};
     right: auto;
     top: 0;
     bottom: 0;
@@ -47,15 +102,8 @@
     right: auto;
     margin: auto;
     transition: all $--animation-time;
-    width: #{$--switch-height-default - 4px};
-    height: #{$--switch-height-default - 4px};
-    border-radius: #{$--switch-height-default - 4px};
     background-color: $--color-white;
     box-shadow: $--box-shadow-default;
-  }
-
-  &:not(.is-disabled):not(.is-loading):active:after {
-    width: #{$--switch-height-default - 4px + ($--switch-height-default - 4px) / 2};
   }
 
   @include e(inner){
@@ -65,102 +113,26 @@
     vertical-align: middle;
     position: absolute;
     left: auto;
-    right: #{$--switch-height-default / 4 + 2px};
+  }
+
+  @include m(mini){
+    @include switchSize(mini)
   }
 
   @include m(small){
-    width: $--switch-width-small;
-    height: $--switch-height-small;
-    line-height: $--switch-height-small;
-    border-radius: $--switch-height-small;
+    @include switchSize(small)
+  }
 
-    &::before{
-      width: #{$--switch-height-small / 2};
-      height: #{$--switch-height-small / 2};
-      left: #{($--switch-height-small - 4px) / 2 + 2px - ($--switch-height-small / 4)};
-    }
-
-    &::after{
-      width: #{$--switch-height-small - 4px};
-      height: #{$--switch-height-small - 4px};
-      border-radius: #{$--switch-height-small - 4px};
-    }
-    &:not(.is-disabled):not(.is-loading):active:after {
-      width: #{$--switch-height-small - 4px + ($--switch-height-small - 4px) / 2};
-    }
-
-    @include e(inner, false){
-      right: #{$--switch-height-small / 4 + 2px};
-    }
+  @include m(default){
+    @include switchSize(default)
   }
 
   @include m(large){
-    width: $--switch-width-large;
-    height: $--switch-height-large;
-    line-height: $--switch-height-large;
-    border-radius: $--switch-height-large;
-    &::before{
-      width: #{$--switch-height-large / 2};
-      height: #{$--switch-height-large / 2};
-      left: #{($--switch-height-large - 4px) / 2 + 2px - ($--switch-height-large / 4)};
-    }
-
-    &::after{
-      width: #{$--switch-height-large - 4px};
-      height: #{$--switch-height-large - 4px};
-      border-radius: #{$--switch-height-large - 4px};
-    }
-    &:not(.is-disabled):not(.is-loading):active:after {
-      width: #{$--switch-height-large - 4px + ($--switch-height-large - 4px) / 2};
-    }
-
-    @include e(inner, false){
-      right: #{$--switch-height-large / 4 + 2px};
-    }
+    @include switchSize(large)
   }
 
   @include when(checked){
     background-color: $--switch-background-color-checked;
-
-    &::before{
-      right: #{($--switch-height-default - 4px) / 2 + 2px - ($--switch-height-default / 4)};
-      left: auto;
-    }
-
-    &::after{
-      left: auto;
-      right: 2px;
-    }
-
-    @include e(inner, false){
-      left: #{$--switch-height-default / 4};
-      right: auto;
-    }
-
-    @include m(small, false){
-      &::before{
-        right: #{($--switch-height-small - 4px) / 2 + 2px - ($--switch-height-small / 4)};
-        left: auto;
-      }
-      &::after{
-        width: #{$--switch-height-small - 4px};
-        left: auto;
-        right: 2px;
-      }
-    }
-
-    @include m(large, false){
-      &::before{
-        right: #{($--switch-height-large - 4px) / 2 + 2px - ($--switch-height-large / 4)};
-        left: auto;
-        transform: translateX(50%);
-      }
-      &::after{
-        width: #{$--switch-height-large - 4px};
-        left: auto;
-        right: 2px;
-      }
-    }
   }
 
   @include when(disabled){

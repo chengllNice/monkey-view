@@ -181,10 +181,10 @@
 ```html
 <template>
     <cl-row class="doc-grid-row">
-        <cl-col class='doc-grid-row-col' span="18" order="4"><div class="doc-grid-col">col-6 | order-4</div></cl-col>
+        <cl-col class='doc-grid-row-col' span="6" order="4"><div class="doc-grid-col">col-6 | order-4</div></cl-col>
         <cl-col class='doc-grid-row-col' span="6" order="3"><div class="doc-grid-col">col-6 | order-3</div></cl-col>
-        <cl-col class='doc-grid-row-col' span="18" order="2"><div class="doc-grid-col">col-6 | order-2</div></cl-col>
-        <cl-col class='doc-grid-row-col' span="18" order="1"><div class="doc-grid-col">col-6 | order-1</div></cl-col>
+        <cl-col class='doc-grid-row-col' span="6" order="2"><div class="doc-grid-col">col-6 | order-2</div></cl-col>
+        <cl-col class='doc-grid-row-col' span="6" order="1"><div class="doc-grid-col">col-6 | order-1</div></cl-col>
     </cl-row>
 </template>
 <style>
@@ -387,3 +387,34 @@
 ```
 
 :::
+
+
+
+## API
+
+### Row props
+
+| 属性 | 类型 | 说明 | 默认值 |
+| ---- | ---- | ---- | ---- |
+| type | String | 布局方式，可选值`flex` | - |
+| align | String | `flex` 布局下的垂直对齐方式，可选值为 `top`、`middle`、`bottom` | - |
+| justify | String | `flex` 布局下的水平对齐方式，可选值为 `start`、`end`、`center`、`space-around`、`space-between` | - |
+| gutter | Number | 栅格间隔 | 0 |
+
+
+
+### Col props
+
+| 属性 | 类型 | 说明 | 默认值 |
+| ---- | ---- | ---- | ---- |
+| span | Number, String | 占位格数，`0~24`的整数，0时相当于`display:none` | - |
+| order | Number, String | 排序顺序，`flex`模式下有效 | - |
+| offset | Number, String | 栅格左侧的间隔格数，间隔内不可以有栅格 | - |
+| push | Number, String | 栅格向右移动格数 | - |
+| pull | Number, String | 栅格向左移动格数 | - |
+| xs | Number, Object |  `<576px`响应式栅格，可为栅格数或一个包含其他属性的对象,如：`{span: 2, offset: 1}` | - |
+| sm | Number, Object |  `>=576px`响应式栅格，可为栅格数或一个包含其他属性的对象,如：`{span: 2, offset: 1}` | - |
+| md | Number, Object |  `>=768px`响应式栅格，可为栅格数或一个包含其他属性的对象,如：`{span: 2, offset: 1}` | - |
+| lg | Number, Object |  `>=992px`响应式栅格，可为栅格数或一个包含其他属性的对象,如：`{span: 2, offset: 1}` | - |
+| xl | Number, Object |  `>=1200px`响应式栅格，可为栅格数或一个包含其他属性的对象,如：`{span: 2, offset: 1}` | - |
+| xxl | Number, Object |  `>=1920px`响应式栅格，可为栅格数或一个包含其他属性的对象,如：`{span: 2, offset: 1}` | - |

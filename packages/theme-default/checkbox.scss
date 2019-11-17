@@ -4,8 +4,7 @@
 @include c(checkbox){
   color: $--color-text-default;
   //line-height: 1;
-  display: inline-block;
-  font-size: $--font-size-default;
+  //display: inline-block;
   position: relative;
   transition: all 0.2s;
   vertical-align: middle;
@@ -14,7 +13,7 @@
   @include e(input){
     display: inline-block;
     vertical-align: middle;
-    line-height: 1;
+    line-height: normal;
   }
 
   @include e(label){
@@ -27,14 +26,12 @@
   @include e(inner){
     border-radius: $--checkbox-radius;
     border: $--checkbox-border;
-    width: $--checkbox-input-width-default;
-    height: $--checkbox-input-height-default;
     background-color: $--checkbox-background-color;
     display: inline-block;
     position: relative;
     cursor: pointer;
-    vertical-align: middle;
-    line-height: 1;
+    //vertical-align: middle;
+    line-height: normal;
 
     &:hover{
       border-color: $--radio-border-color-hover;
@@ -80,9 +77,7 @@
       background-color: $--checkbox-background-color-checked;
       border-color: $--checkbox-border-color-checked;
       &::after{
-        width: 3px;
-        height: 6px;
-        border-width: 2px;
+        border-width: 1.5px;
         border-top: 0;
         border-left: 0;
       }
@@ -100,7 +95,7 @@
         display: block;
         background-color: $--color-white;
         width: auto;
-        height: 2px;
+        height: 1.5px;
         border: none;
         transform: scaleX(0.5);
         left: 0;
@@ -120,13 +115,24 @@
       border-color: $--checkbox-border-color-disabled;
 
       &::after{
-        width: 3px;
-        height: 6px;
         border-color: $--checkbox-icon-color-disabled;
-        border-width: 2px;
-        border-top: 0;
-        border-left: 0;
         cursor: not-allowed;
+      }
+    }
+  }
+
+  @include m(mini){
+    font-size: $--font-size-mini;
+    .cl-checkbox__inner{
+      width: $--checkbox-input-width-mini;
+      height: $--checkbox-input-height-mini;
+    }
+    @include when(checked){
+      .cl-checkbox__inner{
+        &::after{
+          width: 2px;
+          height: 4px;
+        }
       }
     }
   }
@@ -141,10 +147,23 @@
       .cl-checkbox__inner{
         &::after{
           width: 2px;
-          height: 4px;
-          border-width: 1.5px;
-          border-top: 0;
-          border-left: 0;
+          height: 5px;
+        }
+      }
+    }
+  }
+
+  @include m(default){
+    font-size: $--font-size-default;
+    .cl-checkbox__inner{
+      width: $--checkbox-input-width-default;
+      height: $--checkbox-input-height-default;
+    }
+    @include when(checked){
+      .cl-checkbox__inner{
+        &::after{
+          width: 3px;
+          height: 6px;
         }
       }
     }
@@ -160,10 +179,7 @@
       .cl-checkbox__inner{
         &::after{
           width: 3px;
-          height: 6px;
-          border-width: 2px;
-          border-top: 0;
-          border-left: 0;
+          height: 7px;
         }
       }
     }

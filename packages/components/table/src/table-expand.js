@@ -1,18 +1,18 @@
 
 export default {
-    name: 'ClTableSlot',
+    name: 'ClTableExpand',
     functional: true,
     inject: ['tableRoot'],
     props: {
-        column: Object,
+        columns: Array,
         row: Object
     },
     render(h, context){
-        const r = context.injections.tableRoot.$scopedSlots[context.props.column.slot];
+        const r = context.injections.tableRoot.$scopedSlots["expand"];
         if(r){
             return h('div', r({
                 row: context.props.row,
-                column: context.props.column,
+                columns: context.props.columns,
             }));
         }
         return null;

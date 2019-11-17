@@ -155,6 +155,7 @@
 
 ```html
 <template>
+    <cl-radio v-model="singleMini" size="mini">Mini</cl-radio>
     <cl-radio v-model="singleSmall" size="small">Small</cl-radio>
     <cl-radio v-model="singleDefault">Default</cl-radio>
     <cl-radio v-model="singleLarge" size="large">Large</cl-radio>
@@ -163,6 +164,7 @@
     export default {
       data(){
         return {
+          singleMini: false,
           singleSmall: false,
           singleDefault: false,
           singleLarge: false,
@@ -187,7 +189,7 @@
 | label | Number, String, Boolean | 单独使用时选中时返回该值。组合使用时，如果使用组合的options属性，该项值为文字描述；使用slot时，选中时返回该值 | true |
 | disabled | Boolean | 禁用 | - |
 | name | String | 原生name属性 | - |
-| size | String | 尺寸，可选值 `small` `large` | - |
+| size | String | 尺寸，可选值 `mini` `small` `large` | - |
 
 
 ### RadioGroup props

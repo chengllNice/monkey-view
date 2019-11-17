@@ -3,7 +3,7 @@
         <p>基础--无数据</p>
 
         <ClTable :columns="columnsBase"
-                 :data="dataBaseEmpty"
+                 :data="dataBase"
                  stripe
                  @select="selectChange"
                  @select-all="selectAllChange"
@@ -15,23 +15,39 @@
             </template>
         </ClTable>
 
-        <h4>基础</h4>
-        <ClTable :columns="columnsBase"
-                 :data="dataBase"
-                 stripe
-                 @filter-change="filterChange"
-                 @select="selectChange"
-                 @select-all="selectAllChange"
-                 @cancel-select-all="cancelSelectAllChange"
-                 @cancel-select="cancelSelectChange"
-                 @selection-change="selectionChange">
-            <template slot="operation" slot-scope="data">
-                <cl-button type="danger" size="mini" @click="delClick(data)">DEL</cl-button>
-            </template>
-            <template slot="operationHead" slot-scope="data">
-                {{data.column.title}}
-            </template>
-        </ClTable>
+        <!--<h4>基础</h4>-->
+        <!--<ClTable :columns="columnsBase"-->
+                 <!--:data="dataBase"-->
+                 <!--:row-class-name="setRowClassName"-->
+                 <!--stripe-->
+                 <!--height="400px"-->
+                 <!--@row-click="rowClick"-->
+                 <!--@cell-click="cellClick"-->
+                 <!--@row-dbclick="rowDbClick"-->
+                 <!--@cell-dbclick="cellDbClick"-->
+                 <!--@head-click="headClick"-->
+                 <!--@filter-change="filterChange"-->
+                 <!--@select="selectChange"-->
+                 <!--@select-all="selectAllChange"-->
+                 <!--@cancel-select-all="cancelSelectAllChange"-->
+                 <!--@cancel-select="cancelSelectChange"-->
+                 <!--@selection-change="selectionChange">-->
+            <!--<template slot="operation" slot-scope="data">-->
+                <!--<cl-button type="danger" size="mini" @click="delClick(data)">DEL</cl-button>-->
+            <!--</template>-->
+            <!--<template slot="operationHead" slot-scope="data">-->
+                <!--{{data.column.title}}-->
+            <!--</template>-->
+            <!--<template slot="expand" slot-scope="data">-->
+                <!--{{data}}-->
+                <!--<cl-list :split="false">-->
+                    <!--<cl-list-item>{{data.row.id}}</cl-list-item>-->
+                    <!--<cl-list-item>{{data.row.name}}</cl-list-item>-->
+                    <!--<cl-list-item>{{data.row.age}}</cl-list-item>-->
+                    <!--<cl-list-item>{{data.row.grade}}</cl-list-item>-->
+                <!--</cl-list>-->
+            <!--</template>-->
+        <!--</ClTable>-->
 
     </div>
 </template>
@@ -44,105 +60,41 @@
                 dataBaseEmpty: [],
                 columnsBase: [
                     {
+                        type: 'expand',
+                        key: 'expand',
+                    },
+                    {
                         type: 'index',
                         key: 'index',
-                        width: 60,
                     },
                     {
                         type: 'selection',
                         key: 'selection',
-                        width: 60,
-                        align: 'center'
                     },
                     {
                         key: 'id',
                         title: 'id',
-                        align: 'right',
-                        fixed: 'left',
-                        width: 200,
-                        sortOrder: true,
-                        className: 'aa'
                     },
                     {
                         key: 'name',
                         title: 'name',
-                        width: 300,
-                        // sortOrder: 'descend'
-                        // tooltip: true,
-                        filters: [
-                            {
-                                label: 'name0',
-                                value: '0'
-                            },
-                            {
-                                label: 'name1',
-                                value: '1'
-                            },
-                            {
-                                label: 'name1',
-                                value: '2'
-                            },
-                            {
-                                label: 'name3',
-                                value: '3'
-                            }
-                        ],
-                        filterMultiple: true,
-                        sortOrder: true,
                     },
                     {
                         key: 'age',
                         title: 'age',
-                        width: 300,
-                        // hide: true,
-                        filters: [
-                            {
-                                label: 'age0',
-                                value: '0'
-                            },
-                            {
-                                label: 'age1',
-                                value: '1'
-                            },
-                            {
-                                label: 'age1',
-                                value: '2'
-                            },
-                            {
-                                label: 'age3',
-                                value: '3'
-                            }
-                        ],
                     },
                     {
                         key: 'grade',
                         title: 'grade',
-                        width: 300,
-                        sortOrder: 'remote'
                     },
                     {
                         key: 'company',
-                        title: 'company',
-                        children: [
-                            {
-                                key: 'company1',
-                                width: 100,
-                                title: 'company1',
-                            },
-                            {
-                                key: 'company2',
-                                width: 100,
-                                title: 'company2',
-                            },
-                        ]
+                        title: 'company'
                     },
                     {
                         key: 'operation',
                         title: 'operation',
                         slot: 'operation',
-                        slotHead: 'operationHead',
-                        fixed: 'right',
-                        width: 100
                     }
                 ],
                 dataBase: []
@@ -167,6 +119,7 @@
                       grade2: 'grade1-children2' + i,
                       grade3: 'grade1-children3' + i,
                       isChecked: i === 1,
+                      isDisabled: i === 1,
                   })
               }
             },
@@ -190,6 +143,24 @@
             },
             filterChange(column, filterItem, allFilterColumns){
                 console.log(column,filterItem, allFilterColumns, 'filterChange')
+            },
+            rowClick(row, column){
+                console.log(row, column, 'rowClick')
+            },
+            cellClick(row, column){
+                console.log(row, column, 'cellClick')
+            },
+            rowDbClick(row, column){
+                console.log(row, column, 'rowDbClick')
+            },
+            cellDbClick(row, column){
+                console.log(row, column, 'cellDbClick')
+            },
+            headClick(column){
+                console.log(column, 'headClick')
+            },
+            setRowClassName(row, index){
+                return index === 1 ? 'bbb' : '';
             }
         }
     }

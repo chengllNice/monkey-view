@@ -2,7 +2,8 @@
     <tr :class="[
             'cl-table-row',
             row.__isHover && 'cl-table-row--hover',
-            row.__isStripe && `cl-table-row--stripe`
+            row.__isStripe && `cl-table-row--stripe-${row.__index % 2}`,
+            className,
         ]">
         <slot></slot>
     </tr>
@@ -11,6 +12,7 @@
 <script>
     export default {
         name: "ClTableTr",
+        inject: ['tableRoot'],
         props: {
             type: {
                 type: String,
@@ -26,7 +28,14 @@
         data() {
             return {}
         },
-        computed: {},
+        computed: {
+            className(){
+                if(this.type === 'body'){
+                    return this.tableRoot.getRowClassName(this.row, this.row.__index);
+                }
+                return ''
+            }
+        },
         components: {},
         created() {
         },

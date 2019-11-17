@@ -3,6 +3,35 @@
 @import "./config/mixins/index.scss";
 
 
+@mixin tagSize($size){
+  $font-size: $--font-size-default;
+  $padding: $--tag-padding-horizontal-default;
+  $height: $--tag-height-default;
+
+  @if($size == 'mini'){
+    $font-size: $--font-size-mini;
+    $height: $--tag-height-mini;
+    $padding: $--tag-padding-horizontal-mini;
+  }@else if($size == 'small'){
+    $font-size: $--font-size-small;
+    $height: $--tag-height-small;
+    $padding: $--tag-padding-horizontal-small;
+  }@else if($size == 'large'){
+    $font-size: $--font-size-large;
+    $height: $--tag-height-large;
+    $padding: $--tag-padding-horizontal-large;
+  }
+  font-size: $font-size;
+  padding: 0 $padding;
+  height: $height;
+  line-height: $height;
+
+  .cl-tag__icon{
+    font-size: #{$font-size - 2px};
+    margin-left: $padding;
+  }
+}
+
 @mixin tag-color($font-color, $border-color, $type: ''){
   color: $font-color;
   border-color: $border-color;
@@ -33,25 +62,16 @@
   margin: 0 5px;
   border-color: $--tag-border-color-default;
   border-radius: $--border-radius-default;
-  font-size: $--tag-font-size-default;
   color: $--tag-font-color-default;
   background-color: $--tag-background-color-default;
-  padding: 0 $--tag-padding-horizontal-default;
-  height: $--tag-height-default;
-  line-height: $--tag-height-default;
+  transition: all $--animation-time;
 
   &:hover{
     opacity: $--tag-hover-opacity;
   }
 
-  @include e(text, false){
-
-  }
-
   @include e(icon, false){
-    font-size: #{$--tag-font-size-default - 2px};
     color: $--color-white;
-    margin-left: $--tag-padding-horizontal-default;
     transform: scale(0.75);
     transform-origin: top;
     opacity: $--tag-hover-opacity;
@@ -61,135 +81,117 @@
     }
   }
 
-  @include m(large){
-    font-size: $--tag-font-size-large;
-    padding: 0 $--tag-padding-horizontal-large;
-    height: $--tag-height-large;
-    line-height: $--tag-height-large;
-    @include e(icon, false){
-      font-size: #{$--tag-font-size-large - 2px};
-      margin-left: $--tag-padding-horizontal-large;
-    }
-  }
-
-  @include m(small){
-    font-size: $--tag-font-size-small;
-    padding: 0 $--tag-padding-horizontal-small;
-    height: $--tag-height-small;
-    line-height: $--tag-height-small;
-    @include e(icon, false){
-      font-size: #{$--tag-font-size-small - 2px};
-      margin-left: $--tag-padding-horizontal-small;
-    }
-  }
-
   @include m(mini){
-    font-size: $--tag-font-size-mini;
-    padding: 0 $--tag-padding-horizontal-mini;
-    height: $--tag-height-mini;
-    line-height: $--tag-height-mini;
-    @include e(icon, false){
-      font-size: #{$--tag-font-size-mini - 2px};
-      margin-left: $--tag-padding-horizontal-mini;
-    }
+    @include tagSize(mini);
+  }
+  @include m(small){
+    @include tagSize(small);
+  }
+  //尺寸default
+  @include m(default){
+    @include tagSize(default);
+  }
+  @include m(large){
+    @include tagSize(large);
   }
 
-  @include m(default){
-    @include e(icon, false){
+  //颜色default
+  @include m(color-default){
+    .cl-tag__icon{
       color: $--tag-font-color-default;
     }
   }
 
-  @include m(success){
+  @include m(color-success){
     @include tag-color($--color-white,$--color-success);
   }
 
-  @include m(danger){
+  @include m(color-danger){
     @include tag-color($--color-white,$--color-danger);
   }
 
-  @include m(primary){
+  @include m(color-primary){
     @include tag-color($--color-white,$--color-primary);
   }
 
-  @include m(warning){
+  @include m(color-warning){
     @include tag-color($--color-white,$--color-warning);
   }
 
-  @include m(info){
+  @include m(color-info){
     @include tag-color($--color-white,$--color-info);
   }
 
-  @include m(default-o){
+  @include m(color-default-o){
     @include tag-color($--tag-font-color-default,$--tag-font-color-default,'o');
   }
 
-  @include m(success-o){
+  @include m(color-success-o){
     @include tag-color($--color-success,$--color-success,'o');
   }
 
-  @include m(danger-o){
+  @include m(color-danger-o){
     @include tag-color($--color-danger,$--color-danger,'o');
   }
 
-  @include m(primary-o){
+  @include m(color-primary-o){
     @include tag-color($--color-primary,$--color-primary,'o');
   }
 
-  @include m(warning-o){
+  @include m(color-warning-o){
     @include tag-color($--color-warning,$--color-warning,'o');
   }
 
-  @include m(info-o){
+  @include m(color-info-o){
     @include tag-color($--color-info,$--color-info,'o');
   }
 }
 
-.cl-tag--ghost.cl-tag--default{
+.cl-tag--ghost.cl-tag--color-default{
   @include tag-color($--tag-font-color-default,$--tag-font-color-default,'ghost');
 }
 
-.cl-tag--ghost.cl-tag--primary{
+.cl-tag--ghost.cl-tag--color-primary{
   @include tag-color($--color-primary,$--color-primary,'ghost');
 }
 
-.cl-tag--ghost.cl-tag--danger{
+.cl-tag--ghost.cl-tag--color-danger{
   @include tag-color($--color-danger,$--color-danger,'ghost');
 }
 
-.cl-tag--ghost.cl-tag--success{
+.cl-tag--ghost.cl-tag--color-success{
   @include tag-color($--color-success,$--color-success,'ghost');
 }
 
-.cl-tag--ghost.cl-tag--warning{
+.cl-tag--ghost.cl-tag--color-warning{
   @include tag-color($--color-warning,$--color-warning,'ghost');
 }
 
-.cl-tag--ghost.cl-tag--info{
+.cl-tag--ghost.cl-tag--color-info{
   @include tag-color($--color-info,$--color-info,'ghost');
 }
 
-.cl-tag--ghost.cl-tag--default-o{
+.cl-tag--ghost.cl-tag--color-default-o{
   @include tag-color($--tag-font-color-default,$--tag-font-color-default,'ghost-o');
 }
 
-.cl-tag--ghost.cl-tag--primary-o{
+.cl-tag--ghost.cl-tag--color-primary-o{
   @include tag-color($--color-primary,$--color-primary,'ghost-o');
 }
 
-.cl-tag--ghost.cl-tag--danger-o{
+.cl-tag--ghost.cl-tag--color-danger-o{
   @include tag-color($--color-danger,$--color-danger,'ghost-o');
 }
 
-.cl-tag--ghost.cl-tag--success-o{
+.cl-tag--ghost.cl-tag--color-success-o{
   @include tag-color($--color-success,$--color-success,'ghost-o');
 }
 
-.cl-tag--ghost.cl-tag--warning-o{
+.cl-tag--ghost.cl-tag--color-warning-o{
   @include tag-color($--color-warning,$--color-warning,'ghost-o');
 }
 
-.cl-tag--ghost.cl-tag--info-o{
+.cl-tag--ghost.cl-tag--color-info-o{
   @include tag-color($--color-info,$--color-info,'ghost-o');
 }
 

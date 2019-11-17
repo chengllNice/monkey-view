@@ -1,6 +1,31 @@
 @import "./config/var";
 @import "./config/mixins/index.scss";
 
+@mixin radioSize($size){
+  $font-size: $--font-size-default;
+  $height: $--radio-input-height-default;
+
+  @if($size == 'mini'){
+    $font-size: $--font-size-mini;
+    $height: $--radio-input-height-mini;
+  }@else if($size == 'small'){
+    $font-size: $--font-size-small;
+    $height: $--radio-input-height-small;
+  }@else if($size == 'large'){
+    $font-size: $--font-size-large;
+    $height: $--radio-input-height-large;
+  }
+  font-size: $font-size;
+  .cl-radio__inner{
+    width: $height;
+    height: $height;
+  }
+  &.is-checked .cl-radio__inner::after{
+    width: #{$height / 2};
+    height: #{$height / 2};
+  }
+}
+
 @include c(radio){
   color: $--color-text-default;
   //line-height: 1;
@@ -26,10 +51,8 @@
   }
 
   @include e(inner){
-    border-radius: $--radio-radius;
+    border-radius: 50%;
     border: $--radio-border;
-    width: $--radio-input-width-default;
-    height: $--radio-input-height-default;
     background-color: $--radio-background-color;
     display: inline-block;
     position: relative;
@@ -45,13 +68,11 @@
       width: 0;
       height: 0;
       background-color: $--color-white;
-      border-radius: $--radio-radius;
+      border-radius: 50%;
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      margin: auto;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
   }
 
@@ -79,10 +100,6 @@
     .cl-radio__inner{
       background-color: $--radio-background-color-checked;
       border-color: $--radio-border-color-checked;
-      &::after{
-        width: 5px;
-        height: 5px;
-      }
     }
   }
 
@@ -100,35 +117,19 @@
     }
   }
 
+  @include m(mini){
+    @include radioSize(mini);
+  }
+
   @include m(small){
-    font-size: $--font-size-small;
-    .cl-radio__inner{
-      width: $--radio-input-width-small;
-      height: $--radio-input-height-small;
-    }
-    @include when(checked){
-      .cl-radio__inner{
-        &::after{
-          width: 4px;
-          height: 4px;
-        }
-      }
-    }
+    @include radioSize(small);
+  }
+
+  @include m(default){
+    @include radioSize(default);
   }
 
   @include m(large){
-    font-size: $--font-size-large;
-    .cl-radio__inner{
-      width: $--radio-input-width-large;
-      height: $--radio-input-height-large;
-    }
-    @include when(checked){
-      .cl-radio__inner{
-        &::after{
-          width: 6px;
-          height: 6px;
-        }
-      }
-    }
+    @include radioSize(large);
   }
 }

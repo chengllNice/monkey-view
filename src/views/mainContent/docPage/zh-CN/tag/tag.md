@@ -32,6 +32,21 @@
 :::
 
 
+:::demo 尺寸
+
+多种尺寸选择。
+
+```html
+<template>
+    <cl-tag size="mini">标签</cl-tag>
+    <cl-tag size="small">标签</cl-tag>
+    <cl-tag>标签</cl-tag>
+    <cl-tag size="large">标签</cl-tag>
+</template>
+```
+:::
+
+
 :::demo 镂空效果
 
 添加 `ghost`属性可以实现镂空的效果。

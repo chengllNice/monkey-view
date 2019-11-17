@@ -614,6 +614,7 @@
 | placement | String | 设置下拉框显示的位置 | bottom-start |
 | valueLable | Boolean | 默认返回值只有value。设置此项返回值为value,label组成的对象 | - |
 | dropdownMatchSelectWidth | Boolean | 下拉框宽度默认和选择框同宽，文本超出后省略。设置此项后当内容比较长时下拉框宽度自动拉伸。下拉框最小和选择框同宽 | true |
+| renderHtml | HTMLElement, Boolean | 指定下拉框所在的元素, true时添加到body中 | false |
 
 
 ### Select event

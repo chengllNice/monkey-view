@@ -41,8 +41,8 @@
                 default: '',//可选值meta default
             },
             title: String,
-            label: String,//list-row类型时可用
-            value: String,//list-row类型时可用
+            label: [String, Number],//list-row类型时可用
+            value: [String, Number],//list-row类型时可用
             description: String,
             avatar: String,
         },

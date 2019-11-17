@@ -24,6 +24,9 @@
         <template v-if="renderType === 'index'">
             {{row.__index + 1}}
         </template>
+        <template v-if="renderType === 'expand'">
+            <span class="cl-table-cell__icon" :class="[row.__isExpand && 'cl-table-cell__expand']" @click="expandChange"><i class="cl-icon-right"></i></span>
+        </template>
     </div>
 </template>
 
@@ -79,6 +82,9 @@
                     case 'index':
                         this.renderType = 'index';
                         break;
+                    case 'expand':
+                        this.renderType = 'expand';
+                        break;
                     default:
                         this.renderType = 'normal';
                         break;
@@ -86,6 +92,9 @@
             },
             checkboxChange(){
                 this.tableRoot.checkboxChange(this.row);
+            },
+            expandChange(){
+                this.tableRoot.expandChange(this.row);
             }
         },
         watch: {

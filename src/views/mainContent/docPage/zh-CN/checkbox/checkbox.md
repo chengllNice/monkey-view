@@ -275,6 +275,7 @@ s
 
 ```html
 <template>
+    <cl-checkbox v-model="singleMini" size="mini">Mini</cl-checkbox>
     <cl-checkbox v-model="singleSmall" size="small">Small</cl-checkbox>
     <cl-checkbox v-model="singleDefault">Default</cl-checkbox>
     <cl-checkbox v-model="singleLarge" size="large">Large</cl-checkbox>
@@ -283,6 +284,7 @@ s
     export default {
       data(){
         return {
+          singleMini: false,
           singleSmall: false,
           singleDefault: false,
           singleLarge: false,
@@ -308,7 +310,7 @@ s
 | name | String | 原生name属性 | - |
 | trueValue | Number, String, Boolean | 设置选中时的值 | - |
 | falseValue | Number, String, Boolean | 设置取消选中时的值 | - |
-| size | String | 尺寸，可选值 `small` `large` | - |
+| size | String | 尺寸，可选值 `mini` `small` `large` | - |
 
 
 ### Checkbox event

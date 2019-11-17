@@ -22,9 +22,9 @@ export const getAllColumns = (cols, parentCols) => {
         if(!item.hide){
             if(parentCols){
                 item.__parentId = parentCols.__id;
-                item.level = parentCols.level + 1;
+                item.__level = parentCols.__level + 1;
             }else{
-                item.level = 1;
+                item.__level = 1;
             }
             if (item.children) {
                 result.push(...getAllColumns(item.children, item))
@@ -48,24 +48,24 @@ export const setGroupTableHead = (columns) => {
 
     const setColSpanforColumns = (column, parentColumn) => {
         if(parentColumn){
-            column.level = parentColumn.level + 1;
-            if(maxLevel < column.level) maxLevel = column.level;
+            column.__level = parentColumn.__level + 1;
+            if(maxLevel < column.__level) maxLevel = column.__level;
         }
 
         if(column.children){
-            let colSpan = 0;
+            let __colSpan = 0;
             column.children.forEach(subColumn=>{
                 setColSpanforColumns(subColumn, column);
-                colSpan += subColumn.colSpan;
+                __colSpan += subColumn.__colSpan;
             });
-            column.colSpan = colSpan;
+            column.__colSpan = __colSpan;
         }else{
-            column.colSpan = 1;
+            column.__colSpan = 1;
         }
     };
 
     deepColumns.forEach((item)=>{
-        item.level = 1;
+        item.__level = 1;
         setColSpanforColumns(item);
     });
 
@@ -79,11 +79,11 @@ export const setGroupTableHead = (columns) => {
 
     allColumns.forEach(item=>{
         if(item.children){
-            item.rowSpan = 1;
+            item.__rowSpan = 1;
         }else{
-            item.rowSpan = maxLevel - item.level + 1;
+            item.__rowSpan = maxLevel - item.__level + 1;
         }
-        headRows[item.level - 1].push(item);
+        headRows[item.__level - 1].push(item);
     });
 
     return headRows;
@@ -105,7 +105,7 @@ export const setCloneColumnsDefaultProps = (cols) => {
 
         column.__index = index;
         column.__width = Math.max(columnsWidth, columnsMinWidth);
-        column.__sortOrder = column.sortOrder || false;
+        column.__sort = column.sort || false;
         column.__filterCheckedValues = [];//筛选项的value值，数组类型
         column.__isFilterChecked = false;//是否确认筛选
     });

@@ -185,7 +185,6 @@
                                 icon: 'cl-icon-table',
                                 link: '/table',
                                 query: {},
-                                disabled: true,
                             },
                         ]
                     },

@@ -30,15 +30,10 @@ $--color-text-default: #515a6e !default;
 $--color-text-placeholder: #c0c4cc !default;
 $--color-text-disabled: #c0c4cc !default;
 $--color-text-des: #999999 !default;
-$--color-text-primary: #ffffff !default;
-$--color-text-danger: #ffffff !default;
-$--color-text-warning: #ffffff !default;
-$--color-text-success: #ffffff !default;
-$--color-text-info: #ffffff !default;
 $--color-text-title: #17233d !default;
 $--color-text-legend: #999999 !default;
 
-$--border-color-default: #dcdee2 !default;
+$--border-color-default: #e8eaec !default;//#dcdee2
 $--border-color-disabled: #c5c8ce !default;
 $--border-color-primary: #2d8cf0 !default;
 $--border-color-danger: #ed4014 !default;
@@ -139,11 +134,13 @@ $--collapse-item-header-height: 38px !default;
 $--collapse-item-header-background-color: $--background-color-base !default;
 
 /*-----menu-----*/
-$--menu-item-height-default: 40px !default;
+$--menu-item-height-mini: 30px !default;
 $--menu-item-height-small: 35px !default;
+$--menu-item-height-default: 40px !default;
 $--menu-item-height-large: 48px !default;
+$--menu-item-padding-vertical-mini: 10px !default;
+$--menu-item-padding-vertical-small: 15px !default;
 $--menu-item-padding-vertical-default: 20px !default;
-$--menu-item-padding-vertical-small: 10px !default;
 $--menu-item-padding-vertical-large: 30px !default;
 
 $--menu-theme-light-background-color: $--color-white;
@@ -175,16 +172,16 @@ $--table-head-th-background-color: #f8f8f9 !default;
 $--table-head-th-border: $--border-default !default;
 
 $--table-cell-padding-horizontal-mini: 10px !default;
-$--table-cell-padding-vertical-mini: 4px !default;
+$--table-cell-padding-vertical-mini: 8px !default;
 
 $--table-cell-padding-horizontal-small: 14px !default;
-$--table-cell-padding-vertical-small: 6px !default;
+$--table-cell-padding-vertical-small: 10px !default;
 
 $--table-cell-padding-horizontal-default: 18px !default;
-$--table-cell-padding-vertical-default: 8px !default;
+$--table-cell-padding-vertical-default: 14px !default;
 
 $--table-cell-padding-horizontal-large: 22px !default;
-$--table-cell-padding-vertical-large: 10px !default;
+$--table-cell-padding-vertical-large: 14px !default;
 
 
 /*-----upload-----*/
@@ -239,20 +236,16 @@ $--tag-border-color-default: $--border-color-default !default;
 $--tag-background-color-default: $--background-color-base !default;
 $--tag-hover-opacity: 0.85 !default;
 
-$--tag-height-default: 24px !default;
-$--tag-font-size-default: $--font-size-default !default;
-$--tag-padding-horizontal-default: 6px !default;
-
 $--tag-height-mini: 16px !default;
-$--tag-font-size-mini: $--font-size-mini !default;
-$--tag-padding-horizontal-mini: 2px !default;
+$--tag-padding-horizontal-mini: 4px !default;
 
 $--tag-height-small: 20px !default;
-$--tag-font-size-small: $--font-size-small !default;
 $--tag-padding-horizontal-small: 4px !default;
 
+$--tag-height-default: 24px !default;
+$--tag-padding-horizontal-default: 6px !default;
+
 $--tag-height-large: 28px !default;
-$--tag-font-size-large: $--font-size-large !default;
 $--tag-padding-horizontal-large: 10px !default;
 
 
@@ -276,11 +269,14 @@ $--progress-rail-background-color: $--background-color-base !default;
 
 
 /*-----switch-----*/
-$--switch-width-default: 44px !default;
+$--switch-width-mini: 28px !default;
 $--switch-width-small: 36px !default;
+$--switch-width-default: 44px !default;
 $--switch-width-large: 56px !default;
-$--switch-height-default: 22px !default;
+
+$--switch-height-mini: 14px !default;
 $--switch-height-small: 18px !default;
+$--switch-height-default: 22px !default;
 $--switch-height-large: 24px !default;
 $--switch-background-color-default: #cccccc !default;
 $--switch-background-color-checked: $--color-primary !default;
@@ -329,7 +325,6 @@ $--input-font-size-large: $--font-size-large !default;
 
 
 /*-----radio-----*/
-$--radio-radius: $--border-radius-circle !default;
 $--radio-border: $--border-default !default;
 $--radio-border-color-hover: $--color-primary !default;
 $--radio-background-color: $--color-white !default;
@@ -343,14 +338,10 @@ $--radio-background-color-disabled: $--background-color-base !default;
 $--radio-icon-color-disabled: $--color-text-disabled !default;
 $--radio-font-color-disabled: $--color-text-disabled !default;
 
-$--radio-input-width-default: 12px !default;
-$--radio-input-height-default: 12px !default;
-
-$--radio-input-width-small: 10px !default;
-$--radio-input-height-small: 10px !default;
-
-$--radio-input-width-large: 14px !default;
-$--radio-input-height-large: 14px !default;
+$--radio-input-height-mini: 10px !default;
+$--radio-input-height-small: 12px !default;
+$--radio-input-height-default: 14px !default;
+$--radio-input-height-large: 16px !default;
 
 
 /*-----checkbox-----*/
@@ -368,11 +359,14 @@ $--checkbox-background-color-disabled: $--background-color-base !default;
 $--checkbox-icon-color-disabled: $--color-text-disabled !default;
 $--checkbox-font-color-disabled: $--color-text-disabled !default;
 
-$--checkbox-input-width-default: 14px !default;
-$--checkbox-input-height-default: 14px !default;
+$--checkbox-input-width-mini: 10px !default;
+$--checkbox-input-height-mini: 10px !default;
 
 $--checkbox-input-width-small: 12px !default;
 $--checkbox-input-height-small: 12px !default;
+
+$--checkbox-input-width-default: 14px !default;
+$--checkbox-input-height-default: 14px !default;
 
 $--checkbox-input-width-large: 16px !default;
 $--checkbox-input-height-large: 16px !default;
@@ -405,23 +399,23 @@ $--button-font-color-default: $--color-text-default !default;
 $--button-background-color-default: $--color-white !default;
 $--button-border-color-default: $--border-color-default !default;
 
-$--button-font-color-primary: $--color-text-primary !default;
+$--button-font-color-primary: $--color-white !default;
 $--button-background-color-primary: $--color-primary !default;
 $--button-border-color-primary: $--border-color-primary !default;
 
-$--button-font-color-danger: $--color-text-danger !default;
+$--button-font-color-danger: $--color-white !default;
 $--button-background-color-danger: $--color-danger !default;
 $--button-border-color-danger: $--border-color-danger !default;
 
-$--button-font-color-warning: $--color-text-warning !default;
+$--button-font-color-warning: $--color-white !default;
 $--button-background-color-warning: $--color-warning !default;
 $--button-border-color-warning: $--border-color-warning !default;
 
-$--button-font-color-success: $--color-text-success !default;
+$--button-font-color-success: $--color-white !default;
 $--button-background-color-success: $--color-success !default;
 $--button-border-color-success: $--border-color-success !default;
 
-$--button-font-color-info: $--color-text-info !default;
+$--button-font-color-info: $--color-white !default;
 $--button-background-color-info: $--color-info !default;
 $--button-border-color-info: $--border-color-info !default;
 

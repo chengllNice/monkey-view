@@ -31,6 +31,7 @@
                       ref="dropDown"
                       :reference="this.$refs.reference"
                       :placement="placement"
+                      :render-html="renderHtml"
                       :dropdownMatchSelectWidth="dropdownMatchSelectWidth"
                       v-model="visible">
                 <div class="cl-select__drop-down-inner" :style="{'height': dropDownHeight}">
@@ -127,6 +128,10 @@
             dropdownMatchSelectWidth: {
                 type: Boolean,
                 default: true
+            },
+            renderHtml: {
+                type: [HTMLElement, Boolean],
+                default: true,
             }
         },
         data() {
@@ -256,8 +261,17 @@
                     this.currentSelectedOption.splice(index, 1);
                 }
             },
-            hanlderClose() {
-                this.visible = false;
+            hanlderClose(event) {
+                if(this.visible && this.multiple){
+                    if(this.renderHtml !== false){
+                        const {$el} = this.$refs.dropDown;
+                        if ($el !== event.target && !$el.contains(event.target)) {
+                            this.visible = false;
+                        }
+                    }
+                }else{
+                    this.visible = false;
+                }
                 if (this.filterable) {
                     this.selectElLabelToCurrentValues();
                 }

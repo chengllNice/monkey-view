@@ -2,11 +2,12 @@
     <div :class="[
             'cl-table',
             border && 'cl-table--border',
+            size && `cl-table--${size}`,
             !ready && 'cl-table--hide',
          ]"
          :style="tableStyle">
-        <div class="cl-table__wrap">
-            <div class="cl-table__head" ref="header">
+        <div class="cl-table__wrap" ref="tableWrap">
+            <div class="cl-table__head" ref="header" v-show="showHeader">
                 <cl-table-head :columns="headCloneColumns"
                                :colgroup-columns="bodyCloneColumns"
                                :data="cloneData"
@@ -34,6 +35,7 @@
                             :body-columns="bodyCloneColumns"
                             :colgroup-columns="bodyCloneColumns"
                             :data="cloneData"
+                            :show-header="showHeader"
                             :columns-width="columnsWidth"
                             :head-style="headStyle"
                             :body-style="bodyStyle"
@@ -45,12 +47,15 @@
                             :body-columns="fixedRightBodyCloneColumns"
                             :colgroup-columns="fixedRightBodyCloneColumns"
                             :data="cloneData"
+                            :show-header="showHeader"
                             :columns-width="columnsWidth"
                             :head-style="headStyle"
                             :bodyWrapStyle="bodyWrapStyle"
                             :body-style="bodyStyle"></cl-table-fixed>
-            <div class="cl-table__footer" ref="footer"></div>
+            <div class="cl-table__footer" ref="footer"><slot name="footer"></slot></div>
         </div>
+
+        <cl-loading fix :visible="loading"></cl-loading>
     </div>
 </template>
 
@@ -58,6 +63,7 @@
     import ClTableHead from './table-head.vue'
     import ClTableBody from './table-body.vue'
     import ClTableFixed from './table-fixed'
+    import ClLoading from '../../loading/src/loading'
     import {
         randomStr,
         getAllColumns,
@@ -98,6 +104,23 @@
             stripe: Boolean,//斑马纹
             height: [String, Number],//设置高度后head固定
             emptyText: String,
+            rowClassName: [String, Function],
+            showHeader: {
+                type: Boolean,
+                default: true
+            },
+            size: {
+                type: String,
+                default: 'default',
+                validator(value){
+                    return ['mini', 'small', 'default', 'large'].includes(value)
+                }
+            },
+            loading: Boolean,
+            hover: {
+                type: Boolean,
+                default: true
+            },//是否开启行hover的效果
         },
         data() {
             return {
@@ -171,7 +194,8 @@
         components: {
             ClTableHead,
             ClTableBody,
-            ClTableFixed
+            ClTableFixed,
+            ClLoading
         },
         created() {
         },
@@ -224,6 +248,7 @@
                         item.__isDisabled = item.isDisabled || false;
                         item.__isHover = false;
                         item.__isStripe = this.stripe || false;
+                        item.__isExpand = false;//展开行
                         item.__index = index;//行的唯一标志
                     }
                 });
@@ -233,7 +258,7 @@
             // 设置列宽度及table宽度
             handleResize(){
                 if(!this.$el) return;
-                let tableWidth = this.$el.offsetWidth - 1;
+                let tableWidth = this.$refs.tableWrap.offsetWidth;
                 let columsWidths = {};
                 let usableWidth = 0;//可用的宽度
                 let unusableWidth = 0;//不可用的宽度
@@ -275,7 +300,7 @@
                 if(usableWidth > 0 && usableLength > 0){
                     avgColumnsWidth = usableWidth / usableLength;
                 }
-                // console.log(tableWidth,'tableWidthtableWidth',usableWidth,avgColumnsWidth)
+                console.log(tableWidth,'tableWidthtableWidth',usableWidth,avgColumnsWidth)
 
                 // --[width] width;
                 // [minWidth] avgW  & min
@@ -321,6 +346,7 @@
                 }
 
 
+                console.log(usableWidth,'usableWidth')
                 // 如果还有剩余的宽度给没有设置width和maxWidth的列分配
                 if(usableWidth > 0){
                     usableLength = noMaxWidthAndWidthColumns.length;
@@ -357,7 +383,7 @@
             // selection类型时checbox选择值变化
             checkboxChange(row){
                 let allCheckedData = this.getStatusPropsEqTrueRows('__isChecked');
-                this.$emit(row.__isChecked ? 'select' : 'cancel-select', emitDataFormat(allCheckedData), emitDataFormat(row));
+                this.$emit(row.__isChecked ? 'select' : 'cancel-select', emitDataFormat(row), emitDataFormat(allCheckedData));
                 this.$emit('selection-change', emitDataFormat(allCheckedData));
             },
             // 获取指定状态为true的项
@@ -383,8 +409,8 @@
             //固定头部的计算
             fixedHead(){
                 if(this.height){
-                    let headerHeight = this.$refs.header.offsetHeight;
-                    let footerHeight = this.$refs.footer.offsetHeight;
+                    let headerHeight = this.$refs.header ? this.$refs.header.offsetHeight : 0;
+                    let footerHeight = this.$refs.footer ? this.$refs.footer.offsetHeight : 0;
 
                     this.bodyHeight = parseInt(this.height) - headerHeight - footerHeight;
                 }
@@ -399,9 +425,9 @@
                 this.showVerticalScrollBar = tbodyHeight > bodyHeight;
             },
             bodyScrollHandle(event){
-                this.$refs.header.scrollLeft = event.target.scrollLeft;
-                this.$refs.fixedTableLeft.$refs.fixedBody.scrollTop = event.target.scrollTop;
-                this.$refs.fixedTableRight.$refs.fixedBody.scrollTop = event.target.scrollTop;
+                this.$refs.header && (this.$refs.header.scrollLeft = event.target.scrollLeft);
+                this.$refs.fixedTableLeft && (this.$refs.fixedTableLeft.$refs.fixedBody.scrollTop = event.target.scrollTop);
+                this.$refs.fixedTableRight && (this.$refs.fixedTableRight.$refs.fixedBody.scrollTop = event.target.scrollTop);
             },
             mouseScroll(event){
                 const deltaX = event.deltaX;
@@ -416,16 +442,16 @@
             sortHandle(column, type){
                 const key = column.key;
                 const __id = column.__id;
-                const sortOrder = column.sortOrder;
+                const sort = column.sort;
                 let commonColumns = deepClone(this.commonColumns);
                 commonColumns.forEach(item=>{
                     if(item.__id === __id){
-                        item.__sortOrder = type;
-                    }else if(item.__sortOrder){
-                        item.__sortOrder = true;//把其他排序清除
+                        item.__sort = type;
+                    }else if(item.__sort){
+                        item.__sort = true;//把其他排序清除
                     }
                 });
-                if(type !== 'remote' && sortOrder !== 'remote'){
+                if(type !== 'remote' && sort !== 'remote'){
                     if(type === 'ascend' || type === 'descend'){
                         let cloneData = deepClone(this.cloneData);
                         cloneData.sort((a, b)=>{
@@ -465,6 +491,36 @@
                 });
                 this.commonColumns = commonColumns;
                 this.$emit('filter-change', emitDataFormat(column), type !== 'single' ? filterItemValue : filterItemValue[0], allFilterColumns);
+            },
+            expandChange(row){
+                this.setCloneDataDefaultProps({
+                    __isExpand: !row.__isExpand,
+                }, [row.__index]);
+                this.$emit('expand-change', emitDataFormat(row), !row.__isExpand)
+            },
+            getRowClassName(row, index){
+                if(typeof this.rowClassName === 'string'){
+                    return this.rowClassName;
+                }else if(typeof this.rowClassName === 'function'){
+                    return this.rowClassName(row, index);
+                }else{
+                    return null;
+                }
+            },
+            rowClick(row){
+                this.$emit('row-click', emitDataFormat(row));
+            },
+            rowDbCkick(row){
+                this.$emit('row-dbclick', emitDataFormat(row));
+            },
+            cellClick(row, column){
+                this.$emit('cell-click', emitDataFormat(row), emitDataFormat(column));
+            },
+            cellDbCkick(row, column){
+                this.$emit('cell-dbclick', emitDataFormat(row), emitDataFormat(column));
+            },
+            headClick(column){
+                this.$emit('head-click', emitDataFormat(column));
             }
         },
         watch: {

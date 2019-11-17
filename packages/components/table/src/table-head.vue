@@ -11,13 +11,13 @@
                         :key="column.__id"
                         :class="[
                             fixed && column.fixed !== fixed && 'is-hidden',
-                            sortOrderType.includes(column.__sortOrder) && column.__sortOrder && 'cl-table-head__sort',
-                            column.className && `${column.className}`
+                            sortType.includes(column.__sort) && column.__sort && 'cl-table-head__sort',
+                            column.className
                         ]"
-                        :rowspan="column.rowSpan"
-                        :colspan="column.colSpan"
-                        @click.self="sortHandle(column)">
-                        <cl-table-head-cell :column="column" :sortOrderType="sortOrderType"></cl-table-head-cell>
+                        :rowspan="column.__rowSpan"
+                        :colspan="column.__colSpan"
+                        @click.stop="sortHandle(column)">
+                        <cl-table-head-cell :column="column" :sortType="sortType"></cl-table-head-cell>
                     </th>
                     <th v-if="$parent.showVerticalScrollBar" :rowspan="columns.length"></th>
                 </cl-table-tr>
@@ -57,7 +57,7 @@
         },
         data() {
             return {
-                sortOrderType: ['ascend', 'descend', true, false, 'remote']
+                sortType: ['ascend', 'descend', true, false, 'remote']
             }
         },
         computed: {
@@ -79,13 +79,14 @@
         },
         methods: {
             sortHandle(column){
-                if(!column.__sortOrder || !this.sortOrderType.includes(column.sortOrder)) return;
+                this.tableRoot.headClick(column);
+                if(!column.__sort || !this.sortType.includes(column.sort)) return;
                 let type = true;
-                if(column.__sortOrder === 'ascend'){
+                if(column.__sort === 'ascend'){
                     type = 'descend';
-                }else if(column.__sortOrder === 'descend'){
+                }else if(column.__sort === 'descend'){
                     type = true;
-                }else if(column.__sortOrder === true){
+                }else if(column.__sort === true){
                     type = 'ascend';
                 }else{
                     type = 'remote'
