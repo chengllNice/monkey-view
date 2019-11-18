@@ -5,7 +5,7 @@ import {dateFormat, dateOrMonth, zero, yearListInit, dateObj} from "../../../../
 
 export default {
     props: {
-        value: [String, Array],
+        date: [String, Array],
         size: String,
         type: String,
         format: String,
@@ -14,15 +14,7 @@ export default {
     },
     data() {
         return {
-            dateList: [],
-            weekList: dateObj.week,
-            monthList: dateObj.month,
-            yearList: [],
-            currentDate: {
-                year: new Date().getFullYear().toString(),
-                month: zero((new Date().getMonth() + 1)),
-                date: zero(new Date().getDate())
-            }
+
         }
     },
     computed: {
@@ -41,9 +33,6 @@ export default {
             }
             return result;
         },
-        isRange(){
-            return this.type.includes('range');
-        }
     },
     mounted() {
 
@@ -52,16 +41,8 @@ export default {
         closeDatePane(){
             this.$emit('closeDatePane');
         },
-        // 获取日期列表
-        setDateList(){
-            if(!this.year || !this.month) return;
-            this.dateList = dateOrMonth(this.year, this.month);
-        },
-        // 获取年份列表
-        setYearList(year){
-            if(!year && !this.year) return;
-            this.yearList = yearListInit(year || this.year);
-        },
+
+
         // 格式化日期格式
         formatDateValue(value) {
             // dateFormat(value, this.defaultFormat);

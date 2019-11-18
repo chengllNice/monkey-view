@@ -6,9 +6,12 @@
          v-click-outside.capture="handleClickOutside">
         <div class="cl-date-picker__reference" ref="reference">
             <cl-input v-model="dateInputValue"
-                      readonly
+                      :size="size"
+                      :clearable="clearable"
                       :placeholder="placeholder"
-                      @click.native="handleFocus"></cl-input>
+                      @click.native="handleFocus"
+                      @blur="updateInputValue"
+                      @clear="clearHandle"></cl-input>
         </div>
         <transition :name="transition">
             <DropDown v-show="visible && !disabled"
@@ -19,8 +22,7 @@
                       :render-html="renderHtml"
                       v-model="visible">
                 <div class="cl-date-picker__drop-down-inner">
-                    <cl-date-pane index="0"
-                                  :size="size"
+                    <cl-date-pane :size="size"
                                   :format="format"
                                   v-model="dateValue"
                                   :is-range="isRange"
@@ -46,7 +48,7 @@
             value: [String, Array],
             type: {
                 type: String,
-                default: 'daterange',
+                default: 'date',
                 validator(value){
                     return ['date', 'daterange', 'datetime', 'datetimerange', 'year', 'month'].includes(value)
                 }
@@ -57,6 +59,7 @@
                 default: 'fade'
             },
             disabled: Boolean,
+            clearable: Boolean,
             placement: {
                 type: String,
                 default: 'bottom-start'
@@ -83,7 +86,7 @@
             return {
                 dateValue: [],
                 dateInputValue: '',
-                visible: true,
+                visible: false,
             }
         },
         computed: {
@@ -96,8 +99,20 @@
             ClDatePane
         },
         mounted() {
+            this.initDateValue();
+            this.updateInputValue();
         },
         methods: {
+            initDateValue(){
+                if(this.isRange){
+                    let value = this.value.length ? this.value : [];
+                    if(value[0] && value[1]){
+                        this.dateValue = [dateFormat(value[0], this.format), dateFormat(value[0], this.format)];
+                    }
+                }else{
+                    this.dateValue = this.value ? [dateFormat(this.value, this.format)] : [];
+                }
+            },
             handleFocus(){
                 if(this.disabled){
                     return
@@ -121,11 +136,20 @@
             openDropDownPane(){
 
             },
+            clearHandle(){
+                this.dateValue = [];
+            },
             updateInputValue(){
                 if(this.isRange){
                     let date1 = dateFormat(this.dateValue[0], this.format);
                     let date2 = dateFormat(this.dateValue[1], this.format);
-                    this.dateInputValue = `${date1} - ${date2}`;
+                    if(date1 && !date2){
+                        this.dateInputValue = `${date1}`;
+                    }else if(date1 && date1){
+                        this.dateInputValue = `${date1} - ${date2}`;
+                    }else{
+                        this.dateInputValue = '';
+                    }
                 }else{
                     this.dateInputValue = dateFormat(this.dateValue[0], this.format);
                 }
@@ -136,8 +160,10 @@
                 this.updateInputValue();
                 if(this.isRange){
                     this.$emit('input', newVal);
+                    this.$emit('change', newVal);
                 }else{
                     this.$emit('input', newVal[0]);
+                    this.$emit('change', newVal[0]);
                 }
             }
         }

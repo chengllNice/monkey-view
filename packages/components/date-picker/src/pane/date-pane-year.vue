@@ -15,21 +15,40 @@
 </template>
 
 <script>
-    import dateMixins from '../mixnis/date-mixins'
+    import { yearListInit} from "../../../../utils/date";
 
     export default {
         name: "ClDatePaneYear",
-        mixins: [dateMixins],
+        props: {
+            size: String,
+            type: String,
+            format: String,
+            year: String,
+            month: String,
+            date: {
+                type: Array,
+                default(){
+                    return []
+                }
+            },
+            currentDate: Object
+        },
         data() {
-            return {}
+            return {
+                yearList: [],
+            }
         },
         mounted() {
             this.setYearList();
         },
         methods: {
+            // 获取年份列表
+            setYearList(year){
+                if(!year && !this.year) return;
+                this.yearList = yearListInit(year || this.year);
+            },
             selectYear(year){
                 this.$emit('update-year', year.id);
-                this.$emit('input', year.id);
             },
         },
         watch: {

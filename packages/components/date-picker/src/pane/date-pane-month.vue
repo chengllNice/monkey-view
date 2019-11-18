@@ -15,13 +15,27 @@
 </template>
 
 <script>
-    import dateMixins from '../mixnis/date-mixins'
+    import { dateObj} from "../../../../utils/date";
+
     export default {
         name: "ClDatePaneMonth",
-        mixins: [dateMixins],
+        props: {
+            size: String,
+            type: String,
+            format: String,
+            year: String,
+            month: String,
+            date: {
+                type: Array,
+                default(){
+                    return []
+                }
+            },
+            currentDate: Object
+        },
         data(){
             return {
-
+                monthList: dateObj.month,
             }
         },
         mounted() {
@@ -29,7 +43,6 @@
         methods: {
             selectMonth(month){
                 this.$emit('update-month', month.id);
-                this.$emit('input', month.id);
             },
         },
         watch: {

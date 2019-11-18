@@ -18,25 +18,33 @@
             </span>
         </div>
         <div class="cl-date-pane-single__body">
-            <cl-date-pane-date v-model="selectedDateValue"
-                               :size="size"
+            <cl-date-pane-date :size="size"
                                :type="currentType"
                                :year="year"
                                :month="month"
+                               :date="date"
+                               :hover-date="hoverDate"
+                               :currentDate="currentDate"
+                               :is-range="isRange"
                                @updateDate="updateDate"
+                               @hover-date="handleHoverDate"
                                v-show="currentType === 'date'"></cl-date-pane-date>
-            <cl-date-pane-year v-model="selectedYearValue"
-                               :size="size"
+            <cl-date-pane-year :size="size"
                                :type="currentType"
                                :year="year"
                                :month="month"
+                               :date="date"
+                               :currentDate="currentDate"
+                               :is-range="isRange"
                                @update-year="updateYear"
                                v-show="currentType === 'year'"></cl-date-pane-year>
-            <cl-date-pane-month v-model="selectedMonthValue"
-                                :size="size"
+            <cl-date-pane-month :size="size"
                                 :type="currentType"
                                 :year="year"
                                 :month="month"
+                                :date="date"
+                                :currentDate="currentDate"
+                                :is-range="isRange"
                                 @update-month="updateMonth"
                                 v-show="currentType === 'month'"></cl-date-pane-month>
         </div>
@@ -59,15 +67,19 @@
             index: String,
             year: String,
             month: String,
-            isRange: Boolean,
+            date: Array,
+            hoverDate: String,
+            isRange: Boolean
         },
         data(){
             const currentType = ['date', 'daterange'].includes(this.type) ? 'date' : this.type;
             return {
                 currentType: currentType,
-                selectedDateValue: [],
-                selectedYearValue: '',
-                selectedMonthValue: '',
+                currentDate: {
+                    year: new Date().getFullYear().toString(),
+                    month: zero((new Date().getMonth() + 1)),
+                    date: zero(new Date().getDate())
+                }
             }
         },
         computed: {
@@ -99,8 +111,11 @@
             selectMonth(){
                 this.currentType = 'month';
             },
+            handleHoverDate(date){
+                this.$emit('hover-date', this.index, date);
+            },
             updateDate(date){
-                this.$emit('update-value', this.index, date);
+                this.$emit('update-date', this.index, date);
             },
             updateYear(year){
                 this.selectMonth();
@@ -113,27 +128,18 @@
             updateSingleDate(type, year, month, flag = true){
                 year = year || this.year;
                 month = month || this.month;
-                this.$emit('update-date', {
+                this.$emit('update-pane', {
                     type,
                     year: year,
                     month: month,
                     jumpStep: this.yearJumpStep,
                     index: this.index,
-                    isUpdateRightDate: flag,//range状态下是否要更新另一个日期框
+                    isUpdateOtherDate: flag,//range状态下是否要更新另一个日期框
                 });
             },
         },
         watch: {
-            year(newVal, oldVal){
-                if(newVal !== oldVal) {
-                    // this.updateDate(new Date(newVal, parseInt(this.currentMonth) - 1));
-                }
-            },
-            month(newVal, oldVal){
-                if(newVal !== oldVal) {
-                    // this.updateDate(new Date(this.currentYear, parseInt(newVal) - 1));
-                }
-            }
+
         }
     }
 </script>

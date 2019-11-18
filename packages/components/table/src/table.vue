@@ -52,7 +52,7 @@
                             :head-style="headStyle"
                             :bodyWrapStyle="bodyWrapStyle"
                             :body-style="bodyStyle"></cl-table-fixed>
-            <div class="cl-table__footer" ref="footer"><slot name="footer"></slot></div>
+            <div class="cl-table__footer" ref="footer" v-if="$slots.footer"><slot name="footer"></slot></div>
         </div>
 
         <cl-loading fix :visible="loading"></cl-loading>
@@ -147,22 +147,17 @@
             },
             tableStyle(){
                 let style = {};
-                if(this.height) style = {height: parseFloat(this.height) + 'px'};
-                return style;
-            },
-            commonStyle(){
-                let style = {};
-                this.tableWidth && (style = {width: this.tableWidth + 'px'});
+                if(this.height) style = {height: parseInt(this.height) + 'px'};
                 return style;
             },
             headStyle(){
                 let style = {};
-                if(this.tableWidth) style.width = this.tableWidth + 'px';
+                if(this.tableWidth) style.width = this.tableWidth - (this.showVerticalScrollBar ? 1 : 0) + 'px';
                 return style;
             },
             bodyStyle(){
                 let style = {};
-                if(this.tableWidth) style.width = this.tableWidth - (this.showVerticalScrollBar ? this.scrollBarWidth : 0) + 'px';
+                if(this.tableWidth) style.width = this.tableWidth - (this.showVerticalScrollBar ? (this.scrollBarWidth + 1) : 0) + 'px';
                 return style;
             },
             bodyWrapStyle(){
@@ -285,8 +280,8 @@
                         !itemCol.minWidth && noWidthAndMaxWidthAndminWidthColumns.push(itemCol);
                     }
                     if(itemCol.width || itemCol.minWidth){
-                        let itemWidth = itemCol.width ? parseFloat(itemCol.width) : 0;
-                        let itemMinWidth = itemCol.minWidth ? parseFloat(itemCol.minWidth) : 0;
+                        let itemWidth = itemCol.width ? parseInt(itemCol.width) : 0;
+                        let itemMinWidth = itemCol.minWidth ? parseInt(itemCol.minWidth) : 0;
                         unusableWidth += Math.max(itemWidth, itemMinWidth)
                     }
                     itemCol.__width = null;
@@ -298,9 +293,9 @@
                 let usableLength = noWidthColumns.length;
                 let avgColumnsWidth = 0;
                 if(usableWidth > 0 && usableLength > 0){
-                    avgColumnsWidth = usableWidth / usableLength;
+                    avgColumnsWidth = parseInt(usableWidth / usableLength);
                 }
-                console.log(tableWidth,'tableWidthtableWidth',usableWidth,avgColumnsWidth)
+                // console.log(tableWidth,'tableWidthtableWidth',usableWidth,avgColumnsWidth)
 
                 // --[width] width;
                 // [minWidth] avgW  & min
@@ -320,18 +315,18 @@
                         if(colums.width){
                             width = colums.width;
                             if(colums.minWidth){
-                                width = Math.max(parseFloat(colums.width), parseFloat(colums.minWidth));
+                                width = Math.max(parseInt(colums.width), parseInt(colums.minWidth));
                             }
                         }else if(colums.minWidth && colums.maxWidth){
-                            width = Math.min((parseFloat(colums.minWidth) + avgColumnsWidth), parseFloat(colums.maxWidth));
+                            width = Math.min((parseInt(colums.minWidth) + avgColumnsWidth), parseInt(colums.maxWidth));
                             usableWidth -= width;
                             usableLength--;
                         }else{
                             if(colums.minWidth){
-                                width = parseFloat(colums.minWidth + avgColumnsWidth);
+                                width = parseInt(colums.minWidth + avgColumnsWidth);
                             }
                             if(colums.maxWidth){
-                                width = Math.min(width, parseFloat(colums.maxWidth));
+                                width = Math.min(width, parseInt(colums.maxWidth));
                             }
                             usableWidth -= width;
                             usableLength--;
@@ -346,7 +341,7 @@
                 }
 
 
-                console.log(usableWidth,'usableWidth')
+
                 // 如果还有剩余的宽度给没有设置width和maxWidth的列分配
                 if(usableWidth > 0){
                     usableLength = noMaxWidthAndWidthColumns.length;
@@ -361,7 +356,7 @@
                         }
                     }
                 }
-
+                // console.log(usableWidth,'usableWidth',JSON.parse(JSON.stringify(columsWidths)))
                 if(usableWidth > 0){
                     usableLength = this.bodyCloneColumns.length;
                     if(usableLength > 0) avgColumnsWidth = parseInt(usableWidth / usableLength);
@@ -376,7 +371,7 @@
                     }
                 }
 
-                this.tableWidth = this.bodyCloneColumns.map(col => col.__width).reduce((a, b) => a + b, 0);
+                this.tableWidth = this.bodyCloneColumns.map(col => col.__width).reduce((a, b) => a + b, 0) + (this.showVerticalScrollBar ? (this.scrollBarWidth + 1) : 0) + usableWidth;
                 this.columnsWidth = columsWidths;
                 this.fixedHead();
             },
@@ -398,7 +393,7 @@
                 return resultData;
             },
             // 全选状态发生变化
-            allCheckboxChange(column, value){
+            selectAll(value){
                 this.setCloneDataDefaultProps({
                     __isChecked: value
                 });
@@ -468,6 +463,26 @@
                 }
                 this.commonColumns = commonColumns;
                 this.$emit('sort-change', emitDataFormat(column), type);
+            },
+            //可控的排序
+            sort(key, type){
+                let sortColumn = this.commonColumns.filter(item=>{
+                   return item.key === key
+                });
+                if(sortColumn && sortColumn.length){
+                    this.sortHandle(sortColumn[0], type)
+                }
+            },
+            //清除排序
+            clearSort(){
+                let commonColumns = deepClone(this.commonColumns);
+                commonColumns.forEach(item=>{
+                    if(item.__sort){
+                        item.__sort = true;//把其他排序清除
+                    }
+                });
+                this.commonColumns = commonColumns;
+                this.cloneData = deepClone(this.commonData);
             },
             filterHandle(type, column, filterItemValue){
                 const __id = column.__id;

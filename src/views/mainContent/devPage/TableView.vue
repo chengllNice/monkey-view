@@ -2,9 +2,11 @@
     <div class="TableView">
         <p>基础--无数据</p>
 
-        <ClTable :columns="columnsBase"
-                 :data="dataBase"
+        <ClTable :columns="columns"
+                 :data="data"
                  stripe
+                 border
+                 height="400px"
                  @select="selectChange"
                  @select-all="selectAllChange"
                  @cancel-select-all="cancelSelectAllChange"
@@ -97,7 +99,27 @@
                         slot: 'operation',
                     }
                 ],
-                dataBase: []
+                dataBase: [],
+                columns: [
+                    {
+                        key: 'name',
+                        title: '姓名',
+                    },
+                    {
+                        key: 'email',
+                        title: '邮箱'
+                    },
+                    {
+                        key: 'phone',
+                        title: '手机号'
+                    },
+                    {
+                        key: 'create_date',
+                        title: '创建日期',
+                        ellipsis: true
+                    }
+                ],
+                data: [],
             }
         },
         computed: {},
@@ -106,6 +128,15 @@
         },
         mounted() {
             this.setDataBase();
+            this.data = [];
+            for (let i = 0; i < 20; i++){
+                this.data.push({
+                    name: 'Name' + i,
+                    email: 'Email' + i,
+                    phone: 'Phone' + i,
+                    create_date: '2018-01-' + i
+                })
+            }
         },
         methods: {
             setDataBase(){

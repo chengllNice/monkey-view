@@ -1,26 +1,34 @@
 <template>
     <div class="cl-date-pane">
         <cl-date-pane-single class="cl-date-pane__left"
+                             ref="leftPane"
                              :index="datePane0.id"
                              :year="datePane0.year"
                              :month="datePane0.month"
+                             :date="selectedDateValue"
+                             :hover-date="hoverDate"
                              :is-range="isRange"
                              :size="size"
                              :format="format"
                              :type="type"
-                             @update-value="updateValue"
-                             @update-date="updateDate"></cl-date-pane-single>
+                             @hover-date="handleHoverDate"
+                             @update-date="updateValue"
+                             @update-pane="updateDate"></cl-date-pane-single>
         <cl-date-pane-single class="cl-date-pane__right"
+                             ref="rightPane"
                              v-if="isRange"
                              :index="datePane1.id"
                              :year="datePane1.year"
                              :month="datePane1.month"
+                             :date="selectedDateValue"
+                             :hover-date="hoverDate"
                              :is-range="isRange"
                              :size="size"
                              :format="format"
                              :type="type"
-                             @update-value="updateValue"
-                             @update-date="updateDate"></cl-date-pane-single>
+                             @hover-date="handleHoverDate"
+                             @update-date="updateValue"
+                             @update-pane="updateDate"></cl-date-pane-single>
     </div>
 </template>
 
@@ -31,7 +39,12 @@
     export default {
         name: "ClDatePane",
         props: {
-            value: Array,
+            value: {
+                type: Array,
+                default(){
+                    return []
+                }
+            },
             size: String,
             type: String,
             format: String,
@@ -51,7 +64,9 @@
                     month: '',
                     value: []
                 },
-                nowDate: new Date()
+                nowDate: new Date(),
+                selectedDateValue: [],
+                hoverDate: '',//当前hover的日期
             }
         },
         computed: {
@@ -67,22 +82,23 @@
         },
         methods: {
             dealValue(){
-                if(!this.value || !this.value.length){
+                this.selectedDateValue = this.value;
+                if(!this.selectedDateValue || !this.selectedDateValue.length){
                     this.initYearAndMonth(this.nowDate, null);
                 }else {
                     if(this.isRange){
-                        let startDate = new Date(this.value[0]);
-                        let endDate = new Date(this.value[1]);
+                        let startDate = new Date(this.selectedDateValue[0]);
+                        let endDate = new Date(this.selectedDateValue[1]);
                         if(startDate.getMonth() === endDate.getMonth()){
-                            this.datePane0.value = this.value;
+                            this.datePane0.value = this.selectedDateValue;
                         }else{
-                            this.datePane0.value = this.value[0];
-                            this.datePane1.value = this.value[1];
+                            this.datePane0.value = this.selectedDateValue[0];
+                            this.datePane1.value = this.selectedDateValue[1];
                         }
-                        this.initYearAndMonth(this.value[0], this.value[1]);
+                        this.initYearAndMonth(this.selectedDateValue[0], this.selectedDateValue[1]);
                     }else{
-                        this.datePane0.value = this.value;
-                        this.initYearAndMonth(this.value[0], null);
+                        this.datePane0.value = this.selectedDateValue;
+                        this.initYearAndMonth(this.selectedDateValue[0], null);
                     }
                 }
             },
@@ -91,6 +107,9 @@
                 let nowDate2;
                 if(endDate){
                     nowDate2 = new Date(endDate);
+                    if(nowDate2.getMonth() === nowDate1.getMonth()){
+                        nowDate2.setMonth(nowDate1.getMonth() + 1);
+                    }
                 }else{
                     nowDate2 = new Date(new Date(startDate).setMonth(nowDate1.getMonth() + 1));
                 }
@@ -99,21 +118,32 @@
                 this.datePane1.year = dateFormat(nowDate2, 'YYYY');
                 this.datePane1.month = dateFormat(nowDate2, 'MM');
             },
+            handleHoverDate(index, hoverDate){
+                if(this.isRange){
+                    this.hoverDate = hoverDate;
+                }
+            },
+            // 更新年/月/日
             updateDate(obj){
-                let {type, year, month, jumpStep, index, isUpdateRightDate} = obj;
+                let {type, year, month, jumpStep, index, isUpdateOtherDate} = obj;//type为更新年/月/日类型
                 this.updateDateCommon(obj);
 
-                if(this.isRange && isUpdateRightDate){
+                if(this.isRange && isUpdateOtherDate){
+                    // 更新另一个date-picker的数据
                     let updateFlag = type.includes('year') ? 'year' : 'month';
-                    let isUpdateRange = false;
+                    let isUpdateRange = false;//是否需要更新的状态标志
                     if(updateFlag === 'month'){
                         let datePane0Time = new Date(this.datePane0.year, this.datePane0.month);
                         let datePane1Time = new Date(this.datePane1.year, this.datePane1.month);
                         if(datePane1Time <= datePane0Time){
                             isUpdateRange = true;
                         }
+                    }else if(updateFlag === 'year'){
+                        //更新年时需要比较年和月
+                        if(this.datePane1[updateFlag] <= this.datePane0[updateFlag] || this.datePane1.month <= this.datePane0.month){
+                            isUpdateRange = true;
+                        }
                     }
-                    if(this.datePane1[updateFlag] <= this.datePane0[updateFlag] && updateFlag === 'year') isUpdateRange = true;
 
                     let otherYear = parseInt(year);
                     let otherMonth = parseInt(month);
@@ -140,6 +170,17 @@
                         index: index === '1' ? '0' : '1',
                     };
                     isUpdateRange && this.updateDateCommon(otherObj);
+                    if(this.datePane1.month <= this.datePane0.month){
+                        // 判断第一个月是否大于第二个月
+                        let otherObj = {
+                            type: index === '1' ? 'pre-month' : 'next-month',
+                            year: otherYear,
+                            month: otherMonth,
+                            jumpStep: jumpStep,
+                            index: index === '1' ? '0' : '1',
+                        };
+                        isUpdateRange && this.updateDateCommon(otherObj);
+                    }
                 }
             },
             updateDateCommon(obj){
@@ -167,16 +208,35 @@
                     case 'next-year':
                         this[`datePane${index}`].year = zero(parseInt(year) + jumpStep);
                         break;
+                    case 'update-year':
+                        this[`datePane${index}`].year = zero(parseInt(year));
+                        break;
+                    case 'update-month':
+                        this[`datePane${index}`].month = zero(parseInt(month));
+                        break;
                 }
             },
             updateValue(index, date){
-                // let year = new Date(date).getFullYear();
-                // let month = new Date(date).getMonth() + 1;
-                if(this[`datePane${index}`].value.length === 2){
-                    this[`datePane${index}`].value = date;
+                if(!this.isRange){
+                    this.selectedDateValue = date;
+                }else{
+                    if(this.selectedDateValue.length === 2){
+                        this.selectedDateValue = [...date];
+                    }else if(this.selectedDateValue.length === 1){
+                        if(date > this.selectedDateValue[0]){
+                            this.selectedDateValue.push(...date);
+                        }else{
+                            this.selectedDateValue.unshift(...date);
+                        }
+
+                        this.initYearAndMonth(this.selectedDateValue[0], this.selectedDateValue[1]);
+                    }else{
+                        this.selectedDateValue.push(...date);
+                    }
                 }
-                this[`datePane${index}`].value.push(date);
-            }
+                this.$emit('input', this.selectedDateValue);
+            },
+
         },
         watch: {
             value(newVal, oldVal){

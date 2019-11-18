@@ -12,7 +12,11 @@
 
 ```html
 <template>
-    <cl-table :data="data" :columns="columns" :hover="hover"></cl-table>
+    <cl-table :data="data" :columns="columns" :hover="hover">
+        <template slot="footer">
+            footer
+        </template>
+    </cl-table>
     <h4>禁用行的hover效果</h4>
     <cl-switch v-model="hover"></cl-switch>
 </template>
@@ -446,7 +450,9 @@
 
 ```html
 <template>
-    <cl-table :data="data" :columns="columns" stripe border></cl-table>
+    <cl-button @click="selectAll(true)">全选</cl-button>
+    <cl-button @click="selectAll(false)">取消全选</cl-button>
+    <cl-table :data="data" :columns="columns" stripe border ref="table"></cl-table>
 </template>
 <script>
     export default {
@@ -500,9 +506,16 @@
                     department: '业务平台部/研发部/前端部',
                     address: '北京市海淀区上地三街西口',
                     performance: '10000' + i,
-                    create_date: '2018-01-' + i
+                    create_date: '2018-01-' + i,
+                    isChecked: i === 1,
+                    isDisabled: i === 2
                 })
             } 
+        },
+        methods: {
+            selectAll(value){
+                this.$refs.table.selectAll(value);
+            },
         }
     }
 </script>
@@ -512,9 +525,12 @@
 :::
 
 
+
 :::demo 排序
 
 设置`columns`中某一列的`sort`值为`true` `ascend` `descend` `remote`可以开启排序功能，其中true为默认排序，ascend为升序，descend为降序，remote可以自己实现排序。只有一列可以排序，不能多列同时排序。
+
+调用table暴漏的方法`sort`可以自主实现指定列的排序，该方法的第一个参数为指定列的`key`，第二个参数为`type`排序类型。
 
 选择事件：
 
@@ -523,7 +539,9 @@
 
 ```html
 <template>
-    <cl-table :data="data" :columns="columns" stripe border></cl-table>
+    <cl-button @click="sortName">排序name列</cl-button>
+    <cl-button @click="clearSort">清除排序</cl-button>
+    <cl-table :data="data" :columns="columns" stripe border ref="table"></cl-table>
 </template>
 <script>
     export default {
@@ -579,6 +597,14 @@
                     create_date: '2018-01-' + i
                 })
             } 
+        },
+        methods: {
+            sortName(){
+                this.$refs.table.sort('name', 'descend');
+            },
+            clearSort(){
+                this.$refs.table.clearSort();
+            }
         }
     }
 </script>
@@ -720,6 +746,87 @@
                     this.data = _data;
                 }
             }
+        }
+    }
+</script>
+
+```
+
+:::
+
+
+
+:::demo 自定义筛选
+
+设置`columns`中的`filterSlot`可以自定义实现筛选，值为字符串类型。
+
+```html
+<template>
+    <cl-table :data="data" :columns="columns" stripe border>
+        <template slot="date">
+            date
+        </template>
+    </cl-table>
+</template>
+<script>
+    export default {
+        data(){
+            return {
+                columns: [
+                    {
+                        key: 'name',
+                        title: '姓名',
+                    },
+                    {
+                        key: 'age',
+                        title: '年龄',
+                    },
+                    {
+                        key: 'email',
+                        title: '邮箱',
+                    },
+                    {
+                        key: 'phone',
+                        title: '手机号',
+                    },
+                    {
+                        key: 'department',
+                        title: '部门',
+                    },
+                    {
+                        key: 'address',
+                        title: '地址',
+                    },
+                    {
+                        key: 'create_date',
+                        title: '创建日期',
+                        filterSlot: 'date',
+                    },
+                ],
+                data: [],
+                allData: [],
+            }
+        },
+        mounted(){
+            this.data = [];
+            this.allData = [];
+            let departments = ['前端部', '运维部', '测试部', '数据库研发中心'];
+            for (let i = 0; i < 5; i++){
+                this.allData.push({
+                    name: 'Name' + i,
+                    age: 20 + parseInt(i),
+                    email: 'Email' + i,
+                    phone: 'Phone' + i,
+                    department: '业务平台部/研发部/' + departments[i % 4],
+                    address: '北京市海淀区上地三街西口',
+                    performance: '10000' + i,
+                    create_date: '2018-01-' + i
+                })
+            } 
+            this.data = this.allData;
+        },
+        methods: {
+            
         }
     }
 </script>
@@ -1057,6 +1164,81 @@ slotHead的`slot-scope`有一个参数当前列数据。
 :::
 
 
+:::demo 异步加载数据
+
+带分页的异步数据加载。
+
+```html
+<template>
+    <cl-table :data="data" :columns="columns" :hover="hover" :loading="loading"></cl-table>
+    <cl-page :total="pageInfo.total" :page="pageInfo.page" :pageSize="pageInfo.pageSize" background @change="pageChange" />
+</template>
+<script>
+    export default {
+        data(){
+            return {
+                hover: true,
+                columns: [
+                    {
+                        key: 'name',
+                        title: '姓名'
+                    },
+                    {
+                        key: 'email',
+                        title: '邮箱'
+                    },
+                    {
+                        key: 'phone',
+                        title: '手机号'
+                    },
+                    {
+                        key: 'create_date',
+                        title: '创建日期'
+                    }
+                ],
+                data: [],
+                loading: true,
+                pageInfo: {
+                    page: 1,
+                    total: 50,
+                    pageSize: 10,
+                }       
+            }
+        },
+        mounted(){
+            this.loadData(this.pageInfo.page, this.pageInfo.pageSize);
+        },
+        methods: {
+            loadData(page, pageSize){
+                this.loading = true;
+                let startIndex = (page - 1) * pageSize;
+                setTimeout(()=>{
+                    this.data = [];
+                    for(let i = startIndex; i < startIndex + 10; i++){
+                        let obj = {
+                            name: 'Name' + i,
+                            email: 'Email' + i,
+                            phone: 'Phone' + i,
+                            create_date: 'create_date' + i,
+                        };
+                        this.data.push(obj);
+                    }
+                    this.loading = false;
+                }, 1000);
+                
+            },
+            pageChange(page, pageSize){
+                this.loadData(page, pageSize);
+            }
+        }
+    }
+</script>
+
+```
+
+:::
+
+
 ## API
 
 ### Table props
@@ -1103,6 +1285,13 @@ slotHead的`slot-scope`有一个参数当前列数据。
 | footer | 表格底部内容 |
 
 
+### Table Methods
+
+| 方法名 | 说明 | 参数 |
+| ---- | ---- | ---- |
+| sort | -- | -- |
+
+
 
 ### Column props
 
@@ -1124,6 +1313,7 @@ slotHead的`slot-scope`有一个参数当前列数据。
 | sort | String, Boolean | 列排序，可选值 `true` `ascend` `descend` `remote`, 值为true是开始排序功能，值为ascend默认显示升序排列，descend默认显示降序排列，remote自定义排序，可以监听`sort-change`事件实现 | - |
 | filters | Array | 筛选数据，例如：`[{label: '筛选一', value: '0'}]`的形式，每项必须包含label和value，此时可以监听`filter-change`事件实现数据筛选 | - |
 | filterMultiple | Boolean | 是否开启多选筛选 | - |
+| filterSlot | String | 自定义筛选的下拉内容 | - |
 | slot | String | 自定义表格数据模板的插槽name名称，`slot-scope`数据包括`row`行数据，`column`列数据 | - |
 | slotHead | String | 自定义表格表头数据模板的插槽name名称，`slot-scope`数据包括`column`列数据 | - |
 | children | Array | 表头嵌套 | - |

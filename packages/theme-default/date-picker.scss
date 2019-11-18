@@ -18,22 +18,6 @@
     box-shadow: $--box-shadow-default;
     background-color: $--color-white;
   }
-
-  @include m(mini){
-    @include date-picker-size(mini);
-  }
-
-  @include m(small){
-    @include date-picker-size(small);
-  }
-
-  @include m(default){
-    @include date-picker-size(default);
-  }
-
-  @include m(large){
-    @include date-picker-size(large);
-  }
 }
 
 @include c(date-pane-single){

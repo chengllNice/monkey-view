@@ -1,7 +1,8 @@
 <template>
     <div class="cl-table-cell cl-table-head-cell"
          :class="[
-            column.align && `cl-table-cell--${column.align}`
+            column.align && `cl-table-cell--${column.align}`,
+            (column.ellipsis || column.tooltip) && 'cl-table-cell--ellipsis',
          ]">
         <template v-if="renderType === 'selection'">
             <cl-checkbox class="cl-table-cell__checkbox"
@@ -13,7 +14,7 @@
             #
         </template>
         <template v-if="renderType === 'normal'">
-            <table-slot-head v-if="column.slotHead" :column="column"></table-slot-head>
+            <table-slot-head v-if="column.slotHead" :column="column" :slot-name="column.slotHead"></table-slot-head>
             <template v-else>{{column.title}}</template>
             <!--排序-->
             <span v-if="column.sort && sortType.includes(column.sort)"
@@ -23,7 +24,7 @@
             </span>
 
             <!--过滤-->
-            <span v-if="column.filters && Array.isArray(column.filters)"
+            <span v-if="column.filterSlot || (column.filters && Array.isArray(column.filters))"
                   class="cl-table-cell__icon cl-table-head-cell__filter"
                   v-click-outside.capture="handleClickOutside">
                 <i class="cl-icon-filter-solid"
@@ -37,8 +38,14 @@
                           :reference="this.$refs.reference"
                           :dropdownMatchSelectWidth="false"
                           placement="bottom"
+                          :render-html="true"
                           v-model="visible">
-                    <div v-if="!column.filterMultiple" class="cl-table-head-cell__filter-list">
+
+                    <template v-if="column.filterSlot">
+                        <table-slot-head :column="column" :slot-name="column.filterSlot"></table-slot-head>
+                    </template>
+
+                    <div v-else-if="!column.filterMultiple" class="cl-table-head-cell__filter-list">
                         <div class="cl-table-head-cell__filter-item"
                                       :class="[!column.__filterCheckedValues.length && 'cl-table-head-cell__filter-item-active']"
                                       @click.self="filterHandle()">全部</div>
@@ -63,6 +70,7 @@
                             <cl-button size="mini" @click="resetFilterMultiple">重置</cl-button>
                         </div>
                     </div>
+
                 </DropDown>
             </span>
         </template>
@@ -121,7 +129,7 @@
                 }
             },
             checkboxChange(value){
-                this.tableRoot.allCheckboxChange(this.column, value);
+                this.tableRoot.selectAll(value);
             },
             sortHandle(type){
                 this.tableRoot.sortHandle(this.column, type);

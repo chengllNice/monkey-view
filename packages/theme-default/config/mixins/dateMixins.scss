@@ -7,17 +7,21 @@ $year-and-month-margin: #{$--date-picker-pane-margin * 2};
 @function size-common($size, $field){
   $font-size: $--font-size-default;
   $pane-width: $--date-picker-pane-date-width-default;
+  $height: $height-default;
 
   $return-value: '';
   @if($size == 'mini'){
     $font-size: $--font-size-mini;
     $pane-width: $--date-picker-pane-date-width-mini;
+    $height: $height-mini;
   }@else if($size == 'small'){
     $font-size: $--font-size-small;
     $pane-width: $--date-picker-pane-date-width-small;
+    $height: $height-small;
   }@else if($size == 'large'){
     $font-size: $--font-size-large;
     $pane-width: $--date-picker-pane-date-width-large;
+    $height: $height-large;
   }
   $date-width: #{($pane-width - $--date-picker-pane-padding * 2) / 7 - $--date-picker-pane-margin * 2};
   $year-width: #{($pane-width - $--date-picker-pane-padding * 2) / 3 - $--date-picker-pane-margin * 4};
@@ -33,22 +37,18 @@ $year-and-month-margin: #{$--date-picker-pane-margin * 2};
     $return-value: $year-height;
   }@else if($field == 'pane-width'){
     $return-value: $pane-width;
+  }@else if($field == 'height'){
+    $return-value: $height;
   }
   @return $return-value;
-}
-
-@mixin date-picker-size($size){
-  font-size: size-common($size, 'font-size');
-  height: size-common($size, 'date-width');
-  line-height: size-common($size, 'date-width');
 }
 
 @mixin date-pane-size($size){
   width: size-common($size, 'pane-width');
   .cl-date-pane-single__header{
-    @include date-picker-size($size);
     font-size: #{size-common($size, 'font-size') + 2px};
-    margin: $--date-picker-pane-margin 0;
+    height: size-common($size, 'height');
+    line-height: size-common($size, 'height');
     i{
       font-size: #{size-common($size, 'font-size') / 1.2};
     }
@@ -98,12 +98,13 @@ $year-and-month-margin: #{$--date-picker-pane-margin * 2};
     display: inline-block;
     text-align: center;
     border-radius: $--border-radius-default;
-    &:not(.cl-date-pane-item__no-now-month):not(.cl-date-pane-item__selected):hover{
-      background-color: mix($--color-primary, $--color-white, 20%);
-    }
   }
   .cl-date-pane-item__now{
     color: $--color-primary;
+  }
+
+  .cl-date-pane-item__hover{
+    background-color: mix($--color-primary, $--color-white, 20%);
   }
 
   .cl-date-pane-item__selected{
