@@ -10,7 +10,7 @@
                     _month.id === currentDate.month && currentDate.year === year && 'cl-date-pane-item__now',
                     _month.id === month && 'cl-date-pane-item__selected'
               ]"
-              @click.stop="selectMonth(_month)">{{_month.name}}</span>
+              @click.stop="handleSelectMonth(_month)">{{_month.name}}</span>
     </div>
 </template>
 
@@ -31,7 +31,8 @@
                     return []
                 }
             },
-            currentDate: Object
+            currentDate: Object,
+            index: String,
         },
         data(){
             return {
@@ -41,7 +42,7 @@
         mounted() {
         },
         methods: {
-            selectMonth(month){
+            handleSelectMonth(month){
                 this.$emit('update-month', month.id);
             },
         },

@@ -10,7 +10,7 @@
                     _year.id === currentDate.year && 'cl-date-pane-item__now',
                     year === _year.id && 'cl-date-pane-item__selected'
               ]"
-              @click.stop="selectYear(_year)">{{_year.name}}</span>
+              @click.stop="handleSelectYear(_year)">{{_year.name}}</span>
     </div>
 </template>
 
@@ -31,11 +31,17 @@
                     return []
                 }
             },
-            currentDate: Object
+            currentDate: Object,
+            index: String,
         },
         data() {
             return {
                 yearList: [],
+            }
+        },
+        computed: {
+            selectedYear(){
+                return this.type === 'year' ? this.date[this.index] : this.year;
             }
         },
         mounted() {
@@ -47,7 +53,7 @@
                 if(!year && !this.year) return;
                 this.yearList = yearListInit(year || this.year);
             },
-            selectYear(year){
+            handleSelectYear(year){
                 this.$emit('update-year', year.id);
             },
         },

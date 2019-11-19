@@ -9,8 +9,8 @@
                 <i class="cl-icon-left" @click.stop="jumpDate('pre-month')" v-if="dateChangeIconShow"></i>
             </span>
             <span class="cl-date-pane-single__header-date">
-                <span class="cl-date-pane-single__header-date-label" @click.stop="selectYear">{{year}}年</span>
-                <span class="cl-date-pane-single__header-date-label" @click.stop="selectMonth" v-if="headerMonthShow">{{month}}月</span>
+                <span class="cl-date-pane-single__header-date-label" @click.stop="handleSelectYear">{{year}}年</span>
+                <span class="cl-date-pane-single__header-date-label" @click.stop="handleSelectMonth" v-if="headerMonthShow">{{month}}月</span>
             </span>
             <span class="cl-date-pane-single__header-next">
                 <i class="cl-icon-right" @click.stop="jumpDate('next-month')" v-if="dateChangeIconShow"></i>
@@ -23,10 +23,12 @@
                                :year="year"
                                :month="month"
                                :date="date"
+                               :index="index"
                                :hover-date="hoverDate"
                                :currentDate="currentDate"
                                :is-range="isRange"
-                               @updateDate="updateDate"
+                               :format="format"
+                               @updateDate="updateSelectDate"
                                @hover-date="handleHoverDate"
                                v-show="currentType === 'date'"></cl-date-pane-date>
             <cl-date-pane-year :size="size"
@@ -34,18 +36,22 @@
                                :year="year"
                                :month="month"
                                :date="date"
+                               :index="index"
                                :currentDate="currentDate"
                                :is-range="isRange"
-                               @update-year="updateYear"
+                               :format="format"
+                               @update-year="updateSelectYear"
                                v-show="currentType === 'year'"></cl-date-pane-year>
             <cl-date-pane-month :size="size"
                                 :type="currentType"
                                 :year="year"
                                 :month="month"
                                 :date="date"
+                                :index="index"
                                 :currentDate="currentDate"
                                 :is-range="isRange"
-                                @update-month="updateMonth"
+                                :format="format"
+                                @update-month="updateSelectMonth"
                                 v-show="currentType === 'month'"></cl-date-pane-month>
         </div>
     </div>
@@ -55,7 +61,7 @@
     import ClDatePaneDate from './date-pane-date'
     import ClDatePaneYear from './date-pane-year'
     import ClDatePaneMonth from './date-pane-month'
-    import {zero, dateFormat} from "../../../../utils/date";
+    import {dateFormat, zero} from "../../../../utils/date";
 
     export default {
         name: "ClDatePaneSingle",
@@ -105,24 +111,34 @@
             jumpDate(type){
                 this.updateSingleDate(type, null, null);
             },
-            selectYear(){
+            handleSelectYear(){
                 this.currentType = 'year';
             },
-            selectMonth(){
+            handleSelectMonth(){
                 this.currentType = 'month';
             },
             handleHoverDate(date){
                 this.$emit('hover-date', this.index, date);
             },
-            updateDate(date){
+            updateSelectDate(date){
+                date = [dateFormat(date[0], this.format)];
                 this.$emit('update-date', this.index, date);
             },
-            updateYear(year){
-                this.selectMonth();
+            updateSelectYear(year){
+                if (this.type === 'year'){
+                    this.updateSelectDate([year]);
+                }else{
+                    this.handleSelectMonth();
+                }
                 this.updateSingleDate('update-year', year, null);
             },
-            updateMonth(month){
-                this.currentType = 'date';
+            updateSelectMonth(month){
+                if (this.type === 'date' || this.type === 'daterange'){
+                    this.currentType = 'date';
+                }else{
+                    let date = dateFormat(new Date(this.year, parseInt(month) - 1), this.format);
+                    this.updateSelectDate([date]);
+                }
                 this.updateSingleDate('update-month', null, month);
             },
             updateSingleDate(type, year, month, flag = true){

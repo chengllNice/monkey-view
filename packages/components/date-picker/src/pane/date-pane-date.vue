@@ -5,7 +5,7 @@
          ]">
         <span class="cl-date-pane-item__week" v-for="week in weekList" :key="week.key">{{week.name}}</span>
         <span v-for="dateItem in dateList"
-              :key="dateItem.key"
+              :key="dateItem.originDate"
               :class="[
                 'cl-date-pane-item__col',
                 dateItem.isNowDate && 'cl-date-pane-item__now',
@@ -15,12 +15,12 @@
               ]"
               @mouseenter="mouseEnter(dateItem)"
               @mouseleave="mouseLeave(dateItem)"
-              @click.stop="selectDate(dateItem)">{{dateItem.date}}</span>
+              @click.stop="handleSelectDate(dateItem)">{{dateItem.date}}</span>
     </div>
 </template>
 
 <script>
-    import { dateOrMonth, dateObj} from "../../../../utils/date";
+    import {dateOnMonth, dateObj, dateFormat} from "../../../../utils/date";
 
     export default {
         name: "ClDatePaneDate",
@@ -39,6 +39,7 @@
             currentDate: Object,
             isRange: Boolean,
             hoverDate: String,
+            index: String,
         },
         data(){
             return {
@@ -56,9 +57,10 @@
             // 获取日期列表
             setDateList(){
                 if(!this.year || !this.month) return;
-                let dateList = dateOrMonth(this.year, this.month);
+                let dateList = dateOnMonth(this.year, this.month);
                 dateList.forEach(item=>{
                    item.isHover = false;
+                   item.key = dateFormat(item.key, this.format);
                     if(this.isRange && this.date.length === 2 && item.key > this.date[0] && item.key < this.date[1]){
                         item.isHover = true;
                     }
@@ -66,7 +68,7 @@
                 this.dateList = dateList;
                 this.clearHover(true);
             },
-            selectDate(date){
+            handleSelectDate(date){
                 if(this.date.length === 2){
                     this.clearHover();
                 }

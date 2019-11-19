@@ -116,8 +116,9 @@ export const zero = (value) => {
  * @param format
  * @returns {string|*}
  */
-export const dateFormat = (forDate, format = 'YYYY/MM/DD') => {
-    if (!forDate || !format) return forDate;
+export const dateFormat = (forDate, format) => {
+    if (!forDate) return forDate;
+    format = format || 'YYYY-MM-DD';
     forDate = new Date(forDate);
 
     let year = forDate.getFullYear();
@@ -136,7 +137,7 @@ export const dateFormat = (forDate, format = 'YYYY/MM/DD') => {
  * @param forMonth 指定月 如果此值不存在则返回指定年下的月份
  * @returns {[]|*[]|*}
  */
-export const dateOrMonth = (forYear, forMonth) => {
+export const dateOnMonth = (forYear, forMonth) => {
 
     let forDate;
     if (!forYear) return forYear;
@@ -170,7 +171,8 @@ export const dateOrMonth = (forYear, forMonth) => {
                 date: zero(firstDateCopy.getDate()),
                 isNowDate: false,
                 isNowMonth: false,
-                key: dateFormat(firstDateCopy)
+                key: dateFormat(firstDateCopy),
+                originDate: dateFormat(firstDateCopy),
             });
         }
         result.reverse();
@@ -182,7 +184,8 @@ export const dateOrMonth = (forYear, forMonth) => {
         date: zero(firstDate.getDate()),
         isNowDate: nowDate === dateFormat(firstDate),
         isNowMonth: true,
-        key: dateFormat(firstDate)
+        key: dateFormat(firstDate),
+        originDate: dateFormat(firstDate),
     });
     for (let i = 1; i < currentTotalDay; i++) {
         firstDate.setDate(firstDate.getDate() + 1);
@@ -192,7 +195,8 @@ export const dateOrMonth = (forYear, forMonth) => {
             date: zero(firstDate.getDate()),
             isNowDate: nowDate === dateFormat(firstDate),
             isNowMonth: true,
-            key: dateFormat(firstDate)
+            key: dateFormat(firstDate),
+            originDate: dateFormat(firstDate)
         });
     }
 
@@ -208,7 +212,8 @@ export const dateOrMonth = (forYear, forMonth) => {
                 date: zero(endDateCopy.getDate()),
                 isNowDate: false,
                 isNowMonth: false,
-                key: dateFormat(endDateCopy)
+                key: dateFormat(endDateCopy),
+                originDate: dateFormat(endDateCopy),
             });
         }
     }

@@ -6,6 +6,7 @@
          v-click-outside.capture="handleClickOutside">
         <div class="cl-date-picker__reference" ref="reference">
             <cl-input v-model="dateInputValue"
+                      suffix="cl-icon-date"
                       :size="size"
                       :clearable="clearable"
                       :placeholder="placeholder"
@@ -23,7 +24,7 @@
                       v-model="visible">
                 <div class="cl-date-picker__drop-down-inner">
                     <cl-date-pane :size="size"
-                                  :format="format"
+                                  :format="formatType"
                                   v-model="dateValue"
                                   :is-range="isRange"
                                   :type="type" />
@@ -92,6 +93,34 @@
         computed: {
             isRange(){
                 return this.type.includes('range');
+            },
+            formatType(){
+                if(this.format) return this.format;
+                let result;
+                switch (this.type) {
+                    case 'date':
+                        result = 'YYYY-MM-DD';
+                        break;
+                    case 'daterange':
+                        result = 'YYYY-MM-DD';
+                        break;
+                    case 'datetime':
+                        result = 'YYYY-MM-DD hh:mm:ss';
+                        break;
+                    case 'datetimerange':
+                        result = 'YYYY-MM-DD hh:mm:ss';
+                        break;
+                    case 'year':
+                        result = 'YYYY';
+                        break;
+                    case 'month':
+                        result = 'YYYY-MM';
+                        break;
+                    default:
+                        result = 'YYYY-MM-DD';
+                        break;
+                }
+                return result;
             }
         },
         components: {
@@ -107,10 +136,10 @@
                 if(this.isRange){
                     let value = this.value.length ? this.value : [];
                     if(value[0] && value[1]){
-                        this.dateValue = [dateFormat(value[0], this.format), dateFormat(value[0], this.format)];
+                        this.dateValue = [dateFormat(value[0], this.formatType), dateFormat(value[0], this.formatType)];
                     }
                 }else{
-                    this.dateValue = this.value ? [dateFormat(this.value, this.format)] : [];
+                    this.dateValue = this.value ? [dateFormat(this.value, this.formatType)] : [];
                 }
             },
             handleFocus(){
@@ -141,8 +170,8 @@
             },
             updateInputValue(){
                 if(this.isRange){
-                    let date1 = dateFormat(this.dateValue[0], this.format);
-                    let date2 = dateFormat(this.dateValue[1], this.format);
+                    let date1 = this.dateValue[0];
+                    let date2 = this.dateValue[1];
                     if(date1 && !date2){
                         this.dateInputValue = `${date1}`;
                     }else if(date1 && date1){
@@ -151,7 +180,7 @@
                         this.dateInputValue = '';
                     }
                 }else{
-                    this.dateInputValue = dateFormat(this.dateValue[0], this.format);
+                    this.dateInputValue = this.dateValue[0] || '';
                 }
             },
         },
