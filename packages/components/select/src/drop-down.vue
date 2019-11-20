@@ -14,6 +14,10 @@
         name: "ClDropDown",
         props: {
             dropdownMatchSelectWidth: Boolean,
+            isMinWidth: {
+                type: Boolean,
+                default: true
+            },
             placement: {
                 type: String,
                 default: 'bottom-start'
@@ -49,7 +53,6 @@
         data() {
             return {
                 visible: false,
-                // expandStyle: {},
                 width: '',
             }
         },
@@ -82,7 +85,7 @@
             expandStyle() {
                 return {
                     width: this.dropdownMatchSelectWidth ? this.width : 'auto',
-                    minWidth: this.width,
+                    minWidth: this.isMinWidth ? this.width : '',
                 }
             },
         },

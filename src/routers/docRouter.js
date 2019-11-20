@@ -33,6 +33,7 @@ const docList = () => import(`../views/mainContent/docPage/${env}/list/list.md`)
 const docLoading = () => import(`../views/mainContent/docPage/${env}/loading/loading.md`);
 const docBackTop = () => import(`../views/mainContent/docPage/${env}/back-top/back-top.md`);
 const docAffix = () => import(`../views/mainContent/docPage/${env}/affix/affix.md`);
+const docDatePicker = () => import(`../views/mainContent/docPage/${env}/date-picker/date-picker.md`);
 
 let routers = [
     {
@@ -189,6 +190,11 @@ let routers = [
         path: `${env}/doc/affix`,
         name: 'docAffix',
         component: docAffix
+    },
+    {
+        path: `${env}/doc/date-picker`,
+        name: 'docDatePicker',
+        component: docDatePicker
     },
 ];
 

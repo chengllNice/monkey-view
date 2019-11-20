@@ -43,7 +43,8 @@ $--border-color-success: #19be6b !default;
 $--border-color-info: #13c2c2 !default;
 
 $--background-color-base: #f5f7fa !default;
-$--background-color-disabled: #c5c8ce !default;
+$--background-color-disabled: #f7f7f7 !default;
+//$--background-color-disabled: #c5c8ce !default;
 $--backgorund-color-hover: mix($--color-white, $--color-primary, 90%) !default;
 
 
@@ -300,7 +301,7 @@ $--input-suffix-width: 36px !default;
 
 $--input-font-color-disabled: $--color-text-disabled !default;
 $--input-border-color-disabled: $--border-color-disabled !default;
-$--input-background-color-disabled: #f3f3f3 !default;
+$--input-background-color-disabled: #f7f7f7 !default;
 
 $--input-height-default: $height-default !default;
 $--input-padding-vertical-default: 5px !default;

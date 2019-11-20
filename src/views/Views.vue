@@ -4,7 +4,7 @@
             <CHeader></CHeader>
         </ClHeader>
         <ClLayout class="views-layout">
-            <ClSider hide-trigger>
+            <ClSider hide-trigger width="220">
                 <LeftNav></LeftNav>
             </ClSider>
             <ClContent class="views-main-content" ref="viewsMainContent">

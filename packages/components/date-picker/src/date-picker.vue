@@ -8,6 +8,7 @@
             <cl-input v-model="dateInputValue"
                       suffix="cl-icon-date"
                       :size="size"
+                      :disabled="disabled"
                       :clearable="clearable"
                       :placeholder="placeholder"
                       @click.native="handleFocus"
@@ -19,6 +20,7 @@
                       ref="dropDown"
                       :reference="this.$refs.reference"
                       :placement="placement"
+                      :isMinWidth="false"
                       :dropdownMatchSelectWidth="false"
                       :render-html="renderHtml"
                       v-model="visible">
@@ -45,6 +47,11 @@
     export default {
         name: "ClDatePicker",
         directives: {clickOutside},
+        provide() {
+            return {
+                datePicker: this
+            }
+        },
         props: {
             value: [String, Array],
             type: {
@@ -76,6 +83,7 @@
                 type: String,
                 default: '',
             },
+            disabledDate: Function,
             renderHtml: {
                 type: [HTMLElement, Boolean],
                 default: function () {
@@ -134,7 +142,7 @@
         methods: {
             initDateValue(){
                 if(this.isRange){
-                    let value = this.value.length ? this.value : [];
+                    let value = this.value && this.value.length ? this.value : [];
                     if(value[0] && value[1]){
                         this.dateValue = [dateFormat(value[0], this.formatType), dateFormat(value[0], this.formatType)];
                     }

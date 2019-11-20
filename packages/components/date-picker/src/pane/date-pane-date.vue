@@ -11,7 +11,8 @@
                 dateItem.isNowDate && 'cl-date-pane-item__now',
                 !dateItem.isNowMonth && 'cl-date-pane-item__no-now-month',
                 date.includes(dateItem.key) && dateItem.isNowMonth && 'cl-date-pane-item__selected',
-                dateItem.isHover && 'cl-date-pane-item__hover'
+                dateItem.isHover && 'cl-date-pane-item__hover',
+                dateItem.isDisabled && 'cl-date-pane-item__disabled',
               ]"
               @mouseenter="mouseEnter(dateItem)"
               @mouseleave="mouseLeave(dateItem)"
@@ -24,6 +25,7 @@
 
     export default {
         name: "ClDatePaneDate",
+        inject: ['datePicker'],
         props: {
             size: String,
             type: String,
@@ -32,7 +34,7 @@
             month: String,
             date: {
                 type: Array,
-                default(){
+                default() {
                     return []
                 }
             },
@@ -41,67 +43,70 @@
             hoverDate: String,
             index: String,
         },
-        data(){
+        data() {
             return {
                 dateList: [],
                 weekList: dateObj.week,
             }
         },
-        computed: {
-
-        },
+        computed: {},
         mounted() {
             this.setDateList();
         },
         methods: {
             // 获取日期列表
-            setDateList(){
-                if(!this.year || !this.month) return;
+            setDateList() {
+                if (!this.year || !this.month) return;
                 let dateList = dateOnMonth(this.year, this.month);
-                dateList.forEach(item=>{
-                   item.isHover = false;
-                   item.key = dateFormat(item.key, this.format);
-                    if(this.isRange && this.date.length === 2 && item.key > this.date[0] && item.key < this.date[1]){
+                dateList.forEach(item => {
+                    item.isHover = false;
+                    item.isDisabled = false;
+                    if(typeof this.datePicker.disabledDate === 'function'){
+                        item.isDisabled = this.datePicker.disabledDate(item.key);
+                    }
+                    item.key = dateFormat(item.key, this.format);
+                    if (this.isRange && this.date.length === 2 && item.key > this.date[0] && item.key < this.date[1]) {
                         item.isHover = true;
                     }
                 });
                 this.dateList = dateList;
                 this.clearHover(true);
             },
-            handleSelectDate(date){
-                if(this.date.length === 2){
+            handleSelectDate(date) {
+                if(date.isDisabled) return;
+                if (this.date.length === 2) {
                     this.clearHover();
                 }
                 this.$emit('updateDate', [date.key]);
             },
-            mouseEnter(dateItem){
-                if(dateItem.isNowMonth) {
+            mouseEnter(dateItem) {
+                if (dateItem.isNowMonth) {
                     dateItem.isHover = true;
                 }
                 this.$emit('hover-date', dateItem.key);//range时清除另一个date-pane的hover效果
             },
-            mouseLeave(dateItem){
-                if(dateItem.isNowMonth) {
-                    if(this.date.length === 2 && dateItem.key > this.date[0] && dateItem.key < this.date[1]){
+            mouseLeave(dateItem) {
+                if (dateItem.isNowMonth) {
+                    if (this.date.length === 2 && dateItem.key > this.date[0] && dateItem.key < this.date[1]) {
                         dateItem.isHover = true;
-                    }else{
+                    } else {
                         dateItem.isHover = false;
                     }
                 }
             },
-            rangeHovering(date){
-                if(this.date.length === 1){
-                    this.dateList.forEach(item=>{
-                        if(date > this.date[0]){
-                            if(item.key <= date && item.key > this.date[0] && item.isNowMonth){
+            rangeHovering(date) {
+                if (this.date.length === 1) {
+                    this.dateList.forEach(item => {
+                        if (date > this.date[0]) {
+                            if (item.key <= date && item.key > this.date[0] && item.isNowMonth) {
                                 item.isHover = true;
-                            }else{
+                            } else {
                                 item.isHover = false;
                             }
-                        }else{
-                            if(item.key >= date && item.key < this.date[0] && item.isNowMonth){
+                        } else {
+                            if (item.key >= date && item.key < this.date[0] && item.isNowMonth) {
                                 item.isHover = true;
-                            }else{
+                            } else {
                                 item.isHover = false;
                             }
                         }
@@ -109,32 +114,32 @@
                 }
             },
             // 清除hover效果, 如果noMonth存在只清除不是当前月的hover效果
-            clearHover(noMonth = false){
-                this.dateList.forEach(item=>{
-                    if(noMonth){
-                        if(!item.isNowMonth){
+            clearHover(noMonth = false) {
+                this.dateList.forEach(item => {
+                    if (noMonth) {
+                        if (!item.isNowMonth) {
                             item.isHover = false;
                         }
-                    }else{
+                    } else {
                         item.isHover = false;
                     }
                 })
             }
         },
         watch: {
-            year(){
+            year() {
                 this.setDateList();
             },
-            month(){
+            month() {
                 this.setDateList();
             },
-            date(newVal){
-                if(newVal.length === 1 && this.isRange){
+            date(newVal) {
+                if (newVal.length === 1 && this.isRange) {
                     this.clearHover();
                 }
             },
-            hoverDate(newVal){
-                if(this.isRange && newVal) this.rangeHovering(newVal);
+            hoverDate(newVal) {
+                if (this.isRange && newVal) this.rangeHovering(newVal);
             }
         }
     }

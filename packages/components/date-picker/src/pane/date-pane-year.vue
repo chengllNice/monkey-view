@@ -8,14 +8,14 @@
               :class="[
                     'cl-date-pane-item__col',
                     _year.id === currentDate.year && 'cl-date-pane-item__now',
-                    year === _year.id && 'cl-date-pane-item__selected'
+                    selectYear === _year.id && 'cl-date-pane-item__selected'
               ]"
               @click.stop="handleSelectYear(_year)">{{_year.name}}</span>
     </div>
 </template>
 
 <script>
-    import { yearListInit} from "../../../../utils/date";
+    import {dateFormat, yearListInit} from "../../../../utils/date";
 
     export default {
         name: "ClDatePaneYear",
@@ -40,8 +40,8 @@
             }
         },
         computed: {
-            selectedYear(){
-                return this.type === 'year' ? this.date[this.index] : this.year;
+            selectYear(){
+                return dateFormat(this.date[this.index], 'YYYY');
             }
         },
         mounted() {

@@ -167,6 +167,13 @@
                                 query: {},
                             },
                             {
+                                key: 'date-picker',
+                                name: 'DatePicker日期选择器',
+                                icon: 'cl-icon-date',
+                                link: '/date-picker',
+                                query: {},
+                            },
+                            {
                                 key: 'upload',
                                 name: 'Upload上传',
                                 icon: 'cl-icon-cloud-upload',

@@ -8,14 +8,14 @@
               :class="[
                     'cl-date-pane-item__col',
                     _month.id === currentDate.month && currentDate.year === year && 'cl-date-pane-item__now',
-                    _month.id === month && 'cl-date-pane-item__selected'
+                    isSelectYear && _month.id === selectedMonth && 'cl-date-pane-item__selected'
               ]"
               @click.stop="handleSelectMonth(_month)">{{_month.name}}</span>
     </div>
 </template>
 
 <script>
-    import { dateObj} from "../../../../utils/date";
+    import { dateObj, dateFormat} from "../../../../utils/date";
 
     export default {
         name: "ClDatePaneMonth",
@@ -37,6 +37,14 @@
         data(){
             return {
                 monthList: dateObj.month,
+            }
+        },
+        computed: {
+            selectedMonth(){
+                return this.type === 'month' ? dateFormat(this.date[this.index], 'MM') : this.month;
+            },
+            isSelectYear(){
+                return dateFormat(this.date[this.index], 'YYYY') === this.year;
             }
         },
         mounted() {

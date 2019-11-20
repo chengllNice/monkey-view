@@ -3,7 +3,7 @@
 @import "./config/mixins/dateMixins.scss";
 
 @include c(date-picker){
-  display: block;
+  display: inline-block;
   @include e(reference){
 
   }
@@ -86,13 +86,14 @@
 
 
 @include c(date-pane){
-  @include clear-float;
-  @include e(left){
-    float: left;
-  }
-  @include e(right){
-    float: right;
-  }
+  display: flex;
+  //@include clear-float;
+  //@include e(left){
+  //  float: left;
+  //}
+  //@include e(right){
+  //  float: right;
+  //}
 }
 
 

@@ -117,6 +117,12 @@ $year-and-month-margin: #{$--date-picker-pane-margin * 2};
     }
   }
 
+  .cl-date-pane-item__disabled{
+    background-color: $--background-color-disabled;
+    color: $--color-text-disabled;
+    cursor: not-allowed;
+  }
+
   .cl-date-pane-item__no-now-month{
     color: $--date-picker-no-now-month-color;
   }
