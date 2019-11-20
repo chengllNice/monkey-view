@@ -84,6 +84,7 @@
                 default: '',
             },
             disabledDate: Function,
+            showWeekNumber: Boolean,
             renderHtml: {
                 type: [HTMLElement, Boolean],
                 default: function () {

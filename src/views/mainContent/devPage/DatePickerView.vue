@@ -5,6 +5,7 @@
                         v-model="date1"
                         @change="dateChange"
                         clearable
+                        show-week-number
                         format="YYYY/MM/DD"
                         :disabled-date="disabledDate"
                         :render-html="true"></cl-date-picker>

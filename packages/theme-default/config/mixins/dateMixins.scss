@@ -23,9 +23,10 @@ $year-and-month-margin: #{$--date-picker-pane-margin * 2};
     $pane-width: $--date-picker-pane-date-width-large;
     $height: $height-large;
   }
-  $date-width: #{($pane-width - $--date-picker-pane-padding * 2) / 7 - $--date-picker-pane-margin * 2};
-  $year-width: #{($pane-width - $--date-picker-pane-padding * 2) / 3 - $--date-picker-pane-margin * 4};
-  $year-height: #{(($pane-width - $--date-picker-pane-padding * 2) / 3 - $--date-picker-pane-margin * 4) / 2};
+  $date-width: #{$pane-width / 7 - $--date-picker-pane-margin * 2};
+  $year-width: #{$pane-width / 3 - $--date-picker-pane-margin * 4};
+  $year-height: #{($pane-width / 3 - $--date-picker-pane-margin * 4) / 2};
+  $show-week-number-pane-width: #{$pane-width + $pane-width / 7};
 
   @if($field == 'font-size'){
     $return-value: $font-size;
@@ -39,12 +40,19 @@ $year-and-month-margin: #{$--date-picker-pane-margin * 2};
     $return-value: $pane-width;
   }@else if($field == 'height'){
     $return-value: $height;
+  }@else if($field == 'show-week-number-pane-width'){
+    $return-value: $show-week-number-pane-width;
   }
   @return $return-value;
 }
 
 @mixin date-pane-size($size){
-  width: size-common($size, 'pane-width');
+  .cl-date-pane-date, .cl-date-pane-year, .cl-date-pane-month{
+    width: size-common($size, 'pane-width');
+  }
+  .cl-date-pane-date--show-week-number{
+    width: size-common($size, 'show-week-number-pane-width');
+  }
   .cl-date-pane-single__header{
     font-size: #{size-common($size, 'font-size') + 2px};
     height: size-common($size, 'height');
@@ -57,7 +65,7 @@ $year-and-month-margin: #{$--date-picker-pane-margin * 2};
 
 @mixin date-pane-date-size($size){
   $date-width: size-common($size, 'date-width');
-  .cl-date-pane-item__col,.cl-date-pane-item__week{
+  .cl-date-pane-item__col,.cl-date-pane-item__week, .cl-date-pane-item__week-number{
     width: $date-width;
     height: $date-width;
     line-height: $date-width;

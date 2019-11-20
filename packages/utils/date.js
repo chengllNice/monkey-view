@@ -244,3 +244,14 @@ export const yearListInit = (forYear) => {
     }
     return result;
 };
+
+
+export const getWeekNumber = (date) => {
+    if(!date) return date;
+    let startDate = new Date(date);
+    let nowDate = new Date(date);
+    startDate.setMonth(0);
+    startDate.setDate(1);
+    let dis = nowDate.getTime() - startDate.getTime();
+    return Math.ceil( Math.ceil(dis / (24 * 60 * 60 * 1000)) / 7);
+};
