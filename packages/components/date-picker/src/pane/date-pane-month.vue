@@ -3,14 +3,20 @@
             'cl-date-pane-month',
             size && `cl-date-pane-month--${size}`
          ]">
-        <span v-for="_month in monthList"
-              :key="_month.key"
-              :class="[
+        <div class="cl-date-pane-month__row" v-for="(row, rowIndex) in monthList" :key="rowIndex">
+            <span v-for="_month in row"
+                  :key="_month.key"
+                  :class="[
                     'cl-date-pane-item__col',
+                    'cl-date-pane-item__hover',
                     _month.id === currentDate.month && currentDate.year === year && 'cl-date-pane-item__now',
                     isSelectYear && _month.id === selectedMonth && 'cl-date-pane-item__selected'
               ]"
-              @click.stop="handleSelectMonth(_month)">{{_month.name}}</span>
+                  @click.stop="handleSelectMonth(_month)">
+            <em>{{_month.name}}</em>
+        </span>
+        </div>
+
     </div>
 </template>
 
@@ -36,7 +42,7 @@
         },
         data(){
             return {
-                monthList: dateObj.month,
+                monthList: [],
             }
         },
         computed: {
@@ -48,14 +54,37 @@
             }
         },
         mounted() {
+            this.setMonthList();
         },
         methods: {
+            // 获取年份列表
+            setMonthList(year){
+                if(!year && !this.year) return;
+                let monthList = dateObj.month;
+                let newMonthList = [];
+                let row = [];
+                monthList.forEach((item, index)=>{
+                    if(index % 3 === 0){
+                        row = [];
+                        newMonthList.push(row);
+                    }
+                    row.push(item);
+                });
+                this.monthList = newMonthList;
+            },
             handleSelectMonth(month){
                 this.$emit('update-month', month.id);
             },
         },
         watch: {
-
+            month() {
+                if (this.type === 'month') {
+                    this.setMonthList();
+                }
+            },
+            type(newVal) {
+                newVal === 'month' && this.setMonthList();
+            }
         }
     }
 </script>

@@ -1,6 +1,14 @@
 <template>
     <div class="DatePickerView">
         <cl-date-picker style="width: 200px"
+                        type="week"
+                        placeholder="请选择周"
+                        v-model="dateWeek"
+                        @change="dateChange"
+                        clearable
+                        :render-html="true"></cl-date-picker>
+
+        <cl-date-picker style="width: 200px"
                         placeholder="请选择日期"
                         v-model="date1"
                         @change="dateChange"
@@ -41,6 +49,7 @@
         name: "DatePickerView",
         data(){
           return{
+              dateWeek: '',
               date1: '',
               date2: ['2019-11-11', '2020-1-1'],
               dateYear: '',

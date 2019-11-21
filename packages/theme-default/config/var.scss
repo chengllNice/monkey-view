@@ -102,8 +102,13 @@ $--date-picker-pane-date-width-small: 252px !default;
 $--date-picker-pane-date-width-default: 266px !default;
 $--date-picker-pane-date-width-large: 280px !default;
 
+$--date-picker-em-width-mini: 26px !default;
+$--date-picker-em-width-small: 28px !default;
+$--date-picker-em-width-default: 30px !default;
+$--date-picker-em-width-large: 32px !default;
+
 $--date-picker-pane-padding: 10px !default;
-$--date-picker-pane-margin: 4px !default;
+$--date-picker-pane-margin: 2px !default;
 
 $--date-picker-no-now-month-color: $--color-text-placeholder !default;
 

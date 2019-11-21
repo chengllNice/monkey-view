@@ -101,14 +101,7 @@
   .cl-date-pane-date__week{
     text-align: right;
   }
-  .cl-date-pane-item__week, .cl-date-pane-item__week-number{
-    border: 1px solid transparent;
-    display: inline-block;
-    text-align: center;
-  }
-  .cl-date-pane-item__week-number{
-    color: $--date-picker-no-now-month-color;
-  }
+
 
   @include date-pane-item-common;
 
@@ -132,9 +125,6 @@
 
 @include c(date-pane-year){
   @include date-pane-item-common;
-  .cl-date-pane-item__col:hover{
-    background-color: mix($--color-primary, $--color-white, 20%);
-  }
 
   @include m(mini){
     @include date-pane-date-year-size(mini);
@@ -156,9 +146,6 @@
 
 @include c(date-pane-month){
   @include date-pane-item-common;
-  .cl-date-pane-item__col:hover{
-    background-color: mix($--color-primary, $--color-white, 20%);
-  }
 
   @include m(mini){
     @include date-pane-date-month-size(mini);

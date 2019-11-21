@@ -28,9 +28,10 @@
                                :currentDate="currentDate"
                                :is-range="isRange"
                                :format="format"
+                               @updateWeek="updateSelectWeek"
                                @updateDate="updateSelectDate"
                                @hover-date="handleHoverDate"
-                               v-show="currentType === 'date'"></cl-date-pane-date>
+                               v-show="currentType === 'date' || currentType === 'week'"></cl-date-pane-date>
             <cl-date-pane-year :size="size"
                                :type="currentType"
                                :year="year"
@@ -124,6 +125,9 @@
                 date = [dateFormat(date[0], this.format)];
                 this.$emit('update-date', this.index, date);
             },
+            updateSelectWeek(weekNum){
+                this.$emit('update-date', this.index, [weekNum]);
+            },
             updateSelectYear(year){
                 if (this.type === 'year'){
                     this.updateSelectDate([year]);
@@ -135,6 +139,8 @@
             updateSelectMonth(month){
                 if (this.type === 'date' || this.type === 'daterange'){
                     this.currentType = 'date';
+                }else if(this.type === 'week'){
+                    this.currentType = 'week';
                 }else{
                     let date = dateFormat(new Date(this.year, parseInt(month) - 1), this.format);
                     this.updateSelectDate([date]);

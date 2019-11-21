@@ -58,7 +58,7 @@
                 type: String,
                 default: 'date',
                 validator(value){
-                    return ['date', 'daterange', 'datetime', 'datetimerange', 'year', 'month'].includes(value)
+                    return ['date', 'daterange', 'datetime', 'datetimerange', 'year', 'month', 'week'].includes(value)
                 }
             },
             placeholder: String,
@@ -125,6 +125,9 @@
                     case 'month':
                         result = 'YYYY-MM';
                         break;
+                    case 'week':
+                        result = 'YYYY-WW';
+                        break;
                     default:
                         result = 'YYYY-MM-DD';
                         break;
@@ -142,13 +145,17 @@
         },
         methods: {
             initDateValue(){
-                if(this.isRange){
-                    let value = this.value && this.value.length ? this.value : [];
-                    if(value[0] && value[1]){
-                        this.dateValue = [dateFormat(value[0], this.formatType), dateFormat(value[0], this.formatType)];
-                    }
+                if(this.type === 'week'){
+
                 }else{
-                    this.dateValue = this.value ? [dateFormat(this.value, this.formatType)] : [];
+                    if(this.isRange){
+                        let value = this.value && this.value.length ? this.value : [];
+                        if(value[0] && value[1]){
+                            this.dateValue = [dateFormat(value[0], this.formatType), dateFormat(value[0], this.formatType)];
+                        }
+                    }else{
+                        this.dateValue = this.value ? [dateFormat(this.value, this.formatType)] : [];
+                    }
                 }
             },
             handleFocus(){

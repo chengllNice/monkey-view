@@ -3,14 +3,20 @@
             'cl-date-pane-year',
             size && `cl-date-pane-year--${size}`
          ]">
-        <span v-for="_year in yearList"
-              :key="_year.key"
-              :class="[
+        <div class="cl-date-pane-year__row" v-for="(row, rowIndex) in yearList" :key="rowIndex">
+            <span v-for="_year in row"
+                  :key="_year.id"
+                  :class="[
                     'cl-date-pane-item__col',
+                    'cl-date-pane-item__hover',
                     _year.id === currentDate.year && 'cl-date-pane-item__now',
                     selectYear === _year.id && 'cl-date-pane-item__selected'
-              ]"
-              @click.stop="handleSelectYear(_year)">{{_year.name}}</span>
+                  ]"
+                  @click.stop="handleSelectYear(_year)">
+            <em>{{_year.name}}</em>
+        </span>
+        </div>
+
     </div>
 </template>
 
@@ -51,7 +57,17 @@
             // 获取年份列表
             setYearList(year){
                 if(!year && !this.year) return;
-                this.yearList = yearListInit(year || this.year);
+                let yearList = yearListInit(year || this.year);
+                let newYearList = [];
+                let row = [];
+                yearList.forEach((item, index)=>{
+                    if(index % 3 === 0){
+                        row = [];
+                        newYearList.push(row);
+                    }
+                    row.push(item);
+                });
+                this.yearList = newYearList;
             },
             handleSelectYear(year){
                 this.$emit('update-year', year.id);

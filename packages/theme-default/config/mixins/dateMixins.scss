@@ -6,57 +6,54 @@ $year-and-month-margin: #{$--date-picker-pane-margin * 2};
 
 @function size-common($size, $field){
   $font-size: $--font-size-default;
-  $pane-width: $--date-picker-pane-date-width-default;
+  //$pane-width: $--date-picker-pane-date-width-default;
   $height: $height-default;
+  //$em-width: $--date-picker-em-width-default;
 
   $return-value: '';
   @if($size == 'mini'){
     $font-size: $--font-size-mini;
-    $pane-width: $--date-picker-pane-date-width-mini;
+    //$pane-width: $--date-picker-pane-date-width-mini;
+    //$em-width: $--date-picker-em-width-mini;
     $height: $height-mini;
   }@else if($size == 'small'){
     $font-size: $--font-size-small;
-    $pane-width: $--date-picker-pane-date-width-small;
+    //$pane-width: $--date-picker-pane-date-width-small;
+    //$em-width: $--date-picker-em-width-small;
     $height: $height-small;
   }@else if($size == 'large'){
     $font-size: $--font-size-large;
-    $pane-width: $--date-picker-pane-date-width-large;
+    //$pane-width: $--date-picker-pane-date-width-large;
+    //$em-width: $--date-picker-em-width-large;
     $height: $height-large;
   }
-  $date-width: #{$pane-width / 7 - $--date-picker-pane-margin * 2};
-  $year-width: #{$pane-width / 3 - $--date-picker-pane-margin * 4};
-  $year-height: #{($pane-width / 3 - $--date-picker-pane-margin * 4) / 2};
-  $show-week-number-pane-width: #{$pane-width + $pane-width / 7};
+  $year-width: #{$height * 7 / 3};
+  //$year-height: #{($pane-width / 3) / 2};
+  //$show-week-number-pane-width: #{$pane-width + $pane-width / 7};
 
   @if($field == 'font-size'){
     $return-value: $font-size;
   }@else if($field == 'date-width'){
-    $return-value: $date-width;
+    $return-value: $height;
   }@else if($field == 'year-width'){
     $return-value: $year-width;
-  }@else if($field == 'year-height'){
-    $return-value: $year-height;
-  }@else if($field == 'pane-width'){
-    $return-value: $pane-width;
-  }@else if($field == 'height'){
-    $return-value: $height;
-  }@else if($field == 'show-week-number-pane-width'){
-    $return-value: $show-week-number-pane-width;
+  }@else if($field == 'month-width'){
+    $return-value: $year-width;
   }
   @return $return-value;
 }
 
 @mixin date-pane-size($size){
   .cl-date-pane-date, .cl-date-pane-year, .cl-date-pane-month{
-    width: size-common($size, 'pane-width');
+    //width: size-common($size, 'pane-width');
   }
   .cl-date-pane-date--show-week-number{
-    width: size-common($size, 'show-week-number-pane-width');
+    //width: size-common($size, 'show-week-number-pane-width');
   }
   .cl-date-pane-single__header{
     font-size: #{size-common($size, 'font-size') + 2px};
-    height: size-common($size, 'height');
-    line-height: size-common($size, 'height');
+    height: size-common($size, 'date-width');
+    line-height: size-common($size, 'date-width');
     i{
       font-size: #{size-common($size, 'font-size') / 1.2};
     }
@@ -66,59 +63,94 @@ $year-and-month-margin: #{$--date-picker-pane-margin * 2};
 @mixin date-pane-date-size($size){
   $date-width: size-common($size, 'date-width');
   .cl-date-pane-item__col,.cl-date-pane-item__week, .cl-date-pane-item__week-number{
-    width: $date-width;
-    height: $date-width;
-    line-height: $date-width;
-    margin: $--date-picker-pane-margin;
+    margin: $--date-picker-pane-margin 0;
+    padding: 0 $--date-picker-pane-margin;
+    em{
+      width: $date-width;
+      height: $date-width;
+      line-height: $date-width;
+    }
   }
 }
 
 
 @mixin date-pane-date-year-size($size){
   $year-width: size-common($size, 'year-width');
-  $year-height: size-common($size, 'year-height');
+  $year-height: size-common($size, 'date-width');
   .cl-date-pane-item__col{
-    width: $year-width;
-    height: $year-height;
-    line-height: $year-height;
-    margin: $year-and-month-margin;
+    margin: $year-and-month-margin 0;
+    padding: 0 $year-and-month-margin;
+    em{
+      width: $year-width;
+      height: $year-height;
+      line-height: $year-height;
+    }
   }
 }
 
 
 @mixin date-pane-date-month-size($size){
-  $month-width: size-common($size, 'year-width');
-  $month-height: size-common($size, 'year-height');
-  .cl-date-pane-item__col{
-    width: $month-width;
-    height: $month-height;
-    line-height: $month-height;
-    margin: $year-and-month-margin;
+  $month-width: size-common($size, 'month-width');
+  $month-height: size-common($size, 'date-width');
+  .cl-date-pane-item__col {
+    margin: $year-and-month-margin 0;
+    padding: 0 $year-and-month-margin;
+    em{
+      width: $month-width;
+      height: $month-height;
+      line-height: $month-height;
+    }
   }
 }
 
 @mixin date-pane-item-common{
+  .cl-date-pane-date__date-row-week:hover{
+    .cl-date-pane-item__col:not(.cl-date-pane-item__week-number){
+      background-color: mix($--color-primary, $--color-white, 20%);
+    }
+  }
   .cl-date-pane-item__col{
     color: $--color-text-default;
     cursor: pointer;
     transition: all $--animation-time;
-    border: 1px solid transparent;
     display: inline-block;
     text-align: center;
-    border-radius: $--border-radius-default;
+    em{
+      border: 1px solid transparent;
+      display: block;
+      font-style: normal;
+      transition: all $--animation-time;
+      border-radius: $--border-radius-default;
+    }
+
+    &.cl-date-pane-item__hover em:hover{
+      background-color: mix($--color-primary, $--color-white, 20%);
+    }
   }
-  .cl-date-pane-item__now{
+  .cl-date-pane-item__week, .cl-date-pane-item__week-number{
+    cursor: default;
+    em{
+      cursor: default;
+    }
+  }
+  .cl-date-pane-item__week-number em{
+    color: $--date-picker-no-now-month-color;
+  }
+
+  .cl-date-pane-item__now em{
     color: $--color-primary;
   }
 
-  .cl-date-pane-item__hover{
+  .cl-date-pane-item__between{
     background-color: mix($--color-primary, $--color-white, 20%);
   }
 
   .cl-date-pane-item__selected{
-    border: 1px solid $--color-primary;
-    background-color: $--color-primary;
-    color: $--color-white;
+    em{
+      border: 1px solid $--color-primary;
+      background-color: $--color-primary;
+      color: $--color-white;
+    }
     &.cl-date-pane-item__no-now-month{
       background-color: $--color-white;
       color: $--date-picker-no-now-month-color;
@@ -126,9 +158,11 @@ $year-and-month-margin: #{$--date-picker-pane-margin * 2};
   }
 
   .cl-date-pane-item__disabled{
-    background-color: $--background-color-disabled;
-    color: $--color-text-disabled;
-    cursor: not-allowed;
+    &, em{
+      background-color: $--background-color-disabled;
+      color: $--color-text-disabled;
+      cursor: not-allowed;
+    }
   }
 
   .cl-date-pane-item__no-now-month{

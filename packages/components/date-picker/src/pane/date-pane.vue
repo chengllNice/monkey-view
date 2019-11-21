@@ -13,7 +13,7 @@
                              :type="type"
                              @hover-date="handleHoverDate"
                              @update-date="updateValue"
-                             @update-pane="updateDate"></cl-date-pane-single>
+                             @update-pane="updatePane"></cl-date-pane-single>
         <cl-date-pane-single class="cl-date-pane__right"
                              ref="rightPane"
                              v-if="isRange"
@@ -28,7 +28,7 @@
                              :type="type"
                              @hover-date="handleHoverDate"
                              @update-date="updateValue"
-                             @update-pane="updateDate"></cl-date-pane-single>
+                             @update-pane="updatePane"></cl-date-pane-single>
     </div>
 </template>
 
@@ -124,7 +124,7 @@
                 }
             },
             // 更新年/月/日
-            updateDate(obj){
+            updatePane(obj){
                 let {type, year, month, jumpStep, index, isUpdateOtherDate} = obj;//type为更新年/月/日类型
                 this.updateDateCommon(obj);
 

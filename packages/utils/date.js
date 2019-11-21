@@ -221,7 +221,11 @@ export const dateOnMonth = (forYear, forMonth) => {
     return result;
 };
 
-
+/**
+ * 格式化年列表
+ * @param forYear
+ * @returns {[]|Array}
+ */
 export const yearListInit = (forYear) => {
     if(!forYear || forYear.length !== 4) return [];
     let result = [];
@@ -245,13 +249,22 @@ export const yearListInit = (forYear) => {
     return result;
 };
 
-
+/**
+ * 获取指定日期在本年中的周数
+ * @param date
+ * @returns {number|*}
+ */
 export const getWeekNumber = (date) => {
     if(!date) return date;
     let startDate = new Date(date);
     let nowDate = new Date(date);
     startDate.setMonth(0);
     startDate.setDate(1);
+    let startDay = startDate.getDay();
+    //如果本年第一天为周六则往前推七天作为判断的开始日期
+    if(startDay === 6){
+        startDate.setDate(1-7);
+    }
     let dis = nowDate.getTime() - startDate.getTime();
     return Math.ceil( Math.ceil(dis / (24 * 60 * 60 * 1000)) / 7);
 };
