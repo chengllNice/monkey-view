@@ -145,14 +145,14 @@
         },
         methods: {
             initDateValue(){
-                if(this.type === 'week'){
-
-                }else{
-                    if(this.isRange){
-                        let value = this.value && this.value.length ? this.value : [];
-                        if(value[0] && value[1]){
-                            this.dateValue = [dateFormat(value[0], this.formatType), dateFormat(value[0], this.formatType)];
-                        }
+                if(this.isRange){
+                    let value = this.value && this.value.length ? this.value : [];
+                    if(value[0] && value[1]){
+                        this.dateValue = [dateFormat(value[0], this.formatType), dateFormat(value[0], this.formatType)];
+                    }
+                }else if(typeof this.value === 'string'){
+                    if(this.type === 'week'){
+                        this.dateValue = this.value ? [this.value] : [];
                     }else{
                         this.dateValue = this.value ? [dateFormat(this.value, this.formatType)] : [];
                     }

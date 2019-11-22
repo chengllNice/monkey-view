@@ -5,6 +5,7 @@
                         placeholder="请选择周"
                         v-model="dateWeek"
                         @change="dateChange"
+                        show-week-number
                         clearable
                         :render-html="true"></cl-date-picker>
 
@@ -51,7 +52,7 @@
           return{
               dateWeek: '',
               date1: '',
-              date2: ['2019-11-11', '2020-1-1'],
+              date2: ['2020-11-11', '2021-1-1'],
               dateYear: '',
               dateMonth: ''
           }

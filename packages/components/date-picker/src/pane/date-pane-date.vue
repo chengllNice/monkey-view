@@ -22,7 +22,7 @@
                             'cl-date-pane-item__col',
                             'cl-date-pane-item__week-number',
                           ]">
-                        <em>{{weekNumbers[rowIndex]}}</em>
+                        <em>{{weekNumbers[rowIndex].week}}</em>
                     </span>
                 </template>
                 <template>
@@ -30,7 +30,7 @@
                           :key="dateItem.originDate"
                           :class="[
                             'cl-date-pane-item__col',
-                            type === 'date' && 'cl-date-pane-item__hover',
+                            type === 'date' && !dateItem.isDisabled && dateItem.isNowMonth && !date.includes(dateItem.key) && 'cl-date-pane-item__hover',
                             dateItem.isNowDate && 'cl-date-pane-item__now',
                             !dateItem.isNowMonth && 'cl-date-pane-item__no-now-month',
                             date.includes(dateItem.key) && dateItem.isNowMonth && 'cl-date-pane-item__selected',
@@ -102,7 +102,10 @@
                     //以周三为基准算当前是第几周
                     // let new Date(row[6].originDate);
                     // let startWeek = .getDay();
-                    weekNumbers.push(getWeekNumber(row[6].originDate));
+                    weekNumbers.push({
+                        week: getWeekNumber(row[6].originDate),
+                        year: row[6].year
+                    });
                 });
                 this.weekNumbers = weekNumbers;
             },
@@ -122,6 +125,9 @@
                     if (this.isRange && this.date.length === 2 && item.key > this.date[0] && item.key < this.date[1]) {
                         item.isBetween = true;
                     }
+                    if(this.type === 'week' && getWeekNumber(item.originDate)){
+
+                    }
                     if (index % 7 === 0) {
                         row = [];
                         newDateList.push(row);
@@ -140,7 +146,8 @@
                 this.$emit('updateDate', [date.key]);
             },
             handleSelectWeek(rowIndex){
-                let emitValue = this.format.replace('YYYY', this.year).replace('WW', zero(this.weekNumbers[rowIndex]));
+                if(this.type === 'date') return;
+                let emitValue = this.format.replace('YYYY', this.weekNumbers[rowIndex].year).replace('WW', zero(this.weekNumbers[rowIndex].week));
                 this.$emit('updateWeek', emitValue);
             },
             mouseEnter(dateItem) {

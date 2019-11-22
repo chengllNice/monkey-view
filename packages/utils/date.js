@@ -268,3 +268,21 @@ export const getWeekNumber = (date) => {
     let dis = nowDate.getTime() - startDate.getTime();
     return Math.ceil( Math.ceil(dis / (24 * 60 * 60 * 1000)) / 7);
 };
+
+/**
+ * 获取指定年指定周数的月份
+ * @param year
+ * @param weekNum
+ * @returns {string|*}
+ */
+export const getMonthByYearAndWeek = (year, weekNum) => {
+    if(!year || !weekNum) return;
+    let date = new Date(year, 0, 1);
+    let startDay = date.getDay();
+    if(startDay === 6){
+        date.setDate(1-7);
+    }
+    let disTime = weekNum * 7 * (24 * 60 * 60 * 1000);
+    date.setTime(date.getTime() + disTime);
+    return dateFormat(date, 'MM');
+};

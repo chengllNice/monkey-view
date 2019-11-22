@@ -6,7 +6,6 @@ $year-and-month-margin: #{$--date-picker-pane-margin * 2};
 
 @function size-common($size, $field){
   $font-size: $--font-size-default;
-  //$pane-width: $--date-picker-pane-date-width-default;
   $height: $height-default;
   //$em-width: $--date-picker-em-width-default;
 
@@ -30,6 +29,8 @@ $year-and-month-margin: #{$--date-picker-pane-margin * 2};
   $year-width: #{$height * 7 / 3};
   //$year-height: #{($pane-width / 3) / 2};
   //$show-week-number-pane-width: #{$pane-width + $pane-width / 7};
+  $pane-min-width: #{($height + $--date-picker-pane-margin * 2) * 7};
+  $show-week-number-pane-min-width: #{($height + $--date-picker-pane-margin * 2) * 8};
 
   @if($field == 'font-size'){
     $return-value: $font-size;
@@ -39,16 +40,20 @@ $year-and-month-margin: #{$--date-picker-pane-margin * 2};
     $return-value: $year-width;
   }@else if($field == 'month-width'){
     $return-value: $year-width;
+  }@else if($field == 'pane-min-width'){
+    $return-value: $pane-min-width;
+  }@else if($field == 'show-week-number-pane-min-width'){
+    $return-value: $show-week-number-pane-min-width;
   }
   @return $return-value;
 }
 
 @mixin date-pane-size($size){
   .cl-date-pane-date, .cl-date-pane-year, .cl-date-pane-month{
-    //width: size-common($size, 'pane-width');
+    min-width: size-common($size, 'pane-min-width');
   }
   .cl-date-pane-date--show-week-number{
-    //width: size-common($size, 'show-week-number-pane-width');
+    min-width: size-common($size, 'show-week-number-pane-min-width');
   }
   .cl-date-pane-single__header{
     font-size: #{size-common($size, 'font-size') + 2px};
