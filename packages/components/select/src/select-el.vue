@@ -53,7 +53,7 @@
                 <span class="cl-select__el-suffix-inner">
                     <i v-if="!isClearable" class="cl-icon-down cl-select__el-icon"
                        :class="{'cl-select__el-icon-rotate': visible}"></i>
-                <i v-else class="cl-icon-circle-close-solid cl-select__el-icon" @click.stop="handlerClear"></i>
+                    <i v-else class="cl-icon-circle-close-solid cl-select__el-icon" @click.stop="handlerClear"></i>
                 </span>
             </span>
         </div>

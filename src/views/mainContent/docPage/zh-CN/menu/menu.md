@@ -273,6 +273,7 @@
 | ---- | ---- | ---- | ---- |
 | width | String, Number | mode=vertical时有效 | 240 |
 | theme | String | 主题，可选值`light` `dark` `green` | light |
+| noHoverBackground | Boolean | hover时是否不需要背景色 | false |
 | accordion | Boolean | 是否开始手风琴模式，开启后每次最多展开一个`submenu`，mode=vertical时有效 | - |
 | mode | String | 菜单类型，可选值`vertical`(垂直) `horizontal`(水平) | vertical |
 | size | String | 尺寸，可选值`small` `default` `large` | default |

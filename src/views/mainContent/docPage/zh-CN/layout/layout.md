@@ -71,28 +71,6 @@
     </div>
 </div>
 </template>
-<style>
-    .doc-layout-single{
-        margin-bottom: 40px;
-    }
-    .doc-layout-el{
-        text-align: center;
-        color: #ffffff;
-        font-size: 16px;
-    }
-    .doc-layout-header, .doc-layout-footer{
-        background-color: #86d8af;
-    }
-    .doc-layout-content{
-        min-height: 120px;
-        line-height: 120px;
-        background-color: #19be6b;
-    }
-    .doc-layout-sider{
-        line-height: 120px;
-        background-color: #62c191;
-    }
-</style>
 
 ```
 

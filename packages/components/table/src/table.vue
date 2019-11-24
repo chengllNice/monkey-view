@@ -536,6 +536,9 @@
             },
             headClick(column){
                 this.$emit('head-click', emitDataFormat(column));
+            },
+            filterClick(column, visible){
+                this.$emit('filter-click', emitDataFormat(column), visible);
             }
         },
         watch: {

@@ -6,9 +6,9 @@
   align-items: center;
 
   @include e(common){
-    height: $height-default;
-    line-height: $height-default;
-    min-width: $height-default;
+    height: $--height-default;
+    line-height: $--height-default;
+    min-width: $--height-default;
     color: $--color-default;
     padding: 0 4px;
     text-align: center;
@@ -77,9 +77,9 @@
   @include m(mini){
     .cl-page__common{
       font-size: $--font-size-mini;
-      height: $height-mini;
-      line-height: $height-mini;
-      min-width: $height-mini;
+      height: $--height-mini;
+      line-height: $--height-mini;
+      min-width: $--height-mini;
     }
   }
 

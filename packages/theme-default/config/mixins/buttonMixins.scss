@@ -24,12 +24,18 @@
     color: $--color-white;
     background-color: mix($--color-white, $background-color, $--button-hover-percent);
     border-color: mix($--color-white, $border-color, $--button-hover-percent);
+    & [class*='cl-icon-'] {
+      color: $--color-white;
+    }
   }
 
   &:active{
     color: $--color-white;
     background-color: mix($--color-black, $background-color, $--button-active-percent);
     border-color: mix($--color-black, $border-color, $--button-active-percent);
+    & [class*='cl-icon-'] {
+      color: $--color-white;
+    }
   }
 
   &.is-disabled, &.is-loading {
@@ -41,6 +47,9 @@
       color: $--color-white;
       background-color: mix($background-color, $--color-white);
       border-color: mix($border-color, $--color-white);
+      & [class*='cl-icon-'] {
+        color: $--color-white;
+      }
     }
   }
   &.is-loading{

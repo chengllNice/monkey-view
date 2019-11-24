@@ -91,7 +91,7 @@
         },
         computed: {
             dateChangeIconShow(){
-                return ['date', 'daterange'].includes(this.currentType)
+                return ['date', 'daterange', 'week'].includes(this.currentType)
             },
             headerMonthShow(){
                 return !['year', 'month'].includes(this.currentType)

@@ -12,7 +12,8 @@
         <div class="cl-date-pane-date__date">
             <div :class="[
                     'cl-date-pane-date__date-row',
-                    type === 'week' && 'cl-date-pane-date__date-row-week'
+                    type === 'week' && 'cl-date-pane-date__date-row-week',
+                    type === 'week' && isWeekSelect(row[6]) && 'cl-date-pane-date__date-row-week-selected'
                  ]"
                  v-for="(row, rowIndex) in dateList"
                  :key="rowIndex"
@@ -45,24 +46,11 @@
                 </template>
             </div>
         </div>
-        <!--<span v-for="dateItem in dateList"-->
-        <!--:key="dateItem.originDate"-->
-        <!--:class="[-->
-        <!--'cl-date-pane-item__col',-->
-        <!--dateItem.isNowDate && 'cl-date-pane-item__now',-->
-        <!--!dateItem.isNowMonth && 'cl-date-pane-item__no-now-month',-->
-        <!--date.includes(dateItem.key) && dateItem.isNowMonth && 'cl-date-pane-item__selected',-->
-        <!--dateItem.isBetween && 'cl-date-pane-item__hover',-->
-        <!--dateItem.isDisabled && 'cl-date-pane-item__disabled',-->
-        <!--]"-->
-        <!--@mouseenter="mouseEnter(dateItem)"-->
-        <!--@mouseleave="mouseLeave(dateItem)"-->
-        <!--@click.stop="handleSelectDate(dateItem)">{{dateItem.date}}</span>-->
     </div>
 </template>
 
 <script>
-    import {dateOnMonth, dateObj, dateFormat, getWeekNumber, zero} from "../../../../utils/date";
+    import {dateOnMonth, dateObj, dateFormat, getWeekNumber, zero, getWeekNumberInfo} from "../../../../utils/date";
 
     export default {
         name: "ClDatePaneDate",
@@ -89,9 +77,22 @@
                 dateList: [],
                 weekNumbers: [],
                 weekList: dateObj.week,
+                selectWeekNumber: {
+                    year: '',
+                    weekNumber: ''
+                },
             }
         },
-        computed: {},
+        computed: {
+            isWeekSelect(){
+                return function (date) {
+                    if(getWeekNumber(date.originDate) === this.selectWeekNumber.weekNumber && date.year === this.selectWeekNumber.year){
+                        return true;
+                    }
+                    return false;
+                }
+            }
+        },
         mounted() {
             this.setDateList();
         },
@@ -99,12 +100,11 @@
             setWeekNumbers() {
                 let weekNumbers = [];
                 this.dateList.forEach(row => {
-                    //以周三为基准算当前是第几周
-                    // let new Date(row[6].originDate);
-                    // let startWeek = .getDay();
+                    //以周六为基准算当前是第几周
                     weekNumbers.push({
                         week: getWeekNumber(row[6].originDate),
-                        year: row[6].year
+                        year: row[6].year,
+                        month: row[6].month
                     });
                 });
                 this.weekNumbers = weekNumbers;
@@ -124,9 +124,6 @@
                     item.key = dateFormat(item.key, this.format);
                     if (this.isRange && this.date.length === 2 && item.key > this.date[0] && item.key < this.date[1]) {
                         item.isBetween = true;
-                    }
-                    if(this.type === 'week' && getWeekNumber(item.originDate)){
-
                     }
                     if (index % 7 === 0) {
                         row = [];
@@ -214,6 +211,10 @@
             date(newVal) {
                 if (newVal.length === 1 && this.isRange) {
                     this.clearHover();
+                }
+                if(this.type === 'week' && newVal && newVal.length){
+                    this.selectWeekNumber.year = getWeekNumberInfo(newVal[0], this.format).year;
+                    this.selectWeekNumber.weekNumber = getWeekNumberInfo(newVal[0], this.format).weekNumber;
                 }
             },
             hoverDate(newVal) {

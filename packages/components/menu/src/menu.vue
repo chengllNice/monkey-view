@@ -3,7 +3,8 @@
          :class="[
             theme && `cl-menu--${theme}`,
             size && `cl-menu--${size}`,
-            mode && `cl-menu--${mode}`
+            mode && `cl-menu--${mode}`,
+            noHoverBackground && `cl-menu--nohover`,
          ]" :style="menuStyle">
         <slot></slot>
     </div>
@@ -20,6 +21,10 @@
                 type: [String, Number],
                 default: 240,
             },
+            noHoverBackground: {
+                type: Boolean,
+                default: false
+            },//是否需要hover的背景
             theme: {
                 type: String,
                 default: 'light',

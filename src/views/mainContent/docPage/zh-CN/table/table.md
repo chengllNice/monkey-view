@@ -762,9 +762,9 @@
 
 ```html
 <template>
-    <cl-table :data="data" :columns="columns" stripe border>
+    <cl-table :data="data" :columns="columns" stripe border @filter-click="filterClick">
         <template slot="date">
-            date
+            <cl-date-picker v-model="filterDate" :showPane="showPane" placement="bottom-end" @change="filterDateChange"><span></span></cl-date-picker>
         </template>
     </cl-table>
 </template>
@@ -772,6 +772,8 @@
     export default {
         data(){
             return {
+                filterDate: '',
+                showPane: false,
                 columns: [
                     {
                         key: 'name',
@@ -801,6 +803,7 @@
                         key: 'create_date',
                         title: '创建日期',
                         filterSlot: 'date',
+                        placement: 'bottom-end'
                     },
                 ],
                 data: [],
@@ -810,8 +813,11 @@
         mounted(){
             this.data = [];
             this.allData = [];
+           
             let departments = ['前端部', '运维部', '测试部', '数据库研发中心'];
             for (let i = 0; i < 5; i++){
+                let date = new Date();
+                date.setDate(i);
                 this.allData.push({
                     name: 'Name' + i,
                     age: 20 + parseInt(i),
@@ -820,13 +826,26 @@
                     department: '业务平台部/研发部/' + departments[i % 4],
                     address: '北京市海淀区上地三街西口',
                     performance: '10000' + i,
-                    create_date: '2018-01-' + i
+                    create_date: date.toDateString()
                 })
             } 
             this.data = this.allData;
         },
         methods: {
-            
+            filterClick(column, visible){
+                this.showPane = visible;
+            },
+            filterDateChange(value){
+                if(!value){
+                    this.data = this.allData;
+                    return;
+                }
+                let selectDate = new Date(value);
+                this.data = this.allData.filter(item=>{
+                    let t = new Date(item.create_date);
+                    return t.getTime() === selectDate.getTime();
+                })
+            }
         }
     }
 </script>

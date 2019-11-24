@@ -10,19 +10,19 @@
   font-size: 16px;
 }
 .doc-layout-header, .doc-layout-footer{
-  background-color: #86d8af;
+  background-color: mix(#ffffff, #2d8cf0, 30%);
 }
 .doc-layout-content{
   min-height: 120px;
   line-height: 120px;
-  background-color: #19be6b;
+  background-color: mix(#ffffff, #2d8cf0, 10%);
 }
 .doc-layout-sider{
   line-height: 120px;
-  background-color: #62c191;
+  background-color: mix(#ffffff, #2d8cf0, 40%);
 }
 .doc-layout-sider-header{
-  background-color: #02b7a5;
+  background-color: mix(#ffffff, #2d8cf0, 20%);
 }
 .doc-layout-sider-dark{
   background-color: #344058;

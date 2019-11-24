@@ -37,8 +37,9 @@
                           ref="dropDown"
                           :reference="this.$refs.reference"
                           :dropdownMatchSelectWidth="false"
-                          placement="bottom"
-                          :render-html="true"
+                          :placement="column.placement || 'bottom'"
+                          :render-html="renderHtml"
+                          :isMinWidth="false"
                           v-model="visible">
 
                     <template v-if="column.filterSlot">
@@ -70,7 +71,6 @@
                             <cl-button size="mini" @click="resetFilterMultiple">重置</cl-button>
                         </div>
                     </div>
-
                 </DropDown>
             </span>
         </template>
@@ -98,6 +98,7 @@
                 isDefaultSort: null,//初始化时默认的排序方式
                 visible: false,
                 filterMultipleValue: [],
+                renderHtml: true
             }
         },
         computed: {},
@@ -137,11 +138,21 @@
             filterShow(){
                 this.visible = !this.visible;
             },
-            handleClickOutside(){
-                this.visible = false;
+            handleClickOutside(event){
+                if(this.visible && (this.column.filterMultiple || this.column.filterSlot)){
+                    if(this.renderHtml !== false){
+                        const {$el} = this.$refs.dropDown;
+                        if ($el === event.target || $el.contains(event.target)) {
+                            return;
+                        }
+                    }
+                }
+                this.closeDropDownPane(false);
+            },
+            closeDropDownPane(visible){
+                this.visible = visible;
             },
             filterHandle(filterItem){
-                console.log(filterItem,'filterHandle')
                 this.tableRoot.filterHandle('single', this.column, filterItem ? [filterItem.value] : []);
                 this.visible = false;
             },
@@ -172,6 +183,9 @@
                     });
                 },
                 immediate: true
+            },
+            visible(newVal){
+                this.tableRoot.filterClick(this.column, newVal);
             }
         }
     }

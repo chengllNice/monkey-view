@@ -5,15 +5,17 @@
          ]"
          v-click-outside.capture="handleClickOutside">
         <div class="cl-date-picker__reference" ref="reference">
-            <cl-input v-model="dateInputValue"
-                      suffix="cl-icon-date"
-                      :size="size"
-                      :disabled="disabled"
-                      :clearable="clearable"
-                      :placeholder="placeholder"
-                      @click.native="handleFocus"
-                      @blur="updateInputValue"
-                      @clear="clearHandle"></cl-input>
+            <slot>
+                <cl-input v-model="dateInputValue"
+                          suffix="cl-icon-date"
+                          :size="size"
+                          :disabled="disabled"
+                          :clearable="clearable"
+                          :placeholder="placeholder"
+                          @click.native="handleFocus"
+                          @blur="updateInputValue"
+                          @clear="clearHandle"></cl-input>
+            </slot>
         </div>
         <transition :name="transition">
             <DropDown v-show="visible && !disabled"
@@ -90,7 +92,8 @@
                 default: function () {
                     return false
                 }
-            }
+            },
+            showPane: Boolean,//是否打开日期下拉框
         },
         data(){
             return {
@@ -142,6 +145,7 @@
         mounted() {
             this.initDateValue();
             this.updateInputValue();
+            this.visible = this.showPane;
         },
         methods: {
             initDateValue(){
@@ -210,6 +214,9 @@
                     this.$emit('input', newVal[0]);
                     this.$emit('change', newVal[0]);
                 }
+            },
+            showPane(newVal){
+                this.visible = newVal;
             }
         }
     }

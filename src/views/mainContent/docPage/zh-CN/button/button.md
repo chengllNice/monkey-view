@@ -94,12 +94,15 @@
     <div class="doc-button-content">
         <cl-button>Default</cl-button>
         <cl-button disabled>Default</cl-button>
+        <cl-button disabled icon="cl-icon-search">Default</cl-button>
         <br>
         <cl-button type="primary">Primary</cl-button>
         <cl-button type="primary" disabled>Primary</cl-button>
+        <cl-button type="primary" disabled icon="cl-icon-search">Primary</cl-button>
         <br>
         <cl-button type="text">Text</cl-button>
         <cl-button type="text" disabled>Text</cl-button>
+        <cl-button type="text" disabled icon="cl-icon-search">Text</cl-button>
     </div>
 </template>
 ```

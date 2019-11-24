@@ -34,7 +34,7 @@
 
 <script>
     import ClDatePaneSingle from './date-pane-single'
-    import {zero, dateFormat, getMonthByYearAndWeek} from "../../../../utils/date";
+    import {zero, dateFormat, getWeekNumberInfo} from "../../../../utils/date";
 
     export default {
         name: "ClDatePane",
@@ -83,37 +83,27 @@
         methods: {
             dealValue(){
                 this.selectedDateValue = this.value;
-                if(this.type === 'week'){
-                    if(!this.selectedDateValue || !this.selectedDateValue.length){
-                        this.initYearAndMonth(this.nowDate, null);
-                    }else{
-                        let formatMatch = this.format.match(/(\S*)YYYY(\S*)WW(\S*)/);
-                        let yearReg = new RegExp(`${formatMatch[1]}(\\d*)${formatMatch[2]}`);
-                        let weekReg = new RegExp(`${formatMatch[2]}(\\d*)${formatMatch[3]}`);
-                        let year = this.value[0].match(yearReg)[1];
-                        let week = this.value[0].match(weekReg)[1];
-                        this.datePane0.year = year;
-                        this.datePane0.month = getMonthByYearAndWeek(year, week);
-                        this.datePane0.value = this.selectedDateValue;
-                    }
+                if(!this.selectedDateValue || !this.selectedDateValue.length){
+                    this.initYearAndMonth(this.nowDate, null);
+                }else if(this.type === 'week'){
+                    let weekNumberInfo = getWeekNumberInfo(this.value[0], this.format);
+                    this.datePane0.year = weekNumberInfo.year;
+                    this.datePane0.month = weekNumberInfo.month;
+                    this.datePane0.value = this.selectedDateValue;
                 }else{
-                    if(!this.selectedDateValue || !this.selectedDateValue.length){
-                        this.initYearAndMonth(this.nowDate, null);
-                    }else {
-                        if(this.isRange){
-                            let startDate = new Date(this.selectedDateValue[0]);
-                            let endDate = new Date(this.selectedDateValue[1]);
-                            if(startDate.getMonth() === endDate.getMonth()){
-                                this.datePane0.value = this.selectedDateValue;
-                            }else{
-                                this.datePane0.value = this.selectedDateValue[0];
-                                this.datePane1.value = this.selectedDateValue[1];
-                            }
-                            this.initYearAndMonth(this.selectedDateValue[0], this.selectedDateValue[1]);
-                        }else{
+                    if(this.isRange){
+                        let startDate = new Date(this.selectedDateValue[0]);
+                        let endDate = new Date(this.selectedDateValue[1]);
+                        if(startDate.getMonth() === endDate.getMonth()){
                             this.datePane0.value = this.selectedDateValue;
-                            this.initYearAndMonth(this.selectedDateValue[0], null);
+                        }else{
+                            this.datePane0.value = this.selectedDateValue[0];
+                            this.datePane1.value = this.selectedDateValue[1];
                         }
+                        this.initYearAndMonth(this.selectedDateValue[0], this.selectedDateValue[1]);
+                    }else{
+                        this.datePane0.value = this.selectedDateValue;
+                        this.initYearAndMonth(this.selectedDateValue[0], null);
                     }
                 }
             },

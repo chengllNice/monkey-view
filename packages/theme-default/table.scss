@@ -319,10 +319,10 @@
     transition: all $--animation-time;
     background-color: $--color-white;
     &:hover{
-      background-color: $--backgorund-color-hover;
+      background-color: $--background-color-hover;
     }
     &.cl-table-head-cell__filter-item-active{
-      background-color: $--backgorund-color-hover;
+      background-color: $--background-color-hover;
       color: $--color-primary;
     }
   }

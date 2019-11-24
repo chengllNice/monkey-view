@@ -85,6 +85,17 @@
       }
     }
   }
+
+  &.cl-menu--nohover{
+    .cl-menu-item, .cl-submenu .cl-submenu__title{
+      &:hover{
+        background-color: transparent;
+      }
+    }
+    .cl-menu-item.is-active{
+      background-color: transparent;
+    }
+  }
 }
 
 @mixin theme-horizontal($background-color, $font-color, $background-color-hover, $border-color, $group-font-color, $font-color-hover){
@@ -134,6 +145,19 @@
       border-bottom-color: transparent;
       &, a{
         color: $font-color;
+      }
+    }
+  }
+
+  &.cl-menu--nohover{
+    .cl-menu-item, .cl-submenu .cl-submenu__title{
+      &:hover{
+        background-color: transparent;
+      }
+    }
+    .cl-menu-item.is-active, .cl-submenu.is-active{
+      &>.cl-submenu__title{
+        background-color: transparent;
       }
     }
   }

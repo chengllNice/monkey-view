@@ -1,5 +1,6 @@
 @import "./config/var";
 @import "./config/mixins/index.scss";
+@import "./config/mixins/inputMixins.scss";
 
 @include c(input){
   display: table;
@@ -16,16 +17,10 @@
     outline: none;
     box-sizing: border-box;
     width: 100%;
-    border-radius: $--input-radius;
-    background-color: $--input-background-color;
-    border: $--input-border;
-    padding-left: $--input-padding-horizontal-default;
-    padding-right: $--input-padding-horizontal-default;
-    padding-top: 0;
-    padding-bottom: 0;
-    height: $--input-height-default;
-    font-size: $--input-font-size-default;
-    color: $--input-font-color;
+    border-radius: $--border-radius-default;
+    background-color: $--color-white;
+    border: $--border-default;
+    color: $--color-text-default;
     transition: all 0.2s;
     position: relative;
 
@@ -36,17 +31,17 @@
     &:hover,
     &:focus,
     &:active{
-      border-color: $--input-border-color-hover;
+      border-color: $--color-primary;
     }
 
     &:focus{
-      box-shadow: 0 0 0 2px mix($--input-border-color-hover, $--color-white, $--button-hover-percent);
+      box-shadow: 0 0 0 2px mix($--color-primary, $--color-white, $--button-hover-percent);
     }
   }
 
   @include e(append-color, false){
     cursor: default;
-    border: $--input-border;
+    border: $--border-default;
     background-color: $--input-background-color-append-prepend;
   }
   @include e((prepend, append), false){
@@ -55,28 +50,28 @@
     vertical-align: middle;
     width: 1px;
     position: relative;
-    padding: 0 $--button-padding-horizontal-default;
+    color: $--color-text-icon;
     .cl-select{
-      margin: -#{$--button-height-default + 2px} -#{$--button-padding-horizontal-default + 1px};
       vertical-align: middle;
       input{
         background-color: transparent;
         border: none;
+        color: $--color-text-icon;
       }
     }
   }
   @include e(prepend, false){
-    border: $--input-border;
+    border: $--border-default;
     border-right: none;
     cursor: default;
-    border-radius: $--input-radius;
+    border-radius: $--border-radius-default;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     background-color: $--input-background-color-append-prepend;
   }
   @include e(append, false){
     border-left: none;
-    border-radius: $--input-radius;
+    border-radius: $--border-radius-default;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
   }
@@ -89,28 +84,24 @@
     margin: auto;
     z-index: 2;
     text-align: center;
-    height: calc(100% - 2px);
     width: $--input-suffix-width;
     box-sizing: border-box;
+    i{
+      cursor: pointer;
+    }
     @include e((limit,suffix-inner,prefix-inner), false){
-      padding: 0 5px;
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       width: 100%;
       height: 100%;
-      line-height: $--input-height-default;
       box-sizing: border-box;
-      color: $--input-font-color;
-      //@include utils-ellipsis();
-      @include e(search){
-        cursor: pointer;
-      }
+      color: $--color-text-icon;
     }
 
     @include e((prefix-step,suffix-step), false){
-      border-left: $--input-border;
+      border-left: $--border-default;
       cursor: pointer;
       background: $--background-color-base;
       &:hover,
@@ -126,10 +117,11 @@
 
     @include e(suffix-step-right, false){
       padding: 0;
+      line-height: normal;
       &:hover,
       &:focus,
       &:active{
-        color: $--input-font-color;
+        color: $--color-text-icon;
       }
       &:active{
         background: $--background-color-base;
@@ -137,6 +129,7 @@
       @include e((suffix-step-right-down, suffix-step-right-up), false){
         display: block;
         height: calc( 100% / 2 );
+        line-height: normal;
         &:hover,
         &:focus,
         &:active{
@@ -146,35 +139,24 @@
           background: mix($--color-black, $--background-color-base, $--button-active-percent);
         }
         i{
-          vertical-align: top;
           transform: scale(0.8);
+          vertical-align: middle;
         }
       }
       @include e(suffix-step-right-up, false){
-        border-bottom: $--input-border;
-        i{
-          vertical-align: super;
-        }
+        border-bottom: $--border-default;
       }
     }
 
 
     @include e(prefix-step, false){
-      border-right: $--input-border;
+      border-right: $--border-default;
       border-left: none;
     }
   }
   @include e(suffix, false){
     left: auto;
     right: 1px;
-  }
-
-  @include e(source-prefix, false){
-    padding-left: #{$--input-suffix-width + $--input-padding-horizontal-default};
-  }
-
-  @include e(source-suffix, false){
-    padding-right: #{$--input-suffix-width + $--input-padding-horizontal-default};
   }
 
   @include e(source-prepend, false){
@@ -188,73 +170,23 @@
   }
 
   @include m(mini){
-    @include e(source, false){
-      //padding-left: $--input-padding-horizontal-mini;
-      //padding-right: $--input-padding-horizontal-mini;
-      height: $--input-height-mini;
-      font-size: $--input-font-size-mini;
-    }
-    @include e((prepend, append), false){
-      height: $--input-height-mini;
-      padding: 0 $--button-padding-horizontal-mini;
-      .cl-select{
-        margin: -#{$--button-height-mini + 2px} -#{$--button-padding-horizontal-mini + 1px};
-      }
-    }
-    @include e((prefix,suffix), false){
-      @include e((limit,suffix-inner,prefix-inner), false){
-        line-height: $--input-height-mini;
-      }
-    }
+    @include inputSize(mini);
   }
-
   @include m(small){
-    @include e(source, false){
-      //padding-left: $--input-padding-horizontal-small;
-      //padding-right: $--input-padding-horizontal-small;
-      height: $--input-height-small;
-      font-size: $--input-font-size-small;
-    }
-    @include e((prepend, append), false){
-      height: $--input-height-small;
-      padding: 0 $--button-padding-horizontal-small;
-      .cl-select{
-        margin: -#{$--button-height-small + 2px} -#{$--button-padding-horizontal-small + 1px};
-      }
-    }
-    @include e((prefix,suffix), false){
-      @include e((limit,suffix-inner,prefix-inner), false){
-        line-height: $--input-height-small;
-      }
-    }
+    @include inputSize(small);
   }
-
+  @include m(default){
+    @include inputSize(default);
+  }
   @include m(large){
-    @include e(source, false){
-      //padding-left: $--input-padding-horizontal-large;
-      //padding-right: $--input-padding-horizontal-large;
-      height: $--input-height-large;
-      font-size: $--input-font-size-large;
-    }
-    @include e((prepend, append), false){
-      height: $--input-height-large;
-      padding: 0 $--button-padding-horizontal-large;
-      .cl-select{
-        margin: -#{$--button-height-large + 2px} -#{$--button-padding-horizontal-large + 1px};
-      }
-    }
-    @include e((prefix,suffix), false){
-      @include e((limit,suffix-inner,prefix-inner), false){
-        line-height: $--input-height-large;
-      }
-    }
+    @include inputSize(large);
   }
 
   @include e(append-button-wrap, false){
     padding: 0;
     @include e(append-button, false){
       border-left: none;
-      border-radius: $--input-radius;
+      border-radius: $--border-radius-default;
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
     }
@@ -264,14 +196,14 @@
     cursor: not-allowed;
     @include e(source, false){
       cursor: not-allowed;
-      background-color: $--input-background-color-disabled;
-      border-color: $--input-border-color-disabled;
-      color: $--input-font-color-disabled;
+      background-color: $--background-color-disabled;
+      border-color: $--border-color-disabled;
+      color: $--color-text-disabled;
 
       &:hover,
       &:focus,
       &:active{
-        border-color: $--input-border-color-disabled;
+        border-color: $--border-color-disabled;
       }
     }
 
@@ -280,7 +212,7 @@
       &:hover,
       &:focus,
       &:active{
-        color: $--input-font-color;
+        color: $--color-text-default;
       }
 
       &:active{
@@ -309,16 +241,16 @@
     box-sizing: border-box;
     transition: all 0.2s;
     height: auto;
-    border-radius: $--input-radius;
-    background-color: $--input-background-color;
-    border: $--input-border;
-    padding-left: $--input-padding-horizontal-default;
-    padding-right: $--input-padding-horizontal-default;
+    border-radius: $--border-radius-default;
+    background-color: $--color-white;
+    border: $--border-default;
+    //padding-left: $--input-padding-horizontal-default;
+    //padding-right: $--input-padding-horizontal-default;
     padding-top: $--input-padding-vertical-default;
     padding-bottom: $--input-padding-vertical-default;
-    font-size: $--input-font-size-default;
-    color: $--input-font-color;
-    min-height: $--input-height-default;
+    //font-size: $--font-size-default;
+    color: $--color-text-default;
+    //min-height: $--input-height-default;
 
 
     &::placeholder{
@@ -328,11 +260,11 @@
     &:hover,
     &:focus,
     &:active{
-      border-color: $--input-border-color-hover;
+      border-color: $--color-primary;
     }
 
     &:focus{
-      box-shadow: 0 0 0 2px mix($--input-border-color-hover, $--color-white, $--button-hover-percent);
+      box-shadow: 0 0 0 2px mix($--color-primary, $--color-white, $--button-hover-percent);
     }
   }
 
@@ -349,42 +281,49 @@
     cursor: not-allowed;
     @include e(source, false){
       cursor: not-allowed;
-      background-color: $--input-background-color-disabled;
-      border-color: $--input-border-color-disabled;
-      color: $--input-font-color-disabled;
+      background-color: $--background-color-disabled;
+      border-color: $--border-color-disabled;
+      color: $--color-text-disabled;
 
       &:hover,
       &:focus,
       &:active{
-        border-color: $--input-border-color-disabled;
+        border-color: $--border-color-disabled;
       }
     }
   }
 
   @include m(mini){
-    @include e(source, false){
-      padding-left: $--input-padding-horizontal-mini;
-      padding-right: $--input-padding-horizontal-mini;
-      height: $--input-height-mini;
-      font-size: $--input-font-size-mini;
-    }
+    @include inputSize(mini);
+    //@include e(source, false){
+    //  padding-left: $--input-padding-horizontal-mini;
+    //  padding-right: $--input-padding-horizontal-mini;
+    //  height: $--input-height-mini;
+    //  font-size: $--font-size-mini;
+    //}
   }
 
   @include m(small){
-    @include e(source, false){
-      padding-left: $--input-padding-horizontal-small;
-      padding-right: $--input-padding-horizontal-small;
-      height: $--input-height-small;
-      font-size: $--input-font-size-small;
-    }
+    @include inputSize(small);
+    //@include e(source, false){
+    //  padding-left: $--input-padding-horizontal-small;
+    //  padding-right: $--input-padding-horizontal-small;
+    //  height: $--input-height-small;
+    //  font-size: $--font-size-small;
+    //}
+  }
+
+  @include m(default){
+    @include inputSize(default);
   }
 
   @include m(large){
-    @include e(source, false){
-      padding-left: $--input-padding-horizontal-large;
-      padding-right: $--input-padding-horizontal-large;
-      height: $--input-height-large;
-      font-size: $--input-font-size-large;
-    }
+    @include inputSize(large);
+    //@include e(source, false){
+    //  padding-left: $--input-padding-horizontal-large;
+    //  padding-right: $--input-padding-horizontal-large;
+    //  height: $--input-height-large;
+    //  font-size: $--font-size-large;
+    //}
   }
 }

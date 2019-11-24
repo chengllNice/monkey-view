@@ -105,7 +105,7 @@ export const dateObj = {
 export const zero = (value) => {
     if (isNaN(parseInt(value)) || !value.toString()) return value;
     if (value < 10) {
-        value = '0' + value;
+        value = '0' + parseInt(value);
     }
     return value.toString();
 };
@@ -266,23 +266,40 @@ export const getWeekNumber = (date) => {
         startDate.setDate(1-7);
     }
     let dis = nowDate.getTime() - startDate.getTime();
-    return Math.ceil( Math.ceil(dis / (24 * 60 * 60 * 1000)) / 7);
+    return zero(Math.ceil( Math.ceil(dis / (24 * 60 * 60 * 1000)) / 7));
 };
 
 /**
- * 获取指定年指定周数的月份
- * @param year
- * @param weekNum
- * @returns {string|*}
+ * 获取指定年指定周数的信息
+ * @param weekNumberInfo
+ * @param format
+ * @returns {*}
  */
-export const getMonthByYearAndWeek = (year, weekNum) => {
-    if(!year || !weekNum) return;
-    let date = new Date(year, 0, 1);
+export const getWeekNumberInfo = (weekNumberInfo, format) => {
+    if(!weekNumberInfo || !format) return weekNumberInfo;
+    let formatMatch = format.match(/(\S*)YYYY(\S*)WW(\S*)/);
+    let yearReg = new RegExp(`${formatMatch[1]}(\\d*)${formatMatch[2]}`);
+    let weekReg = new RegExp(`${formatMatch[2]}(\\d*)${formatMatch[3]}`);
+    let year = weekNumberInfo.match(yearReg)[1];
+    let week = weekNumberInfo.match(weekReg)[1];
+
+    let date = new Date(`${year}-01-01`);
     let startDay = date.getDay();
-    if(startDay === 6){
-        date.setDate(1-7);
+    // 获取本年中第一个周六所在的日期
+    while (startDay !== 6){
+        date.setDate(date.getDate() + 1);
+        startDay = date.getDay();
     }
-    let disTime = weekNum * 7 * (24 * 60 * 60 * 1000);
-    date.setTime(date.getTime() + disTime);
-    return dateFormat(date, 'MM');
+    // 获取每一个周六得日期并获取周数
+    let month = 1;
+    let _week = 1;
+    while (month < 12 && parseInt(_week) !== parseInt(week)){
+        _week = getWeekNumber(date.setDate(date.getDate() + 7));
+        month = date.getMonth() + 1;
+    }
+    return {
+        year: year,
+        month: zero(month),
+        weekNumber: week
+    };
 };

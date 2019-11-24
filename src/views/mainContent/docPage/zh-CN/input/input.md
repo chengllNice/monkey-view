@@ -97,7 +97,7 @@
 
 ```html
 <template>
-    <cl-input placeholder="placeholder" v-model="valueClearable" style="width: 300px"></cl-input>
+    <cl-input placeholder="placeholder" clearable v-model="valueClearable" style="width: 300px"></cl-input>
 </template>
 <script>
     export default {
@@ -164,8 +164,8 @@
     </cl-input>
     <br>
     <cl-input placeholder="placeholder" v-model="valueAppend">
-        <cl-select slot="prepend" style="width: 80px;" v-model="inputPrependSelect" :option="inputPrependSelectOptions"></cl-select>
-        <cl-select slot="append" style="width: 80px;" v-model="inputAppendSelect" :option="inputAppendSelectOptions"></cl-select>
+        <cl-select slot="prepend" style="width: 70px;" v-model="inputPrependSelect" :option="inputPrependSelectOptions"></cl-select>
+        <cl-select slot="append" style="width: 70px;" v-model="inputAppendSelect" :option="inputAppendSelectOptions"></cl-select>
     </cl-input>
     <br>
     <cl-input placeholder="placeholder" v-model="valuePrepend">

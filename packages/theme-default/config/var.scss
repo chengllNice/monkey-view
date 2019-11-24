@@ -8,10 +8,10 @@ $--line-height-default: 1.5 !default;
 适用于button input select 的高度
 适用于list组件avatar的宽度
 */
-$height-mini: 24px !default;
-$height-small: 28px !default;
-$height-default: 32px !default;
-$height-large: 36px !default;
+$--height-mini: 24px !default;
+$--height-small: 28px !default;
+$--height-default: 32px !default;
+$--height-large: 36px !default;
 
 /*-----Color-----*/
 $--color-default: #515a6e !default;
@@ -24,17 +24,21 @@ $--color-info: #13c2c2 !default;
 //$--color-info: #2db7f5 !default;
 $--color-white: #ffffff !default;
 $--color-black: #000000 !default;
+$--color-expand: #c0c4cc !default;
+$--color-disabled: #dcdee2 !default;
 $--animation-time: 0.2s;
+//$--animation-time-: 0.4s;
 
 $--color-text-default: #515a6e !default;
-$--color-text-placeholder: #c0c4cc !default;
-$--color-text-disabled: #c0c4cc !default;
+$--color-text-placeholder: $--color-expand !default;
+$--color-text-disabled: $--color-disabled !default;
+$--color-text-icon: #808695 !default;
 $--color-text-des: #999999 !default;
 $--color-text-title: #17233d !default;
 $--color-text-legend: #999999 !default;
 
 $--border-color-default: #e8eaec !default;//#dcdee2
-$--border-color-disabled: #c5c8ce !default;
+$--border-color-disabled: #e8e8e8 !default;//#c5c8ce
 $--border-color-primary: #2d8cf0 !default;
 $--border-color-danger: #ed4014 !default;
 $--border-color-warning: #f8ac59 !default;
@@ -45,7 +49,7 @@ $--border-color-info: #13c2c2 !default;
 $--background-color-base: #f5f7fa !default;
 $--background-color-disabled: #f7f7f7 !default;
 //$--background-color-disabled: #c5c8ce !default;
-$--backgorund-color-hover: mix($--color-white, $--color-primary, 90%) !default;
+$--background-color-hover: mix($--color-white, $--color-primary, 90%) !default;
 
 
 /*-----border-----*/
@@ -114,10 +118,10 @@ $--date-picker-no-now-month-color: $--color-text-placeholder !default;
 
 
 /*-----loading-----*/
-$--loading-size-mini: $height-mini !default;
-$--loading-size-small: $height-small !default;
-$--loading-size-default: $height-default !default;
-$--loading-size-large: $height-large !default;
+$--loading-size-mini: $--height-mini !default;
+$--loading-size-small: $--height-small !default;
+$--loading-size-default: $--height-default !default;
+$--loading-size-large: $--height-large !default;
 
 
 /*-----list-----*/
@@ -129,11 +133,10 @@ $--list-item-padding-vertical-default: 10px !default;
 $--list-item-padding-horizontal-default: 20px !default;
 $--list-item-padding-vertical-large: 12px !default;
 $--list-item-padding-horizontal-large: 24px !default;
-$--list-item-avatar-width-mini: $height-mini !default;
-$--list-item-avatar-width-small: $height-small !default;
-$--list-item-avatar-width-default: $height-default !default;
-$--list-item-avatar-width-large: $height-large !default;
-$--list-item-background-color-hover: $--background-color-base !default;
+$--list-item-avatar-width-mini: $--height-mini !default;
+$--list-item-avatar-width-small: $--height-small !default;
+$--list-item-avatar-width-default: $--height-default !default;
+$--list-item-avatar-width-large: $--height-large !default;
 
 /*-----collapse-----*/
 $--collapse-item-header-height: 38px !default;
@@ -150,8 +153,7 @@ $--menu-item-padding-vertical-default: 20px !default;
 $--menu-item-padding-vertical-large: 30px !default;
 
 $--menu-theme-light-background-color: $--color-white;
-$--menu-theme-light-children-background-color: $--color-white;
-$--menu-theme-light-active-background-color: $--backgorund-color-hover !default;
+$--menu-theme-light-active-background-color: $--background-color-hover !default;
 $--menu-theme-light-active-border-color: mix($--color-white, $--color-primary, 80%) !default;
 $--menu-theme-light-font-color: $--color-text-default !default;
 $--menu-theme-light-horizontal-border-color: $--border-color-primary !default;
@@ -293,40 +295,24 @@ $--select-option-text-color: $--color-text-default !default;
 $--select-option-padding-right-mutiple: 36px !default;
 $--select-option-font-size: $--font-size-default !default;
 $--select-drop-down-max-height: 200px !default;
+$--select-suffix-width: 28px !default;
 
 
 /*-----input-----*/
-$--input-radius: $--border-radius-default !default;
-$--input-border: $--border-default !default;
-$--input-border-color-hover: $--color-primary !default;
-$--input-background-color: $--color-white !default;
-$--input-font-color: $--color-text-default !default;
 $--input-background-color-append-prepend: $--background-color-base !default;
 $--input-suffix-width: 36px !default;
 
-$--input-font-color-disabled: $--color-text-disabled !default;
-$--input-border-color-disabled: $--border-color-disabled !default;
-$--input-background-color-disabled: #f7f7f7 !default;
-
-$--input-height-default: $height-default !default;
 $--input-padding-vertical-default: 5px !default;
 $--input-padding-horizontal-default: 8px !default;
-$--input-font-size-default: $--font-size-default !default;
 
-$--input-height-mini: $height-mini !default;
 $--input-padding-vertical-mini: 2px !default;
 $--input-padding-horizontal-mini: 4px !default;
-$--input-font-size-mini: $--font-size-mini !default;
 
-$--input-height-small: $height-small !default;
 $--input-padding-vertical-small: 4px !default;
 $--input-padding-horizontal-small: 5px !default;
-$--input-font-size-small: $--font-size-small !default;
 
-$--input-height-large: $height-large !default;
 $--input-padding-vertical-large: 6px !default;
 $--input-padding-horizontal-large: 10px !default;
-$--input-font-size-large: $--font-size-large !default;
 
 
 
@@ -381,57 +367,27 @@ $--checkbox-input-height-large: 16px !default;
 
 
 /*-----button-----*/
-$--button-font-size-default: $--font-size-default !default;
 $--button-padding-horizontal-default: 15px !default;
-$--button-radius-default: $--border-radius-default !default;
-$--button-height-default: $height-default !default;
 
-$--button-font-size-small: $--font-size-small !default;
 $--button-padding-horizontal-small: 10px !default;
-$--button-radius-small: $--border-radius-default !default;
-$--button-height-small: $height-small !default;
 
-$--button-font-size-mini: $--font-size-mini !default;
 $--button-padding-horizontal-mini: 10px !default;
-$--button-radius-mini: $--border-radius-default !default;
-$--button-height-mini: $height-mini !default;
 
-$--button-font-size-large: $--font-size-large !default;
 $--button-padding-horizontal-large: 18px !default;
-$--button-radius-large: $--border-radius-default !default;
-$--button-height-large: $height-large !default;
 
-$--button-font-color-default: $--color-text-default !default;
-$--button-background-color-default: $--color-white !default;
 $--button-border-color-default: $--border-color-default !default;
 
-$--button-font-color-primary: $--color-white !default;
-$--button-background-color-primary: $--color-primary !default;
 $--button-border-color-primary: $--border-color-primary !default;
 
-$--button-font-color-danger: $--color-white !default;
-$--button-background-color-danger: $--color-danger !default;
 $--button-border-color-danger: $--border-color-danger !default;
 
-$--button-font-color-warning: $--color-white !default;
-$--button-background-color-warning: $--color-warning !default;
 $--button-border-color-warning: $--border-color-warning !default;
 
-$--button-font-color-success: $--color-white !default;
-$--button-background-color-success: $--color-success !default;
 $--button-border-color-success: $--border-color-success !default;
 
-$--button-font-color-info: $--color-white !default;
-$--button-background-color-info: $--color-info !default;
 $--button-border-color-info: $--border-color-info !default;
 
-$--button-font-color-text: $--color-primary !default;
-$--button-background-color-text: transparent !default;
-$--button-border-color-text: transparent !default;
-
-$--button-font-color-disabled: $--color-text-disabled !default;
-$--button-background-color-disabled: $--color-white !default;
-$--button-border-color-disabled: $--border-color-disabled !default;
+$--button-font-color-text: $--color-primary !default;//text类型文字颜色
 
 $--button-hover-percent: 20% !default;
 $--button-active-percent: 10% !default;

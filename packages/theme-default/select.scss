@@ -14,6 +14,7 @@
     border-radius: $--border-radius-default;
     box-shadow: $--box-shadow-default;
     background-color: $--color-white;
+    //padding: 10px 0;
   }
 
   @include e(reference){
@@ -63,6 +64,9 @@
       input{
         cursor: pointer;
       }
+      .cl-input__source-suffix{
+        padding-right: $--select-suffix-width;
+      }
     }
     @include e(el-icon){
       transition: $--animation-time;
@@ -75,11 +79,14 @@
     @include e(el-placeholder){
       display: inline-block;
       width: 100%;
-      height: $--input-height-default;
-      line-height: $--input-height-default;
+      height: #{$--height-default - 2px};
+      line-height: #{$--height-default - 2px};
       color: $--color-text-placeholder;
     }
 
+    .cl-input__suffix{
+      width: $--select-suffix-width;
+    }
     @include e(el-suffix){
       position: absolute;
       right: 1px;
@@ -87,8 +94,7 @@
       bottom: 0;
       margin: auto;
       text-align: center;
-      height: calc(100% - 2px);
-      width: $--input-suffix-width;
+      width: $--select-suffix-width;
 
       @include e(el-suffix-inner){
         position: absolute;
@@ -106,26 +112,25 @@
       vertical-align: middle;
       position: relative;
       display: inline-block;
-      border-radius: $--input-radius;
-      background-color: $--input-background-color;
-      border: $--input-border;
+      border-radius: $--border-radius-default;
+      background-color: $--color-white;
+      border: $--border-default;
       padding-left: $--input-padding-horizontal-default;
-      padding-right: #{$--input-suffix-width + $--input-padding-horizontal-default};;
+      padding-right: $--select-suffix-width;
       padding-top: 0;
       padding-bottom: 0;
-      height: $--input-height-default;
-      line-height: $--input-height-default;
-      font-size: $--input-font-size-default;
-      color: $--input-font-color;
+      height: $--height-default;
+      font-size: $--font-size-default;
+      color: $--color-text-default;
 
       &:hover,
       &:focus,
       &:active{
-        border-color: $--input-border-color-hover;
+        border-color: $--color-primary;
       }
 
       &:focus{
-        box-shadow: 0 0 0 2px mix($--input-border-color-hover, $--color-white, $--button-hover-percent);
+        box-shadow: 0 0 0 2px mix($--color-primary, $--color-white, $--button-hover-percent);
       }
     }
 
@@ -141,11 +146,11 @@
       overflow: hidden;
       z-index: 2;
       padding-left: $--input-padding-horizontal-default;
-      padding-right: #{$--input-suffix-width + $--input-padding-horizontal-default};
+      padding-right: $--select-suffix-width;
 
       @include e(el-multiple-tag-item, false){
-        margin-top: #{($--input-height-default - $--tag-height-default) / 2};
-        margin-bottom: #{($--input-height-default - $--tag-height-default) / 2};
+        margin-top: #{($--height-default - $--tag-height-default) / 2};
+        margin-bottom: #{($--height-default - $--tag-height-default) / 2};
         margin-left: 0;
         margin-right: 5px;
         vertical-align: middle;
@@ -155,13 +160,13 @@
       &:focus,
       &:active{
         & + .cl-select__el-multiple {
-          border-color: $--input-border-color-hover;
+          border-color: $--color-primary;
         }
       }
 
       &:focus{
         & + .cl-select__el-multiple {
-          box-shadow: 0 0 0 2px mix($--input-border-color-hover, $--color-white, $--button-hover-percent);
+          box-shadow: 0 0 0 2px mix($--color-primary, $--color-white, $--button-hover-percent);
         }
       }
     }
@@ -174,9 +179,9 @@
       background-color: transparent;
       cursor: pointer;
       box-sizing: border-box;
-      font-size: $--input-font-size-default;
-      color: $--input-font-color;
-      height: #{$--input-height-default - 10px};
+      font-size: $--font-size-default;
+      color: $--color-text-default;
+      height: #{$--height-default - 10px};
     }
   }
 
@@ -188,19 +193,19 @@
     .cl-select__el{
       font-size: $--font-size-large;
       .cl-select__el-multiple{
-        height: $--input-height-large;
-        line-height: $--input-height-large;
+        height: $--height-large;
+        line-height: $--height-large;
       }
       .cl-select__el-placeholder{
-        height: #{$--input-height-large - 2px};
-        line-height: #{$--input-height-large - 2px};
+        height: #{$--height-large - 2px};
+        line-height: #{$--height-large - 2px};
       }
       .cl-select__el-multiple-input{
-        height: #{$--input-height-large - 10px};
+        height: #{$--height-large - 10px};
       }
       .cl-select__el-multiple-tag .cl-select__el-multiple-tag-item{
-        margin-top: #{($--input-height-large - $--tag-height-large) / 2};
-        margin-bottom: #{($--input-height-large - $--tag-height-large) / 2};
+        margin-top: #{($--height-large - $--tag-height-large) / 2};
+        margin-bottom: #{($--height-large - $--tag-height-large) / 2};
       }
     }
   }
@@ -212,19 +217,19 @@
     .cl-select__el{
       font-size: $--font-size-small;
       .cl-select__el-multiple{
-        height: $--input-height-small;
-        line-height: $--input-height-small;
+        height: $--height-small;
+        line-height: $--height-small;
       }
       .cl-select__el-placeholder{
-        height: #{$--input-height-small - 2px};
-        line-height: #{$--input-height-small - 2px};
+        height: #{$--height-small - 2px};
+        line-height: #{$--height-small - 2px};
       }
       .cl-select__el-multiple-input{
-        height: #{$--input-height-small - 10px};
+        height: #{$--height-small - 10px};
       }
       .cl-select__el-multiple-tag .cl-select__el-multiple-tag-item{
-        margin-top: #{($--input-height-small - $--tag-height-small) / 2};
-        margin-bottom: #{($--input-height-small - $--tag-height-small) / 2};
+        margin-top: #{($--height-small - $--tag-height-small) / 2};
+        margin-bottom: #{($--height-small - $--tag-height-small) / 2};
       }
     }
   }
@@ -236,19 +241,19 @@
     .cl-select__el{
       font-size: $--font-size-mini;
       .cl-select__el-multiple{
-        height: $--input-height-mini;
-        line-height: $--input-height-mini;
+        height: $--height-mini;
+        line-height: $--height-mini;
       }
       .cl-select__el-placeholder{
-        height: #{$--input-height-mini - 2px};
-        line-height: #{$--input-height-mini - 2px};
+        height: #{$--height-mini - 2px};
+        line-height: #{$--height-mini - 2px};
       }
       .cl-select__el-multiple-input{
-        height: #{$--input-height-mini - 10px};
+        height: #{$--height-mini - 10px};
       }
       .cl-select__el-multiple-tag .cl-select__el-multiple-tag-item{
-        margin-top: #{($--input-height-mini - $--tag-height-mini) / 2};
-        margin-bottom: #{($--input-height-mini - $--tag-height-mini) / 2};
+        margin-top: #{($--height-mini - $--tag-height-mini) / 2};
+        margin-bottom: #{($--height-mini - $--tag-height-mini) / 2};
       }
     }
   }
@@ -279,7 +284,7 @@
 
   @include when(selected){
     color: $--color-primary;
-    background-color: $--backgorund-color-hover;
+    background-color: $--background-color-hover;
   }
 
   @include e(text){
@@ -304,7 +309,7 @@
   }
 
   &:hover{
-    background-color: $--backgorund-color-hover;
+    background-color: $--background-color-hover;
   }
 
   @include when(disabled){
