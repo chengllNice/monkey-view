@@ -762,9 +762,9 @@
 
 ```html
 <template>
-    <cl-table :data="data" :columns="columns" stripe border @filter-click="filterClick">
+    <cl-table :data="data" :columns="columns" stripe border>
         <template slot="date">
-            <cl-date-picker v-model="filterDate" :showPane="showPane" placement="bottom-end" @change="filterDateChange"><span></span></cl-date-picker>
+            <cl-date-picker v-model="filterDate" always-show-pane placement="bottom-end" @change="filterDateChange"><span></span></cl-date-picker>
         </template>
     </cl-table>
 </template>
@@ -773,7 +773,6 @@
         data(){
             return {
                 filterDate: '',
-                showPane: false,
                 columns: [
                     {
                         key: 'name',
@@ -832,9 +831,6 @@
             this.data = this.allData;
         },
         methods: {
-            filterClick(column, visible){
-                this.showPane = visible;
-            },
             filterDateChange(value){
                 if(!value){
                     this.data = this.allData;

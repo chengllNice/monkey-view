@@ -85,6 +85,7 @@
                 type: String,
                 default: '',
             },
+            shortcuts: Array,
             disabledDate: Function,
             showWeekNumber: Boolean,
             renderHtml: {
@@ -93,7 +94,7 @@
                     return false
                 }
             },
-            showPane: Boolean,//是否打开日期下拉框
+            alwaysShowPane: Boolean,//是否总是显示日期下拉框
         },
         data(){
             return {
@@ -145,7 +146,7 @@
         mounted() {
             this.initDateValue();
             this.updateInputValue();
-            this.visible = this.showPane;
+            this.visible = this.alwaysShowPane;
         },
         methods: {
             initDateValue(){
@@ -163,12 +164,13 @@
                 }
             },
             handleFocus(){
-                if(this.disabled){
+                if(this.disabled || this.alwaysShowPane){
                     return
                 }
                 this.visible = !this.visible;
             },
             handleClickOutside(event){
+                if(this.alwaysShowPane) return;
                 if(this.visible){
                     if(this.renderHtml !== false){
                         const {$el} = this.$refs.dropDown;
@@ -215,9 +217,6 @@
                     this.$emit('change', newVal[0]);
                 }
             },
-            showPane(newVal){
-                this.visible = newVal;
-            }
         }
     }
 </script>

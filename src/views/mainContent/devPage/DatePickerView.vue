@@ -42,6 +42,16 @@
                         @change="dateChange"
                         clearable
                         :render-html="true"></cl-date-picker>
+
+
+        <cl-date-picker style="width: 200px"
+                        placeholder="请选择日期"
+                        v-model="dateWeek"
+                        @change="dateChange"
+                        always-show-pane
+                        show-week-number
+                        clearable
+                        :render-html="true"></cl-date-picker>
     </div>
 </template>
 

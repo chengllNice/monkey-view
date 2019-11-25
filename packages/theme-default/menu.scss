@@ -79,7 +79,6 @@
   & [class*='cl-icon-'] {
     vertical-align: middle;
     & + span {
-      margin-left: 10px;
       @include utils-ellipsis();
     }
   }
@@ -136,10 +135,8 @@
   }
 
   & [class*='cl-icon-'] {
-    //font-size: $--font-size-large;
     vertical-align: middle;
     & + span {
-      margin-left: 10px;
       vertical-align: middle;
       display: inline-block;
       @include utils-ellipsis();

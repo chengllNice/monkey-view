@@ -149,12 +149,14 @@
                 this.updatePopper();
             });
         },
-        beforeDestroy() {
+        destroyed() {
+            console.log('destroyeddestroyeddestroyed')
             if (isServer) return;
             if (this.popperJS && this.popperJS.hasOwnProperty('destroy')) {
                 this.popperJS.destroy();
             }
             this.renderHtml && typeof this.renderHtml !== 'boolean' && this.renderHtml.removeChild(this.$el);
+            this.renderHtml && typeof this.renderHtml === 'boolean' && document.body.removeChild(this.$el);
         }
     }
 </script>

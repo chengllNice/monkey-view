@@ -67,11 +67,11 @@ $--box-shadow-content: 0 1px 6px rgba(0, 0, 0, 0.2) !default;
 
 
 /*-----font-----*/
-$--font-size-base: 12px !default;
-$--font-size-default: 12px !default;
+$--font-size-base: 14px !default;
+$--font-size-default: 14px !default;
 $--font-size-small: 12px !default;
 $--font-size-mini: 10px !default;
-$--font-size-large: 14px !default;
+$--font-size-large: 16px !default;
 $--font-size-title: 16px !default;
 
 
@@ -144,13 +144,13 @@ $--collapse-item-header-background-color: $--background-color-base !default;
 
 /*-----menu-----*/
 $--menu-item-height-mini: 30px !default;
-$--menu-item-height-small: 35px !default;
-$--menu-item-height-default: 40px !default;
-$--menu-item-height-large: 48px !default;
+$--menu-item-height-small: 40px !default;
+$--menu-item-height-default: 50px !default;
+$--menu-item-height-large: 60px !default;
 $--menu-item-padding-vertical-mini: 10px !default;
 $--menu-item-padding-vertical-small: 15px !default;
 $--menu-item-padding-vertical-default: 20px !default;
-$--menu-item-padding-vertical-large: 30px !default;
+$--menu-item-padding-vertical-large: 25px !default;
 
 $--menu-theme-light-background-color: $--color-white;
 $--menu-theme-light-active-background-color: $--background-color-hover !default;

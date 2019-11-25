@@ -8,7 +8,7 @@
                   :key="_year.id"
                   :class="[
                     'cl-date-pane-item__col',
-                    'cl-date-pane-item__hover',
+                    selectYear !== _year.id && 'cl-date-pane-item__hover',
                     _year.id === currentDate.year && 'cl-date-pane-item__now',
                     selectYear === _year.id && 'cl-date-pane-item__selected'
                   ]"

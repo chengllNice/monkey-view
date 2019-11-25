@@ -4,16 +4,17 @@
             <CHeader></CHeader>
         </ClHeader>
         <ClLayout class="views-layout">
-            <ClSider hide-trigger width="220">
+            <ClSider hide-trigger width="240">
                 <LeftNav></LeftNav>
             </ClSider>
             <ClContent class="views-main-content" ref="viewsMainContent">
                 <div class="view-main-content-card">
                     <cl-row :gutter="16">
                         <cl-col style="padding: 16px;">
-                            <keep-alive>
-                                <router-view></router-view>
-                            </keep-alive>
+<!--                            <keep-alive>-->
+<!--                                -->
+<!--                            </keep-alive>-->
+                            <router-view></router-view>
                         </cl-col>
                         <cl-col span="3">
                             <anchors-link></anchors-link>

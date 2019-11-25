@@ -330,16 +330,15 @@
     }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
     .left-nav {
         padding: 20px 0;
         background-color: #ffffff;
-        .left-nav-menu-item {
-            display: block;
-            /*color: #515a6e;*/
-            i {
-                font-size: 14px;
-            }
+        i {
+            font-size: 14px;
+        }
+        span{
+            font-size: 12px;
         }
     }
 </style>

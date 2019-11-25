@@ -25,6 +25,9 @@
   .cl-menu-item, .cl-submenu__title, .cl-menu-group__title{
     height: $height;
     line-height: $height;
+    & [class*='cl-icon-']+span{
+      margin-left: #{$padding-vertical / 2};
+    }
   }
   .cl-menu-item, .cl-menu-group__title{
     padding-left: $padding-vertical;
@@ -41,6 +44,12 @@
   .cl-menu-group .cl-menu-item{
     padding-left: #{$padding-vertical + $padding-vertical / 2};
     padding-right: #{$padding-vertical + $padding-vertical / 2};
+  }
+
+  &.cl-menu--horizontal{
+    .cl-menu-item, .cl-submenu__title, .cl-menu-group__title{
+      line-height: #{$height - 2px};
+    }
   }
 }
 

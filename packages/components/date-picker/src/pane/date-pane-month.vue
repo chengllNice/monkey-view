@@ -8,7 +8,7 @@
                   :key="_month.key"
                   :class="[
                     'cl-date-pane-item__col',
-                    'cl-date-pane-item__hover',
+                    !(isSelectYear && _month.id === selectedMonth) && 'cl-date-pane-item__hover',
                     _month.id === currentDate.month && currentDate.year === year && 'cl-date-pane-item__now',
                     isSelectYear && _month.id === selectedMonth && 'cl-date-pane-item__selected'
               ]"
