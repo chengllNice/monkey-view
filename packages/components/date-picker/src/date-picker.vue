@@ -30,6 +30,7 @@
                     <cl-date-pane :size="size"
                                   :format="formatType"
                                   v-model="dateValue"
+                                  :shortcuts="shortcuts"
                                   :is-range="isRange"
                                   :type="type" />
                 </div>
@@ -149,19 +150,24 @@
             this.visible = this.alwaysShowPane;
         },
         methods: {
-            initDateValue(){
+            initDateValue(val){
+                let value = val || this.value;
                 if(this.isRange){
-                    let value = this.value && this.value.length ? this.value : [];
+                    value = value && value.length ? value : [];
                     if(value[0] && value[1]){
-                        this.dateValue = [dateFormat(value[0], this.formatType), dateFormat(value[0], this.formatType)];
+                        this.dateValue = [dateFormat(value[0], this.formatType), dateFormat(value[1], this.formatType)];
                     }
-                }else if(typeof this.value === 'string'){
+                }else if(typeof value === 'string'){
                     if(this.type === 'week'){
-                        this.dateValue = this.value ? [this.value] : [];
+                        this.dateValue = value ? [value] : [];
                     }else{
-                        this.dateValue = this.value ? [dateFormat(this.value, this.formatType)] : [];
+                        this.dateValue = value ? [dateFormat(value, this.formatType)] : [];
                     }
                 }
+            },
+            setValue(value){
+                !Array.isArray(value) && (value = value.toString());
+                this.initDateValue(value);
             },
             handleFocus(){
                 if(this.disabled || this.alwaysShowPane){

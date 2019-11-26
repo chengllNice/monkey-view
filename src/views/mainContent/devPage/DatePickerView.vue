@@ -9,6 +9,8 @@
                         clearable
                         :render-html="true"></cl-date-picker>
 
+        <!--:disabled-date="disabledDate"-->
+
         <cl-date-picker style="width: 200px"
                         placeholder="请选择日期"
                         v-model="date1"
@@ -16,7 +18,7 @@
                         clearable
                         show-week-number
                         format="YYYY/MM/DD"
-                        :disabled-date="disabledDate"
+                        :shortcuts="shortcuts"
                         :render-html="true"></cl-date-picker>
 
         <cl-date-picker type="daterange"
@@ -24,6 +26,7 @@
                         placeholder="请选择日期"
                         v-model="date2"
                         format="YYYY/MM/DD"
+                        :shortcuts="shortcutsrange"
                         @change="dateChange"
                         :render-html="true"></cl-date-picker>
 
@@ -84,6 +87,60 @@
               dateMonth: '',
               dateTime: '',
               dateTimeRange: [],
+              shortcuts: [
+                  {
+                      text: '今天',
+                      onClick(picker){
+                          let date = new Date();
+                          picker.setValue(date);
+                      }
+                  },
+                  {
+                      text: '昨天',
+                      onClick(picker){
+                          let date = new Date();
+                          date.setDate(date.getDate() - 1);
+                          picker.setValue(date);
+                      }
+                  },
+                  {
+                      text: '一周之前的某一天',
+                      onClick(picker){
+                          let date = new Date();
+                          date.setDate(date.getDate() - 7);
+                          picker.setValue(date);
+                      }
+                  }
+              ],
+              shortcutsrange: [
+                  {
+                      text: '最近一周',
+                      onClick(picker){
+                          let date1 = new Date();
+                          let date2 = new Date();
+                          date1.setDate(date1.getDate() - 7);
+                          picker.setValue([date1, date2]);
+                      }
+                  },
+                  {
+                      text: '一个月',
+                      onClick(picker){
+                          let date1 = new Date();
+                          let date2 = new Date();
+                          date1.setDate(date1.getDate() - 30);
+                          picker.setValue([date1, date2]);
+                      }
+                  },
+                  {
+                      text: '三个月',
+                      onClick(picker){
+                          let date1 = new Date();
+                          let date2 = new Date();
+                          date1.setDate(date1.getDate() - 90);
+                          picker.setValue([date1, date2]);
+                      }
+                  }
+              ]
           }
         },
         methods: {

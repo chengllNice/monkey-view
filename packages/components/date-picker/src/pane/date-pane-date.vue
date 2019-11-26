@@ -230,6 +230,7 @@
                     this.selectWeekNumber.year = getWeekNumberInfo(newVal[0], this.format).year;
                     this.selectWeekNumber.weekNumber = getWeekNumberInfo(newVal[0], this.format).weekNumber;
                 }
+                this.setDateList();
             },
             hoverDate(newVal) {
                 if (this.isRange && newVal) this.rangeHovering(newVal);

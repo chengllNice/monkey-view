@@ -1,6 +1,8 @@
 <template>
     <div class="cl-date-pane">
-        <div class="cl-date-pane__shortcuts"></div>
+        <div class="cl-date-pane__shortcuts" v-if="shortcuts && shortcuts.length">
+            <div class="cl-date-pane__shortcuts-item" v-for="(item, index) in shortcuts" :key="index" @click="shortcutsClick(item)">{{item.text}}</div>
+        </div>
         <div class="cl-date-pane__main">
             <div class="cl-date-pane__content">
                 <cl-date-pane-single class="cl-date-pane__left"
@@ -34,8 +36,8 @@
                                      @update-pane="updatePane"></cl-date-pane-single>
             </div>
             <div class="cl-date-pane__footer" v-if="showFooter">
-                <cl-button type="text" size="mini" :disabled="changeTimeDisabled" @click="changeTimeAndDate">{{isTime ? "选择日期" : "选择时间"}}</cl-button>
-                <cl-button type="primary" size="mini">确定</cl-button>
+                <cl-button type="text" :size="size" :disabled="changeTimeDisabled" @click="changeTimeAndDate">{{isTime ? "选择日期" : "选择时间"}}</cl-button>
+                <cl-button type="primary" :size="size">确定</cl-button>
             </div>
         </div>
     </div>
@@ -48,6 +50,7 @@
 
     export default {
         name: "ClDatePane",
+        inject: ['datePicker'],
         props: {
             value: {
                 type: Array,
@@ -59,6 +62,7 @@
             type: String,
             format: String,
             isRange: Boolean,
+            shortcuts: Array,
         },
         data(){
             return {
@@ -265,7 +269,10 @@
                 this.$refs.leftPane && this.$refs.leftPane.updateCurrentType(this.isTime ? 'date' : 'time');
                 this.$refs.rightPane && this.$refs.rightPane.updateCurrentType(this.isTime ? 'date' : 'time');
                 this.isTime = !this.isTime;
-            }
+            },
+            shortcutsClick(item){
+                item.onClick && item.onClick(this.datePicker);
+            },
         },
         watch: {
             value(newVal, oldVal){
