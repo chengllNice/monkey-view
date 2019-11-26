@@ -1,5 +1,5 @@
 <template>
-    <vuescroll class="cl-scroll" :ops="options">
+    <vuescroll class="cl-scroll" :ops="options" ref="vuescroll">
         <slot></slot>
     </vuescroll>
 </template>
@@ -79,6 +79,10 @@
     },
     mounted() {
     },
-    methods: {}
+    methods: {
+        scrollTo(position, speed = 500){
+            this.$refs.vuescroll.scrollTo(position, speed)
+        }
+    }
   }
 </script>

@@ -31,11 +31,11 @@
                           :key="dateItem.originDate"
                           :class="[
                             'cl-date-pane-item__col',
-                            type === 'date' && !dateItem.isDisabled && dateItem.isNowMonth && !date.includes(dateItem.key) && 'cl-date-pane-item__hover',
+                            type === 'date' && !dateItem.isDisabled && dateItem.isNowMonth && !selectDate.includes(dateItem.key) && 'cl-date-pane-item__hover',
                             dateItem.isNowDate && 'cl-date-pane-item__now',
                             !dateItem.isNowMonth && 'cl-date-pane-item__no-now-month',
-                            date.includes(dateItem.key) && dateItem.isNowMonth && 'cl-date-pane-item__selected',
-                            !date.includes(dateItem.key) && dateItem.isBetween && 'cl-date-pane-item__between',
+                            selectDate.includes(dateItem.key) && dateItem.isNowMonth && 'cl-date-pane-item__selected',
+                            !selectDate.includes(dateItem.key) && dateItem.isBetween && 'cl-date-pane-item__between',
                             dateItem.isDisabled && 'cl-date-pane-item__disabled',
                           ]"
                           @mouseenter="mouseEnter(dateItem)"
@@ -81,6 +81,7 @@
                     year: '',
                     weekNumber: ''
                 },
+                selectDate: [],
             }
         },
         computed: {
@@ -115,14 +116,16 @@
                 let dateList = dateOnMonth(this.year, this.month);
                 let newDateList = [];
                 let row = [];
+                let format = this.format;
+                format = format.replace('hh', '').replace('mm', '').replace('ss', '').replace(/:/g, '').trim();
                 dateList.forEach((item, index) => {
                     item.isBetween = false;
                     item.isDisabled = false;
                     if (typeof this.datePicker.disabledDate === 'function') {
                         item.isDisabled = this.datePicker.disabledDate(item.key);
                     }
-                    item.key = dateFormat(item.key, this.format);
-                    if (this.isRange && this.date.length === 2 && item.key > this.date[0] && item.key < this.date[1]) {
+                    item.key = dateFormat(item.key, format);
+                    if (this.isRange && this.selectDate.length === 2 && item.key > this.selectDate[0] && item.key < this.selectDate[1]) {
                         item.isBetween = true;
                     }
                     if (index % 7 === 0) {
@@ -137,7 +140,7 @@
             },
             handleSelectDate(date) {
                 if (date.isDisabled || this.type === 'week') return;
-                if (this.date.length === 2) {
+                if (this.selectDate.length === 2) {
                     this.clearHover();
                 }
                 this.$emit('updateDate', [date.key]);
@@ -149,7 +152,7 @@
             },
             mouseEnter(dateItem) {
                 if(this.type === 'week') return;
-                if (this.isRange && this.date.length === 1) {
+                if (this.isRange && this.selectDate.length === 1) {
                     if (dateItem.isNowMonth) {
                         dateItem.isBetween = true;
                     }
@@ -158,7 +161,7 @@
             },
             mouseLeave(dateItem) {
                 if (dateItem.isNowMonth) {
-                    if (this.date.length === 2 && dateItem.key > this.date[0] && dateItem.key < this.date[1]) {
+                    if (this.selectDate.length === 2 && dateItem.key > this.selectDate[0] && dateItem.key < this.selectDate[1]) {
                         dateItem.isBetween = true;
                     } else {
                         dateItem.isBetween = false;
@@ -166,17 +169,17 @@
                 }
             },
             rangeHovering(date) {
-                if (this.date.length === 1) {
+                if (this.selectDate.length === 1) {
                     this.dateList.forEach(row => {
                         row.forEach(item => {
-                            if (date > this.date[0]) {
-                                if (item.key <= date && item.key > this.date[0] && item.isNowMonth) {
+                            if (date > this.selectDate[0]) {
+                                if (item.key <= date && item.key > this.selectDate[0] && item.isNowMonth) {
                                     item.isBetween = true;
                                 } else {
                                     item.isBetween = false;
                                 }
                             } else {
-                                if (item.key >= date && item.key < this.date[0] && item.isNowMonth) {
+                                if (item.key >= date && item.key < this.selectDate[0] && item.isNowMonth) {
                                     item.isBetween = true;
                                 } else {
                                     item.isBetween = false;
@@ -209,6 +212,17 @@
                 this.setDateList();
             },
             date(newVal) {
+                if(!newVal) return;
+                let format = this.format;
+                format = format.replace('hh', '').replace('mm', '').replace('ss', '').replace(/:/g, '').trim();
+                this.selectDate = [];
+                if(newVal[0]){
+                    this.selectDate[0] = dateFormat(newVal[0], format);
+                }
+                if(newVal[1]){
+                    this.selectDate[1] = dateFormat(newVal[1], format);
+                }
+
                 if (newVal.length === 1 && this.isRange) {
                     this.clearHover();
                 }

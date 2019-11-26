@@ -3,18 +3,23 @@
             'cl-date-pane-single',
             size && `cl-date-pane-single--${size}`
          ]">
-        <div class="cl-date-pane-single__header">
+        <div class="cl-date-pane-single__header" v-show="showHeader">
             <span class="cl-date-pane-single__header-pre">
                 <i class="cl-icon-arrow-left" @click.stop="jumpDate('pre-year')"></i>
                 <i class="cl-icon-left" @click.stop="jumpDate('pre-month')" v-if="dateChangeIconShow"></i>
             </span>
             <span class="cl-date-pane-single__header-date">
-                <span class="cl-date-pane-single__header-date-label" @click.stop="handleSelectYear">{{year}}年</span>
-                <span class="cl-date-pane-single__header-date-label" @click.stop="handleSelectMonth" v-if="headerMonthShow">{{month}}月</span>
+                <span class="cl-date-pane-single__header-date-label" @click.stop="updateCurrentType('year')">{{year}}年</span>
+                <span class="cl-date-pane-single__header-date-label" @click.stop="updateCurrentType('month')" v-if="headerMonthShow">{{month}}月</span>
             </span>
             <span class="cl-date-pane-single__header-next">
                 <i class="cl-icon-right" @click.stop="jumpDate('next-month')" v-if="dateChangeIconShow"></i>
                 <i class="cl-icon-arrow-right" @click.stop="jumpDate('next-year')"></i>
+            </span>
+        </div>
+        <div class="cl-date-pane-single__header" v-show="!showHeader">
+            <span class="cl-date-pane-single__header-date">
+                {{index === '0' ? '开始时间' : '结束时间'}}
             </span>
         </div>
         <div class="cl-date-pane-single__body">
@@ -54,11 +59,24 @@
                                 :format="format"
                                 @update-month="updateSelectMonth"
                                 v-show="currentType === 'month'"></cl-date-pane-month>
+            <cl-date-pane-time :size="size"
+                               :type="currentType"
+                               :year="year"
+                               :month="month"
+                               :date="date"
+                               :index="index"
+                               :hover-date="hoverDate"
+                               :currentDate="currentDate"
+                               :is-range="isRange"
+                               :format="format"
+                               @update-time="updateSelectTime"
+                               v-if="currentType === 'time'"></cl-date-pane-time>
         </div>
     </div>
 </template>
 
 <script>
+    import ClDatePaneTime from './date-pane-time'
     import ClDatePaneDate from './date-pane-date'
     import ClDatePaneYear from './date-pane-year'
     import ClDatePaneMonth from './date-pane-month'
@@ -79,14 +97,14 @@
             isRange: Boolean
         },
         data(){
-            const currentType = ['date', 'daterange'].includes(this.type) ? 'date' : this.type;
+            const currentType = ['date', 'daterange', 'datetime', 'datetimerange'].includes(this.type) ? 'date' : this.type;
             return {
                 currentType: currentType,
                 currentDate: {
                     year: new Date().getFullYear().toString(),
                     month: zero((new Date().getMonth() + 1)),
                     date: zero(new Date().getDate())
-                }
+                },
             }
         },
         computed: {
@@ -99,8 +117,15 @@
             yearJumpStep(){
                 return ['year'].includes(this.currentType) ? 10 : 1;
             },
+            showHeader(){
+                return !['time'].includes(this.currentType)
+            },
+            selectDate(){
+                return dateFormat(this.date[this.index], 'DD');
+            }
         },
         components: {
+            ClDatePaneTime,
             ClDatePaneDate,
             ClDatePaneYear,
             ClDatePaneMonth
@@ -112,17 +137,18 @@
             jumpDate(type){
                 this.updateSingleDate(type, null, null);
             },
-            handleSelectYear(){
-                this.currentType = 'year';
-            },
-            handleSelectMonth(){
-                this.currentType = 'month';
+            updateCurrentType(type){
+                this.currentType = type;
             },
             handleHoverDate(date){
                 this.$emit('hover-date', this.index, date);
             },
             updateSelectDate(date){
                 date = [dateFormat(date[0], this.format)];
+                this.$emit('update-date', this.index, date);
+            },
+            updateSelectTime(date){
+                // date = [dateFormat(date[0], this.format)];
                 this.$emit('update-date', this.index, date);
             },
             updateSelectWeek(weekNum){
@@ -132,12 +158,12 @@
                 if (this.type === 'year'){
                     this.updateSelectDate([year]);
                 }else{
-                    this.handleSelectMonth();
+                    this.updateCurrentType('month');
                 }
                 this.updateSingleDate('update-year', year, null);
             },
             updateSelectMonth(month){
-                if (this.type === 'date' || this.type === 'daterange'){
+                if (['date', 'daterange', 'datetime', 'datetimerange'].includes(this.type)){
                     this.currentType = 'date';
                 }else if(this.type === 'week'){
                     this.currentType = 'week';

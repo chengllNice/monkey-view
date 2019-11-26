@@ -43,15 +43,32 @@
                         clearable
                         :render-html="true"></cl-date-picker>
 
-
         <cl-date-picker style="width: 200px"
-                        placeholder="请选择日期"
-                        v-model="dateWeek"
+                        placeholder="请选择日期和时间"
+                        type="datetime"
+                        v-model="dateTime"
                         @change="dateChange"
-                        always-show-pane
-                        show-week-number
                         clearable
                         :render-html="true"></cl-date-picker>
+
+
+        <cl-date-picker style="width: 400px"
+                        placeholder="请选择日期和时间"
+                        type="datetimerange"
+                        v-model="dateTimeRange"
+                        @change="dateChange"
+                        clearable
+                        :render-html="true"></cl-date-picker>
+
+
+<!--        <cl-date-picker style="width: 200px"-->
+<!--                        placeholder="请选择日期"-->
+<!--                        v-model="dateWeek"-->
+<!--                        @change="dateChange"-->
+<!--                        always-show-pane-->
+<!--                        show-week-number-->
+<!--                        clearable-->
+<!--                        :render-html="true"></cl-date-picker>-->
     </div>
 </template>
 
@@ -64,7 +81,9 @@
               date1: '',
               date2: ['2020-11-11', '2021-1-1'],
               dateYear: '',
-              dateMonth: ''
+              dateMonth: '',
+              dateTime: '',
+              dateTimeRange: [],
           }
         },
         methods: {

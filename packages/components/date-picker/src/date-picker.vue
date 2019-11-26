@@ -207,15 +207,18 @@
             },
         },
         watch: {
-            dateValue(newVal){
-                this.updateInputValue();
-                if(this.isRange){
-                    this.$emit('input', newVal);
-                    this.$emit('change', newVal);
-                }else{
-                    this.$emit('input', newVal[0]);
-                    this.$emit('change', newVal[0]);
-                }
+            dateValue: {
+                handler(newVal){
+                    this.updateInputValue();
+                    if(this.isRange){
+                        this.$emit('input', newVal);
+                        this.$emit('change', newVal);
+                    }else{
+                        this.$emit('input', newVal[0]);
+                        this.$emit('change', newVal[0]);
+                    }
+                },
+                deep: true
             },
         }
     }

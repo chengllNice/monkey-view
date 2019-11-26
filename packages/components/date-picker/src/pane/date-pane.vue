@@ -1,39 +1,49 @@
 <template>
     <div class="cl-date-pane">
-        <cl-date-pane-single class="cl-date-pane__left"
-                             ref="leftPane"
-                             :index="datePane0.id"
-                             :year="datePane0.year"
-                             :month="datePane0.month"
-                             :date="selectedDateValue"
-                             :hover-date="hoverDate"
-                             :is-range="isRange"
-                             :size="size"
-                             :format="format"
-                             :type="type"
-                             @hover-date="handleHoverDate"
-                             @update-date="updateValue"
-                             @update-pane="updatePane"></cl-date-pane-single>
-        <cl-date-pane-single class="cl-date-pane__right"
-                             ref="rightPane"
-                             v-if="isRange"
-                             :index="datePane1.id"
-                             :year="datePane1.year"
-                             :month="datePane1.month"
-                             :date="selectedDateValue"
-                             :hover-date="hoverDate"
-                             :is-range="isRange"
-                             :size="size"
-                             :format="format"
-                             :type="type"
-                             @hover-date="handleHoverDate"
-                             @update-date="updateValue"
-                             @update-pane="updatePane"></cl-date-pane-single>
+        <div class="cl-date-pane__shortcuts"></div>
+        <div class="cl-date-pane__main">
+            <div class="cl-date-pane__content">
+                <cl-date-pane-single class="cl-date-pane__left"
+                                     ref="leftPane"
+                                     :index="datePane0.id"
+                                     :year="datePane0.year"
+                                     :month="datePane0.month"
+                                     :date="selectedDateValue"
+                                     :hover-date="hoverDate"
+                                     :is-range="isRange"
+                                     :size="size"
+                                     :format="format"
+                                     :type="type"
+                                     @hover-date="handleHoverDate"
+                                     @update-date="updateValue"
+                                     @update-pane="updatePane"></cl-date-pane-single>
+                <cl-date-pane-single class="cl-date-pane__right"
+                                     ref="rightPane"
+                                     v-if="isRange"
+                                     :index="datePane1.id"
+                                     :year="datePane1.year"
+                                     :month="datePane1.month"
+                                     :date="selectedDateValue"
+                                     :hover-date="hoverDate"
+                                     :is-range="isRange"
+                                     :size="size"
+                                     :format="format"
+                                     :type="type"
+                                     @hover-date="handleHoverDate"
+                                     @update-date="updateValue"
+                                     @update-pane="updatePane"></cl-date-pane-single>
+            </div>
+            <div class="cl-date-pane__footer" v-if="showFooter">
+                <cl-button type="text" size="mini" :disabled="changeTimeDisabled" @click="changeTimeAndDate">{{isTime ? "选择日期" : "选择时间"}}</cl-button>
+                <cl-button type="primary" size="mini">确定</cl-button>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
     import ClDatePaneSingle from './date-pane-single'
+    import ClButton from '../../../button/src/button'
     import {zero, dateFormat, getWeekNumberInfo} from "../../../../utils/date";
 
     export default {
@@ -67,13 +77,23 @@
                 nowDate: new Date(),
                 selectedDateValue: [],
                 hoverDate: '',//当前hover的日期
+                isTime: false,
             }
         },
         computed: {
-
+            showFooter(){
+                return ['datetime', 'datetimerange'].includes(this.type);
+            },
+            changeTimeDisabled(){
+                if(this.isRange){
+                    return this.selectedDateValue.length !== 2;
+                }
+                return false;
+            }
         },
         components: {
-            ClDatePaneSingle
+            ClDatePaneSingle,
+            ClButton
         },
         mounted() {
             this.$nextTick(()=>{
@@ -241,7 +261,11 @@
                 }
                 this.$emit('input', this.selectedDateValue);
             },
-
+            changeTimeAndDate(){
+                this.$refs.leftPane && this.$refs.leftPane.updateCurrentType(this.isTime ? 'date' : 'time');
+                this.$refs.rightPane && this.$refs.rightPane.updateCurrentType(this.isTime ? 'date' : 'time');
+                this.isTime = !this.isTime;
+            }
         },
         watch: {
             value(newVal, oldVal){

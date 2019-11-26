@@ -40,6 +40,8 @@ $year-and-month-margin: #{$--date-picker-pane-margin * 2};
     $return-value: $year-width;
   }@else if($field == 'month-width'){
     $return-value: $year-width;
+  }@else if($field == 'time-width'){
+    $return-value: $year-width;
   }@else if($field == 'pane-min-width'){
     $return-value: $pane-min-width;
   }@else if($field == 'show-week-number-pane-min-width'){
@@ -104,6 +106,28 @@ $year-and-month-margin: #{$--date-picker-pane-margin * 2};
       width: $month-width;
       height: $month-height;
       line-height: $month-height;
+    }
+  }
+}
+
+@mixin date-pane-date-time-size($size, $col){
+  $time-width: size-common($size, 'time-width');
+  $time-height: size-common($size, 'date-width');
+  @if($col == 2){
+    $time-width: size-common($size, 'time-width');
+  }
+  .cl-date-pane-time__hh, .cl-date-pane-time__mm, .cl-date-pane-time__ss{
+    height: #{($time-height) * 8};
+  }
+
+  .cl-date-pane-item__col {
+    display: block;
+    //margin: $year-and-month-margin 0;
+    padding: 0 $year-and-month-margin;
+    em{
+      width: $time-width;
+      height: $time-height;
+      line-height: $time-height;
     }
   }
 }
