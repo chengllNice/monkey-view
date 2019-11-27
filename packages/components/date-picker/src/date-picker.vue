@@ -1,17 +1,20 @@
 <template>
     <div :class="[
             'cl-date-picker',
-            size && `cl-date-picker--${size}`
+            size && `cl-date-picker--${size}`,
+            className,
          ]"
          v-click-outside.capture="handleClickOutside">
         <div class="cl-date-picker__reference" ref="reference">
             <slot>
                 <cl-input v-model="dateInputValue"
-                          suffix="cl-icon-date"
+                          ref="dateInput"
+                          :suffix="suffix"
                           :size="size"
                           :disabled="disabled"
                           :clearable="clearable"
                           :placeholder="placeholder"
+                          :readonly="readonlyInput"
                           @click.native="handleFocus"
                           @blur="updateInputValue"
                           @clear="clearHandle"></cl-input>
@@ -20,6 +23,7 @@
         <transition :name="transition">
             <DropDown v-show="visible && !disabled"
                       ref="dropDown"
+                      :class="dropdownClassName"
                       :reference="this.$refs.reference"
                       :placement="placement"
                       :isMinWidth="false"
@@ -28,11 +32,12 @@
                       v-model="visible">
                 <div class="cl-date-picker__drop-down-inner">
                     <cl-date-pane :size="size"
+                                  :multiple="multiple"
                                   :format="formatType"
                                   v-model="dateValue"
                                   :shortcuts="shortcuts"
                                   :is-range="isRange"
-                                  :type="type" />
+                                  :type="type"/>
                 </div>
             </DropDown>
         </transition>
@@ -42,8 +47,6 @@
 <script>
     import {directive as clickOutside} from 'v-click-outside-x';
     import DropDown from '../../select/src/drop-down.vue'
-    // import ClDatePaneSingle from './pane/date-pane-single.vue'
-    // import ClDatePaneRange from './pane/date-pane-range.vue'
     import ClDatePane from './pane/date-pane.vue'
     import {dateFormat} from "../../../utils/date";
 
@@ -60,27 +63,36 @@
             type: {
                 type: String,
                 default: 'date',
-                validator(value){
+                validator(value) {
                     return ['date', 'daterange', 'datetime', 'datetimerange', 'year', 'month', 'week'].includes(value)
                 }
             },
-            placeholder: String,
-            transition: {
-                type: String,
-                default: 'fade'
-            },
             disabled: Boolean,
-            clearable: Boolean,
-            placement: {
-                type: String,
-                default: 'bottom-start'
-            },
+            readonly: Boolean,
+            placeholder: String,
             size: {
                 type: String,
                 default: 'default',
                 validator(value) {
                     return ['mini', 'small', 'default', 'large'].includes(value);
                 }
+            },
+            clearable: Boolean,
+            suffix: {
+                type: String,
+                default: 'cl-icon-date'
+            },
+            transition: {
+                type: String,
+                default: 'fade'
+            },
+            editable: {
+                type: Boolean,
+                default: true
+            },//文本框是否可以输入
+            placement: {
+                type: String,
+                default: 'bottom-start'
             },
             format: {
                 type: String,
@@ -95,9 +107,16 @@
                     return false
                 }
             },
-            alwaysShowPane: Boolean,//是否总是显示日期下拉框
+            open: Boolean,//手动控制日期框的打开关闭
+            multiple: Boolean,//多选日期
+            separator: {
+                type: String,
+                default: '~'
+            },//两个日期之间的分隔符
+            className: String,//选择器的类名
+            dropdownClassName: String,//日期下拉框的类名
         },
-        data(){
+        data() {
             return {
                 dateValue: [],
                 dateInputValue: '',
@@ -105,11 +124,14 @@
             }
         },
         computed: {
-            isRange(){
+            isRange() {
                 return this.type.includes('range');
             },
-            formatType(){
-                if(this.format) return this.format;
+            readonlyInput() {
+                return this.readonly || !this.editable;
+            },
+            formatType() {
+                if (this.format) return this.format;
                 let result;
                 switch (this.type) {
                     case 'date':
@@ -147,85 +169,98 @@
         mounted() {
             this.initDateValue();
             this.updateInputValue();
-            this.visible = this.alwaysShowPane;
+            this.visible = this.open;
         },
         methods: {
-            initDateValue(val){
+            initDateValue(val) {
                 let value = val || this.value;
-                if(this.isRange){
-                    value = value && value.length ? value : [];
-                    if(value[0] && value[1]){
-                        this.dateValue = [dateFormat(value[0], this.formatType), dateFormat(value[1], this.formatType)];
-                    }
-                }else if(typeof value === 'string'){
-                    if(this.type === 'week'){
-                        this.dateValue = value ? [value] : [];
-                    }else{
-                        this.dateValue = value ? [dateFormat(value, this.formatType)] : [];
+                if (this.multiple && this.type === 'date') {
+                    this.dateValue = value || [];
+                } else {
+                    if (this.isRange) {
+                        value = value && value.length ? value : [];
+                        if (value[0] && value[1]) {
+                            this.dateValue = [dateFormat(value[0], this.formatType), dateFormat(value[1], this.formatType)];
+                        }
+                    } else if (typeof value === 'string') {
+                        if (this.type === 'week') {
+                            this.dateValue = value ? [value] : [];
+                        } else {
+                            this.dateValue = value ? [dateFormat(value, this.formatType)] : [];
+                        }
                     }
                 }
             },
-            setValue(value){
+            setValue(value) {
                 !Array.isArray(value) && (value = value.toString());
                 this.initDateValue(value);
             },
-            handleFocus(){
-                if(this.disabled || this.alwaysShowPane){
-                    return
-                }
-                this.visible = !this.visible;
+            handleFocus() {
+                this.dropDownVisible(!this.visible);
             },
-            handleClickOutside(event){
-                if(this.alwaysShowPane) return;
-                if(this.visible){
-                    if(this.renderHtml !== false){
+            handleClickOutside(event) {
+                if (this.visible) {
+                    if (this.renderHtml !== false) {
                         const {$el} = this.$refs.dropDown;
                         if ($el === event.target || $el.contains(event.target)) {
                             return;
                         }
                     }
                 }
-                this.closeDropDownPane(false);
+                this.$emit('clickoutside',event);
+                this.dropDownVisible(false);
             },
-            closeDropDownPane(visible){
+            dropDownVisible(visible) {
+                if (this.readonly || this.open || this.disabled) return;
                 this.visible = visible;
             },
-            openDropDownPane(){
-
-            },
-            clearHandle(){
+            clearHandle() {
                 this.dateValue = [];
+                this.$emit('clear');
             },
-            updateInputValue(){
-                if(this.isRange){
-                    let date1 = this.dateValue[0];
-                    let date2 = this.dateValue[1];
-                    if(date1 && !date2){
-                        this.dateInputValue = `${date1}`;
-                    }else if(date1 && date1){
-                        this.dateInputValue = `${date1} - ${date2}`;
-                    }else{
-                        this.dateInputValue = '';
+            updateInputValue() {
+                if (this.multiple && this.type === 'date') {
+                    this.dateInputValue = this.dateValue.join(',');
+                } else {
+                    if (this.isRange) {
+                        let date1 = this.dateValue[0];
+                        let date2 = this.dateValue[1];
+                        if (date1 && !date2) {
+                            this.dateInputValue = `${date1}`;
+                        } else if (date1 && date1) {
+                            this.dateInputValue = `${date1} ${this.separator} ${date2}`;
+                        } else {
+                            this.dateInputValue = '';
+                        }
+                    } else {
+                        this.dateInputValue = this.dateValue[0] || '';
                     }
-                }else{
-                    this.dateInputValue = this.dateValue[0] || '';
                 }
             },
+            focus(){
+                this.$refs.dateInput && this.$refs.dateInput.focus();
+            },
+            blur(){
+                this.$refs.dateInput && this.$refs.dateInput.blur();
+            }
         },
         watch: {
             dateValue: {
-                handler(newVal){
+                handler(newVal) {
                     this.updateInputValue();
-                    if(this.isRange){
+                    if (this.isRange || (this.multiple && this.type === 'date')) {
                         this.$emit('input', newVal);
                         this.$emit('change', newVal);
-                    }else{
+                    } else {
                         this.$emit('input', newVal[0]);
                         this.$emit('change', newVal[0]);
                     }
                 },
                 deep: true
             },
+            open(newVal){
+                this.visible = newVal;
+            }
         }
     }
 </script>

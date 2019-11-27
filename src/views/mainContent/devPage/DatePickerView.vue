@@ -1,35 +1,24 @@
 <template>
     <div class="DatePickerView">
-        <cl-date-picker style="width: 200px"
-                        type="week"
-                        placeholder="请选择周"
-                        v-model="dateWeek"
-                        @change="dateChange"
-                        show-week-number
-                        clearable
-                        :render-html="true"></cl-date-picker>
 
-        <!--:disabled-date="disabledDate"-->
-
+        <h4>date</h4>
         <cl-date-picker style="width: 200px"
                         placeholder="请选择日期"
-                        v-model="date1"
+                        v-model="date"
                         @change="dateChange"
                         clearable
-                        show-week-number
-                        format="YYYY/MM/DD"
-                        :shortcuts="shortcuts"
                         :render-html="true"></cl-date-picker>
 
+        <h4>daterange</h4>
         <cl-date-picker type="daterange"
                         style="width: 300px"
                         placeholder="请选择日期"
-                        v-model="date2"
-                        format="YYYY/MM/DD"
-                        :shortcuts="shortcutsrange"
+                        v-model="daterange"
                         @change="dateChange"
+                        clearable
                         :render-html="true"></cl-date-picker>
 
+        <h4>year</h4>
         <cl-date-picker type="year"
                         style="width: 200px"
                         placeholder="请选择年"
@@ -38,6 +27,7 @@
                         clearable
                         :render-html="true"></cl-date-picker>
 
+        <h4>month</h4>
         <cl-date-picker type="month"
                         style="width: 200px"
                         placeholder="请选择月"
@@ -46,6 +36,16 @@
                         clearable
                         :render-html="true"></cl-date-picker>
 
+        <h4>week</h4>
+        <cl-date-picker style="width: 200px"
+                        type="week"
+                        placeholder="请选择周"
+                        v-model="dateWeek"
+                        @change="dateChange"
+                        clearable
+                        :render-html="true"></cl-date-picker>
+
+        <h4>datetime</h4>
         <cl-date-picker style="width: 200px"
                         placeholder="请选择日期和时间"
                         type="datetime"
@@ -54,7 +54,7 @@
                         clearable
                         :render-html="true"></cl-date-picker>
 
-
+        <h4>datetimerange</h4>
         <cl-date-picker style="width: 400px"
                         placeholder="请选择日期和时间"
                         type="datetimerange"
@@ -63,15 +63,132 @@
                         clearable
                         :render-html="true"></cl-date-picker>
 
+        <h4>显示快捷方式</h4>
+        <cl-date-picker type="daterange"
+                        style="width: 300px"
+                        placeholder="请选择日期"
+                        v-model="dateShortcuts"
+                        :shortcuts="shortcutsrange"
+                        @change="dateChange"
+                        :render-html="true"></cl-date-picker>
 
-<!--        <cl-date-picker style="width: 200px"-->
-<!--                        placeholder="请选择日期"-->
-<!--                        v-model="dateWeek"-->
-<!--                        @change="dateChange"-->
-<!--                        always-show-pane-->
-<!--                        show-week-number-->
-<!--                        clearable-->
-<!--                        :render-html="true"></cl-date-picker>-->
+        <h4>禁用指定日期</h4>
+        <cl-date-picker style="width: 300px"
+                        placeholder="请选择日期"
+                        v-model="dateShortcuts"
+                        :disabled-date="disabledDate"
+                        @change="dateChange"
+                        :render-html="true"></cl-date-picker>
+
+        <h4>格式化日期</h4>
+        <cl-date-picker style="width: 200px"
+                        placeholder="请选择日期"
+                        v-model="dateFormat"
+                        format="YYYY/MM/DD"
+                        @change="dateChange"
+                        clearable
+                        :render-html="true"></cl-date-picker>
+
+        <h4>多选multiple</h4>
+        <cl-date-picker style="width: 200px"
+                        placeholder="请选择日期"
+                        v-model="dateMultiple"
+                        @change="dateChange"
+                        clearable
+                        multiple
+                        :render-html="true"></cl-date-picker>
+
+        <h4>显示周数</h4>
+        <cl-date-picker style="width: 200px"
+                        placeholder="请选择日期"
+                        v-model="dateWeekNumber"
+                        @change="dateChange"
+                        show-week-number
+                        clearable
+                        :render-html="true"></cl-date-picker>
+
+        <h4>只读</h4>
+        <cl-date-picker style="width: 200px"
+                        placeholder="请选择日期"
+                        v-model="dateReadonly"
+                        readonly
+                        @change="dateChange"
+                        clearable
+                        :render-html="true"></cl-date-picker>
+
+        <h4>禁用</h4>
+        <cl-date-picker style="width: 200px"
+                        placeholder="请选择日期"
+                        v-model="dateDisabled"
+                        disabled
+                        @change="dateChange"
+                        clearable
+                        :render-html="true"></cl-date-picker>
+
+        <h4>不可输入</h4>
+        <cl-date-picker style="width: 200px"
+                        placeholder="请选择日期"
+                        v-model="dateNoEditable"
+                        :editable="false"
+                        @change="dateChange"
+                        clearable
+                        :render-html="true"></cl-date-picker>
+
+        <h4>自定义触发器</h4>
+        <cl-date-picker style="width: 200px"
+                        placeholder="请选择日期"
+                        v-model="dateSlot"
+                        :open="open"
+                        @change="dateChange"
+                        clearable
+                        :render-html="true">
+            <cl-button type="text" @click="open = !open">触发日期框打开关闭</cl-button>
+        </cl-date-picker>
+
+        <h4>mini</h4>
+        <cl-date-picker style="width: 200px"
+                        placeholder="请选择日期"
+                        size="mini"
+                        v-model="dateMini"
+                        @change="dateChange"
+                        clearable
+                        :render-html="true"></cl-date-picker>
+
+        <h4>small</h4>
+        <cl-date-picker style="width: 200px"
+                        placeholder="请选择日期"
+                        size="small"
+                        v-model="dateSmall"
+                        @change="dateChange"
+                        clearable
+                        :render-html="true"></cl-date-picker>
+
+        <h4>default</h4>
+        <cl-date-picker style="width: 200px"
+                        placeholder="请选择日期"
+                        v-model="dateDefault"
+                        @change="dateChange"
+                        clearable
+                        :render-html="true"></cl-date-picker>
+
+        <h4>large</h4>
+        <cl-date-picker style="width: 200px"
+                        placeholder="请选择日期"
+                        size="large"
+                        v-model="dateLarge"
+                        @change="dateChange"
+                        clearable
+                        :render-html="true"></cl-date-picker>
+
+        <h4>手动获取失去焦点</h4>
+        <div><cl-button @click="handleFocus">获取焦点</cl-button><cl-button @click="handleBlur">获取焦点</cl-button></div>
+        <cl-date-picker style="width: 200px"
+                        ref="focusDate"
+                        placeholder="请选择日期"
+                        v-model="dateFocus"
+                        @change="dateChange"
+                        clearable
+                        :render-html="true"></cl-date-picker>
     </div>
 </template>
 
@@ -80,13 +197,26 @@
         name: "DatePickerView",
         data(){
           return{
+              dateMultiple: [],
               dateWeek: '',
-              date1: '',
-              date2: ['2020-11-11', '2021-1-1'],
+              date: '',
+              daterange: ['2020-11-11', '2021-1-1'],
               dateYear: '',
               dateMonth: '',
               dateTime: '',
               dateTimeRange: [],
+              dateWeekNumber: '',
+              dateShortcuts: '',
+              dateFormat: '',
+              dateReadonly: '',
+              dateDisabled: '',
+              dateNoEditable: '',
+              dateSlot: '',
+              dateMini: '',
+              dateSmall: '',
+              dateDefault: '',
+              dateLarge: '',
+              dateFocus: '',
               shortcuts: [
                   {
                       text: '今天',
@@ -140,7 +270,8 @@
                           picker.setValue([date1, date2]);
                       }
                   }
-              ]
+              ],
+              open: false
           }
         },
         methods: {
@@ -149,6 +280,12 @@
             },
             disabledDate(date){
                 return date && new Date(date).getTime() < Date.now();
+            },
+            handleFocus(){
+                this.$refs.focusDate.focus();
+            },
+            handleBlur(){
+                this.$refs.focusDate.blur();
             }
         }
     }

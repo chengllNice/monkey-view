@@ -90,7 +90,7 @@
   @include e(shortcuts){
     background-color: $--background-color-base;
     width: 100px;
-    border: $--border-default;
+    border-right: $--border-default;
   }
   @include e(shortcuts-item){
     padding: $--date-picker-pane-padding;

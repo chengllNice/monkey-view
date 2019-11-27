@@ -64,8 +64,11 @@
             type !== 'textarea' && `cl-input__suffix`,
             type === 'textarea' && `cl-textarea__suffix`,
         ]">
+            <i v-if="showClearable"
+               class="cl-input__suffix-inner cl-input__clearable cl-icon-circle-close-solid"
+               @click="handlerClear"></i>
             <span class="cl-input__suffix-inner"
-                  v-if="$slots.suffix">
+                  v-else-if="$slots.suffix">
                 <slot name="suffix"></slot>
             </span>
             <span class="cl-input__suffix-inner cl-input__suffix-step"
@@ -92,9 +95,6 @@
             <i v-else-if="type === 'search'"
                class="cl-input__suffix-inner cl-input__search cl-icon-search"
                @click="handlerSearch"></i>
-             <i v-else-if="showClearable"
-                class="cl-input__suffix-inner cl-input__clearable cl-icon-circle-close-solid"
-                @click="handlerClear"></i>
             <span v-else-if="['input', 'textarea'].includes(type) && showLimitLabel && maxLength.toString()"
                   :class="`cl-${type}__limit`">
                 {{modelValue !== undefined ? modelValue.length : 0}}/{{maxLength || 0}}
@@ -338,6 +338,12 @@
                 setTimeout(() => {
                     this.$refs.textarea && this.$refs.textarea.focus();
                     this.$refs.input && this.$refs.input.focus();
+                });
+            },
+            blur() {
+                setTimeout(() => {
+                    this.$refs.textarea && this.$refs.textarea.blur();
+                    this.$refs.input && this.$refs.input.blur();
                 });
             }
         }

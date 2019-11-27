@@ -37,7 +37,7 @@
             </div>
             <div class="cl-date-pane__footer" v-if="showFooter">
                 <cl-button type="text" :size="size" :disabled="changeTimeDisabled" @click="changeTimeAndDate">{{isTime ? "选择日期" : "选择时间"}}</cl-button>
-                <cl-button type="primary" :size="size">确定</cl-button>
+                <cl-button type="primary" :size="size" @click="closeDropDown(true)">确定</cl-button>
             </div>
         </div>
     </div>
@@ -63,6 +63,7 @@
             format: String,
             isRange: Boolean,
             shortcuts: Array,
+            multiple: Boolean,
         },
         data(){
             return {
@@ -246,24 +247,29 @@
                 }
             },
             updateValue(index, date){
-                if(!this.isRange){
-                    this.selectedDateValue = date;
+                if(this.multiple && this.type === 'date'){
+                    this.selectedDateValue.push(...date);
                 }else{
-                    if(this.selectedDateValue.length === 2){
-                        this.selectedDateValue = [...date];
-                    }else if(this.selectedDateValue.length === 1){
-                        if(date > this.selectedDateValue[0]){
-                            this.selectedDateValue.push(...date);
-                        }else{
-                            this.selectedDateValue.unshift(...date);
-                        }
-
-                        this.initYearAndMonth(this.selectedDateValue[0], this.selectedDateValue[1]);
+                    if(!this.isRange){
+                        this.selectedDateValue = date;
                     }else{
-                        this.selectedDateValue.push(...date);
+                        if(this.selectedDateValue.length === 2){
+                            this.selectedDateValue = [...date];
+                        }else if(this.selectedDateValue.length === 1){
+                            if(date > this.selectedDateValue[0]){
+                                this.selectedDateValue.push(...date);
+                            }else{
+                                this.selectedDateValue.unshift(...date);
+                            }
+
+                            this.initYearAndMonth(this.selectedDateValue[0], this.selectedDateValue[1]);
+                        }else{
+                            this.selectedDateValue.push(...date);
+                        }
                     }
                 }
                 this.$emit('input', this.selectedDateValue);
+                this.closeDropDown();
             },
             changeTimeAndDate(){
                 this.$refs.leftPane && this.$refs.leftPane.updateCurrentType(this.isTime ? 'date' : 'time');
@@ -272,7 +278,33 @@
             },
             shortcutsClick(item){
                 item.onClick && item.onClick(this.datePicker);
+                this.closeDropDown();
             },
+            closeDropDown(isClose){
+                switch (this.type) {
+                    case 'date':
+                        !this.multiple && this.datePicker.dropDownVisible(false);
+                        break;
+                    case 'daterange':
+                        this.selectedDateValue.length === 2 && this.datePicker.dropDownVisible(false);
+                        break;
+                    case 'datetime':
+                        isClose && this.datePicker.dropDownVisible(false);
+                        break;
+                    case 'datetimerange':
+                        isClose && this.datePicker.dropDownVisible(false);
+                        break;
+                    case 'year':
+                        this.datePicker.dropDownVisible(false);
+                        break;
+                    case 'month':
+                        this.datePicker.dropDownVisible(false);
+                        break;
+                    case 'week':
+                        this.datePicker.dropDownVisible(false);
+                        break;
+                }
+            }
         },
         watch: {
             value(newVal, oldVal){

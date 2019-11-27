@@ -337,33 +337,24 @@ $--radio-input-height-large: 16px !default;
 
 
 /*-----checkbox-----*/
-$--checkbox-radius: $--border-radius-default !default;
 $--checkbox-border: $--border-default !default;
 $--checkbox-border-color-hover: $--color-primary !default;
-$--checkbox-background-color: $--color-white !default;
 
 $--checkbox-border-color-checked: $--color-primary !default;
 $--checkbox-background-color-checked: $--color-primary !default;
 $--checkbox-font-color-checked: $--color-primary !default;
 
-$--checkbox-border-color-disabled: $--border-color-disabled !default;
-$--checkbox-background-color-disabled: $--background-color-base !default;
-$--checkbox-icon-color-disabled: $--color-text-disabled !default;
-$--checkbox-font-color-disabled: $--color-text-disabled !default;
+$--checkbox-input-width-mini: 12px !default;
+$--checkbox-input-height-mini: 12px !default;
 
-$--checkbox-input-width-mini: 10px !default;
-$--checkbox-input-height-mini: 10px !default;
+$--checkbox-input-width-small: 14px !default;
+$--checkbox-input-height-small: 14px !default;
 
-$--checkbox-input-width-small: 12px !default;
-$--checkbox-input-height-small: 12px !default;
+$--checkbox-input-width-default: 16px !default;
+$--checkbox-input-height-default: 16px !default;
 
-$--checkbox-input-width-default: 14px !default;
-$--checkbox-input-height-default: 14px !default;
-
-$--checkbox-input-width-large: 16px !default;
-$--checkbox-input-height-large: 16px !default;
-
-
+$--checkbox-input-width-large: 18px !default;
+$--checkbox-input-height-large: 18px !default;
 
 
 /*-----button-----*/

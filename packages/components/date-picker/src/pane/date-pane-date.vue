@@ -216,12 +216,9 @@
                 let format = this.format;
                 format = format.replace('hh', '').replace('mm', '').replace('ss', '').replace(/:/g, '').trim();
                 this.selectDate = [];
-                if(newVal[0]){
-                    this.selectDate[0] = dateFormat(newVal[0], format);
-                }
-                if(newVal[1]){
-                    this.selectDate[1] = dateFormat(newVal[1], format);
-                }
+                newVal.forEach(item=>{
+                    this.selectDate.push(dateFormat(item, format));
+                });
 
                 if (newVal.length === 1 && this.isRange) {
                     this.clearHover();
