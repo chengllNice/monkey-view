@@ -5,19 +5,16 @@
 @mixin switchSize($size){
   $width: $--switch-width-default;
   $height: $--switch-height-default;
-  $font-size: $--font-size-default;
+  $font-size: 12px;
   @if($size == 'mini'){
     $width: $--switch-width-mini;
     $height: $--switch-height-mini;
-    $font-size: $--font-size-mini;
   }@else if($size == 'small'){
     $width: $--switch-width-small;
     $height: $--switch-height-small;
-    $font-size: $--font-size-small;
   }@else if($size == 'large'){
     $width: $--switch-width-large;
     $height: $--switch-height-large;
-    $font-size: $--font-size-large;
   }
   width: $width;
   height: $height;

@@ -259,12 +259,14 @@ $--tag-padding-horizontal-large: 10px !default;
 
 
 /*-----popover-----*/
-$--popover-arrow-width: 6px !default;
+$--popover-arrow-width: 5px !default;
+$--popover-arrow-border-width: 5px !default;
 $--popover-min-width: 150px !default;
 
 
 /*------tooltip-----*/
-$--tooltip-background-color-default: rgba(0,0,0,0.85) !default;
+$--tooltip-background-color-default: rgba(42,44,49,0.85) !default;
+$--tooltip-box-shadow: $--box-shadow-default;
 
 /*-----slider-----*/
 $--slider-rail-height: 4px !default;

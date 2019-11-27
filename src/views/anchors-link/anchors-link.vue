@@ -72,6 +72,7 @@
     border-left: 1px solid #eeeeee;
     position: relative;
     top: 0;
+    font-size: 12px;
     .anchors-link-item{
         padding: 8px 0 8px 16px;
         overflow: hidden;

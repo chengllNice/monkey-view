@@ -10,11 +10,11 @@
   }
 
   @include e(arrow) {
-    width: $--popover-arrow-width;
-    height: $--popover-arrow-width;
+    width: 0;
+    height: 0;
+    border-style: solid;
     position: absolute;
     background-color: $--tooltip-background-color-default;
-    transform: rotate(45deg);
   }
 
   @include e(popper){
@@ -25,12 +25,6 @@
 
     @include e(content) {
       position: relative;
-      text-align: left;
-      box-sizing: border-box;
-      border: $--border-default;
-      border-color: $--tooltip-background-color-default;
-      border-radius: $--border-radius-default;
-      background-color: $--tooltip-background-color-default;
     }
 
     &[x-placement^="top"], &[x-placement^="bottom"] {
@@ -42,20 +36,26 @@
 
     &[x-placement^="top"] {
       .cl-tooltip__arrow{
-        bottom: -#{$--popover-arrow-width - 3px};
+        bottom: 0;
+        transform: translate(-50%, 100%);
+        border-width: 0 $--popover-arrow-border-width $--popover-arrow-border-width;
+        border-bottom-color: $--tooltip-background-color-default;
       }
     }
 
     &[x-placement^="bottom"] {
       .cl-tooltip__arrow{
-        top: -#{$--popover-arrow-width - 2px};
+        top: 0;
+        transform: translate(-50%, -100%);
+        border-width: 0 $--popover-arrow-border-width $--popover-arrow-border-width;
+        border-bottom-color: $--tooltip-background-color-default;
       }
     }
 
     &[x-placement="top"], &[x-placement="bottom"] {
       .cl-tooltip__arrow{
         left: 50%;
-        margin-left: -#{$--popover-arrow-width / 2};
+        //margin-left: -#{$--popover-arrow-width / 2};
       }
     }
 
@@ -73,20 +73,20 @@
 
     &[x-placement^="left"] {
       .cl-tooltip__arrow{
-        right: -#{$--popover-arrow-width - 2px};
+        //right: -#{$--popover-arrow-width - 2px};
       }
     }
 
     &[x-placement^="right"] {
       .cl-tooltip__arrow{
-        left: -#{$--popover-arrow-width - 2px};
+        //left: -#{$--popover-arrow-width - 2px};
       }
     }
 
     &[x-placement="left"], &[x-placement="right"] {
       .cl-tooltip__arrow{
         top: 50%;
-        margin-top: -#{$--popover-arrow-width / 2};
+        //margin-top: -#{$--popover-arrow-width / 2};
       }
     }
 
@@ -108,5 +108,10 @@
   @include e(inner) {
     padding: 5px 10px;
     overflow: hidden;
+    text-align: left;
+    box-sizing: border-box;
+    box-shadow: $--tooltip-box-shadow;
+    border-radius: $--border-radius-default;
+    background-color: $--tooltip-background-color-default;
   }
 }
