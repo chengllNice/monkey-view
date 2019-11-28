@@ -15,7 +15,7 @@
                  :style="handleStyle"
                  @mousedown="hanldeMousedown($event, 'min')">
                 <ClTooltip ref="minTooltip"
-                           :renderHtml="isDisabled"
+                           :renderHtml="tooltipVisible === 'always' || false"
                            :disabled="tipDisabled"
                            :always="tooltipVisible === 'always'"
                            placement="top">

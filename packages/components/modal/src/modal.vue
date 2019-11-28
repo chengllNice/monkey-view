@@ -59,7 +59,7 @@
             transition: {
                 type: Array,
                 default: function () {
-                    return ['fade', 'fade']
+                    return ['fade', 'slideUp']
                 }
             },
             width: {

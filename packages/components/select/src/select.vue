@@ -107,7 +107,7 @@
             option: Array,
             transition: {
                 type: String,
-                default: 'fade'
+                default: 'slideUp'
             },
             multiple: Boolean,
             clearable: Boolean,

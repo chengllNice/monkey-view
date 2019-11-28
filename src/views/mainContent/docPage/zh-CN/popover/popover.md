@@ -171,6 +171,31 @@
 :::
 
 
+:::demo 指定渲染位置
+
+可以通过 `renderHtml`来控制浮层元素渲染位置，在外层`overflow:hidden`的情况下可以指定渲染到`body`元素中使其不受影响。
+
+```html
+<template>
+     <cl-popover title="提示" content="content" :render-html="true">
+        <cl-button>渲染浮层元素到BODY中</cl-button>
+    </cl-popover>
+</template>
+<script>
+    export default {
+      data(){
+        return {
+          
+        }
+      }
+    }
+</script>
+
+```
+
+:::
+
+
 
 ## API
 
@@ -189,7 +214,7 @@
 | confirm | Boolean | 确认框模式 | - |
 | ok-text | String | 确认框模式下，确定按钮的文字内容 | - |
 | cancel-text | String | 确认框模式下，取消按钮的文字内容 | - |
-| renderHtml | HTMLElement, Boolean | 自定义元素插入的位置，默认渲染到body中 | document.body |
+| renderHtml | HTMLElement, Boolean | 自定义元素插入的位置，设置为`true`则渲染到body中，可以指定渲染元素 | false |
 
 
 

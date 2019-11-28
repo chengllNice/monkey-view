@@ -31,7 +31,7 @@ export default {
                         },
                         preventOverflow: {
                             boundariesElement: 'window'
-                        }
+                        },
                     }
                 }
             }
@@ -78,10 +78,14 @@ export default {
             const reference = this.reference || this.$refs.reference;
 
             if (!clPopper || !reference) return;
+            if(this.renderHtml === false){
+                options.eventsEnabled = false;
+            }
 
             if (this.popperJS && this.popperJS.hasOwnProperty('destroy')) {
                 this.popperJS.destroy();
             }
+
 
             options.placement = this.placement;
             !options.modifiers.offset && (options.modifiers.offset = {});

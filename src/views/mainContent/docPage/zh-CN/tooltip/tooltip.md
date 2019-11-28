@@ -100,13 +100,42 @@
 
 设置 `background-color`和 `text-color`属性可以自定义背景颜色和文本颜色。建议不要设置浅色的背景色，如#ffffff。
 
+自定义背景颜色时将自动隐藏提示箭头。
+
 ```html
 <template>
     <cl-tooltip content="这是提示文字" background-color="#2d8cf0" text-color="rgba(255,255,255,0.75)">
         <cl-button type="text" size="mini">鼠标经过时会有文字提示</cl-button>
     </cl-tooltip>
+    <cl-tooltip content="这是提示文字" text-color="rgba(255,255,255,0.75)">
+        <cl-button type="text" size="mini">鼠标经过时会有文字提示</cl-button>
+    </cl-tooltip>
 </template>
 ```
+:::
+
+:::demo 指定渲染位置
+
+可以通过 `renderHtml`来控制浮层元素渲染位置，在外层`overflow:hidden`的情况下可以指定渲染到`body`元素中使其不受影响。
+
+```html
+<template>
+     <cl-tooltip content="content"  placement="left" :render-html="true">
+        <cl-button>渲染浮层元素到BODY中</cl-button>
+    </cl-tooltip>
+</template>
+<script>
+    export default {
+      data(){
+        return {
+          
+        }
+      }
+    }
+</script>
+
+```
+
 :::
 
 
@@ -125,7 +154,7 @@
 | textColor | String | 自定义文本颜色 | fade |
 | disabled | Boolean | 禁用 | - |
 | always | Boolean | 是否总显示 | - |
-| renderHtml | HTMLElement, Boolean | 自定义元素插入的位置，默认渲染到body中 | document.body |
+| renderHtml | HTMLElement, Boolean | 自定义元素插入的位置，设置为`true`则渲染到body中，可以指定渲染元素 | false |
 
 
 ### Tooltip slot

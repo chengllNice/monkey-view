@@ -84,7 +84,7 @@
             },
             transition: {
                 type: String,
-                default: 'fade'
+                default: 'slideUp'
             },
             editable: {
                 type: Boolean,

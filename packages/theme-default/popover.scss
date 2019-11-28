@@ -16,7 +16,7 @@
     position: absolute;
     border-color: transparent;
     border-style: solid;
-    border-width: #{$--popover-arrow-width + 1px};
+    border-width: #{$--popover-arrow-border-width + 1px};
     &::after {
       content: ' ';
       width: 0;
@@ -24,7 +24,7 @@
       position: absolute;
       border-color: transparent;
       border-style: solid;
-      border-width: $--popover-arrow-width;
+      border-width: $--popover-arrow-border-width;
     }
   }
 
@@ -47,14 +47,14 @@
 
     &[x-placement^="top"] {
       .cl-popover__arrow {
-        bottom: -#{$--popover-arrow-width + 1px};
+        bottom: -#{$--popover-arrow-border-width + 1px};
         border-top-color: $--border-color-default;
-        border-width: $--popover-arrow-width $--popover-arrow-width 0;
+        border-width: $--popover-arrow-border-width $--popover-arrow-border-width 0;
         &::after{
           bottom: 1px;
-          margin-left: -$--popover-arrow-width;
+          margin-left: -$--popover-arrow-border-width;
           border-bottom-width: 0;
-          border-top-width: $--popover-arrow-width;
+          border-top-width: $--popover-arrow-border-width;
           border-top-color: $--color-white;
         }
       }
@@ -62,14 +62,14 @@
 
     &[x-placement^="bottom"] {
       .cl-popover__arrow {
-        top: -#{$--popover-arrow-width + 1px};
+        top: -#{$--popover-arrow-border-width + 1px};
         border-bottom-color: $--border-color-default;
-        border-width: 0 $--popover-arrow-width $--popover-arrow-width;
+        border-width: 0 $--popover-arrow-border-width $--popover-arrow-border-width;
         &::after{
           top: 1px;
-          margin-left: -$--popover-arrow-width;
+          margin-left: -$--popover-arrow-border-width;
           border-top-width: 0;
-          border-bottom-width: $--popover-arrow-width;
+          border-bottom-width: $--popover-arrow-border-width;
           border-bottom-color: $--color-white;
         }
       }
@@ -78,7 +78,7 @@
     &[x-placement="top"], &[x-placement="bottom"] {
       .cl-popover__arrow {
         left: 50%;
-        margin-left: -$--popover-arrow-width;
+        margin-left: -$--popover-arrow-border-width;
       }
     }
 
@@ -96,14 +96,14 @@
 
     &[x-placement^="left"] {
       .cl-popover__arrow {
-        right: -#{$--popover-arrow-width + 1px};
+        right: -#{$--popover-arrow-border-width + 1px};
         border-left-color: $--border-color-default;
-        border-width: #{$--popover-arrow-width + 1px} 0 #{$--popover-arrow-width + 1px} #{$--popover-arrow-width + 1px};
+        border-width: #{$--popover-arrow-border-width + 1px} 0 #{$--popover-arrow-border-width + 1px} #{$--popover-arrow-border-width + 1px};
         &::after{
           right: 1px;
-          margin-top: -$--popover-arrow-width;
+          margin-top: -$--popover-arrow-border-width;
           border-right-width: 0;
-          border-left-width: $--popover-arrow-width;
+          border-left-width: $--popover-arrow-border-width;
           border-left-color: $--color-white;
         }
       }
@@ -111,14 +111,14 @@
 
     &[x-placement^="right"] {
       .cl-popover__arrow {
-        left: -#{$--popover-arrow-width + 1px};
+        left: -#{$--popover-arrow-border-width + 1px};
         border-right-color: $--border-color-default;
-        border-width: #{$--popover-arrow-width + 1px} #{$--popover-arrow-width + 1px} #{$--popover-arrow-width + 1px} 0;
+        border-width: #{$--popover-arrow-border-width + 1px} #{$--popover-arrow-border-width + 1px} #{$--popover-arrow-border-width + 1px} 0;
         &::after{
           left: 1px;
-          margin-top: -$--popover-arrow-width;
+          margin-top: -$--popover-arrow-border-width;
           border-left-width: 0;
-          border-right-width: $--popover-arrow-width;
+          border-right-width: $--popover-arrow-border-width;
           border-right-color: $--color-white;
         }
       }
@@ -127,7 +127,7 @@
     &[x-placement="left"], &[x-placement="right"] {
       .cl-popover__arrow {
         top: 50%;
-        margin-top: -$--popover-arrow-width;
+        margin-top: -$--popover-arrow-border-width;
       }
     }
 

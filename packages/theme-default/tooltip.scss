@@ -14,7 +14,7 @@
     height: 0;
     border-style: solid;
     position: absolute;
-    background-color: $--tooltip-background-color-default;
+    border-color: transparent;
   }
 
   @include e(popper){
@@ -37,16 +37,16 @@
     &[x-placement^="top"] {
       .cl-tooltip__arrow{
         bottom: 0;
-        transform: translate(-50%, 100%);
-        border-width: 0 $--popover-arrow-border-width $--popover-arrow-border-width;
-        border-bottom-color: $--tooltip-background-color-default;
+        transform: translateY(100%);
+        border-width: $--popover-arrow-border-width $--popover-arrow-border-width 0;
+        border-top-color: $--tooltip-background-color-default;
       }
     }
 
     &[x-placement^="bottom"] {
       .cl-tooltip__arrow{
         top: 0;
-        transform: translate(-50%, -100%);
+        transform: translateY(-100%);
         border-width: 0 $--popover-arrow-border-width $--popover-arrow-border-width;
         border-bottom-color: $--tooltip-background-color-default;
       }
@@ -55,50 +55,56 @@
     &[x-placement="top"], &[x-placement="bottom"] {
       .cl-tooltip__arrow{
         left: 50%;
-        //margin-left: -#{$--popover-arrow-width / 2};
+        margin-left: -$--popover-arrow-border-width;
       }
     }
 
     &[x-placement="top-start"], &[x-placement="bottom-start"] {
       .cl-tooltip__arrow{
-        left: 16px;
+        left: #{$--popover-arrow-border-width * 2};
       }
     }
 
     &[x-placement="top-end"], &[x-placement="bottom-end"] {
       .cl-tooltip__arrow{
-        right: 16px;
+        right: #{$--popover-arrow-border-width * 2};
       }
     }
 
     &[x-placement^="left"] {
       .cl-tooltip__arrow{
-        //right: -#{$--popover-arrow-width - 2px};
+        right: 0;
+        transform: translateX(100%);
+        border-width: $--popover-arrow-border-width 0 $--popover-arrow-border-width $--popover-arrow-border-width;
+        border-left-color: $--tooltip-background-color-default;
       }
     }
 
     &[x-placement^="right"] {
       .cl-tooltip__arrow{
-        //left: -#{$--popover-arrow-width - 2px};
+        left: 0;
+        transform: translateX(-100%);
+        border-width: $--popover-arrow-border-width $--popover-arrow-border-width $--popover-arrow-border-width 0;
+        border-right-color: $--tooltip-background-color-default;
       }
     }
 
     &[x-placement="left"], &[x-placement="right"] {
       .cl-tooltip__arrow{
         top: 50%;
-        //margin-top: -#{$--popover-arrow-width / 2};
+        margin-top: -$--popover-arrow-border-width;
       }
     }
 
     &[x-placement="left-start"], &[x-placement="right-start"] {
       .cl-tooltip__arrow{
-        top: 7px;
+        top: $--popover-arrow-border-width;
       }
     }
 
     &[x-placement="left-end"], &[x-placement="right-end"] {
       .cl-tooltip__arrow{
-        bottom: 7px;
+        bottom: $--popover-arrow-border-width;
       }
     }
 
