@@ -2,7 +2,7 @@
     <div :class="[
             'cl-date-pane-date',
             size && `cl-date-pane-date--${size}`,
-            datePicker.showWeekNumber && 'cl-date-pane-date--show-week-number'
+            picker.showWeekNumber && 'cl-date-pane-date--show-week-number'
          ]">
         <div class="cl-date-pane-date__week">
             <span class="cl-date-pane-item__col cl-date-pane-item__week" v-for="week in weekList" :key="week.key">
@@ -18,7 +18,7 @@
                  v-for="(row, rowIndex) in dateList"
                  :key="rowIndex"
                  @click.capture="handleSelectWeek(rowIndex)">
-                <template v-if="datePicker.showWeekNumber">
+                <template v-if="picker.showWeekNumber">
                     <span :class="[
                             'cl-date-pane-item__col',
                             'cl-date-pane-item__week-number',
@@ -54,7 +54,7 @@
 
     export default {
         name: "ClDatePaneDate",
-        inject: ['datePicker'],
+        inject: ['picker'],
         props: {
             size: String,
             type: String,
@@ -121,8 +121,8 @@
                 dateList.forEach((item, index) => {
                     item.isBetween = false;
                     item.isDisabled = false;
-                    if (typeof this.datePicker.disabledDate === 'function') {
-                        item.isDisabled = this.datePicker.disabledDate(item.key);
+                    if (typeof this.picker.disabledDate === 'function') {
+                        item.isDisabled = this.picker.disabledDate(item.key);
                     }
                     item.key = dateFormat(item.key, format);
                     if (this.isRange && this.selectDate.length === 2 && item.key > this.selectDate[0] && item.key < this.selectDate[1]) {
@@ -135,7 +135,7 @@
                     row.push(item);
                 });
                 this.dateList = newDateList;
-                (this.datePicker.showWeekNumber || this.type === 'week') && this.setWeekNumbers();
+                (this.picker.showWeekNumber || this.type === 'week') && this.setWeekNumbers();
                 this.clearHover(true);
             },
             handleSelectDate(date) {

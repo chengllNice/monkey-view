@@ -124,9 +124,18 @@
                 }
             },
             getSelected(){
-                this.selectedHours = dateFormat(this.date[this.index], 'hh');
-                this.selectedMinutes = dateFormat(this.date[this.index], 'mm');
-                this.selectedSecond = dateFormat(this.date[this.index], 'ss');
+                if(this.date && this.date.length){
+                    this.selectedHours = dateFormat(this.date[this.index], 'hh');
+                    this.selectedMinutes = dateFormat(this.date[this.index], 'mm');
+                    this.selectedSecond = dateFormat(this.date[this.index], 'ss');
+                }else{
+                    let nowDate = new Date();
+                    this.selectedHours = dateFormat(nowDate, 'hh');
+                    this.selectedMinutes = dateFormat(nowDate, 'mm');
+                    this.selectedSecond = dateFormat(nowDate, 'ss');
+                }
+                console.log(this.date,'this.selectedHours')
+
                 this.scrollToHours();
                 this.scrollToMinutes();
                 this.scrollToSecond();
@@ -144,13 +153,20 @@
                 this.emitUpdateTime();
             },
             emitUpdateTime(){
-                let date = new Date(this.date[this.index]);
+                let date = new Date();
+                if(this.date && this.date.length){
+                    date = new Date(this.date[this.index]);
+                }
                 date.setHours(this.selectedHours);
                 date.setMinutes(this.selectedMinutes);
                 date.setSeconds(this.selectedSecond);
                 date = dateFormat(date, this.format);
-                this.date.splice(this.index, 1, date);
-                this.$emit('update-time', this.date);
+                if(this.date && this.date.length){
+                    this.date.splice(this.index, 1, date);
+                    this.$emit('update-time', this.date);
+                }else{
+                    this.$emit('update-time', [date]);
+                }
             },
             scrollToHours(){
                 let y = 0;

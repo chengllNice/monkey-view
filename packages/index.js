@@ -38,6 +38,7 @@ import ClLoading from './components/loading'
 import ClBackTop from './components/back-top'
 import ClAffix from './components/affix'
 import ClDatePicker from './components/date-picker'
+import ClTimePicker from './components/time-picker'
 
 const components = {
     ClLayout,
@@ -88,6 +89,7 @@ const components = {
     ClBackTop,
     ClAffix,
     ClDatePicker,
+    ClTimePicker,
 };
 
 const install = (Vue) => {

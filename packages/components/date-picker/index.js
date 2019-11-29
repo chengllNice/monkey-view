@@ -1,3 +1,3 @@
-import ClDatePicker from './src/date-picker'
+import ClDatePicker from './src/picker/date-picker'
 
 export default ClDatePicker

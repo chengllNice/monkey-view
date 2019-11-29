@@ -16,6 +16,7 @@
                                      :size="size"
                                      :format="format"
                                      :type="type"
+                                     :pickerType="pickerType"
                                      @hover-date="handleHoverDate"
                                      @update-date="updateValue"
                                      @update-pane="updatePane"></cl-date-pane-single>
@@ -31,6 +32,7 @@
                                      :size="size"
                                      :format="format"
                                      :type="type"
+                                     :pickerType="pickerType"
                                      @hover-date="handleHoverDate"
                                      @update-date="updateValue"
                                      @update-pane="updatePane"></cl-date-pane-single>
@@ -50,7 +52,7 @@
 
     export default {
         name: "ClDatePane",
-        inject: ['datePicker'],
+        inject: ['picker'],
         props: {
             value: {
                 type: Array,
@@ -64,6 +66,7 @@
             isRange: Boolean,
             shortcuts: Array,
             multiple: Boolean,
+            pickerType: String,
         },
         data(){
             return {
@@ -277,31 +280,31 @@
                 this.isTime = !this.isTime;
             },
             shortcutsClick(item){
-                item.onClick && item.onClick(this.datePicker);
+                item.onClick && item.onClick(this.picker);
                 this.closeDropDown();
             },
             closeDropDown(isClose){
                 switch (this.type) {
                     case 'date':
-                        !this.multiple && this.datePicker.dropDownVisible(false);
+                        !this.multiple && this.picker.dropDownVisible(false);
                         break;
                     case 'daterange':
-                        this.selectedDateValue.length === 2 && this.datePicker.dropDownVisible(false);
+                        this.selectedDateValue.length === 2 && this.picker.dropDownVisible(false);
                         break;
                     case 'datetime':
-                        isClose && this.datePicker.dropDownVisible(false);
+                        isClose && this.picker.dropDownVisible(false);
                         break;
                     case 'datetimerange':
-                        isClose && this.datePicker.dropDownVisible(false);
+                        isClose && this.picker.dropDownVisible(false);
                         break;
                     case 'year':
-                        this.datePicker.dropDownVisible(false);
+                        this.picker.dropDownVisible(false);
                         break;
                     case 'month':
-                        this.datePicker.dropDownVisible(false);
+                        this.picker.dropDownVisible(false);
                         break;
                     case 'week':
-                        this.datePicker.dropDownVisible(false);
+                        this.picker.dropDownVisible(false);
                         break;
                 }
             }

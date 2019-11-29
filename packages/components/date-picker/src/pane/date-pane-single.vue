@@ -3,7 +3,7 @@
             'cl-date-pane-single',
             size && `cl-date-pane-single--${size}`
          ]">
-        <div class="cl-date-pane-single__header" v-show="showHeader">
+        <div class="cl-date-pane-single__header" v-show="showDateHeader">
             <span class="cl-date-pane-single__header-pre">
                 <i class="cl-icon-arrow-left" @click.stop="jumpDate('pre-year')"></i>
                 <i class="cl-icon-left" @click.stop="jumpDate('pre-month')" v-if="dateChangeIconShow"></i>
@@ -17,9 +17,9 @@
                 <i class="cl-icon-arrow-right" @click.stop="jumpDate('next-year')"></i>
             </span>
         </div>
-        <div class="cl-date-pane-single__header" v-show="!showHeader">
+        <div class="cl-date-pane-single__header" v-show="showTimeHeader">
             <span class="cl-date-pane-single__header-date">
-                {{index === '0' ? '开始时间' : '结束时间'}}
+                {{headerText}}
             </span>
         </div>
         <div class="cl-date-pane-single__body">
@@ -94,7 +94,8 @@
             month: String,
             date: Array,
             hoverDate: String,
-            isRange: Boolean
+            isRange: Boolean,
+            pickerType: String,
         },
         data(){
             const currentType = ['date', 'daterange', 'datetime', 'datetimerange'].includes(this.type) ? 'date' : this.type;
@@ -117,11 +118,17 @@
             yearJumpStep(){
                 return ['year'].includes(this.currentType) ? 10 : 1;
             },
-            showHeader(){
+            showDateHeader(){
                 return !['time'].includes(this.currentType)
+            },
+            showTimeHeader(){
+                return this.isRange && ['time'].includes(this.currentType)
             },
             selectDate(){
                 return dateFormat(this.date[this.index], 'DD');
+            },
+            headerText(){
+                return this.index === '0' ? '开始时间' : '结束时间'
             }
         },
         components: {
