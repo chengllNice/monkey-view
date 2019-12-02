@@ -119,8 +119,18 @@ export const zero = (value) => {
 export const dateFormat = (forDate, format) => {
     if (!forDate) return forDate;
     format = format || 'YYYY-MM-DD';
-    forDate = new Date(forDate);
-
+    if(typeof forDate === 'string'){
+        let dateArr = forDate.match(/(\d{1,})/g);
+        let forYY = dateArr[0] ? dateArr[0] : '';
+        let forMM = dateArr[1] ? dateArr[1] : '';
+        let forDD = dateArr[2] ? dateArr[2] : '';
+        let forhh = dateArr[3] ? dateArr[3] : '';
+        let formm = dateArr[4] ? dateArr[4] : '';
+        let forss = dateArr[5] ? dateArr[5] : '';
+        forDate = new Date(`${forYY}-${forMM}-${forDD} ${forhh}:${formm}:${forss}`);
+    }else{
+        forDate = new Date(forDate);
+    }
     let year = forDate.getFullYear();
     let month = zero(forDate.getMonth() + 1);
     let date = zero(forDate.getDate());

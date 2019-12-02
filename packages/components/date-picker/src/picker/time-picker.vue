@@ -117,6 +117,7 @@
                 dateValue: [],
                 dateInputValue: '',
                 visible: false,
+                nowDate: new Date()
             }
         },
         computed: {
@@ -139,21 +140,13 @@
         methods: {
             initDateValue(val) {
                 let value = val || this.value;
-                if (this.multiple && this.type === 'date') {
-                    this.dateValue = value || [];
-                } else {
-                    if (this.isRange) {
-                        value = value && value.length ? value : [];
-                        if (value[0] && value[1]) {
-                            this.dateValue = [dateFormat(value[0], this.format), dateFormat(value[1], this.format)];
-                        }
-                    } else if (typeof value === 'string') {
-                        if (this.type === 'week') {
-                            this.dateValue = value ? [value] : [];
-                        } else {
-                            this.dateValue = value ? [dateFormat(value, this.format)] : [];
-                        }
+                if (this.isRange) {
+                    value = value && value.length ? value : [];
+                    if (value[0] && value[1]) {
+                        this.dateValue = [dateFormat(value[0], this.format), dateFormat(value[1], this.format)];
                     }
+                } else if (typeof value === 'string') {
+                    this.dateValue = value ? [dateFormat(value, this.format)] : [];
                 }
             },
             setValue(value) {

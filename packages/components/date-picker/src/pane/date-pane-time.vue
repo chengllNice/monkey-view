@@ -124,17 +124,9 @@
                 }
             },
             getSelected(){
-                if(this.date && this.date.length){
-                    this.selectedHours = dateFormat(this.date[this.index], 'hh');
-                    this.selectedMinutes = dateFormat(this.date[this.index], 'mm');
-                    this.selectedSecond = dateFormat(this.date[this.index], 'ss');
-                }else{
-                    let nowDate = new Date();
-                    this.selectedHours = dateFormat(nowDate, 'hh');
-                    this.selectedMinutes = dateFormat(nowDate, 'mm');
-                    this.selectedSecond = dateFormat(nowDate, 'ss');
-                }
-                console.log(this.date,'this.selectedHours')
+                this.selectedHours = dateFormat(this.date[this.index], 'hh');
+                this.selectedMinutes = dateFormat(this.date[this.index], 'mm');
+                this.selectedSecond = dateFormat(this.date[this.index], 'ss');
 
                 this.scrollToHours();
                 this.scrollToMinutes();
