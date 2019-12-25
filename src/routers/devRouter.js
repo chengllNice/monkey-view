@@ -32,6 +32,7 @@ import devBackTop from '../views/mainContent/devPage/BackTopView.vue'
 import devAffix from '../views/mainContent/devPage/AffixView.vue'
 import devDatePicker from '../views/mainContent/devPage/DatePickerView.vue'
 import devTimePicker from '../views/mainContent/devPage/TimePickerView.vue'
+import devForm from '../views/mainContent/devPage/FormView.vue'
 
 let routers = [
     {
@@ -203,6 +204,11 @@ let routers = [
         path: '/dev/time-picker',
         name: 'devTimePicker',
         component: devTimePicker
+    },
+    {
+        path: '/dev/form',
+        name: 'devForm',
+        component: devForm
     },
 ];
 

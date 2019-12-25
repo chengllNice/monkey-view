@@ -39,6 +39,8 @@ import ClBackTop from './components/back-top'
 import ClAffix from './components/affix'
 import ClDatePicker from './components/date-picker'
 import ClTimePicker from './components/time-picker'
+import ClForm from './components/form'
+import ClFormItem from './components/form-item'
 
 const components = {
     ClLayout,
@@ -90,6 +92,8 @@ const components = {
     ClAffix,
     ClDatePicker,
     ClTimePicker,
+    ClForm,
+    ClFormItem
 };
 
 const install = (Vue) => {
