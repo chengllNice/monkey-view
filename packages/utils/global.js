@@ -45,3 +45,16 @@ export const getScrollBarWidth = () => {
     return scrollBarWidth;
 };
 
+/**
+ * 生成指定位数的随机数字符串
+ * @param length
+ * @returns {string}
+ */
+export const createRandom = (length) => {
+    let result = '';
+    for (let i = 0; i < length; i++){
+        result += Math.floor(Math.random() * 10);
+    }
+    return result;
+};
+

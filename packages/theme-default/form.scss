@@ -1,0 +1,36 @@
+@import "./config/var";
+@import "./config/mixins/index.scss";
+
+@include c(form){
+
+}
+
+@include c(form-item){
+  @include m(error){
+    .cl-input .cl-input__source{
+      border-color: $--color-danger;
+      &:hover,
+      &:focus,
+      &:active{
+        border-color: $--color-danger;
+      }
+      &:focus{
+        box-shadow: 0 0 0 2px mix($--color-danger, $--color-white, $--button-hover-percent);
+      }
+    }
+  }
+
+  @include e(error-tip){
+    color: $--color-danger;
+  }
+
+  @include e(label){
+
+  }
+  @include e(label-icon){
+
+  }
+  @include e(label-name){
+
+  }
+}

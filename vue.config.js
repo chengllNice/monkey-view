@@ -14,6 +14,9 @@ module.exports = {
         'cl-ui': path.resolve(__dirname, './')
       }
     },
+    // externals: {
+    //   vue: 'vue',
+    // },
     module: {
       rules: [
         {
