@@ -159,7 +159,7 @@
                         </cl-sider>
                         <cl-layout>
                             <cl-header class="doc-layout-header doc-layout-header-toggle">
-                                <i class="cl-icon-list1" @click="triggerClick"></i>
+                                <i class="cl-icon-list" @click="triggerClick"></i>
                             </cl-header>
                             <cl-content class="doc-layout-content">content</cl-content>
                             <cl-footer class="doc-layout-footer">footer</cl-footer>

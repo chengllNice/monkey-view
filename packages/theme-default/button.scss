@@ -95,12 +95,18 @@
       color: mix($--color-black, $--button-font-color-text, 10%);
       background-color: transparent;
       border-color: transparent;
+      & [class*='cl-icon-'] {
+        color: mix($--color-black, $--button-font-color-text, 10%);
+      }
     }
 
     &:active{
       color: mix($--color-black, $--button-font-color-text, 20%);
       background-color: transparent;
       border-color: transparent;
+      & [class*='cl-icon-'] {
+        color: mix($--color-black, $--button-font-color-text, 10%);
+      }
     }
 
     &.is-disabled, &.is-loading {

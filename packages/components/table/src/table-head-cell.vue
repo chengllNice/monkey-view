@@ -19,15 +19,15 @@
             <!--排序-->
             <span v-if="column.sort && sortType.includes(column.sort)"
                   class="cl-table-cell__icon cl-table-head-cell__sort">
-                <i class="cl-icon-caretup" :class="[column.__sort === 'ascend' && 'cl-table-cell__icon-active']" @click.self="sortHandle('ascend')"></i>
-                <i class="cl-icon-caretdown" :class="[column.__sort === 'descend' && 'cl-table-cell__icon-active']" @click.self="sortHandle('descend')"></i>
+                <i class="cl-icon-care-up" :class="[column.__sort === 'ascend' && 'cl-table-cell__icon-active']" @click.self="sortHandle('ascend')"></i>
+                <i class="cl-icon-care-down" :class="[column.__sort === 'descend' && 'cl-table-cell__icon-active']" @click.self="sortHandle('descend')"></i>
             </span>
 
             <!--过滤-->
             <span v-if="column.filterSlot || (column.filters && Array.isArray(column.filters))"
                   class="cl-table-cell__icon cl-table-head-cell__filter"
                   v-click-outside.capture="handleClickOutside">
-                <i class="cl-icon-filter-solid"
+                <i class="cl-icon-filter"
                    :class="[
                         column.__isFilterChecked && 'cl-table-cell__icon-active'
                    ]"

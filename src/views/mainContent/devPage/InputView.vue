@@ -174,7 +174,7 @@
             <div class="propItem">
                 <p><b>属性：showPasswordIcon</b></p>
                 <p><b>类型：Boolean, Object</b></p>
-                <p><b>说明：</b>type为password时尾部显示控制字符显示的icon图标。false时不显示。可设置对象，设置icon，如：{close: 'cl-icon-close', open: 'cl-icon-open'}</p>
+                <p><b>说明：</b>type为password时尾部显示控制字符显示的icon图标。false时不显示。可设置对象，设置icon，如：{close: 'cl-icon-close', open: 'cl-icon-square-plus'}</p>
                 <p><b>默认值：</b>true</p>
             </div>
             <div class="propItem">

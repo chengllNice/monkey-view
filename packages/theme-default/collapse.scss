@@ -75,9 +75,9 @@
       transition: transform $--animation-time ease-in-out;
     }
 
-    i{
-      font-size: 10px;
-    }
+    //i{
+    //  font-size: 10px;
+    //}
   }
   @include e(content){
 

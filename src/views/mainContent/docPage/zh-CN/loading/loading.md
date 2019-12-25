@@ -23,7 +23,7 @@
     </cl-row>
     <h4>使用slot</h4>
     <cl-loading size="mini" :visible="loading">
-        <i class="cl-icon-loading1"></i>
+        <i class="cl-icon-loading"></i>
         <span slot="text">loading...</span>
     </cl-loading>
 </template>

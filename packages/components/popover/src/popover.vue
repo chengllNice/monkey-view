@@ -13,7 +13,7 @@
                     <div class="cl-popover__arrow"></div>
                     <div class="cl-popover__inner cl-popover__confirm" v-if="confirm">
                         <div class="cl-popover__title" v-if="showTitle">
-                            <slot name="title"><i class="cl-icon-question-solid"></i>{{title}}</slot>
+                            <slot name="title"><i class="cl-icon-question-fill"></i>{{title}}</slot>
                         </div>
                         <div class="cl-popover__body">
                             <cl-button size="mini" type="text" @click="cancelClick">{{cancelText}}</cl-button>

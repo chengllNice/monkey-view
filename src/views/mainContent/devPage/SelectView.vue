@@ -787,17 +787,17 @@
           {
             value: '1',
             label: '测试1',
-            icon: 'cl-icon-theme',
+            icon: 'cl-icon-star',
           },
           {
             value: '2',
             label: '测试2',
-            icon: 'cl-icon-block',
+            icon: 'cl-icon-button',
           },
           {
             value: '3',
             label: '测试3',
-            icon: 'cl-icon-horn',
+            icon: 'cl-icon-sound',
           },
           {
             value: '4',
@@ -815,17 +815,17 @@
           {
             value: '1',
             label: '测试1',
-            icon: 'cl-icon-theme',
+            icon: 'cl-icon-star',
           },
           {
             value: '2',
             label: '测试2',
-            icon: 'cl-icon-block',
+            icon: 'cl-icon-button',
           },
           {
             value: '3',
             label: '测试3',
-            icon: 'cl-icon-horn',
+            icon: 'cl-icon-sound',
           },
           {
             value: '4',
@@ -910,17 +910,17 @@
           {
             value: '1',
             label: '测试1',
-            icon: 'cl-icon-theme',
+            icon: 'cl-icon-star',
           },
           {
             value: '2',
             label: '测试2',
-            icon: 'cl-icon-block',
+            icon: 'cl-icon-button',
           },
           {
             value: '3',
             label: '测试3',
-            icon: 'cl-icon-horn',
+            icon: 'cl-icon-sound',
           },
           {
             value: '4',
@@ -938,17 +938,17 @@
           {
             value: '1',
             label: '测试1',
-            icon: 'cl-icon-theme',
+            icon: 'cl-icon-star',
           },
           {
             value: '2',
             label: '测试2',
-            icon: 'cl-icon-block',
+            icon: 'cl-icon-button',
           },
           {
             value: '3',
             label: '测试3',
-            icon: 'cl-icon-horn',
+            icon: 'cl-icon-sound',
           },
           {
             value: '4',

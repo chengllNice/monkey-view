@@ -69,7 +69,9 @@
       padding-left: $--alter-padding-with-description-horizontal;
       @include e(icon, false){
         left: #{$--alter-padding-with-description-horizontal / 2};
-        font-size: 26px;
+        i{
+          font-size: 26px;
+        }
       }
     }
   }

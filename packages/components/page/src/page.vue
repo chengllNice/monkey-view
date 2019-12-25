@@ -134,8 +134,8 @@
                 jumpToPage: this.page,
                 currentPageSizeOption: [],
                 currentSelectPageSize: '',
-                jumpPreIcon: 'cl-icon-more-solid',
-                jumpNextIcon: 'cl-icon-more-solid',
+                jumpPreIcon: 'cl-icon-more',
+                jumpNextIcon: 'cl-icon-more',
             }
         },
         computed: {
@@ -217,9 +217,9 @@
             },
             jumpMouseLeave(type) {
                 if (type === 'pre') {
-                    this.jumpPreIcon = 'cl-icon-more-solid';
+                    this.jumpPreIcon = 'cl-icon-more';
                 } else if (type === 'next') {
-                    this.jumpNextIcon = 'cl-icon-more-solid';
+                    this.jumpNextIcon = 'cl-icon-more';
                 }
             },
             setPageSizeOption(){

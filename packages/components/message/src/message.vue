@@ -36,22 +36,22 @@
                 let result;
                 switch (this.type) {
                     case 'info':
-                        result = 'cl-icon-info-solid';
+                        result = 'cl-icon-info-fill';
                         break;
                     case 'success':
-                        result = 'cl-icon-circle-success-solid';
+                        result = 'cl-icon-success-fill';
                         break;
                     case 'warning':
-                        result = 'cl-icon-warning-solid';
+                        result = 'cl-icon-warning-fill';
                         break;
                     case 'error':
-                        result = 'cl-icon-circle-close-solid';
+                        result = 'cl-icon-remove-fill';
                         break;
                     case 'loading':
-                        result = 'cl-rotate cl-icon-loading1';
+                        result = 'cl-rotate cl-icon-loading';
                         break;
                     default:
-                        result = 'cl-icon-question-solid';
+                        result = 'cl-icon-question-fill';
                         break;
                 }
                 return result;

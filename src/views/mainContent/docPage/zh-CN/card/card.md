@@ -145,8 +145,8 @@
 
         <div class="doc-card-footer" slot="footer">
             <i class="cl-icon-list"></i>
+            <i class="cl-icon-video"></i>
             <i class="cl-icon-setting"></i>
-            <i class="cl-icon-thumbs"></i>
         </div>
     </cl-card>
 </template>

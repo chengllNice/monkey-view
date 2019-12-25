@@ -36,7 +36,7 @@
                 <div class="cl-select__drop-down-inner" :class="[`cl-select__${componentId}`]" :style="{'height': dropDownHeight}">
                     <ClScroll size="small" :scrollOption="{scrollPanel:{scrollingX:false}}">
                         <div ref="optionList" class="cl-select__loading" v-if="loading">
-                            <i class="cl-rotate cl-icon-loading1"></i>加载中
+                            <i class="cl-rotate cl-icon-loading"></i>加载中
                         </div>
 
                         <div ref="optionList"

@@ -156,13 +156,13 @@
         let className = '';
         switch (this.status) {
           case 'success':
-            className = 'cl-icon-circle-success-solid';
+            className = 'cl-icon-success-fill';
             break;
           case 'error':
-            className = 'cl-icon-circle-close-solid';
+            className = 'cl-icon-remove-fill';
             break;
           case 'warning':
-            className = 'cl-icon-warning-solid';
+            className = 'cl-icon-warning-fill';
             break;
         }
         return className

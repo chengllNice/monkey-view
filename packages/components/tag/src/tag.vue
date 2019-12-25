@@ -46,7 +46,7 @@
             iconClass() {
                 return [
                     'cl-tag__icon',
-                    this.isHover ? 'cl-icon-circle-close-solid' : 'cl-icon-close',
+                    this.isHover ? 'cl-icon-remove-fill' : 'cl-icon-close',
                 ]
             },
             noCustomColor() {

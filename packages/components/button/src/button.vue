@@ -14,7 +14,7 @@
                 'is-loading': loading
             }
         ]">
-        <i v-if="loading" class="cl-icon-loading1 cl-rotate"></i>
+        <i v-if="loading" class="cl-icon-loading cl-rotate"></i>
         <i v-else-if="icon" :class="[`${icon}`]"></i>
         <span v-if="$slots.default"><slot></slot></span>
     </button>

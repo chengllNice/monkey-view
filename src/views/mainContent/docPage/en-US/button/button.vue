@@ -136,7 +136,7 @@
                 </ClButtonGroup>
                 <ClButtonGroup>
                     <ClButton icon="cl-icon-edit"></ClButton>
-                    <ClButton icon="cl-icon-open"></ClButton>
+                    <ClButton icon="cl-icon-square-plus"></ClButton>
                     <ClButton icon="cl-icon-check"></ClButton>
                     <ClButton icon="cl-icon-close"></ClButton>
                 </ClButtonGroup>

@@ -236,7 +236,7 @@
     <cl-list type="meta" border :split="false" :loading="loading" header="异步加载列表">
         <cl-list-item v-for="item in dataList" :key="item.id" :title="item.title" :description="item.description">
             <div slot="extra">
-                <cl-button type="text" size="mini"><i class="cl-icon-delete1" @click="deleteData(item)"></i></cl-button>
+                <cl-button type="text" size="mini"><i class="cl-icon-delete" @click="deleteData(item)"></i></cl-button>
             </div>
         </cl-list-item>
     </cl-list>

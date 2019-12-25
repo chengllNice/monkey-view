@@ -62,16 +62,16 @@
         let icon = '';
         switch (this.type) {
           case 'success':
-            icon = this.isDescription ? 'cl-icon-circle-success' : 'cl-icon-circle-success-solid';
+            icon = this.isDescription ? 'cl-icon-success' : 'cl-icon-success-fill';
             break;
           case 'error':
-            icon = this.isDescription ? 'cl-icon-circle-close' : 'cl-icon-circle-close-solid';
+            icon = this.isDescription ? 'cl-icon-error' : 'cl-icon-error-fill';
             break;
           case 'warning':
-            icon = this.isDescription ? 'cl-icon-warning' : 'cl-icon-warning-solid';
+            icon = this.isDescription ? 'cl-icon-warning' : 'cl-icon-warning-fill';
             break;
           default:
-            icon = this.isDescription ? 'cl-icon-info' : 'cl-icon-info-solid';
+            icon = this.isDescription ? 'cl-icon-info' : 'cl-icon-info-fill';
             break;
         }
         return icon

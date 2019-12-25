@@ -46,7 +46,7 @@
                             {
                                 key: 'button',
                                 name: 'Button按钮',
-                                icon: 'cl-icon-block',
+                                icon: 'cl-icon-button',
                                 link: '/button',
                                 query: {},
                             },
@@ -66,7 +66,7 @@
                             {
                                 key: 'card',
                                 name: 'Card卡片',
-                                icon: 'cl-icon-card1',
+                                icon: 'cl-icon-card',
                                 link: '/card',
                                 query: {},
                             },
@@ -80,7 +80,7 @@
                             {
                                 key: 'grid',
                                 name: 'Grid栅格',
-                                icon: 'cl-icon-collapse',
+                                icon: 'cl-icon-grid',
                                 link: '/grid',
                                 query: {},
                             },
@@ -237,7 +237,7 @@
                             {
                                 key: 'drawer',
                                 name: 'Drawer抽屉',
-                                icon: 'cl-icon-list1',
+                                icon: 'cl-icon-list',
                                 link: '/drawer',
                                 query: {},
                             },
@@ -278,7 +278,7 @@
                             {
                                 key: 'loading',
                                 name: 'Loading加载中',
-                                icon: 'cl-icon-loading1',
+                                icon: 'cl-icon-loading',
                                 link: '/loading',
                                 query: {},
                             },
@@ -334,9 +334,9 @@
     .left-nav {
         padding: 20px 0;
         background-color: #ffffff;
-        i {
-            font-size: 14px;
-        }
+        /*i {*/
+            /*font-size: 14px;*/
+        /*}*/
         span{
             font-size: 12px;
         }

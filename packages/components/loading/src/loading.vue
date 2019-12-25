@@ -10,7 +10,7 @@
              v-if="showLoading">
             <div class="cl-loading__content">
                 <slot>
-                    <i v-if="type === 'loading1'" class="cl-icon-loading1 cl-rotate cl-loading__icon-font"></i>
+                    <i v-if="type === 'loading1'" class="cl-icon-loading cl-rotate cl-loading__icon-font"></i>
                     <loading-svg :color="color" :type="type" :size="size" class="cl-loading__icon-svg" v-else-if="showLoadingSvg"></loading-svg>
                     <div v-else class="cl-loading__icon"></div>
                 </slot>

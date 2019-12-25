@@ -92,16 +92,16 @@
                 let icon = '';
                 switch (this.type) {
                     case 'success':
-                        icon = !this.isOnlyTitle ? 'cl-icon-circle-success' : 'cl-icon-circle-success-solid';
+                        icon = !this.isOnlyTitle ? 'cl-icon-success' : 'cl-icon-success-fill';
                         break;
                     case 'error':
-                        icon = !this.isOnlyTitle ? 'cl-icon-circle-close' : 'cl-icon-circle-close-solid';
+                        icon = !this.isOnlyTitle ? 'cl-icon-remove' : 'cl-icon-remove-fill';
                         break;
                     case 'warning':
-                        icon = !this.isOnlyTitle ? 'cl-icon-warning' : 'cl-icon-warning-solid';
+                        icon = !this.isOnlyTitle ? 'cl-icon-warning' : 'cl-icon-warning-fill';
                         break;
                     case 'info':
-                        icon = !this.isOnlyTitle ? 'cl-icon-info' : 'cl-icon-info-solid';
+                        icon = !this.isOnlyTitle ? 'cl-icon-info' : 'cl-icon-info-fill';
                         break;
                 }
                 return icon

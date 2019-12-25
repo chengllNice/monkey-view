@@ -326,18 +326,18 @@
               value: 'fruit',
             },
             {
-              icon: 'cl-icon-theme',
+              icon: 'cl-icon-star',
               label: 'Apple',
               value: 'apple',
               disabled: true,
             },
             {
-              icon: 'cl-icon-block',
+              icon: 'cl-icon-button',
               label: 'Banana',
               value: 'banana',
             },
             {
-              icon: 'cl-icon-horn',
+              icon: 'cl-icon-sound',
               label: 'Orange',
               value: 'orange',
             },

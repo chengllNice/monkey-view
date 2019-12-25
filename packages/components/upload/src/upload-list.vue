@@ -26,7 +26,7 @@
             <i v-if="listType !== 'picture-card'" class="cl-icon-close cl-upload-list__remove" @click="handlerRemove(file)"></i>
             <span v-if="listType === 'picture-card'" class="cl-upload-list__picture-cover">
                 <span class="cl-upload-list__preview" @click="handlerPreview(file)"><i class="cl-icon-eye-open"></i></span>
-                <span class="cl-upload-list__delete" @click="handlerRemove(file)"><i class="cl-icon-delete1"></i></span>
+                <span class="cl-upload-list__delete" @click="handlerRemove(file)"><i class="cl-icon-delete"></i></span>
             </span>
             <span v-if="listType === 'picture-card' && (file.status === 'start' || file.status === 'uploading')" class="cl-upload-list__picture-progress">
                 <span class="cl-upload-list__picture-progress-inner">

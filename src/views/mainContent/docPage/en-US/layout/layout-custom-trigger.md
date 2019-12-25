@@ -30,7 +30,7 @@
              </cl-sider>
              <cl-layout>
                  <cl-header class="api-layout-header api-layout-header-toggle">
-                     <i class="cl-icon-list1" @click="triggerClick"></i>
+                     <i class="cl-icon-list" @click="triggerClick"></i>
                  </cl-header>
                  <cl-content class="api-layout-content">content</cl-content>
                  <cl-footer class="api-layout-footer">footer</cl-footer>
