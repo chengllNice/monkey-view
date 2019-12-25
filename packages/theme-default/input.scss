@@ -7,6 +7,7 @@
   line-height: normal;
   transition: all 0.2s;
   position: relative;
+  top: -1px;
   width: 100%;
   vertical-align: middle;
   border-collapse: separate;
@@ -23,6 +24,10 @@
     color: $--color-text-default;
     transition: all 0.2s;
     position: relative;
+
+    &, &:after, &:before{
+      box-sizing: border-box;
+    }
 
     &::placeholder{
       color: $--color-text-placeholder;

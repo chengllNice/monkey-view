@@ -12,8 +12,8 @@
             </div>
             <div class="cl-form-item__content">
                 <slot></slot>
+                <div v-if="v.invalid && v.validated" class="cl-form-item__error-tip">{{v.errors[0]}}</div>
             </div>
-            <div v-if="v.invalid && v.validated" class="cl-form-item__error-tip">{{v.errors[0]}}</div>
         </div>
     </ValidationProvider>
 </template>

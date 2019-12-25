@@ -10,10 +10,10 @@
         inputSize && type === 'textarea' && `cl-textarea--${inputSize}`,
         isDisabled && 'is-disabled'
     ]" @mouseenter="hovering = true" @mouseleave="hovering = false">
-        <span class="cl-input__prepend"
+        <div class="cl-input__prepend"
               v-if="$slots.prepend && type !== 'textarea'">
             <slot name="prepend"></slot>
-        </span>
+        </div>
         <span class="cl-input__prefix"
               v-else-if="showPrefix">
             <span class="cl-input__prefix-inner" v-if="$slots.prefix"><slot name="prefix"></slot></span>
@@ -101,7 +101,7 @@
             </span>
         </span>
 
-        <span class="cl-input__append"
+        <div class="cl-input__append"
               :class="[
                   !$slots.append ? 'cl-input__append-button-wrap' : 'cl-input__append-color'
               ]"
@@ -117,7 +117,7 @@
                     <template v-else>{{suffixButton}}</template>
                 </ClButton>
             </slot>
-        </span>
+        </div>
     </div>
 </template>
 

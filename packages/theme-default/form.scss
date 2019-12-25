@@ -6,6 +6,8 @@
 }
 
 @include c(form-item){
+  margin-bottom: 20px;
+  font-size: $--font-size-default;
   @include m(error){
     .cl-input .cl-input__source{
       border-color: $--color-danger;
@@ -22,6 +24,12 @@
 
   @include e(error-tip){
     color: $--color-danger;
+    position: absolute;
+    top: 100%;
+  }
+
+  @include e(content){
+    position: relative;
   }
 
   @include e(label){
