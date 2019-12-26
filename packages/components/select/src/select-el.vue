@@ -38,14 +38,17 @@
                    class="cl-select__el-multiple-tag-item cl-select__el-multiple-input"
                    :disabled="selectDisabled"
                    :style="inputStyle"
+                   @focus="handlerFocus"
+                   @blur="handlerBlur"
                    @input="handlerInput">
         </div>
 
         <div v-if="multiple"
-             class="cl-select__el-multiple"
+             :class="[
+                'cl-select__el-multiple',
+                isFocused && 'cl-select__el-focus'
+             ]"
              tabindex="0"
-             @focus="handlerFocus"
-             @blur="handlerBlur"
              :style="multipleStyle">
             <span v-if="selectElPlaceholder && !cValue"
                   class="cl-select__el-placeholder">{{selectElPlaceholder}}</span>
@@ -85,6 +88,7 @@
                 isHover: false,
                 multipleStyle: {},
                 inputValueLength: 0,
+                isFocused: false,
             }
         },
         computed: {
@@ -138,9 +142,11 @@
                 this.$emit('input-change', value)
             },
             handlerFocus() {
-                this.$emit('input-focus')
+                this.isFocused = true;
+                this.$emit('input-focus');
             },
             handlerBlur() {
+                this.isFocused = false;
                 this.$emit('input-blur')
             },
             handlerInput(e) {

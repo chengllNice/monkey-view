@@ -34,6 +34,7 @@ const docLoading = () => import(`../views/mainContent/docPage/${env}/loading/loa
 const docBackTop = () => import(`../views/mainContent/docPage/${env}/back-top/back-top.md`);
 const docAffix = () => import(`../views/mainContent/docPage/${env}/affix/affix.md`);
 const docDatePicker = () => import(`../views/mainContent/docPage/${env}/date-picker/date-picker.md`);
+const docForm = () => import(`../views/mainContent/docPage/${env}/form/form.md`);
 
 let routers = [
     {
@@ -195,6 +196,11 @@ let routers = [
         path: `${env}/doc/date-picker`,
         name: 'docDatePicker',
         component: docDatePicker
+    },
+    {
+        path: `${env}/doc/form`,
+        name: 'docForm',
+        component: docForm
     },
 ];
 

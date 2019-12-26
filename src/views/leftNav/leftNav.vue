@@ -180,6 +180,13 @@
                                 link: '/upload',
                                 query: {},
                             },
+                            {
+                                key: 'form',
+                                name: 'Form表单',
+                                icon: 'cl-icon-cloud-upload',
+                                link: '/form',
+                                query: {},
+                            },
                         ]
                     },
                     {

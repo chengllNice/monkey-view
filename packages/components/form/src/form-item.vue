@@ -1,15 +1,16 @@
 <template>
-    <ValidationProvider tag="div" :name="props" :rules="localRules" v-slot="v">
+    <ValidationProvider tag="div" :mode="model" :name="props" :rules="localRules" v-slot="v">
         <div :class="[
             'cl-form-item',
+            `cl-form-item--${form.labelAlgin}`,
             v.invalid && v.validated && 'cl-form-item--error'
         ]">
-            <div class="cl-form-item__label" :style="labelStyle">
+            <label class="cl-form-item__label" :style="labelStyle">
                 <slot name="label">
                     <span class="cl-form-item__label-icon" v-if="form.requiredLabel">*</span>
                     <span class="cl-form-item__label-name">{{label}}</span>
                 </slot>
-            </div>
+            </label>
             <div class="cl-form-item__content">
                 <slot></slot>
                 <div v-if="v.invalid && v.validated" class="cl-form-item__error-tip">{{v.errors[0]}}</div>
@@ -47,6 +48,7 @@
         data() {
             return {
                 localRules: {},
+                trigger: '',
             }
         },
         components: {
@@ -83,7 +85,13 @@
                     }
                 });
                 this.localRules = localRulesObj;
-            }
+            },
+            model(context){
+                console.log(context,'context',context.value,context.errors,context.flags)
+                return {
+                    on: ['blur', 'change']
+                };
+            },
         }
     }
 </script>

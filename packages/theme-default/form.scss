@@ -2,23 +2,41 @@
 @import "./config/mixins/index.scss";
 
 @include c(form){
+  @include m(horizontal){
+    .cl-form-item{
+      .cl-form-item__content{
+        position: relative;
+        margin-left: 80px;
+      }
+    }
+  }
+  @include m(vertical){
 
+  }
+  @include m(inline){
+
+  }
 }
 
 @include c(form-item){
+  display: block;
   margin-bottom: 20px;
   font-size: $--font-size-default;
   @include m(error){
-    .cl-input .cl-input__source{
-      border-color: $--color-danger;
+    .cl-input .cl-input__source, .cl-textarea .cl-textarea__source, .cl-select__el-multiple{
+      border-color: $--color-danger!important;
       &:hover,
       &:focus,
       &:active{
-        border-color: $--color-danger;
+        border-color: $--color-danger!important;
       }
       &:focus{
-        box-shadow: 0 0 0 2px mix($--color-danger, $--color-white, $--button-hover-percent);
+        box-shadow: 0 0 0 2px mix($--color-danger, $--color-white, $--button-hover-percent)!important;
       }
+    }
+    .cl-select__el-focus{
+      border-color: $--color-danger!important;
+      box-shadow: 0 0 0 2px mix($--color-danger, $--color-white, $--button-hover-percent)!important;
     }
   }
 
@@ -33,12 +51,27 @@
   }
 
   @include e(label){
-
+    display: inline-block;
   }
   @include e(label-icon){
 
   }
   @include e(label-name){
 
+  }
+  @include m(left){
+    .cl-form-item__label{
+      text-align: left;
+    }
+  }
+  @include m(center){
+    .cl-form-item__label{
+      text-align: center;
+    }
+  }
+  @include m(right){
+    .cl-form-item__label{
+      text-align: right;
+    }
   }
 }
