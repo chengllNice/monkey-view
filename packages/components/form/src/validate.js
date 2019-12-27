@@ -74,6 +74,37 @@ extend('string', {
 });
 
 
+extend('number', {
+    validate(value, args){
+        let isMin = !isNaN(args.min);
+        let isMax = !isNaN(args.max);
+        if(isMin && isMax){
+            return value >= args.min && value <= args.max
+        }else if(isMin){
+            return value >= args.min
+        }else if(isMax){
+            return value <= args.max
+        }else{
+            return true;
+        }
+    },
+    params: ['min', 'max', 'message'],
+    message: (fieldName, placeholders) => {
+        let isMin = !isNaN(placeholders.min);
+        let isMax = !isNaN(placeholders.max);
+        let message = '';
+
+        if(isMin && isMax){
+            message = `must be between ${placeholders.min} and ${placeholders.max} number`
+        }else if(isMin){
+            message = `must be less than ${placeholders.min} number`
+        }else if(isMax){
+            message = `cannot be greater than ${placeholders.max} number`
+        }
+        return placeholders.message || message;
+    }
+});
+
 export {
     validator
 }

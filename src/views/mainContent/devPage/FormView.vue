@@ -38,6 +38,18 @@
             <cl-form-item props="des" label="des" :rules="rules.des">
                 <cl-input placeholder="placeholder" type="textarea" v-model="des" />
             </cl-form-item>
+            <cl-form-item props="slider" label="slider" :rules="rules.slider">
+                <cl-slider v-model="slider"></cl-slider>
+            </cl-form-item>
+            <cl-form-item props="switch" label="switch" :rules="rules.switch">
+                <cl-switch v-model="switchValue"></cl-switch>
+            </cl-form-item>
+            <cl-form-item props="upload" label="upload" :rules="rules.upload">
+                <cl-upload action="//jsonplaceholder.typicode.com/posts/"  :maxSize="500" :limit="5" :onSuccess="uploadSuccess" :onRemove="uploadRemove">
+                    <cl-button>upload</cl-button>
+                    <div slot="tip" class="cl-upload__tip">只能上传jpg/png文件，大小不能超过500kb</div>
+                </cl-upload>
+            </cl-form-item>
         </cl-form>
 
         <cl-button type="primary" @click="submit">Submit</cl-button>
@@ -92,6 +104,9 @@
                 sex: '',
                 checkbox: [],
                 des: '',
+                slider: 0,
+                switchValue: false,
+                upload: [],
                 yearList: [
                     {
                         label: '2019',
@@ -143,6 +158,16 @@
                     ],
                     des: [
                         {required: true, message: 'required', trigger: 'change'},
+                    ],
+                    slider: [
+                        {required: true, message: 'required', trigger: 'change'},
+                        {type: 'number', min: 4, trigger: 'change'},
+                    ],
+                    switch: [
+                        {required: true, message: 'required', trigger: 'change'},
+                    ],
+                    upload: [
+                        {required: true, message: 'required', trigger: 'change'},
                     ]
                 }
             }
@@ -153,6 +178,12 @@
             },
             submitFor(){
                 this.$refs.formFor.validate();
+            },
+            uploadSuccess(res, file, fileList){
+                this.upload = fileList;
+            },
+            uploadRemove(file, fileList){
+                this.upload = fileList;
             }
         }
     }

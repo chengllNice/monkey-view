@@ -59,6 +59,15 @@
     position: relative;
     width: 100%;
     vertical-align: middle;
+
+    &:hover,
+    &:focus,
+    &:active{
+      .cl-select__el-multiple{
+        border-color: $--color-primary;
+      }
+    }
+
     @include e(el-input){
       cursor: pointer;
       input{
@@ -122,16 +131,7 @@
       height: $--height-default;
       font-size: $--font-size-default;
       color: $--color-text-default;
-
-      &:hover,
-      &:focus,
-      &:active{
-        border-color: $--color-primary;
-      }
-
-      &:focus{
-        box-shadow: 0 0 0 2px mix($--color-primary, $--color-white, $--button-hover-percent);
-      }
+      transition: all $--animation-time ease-in-out;
     }
 
     @include e(el-focus){
@@ -160,20 +160,6 @@
         margin-right: 5px;
         vertical-align: middle;
       }
-
-      //&:hover,
-      //&:focus,
-      //&:active{
-      //  & + .cl-select__el-multiple {
-      //    border-color: $--color-primary;
-      //  }
-      //}
-      //
-      //&:focus{
-      //  & + .cl-select__el-multiple {
-      //    box-shadow: 0 0 0 2px mix($--color-primary, $--color-white, $--button-hover-percent);
-      //  }
-      //}
     }
 
     @include e(el-multiple-input){

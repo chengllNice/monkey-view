@@ -6,31 +6,28 @@
   $font-size: $--font-size-default;
   $width: $--checkbox-input-width-default;
   $height: $--checkbox-input-height-default;
-  $after-width: 3px;
+  $after-width: 4px;
   $after-height: 8px;
-  $border-width: 1.5px;
+  $border-width: 1px;
 
   @if($size == 'mini'){
     $font-size: $--font-size-mini;
     $width: $--checkbox-input-width-mini;
     $height: $--checkbox-input-height-mini;
-    $after-width: 2px;
+    $after-width: 3px;
     $after-height: 6px;
-    $border-width: 1.5px;
   }@else if($size == 'small'){
     $font-size: $--font-size-small;
     $width: $--checkbox-input-width-small;
     $height: $--checkbox-input-height-small;
-    $after-width: 3px;
+    $after-width: 3.5px;
     $after-height: 7px;
-    $border-width: 1.5px;
   }@else if($size == 'large'){
     $font-size: $--font-size-large;
     $width: $--checkbox-input-width-large;
     $height: $--checkbox-input-height-large;
-    $after-width: 4px;
+    $after-width: 5px;
     $after-height: 10px;
-    $border-width: 1.5px;
   }
 
   font-size: $font-size;
@@ -53,10 +50,10 @@
 @include c(checkbox){
   color: $--color-text-default;
   //line-height: 1;
-  //display: inline-block;
+  display: inline-block;
   position: relative;
   transition: all 0.2s;
-  vertical-align: middle;
+  //vertical-align: middle;
   margin-right: 20px;
 
   @include e(input){
@@ -66,10 +63,10 @@
   }
 
   @include e(label){
-    display: inline-block;
+    //display: inline-block;
     margin-left: 5px;
     cursor: pointer;
-    vertical-align: middle;
+    //vertical-align: middle;
   }
 
   @include e(inner){

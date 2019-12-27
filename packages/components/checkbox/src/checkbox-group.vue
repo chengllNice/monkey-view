@@ -1,6 +1,6 @@
 <template>
     <div class="cl-checkbox-group">
-        <span v-if="$slots.default"><slot></slot></span>
+        <template v-if="$slots.default"><slot></slot></template>
         <ClCheckbox v-else-if="options && options.length"
                     v-for="item in options"
                     :key="item.value"

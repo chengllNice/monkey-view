@@ -33,7 +33,7 @@
   font-size: $--font-size-default;
   position: relative;
   transition: all 0.2s;
-  vertical-align: middle;
+  //vertical-align: middle;
   margin-right: 20px;
 
   @include e(input){

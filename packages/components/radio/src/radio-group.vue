@@ -1,8 +1,8 @@
 <template>
     <div class="cl-radio-group">
-        <span v-if="$slots.default"><slot></slot></span>
+        <template v-if="$slots.default"><slot></slot></template>
         <ClRadio v-else-if="options && options.length"
-                 v-for="(item, index) in options"
+                 v-for="item in options"
                  :key="item.value"
                  :name="item.name"
                  :disabled="item.disabled"
