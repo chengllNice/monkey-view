@@ -69,8 +69,8 @@
       }
     }
     @include e(el-icon){
-      transition: $--animation-time;
-      font-size: 10px;
+      transition: all $--animation-time ease-in-out;
+      //font-size: 14px;
     }
     @include e(el-icon-rotate){
       @include utils-rotate();
@@ -283,7 +283,7 @@
   line-height: normal;
   font-size: $--select-option-font-size;
   color: $--select-option-text-color;
-  transition: all $--animation-time;
+  transition: all $--animation-time ease-in-out;
   background-color: $--color-white;
   //@include utils-ellipsis();
 
@@ -339,7 +339,7 @@
   line-height: normal;
   font-size: $--select-option-font-size;
   color: $--select-option-text-color;
-  transition: all $--animation-time;
+  transition: all $--animation-time ease-in-out;
   background-color: $--color-white;
   @include utils-ellipsis();
 

@@ -5,7 +5,7 @@
 @include c(input){
   display: table;
   line-height: normal;
-  transition: all 0.2s;
+  transition: all $--animation-time ease-in-out;
   position: relative;
   top: -1px;
   width: 100%;
@@ -22,7 +22,7 @@
     background-color: $--color-white;
     border: $--border-default;
     color: $--color-text-default;
-    transition: all 0.2s;
+    transition: all $--animation-time ease-in-out;
     position: relative;
 
     &, &:after, &:before{
@@ -244,7 +244,7 @@
     width: 100%;
     outline: none;
     box-sizing: border-box;
-    transition: all 0.2s;
+    transition: all $--animation-time ease-in-out;
     height: auto;
     border-radius: $--border-radius-default;
     background-color: $--color-white;

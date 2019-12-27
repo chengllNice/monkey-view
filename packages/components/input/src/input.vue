@@ -186,6 +186,7 @@
                 showPasswordVisible: false,
             }
         },
+        inject: ['formItem'],
         computed: {
             inputSize() {
                 return this.size
@@ -222,7 +223,7 @@
                 this.checkedModelValue(this.value);
                 this.setInputValue();
                 this.resizeTextarea();
-            })
+            });
         },
         watch: {
             value: function (newVal) {
@@ -282,6 +283,7 @@
                 this.checkedModelValue((e && e.target ? e.target.value : this.modelValue));
                 this.$emit('input', this.modelValue);
                 this.$emit('change', this.modelValue);
+                this.formItem.triggerValidate('change');
                 this.$nextTick(() => {
                     this.setInputValue();
                 })
@@ -295,7 +297,8 @@
                     this.modelValue = !isNaN(parseFloat(this.modelValue)) ? parseFloat(this.modelValue).toString() : '';
                     this.setInputValue();
                 }
-                this.$emit('blur', this.modelValue)
+                this.$emit('blur', this.modelValue);
+                this.formItem.triggerValidate('blur');
             },
             handlerFocus() {
                 this.$emit('focus', this.modelValue)

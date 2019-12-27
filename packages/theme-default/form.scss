@@ -6,21 +6,27 @@
     .cl-form-item{
       .cl-form-item__content{
         position: relative;
-        margin-left: 80px;
       }
     }
   }
   @include m(vertical){
-
+    .cl-form-item__label{
+      position: static;
+    }
   }
   @include m(inline){
-
+    .cl-form-item-wrap{
+      display: inline-block;
+      margin-right: 14px;
+      vertical-align: top;
+    }
   }
 }
 
 @include c(form-item){
   display: block;
   margin-bottom: 20px;
+  position: relative;
   font-size: $--font-size-default;
   @include m(error){
     .cl-input .cl-input__source, .cl-textarea .cl-textarea__source, .cl-select__el-multiple{
@@ -51,13 +57,23 @@
   }
 
   @include e(label){
-    display: inline-block;
+    vertical-align: middle;
+    padding-right: 10px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    line-height: $--height-default;
   }
   @include e(label-icon){
-
+    color: $--color-danger;
+    vertical-align: middle;
+    margin-right: 5px;
+    font-family: SimSun,sans-serif;
   }
   @include e(label-name){
-
+    line-height: 1;
   }
   @include m(left){
     .cl-form-item__label{

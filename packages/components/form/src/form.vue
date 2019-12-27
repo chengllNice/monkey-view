@@ -1,12 +1,12 @@
 <template>
-    <div class="cl-form"
-         :class="[
-            `cl-form--${layout}`
-         ]">
-        <ValidationObserver ref="form">
-            <slot></slot>
-        </ValidationObserver>
-    </div>
+    <ValidationObserver :class="[
+                            'cl-form',
+                            `cl-form--${layout}`
+                         ]"
+                        tag="div"
+                        ref="form">
+        <slot></slot>
+    </ValidationObserver>
 </template>
 
 <script>
@@ -14,7 +14,7 @@
     export default {
         name: "ClForm",
         props: {
-            requiredLabel: Boolean,//required的item是否需要*
+            showRequiredIcon: Boolean,//required的item是否需要*
             labelWidth: {
                 type: [Number, String],
                 default: 80
