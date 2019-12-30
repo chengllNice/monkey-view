@@ -15,7 +15,7 @@
     }
   }
   @include m(inline){
-    .cl-form-item-wrap{
+    .cl-form-item{
       display: inline-block;
       margin-right: 14px;
       vertical-align: top;
@@ -79,6 +79,13 @@
   }
   @include e(label-name){
     line-height: 1;
+  }
+  @include e(label-name-colon){
+    &:after{
+      content: ':';
+      display: inline-block;
+      margin-left: 2px;
+    }
   }
   @include m(left){
     .cl-form-item__label{

@@ -1,5 +1,5 @@
 <template>
-    <ValidationProvider tag="div" class="cl-form-item-wrap" :mode="mode" :name="props" :rules="currentLocalRules" v-slot="v">
+    <ValidationProvider :mode="mode" :name="name" slim :rules="currentLocalRules" v-slot="v" ref="provider">
         <div :class="[
             'cl-form-item',
             `cl-form-item--${form.labelAlgin}`,
@@ -8,13 +8,13 @@
             <label class="cl-form-item__label" :style="labelStyle">
                 <slot name="label">
                     <span class="cl-form-item__label-icon" v-if="form.showRequiredIcon">*</span>
-                    <span class="cl-form-item__label-name">{{label}}</span>
+                    <span class="cl-form-item__label-name" :class="[form.showLabelColon && 'cl-form-item__label-name-colon']">{{label}}</span>
                 </slot>
             </label>
             <div class="cl-form-item__content" :style="contentStyle">
                 <slot></slot>
                 <transition name="slideUp">
-                    <div v-if="v.invalid && v.validated" class="cl-form-item__error-tip">{{v.errors[0]}}</div>
+                    <div v-if="form.showMessage && v.invalid && v.validated" class="cl-form-item__error-tip">{{v.errors[0]}}</div>
                 </transition>
             </div>
         </div>
@@ -29,14 +29,16 @@
     export default {
         name: "ClFormItem",
         props: {
-            props: {
-                type: String,
-                required: true
-            },
+            validatorValue: {},//如果此字段值存在则根绝此值验证，在没有v-model时使用
+            name: String,
             labelWidth: {
                 type: [Number, String],
                 default: 80
             },
+            labelFor: {
+                type: String,
+                default: ''
+            },//配合组件的name属性(保留属性)
             label: String,
             rules: {
                 type: Array,
@@ -92,8 +94,20 @@
         methods: {
             initLocalRules() {
                 let localRulesObj = {};
-                this.rules.forEach(item => {
-                    let trigger = item.trigger;
+                let rules = [];
+                if(this.name && this.form.rules[this.name]){
+                    rules = this.form.rules[this.name];
+                }
+                if(this.rules && this.rules.length){
+                    rules = this.rules;
+                }
+                if(this.required){
+                    rules.push({
+                        required: true
+                    })
+                }
+                rules.forEach(item => {
+                    let trigger = item.trigger || this.trigger;
                     if (!localRulesObj[trigger]) {
                         localRulesObj[trigger] = {};
                     }
@@ -108,7 +122,7 @@
                             message: item.message
                         };
                     } else if (item.validator && typeof item.validator === 'function') {
-                        let validatorName = this.props + createRandom(6);
+                        let validatorName = this.name + createRandom(6);
                         validator(validatorName, item.validator);
                         localRulesObj[trigger][validatorName] = true;
                     }
@@ -133,6 +147,19 @@
             triggerValidate(trigger) {
                 if (!trigger) return;
                 this.filterRules(trigger);
+            },
+            providerValidate(){
+                this.$refs.provider.validate(this.validatorValue);
+            },
+            async validateSilent(){
+                let result = await this.$refs.provider.validateSilent();
+                this.$refs.provider.applyResult(result);
+                return result;
+            }
+        },
+        watch: {
+            validatorValue(){
+                this.providerValidate();
             }
         }
     }
