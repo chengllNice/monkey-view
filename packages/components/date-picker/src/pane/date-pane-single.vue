@@ -9,8 +9,8 @@
                 <i class="cl-icon-left" @click.stop="jumpDate('pre-month')" v-if="dateChangeIconShow"></i>
             </span>
             <span class="cl-date-pane-single__header-date">
-                <span class="cl-date-pane-single__header-date-label" @click.stop="updateCurrentType('year')">{{year}}年</span>
-                <span class="cl-date-pane-single__header-date-label" @click.stop="updateCurrentType('month')" v-if="headerMonthShow">{{month}}月</span>
+                <span class="cl-date-pane-single__header-date-label" @click.stop="updateCurrentType('year')">{{year}}{{t('cl.datePicker.year')}} </span>
+                <span class="cl-date-pane-single__header-date-label" @click.stop="updateCurrentType('month')" v-if="headerMonthShow">{{month}}{{t('cl.datePicker.month')}}</span>
             </span>
             <span class="cl-date-pane-single__header-next">
                 <i class="cl-icon-right" @click.stop="jumpDate('next-month')" v-if="dateChangeIconShow"></i>
@@ -19,7 +19,7 @@
         </div>
         <div class="cl-date-pane-single__header" v-show="showTimeHeader">
             <span class="cl-date-pane-single__header-date">
-                {{headerText}}
+                {{index === '0' ? t('cl.datePicker.startTime') : t('cl.datePicker.endTime')}}
             </span>
         </div>
         <div class="cl-date-pane-single__body">
@@ -81,9 +81,11 @@
     import ClDatePaneYear from './date-pane-year'
     import ClDatePaneMonth from './date-pane-month'
     import {dateFormat, zero} from "../../../../utils/date";
+    import Locale from "../../../../mixins/locale";
 
     export default {
         name: "ClDatePaneSingle",
+        mixins: [Locale],
         props: {
             value: Array,
             size: String,
@@ -127,9 +129,6 @@
             selectDate(){
                 return dateFormat(this.date[this.index], 'DD');
             },
-            headerText(){
-                return this.index === '0' ? '开始时间' : '结束时间'
-            }
         },
         components: {
             ClDatePaneTime,

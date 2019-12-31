@@ -36,7 +36,7 @@
                 <div class="cl-select__drop-down-inner" :class="[`cl-select__${componentId}`]" :style="{'height': dropDownHeight}">
                     <ClScroll size="small" :scrollOption="{scrollPanel:{scrollingX:false}}">
                         <div ref="optionList" class="cl-select__loading" v-if="loading">
-                            <i class="cl-rotate cl-icon-loading"></i>加载中
+                            <i class="cl-rotate cl-icon-loading"></i>{{t('cl.select.loading')}}
                         </div>
 
                         <div ref="optionList"
@@ -89,10 +89,12 @@
     import ClOption from './option.vue'
     import ClOptionGroup from './option-group.vue'
     import DropDown from './drop-down.vue'
+    import Locale from '../../../mixins/locale'
 
     export default {
         name: "ClSelect",
         directives: {clickOutside},
+        mixins: [Locale],
         provide() {
             return {
                 'select': this
@@ -165,7 +167,7 @@
             },
             localEmptyText() {
                 if (this.emptyText) return this.emptyText;
-                return '暂无数据';
+                return this.t('cl.select.emptyData');
             },
         },
         components: {

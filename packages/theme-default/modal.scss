@@ -107,7 +107,9 @@
 @include c(modal-confirm){
 
   @include e(icon){
-    font-size: $--modal-confirm-icon-font-size;
+    [class*='cl-icon']{
+      font-size: $--modal-confirm-icon-font-size;
+    }
     text-align: center;
   }
   @include m(info){

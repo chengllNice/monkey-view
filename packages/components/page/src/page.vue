@@ -6,7 +6,7 @@
         typeof border === 'boolean' && border && 'cl-page--border',
         size === 'mini' && 'cl-page--mini',
     ]">
-        <div class="cl-page__common cl-page__total" :style="{order: orderList('total')}" v-if="orderList('total') > -1">{{totalText.replace('total', total)}}</div>
+        <div class="cl-page__common cl-page__total" :style="{order: orderList('total')}" v-if="orderList('total') > -1">{{localeTotalText.replace('total', total)}}</div>
 
         <div class="cl-page__content" :style="{order: orderList('page')}">
             <div class="cl-page__common cl-page__item cl-page__pre"
@@ -65,17 +65,20 @@
         </div>
 
         <div class="cl-page__common cl-page__jump-to" :style="{order: orderList('jump')}" v-if="orderList('jump') > -1">
-            跳至
+            {{t('cl.page.goto')}}
             <cl-input class="cl-page__jump-to-input" type="number" v-model="jumpToPage" :step="false" :size="size"
                       @enter="jumpToPageChange"/>
-            页
+            {{t('cl.page.page')}}
         </div>
     </div>
 </template>
 
 <script>
+    import Locale from '../../../mixins/locale'
+    import {t} from '../../../locale'
     export default {
         name: "ClPage",
+        mixins: [Locale],
         props: {
             page: {
                 type: Number,
@@ -120,11 +123,11 @@
             },//排序及显示
             totalText: {
                 type: String,
-                default: '共 total 条'
+                default: ''
             },//定义总数量显示方式
             pageSizeText: {
                 type: String,
-                default: 'pageSize 条/页'
+                default: ''
             },//定义pageSize选项的显示方式
         },
         data() {
@@ -170,6 +173,20 @@
                     return this.order.split(',').findIndex(item=>{
                         return item.trim() === type
                     });
+                }
+            },
+            localeTotalText(){
+                if(!this.totalText){
+                    return this.t('cl.page.total') + ' total ' + this.t('cl.page.item');
+                }else{
+                    return this.totalText
+                }
+            },
+            localePageSizeText(){
+                if(!this.pageSizeText){
+                    return 'pageSize ' + this.t('cl.page.item') + '/' + this.t('cl.page.page');
+                }else{
+                    return this.pageSizeText
                 }
             }
         },
@@ -225,7 +242,7 @@
             setPageSizeOption(){
                 this.pageSizeOption.forEach(item => {
                     this.currentPageSizeOption.push({
-                        label: this.pageSizeText.replace('pageSize', item),
+                        label: this.localePageSizeText.replace('pageSize', item),
                         value: item
                     })
                 })

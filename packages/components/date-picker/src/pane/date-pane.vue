@@ -38,8 +38,8 @@
                                      @update-pane="updatePane"></cl-date-pane-single>
             </div>
             <div class="cl-date-pane__footer" v-if="showFooter">
-                <cl-button type="text" :size="size" :disabled="changeTimeDisabled" @click="changeTimeAndDate">{{isTime ? "选择日期" : "选择时间"}}</cl-button>
-                <cl-button type="primary" :size="size" @click="closeDropDown(true)">确定</cl-button>
+                <cl-button type="text" :size="size" :disabled="changeTimeDisabled" @click="changeTimeAndDate">{{isTime ? t('cl.datePicker.selectDate') : t('cl.datePicker.selectTime')}}</cl-button>
+                <cl-button type="primary" :size="size" @click="closeDropDown(true)">{{t('cl.datePicker.ok')}}</cl-button>
             </div>
         </div>
     </div>
@@ -49,10 +49,12 @@
     import ClDatePaneSingle from './date-pane-single'
     import ClButton from '../../../button/src/button'
     import {zero, dateFormat, getWeekNumberInfo} from "../../../../utils/date";
+    import Locale from "../../../../mixins/locale";
 
     export default {
         name: "ClDatePane",
         inject: ['picker'],
+        mixins: [Locale],
         props: {
             value: {
                 type: Array,

@@ -23,11 +23,11 @@ const validator = (validatorName, validatorFn) => {
 
 const validateMessages = {
     EN: {
-        required: '必填项',
+        required: messages['required'] || '必填项',
         email: messages['required'] || '邮箱验证失败',
     },
-    CN: {
-        required: '必填项',
+    zh_CN: {
+        required: messages['required'] || '必填项',
         email: messages['required'] || '邮箱验证失败',
     },
 };
@@ -36,8 +36,8 @@ extend('required', {
     ...required,
     params: ['message'],
     message: (fieldName, placeholders) => {
-        console.log(fieldName, placeholders);
-        return placeholders.message || validateMessages.email
+        return `The ${fieldName} field must be`
+        // return placeholders.message || validateMessages.zh_CN.required
     }
 });
 

@@ -48,14 +48,10 @@
             },
             required: Boolean,//是否为必填项
         },
-        provide() {
-            return {
-                formItem: this,
-            }
-        },
         inject: ['form'],
         data() {
             return {
+                componentName: 'ClFormItem',
                 localRules: {},//当前所有的规则
                 currentLocalRules: {},//当前使用的规则
                 trigger: 'blur',//当前触发方式

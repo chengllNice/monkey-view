@@ -10,9 +10,11 @@
 
 <script>
     import ClTreeNode from './tree-node'
+    import Locale from '../../../mixins/locale'
 
     export default {
         name: "ClTree",
+        mixins: [Locale],
         props: {
             data: {
                 type: Array,
@@ -27,7 +29,7 @@
             accordion: Boolean,//手风琴模式，开启后每次最多展开一个子菜单
             emptyText: {
                 type: String,
-                default: '暂无数据'
+                default: ''
             }
         },
         data() {
@@ -40,6 +42,7 @@
         },
         computed: {
             localEmptyText() {
+                if(!this.emptyText) return this.t('cl.tree.emptyData');
                 return this.emptyText
             }
         },
