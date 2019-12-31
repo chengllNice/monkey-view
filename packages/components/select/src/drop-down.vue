@@ -150,7 +150,6 @@
             });
         },
         destroyed() {
-            console.log('destroyeddestroyeddestroyed')
             if (isServer) return;
             if (this.popperJS && this.popperJS.hasOwnProperty('destroy')) {
                 this.popperJS.destroy();

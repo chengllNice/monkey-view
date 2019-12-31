@@ -52,9 +52,11 @@
     import ClButton from '../../button/src/button.vue'
     import ClScroll from '../../scroll/src/scroll.vue'
     import elementResizeDetectorMaker from 'element-resize-detector';
+    import Locale from '../../../mixins/locale'
 
     export default {
         name: "ClModal",
+        mixins: [Locale],
         props: {
             transition: {
                 type: Array,
@@ -112,10 +114,10 @@
         },
         computed: {
             localOkText() {
-                return this.okText === null ? null : (this.okText ? this.okText : '确定');
+                return this.okText === null ? null : (this.okText ? this.okText : this.t('cl.modal.okText'));
             },
             localCancelText() {
-                return this.cancelText === null ? null : (this.cancelText ? this.cancelText : '取消');
+                return this.cancelText === null ? null : (this.cancelText ? this.cancelText : this.t('cl.modal.cancelText'));
             },
             modalStyle() {
                 let style = {};
@@ -187,8 +189,6 @@
                         bodyHeight = parseFloat(this.height) + 'px';
                     }
                 }
-                console.log(modalWrapHeight,'====ddd', bodyHeight)
-
 
                 this.bodyStyle = {
                     height: bodyHeight

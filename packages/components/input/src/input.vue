@@ -124,6 +124,7 @@
 <script>
     import calcTextareaHeight from './calcTextareaHeight';
     import ClButton from '../../button/src/button'
+    import { findComponent} from "../../../utils/tool";
 
     export default {
         name: "ClInput",
@@ -184,9 +185,9 @@
                 expandStyle: {},//额外的样式
                 hovering: false,
                 showPasswordVisible: false,
+                formItem: findComponent(this, 'ClFormItem')
             }
         },
-        inject: ['formItem'],
         computed: {
             inputSize() {
                 return this.size
@@ -283,7 +284,7 @@
                 this.checkedModelValue((e && e.target ? e.target.value : this.modelValue));
                 this.$emit('input', this.modelValue);
                 this.$emit('change', this.modelValue);
-                this.formItem.triggerValidate('change');
+                this.formItem && this.formItem.triggerValidate('change');
                 this.$nextTick(() => {
                     this.setInputValue();
                 })
@@ -298,7 +299,7 @@
                     this.setInputValue();
                 }
                 this.$emit('blur', this.modelValue);
-                this.formItem.triggerValidate('blur');
+                this.formItem && this.formItem.triggerValidate('blur');
             },
             handlerFocus() {
                 this.$emit('focus', this.modelValue)

@@ -259,7 +259,7 @@
                     _file.response = res;
                     this.onSuccess(res, _file, this.uploadFiles);
                     this.onChange(_file, this.uploadFiles);
-                    this.emitChange();
+                    // this.emitChange();
                 }
             },
             handlerError(err, response, file) {
@@ -269,12 +269,12 @@
 
                 this.onError(err, _file, this.uploadFiles);
                 this.onChange(_file, this.uploadFiles);
-                this.emitChange();
+                // this.emitChange();
             },
             handlerRemove(file) {
                 this.uploadFiles.splice(this.uploadFiles.indexOf(file), 1);
                 this.onRemove(file, this.uploadFiles);
-                this.emitChange();
+                // this.emitChange();
             },
             handlerPreview(file) {
                 if (file.status === 'done') {
@@ -308,9 +308,9 @@
                 }
                 return url;
             },
-            emitChange(){
-                this.$emit('change', this.fileList)
-            }
+            // emitChange(){
+            //     this.$emit('change', this.fileList)
+            // }
         },
         watch: {
             fileList: {

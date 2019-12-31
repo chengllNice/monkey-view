@@ -75,10 +75,12 @@
     import {deepClone, getScrollBarWidth} from "../../../utils/global";
     import {on, off} from "../../../utils/dom";
     import elementResizeDetectorMaker from 'element-resize-detector';
+    import Locale from '../../../mixins/locale'
 
 
     export default {
         name: "ClTable",
+        mixins: [Locale],
         provide(){
           return {
               tableRoot: this
@@ -143,7 +145,7 @@
         },
         computed: {
             localEmptyText(){
-                return this.emptyText ? this.emptyText : '暂无数据';
+                return this.emptyText ? this.emptyText : this.t('cl.table.emptyData');
             },
             tableStyle(){
                 let style = {};

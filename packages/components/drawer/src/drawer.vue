@@ -51,9 +51,11 @@
     import ClButton from '../../button/src/button.vue'
     import ClScroll from '../../scroll/src/scroll.vue'
     import elementResizeDetectorMaker from 'element-resize-detector';
+    import Locale from '../../../mixins/locale'
 
     export default {
         name: "ClDrawer",
+        mixins: [Locale],
         props: {
             width: {
                 type: [String, Number],
@@ -109,10 +111,10 @@
         },
         computed: {
             localOkText() {
-                return this.okText === null ? null : (this.okText ? this.okText : '确定');
+                return this.okText === null ? null : (this.okText ? this.okText : this.t('cl.drawer.okText'));
             },
             localCancelText() {
-                return this.cancelText === null ? null : (this.cancelText ? this.cancelText : '取消');
+                return this.cancelText === null ? null : (this.cancelText ? this.cancelText : this.t('cl.drawer.cancelText'));
             },
             drawerStyle() {
                 let style = {};

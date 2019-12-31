@@ -66,9 +66,11 @@
 <script>
     import ClInput from '../../input/src/input.vue'
     import ClTag from '../../tag/src/tag.vue'
+    import Locale from '../../../mixins/locale'
 
     export default {
         name: "select-el",
+        mixins: [Locale],
         props: {
             values: Array,
             name: String,
@@ -105,7 +107,7 @@
                 return this.filterable ? false : true
             },
             selectElPlaceholder() {
-                let placeholder = this.placeholder || '请选择';
+                let placeholder = this.placeholder || this.t('cl.select.placeholder');
                 if (this.multiple) {
                     placeholder = this.values && this.values.length ? '' : placeholder
                 }

@@ -31,7 +31,7 @@
 <script>
     import ClTableHead from './table-head.vue'
     import ClTableBody from './table-body.vue'
-    import { fixedIds, sortFixedColumns} from "./util";
+    import { fixedIds} from "./util";
     import { getScrollBarWidth} from "../../../utils/global";
     import { on, off} from "../../../utils/dom";
 

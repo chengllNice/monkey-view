@@ -49,7 +49,7 @@
                     <div v-else-if="!column.filterMultiple" class="cl-table-head-cell__filter-list">
                         <div class="cl-table-head-cell__filter-item"
                                       :class="[!column.__filterCheckedValues.length && 'cl-table-head-cell__filter-item-active']"
-                                      @click.self="filterHandle()">全部</div>
+                                      @click.self="filterHandle()">{{t('cl.table.all')}}</div>
                         <div class="cl-table-head-cell__filter-item"
                                       :class="[column.__filterCheckedValues.includes(item.value) && 'cl-table-head-cell__filter-item-active']"
                                       v-for="item in column.filters"
@@ -67,8 +67,8 @@
                             </div>
                         </cl-checkbox-group>
                         <div class="cl-table-head-cell__filter-footer">
-                            <cl-button size="mini" type="primary" @click="filterMultiple">筛选</cl-button>
-                            <cl-button size="mini" @click="resetFilterMultiple">重置</cl-button>
+                            <cl-button size="mini" type="primary" @click="filterMultiple">{{t('cl.table.filter')}}</cl-button>
+                            <cl-button size="mini" @click="resetFilterMultiple">{{t('cl.table.reset')}}</cl-button>
                         </div>
                     </div>
                 </DropDown>
@@ -84,9 +84,11 @@
     import DropDown from '../../select/src/drop-down.vue'
     import tableSlotHead from './table-slot-head'
     import {directive as clickOutside} from 'v-click-outside-x';
+    import Locale from '../../../mixins/locale'
     export default {
         name: "ClTableHeadCell",
         directives: {clickOutside},
+        mixins: [Locale],
         props: {
             column: Object,
             sortType: Array

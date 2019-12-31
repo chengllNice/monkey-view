@@ -1,102 +1,103 @@
+import {t} from '../locale'
 // 常量
 export const dateObj = {
     month: [
         {
             id: '01',
             key: 'month1',
-            name: '1月'
+            name: t('cl.datePicker.months.m1')
         },
         {
             id: '02',
             key: 'month2',
-            name: '2月'
+            name: t('cl.datePicker.months.m2')
         },
         {
             id: '03',
             key: 'month3',
-            name: '3月'
+            name: t('cl.datePicker.months.m3')
         },
         {
             id: '04',
             key: 'month4',
-            name: '4月'
+            name: t('cl.datePicker.months.m4')
         },
         {
             id: '05',
             key: 'month5',
-            name: '5月'
+            name: t('cl.datePicker.months.m5')
         },
         {
             id: '06',
             key: 'month6',
-            name: '6月'
+            name: t('cl.datePicker.months.m6')
         },
         {
             id: '07',
             key: 'month7',
-            name: '7月'
+            name: t('cl.datePicker.months.m7')
         },
         {
             id: '08',
             key: 'month8',
-            name: '8月'
+            name: t('cl.datePicker.months.m8')
         },
         {
             id: '09',
             key: 'month9',
-            name: '9月'
+            name: t('cl.datePicker.months.m9')
         },
         {
             id: '10',
             key: 'month10',
-            name: '10月'
+            name: t('cl.datePicker.months.m10')
         },
         {
             id: '11',
             key: 'month11',
-            name: '11月'
+            name: t('cl.datePicker.months.m11')
         },
         {
             id: '12',
             key: 'month12',
-            name: '12月'
+            name: t('cl.datePicker.months.m12')
         }
     ],
     week: [
         {
             id: '0',
             key: 'week0',
-            name: '日'
+            name: t('cl.datePicker.weeks.sun')
         },
         {
             id: '1',
             key: 'week1',
-            name: '一'
+            name: t('cl.datePicker.weeks.mon')
         },
         {
             id: '2',
             key: 'week2',
-            name: '二'
+            name: t('cl.datePicker.weeks.tue')
         },
         {
             id: '3',
             key: 'week3',
-            name: '三'
+            name: t('cl.datePicker.weeks.wed')
         },
         {
             id: '4',
             key: 'week4',
-            name: '四'
+            name: t('cl.datePicker.weeks.thu')
         },
         {
             id: '5',
             key: 'week5',
-            name: '五'
+            name: t('cl.datePicker.weeks.fri')
         },
         {
             id: '6',
             key: 'week6',
-            name: '六'
+            name: t('cl.datePicker.weeks.sat')
         }
     ],
 };

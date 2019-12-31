@@ -1,5 +1,3 @@
-import Vue from 'vue'
-
 import ClLayout from './components/layout'
 import ClMenu from './components/menu'
 import ClButton from './components/button'
@@ -41,6 +39,8 @@ import ClDatePicker from './components/date-picker'
 import ClTimePicker from './components/time-picker'
 import ClForm from './components/form'
 import ClFormItem from './components/form-item'
+
+import locale from './locale/index';
 
 const components = {
     ClLayout,
@@ -96,7 +96,12 @@ const components = {
     ClFormItem
 };
 
-const install = (Vue) => {
+const install = (Vue, opts = {}) => {
+    if (install.installed) return;
+
+    locale.use(opts.locale);
+    locale.i18n(opts.i18n);
+
     Object.keys(components).forEach(key => {
         Vue.component(key, components[key])
     });
@@ -114,9 +119,14 @@ const directive = (Vue) => {
 if (typeof window !== 'undefined' && window.Vue) {
     install(window.Vue);
     directive(window.Vue);
-} else {
-    install(Vue);
-    directive(Vue);
 }
 
-export default components;
+const API = {
+    version: '0.0.1',
+    locale: locale.use,
+    i18n: locale.i18n,
+    install,
+    ...components
+};
+
+export default API;

@@ -39,7 +39,7 @@
                 <td :class="[
                         fixed && 'is-hidden'
                     ]"
-                    :colspan="colgroupColumns.length">暂无数据</td>
+                    :colspan="colgroupColumns.length">{{t('cl.table.emptyData')}}</td>
             </tr>
         </tbody>
     </table>
@@ -51,10 +51,11 @@
     import tableMixins from './table-mixins'
     import ClTableExpand from './table-expand'
     import {emitDataFormat} from "./util";
+    import Locale from '../../../mixins/locale'
 
     export default {
         name: "ClTableBody",
-        mixins: [tableMixins],
+        mixins: [tableMixins,Locale],
         inject: ['tableRoot'],
         props: {
             data: {

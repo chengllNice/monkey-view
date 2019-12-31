@@ -28,9 +28,7 @@
 
 <script>
     import ClTableTr from './table-tr.vue'
-    import ClTableCell from './table-cell.vue'
     import ClTableHeadCell from './table-head-cell'
-    import ClTooltip from '../../tooltip/src/tooltip.vue'
     import tableMixins from './table-mixins'
 
     export default {
@@ -68,9 +66,7 @@
             }
         },
         components: {
-            ClTooltip,
             ClTableTr,
-            ClTableCell,
             ClTableHeadCell
         },
         created() {
