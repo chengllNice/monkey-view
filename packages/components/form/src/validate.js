@@ -1,12 +1,6 @@
-import { extend, configure} from 'vee-validate';
+import { extend} from 'vee-validate';
 import { required, email} from 'vee-validate/dist/rules'
 import { messages } from 'vee-validate/dist/locale/en.json'
-
-// configure({
-//    classes: {
-//        invalid: 'cl-form-item-error',
-//    }
-// });
 
 const validator = (validatorName, validatorFn) => {
     if(validatorName && validatorFn && typeof validatorFn === 'function'){
@@ -36,8 +30,8 @@ extend('required', {
     ...required,
     params: ['message'],
     message: (fieldName, placeholders) => {
-        return `The ${fieldName} field must be`
-        // return placeholders.message || validateMessages.zh_CN.required
+        // return `The ${fieldName} field must be`
+        return placeholders.message || validateMessages.zh_CN.required
     }
 });
 
@@ -70,11 +64,11 @@ extend('string', {
         let message = '';
 
         if(isMin && isMax){
-            message = `must be between ${placeholders.min} and ${placeholders.max} characters`
+            message = `The ${fieldName} must be between ${placeholders.min} and ${placeholders.max} characters`
         }else if(isMin){
-            message = `must be at least ${placeholders.min} characters`
+            message = `The ${fieldName} must be at least ${placeholders.min} characters`
         }else if(isMax){
-            message = `cannot be longer than ${placeholders.max} characters`
+            message = `The ${fieldName} cannot be longer than ${placeholders.max} characters`
         }
         return placeholders.message || message;
     }
@@ -102,11 +96,11 @@ extend('number', {
         let message = '';
 
         if(isMin && isMax){
-            message = `must be between ${placeholders.min} and ${placeholders.max} number`
+            message = `The ${fieldName} must be between ${placeholders.min} and ${placeholders.max} number`
         }else if(isMin){
-            message = `must be less than ${placeholders.min} number`
+            message = `The ${fieldName} must be less than ${placeholders.min} number`
         }else if(isMax){
-            message = `cannot be greater than ${placeholders.max} number`
+            message = `The ${fieldName} cannot be greater than ${placeholders.max} number`
         }
         return placeholders.message || message;
     }
@@ -134,11 +128,11 @@ extend('array', {
         let message = '';
 
         if(isMin && isMax){
-            message = `length must be between ${placeholders.min} and ${placeholders.max} array`
+            message = `The ${fieldName} length must be between ${placeholders.min} and ${placeholders.max} array`
         }else if(isMin){
-            message = `length must be less than ${placeholders.min} array`
+            message = `The ${fieldName} length must be less than ${placeholders.min} array`
         }else if(isMax){
-            message = `length cannot be greater than ${placeholders.max} array`
+            message = `The ${fieldName} length cannot be greater than ${placeholders.max} array`
         }
         return placeholders.message || message;
     }

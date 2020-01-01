@@ -5,9 +5,9 @@
             `cl-form-item--${form.labelAlgin}`,
             v.invalid && v.validated && 'cl-form-item--error'
         ]">
-            <label class="cl-form-item__label" :style="labelStyle">
+            <label class="cl-form-item__label" :style="labelStyle" v-if="isShowLabel">
                 <slot name="label">
-                    <span class="cl-form-item__label-icon" v-if="form.showRequiredIcon">*</span>
+                    <span class="cl-form-item__label-icon" v-if="form.showRequiredIcon && isRequired">*</span>
                     <span class="cl-form-item__label-name" :class="[form.showLabelColon && 'cl-form-item__label-name-colon']">{{label}}</span>
                 </slot>
             </label>
@@ -32,8 +32,7 @@
             validatorValue: {},//如果此字段值存在则根绝此值验证，在没有v-model时使用
             name: String,
             labelWidth: {
-                type: [Number, String],
-                default: 80
+                type: [Number, String]
             },
             labelFor: {
                 type: String,
@@ -55,6 +54,7 @@
                 localRules: {},//当前所有的规则
                 currentLocalRules: {},//当前使用的规则
                 trigger: 'blur',//当前触发方式
+                isRequired: false,//是否是required
             }
         },
         components: {
@@ -62,16 +62,18 @@
         },
         computed: {
             labelStyle() {
+                const labelWidth = parseInt(this.labelWidth) === 0 || this.labelWidth ? this.labelWidth : this.form.labelWidth;
                 return {
-                    width: parseFloat(this.form.labelWidth) + 'px'
+                    width: parseInt(labelWidth) + 'px'
                 }
             },
             contentStyle() {
                 if (this.form.layout === 'vertical') {
                     return {};
                 }
+                const labelWidth = parseInt(this.labelWidth) === 0 || this.labelWidth ? this.labelWidth : this.form.labelWidth;
                 return {
-                    marginLeft: parseFloat(this.form.labelWidth) + 'px'
+                    marginLeft: parseInt(labelWidth) + 'px'
                 }
             },
             mode() {
@@ -82,6 +84,10 @@
                     };
                 }
             },
+            isShowLabel(){
+                const labelWidth = parseInt(this.labelWidth) === 0 || this.labelWidth ? this.labelWidth : this.form.labelWidth;
+                return parseInt(labelWidth) > 0;
+            }
         },
         mounted() {
             this.initLocalRules();
@@ -91,6 +97,7 @@
             initLocalRules() {
                 let localRulesObj = {};
                 let rules = [];
+                this.isRequired = false;
                 if(this.name && this.form.rules[this.name]){
                     rules = this.form.rules[this.name];
                 }
@@ -98,6 +105,7 @@
                     rules = this.rules;
                 }
                 if(this.required){
+                    this.isRequired = true;
                     rules.push({
                         required: true
                     })
@@ -108,6 +116,7 @@
                         localRulesObj[trigger] = {};
                     }
                     if (item.required || this.required) {
+                        this.isRequired = true;
                         localRulesObj[trigger]['required'] = {
                             message: item.message
                         };

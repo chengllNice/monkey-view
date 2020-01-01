@@ -45,7 +45,7 @@
                         result = 'cl-icon-warning-fill';
                         break;
                     case 'error':
-                        result = 'cl-icon-remove-fill';
+                        result = 'cl-icon-error-fill';
                         break;
                     case 'loading':
                         result = 'cl-rotate cl-icon-loading';

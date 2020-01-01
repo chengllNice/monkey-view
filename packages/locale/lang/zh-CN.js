@@ -67,8 +67,11 @@ export default {
         },
         form: {
             message: {
-                required: '必填项',
-                between: 'The {_field_} field must be between {min} and {max} {type}',
+                required: '{_field_}是必填项',
+                email: '{_field_}不是一个有效的邮箱',
+                between: '{_field_}必须在{min}与{max}之间的{type}',
+                min: '{_field_}最小{min}{type}',
+                max: '{_field_}最大{max}{type}',
             },
         }
     }

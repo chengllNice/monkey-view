@@ -52,8 +52,10 @@
 
   @include e(error-tip){
     color: $--color-danger;
+    line-height: normal;
     position: absolute;
     top: 100%;
+    padding-top: 2px;
   }
 
   @include e(content){
