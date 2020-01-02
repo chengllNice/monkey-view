@@ -39,6 +39,7 @@ import ClDatePicker from './components/date-picker'
 import ClTimePicker from './components/time-picker'
 import ClForm from './components/form'
 import ClFormItem from './components/form-item'
+import ClDropdown from './components/drop-down'
 
 import locale from './locale/index';
 
@@ -93,7 +94,10 @@ const components = {
     ClDatePicker,
     ClTimePicker,
     ClForm,
-    ClFormItem
+    ClFormItem,
+    ClDropdown,
+    ClDropdownMenu: ClDropdown.Menu,
+    ClDropdownItem: ClDropdown.Item,
 };
 
 const install = (Vue, opts = {}) => {
@@ -105,6 +109,8 @@ const install = (Vue, opts = {}) => {
     Object.keys(components).forEach(key => {
         Vue.component(key, components[key])
     });
+
+    directive(Vue);
 
     Vue.prototype.$Modal = ClModal.$Modal;
     Vue.prototype.$Message = ClMessage;

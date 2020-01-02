@@ -65,14 +65,5 @@ export default {
         tree: {
             emptyData: '暂无数据',
         },
-        form: {
-            message: {
-                required: '{_field_}是必填项',
-                email: '{_field_}不是一个有效的邮箱',
-                between: '{_field_}必须在{min}与{max}之间的{type}',
-                min: '{_field_}最小{min}{type}',
-                max: '{_field_}最大{max}{type}',
-            },
-        }
     }
 }

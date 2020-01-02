@@ -65,14 +65,5 @@ export default {
         tree: {
             emptyData: 'No Data',
         },
-        form: {
-            message: {
-                required: 'The {_field_} field is required',
-                email: 'The {_field_} field must be a valid email',
-                between: 'The {_field_} field must be between {min} and {max} {type}',
-                min: 'The {_field_} field must be min {min} {type}',
-                max: 'The {_field_} field must be max {max} {type}',
-            },
-        },
     }
 }

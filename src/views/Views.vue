@@ -30,10 +30,10 @@
 </template>
 
 <script>
-    import LeftNav from './leftNav/leftNav'
-    import CHeader from './header/header'
-    import CFooter from './footer/footer'
-    import AnchorsLink from './anchors-link/anchors-link'
+    import LeftNav from '../components/left-nav'
+    import CHeader from '../components/header'
+    import CFooter from '../components/footer'
+    import AnchorsLink from '../components/anchors-link'
 
     export default {
         name: "views",

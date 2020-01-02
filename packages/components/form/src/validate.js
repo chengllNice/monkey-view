@@ -16,14 +16,11 @@ const validator = (validatorName, validatorFn) => {
 };
 
 const validateMessages = {
-    EN: {
-        required: messages['required'] || '必填项',
-        email: messages['required'] || '邮箱验证失败',
-    },
-    zh_CN: {
-        required: messages['required'] || '必填项',
-        email: messages['required'] || '邮箱验证失败',
-    },
+    required: messages['required'],
+    email: messages['email'],
+    between: 'The {_field_} must be between {min} and ${max} {type}',
+    min: 'The {_field_} must be min {min} {type}',
+    max: 'The {_field_} must be max {max} {type}',
 };
 
 extend('required', {
@@ -31,7 +28,7 @@ extend('required', {
     params: ['message'],
     message: (fieldName, placeholders) => {
         // return `The ${fieldName} field must be`
-        return placeholders.message || validateMessages.zh_CN.required
+        return placeholders.message || validateMessages.required.replace('{_field_}', fieldName);
     }
 });
 
@@ -39,7 +36,7 @@ extend('email', {
     ...email,
     params: ['message'],
     message: (fieldName, placeholders) => {
-        return placeholders.message || validateMessages.email
+        return placeholders.message || validateMessages.email.replace('{_field_}', fieldName);
     }
 });
 
@@ -61,16 +58,21 @@ extend('string', {
     message: (fieldName, placeholders) => {
         let isMin = !isNaN(placeholders.min);
         let isMax = !isNaN(placeholders.max);
-        let message = '';
+        let message = placeholders.message;
+        let type = '';
 
-        if(isMin && isMax){
-            message = `The ${fieldName} must be between ${placeholders.min} and ${placeholders.max} characters`
-        }else if(isMin){
-            message = `The ${fieldName} must be at least ${placeholders.min} characters`
-        }else if(isMax){
-            message = `The ${fieldName} cannot be longer than ${placeholders.max} characters`
+        if(!placeholders.message){
+            if(isMin && isMax){
+                type = 'between';
+            }else if(isMin){
+                type = 'min';
+            }else if(isMax){
+                type = 'max';
+            }
+            message = validateMessages[type].replace('{_field_}', fieldName).replace('{min}',placeholders.min).replace('{max}',placeholders.max).replace('{type}','characters')
         }
-        return placeholders.message || message;
+
+        return message;
     }
 });
 
@@ -93,16 +95,20 @@ extend('number', {
     message: (fieldName, placeholders) => {
         let isMin = !isNaN(placeholders.min);
         let isMax = !isNaN(placeholders.max);
-        let message = '';
+        let message = placeholders.message;
+        let type = '';
 
-        if(isMin && isMax){
-            message = `The ${fieldName} must be between ${placeholders.min} and ${placeholders.max} number`
-        }else if(isMin){
-            message = `The ${fieldName} must be less than ${placeholders.min} number`
-        }else if(isMax){
-            message = `The ${fieldName} cannot be greater than ${placeholders.max} number`
+        if(!placeholders.message){
+            if(isMin && isMax){
+                type = 'between';
+            }else if(isMin){
+                type = 'min';
+            }else if(isMax){
+                type = 'max';
+            }
+            message = validateMessages[type].replace('{_field_}', fieldName).replace('{min}',placeholders.min).replace('{max}',placeholders.max).replace('{type}','characters')
         }
-        return placeholders.message || message;
+        return message;
     }
 });
 
@@ -125,16 +131,20 @@ extend('array', {
     message: (fieldName, placeholders) => {
         let isMin = !isNaN(placeholders.min);
         let isMax = !isNaN(placeholders.max);
-        let message = '';
+        let message = placeholders.message;
+        let type = '';
 
-        if(isMin && isMax){
-            message = `The ${fieldName} length must be between ${placeholders.min} and ${placeholders.max} array`
-        }else if(isMin){
-            message = `The ${fieldName} length must be less than ${placeholders.min} array`
-        }else if(isMax){
-            message = `The ${fieldName} length cannot be greater than ${placeholders.max} array`
+        if(!placeholders.message){
+            if(isMin && isMax){
+                type = 'between';
+            }else if(isMin){
+                type = 'min';
+            }else if(isMax){
+                type = 'max';
+            }
+            message = validateMessages[type].replace('{_field_}', fieldName).replace('{min}',placeholders.min).replace('{max}',placeholders.max).replace('{type}','characters')
         }
-        return placeholders.message || message;
+        return message;
     }
 });
 
