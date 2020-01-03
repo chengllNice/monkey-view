@@ -1,9 +1,13 @@
 <template>
     <div>
         <cl-dropdown>
-            <cl-button type="text">下来菜单</cl-button>
+            <cl-button type="text">下来菜单 <i class="cl-icon-down"></i></cl-button>
             <cl-dropdown-menu slot="menu">
                 <cl-dropdown-item>22</cl-dropdown-item>
+                <cl-dropdown-item>22</cl-dropdown-item>
+                <cl-dropdown-item>22</cl-dropdown-item>
+                <cl-dropdown-item>22</cl-dropdown-item>
+                <cl-dropdown-item divided>22</cl-dropdown-item>
             </cl-dropdown-menu>
         </cl-dropdown>
     </div>
