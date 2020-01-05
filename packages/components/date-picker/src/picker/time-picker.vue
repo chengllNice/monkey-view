@@ -17,7 +17,7 @@
                           :readonly="readonlyInput"
                           @click.native="handleFocus"
                           @blur="updateInputValue"
-                          @clear="clearHandle"></cl-input>
+                          @clear="handleClear"></cl-input>
             </slot>
         </div>
         <transition :name="transition">
@@ -33,7 +33,7 @@
                 <div class="cl-time-picker__drop-down-inner">
                     <cl-date-pane picker-type='time'
                                   :size="size"
-                                  :format="format"
+                                  :format="localeFormat"
                                   v-model="dateValue"
                                   :is-range="isRange"
                                   :type="type"/>
@@ -67,6 +67,26 @@
                 }
             },
             disabled: Boolean,
+            disabledHours: {
+                type: Array,
+                default(){
+                    return []
+                }
+            },//不可选的时
+            disabledMinutes: {
+                type: Array,
+                default(){
+                    return []
+                }
+            },//不可选的分
+            disabledSeconds: {
+                type: Array,
+                default(){
+                    return []
+                }
+            },//不可选的秒
+            hideDisabledOptions: Boolean,//是否隐藏disabled的时分秒
+            confirm: Boolean,
             readonly: Boolean,
             placeholder: String,
             size: {
@@ -103,20 +123,21 @@
                     return false
                 }
             },
-            open: Boolean,//手动控制日期框的打开关闭
-            multiple: Boolean,//多选日期
+            open: Boolean,//手动控制时间框的打开关闭
             separator: {
                 type: String,
                 default: '~'
-            },//两个日期之间的分隔符
+            },//两个时间之间的分隔符
             className: String,//选择器的类名
-            dropdownClassName: String,//日期下拉框的类名
+            dropdownClassName: String,//时间下拉框的类名
         },
         data() {
+            const localeFormat = 'YYYY/MM/DD ' + this.format;
             return {
                 dateValue: [],
                 dateInputValue: '',
                 visible: false,
+                localeFormat: localeFormat,
                 nowDate: new Date()
             }
         },
@@ -139,14 +160,22 @@
         },
         methods: {
             initDateValue(val) {
-                let value = val || this.value;
+                let _value;
+                if(this.value && typeof this.value === 'string'){
+                    _value = dateFormat(this.nowDate) + ' ' + this.value;
+                }else if(Array.isArray(this.value)){
+                    _value = [];
+                    this.value[0] && _value.push(dateFormat(this.nowDate) + ' ' + this.value[0]);
+                    this.value[1] && _value.push(dateFormat(this.nowDate) + ' ' + this.value[1]);
+                }
+                let value = val || _value;
                 if (this.isRange) {
-                    value = value && value.length ? value : [];
+                    value = value && Array.isArray(value) && value.length ? value : [];
                     if (value[0] && value[1]) {
-                        this.dateValue = [dateFormat(value[0], this.format), dateFormat(value[1], this.format)];
+                        this.dateValue = [dateFormat(value[0], this.localeFormat), dateFormat(value[1], this.localeFormat)];
                     }
-                } else if (typeof value === 'string') {
-                    this.dateValue = value ? [dateFormat(value, this.format)] : [];
+                } else if (!value || typeof value === 'string' || value instanceof Date) {
+                    this.dateValue = value ? [dateFormat(value, this.localeFormat)] : [];
                 }
             },
             setValue(value) {
@@ -165,21 +194,21 @@
                         }
                     }
                 }
-                this.$emit('clickoutside',event);
+                this.$emit('click-outside',event);
                 this.dropDownVisible(false);
             },
             dropDownVisible(visible) {
                 if (this.readonly || this.open || this.disabled) return;
                 this.visible = visible;
             },
-            clearHandle() {
+            handleClear() {
                 this.dateValue = [];
                 this.$emit('clear');
             },
             updateInputValue() {
                 if (this.isRange) {
-                    let date1 = this.dateValue[0];
-                    let date2 = this.dateValue[1];
+                    let date1 = dateFormat(this.dateValue[0], this.format);
+                    let date2 = dateFormat(this.dateValue[1], this.format);
                     if (date1 && !date2) {
                         this.dateInputValue = `${date1}`;
                     } else if (date1 && date1) {
@@ -188,7 +217,7 @@
                         this.dateInputValue = '';
                     }
                 } else {
-                    this.dateInputValue = this.dateValue[0] || '';
+                    this.dateInputValue = dateFormat(this.dateValue[0], this.format) || '';
                 }
             },
             focus(){
@@ -202,12 +231,16 @@
             dateValue: {
                 handler(newVal) {
                     this.updateInputValue();
+                    let emitValue = [];
+                    newVal.forEach(item=>{
+                        emitValue.push(dateFormat(item, this.format))
+                    });
                     if (this.isRange) {
-                        this.$emit('input', newVal);
-                        this.$emit('change', newVal);
+                        this.$emit('input', emitValue);
+                        this.$emit('change', emitValue);
                     } else {
-                        this.$emit('input', newVal[0]);
-                        this.$emit('change', newVal[0]);
+                        this.$emit('input', emitValue[0]);
+                        this.$emit('change', emitValue[0]);
                     }
                 },
                 deep: true

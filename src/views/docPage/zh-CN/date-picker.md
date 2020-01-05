@@ -16,10 +16,10 @@
 <template>
     <cl-row :gutter="16">
         <cl-col>
-            <cl-date-picker placeholder="请选择日期"></cl-date-picker>
+            <cl-date-picker placeholder="请选择日期" clearable></cl-date-picker>
         </cl-col>
         <cl-col>
-            <cl-date-picker type="daterange" placement="bottom-end" placeholder="请选择日期范围"></cl-date-picker>
+            <cl-date-picker type="daterange" placement="bottom-end" placeholder="请选择日期范围" clearable></cl-date-picker>
         </cl-col>
     </cl-row>
 </template>
@@ -36,13 +36,13 @@
 <template>
     <cl-row :gutter="16">
         <cl-col>
-            <cl-date-picker type="year" placeholder="请选择年"></cl-date-picker>
+            <cl-date-picker type="year" placeholder="请选择年" clearable></cl-date-picker>
         </cl-col>
         <cl-col>
-            <cl-date-picker type="month" placeholder="请选择月"></cl-date-picker>
+            <cl-date-picker type="month" placeholder="请选择月" clearable></cl-date-picker>
         </cl-col>
         <cl-col>
-            <cl-date-picker type="week" placeholder="请选择周"></cl-date-picker>
+            <cl-date-picker type="week" placeholder="请选择周" clearable></cl-date-picker>
         </cl-col>
     </cl-row>
 </template>
@@ -59,10 +59,10 @@
 <template>
     <cl-row :gutter="16">
         <cl-col>
-            <cl-date-picker type="datetime" placeholder="请选择日期时间"></cl-date-picker>
+            <cl-date-picker type="datetime" placeholder="请选择日期时间" clearable></cl-date-picker>
         </cl-col>
         <cl-col>
-            <cl-date-picker type="datetimerange" placeholder="请选择日期时间范围"></cl-date-picker>
+            <cl-date-picker type="datetimerange" placeholder="请选择日期时间范围" clearable></cl-date-picker>
         </cl-col>
     </cl-row>
 </template>
@@ -79,10 +79,10 @@
 <template>
     <cl-row :gutter="16">
         <cl-col>
-            <cl-date-picker type="date" placeholder="请选择日期" :shortcuts="shortcuts"></cl-date-picker>
+            <cl-date-picker type="date" placeholder="请选择日期" :shortcuts="shortcuts" clearable></cl-date-picker>
         </cl-col>
         <cl-col>
-            <cl-date-picker type="daterange" placeholder="请选择日期范围" :shortcuts="shortcutsrange"></cl-date-picker>
+            <cl-date-picker type="daterange" placeholder="请选择日期范围" :shortcuts="shortcutsrange" clearable></cl-date-picker>
         </cl-col>
     </cl-row>
 </template>
@@ -161,10 +161,10 @@
 <template>
     <cl-row :gutter="16">
         <cl-col>
-            <cl-date-picker type="date" placeholder="请选择日期" :disabled-date="disabledDate"></cl-date-picker>
+            <cl-date-picker type="date" placeholder="请选择日期" :disabled-date="disabledDate" clearable></cl-date-picker>
         </cl-col>
         <cl-col>
-            <cl-date-picker type="daterange" placeholder="请选择日期范围" :disabled-date="disabledDate"></cl-date-picker>
+            <cl-date-picker type="daterange" placeholder="请选择日期范围" :disabled-date="disabledDate" clearable></cl-date-picker>
         </cl-col>
     </cl-row>
 </template>
@@ -209,10 +209,10 @@
 <template>
     <cl-row :gutter="16">
         <cl-col>
-            <cl-date-picker type="date" placeholder="请选择日期" format="YYYY/MM/DD"></cl-date-picker>
+            <cl-date-picker type="date" placeholder="请选择日期" format="YYYY年MM月DD" clearable></cl-date-picker>
         </cl-col>
         <cl-col>
-            <cl-date-picker type="daterange" placeholder="请选择日期范围" format="YYYY/MM/DD"></cl-date-picker>
+            <cl-date-picker type="daterange" placeholder="请选择日期范围" format="YYYY/MM/DD" clearable></cl-date-picker>
         </cl-col>
     </cl-row>
 </template>
@@ -236,7 +236,7 @@
 
 ```html
 <template>
-    <cl-date-picker placeholder="请选择日期" multiple></cl-date-picker>
+    <cl-date-picker placeholder="请选择日期" multiple clearable></cl-date-picker>
 </template>
 <script>
     export default {
@@ -260,10 +260,10 @@
 <template>
     <cl-row :gutter="16">
         <cl-col>
-            <cl-date-picker type="date" placeholder="请选择时间" show-week-number></cl-date-picker>
+            <cl-date-picker type="date" placeholder="请选择时间" show-week-number clearable></cl-date-picker>
         </cl-col>
         <cl-col>
-            <cl-date-picker type="daterange" placeholder="请选择日期范围" show-week-number></cl-date-picker>
+            <cl-date-picker type="daterange" placeholder="请选择日期范围" show-week-number clearable></cl-date-picker>
         </cl-col>
     </cl-row>
 </template>
@@ -292,11 +292,11 @@
     <cl-row :gutter="16">
         <cl-col>
             <h4>只读</h4>
-            <cl-date-picker type="date" placeholder="请选择日期" readonly></cl-date-picker>
+            <cl-date-picker type="date" placeholder="请选择日期" readonly clearable></cl-date-picker>
         </cl-col>
         <cl-col>
             <h4>不可输入</h4>
-            <cl-date-picker type="daterange" placeholder="请选择日期范围" :editable="false"></cl-date-picker>
+            <cl-date-picker type="daterange" placeholder="请选择日期范围" :editable="false" clearable></cl-date-picker>
         </cl-col>
     </cl-row>
 </template>
@@ -320,7 +320,7 @@
 
 ```html
 <template>
-    <cl-date-picker type="date" placeholder="请选择日期" disabled></cl-date-picker>
+    <cl-date-picker type="date" placeholder="请选择日期" disabled clearable></cl-date-picker>
 </template>
 <script>
     export default {
@@ -433,9 +433,10 @@
 
 | 事件名 | 说明 | 返回值 |
 | ---- | ---- | ---- |
-| change | 数据改变时触发 | 返回已经格式化的日期 |
+| change | 数据改变时触发,返回已经格式化的日期 | date |
 | clear | 开始clearable时有用。点击清空按钮时触发 | - |
-| clickoutside | 点击外部关闭下拉框时触发 | event |
+| click-outside | 点击外部关闭下拉框时触发 | event |
+| date-click | 选中date时触发，自定义触发器时可以使用,返回已经格式化的日期 | date |
 
 
 

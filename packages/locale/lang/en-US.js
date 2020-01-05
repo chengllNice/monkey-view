@@ -10,6 +10,7 @@ export default {
             selectDate: 'Select date',
             selectTime: 'Select time',
             ok: 'OK',
+            clean: 'Clean',
             year: '',
             month: '',
             startTime: 'Start Time',

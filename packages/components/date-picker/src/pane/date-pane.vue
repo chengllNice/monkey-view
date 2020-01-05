@@ -38,8 +38,21 @@
                                      @update-pane="updatePane"></cl-date-pane-single>
             </div>
             <div class="cl-date-pane__footer" v-if="showFooter">
-                <cl-button type="text" :size="size" :disabled="changeTimeDisabled" @click="changeTimeAndDate">{{isTime ? t('cl.datePicker.selectDate') : t('cl.datePicker.selectTime')}}</cl-button>
-                <cl-button type="primary" :size="size" @click="closeDropDown(true)">{{t('cl.datePicker.ok')}}</cl-button>
+                <cl-button class="cl-date-pane__footer-button cl-date-pane__footer-time"
+                           v-if="pickerType === 'date'"
+                           type="text"
+                           :size="size"
+                           :disabled="changeTimeDisabled"
+                           @click="changeTimeAndDate">
+                    {{isTime ? t('cl.datePicker.selectDate') : t('cl.datePicker.selectTime')}}
+                </cl-button>
+                <cl-button class="cl-date-pane__footer-button"
+                           :size="size"
+                           @click="handleClean">{{t('cl.datePicker.clean')}}</cl-button>
+                <cl-button class="cl-date-pane__footer-button"
+                           type="primary"
+                           :size="size"
+                           @click="closeDropDown(true)">{{t('cl.datePicker.ok')}}</cl-button>
             </div>
         </div>
     </div>
@@ -92,6 +105,7 @@
         },
         computed: {
             showFooter(){
+                if(this.pickerType === 'time' && this.picker.confirm) return true;
                 return ['datetime', 'datetimerange'].includes(this.type);
             },
             changeTimeDisabled(){
@@ -138,6 +152,8 @@
                 }
             },
             initYearAndMonth(startDate, endDate){
+                startDate = dateFormat(startDate);
+                endDate = dateFormat(endDate);
                 let nowDate1 = new Date(startDate);
                 let nowDate2;
                 if(endDate){
@@ -251,28 +267,81 @@
                         break;
                 }
             },
-            updateValue(index, date){
-                if(this.multiple && this.type === 'date'){
-                    this.selectedDateValue.push(...date);
-                }else{
+            updateValue(index, date, updateType){
+                index = parseInt(index);
+                if(this.pickerType === 'date'){
+                    if(this.multiple && this.type === 'date'){
+                        this.selectedDateValue.push(...date);
+                    }else{
+                        if(!this.isRange){
+                            this.selectedDateValue = date;
+                        }else{
+                            if(this.selectedDateValue.length === 2){
+                                if(updateType === 'time'){
+                                    //日期选择时间时第二个日期时间不能小于第一个日期时间
+                                    this.selectedDateValue.splice(index, 1, ...date);
+                                    let date0 = dateFormat(this.selectedDateValue[0], 'hh:mm:ss');
+                                    let date1 = dateFormat(this.selectedDateValue[1], 'hh:mm:ss');
+                                    let nowDate = dateFormat(new Date(), 'YYYY/MM/DD');
+                                    let newDate0 = new Date(nowDate + ' ' + date0);
+                                    let newDate1 = new Date(nowDate + ' ' + date1);
+                                    let time0 = newDate0.getTime();
+                                    let time1 = newDate1.getTime();
+                                    if(time0 > time1){
+                                        let selectValue1 = dateFormat(this.selectedDateValue[1], 'YYYY/MM/DD');
+                                        let compareDate = dateFormat(new Date(selectValue1 + ' ' + date0), this.format);
+                                        this.selectedDateValue.splice(1, 1, compareDate);
+                                    }
+                                }else{
+                                    this.selectedDateValue = [...date];
+                                }
+                            }else if(this.selectedDateValue.length === 1){
+                                if(date[0] > this.selectedDateValue[0]){
+                                    this.selectedDateValue.push(...date);
+                                }else{
+                                    this.selectedDateValue.unshift(...date);
+                                }
+
+                                this.initYearAndMonth(this.selectedDateValue[0], this.selectedDateValue[1]);
+                            }else{
+                                this.selectedDateValue.push(...date);
+                            }
+                        }
+                    }
+                }else if(this.pickerType === 'time'){
                     if(!this.isRange){
                         this.selectedDateValue = date;
                     }else{
-                        if(this.selectedDateValue.length === 2){
-                            this.selectedDateValue = [...date];
-                        }else if(this.selectedDateValue.length === 1){
-                            if(date > this.selectedDateValue[0]){
-                                this.selectedDateValue.push(...date);
-                            }else{
-                                this.selectedDateValue.unshift(...date);
+                        if(!this.selectedDateValue.length){
+                            if(index === 0){
+                                this.selectedDateValue.push(...date, ...date);
+                            }else if(index === 1){
+                                let date0 = new Date();
+                                date0.setHours(0);
+                                date0.setMinutes(0);
+                                date0.setSeconds(0);
+                                date0 = dateFormat(date0, this.format);
+                                this.selectedDateValue.push(date0, ...date);
                             }
-
-                            this.initYearAndMonth(this.selectedDateValue[0], this.selectedDateValue[1]);
-                        }else{
-                            this.selectedDateValue.push(...date);
+                        }else if(this.selectedDateValue.length === 1){
+                            if(index === 0){
+                                this.selectedDateValue.splice(index, 1, ...date);
+                            }else if(index === 1){
+                                this.selectedDateValue.push(...date);
+                            }
+                        }else if(this.selectedDateValue.length === 2){
+                            this.selectedDateValue.splice(index, 1, ...date);
+                            let date0 = new Date(this.selectedDateValue[0]);
+                            let date1 = new Date(this.selectedDateValue[1]);
+                            let time0 = date0.getTime();
+                            let time1 = date1.getTime();
+                            if(time0 > time1){
+                                this.selectedDateValue.splice(1, 1, this.selectedDateValue[0]);
+                            }
                         }
                     }
                 }
+
                 this.$emit('input', this.selectedDateValue);
                 this.closeDropDown();
             },
@@ -283,9 +352,17 @@
             },
             shortcutsClick(item){
                 item.onClick && item.onClick(this.picker);
-                this.closeDropDown();
+                this.closeDropDown(true);
+            },
+            handleClean(){
+                this.picker && this.picker.handleClear();
+                this.closeDropDown(true);
             },
             closeDropDown(isClose){
+                if(isClose){
+                    this.picker.dropDownVisible(false);
+                    return;
+                }
                 switch (this.type) {
                     case 'date':
                         !this.multiple && this.picker.dropDownVisible(false);

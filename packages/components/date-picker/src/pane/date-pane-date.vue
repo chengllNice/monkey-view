@@ -144,6 +144,7 @@
                     this.clearHover();
                 }
                 this.$emit('updateDate', [date.key]);
+                this.picker && this.picker.dateClick(dateFormat(date.key, this.format));
             },
             handleSelectWeek(rowIndex){
                 if(this.type === 'date') return;
@@ -205,7 +206,8 @@
             }
         },
         watch: {
-            year() {
+            year(newVal, oldVal) {
+                console.log(newVal, oldVal,'newVal, oldVal')
                 this.setDateList();
             },
             month() {
@@ -216,14 +218,19 @@
                 let format = this.format;
                 format = format.replace('hh', '').replace('mm', '').replace('ss', '').replace(/:/g, '').trim();
                 this.selectDate = [];
-                newVal.forEach(item=>{
-                    this.selectDate.push(dateFormat(item, format));
-                });
+                if(this.type !== 'week'){
+                    newVal.forEach(item=>{
+                        this.selectDate.push(dateFormat(item, format));
+                    });
+                }
 
                 if (newVal.length === 1 && this.isRange) {
                     this.clearHover();
                 }
+                this.selectWeekNumber.year = '';
+                this.selectWeekNumber.weekNumber = '';
                 if(this.type === 'week' && newVal && newVal.length){
+                    this.selectDate = newVal;
                     this.selectWeekNumber.year = getWeekNumberInfo(newVal[0], this.format).year;
                     this.selectWeekNumber.weekNumber = getWeekNumberInfo(newVal[0], this.format).weekNumber;
                 }

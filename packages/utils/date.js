@@ -120,15 +120,27 @@ export const zero = (value) => {
 export const dateFormat = (forDate, format) => {
     if (!forDate) return forDate;
     format = format || 'YYYY-MM-DD';
+    if(format && format.indexOf('WW') !== -1){
+        let weekInfo = getWeekNumberInfo(forDate, format);
+        return format.replace('YYYY', weekInfo.year).replace('WW', weekInfo.weekNumber);
+    }
     if(typeof forDate === 'string'){
         let dateArr = forDate.match(/(\d{1,})/g);
-        let forYY = dateArr[0] ? dateArr[0] : '';
-        let forMM = dateArr[1] ? dateArr[1] : '';
-        let forDD = dateArr[2] ? dateArr[2] : '';
-        let forhh = dateArr[3] ? dateArr[3] : '';
-        let formm = dateArr[4] ? dateArr[4] : '';
-        let forss = dateArr[5] ? dateArr[5] : '';
-        forDate = new Date(`${forYY}-${forMM}-${forDD} ${forhh}:${formm}:${forss}`);
+        let dateSeparator = '-';
+        let timeSeparator = ':';
+        let forYY = dateArr[0] ? zero(dateArr[0].length !== 4 ? dateArr[0].substring(0,4) : dateArr[0]) : '';
+        let forMM = dateArr[1] ? dateSeparator + zero(dateArr[1].length > 2 ? dateArr[1].substring(0,2) : dateArr[1]) : '';
+        let forDD = dateArr[2] ? dateSeparator + zero(dateArr[2].length > 2 ? dateArr[2].substring(0,2) : dateArr[2]) : '';
+        let forhh = dateArr[3] ? ' ' + zero(dateArr[3].length > 2 ? dateArr[3].substring(0,2) : dateArr[3]) : '';
+        let formm = dateArr[4] ? timeSeparator + zero(dateArr[4].length > 2 ? dateArr[4].substring(0,2) : dateArr[4]) : '';
+        let forss = dateArr[5] ? timeSeparator + zero(dateArr[5].length > 2 ? dateArr[5].substring(0,2) : dateArr[5]) : '';
+        if(forYY && forYY.length !== 4) forYY = new Date().getFullYear().toString();
+        if(forMM && Math.abs(forMM) > 12) forMM = '12';
+        if(forDD && Math.abs(forDD) > 31) forDD = '31';
+        if(forhh && Math.abs(forhh) > 59) forhh = '59';
+        if(formm && Math.abs(formm) > 59) formm = '59';
+        if(forss && Math.abs(forss) > 59) forss = '59';
+        forDate = new Date(`${forYY}${forMM}${forDD}${forhh}${formm}${forss}`);
     }else{
         forDate = new Date(forDate);
     }
@@ -313,4 +325,22 @@ export const getWeekNumberInfo = (weekNumberInfo, format) => {
         month: zero(month),
         weekNumber: week
     };
+};
+
+/**
+ * 排序日期数组
+ * @param date
+ * @returns {*}
+ */
+export const sortDate = (date = []) => {
+    if(!Array.isArray(date)) return date;
+    let result = JSON.parse(JSON.stringify(date));
+    result.sort((a, b)=>{
+        let date1 = new Date(a);
+        let date2 = new Date(b);
+        let time1 = date1.getTime();
+        let time2 = date2.getTime();
+        return time1 > time2;
+    });
+    return result;
 };

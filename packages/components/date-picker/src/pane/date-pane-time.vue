@@ -7,45 +7,55 @@
         <div class="cl-date-pane-time__hh">
             <ClScroll size="small" ref="hhScroll">
                 <div class="cl-date-pane-time__hh-inner">
-                    <div class="cl-date-pane-item__col"
-                         :class="[
-                            !(hhItem.id === selectedHours) && 'cl-date-pane-item__hover',
-                            !hhItem.visibility && 'cl-date-pane-time__hide',
-                            hhItem.id === selectedHours && 'cl-date-pane-item__selected'
-                         ]"
-                         v-for="hhItem in hhData"
-                         :key="hhItem.id"
-                         @click="selectHours(hhItem)"><em>{{hhItem.name}}</em></div>
+                    <template v-for="hhItem in hhData">
+                        <div v-if="!(picker.hideDisabledOptions && picker.disabledHours.includes(parseInt(hhItem.id)))"
+                             class="cl-date-pane-item__col"
+                             :class="[
+                                !(hhItem.id === selectedHours) && !(picker.disabledHours && picker.disabledHours.includes(parseInt(hhItem.id))) && 'cl-date-pane-item__hover',
+                                !hhItem.visibility && 'cl-date-pane-time__hide',
+                                hhItem.id === selectedHours && 'cl-date-pane-item__selected',
+                                picker.disabledHours && picker.disabledHours.includes(parseInt(hhItem.id)) && 'cl-date-pane-item__disabled',
+                             ]"
+
+                             :key="hhItem.id"
+                             @click="selectHours(hhItem)"><em>{{hhItem.name}}</em></div>
+                    </template>
                 </div>
             </ClScroll>
         </div>
         <div class="cl-date-pane-time__mm">
             <ClScroll size="small" ref="mmScroll">
                 <div class="cl-date-pane-time__mm-inner">
-                    <div class="cl-date-pane-item__col"
-                         :class="[
-                            !(mmItem.id === selectedMinutes) && 'cl-date-pane-item__hover',
-                            !mmItem.visibility && 'cl-date-pane-time__hide',
-                            mmItem.id === selectedMinutes && 'cl-date-pane-item__selected'
-                         ]"
-                         v-for="mmItem in mmData"
-                         :key="mmItem.id"
-                         @click="selectMinutes(mmItem)"><em>{{mmItem.name}}</em></div>
+                    <template v-for="mmItem in mmData">
+                        <div v-if="!(picker.hideDisabledOptions && picker.disabledMinutes.includes(parseInt(mmItem.id)))"
+                             class="cl-date-pane-item__col"
+                             :class="[
+                                !(mmItem.id === selectedMinutes) && !(picker.disabledMinutes && picker.disabledMinutes.includes(parseInt(mmItem.id))) && 'cl-date-pane-item__hover',
+                                !mmItem.visibility && 'cl-date-pane-time__hide',
+                                mmItem.id === selectedMinutes && 'cl-date-pane-item__selected',
+                                picker.disabledMinutes && picker.disabledMinutes.includes(parseInt(mmItem.id)) && 'cl-date-pane-item__disabled',
+                             ]"
+                             :key="mmItem.id"
+                             @click="selectMinutes(mmItem)"><em>{{mmItem.name}}</em></div>
+                    </template>
                 </div>
             </ClScroll>
         </div>
         <div class="cl-date-pane-time__ss" v-if="showSsCol">
             <ClScroll size="small" ref="ssScroll">
                 <div class="cl-date-pane-time__ss-inner">
-                    <div class="cl-date-pane-item__col"
-                         :class="[
-                            !(ssItem.id === selectedSecond) && 'cl-date-pane-item__hover',
-                            !ssItem.visibility && 'cl-date-pane-time__hide',
-                            ssItem.id === selectedSecond && 'cl-date-pane-item__selected'
-                         ]"
-                         v-for="ssItem in ssData"
-                         :key="ssItem.id"
-                         @click="selectSecond(ssItem)"><em>{{ssItem.name}}</em></div>
+                    <template v-for="ssItem in ssData">
+                        <div v-if="!(picker.hideDisabledOptions && picker.disabledSeconds.includes(parseInt(ssItem.id)))"
+                             class="cl-date-pane-item__col"
+                             :class="[
+                                !(ssItem.id === selectedSecond) && !(picker.disabledSeconds && picker.disabledSeconds.includes(parseInt(ssItem.id))) && 'cl-date-pane-item__hover',
+                                !ssItem.visibility && 'cl-date-pane-time__hide',
+                                ssItem.id === selectedSecond && 'cl-date-pane-item__selected',
+                                picker.disabledSeconds && picker.disabledSeconds.includes(parseInt(ssItem.id)) && 'cl-date-pane-item__disabled',
+                             ]"
+                             :key="ssItem.id"
+                             @click="selectSecond(ssItem)"><em>{{ssItem.name}}</em></div>
+                    </template>
                 </div>
             </ClScroll>
         </div>
@@ -58,6 +68,7 @@
 
     export default {
         name: "ClDatePaneTime",
+        inject: ['picker'],
         props: {
             size: String,
             type: String,
@@ -76,14 +87,22 @@
             index: String,
         },
         data(){
+            let nowDate = new Date();
+            nowDate.setHours(0);
+            nowDate.setMinutes(0);
+            nowDate.setSeconds(0);
             return {
                 hhData: [],
                 mmData: [],
                 ssData: [],
-                selectedHours: '00',
-                selectedMinutes: '00',
-                selectedSecond: '00',
+                selectedHours: '',
+                selectedMinutes: '',
+                selectedSecond: '',
                 hideNum: 8,
+                defaultHours: '',
+                defaultMinutes: '',
+                defaultSecond: '',
+                nowDate: nowDate
             }
         },
         computed: {
@@ -96,69 +115,90 @@
         },
         mounted(){
             this.initData();
-            this.getSelected();
+            this.$nextTick(()=>{
+                this.getSelected();
+            })
         },
         methods: {
             initData(){
                 this.hhData = [];
                 this.mmData = [];
                 this.ssData = [];
+                this.defaultHours = '';
+                this.defaultMinutes = '';
+                this.defaultSecond = '';
                 for (let i = 0; i < 24 + this.hideNum; i++){
+                    if(this.picker && this.picker.disabledHours && !this.picker.disabledHours.includes(i) && !this.defaultHours){
+                        this.defaultHours = zero(i.toString());
+                    }
                     this.hhData.push({
                         id: zero(i.toString()),
                         name: zero(i.toString()),
-                        visibility: i <= 24
+                        visibility: i <= 24,
                     });
                 }
                 for (let i = 0; i < 60  + this.hideNum; i++){
+                    if(this.picker && this.picker.disabledMinutes && !this.picker.disabledMinutes.includes(i) && !this.defaultMinutes){
+                        this.defaultMinutes = zero(i.toString());
+                    }
+                    if(this.picker && this.picker.disabledSeconds && !this.picker.disabledSeconds.includes(i) && !this.defaultSecond){
+                        this.defaultSecond = zero(i.toString());
+                    }
                     this.mmData.push({
                         id: zero(i.toString()),
                         name: zero(i.toString()),
-                        visibility: i <= 60
+                        visibility: i <= 60,
                     });
                     this.ssData.push({
                         id: zero(i.toString()),
                         name: zero(i.toString()),
-                        visibility: i <= 60
+                        visibility: i <= 60,
                     });
                 }
+                this.nowDate.setHours(parseInt(this.defaultHours));
+                this.nowDate.setMinutes(parseInt(this.defaultMinutes));
+                this.nowDate.setSeconds(parseInt(this.defaultSecond));
             },
             getSelected(){
-                this.selectedHours = dateFormat(this.date[this.index], 'hh');
-                this.selectedMinutes = dateFormat(this.date[this.index], 'mm');
-                this.selectedSecond = dateFormat(this.date[this.index], 'ss');
-
+                this.selectedHours = '';
+                this.selectedMinutes = '';
+                this.selectedSecond = '';
+                let date = this.nowDate;
+                if(this.date[this.index]){
+                    date = new Date(this.date[this.index]);
+                    this.selectedHours = dateFormat(date, 'hh');
+                    this.selectedMinutes = dateFormat(date, 'mm');
+                    this.selectedSecond = dateFormat(date, 'ss');
+                }
                 this.scrollToHours();
                 this.scrollToMinutes();
                 this.scrollToSecond();
             },
             selectHours(hhItem){
+                if(this.picker.disabledHours && this.picker.disabledHours.includes(parseInt(hhItem.id))) return;
                 this.selectedHours = hhItem.id;
                 this.emitUpdateTime();
             },
             selectMinutes(mmItem){
+                if(this.picker.disabledMinutes && this.picker.disabledMinutes.includes(parseInt(mmItem.id))) return;
                 this.selectedMinutes = mmItem.id;
                 this.emitUpdateTime();
             },
             selectSecond(ssItem){
+                if(this.picker.disabledSeconds && this.picker.disabledSeconds.includes(parseInt(ssItem.id))) return;
                 this.selectedSecond = ssItem.id;
                 this.emitUpdateTime();
             },
             emitUpdateTime(){
-                let date = new Date();
-                if(this.date && this.date.length){
+                let date = this.nowDate;
+                if(this.date[this.index]){
                     date = new Date(this.date[this.index]);
                 }
-                date.setHours(this.selectedHours);
-                date.setMinutes(this.selectedMinutes);
-                date.setSeconds(this.selectedSecond);
+                date.setHours(this.selectedHours || this.defaultHours);
+                date.setMinutes(this.selectedMinutes || this.defaultMinutes);
+                date.setSeconds(this.selectedSecond || this.defaultSecond);
                 date = dateFormat(date, this.format);
-                if(this.date && this.date.length){
-                    this.date.splice(this.index, 1, date);
-                    this.$emit('update-time', this.date);
-                }else{
-                    this.$emit('update-time', [date]);
-                }
+                this.$emit('update-time', [date]);
             },
             scrollToHours(){
                 let y = 0;
@@ -195,6 +235,11 @@
             date() {
                 this.getSelected();
             },
+            'picker.visible': function (newVal) {
+                if(newVal){
+                    this.getSelected();
+                }
+            }
         }
     }
 </script>

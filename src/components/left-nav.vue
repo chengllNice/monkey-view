@@ -25,7 +25,7 @@
 </template>
 
 <script>
-
+    import Config from '@/config'
     export default {
         name: "leftNav",
         data() {
@@ -117,6 +117,13 @@
                                 link: '/page',
                                 query: {},
                             },
+                            {
+                                key: 'dropdown',
+                                name: 'Dropdown下拉菜单',
+                                icon: 'cl-icon-care-down',
+                                link: '/dropdown',
+                                query: {},
+                            },
                         ]
                     },
                     {
@@ -170,6 +177,13 @@
                                 name: 'DatePicker日期选择器',
                                 icon: 'cl-icon-date',
                                 link: '/date-picker',
+                                query: {},
+                            },
+                            {
+                                key: 'time-picker',
+                                name: 'TimePicker时间选择器',
+                                icon: 'cl-icon-time',
+                                link: '/time-picker',
                                 query: {},
                             },
                             {
@@ -307,7 +321,7 @@
                 ],
                 activeMenu: '',
                 mode: '',
-                lang: 'zh-CN'
+                lang: Config.defaultLang
             }
         },
         computed: {},
@@ -320,7 +334,7 @@
         methods: {
             setActiveMenu() {
                 let path = this.$route.path;
-                this.lang = path.split('/')[1] || this.lang;
+                this.lang = Config.langTypes.includes(path.split('/')[1]) ? path.split('/')[1] : Config.defaultLang;
                 this.mode = `/${this.lang}/doc`;
                 this.siderData.forEach(item => {
                     item.childrens && item.childrens.forEach(childItem => {

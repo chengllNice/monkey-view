@@ -108,7 +108,7 @@ $year-and-month-margin: #{$--date-picker-pane-margin * 2};
     $time-width: size-common($size, 'time-width');
   }
   .cl-date-pane-time__hh, .cl-date-pane-time__mm, .cl-date-pane-time__ss{
-    height: #{($time-height) * 8};
+    height: #{($time-height / 1.2) * 8};
   }
 
   .cl-date-pane-item__col {
@@ -117,8 +117,8 @@ $year-and-month-margin: #{$--date-picker-pane-margin * 2};
     padding: 0 $year-and-month-margin;
     em{
       width: $time-width;
-      height: $time-height;
-      line-height: $time-height;
+      height: #{$time-height / 1.2};
+      line-height: #{$time-height / 1.2};
     }
   }
 }
@@ -188,10 +188,11 @@ $year-and-month-margin: #{$--date-picker-pane-margin * 2};
   }
 
   .cl-date-pane-item__disabled{
-    &, em{
+    em{
       background-color: $--background-color-disabled;
       color: $--color-text-disabled;
       cursor: not-allowed;
+      border-color: transparent;
     }
   }
 

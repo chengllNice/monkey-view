@@ -3,7 +3,7 @@
             'cl-date-pane-single',
             size && `cl-date-pane-single--${size}`
          ]">
-        <div class="cl-date-pane-single__header" v-show="showDateHeader">
+        <div class="cl-date-pane-single__header" v-if="showDateHeader">
             <span class="cl-date-pane-single__header-pre">
                 <i class="cl-icon-arrow-left" @click.stop="jumpDate('pre-year')"></i>
                 <i class="cl-icon-left" @click.stop="jumpDate('pre-month')" v-if="dateChangeIconShow"></i>
@@ -17,48 +17,50 @@
                 <i class="cl-icon-arrow-right" @click.stop="jumpDate('next-year')"></i>
             </span>
         </div>
-        <div class="cl-date-pane-single__header" v-show="showTimeHeader">
+        <div class="cl-date-pane-single__header" v-if="showTimeHeader">
             <span class="cl-date-pane-single__header-date">
                 {{index === '0' ? t('cl.datePicker.startTime') : t('cl.datePicker.endTime')}}
             </span>
         </div>
         <div class="cl-date-pane-single__body">
-            <cl-date-pane-date :size="size"
-                               :type="currentType"
-                               :year="year"
-                               :month="month"
-                               :date="date"
-                               :index="index"
-                               :hover-date="hoverDate"
-                               :currentDate="currentDate"
-                               :is-range="isRange"
-                               :format="format"
-                               @updateWeek="updateSelectWeek"
-                               @updateDate="updateSelectDate"
-                               @hover-date="handleHoverDate"
-                               v-show="currentType === 'date' || currentType === 'week'"></cl-date-pane-date>
-            <cl-date-pane-year :size="size"
-                               :type="currentType"
-                               :year="year"
-                               :month="month"
-                               :date="date"
-                               :index="index"
-                               :currentDate="currentDate"
-                               :is-range="isRange"
-                               :format="format"
-                               @update-year="updateSelectYear"
-                               v-show="currentType === 'year'"></cl-date-pane-year>
-            <cl-date-pane-month :size="size"
-                                :type="currentType"
-                                :year="year"
-                                :month="month"
-                                :date="date"
-                                :index="index"
-                                :currentDate="currentDate"
-                                :is-range="isRange"
-                                :format="format"
-                                @update-month="updateSelectMonth"
-                                v-show="currentType === 'month'"></cl-date-pane-month>
+            <template v-if="pickerType === 'date'">
+                <cl-date-pane-date :size="size"
+                                   :type="currentType"
+                                   :year="year"
+                                   :month="month"
+                                   :date="date"
+                                   :index="index"
+                                   :hover-date="hoverDate"
+                                   :currentDate="currentDate"
+                                   :is-range="isRange"
+                                   :format="format"
+                                   @updateWeek="updateSelectWeek"
+                                   @updateDate="updateSelectDate"
+                                   @hover-date="handleHoverDate"
+                                   v-show="currentType === 'date' || currentType === 'week'"></cl-date-pane-date>
+                <cl-date-pane-year :size="size"
+                                   :type="currentType"
+                                   :year="year"
+                                   :month="month"
+                                   :date="date"
+                                   :index="index"
+                                   :currentDate="currentDate"
+                                   :is-range="isRange"
+                                   :format="format"
+                                   @update-year="updateSelectYear"
+                                   v-show="currentType === 'year'"></cl-date-pane-year>
+                <cl-date-pane-month :size="size"
+                                    :type="currentType"
+                                    :year="year"
+                                    :month="month"
+                                    :date="date"
+                                    :index="index"
+                                    :currentDate="currentDate"
+                                    :is-range="isRange"
+                                    :format="format"
+                                    @update-month="updateSelectMonth"
+                                    v-show="currentType === 'month'"></cl-date-pane-month>
+            </template>
             <cl-date-pane-time :size="size"
                                :type="currentType"
                                :year="year"
@@ -70,7 +72,7 @@
                                :is-range="isRange"
                                :format="format"
                                @update-time="updateSelectTime"
-                               v-if="currentType === 'time'"></cl-date-pane-time>
+                               v-if="currentType === 'time' || currentType === 'timerange'"></cl-date-pane-time>
         </div>
     </div>
 </template>
@@ -86,6 +88,7 @@
     export default {
         name: "ClDatePaneSingle",
         mixins: [Locale],
+        inject: ['picker'],
         props: {
             value: Array,
             size: String,
@@ -121,10 +124,10 @@
                 return ['year'].includes(this.currentType) ? 10 : 1;
             },
             showDateHeader(){
-                return !['time'].includes(this.currentType)
+                return !['time', 'timerange'].includes(this.currentType)
             },
             showTimeHeader(){
-                return this.isRange && ['time'].includes(this.currentType)
+                return this.isRange && ['time', 'timerange'].includes(this.currentType)
             },
             selectDate(){
                 return dateFormat(this.date[this.index], 'DD');
@@ -154,8 +157,7 @@
                 this.$emit('update-date', this.index, date);
             },
             updateSelectTime(date){
-                // date = [dateFormat(date[0], this.format)];
-                this.$emit('update-date', this.index, date);
+                this.$emit('update-date', this.index, date, 'time');
             },
             updateSelectWeek(weekNum){
                 this.$emit('update-date', this.index, [weekNum]);
@@ -181,6 +183,7 @@
             },
             updateSingleDate(type, year, month, flag = true){
                 year = year || this.year;
+                console.log(year,'rrrrrr')
                 month = month || this.month;
                 this.$emit('update-pane', {
                     type,

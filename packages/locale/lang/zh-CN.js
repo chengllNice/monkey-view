@@ -10,6 +10,7 @@ export default {
             selectDate: '选择日期',
             selectTime: '选择时间',
             ok: '确定',
+            clean: '清除',
             year: '年',
             month: '月',
             startTime: '开始时间',

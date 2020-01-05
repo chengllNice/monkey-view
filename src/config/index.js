@@ -1,4 +1,7 @@
-
-module.exports = {
-  // defaultLang: 'zh-CN'
+export default {
+    langTypes: [
+        'zh-CN',
+        'en-US',
+    ],
+    defaultLang: 'zh-CN'
 };

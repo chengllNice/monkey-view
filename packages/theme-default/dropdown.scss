@@ -11,6 +11,9 @@
   box-shadow: $--box-shadow-default;
   background-color: $--color-white;
   padding: 5px 0;
+  .cl-dropdown{
+    width: 100%;
+  }
 }
 
 @include c(dropdown-item){
@@ -18,23 +21,24 @@
   cursor: pointer;
   color: $--color-text-default;
   position: relative;
+  transition: background $--animation-time ease-in-out;
+  line-height: normal;
   &:not(.is-disabled):hover{
     background-color: $--background-color-hover;
     color: $--color-primary;
   }
 
   @include m(divided){
-    margin-top: -#{$--dropdown-item-padding-vertical / 2};
+    margin-top: $--dropdown-item-padding-vertical;
     &:before{
       content: '';
       display: block;
       position: absolute;
       top: -#{$--dropdown-item-padding-vertical / 2};
       left: 0;
-      height: 0;
+      height: #{$--dropdown-item-padding-vertical / 2};
       width: 100%;
       border-top: $--border-default;
-      margin: #{$--dropdown-item-padding-vertical / 2} 0;
     }
   }
 

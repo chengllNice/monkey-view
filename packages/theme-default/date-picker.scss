@@ -107,6 +107,13 @@
     border-top: $--border-default;
     padding: $--date-picker-pane-padding;
     text-align: right;
+    @include clear-float;
+  }
+  @include e(footer-button){
+    margin-left: 5px;
+  }
+  @include e(footer-time){
+    float: left;
   }
   //@include clear-float;
   //@include e(left){

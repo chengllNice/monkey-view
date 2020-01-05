@@ -3,7 +3,7 @@
          v-click-outside.capture="handleClose"
          @mouseenter="handleMouseEnter"
          @mouseleave="handleMouseLeave">
-        <div ref="reference" @click="handleClick">
+        <div ref="reference" @click="handleClick" @contextmenu.prevent="handleRightClick">
             <slot></slot>
         </div>
         <transition :name="transition">
@@ -45,7 +45,7 @@
                 type: String,
                 default: 'hover',
                 validator(value){
-                    return ['hover', 'click'].includes(value)
+                    return ['hover', 'click', 'contextmenu', 'custom'].includes(value)
                 }
             },
             visible: {
@@ -54,7 +54,7 @@
             },
             renderHtml: {
                 type: [HTMLElement, Boolean],
-                default: true,
+                default: false,
             }
         },
         data(){
@@ -92,24 +92,40 @@
                     this.changeDropDown(!this.currentVisible);
                 }
             },
+            handleRightClick(){
+                if(this.trigger === 'contextmenu'){
+                    this.changeDropDown(!this.currentVisible);
+                }
+            },
             handleClose(event){
-                if(this.trigger === 'click'){
+                if(this.trigger === 'click' || this.trigger === 'contextmenu'){
                     if(this.currentVisible){
                         if(this.renderHtml !== false){
                             const {$el} = this.$refs.dropDown;
                             if ($el !== event.target && !$el.contains(event.target)) {
                                 this.changeDropDown();
+                                return;
                             }
                         }
-                    }else{
                         this.changeDropDown();
                     }
                 }
+                this.$emit('click-outside', event);
             },
             changeDropDown(visible){
                 this.currentVisible = visible || false;
                 this.$emit('update:visible', this.currentVisible);
+            },
+            itemClick(name){
+                this.changeDropDown();
+                this.$emit('click-item', name);
             }
         },
+        watch: {
+            visible(newVal){
+                this.currentVisible = newVal;
+                this.$emit('visible-change', newVal);
+            }
+        }
     }
 </script>

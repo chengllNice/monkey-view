@@ -14,6 +14,7 @@
     export default {
         name: "ClDropdownItem",
         props: {
+            name: String,
             disabled: Boolean,
             divided: Boolean,//显示分割线
         },
@@ -28,7 +29,7 @@
         methods: {
             handleClick(){
                 if(this.disabled) return;
-                this.dropDown && this.dropDown.changeDropDown();
+                this.dropDown && this.dropDown.itemClick(this.name);
             }
         }
     }

@@ -1,4 +1,8 @@
 
+import Config from '../config'
+
+const langTypes = Config.langTypes;
+
 const routerTypes = [
     'home',
     'button',
@@ -33,11 +37,8 @@ const routerTypes = [
     'affix',
     'date-picker',
     'form',
-];
-
-const langTypes = [
-    'zh-CN',
-    'en-US',
+    'dropdown',
+    'time-picker'
 ];
 
 let routers = [];

@@ -15,9 +15,10 @@
                           :clearable="clearable"
                           :placeholder="placeholder"
                           :readonly="readonlyInput"
+                          @enter="handleEnter"
                           @click.native="handleFocus"
-                          @blur="updateInputValue"
-                          @clear="clearHandle"></cl-input>
+                          @blur="handleBlur"
+                          @clear="handleClear"></cl-input>
             </slot>
         </div>
         <transition :name="transition">
@@ -179,11 +180,11 @@
                     this.dateValue = value || [];
                 } else {
                     if (this.isRange) {
-                        value = value && value.length ? value : [];
+                        value = value && Array.isArray(value) && value.length ? value : [];
                         if (value[0] && value[1]) {
                             this.dateValue = [dateFormat(value[0], this.formatType), dateFormat(value[1], this.formatType)];
                         }
-                    } else if (typeof value === 'string') {
+                    } else if (typeof value === 'string' || value instanceof Date) {
                         if (this.type === 'week') {
                             this.dateValue = value ? [value] : [];
                         } else {
@@ -193,11 +194,22 @@
                 }
             },
             setValue(value) {
-                !Array.isArray(value) && (value = value.toString());
+                if(!Array.isArray(value)){
+                    value = new Date(value);
+                }
                 this.initDateValue(value);
             },
             handleFocus() {
-                this.dropDownVisible(!this.visible);
+                this.dropDownVisible(true);
+            },
+            handleBlur(value){
+                this.handleEnter(value);
+            },
+            handleEnter(value){
+                if(!value) return;
+                value = dateFormat(value, this.formatType);
+                if(this.isRange) value = [value];
+                this.initDateValue(value);
             },
             handleClickOutside(event) {
                 if (this.visible) {
@@ -208,14 +220,14 @@
                         }
                     }
                 }
-                this.$emit('clickoutside',event);
+                this.$emit('click-outside',event);
                 this.dropDownVisible(false);
             },
             dropDownVisible(visible) {
                 if (this.readonly || this.open || this.disabled) return;
                 this.visible = visible;
             },
-            clearHandle() {
+            handleClear() {
                 this.dateValue = [];
                 this.$emit('clear');
             },
@@ -243,6 +255,9 @@
             },
             blur(){
                 this.$refs.dateInput && this.$refs.dateInput.blur();
+            },
+            dateClick(selectValue){
+                this.$emit('date-click', selectValue);
             }
         },
         watch: {

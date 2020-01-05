@@ -65,8 +65,8 @@
             type === 'textarea' && `cl-textarea__suffix`,
         ]">
             <i v-if="showClearable"
-               class="cl-input__suffix-inner cl-input__clearable cl-icon-remove-fill"
-               @click="handlerClear"></i>
+               class="cl-input__suffix-inner cl-input__clearable cl-icon-error-fill"
+               @click.stop="handlerClear"></i>
             <span class="cl-input__suffix-inner"
                   v-else-if="$slots.suffix">
                 <slot name="suffix"></slot>

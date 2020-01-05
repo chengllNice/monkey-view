@@ -13,11 +13,12 @@
 </template>
 
 <script>
+    import Config from '@/config'
     export default {
         name: "Cheader",
         data() {
             return {
-                lang: 'zh-CN',
+                lang: Config.defaultLang,
                 langMap: {
                     'zh-CN': '中文',
                     'en-US': 'English',
@@ -42,7 +43,7 @@
                 })
             },
             setLang(){
-                this.lang = this.$route.path.split('/')[1] || this.lang;
+                this.lang = Config.langTypes.includes(this.$route.path.split('/')[1]) ? this.$route.path.split('/')[1] : Config.defaultLang;
             }
         },
         watch: {
