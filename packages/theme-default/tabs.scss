@@ -35,12 +35,10 @@
     display: inline-block;
   }
   @include e(close){
-    font-size: 10px;
-    transform-origin: top;
-    transform: scale(0.8);
     margin-left: 10px;
     vertical-align: middle;
     color: $--color-text-default;
+    line-height: normal;
 
     &:hover{
       color: $--color-text-title;

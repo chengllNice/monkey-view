@@ -188,7 +188,7 @@
         </cl-button-group>
         <cl-button-group>
             <cl-button icon="cl-icon-edit"></cl-button>
-            <cl-button icon="cl-icon-square-plus"></cl-button>
+            <cl-button icon="cl-icon-plus"></cl-button>
             <cl-button icon="cl-icon-check"></cl-button>
             <cl-button icon="cl-icon-close"></cl-button>
         </cl-button-group>

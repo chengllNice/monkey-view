@@ -56,7 +56,7 @@
     <h4>全部展示四项--不同的排序</h4>
     <cl-page :total="100" order="page, pageSize, jump, total"/>
     <h4>totalText和pageSize</h4>
-    <cl-page :total="100" order="total, page, pageSize, jump" totalText="总共 total 条数据" pageSizeText="每页 pageSize 条" />
+    <cl-page :total="100" order="total, page, pageSize, jump" totalText="总共 {total} 条数据" pageSizeText="每页 {pageSize} 条" />
 </template>
 
 ```
@@ -133,8 +133,8 @@
 | preText | String | 上一页文字，替换上一页的图标 | - |
 | nextText | String | 下一页文字，替换下一页的图标 | - |
 | order | String | 分页排序及显示对应功能，各值使用逗号隔开。例如：`total, page, pageSize, jump` | - |
-| totalText | String | 设置总数据量的显示方式，其中`total`为占位符，替换总数据量 | 共 total 条 |
-| pageSizeText | String | 设置每页条数选择项的显示方式，其中`pageSize`为占位符，替换总数据量 | pageSize 条/页 |
+| totalText | String | 设置总数据量的显示方式，其中`{total}`为占位符，替换总数据量 | 共 total 条 |
+| pageSizeText | String | 设置每页条数选择项的显示方式，其中`{pageSize}`为占位符，替换总数据量 | pageSize 条/页 |
 
 
 ### Page event

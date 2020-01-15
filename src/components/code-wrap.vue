@@ -89,7 +89,7 @@
         margin-bottom: 10px;
         text-align: center;
         i{
-            font-size: 14px;
+            font-size: 20px;
             cursor: pointer;
             margin: 0 10px;
             transition: transform 0.2s ease-in-out;

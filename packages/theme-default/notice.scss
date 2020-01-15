@@ -63,14 +63,18 @@
   @include m(type){
     padding-left: $--notice-padding-with-content-icon-horizontal;
     .cl-notice__icon{
-      font-size: 26px;
       left: #{$--notice-padding-with-content-icon-horizontal / 2};
+      i{
+        font-size: 36px;
+      }
     }
     &.cl-notice--only-title{
       padding-left: $--notice-padding-with-icon-horizontal;
       .cl-notice__icon{
-        font-size: 16px;
         left: #{$--notice-padding-with-icon-horizontal / 2};
+        i{
+          font-size: 20px;
+        }
       }
     }
   }

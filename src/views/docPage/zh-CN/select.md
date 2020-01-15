@@ -157,6 +157,7 @@
             {
               label: 'Banana',
               value: 'banana',
+              disabled: true,     
             },
             {
               label: 'Orange',

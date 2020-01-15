@@ -109,7 +109,8 @@ $--media-points: (
 
 
 
-
+/*-----page-----*/
+$--page-jump-color: $--color-text-des !default;
 
 /*-----dropdown-----*/
 $--dropdown-item-padding-vertical: 7px !default;
@@ -241,7 +242,7 @@ $--modal-confirm-title-font-size: $--font-size-title !default;
 $--modal-confirm-content-font-size: 14px !default;
 
 /*-----message-----*/
-$--message-icon-font-size: 16px !default;
+$--message-icon-font-size: 20px !default;
 $--message-vertical-padding: 8px !default;
 $--message-horizontal-padding: 16px !default;
 
