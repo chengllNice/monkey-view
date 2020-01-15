@@ -1,4 +1,4 @@
-@import "./config/var";
+@import "./base/var";
 @import "./config/mixins/index";
 
 $picture-thumbnial-height: #{$--upload-picture-height - $--upload-picture-padding * 2 - 2px};

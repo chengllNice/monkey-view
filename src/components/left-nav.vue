@@ -43,6 +43,13 @@
                                 query: {},
                             },
                             {
+                                key: 'color',
+                                name: 'Color色彩',
+                                icon: 'cl-icon-home',
+                                link: '/color',
+                                query: {},
+                            },
+                            {
                                 key: 'button',
                                 name: 'Button按钮',
                                 icon: 'cl-icon-button',

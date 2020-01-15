@@ -38,7 +38,8 @@ const routerTypes = [
     'date-picker',
     'form',
     'dropdown',
-    'time-picker'
+    'time-picker',
+    'color'
 ];
 
 let routers = [];

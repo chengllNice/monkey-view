@@ -1,6 +1,6 @@
 
-@import "../var";
-@import "../config";
+@import "../../base/var";
+@import "../../base/config";
 
 @mixin button-class($type){
   $button-class: $namespace + '-button' + $modifier-separator + $type;

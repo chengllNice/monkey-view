@@ -26,9 +26,13 @@ $--color-white: #ffffff !default;
 $--color-black: #000000 !default;
 $--color-expand: #c0c4cc !default;
 $--color-disabled: #dcdee2 !default;
+
+/*-----Animation-----*/
 $--animation-time: 0.3s;
 //$--animation-time-: 0.4s;
 
+
+/*-----text-color-----*/
 $--color-text-default: #515a6e !default;
 $--color-text-placeholder: $--color-expand !default;
 $--color-text-disabled: $--color-disabled !default;
@@ -37,6 +41,8 @@ $--color-text-des: #999999 !default;
 $--color-text-title: #17233d !default;
 $--color-text-legend: #999999 !default;
 
+
+/*-----border-color-----*/
 $--border-color-default: #e8eaec !default;//#dcdee2
 $--border-color-disabled: #e8e8e8 !default;//#c5c8ce
 $--border-color-primary: #2d8cf0 !default;
@@ -46,6 +52,8 @@ $--border-color-success: #19be6b !default;
 //$--border-color-success: #42b983 !default;
 $--border-color-info: #13c2c2 !default;
 
+
+/*-----background-color-----*/
 $--background-color-base: #f5f7fa !default;
 $--background-color-disabled: #f7f7f7 !default;
 //$--background-color-disabled: #c5c8ce !default;
@@ -98,6 +106,10 @@ $--media-points: (
   'xl': (min-width: $--xl),
   'xxl': (min-width: $--xxl),
 );
+
+
+
+
 
 /*-----dropdown-----*/
 $--dropdown-item-padding-vertical: 7px !default;
