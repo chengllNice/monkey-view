@@ -1,4 +1,4 @@
-@import "./config/var";
+@import "./base/var";
 @import "./config/mixins/index.scss";
 
 @include c(select){
@@ -14,6 +14,7 @@
     border-radius: $--border-radius-default;
     box-shadow: $--box-shadow-default;
     background-color: $--color-white;
+    //padding: 10px 0;
   }
 
   @include e(reference){
@@ -58,15 +59,27 @@
     position: relative;
     width: 100%;
     vertical-align: middle;
+
+    &:hover,
+    &:focus,
+    &:active{
+      .cl-select__el-multiple{
+        border-color: $--color-primary;
+      }
+    }
+
     @include e(el-input){
       cursor: pointer;
       input{
         cursor: pointer;
       }
+      .cl-input__source-suffix{
+        padding-right: $--select-suffix-width;
+      }
     }
     @include e(el-icon){
-      transition: $--animation-time;
-      font-size: 10px;
+      transition: all $--animation-time ease-in-out;
+      //font-size: 14px;
     }
     @include e(el-icon-rotate){
       @include utils-rotate();
@@ -75,11 +88,14 @@
     @include e(el-placeholder){
       display: inline-block;
       width: 100%;
-      height: $--input-padding-height-default;
-      line-height: $--input-padding-height-default;
+      height: #{$--height-default - 2px};
+      line-height: #{$--height-default - 2px};
       color: $--color-text-placeholder;
     }
 
+    .cl-input__suffix{
+      width: $--select-suffix-width;
+    }
     @include e(el-suffix){
       position: absolute;
       right: 1px;
@@ -87,8 +103,7 @@
       bottom: 0;
       margin: auto;
       text-align: center;
-      height: calc(100% - 2px);
-      width: #{$--input-padding-icon-default - 2px};
+      width: $--select-suffix-width;
 
       @include e(el-suffix-inner){
         position: absolute;
@@ -106,27 +121,22 @@
       vertical-align: middle;
       position: relative;
       display: inline-block;
-      border-radius: $--input-radius;
-      background-color: $--input-background-color;
-      border: $--input-border;
+      border-radius: $--border-radius-default;
+      background-color: $--color-white;
+      border: $--border-default;
       padding-left: $--input-padding-horizontal-default;
-      padding-right: $--input-padding-icon-default;
+      padding-right: $--select-suffix-width;
       padding-top: 0;
       padding-bottom: 0;
-      height: #{$--input-padding-height-default + 4px};
-      line-height: #{$--input-padding-height-default + 4px};
-      font-size: $--input-font-size-default;
-      color: $--input-font-color;
+      height: $--height-default;
+      font-size: $--font-size-default;
+      color: $--color-text-default;
+      transition: all $--animation-time ease-in-out;
+    }
 
-      &:hover,
-      &:focus,
-      &:active{
-        border-color: $--input-border-color-hover;
-      }
-
-      &:focus{
-        box-shadow: 0 0 0 2px mix($--input-border-color-hover, $--color-white, $--button-hover-percent);
-      }
+    @include e(el-focus){
+      border-color: $--color-primary;
+      box-shadow: 0 0 0 2px mix($--color-primary, $--color-white, $--button-hover-percent);
     }
 
     @include e(el-multiple-tag){
@@ -141,28 +151,14 @@
       overflow: hidden;
       z-index: 2;
       padding-left: $--input-padding-horizontal-default;
-      padding-right: $--input-padding-icon-default;
+      padding-right: $--select-suffix-width;
 
       @include e(el-multiple-tag-item, false){
-        margin-top: $--input-padding-vertical-default;
-        margin-bottom: $--input-padding-vertical-default;
+        margin-top: #{($--height-default - $--tag-height-default) / 2};
+        margin-bottom: #{($--height-default - $--tag-height-default) / 2};
         margin-left: 0;
         margin-right: 5px;
         vertical-align: middle;
-      }
-
-      &:hover,
-      &:focus,
-      &:active{
-        & + .cl-select__el-multiple {
-          border-color: $--input-border-color-hover;
-        }
-      }
-
-      &:focus{
-        & + .cl-select__el-multiple {
-          box-shadow: 0 0 0 2px mix($--input-border-color-hover, $--color-white, $--button-hover-percent);
-        }
       }
     }
 
@@ -174,24 +170,33 @@
       background-color: transparent;
       cursor: pointer;
       box-sizing: border-box;
-      font-size: $--input-font-size-default;
-      color: $--input-font-color;
-      height: #{$--input-padding-height-default - 10px};
+      font-size: $--font-size-default;
+      color: $--color-text-default;
+      height: #{$--height-default - 10px};
     }
   }
 
   @include m(large){
+    height: 50px;
     .cl-option,.cl-option-group{
       font-size: $--font-size-large;
     }
-    @include e(el, false){
+    .cl-select__el{
       font-size: $--font-size-large;
-      @include e(el-multiple){
-        height: #{$--input-padding-height-large + 4px};
-        line-height: #{$--input-padding-height-large + 4px};
+      .cl-select__el-multiple{
+        height: $--height-large;
+        line-height: $--height-large;
       }
-      @include e(el-multiple-input, false){
-        height: #{$--input-padding-height-large - 10px};
+      .cl-select__el-placeholder{
+        height: #{$--height-large - 2px};
+        line-height: #{$--height-large - 2px};
+      }
+      .cl-select__el-multiple-input{
+        height: #{$--height-large - 10px};
+      }
+      .cl-select__el-multiple-tag .cl-select__el-multiple-tag-item{
+        margin-top: #{($--height-large - $--tag-height-large) / 2};
+        margin-bottom: #{($--height-large - $--tag-height-large) / 2};
       }
     }
   }
@@ -199,16 +204,47 @@
   @include m(small){
     .cl-option,.cl-option-group{
       font-size: $--font-size-small;
-      //padding: 5px 13px;
     }
-    @include e(el, false){
+    .cl-select__el{
       font-size: $--font-size-small;
-      @include e((el-multiple, el-placeholder)){
-        height: #{$--input-padding-height-small + 4px};
-        line-height: #{$--input-padding-height-small + 4px};
+      .cl-select__el-multiple{
+        height: $--height-small;
+        line-height: $--height-small;
       }
-      @include e(el-multiple-input, false){
-        height: #{$--input-padding-height-small - 10px};
+      .cl-select__el-placeholder{
+        height: #{$--height-small - 2px};
+        line-height: #{$--height-small - 2px};
+      }
+      .cl-select__el-multiple-input{
+        height: #{$--height-small - 10px};
+      }
+      .cl-select__el-multiple-tag .cl-select__el-multiple-tag-item{
+        margin-top: #{($--height-small - $--tag-height-small) / 2};
+        margin-bottom: #{($--height-small - $--tag-height-small) / 2};
+      }
+    }
+  }
+
+  @include m(mini){
+    .cl-option,.cl-option-group{
+      font-size: $--font-size-mini;
+    }
+    .cl-select__el{
+      font-size: $--font-size-mini;
+      .cl-select__el-multiple{
+        height: $--height-mini;
+        line-height: $--height-mini;
+      }
+      .cl-select__el-placeholder{
+        height: #{$--height-mini - 2px};
+        line-height: #{$--height-mini - 2px};
+      }
+      .cl-select__el-multiple-input{
+        height: #{$--height-mini - 10px};
+      }
+      .cl-select__el-multiple-tag .cl-select__el-multiple-tag-item{
+        margin-top: #{($--height-mini - $--tag-height-mini) / 2};
+        margin-bottom: #{($--height-mini - $--tag-height-mini) / 2};
       }
     }
   }
@@ -233,13 +269,13 @@
   line-height: normal;
   font-size: $--select-option-font-size;
   color: $--select-option-text-color;
-  transition: all $--animation-time;
+  transition: all $--animation-time ease-in-out;
   background-color: $--color-white;
   //@include utils-ellipsis();
 
   @include when(selected){
     color: $--color-primary;
-    background-color: $--select-option-background-color-hover;
+    background-color: $--background-color-hover;
   }
 
   @include e(text){
@@ -264,7 +300,7 @@
   }
 
   &:hover{
-    background-color: $--select-option-background-color-hover;
+    background-color: $--background-color-hover;
   }
 
   @include when(disabled){
@@ -289,7 +325,7 @@
   line-height: normal;
   font-size: $--select-option-font-size;
   color: $--select-option-text-color;
-  transition: all $--animation-time;
+  transition: all $--animation-time ease-in-out;
   background-color: $--color-white;
   @include utils-ellipsis();
 

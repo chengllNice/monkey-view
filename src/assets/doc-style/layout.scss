@@ -10,19 +10,19 @@
   font-size: 16px;
 }
 .doc-layout-header, .doc-layout-footer{
-  background-color: #86d8af;
+  background-color: mix(#ffffff, #2d8cf0, 30%);
 }
 .doc-layout-content{
   min-height: 120px;
   line-height: 120px;
-  background-color: #19be6b;
+  background-color: mix(#ffffff, #2d8cf0, 10%);
 }
 .doc-layout-sider{
   line-height: 120px;
-  background-color: #62c191;
+  background-color: mix(#ffffff, #2d8cf0, 40%);
 }
 .doc-layout-sider-header{
-  background-color: #02b7a5;
+  background-color: mix(#ffffff, #2d8cf0, 20%);
 }
 .doc-layout-sider-dark{
   background-color: #344058;
@@ -38,15 +38,21 @@
 .doc-layout-menu-tooltip{
   display: block;
 }
+.doc-layout-menu-name{
+  width: auto;
+  transition: all 0.2s ease-in-out;
+  margin: auto;
+  display: inline-block;
+}
+.doc-layout-menu-icon{
+  transition: all 0.2s ease-in-out;
+}
 .doc-layout-sider-close{
-  text-align: center;
   .doc-layout-menu-icon{
-    transition: all 0.2s ease-in-out;
     font-size: 18px;
   }
   .doc-layout-menu-name{
     width: 0;
-    transition: all 0.1s;
-    margin: auto;
+    display: none !important;
   }
 }

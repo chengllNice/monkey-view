@@ -1,0 +1,108 @@
+@import "./base/var";
+@import "./config/mixins/index.scss";
+
+@include c(page){
+  display: flex;
+  align-items: center;
+
+  @include e(common){
+    height: $--height-default;
+    line-height: $--height-default;
+    min-width: $--height-default;
+    color: $--color-default;
+    padding: 0 4px;
+    text-align: center;
+    cursor: pointer;
+    display: inline-block;
+    font-size: $--font-size-large;
+    vertical-align: middle;
+  }
+  @include e(total){
+
+  }
+  @include e(content){
+
+  }
+  @include e(item){
+    transition: all $--animation-time;
+    &:not(.cl-page__item-disabled):not(.cl-page__item-active):hover{
+      color: $--color-primary;
+    }
+  }
+  @include e(pre){
+    font-size: $--font-size-default;
+  }
+  @include e(next){
+    font-size: $--font-size-default;
+  }
+  @include e(item-first){
+
+  }
+  @include e(item-final){
+
+  }
+  @include e(item-jump-pre){
+    font-size: $--font-size-default;
+    color: $--color-text-disabled;
+  }
+  @include e(item-jump-next){
+    font-size: $--font-size-default;
+    color: $--color-text-disabled;
+  }
+  @include e(jump-to){
+
+  }
+  @include e(jump-to-input){
+    display: inline-block;
+    width: 50px;
+    line-height: normal;
+  }
+  @include e(page-size){
+
+  }
+  @include e(page-size-select){
+    display: inline-block;
+    width: 100px;
+    line-height: normal;
+  }
+  @include e(item-active){
+    color: $--color-primary;
+  }
+  @include e(item-disabled){
+    opacity: $--opacity-disabled;
+    cursor: not-allowed;
+  }
+
+
+  @include m(mini){
+    .cl-page__common{
+      font-size: $--font-size-mini;
+      height: $--height-mini;
+      line-height: $--height-mini;
+      min-width: $--height-mini;
+    }
+  }
+
+  @include m(border){
+    .cl-page__item{
+      border: $--border-default;
+      margin: 0 5px;
+      border-radius: $--border-radius-default;
+    }
+    .cl-page__item-active{
+      border-color: $--border-color-primary;
+    }
+  }
+
+  @include m(background){
+    .cl-page__item{
+      background-color: #f8f8f9;
+      margin: 0 5px;
+      border-radius: $--border-radius-default;
+    }
+    .cl-page__item-active{
+      background-color: $--color-primary;
+      color: $--color-white;
+    }
+  }
+}

@@ -1,4 +1,4 @@
-@import "./config/var";
+@import "./base/var";
 @import "./config/mixins/index";
 
 $picture-thumbnial-height: #{$--upload-picture-height - $--upload-picture-padding * 2 - 2px};
@@ -28,7 +28,7 @@ $picture-thumbnial-height: #{$--upload-picture-height - $--upload-picture-paddin
     border-color: $--border-color-default;
     text-align: center;
     border-radius: $--border-radius-default;
-    font-style: $--font-size-large;
+    font-size: $--font-size-large;
     position: relative;
 
     &.cl-upload__text{
@@ -69,9 +69,13 @@ $picture-thumbnial-height: #{$--upload-picture-height - $--upload-picture-paddin
     color: $--color-text-legend;
     border-radius: $--border-radius-default;
     transition: all $--animation-time;
+    position: relative;
 
     @include e(target-slot, false){
-      transform: translateY(50%);
+      width: 100%;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
     }
 
     i{
@@ -88,7 +92,7 @@ $picture-thumbnial-height: #{$--upload-picture-height - $--upload-picture-paddin
 
 @include c(upload-list){
   display: inline-block;
-  width: 100%;
+  //width: 100%;
   @include e(item){
     padding: 4px;
     box-sizing: border-box;
@@ -173,6 +177,10 @@ $picture-thumbnial-height: #{$--upload-picture-height - $--upload-picture-paddin
     left: 50%;
     transform: translate(-100%, -50%);
     transition: color $--animation-time;
+    line-height: normal;
+    [class*='cl-icon']{
+      font-size: $--upload-picture-icon-font-size;
+    }
 
     &:hover{
       color: $--color-primary;
@@ -188,6 +196,10 @@ $picture-thumbnial-height: #{$--upload-picture-height - $--upload-picture-paddin
     left: 50%;
     transform: translate(0%, -50%);
     transition: color $--animation-time;
+    line-height: normal;
+    [class*='cl-icon']{
+      font-size: $--upload-picture-icon-font-size;
+    }
 
     &:hover{
       color: $--color-primary;
@@ -205,9 +217,8 @@ $picture-thumbnial-height: #{$--upload-picture-height - $--upload-picture-paddin
   }
 
   @include m(picture-card){
-    display: inline;
+    display: inline-block;
     vertical-align: top;
-    margin: 0;
     @include e(item, false){
       display: inline-block;
       width: $--upload-picture-card-width;

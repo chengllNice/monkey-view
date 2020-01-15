@@ -1,4 +1,4 @@
-@import "./config/var";
+@import "./base/var";
 @import "./config/mixins/index.scss";
 
 @include c(card){
@@ -9,7 +9,7 @@
   background-color: $--color-white;
   font-size: $--font-size-default;
   transition: all $--animation-time;
-  position: relative;
+  //position: relative;
 
   &:hover,
   &:focus,

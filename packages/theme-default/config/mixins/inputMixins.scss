@@ -1,0 +1,77 @@
+@import "../../base/var";
+@import "../mixins/index.scss";
+
+@mixin inputSize($size){
+  $height: $--height-default;
+  $font-size: $--font-size-default;
+  $padding-append: $--button-padding-horizontal-default;
+  $padding-input: $--input-padding-horizontal-default;
+  @if($size == 'mini'){
+    $height: $--height-mini;
+    $font-size: $--font-size-mini;
+    $padding-append: $--button-padding-horizontal-mini;
+    $padding-input: $--input-padding-horizontal-mini;
+  }@else if($size == 'small'){
+    $height: $--height-small;
+    $font-size: $--font-size-small;
+    $padding-append: $--button-padding-horizontal-small;
+    $padding-input: $--input-padding-horizontal-small;
+  }@else if($size == 'large'){
+    $height: $--height-large;
+    $font-size: $--font-size-large;
+    $padding-append: $--button-padding-horizontal-large;
+    $padding-input: $--input-padding-horizontal-large;
+  }
+
+  .cl-input__source{
+    height: $height;
+    font-size: $font-size;
+    padding-left: $padding-input;
+    padding-right: $padding-input;
+  }
+  .cl-textarea__source{
+    font-size: $font-size;
+    padding-left: $padding-input;
+    padding-right: $padding-input;
+  }
+  .cl-input__source-prefix{
+    padding-left: $--input-suffix-width;
+  }
+  .cl-input__source-suffix{
+    padding-right: $--input-suffix-width;
+  }
+  .cl-input__prepend, .cl-input__append{
+    height: $height;
+    padding: 0 $padding-append;
+    .cl-select{
+      height: #{$height - 2px};
+      margin: 0 -#{$padding-append + 1px};
+      input{
+        height: #{$height - 2px};
+        &:focus{
+          box-shadow: none;
+        }
+      }
+      .cl-input__suffix{
+        line-height: #{$height - 2px};
+      }
+    }
+  }
+
+  .cl-input__prefix, .cl-input__suffix{
+    height: #{$height - 2px};
+    .cl-input__limit, .cl-input__suffix-inner, .cl-input__prefix-inner{
+      line-height: $height;
+    }
+  }
+
+  &.cl-input-number{
+    .cl-input__source-prefix{
+      padding-left: #{$--input-suffix-width + $padding-input};
+    }
+    .cl-input__source-suffix{
+      padding-right: #{$--input-suffix-width + $padding-input};
+    }
+  }
+}
+

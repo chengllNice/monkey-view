@@ -26,66 +26,70 @@
 </template>
 
 <script>
-  export default {
-    name: "ClRadio",
-    props: {
-      name: String,
-      value: {
-        type: [String, Number, Boolean],
-        default: false
-      },
-      label: {
-        type: [String, Number, Boolean],
-        default: true
-      },
-      disabled: Boolean,
-      size: String
-    },
-    data() {
-      return {
-
-      }
-    },
-    computed: {
-      parentGroup(){
-        let parent = this.$parent;
-        while (parent){
-          if(parent.componentName !== 'ClRadioGroup'){
-            parent = parent.$parent;
-          }else{
-            return parent
-          }
-        }
-        return false
-      },
-      model: {
-        get(){
-          return this.parentGroup ? this.parentGroup.value : this.value;
+    export default {
+        name: "ClRadio",
+        props: {
+            name: String,
+            value: {
+                type: [String, Number, Boolean],
+                default: false
+            },
+            label: {
+                type: [String, Number, Boolean],
+                default: true
+            },
+            disabled: Boolean,
+            size: {
+                type: String,
+                default: 'default',
+                validator(value) {
+                    return ['mini', 'small', 'default', 'large'].includes(value)
+                }
+            },
         },
-        set(value){
-          this.parentGroup ? this.parentGroup.dispatch('input', value) : this.$emit('input', value);
-        }
-      },
-      isDisabled(){
-        return this.parentGroup ? this.parentGroup.disabled || this.disabled : this.disabled
-      },
-      radioSize(){
-        return this.parentGroup ? this.parentGroup.size : this.size;
-      }
-    },
-    components: {},
-    created() {
-    },
-    mounted() {
+        data() {
+            return {}
+        },
+        computed: {
+            parentGroup() {
+                let parent = this.$parent;
+                while (parent) {
+                    if (parent.componentName !== 'ClRadioGroup') {
+                        parent = parent.$parent;
+                    } else {
+                        return parent
+                    }
+                }
+                return false
+            },
+            model: {
+                get() {
+                    return this.parentGroup ? this.parentGroup.value : this.value;
+                },
+                set(value) {
+                    this.parentGroup ? this.parentGroup.dispatch('input', value) : this.$emit('input', value);
+                }
+            },
+            isDisabled() {
+                return this.parentGroup ? this.parentGroup.disabled || this.disabled : this.disabled
+            },
+            radioSize() {
+                return this.parentGroup ? this.parentGroup.size : this.size;
+            }
+        },
+        components: {},
+        created() {
+        },
+        mounted() {
 
-    },
-    methods: {
-      handleChange(){
-        if(this.isDisabled) return;
-        this.$nextTick(()=>{
-          this.parentGroup ? this.parentGroup.dispatch('change', this.model) : this.$emit('change', this.model);
-        });
-      }
-    },
-  }
+        },
+        methods: {
+            handleChange() {
+                if (this.isDisabled) return;
+                this.$nextTick(() => {
+                    this.parentGroup ? this.parentGroup.dispatch('change', this.model) : this.$emit('change', this.model);
+                });
+            }
+        },
+    }
 </script>

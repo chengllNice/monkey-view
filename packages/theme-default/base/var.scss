@@ -1,0 +1,400 @@
+
+/*-----Common Var-----*/
+$--line-height-default: 1.5 !default;
+
+
+/*-----Height-----*/
+/*
+适用于button input select 的高度
+适用于list组件avatar的宽度
+*/
+$--height-mini: 24px !default;
+$--height-small: 28px !default;
+$--height-default: 32px !default;
+$--height-large: 36px !default;
+
+/*-----Color-----*/
+$--color-default: #515a6e !default;
+$--color-primary: #2d8cf0 !default;
+$--color-danger: #ed4014 !default;
+$--color-warning: #f8ac59 !default;
+$--color-success: #19be6b !default;
+//$--color-success: #42b983 !default;
+$--color-info: #13c2c2 !default;
+//$--color-info: #2db7f5 !default;
+$--color-white: #ffffff !default;
+$--color-black: #000000 !default;
+$--color-expand: #c0c4cc !default;
+$--color-disabled: #dcdee2 !default;
+
+/*-----Animation-----*/
+$--animation-time: 0.3s;
+//$--animation-time-: 0.4s;
+
+
+/*-----text-color-----*/
+$--color-text-default: #515a6e !default;
+$--color-text-placeholder: $--color-expand !default;
+$--color-text-disabled: $--color-disabled !default;
+$--color-text-icon: #808695 !default;
+$--color-text-des: #999999 !default;
+$--color-text-title: #17233d !default;
+$--color-text-legend: #999999 !default;
+
+
+/*-----border-color-----*/
+$--border-color-default: #e8eaec !default;//#dcdee2
+$--border-color-disabled: #e8e8e8 !default;//#c5c8ce
+$--border-color-primary: #2d8cf0 !default;
+$--border-color-danger: #ed4014 !default;
+$--border-color-warning: #f8ac59 !default;
+$--border-color-success: #19be6b !default;
+//$--border-color-success: #42b983 !default;
+$--border-color-info: #13c2c2 !default;
+
+
+/*-----background-color-----*/
+$--background-color-base: #f5f7fa !default;
+$--background-color-disabled: #f7f7f7 !default;
+//$--background-color-disabled: #c5c8ce !default;
+$--background-color-hover: mix($--color-white, $--color-primary, 90%) !default;
+
+
+/*-----border-----*/
+$--border-width-default: 1px !default;
+$--border-style-default: solid !default;
+$--border-radius-default: 2px !default;
+$--border-radius-circle: 100% !default;
+$--border-default: $--border-width-default $--border-style-default $--border-color-default !default;
+
+
+/*-----box-shadow-----*/
+$--box-shadow-default: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04) !default;
+//card
+$--box-shadow-content: 0 1px 6px rgba(0, 0, 0, 0.2) !default;
+
+
+/*-----font-----*/
+$--font-size-base: 14px !default;
+$--font-size-default: 14px !default;
+$--font-size-small: 12px !default;
+$--font-size-mini: 10px !default;
+$--font-size-large: 16px !default;
+$--font-size-title: 16px !default;
+
+
+/*-----zIndex-----*/
+$--dialog-z-index: 2001 !default;
+$--popover-z-index: 1000 !default;
+$--loading-z-index: 2000 !default;
+$--back-top-z-index: 1999 !default;
+
+/*-----opacity-----*/
+$--opacity-disabled: 0.4;
+
+/*-----response-media-----*/
+$--sm: 576px !default;
+$--md: 768px !default;
+$--lg: 992px !default;
+$--xl: 1200px !default;
+$--xxl: 1920px !default;
+$--media-points: (
+  'xs': (max-width: $--sm - 1),
+  'sm': (min-width: $--sm),
+  'md': (min-width: $--md),
+  'lg': (min-width: $--lg),
+  'xl': (min-width: $--xl),
+  'xxl': (min-width: $--xxl),
+);
+
+
+
+
+
+/*-----dropdown-----*/
+$--dropdown-item-padding-vertical: 7px !default;
+$--dropdown-item-padding-horizontal: 16px !default;
+
+/*-----date-picker-----*/
+$--date-picker-pane-date-width-mini: 238px !default;
+$--date-picker-pane-date-width-small: 252px !default;
+$--date-picker-pane-date-width-default: 266px !default;
+$--date-picker-pane-date-width-large: 280px !default;
+
+$--date-picker-em-width-mini: 26px !default;
+$--date-picker-em-width-small: 28px !default;
+$--date-picker-em-width-default: 30px !default;
+$--date-picker-em-width-large: 32px !default;
+
+$--date-picker-pane-padding: 10px !default;
+$--date-picker-pane-margin: 2px !default;
+
+$--date-picker-no-now-month-color: $--color-text-placeholder !default;
+
+
+/*-----loading-----*/
+$--loading-size-mini: $--height-mini !default;
+$--loading-size-small: $--height-small !default;
+$--loading-size-default: $--height-default !default;
+$--loading-size-large: $--height-large !default;
+
+
+/*-----list-----*/
+$--list-item-padding-vertical-mini: 6px !default;
+$--list-item-padding-horizontal-mini: 12px !default;
+$--list-item-padding-vertical-small: 8px !default;
+$--list-item-padding-horizontal-small: 16px !default;
+$--list-item-padding-vertical-default: 10px !default;
+$--list-item-padding-horizontal-default: 20px !default;
+$--list-item-padding-vertical-large: 12px !default;
+$--list-item-padding-horizontal-large: 24px !default;
+$--list-item-avatar-width-mini: $--height-mini !default;
+$--list-item-avatar-width-small: $--height-small !default;
+$--list-item-avatar-width-default: $--height-default !default;
+$--list-item-avatar-width-large: $--height-large !default;
+
+/*-----collapse-----*/
+$--collapse-item-header-height: 38px !default;
+$--collapse-item-header-background-color: $--background-color-base !default;
+
+/*-----menu-----*/
+$--menu-item-height-mini: 30px !default;
+$--menu-item-height-small: 40px !default;
+$--menu-item-height-default: 50px !default;
+$--menu-item-height-large: 60px !default;
+$--menu-item-padding-vertical-mini: 10px !default;
+$--menu-item-padding-vertical-small: 15px !default;
+$--menu-item-padding-vertical-default: 20px !default;
+$--menu-item-padding-vertical-large: 25px !default;
+
+$--menu-theme-light-background-color: $--color-white;
+$--menu-theme-light-active-background-color: $--background-color-hover !default;
+$--menu-theme-light-active-border-color: mix($--color-white, $--color-primary, 80%) !default;
+$--menu-theme-light-font-color: $--color-text-default !default;
+$--menu-theme-light-horizontal-border-color: $--border-color-primary !default;
+$--menu-theme-light-group-title-font-color: #909399 !default;
+
+$--menu-theme-dark-background-color: #344058 !default;
+$--menu-theme-dark-active-background-color: #252d3d !default;
+$--menu-theme-dark-active-border-color: #6f7b80 !default;
+$--menu-theme-dark-font-color: rgba(255,255,255,0.8) !default;
+$--menu-theme-dark-horizontal-border-color: #6f7b80 !default;
+$--menu-theme-dark-group-title-font-color: #909399 !default;
+
+$--menu-theme-green-background-color: #009688 !default;
+$--menu-theme-green-active-background-color: #02b7a5 !default;
+$--menu-theme-green-active-border-color: #2bf8e5 !default;
+$--menu-theme-green-font-color: $--color-white !default;
+$--menu-theme-green-horizontal-border-color: #2bf8e5 !default;
+$--menu-theme-green-group-title-font-color: #c1cecd !default;
+
+
+
+/*-----table-----*/
+$--table-head-th-background-color: #f8f8f9 !default;
+$--table-head-th-border: $--border-default !default;
+
+$--table-cell-padding-horizontal-mini: 10px !default;
+$--table-cell-padding-vertical-mini: 8px !default;
+
+$--table-cell-padding-horizontal-small: 14px !default;
+$--table-cell-padding-vertical-small: 10px !default;
+
+$--table-cell-padding-horizontal-default: 18px !default;
+$--table-cell-padding-vertical-default: 14px !default;
+
+$--table-cell-padding-horizontal-large: 22px !default;
+$--table-cell-padding-vertical-large: 14px !default;
+
+
+/*-----upload-----*/
+$--upload-picture-icon-font-size: 26px !default;
+$--upload-picture-card-width: 104px !default;
+$--upload-picture-card-height: 104px !default;
+$--upload-picture-padding: 10px !default;
+$--upload-picture-margin: 10px !default;
+$--upload-picture-height: 84px !default;
+
+
+/*-----badge-----*/
+$--badge-sup-height: 20px !default;
+
+/*-----card-----*/
+$--card-padding-vertical: 12px !default;
+$--card-padding-horizontal: 18px !default;
+
+
+/*-----alter-----*/
+$--alter-padding-vertical: 8px !default;
+$--alter-padding-horizontal: 16px !default;
+$--alter-padding-with-icon-horizontal: 38px !default;
+$--alter-padding-with-description-horizontal: 69px !default;
+
+/*-----modal-----*/
+$--modal-cover-background-color: rgba(0,0,0,0.4) !default;
+$--modal-vertical-padding: 12px !default;
+$--modal-horizontal-padding: 18px !default;
+$--modal-close-icon-font-size: 14px !default;
+$--modal-header-font-size: 14px !default;
+$--modal-confirm-icon-font-size: 40px !default;
+$--modal-confirm-title-font-size: $--font-size-title !default;
+$--modal-confirm-content-font-size: 14px !default;
+
+/*-----message-----*/
+$--message-icon-font-size: 16px !default;
+$--message-vertical-padding: 8px !default;
+$--message-horizontal-padding: 16px !default;
+
+
+/*-----notice-----*/
+$--notice-icon-font-size: 16px !default;
+$--notice-padding: 16px !default;
+$--notice-padding-with-icon-horizontal: 38px !default;
+$--notice-padding-with-content-icon-horizontal: 69px !default;
+
+
+/*-----tag-----*/
+$--tag-font-color-default: $--color-text-default !default;
+$--tag-border-color-default: $--border-color-default !default;
+$--tag-background-color-default: $--background-color-base !default;
+$--tag-hover-opacity: 0.85 !default;
+
+$--tag-height-mini: 16px !default;
+$--tag-padding-horizontal-mini: 4px !default;
+
+$--tag-height-small: 20px !default;
+$--tag-padding-horizontal-small: 4px !default;
+
+$--tag-height-default: 24px !default;
+$--tag-padding-horizontal-default: 6px !default;
+
+$--tag-height-large: 28px !default;
+$--tag-padding-horizontal-large: 10px !default;
+
+
+
+/*-----popover-----*/
+$--popover-arrow-border-width: 5px !default;
+$--popover-min-width: 150px !default;
+
+
+/*------tooltip-----*/
+$--tooltip-background-color-default: rgba(42,44,49,0.85) !default;
+$--tooltip-box-shadow: $--box-shadow-default;
+
+/*-----slider-----*/
+$--slider-rail-height: 4px !default;
+$--slider-rail-vertical-margin: 16px !default;
+$--slider-rail-background-color: $--background-color-base !default;
+$--slider-bar-background-color: $--color-primary !default;
+
+/*-----progress-----*/
+$--progress-rail-background-color: $--background-color-base !default;
+
+
+/*-----switch-----*/
+$--switch-width-mini: 28px !default;
+$--switch-width-small: 36px !default;
+$--switch-width-default: 44px !default;
+$--switch-width-large: 56px !default;
+
+$--switch-height-mini: 14px !default;
+$--switch-height-small: 18px !default;
+$--switch-height-default: 22px !default;
+$--switch-height-large: 24px !default;
+$--switch-background-color-default: #cccccc !default;
+$--switch-background-color-checked: $--color-primary !default;
+
+
+/*----select----*/
+$--select-option-text-color: $--color-text-default !default;
+$--select-option-padding-right-mutiple: 36px !default;
+$--select-option-font-size: $--font-size-default !default;
+$--select-drop-down-max-height: 200px !default;
+$--select-suffix-width: 28px !default;
+
+
+/*-----input-----*/
+$--input-background-color-append-prepend: $--background-color-base !default;
+$--input-suffix-width: 36px !default;
+
+$--input-padding-vertical-default: 5px !default;
+$--input-padding-horizontal-default: 8px !default;
+
+$--input-padding-vertical-mini: 2px !default;
+$--input-padding-horizontal-mini: 4px !default;
+
+$--input-padding-vertical-small: 4px !default;
+$--input-padding-horizontal-small: 5px !default;
+
+$--input-padding-vertical-large: 6px !default;
+$--input-padding-horizontal-large: 10px !default;
+
+
+
+/*-----radio-----*/
+$--radio-border: $--border-default !default;
+$--radio-border-color-hover: $--color-primary !default;
+$--radio-background-color: $--color-white !default;
+
+$--radio-border-color-checked: $--color-primary !default;
+$--radio-background-color-checked: $--color-primary !default;
+$--radio-font-color-checked: $--color-primary !default;
+
+$--radio-border-color-disabled: $--border-color-disabled !default;
+$--radio-background-color-disabled: $--background-color-base !default;
+$--radio-icon-color-disabled: $--color-text-disabled !default;
+$--radio-font-color-disabled: $--color-text-disabled !default;
+
+$--radio-input-height-mini: 10px !default;
+$--radio-input-height-small: 12px !default;
+$--radio-input-height-default: 14px !default;
+$--radio-input-height-large: 16px !default;
+
+
+/*-----checkbox-----*/
+$--checkbox-border: $--border-default !default;
+$--checkbox-border-color-hover: $--color-primary !default;
+
+$--checkbox-border-color-checked: $--color-primary !default;
+$--checkbox-background-color-checked: $--color-primary !default;
+$--checkbox-font-color-checked: $--color-primary !default;
+
+$--checkbox-input-width-mini: 12px !default;
+$--checkbox-input-height-mini: 12px !default;
+
+$--checkbox-input-width-small: 14px !default;
+$--checkbox-input-height-small: 14px !default;
+
+$--checkbox-input-width-default: 16px !default;
+$--checkbox-input-height-default: 16px !default;
+
+$--checkbox-input-width-large: 18px !default;
+$--checkbox-input-height-large: 18px !default;
+
+
+/*-----button-----*/
+$--button-padding-horizontal-default: 15px !default;
+
+$--button-padding-horizontal-small: 10px !default;
+
+$--button-padding-horizontal-mini: 10px !default;
+
+$--button-padding-horizontal-large: 18px !default;
+
+$--button-border-color-default: $--border-color-default !default;
+
+$--button-border-color-primary: $--border-color-primary !default;
+
+$--button-border-color-danger: $--border-color-danger !default;
+
+$--button-border-color-warning: $--border-color-warning !default;
+
+$--button-border-color-success: $--border-color-success !default;
+
+$--button-border-color-info: $--border-color-info !default;
+
+$--button-font-color-text: $--color-primary !default;//text类型文字颜色
+
+$--button-hover-percent: 20% !default;
+$--button-active-percent: 10% !default;

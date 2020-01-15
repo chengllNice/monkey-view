@@ -1,34 +1,329 @@
 
-@import "./config/var";
+@import "./base/var";
 @import "./config/mixins/index.scss";
 
+@mixin tableSize($size){
+  $padding-left: $--table-cell-padding-horizontal-default;
+  $padding-right: $--table-cell-padding-horizontal-default;
+
+  $padding-top: $--table-cell-padding-vertical-default;
+  $padding-bottom: $--table-cell-padding-vertical-default;
+
+  $font-size: $--font-size-default;
+
+  @if($size == 'mini'){
+    $padding-left: $--table-cell-padding-horizontal-mini;
+    $padding-right: $--table-cell-padding-horizontal-mini;
+    $padding-top: $--table-cell-padding-vertical-mini;
+    $padding-bottom: $--table-cell-padding-vertical-mini;
+    $font-size: $--font-size-mini;
+  }@else if($size == 'small'){
+    $padding-left: $--table-cell-padding-horizontal-small;
+    $padding-right: $--table-cell-padding-horizontal-small;
+    $padding-top: $--table-cell-padding-vertical-small;
+    $padding-bottom: $--table-cell-padding-vertical-small;
+    $font-size: $--font-size-small;
+  }@else if($size == 'large'){
+    $padding-left: $--table-cell-padding-horizontal-large;
+    $padding-right: $--table-cell-padding-horizontal-large;
+    $padding-top: $--table-cell-padding-vertical-large;
+    $padding-bottom: $--table-cell-padding-vertical-large;
+    $font-size: $--font-size-large;
+  }
+
+  .cl-table-cell{
+    padding-left: $padding-left;
+    padding-right: $padding-right;
+  }
+  th, td{
+    padding-top: $padding-top;
+    padding-bottom: $padding-bottom;
+  }
+  .cl-table__footer{
+    padding-left: $padding-left;
+    padding-right: $padding-right;
+    padding-top: $padding-top;
+    padding-bottom: $padding-bottom;
+  }
+
+  font-size: $font-size;
+}
+
 @include c(table){
+  overflow: hidden;
+  line-height: normal;
+  position: relative;
   table{
     width: 100%;
+    table-layout: fixed;
   }
   th, td{
     box-sizing: border-box;
     text-align: left;
+    overflow: hidden;
+    vertical-align: middle;
+    transition: background-color $--animation-time;
     border-bottom: $--table-head-th-border;
-    @include utils-ellipsis();
+    min-width: 0;
+    background-color: $--color-white;
+    &.is-hidden{
+      visibility: hidden;
+    }
+    //&:nth-last-of-type(1){
+    //  border-right: none;
+    //}
   }
   th{
     background-color: $--table-head-th-background-color;
-    height: $--table-head-th-height;
+  }
+  td{
+    @include utils-ellipsis();
+    &.cl-table-td__expand{
+      word-break: break-all;
+      white-space: normal;
+    }
+  }
+
+  @include e(wrap){
+    position: relative;
+  }
+
+  @include e(head){
+    width: 100%;
+    overflow: hidden;
+    table{
+      border-top-left-radius: $--border-radius-default;
+      border-top-right-radius: $--border-radius-default;
+    }
+    .cl-table-cell:not(.cl-table-cell--ellipsis){
+      text-overflow: inherit;
+    }
+  }
+  @include e(body){
+    width: 100%;
+    overflow: auto;
+    table{
+      border-bottom-left-radius: $--border-radius-default;
+      border-bottom-right-radius: $--border-radius-default;
+    }
+  }
+  @include e(body-overflowX){
+    overflow-x: auto;
+  }
+
+  @include m(hide){
+    display: none;
+  }
+
+  @include m(border){
+    border: $--border-default;
+    .cl-table__head table, .cl-table-fixed__head table{
+      border-bottom: none;
+    }
+    .cl-table__body table, .cl-table-fixed__body table{
+      border-top: none;
+    }
+    th, td{
+      border-right: $--border-default;
+      border-bottom: $--border-default;
+    }
+    .cl-table__footer{
+      border-bottom: $--border-default;
+    }
+  }
+
+  @include e(body-empty){
+    td{
+      text-align: center;
+    }
+  }
+
+  @include m(mini){
+    @include tableSize(mini);
+  }
+  @include m(small){
+    @include tableSize(small);
+  }
+  @include m(default){
+    @include tableSize(default);
+  }
+  @include m(large){
+    @include tableSize(large);
+  }
+}
+
+@include c(table-fixed){
+  position: absolute;
+  top: 0;
+  @include e(content){
+    overflow: hidden;
+  }
+  @include m(left){
+    left: 0;
+    z-index: 2;
+    box-shadow: 2px 0 6px -2px rgba(0,0,0,.2);
+  }
+  @include m(right){
+    right: 0;
+    z-index: 3;
+    box-shadow: -2px 0 6px -2px rgba(0,0,0,.2);
+  }
+
+  @include e(body){
+    overflow: hidden;
+  }
+  @include e(right-col){
+    position: absolute;
+    top: 0;
+    background-color: $--table-head-th-background-color;
   }
 }
 
 @include c(table-head){
-  width: 100%;
+  @include e(sort){
+    cursor: pointer;
+    &:hover{
+      background-color: mix($--color-black, $--table-head-th-background-color, 10%);
+    }
+  }
+  @include e(scroll-th){
+    border-left: $--border-default;
+  }
 }
 
-@include c(table-body){
 
+@include c(table-row){
+  @include m(stripe-1){
+    &:not(.cl-table-row--hover) td{
+      background-color: $--table-head-th-background-color;
+    }
+  }
+
+  @include m(hover){
+    & td{
+      background-color: mix($--color-primary, $--color-white, 10%);
+    }
+  }
 }
 
 @include c(table-cell){
-  display: inline-block;
-  padding-left: $--table-cell-padding-horizontal;
-  padding-right: $--table-cell-padding-horizontal;
-  @include utils-ellipsis();
+  white-space: normal;
+  word-break: break-all;
+  overflow: hidden;
+  //display: inline-block;
+  vertical-align: middle;
+
+  @include e(icon){
+    display: inline-block;
+    vertical-align: middle;
+    transition: all $--animation-time;
+    i{
+      display: block;
+      font-size: 12px;
+      cursor: pointer;
+      color: $--color-text-placeholder;
+      &:hover{
+        color: $--color-primary;
+      }
+    }
+    i.cl-table-cell__icon-active{
+      color: $--color-primary;
+    }
+  }
+
+  @include e(expand){
+    i{
+      transform: rotate(90deg);
+    }
+  }
+
+  @include m(ellipsis){
+    @include utils-ellipsis;
+  }
+
+  @include m(left){
+    text-align: left;
+  }
+  @include m(center){
+    text-align: center;
+  }
+  @include m(right){
+    text-align: right;
+  }
+
+  @include e(checkbox){
+    margin: 0;
+  }
+
+  @include e(tooltip){
+    max-width: 100%;
+    span{
+      display: inline-block;
+      width: 100%;
+      vertical-align: middle;
+      @include utils-ellipsis();
+    }
+  }
+}
+
+@include c(table-head-cell){
+
+  .cl-table-cell__icon{
+    margin-left: 5px;
+  }
+
+  @include e(sort){
+    i{
+      transform: scale(0.6);
+      &:nth-of-type(1){
+        transform-origin: bottom;
+      }
+      &:nth-of-type(2){
+        transform-origin: top;
+      }
+    }
+  }
+
+  @include e(filter){
+
+  }
+
+  @include e(filter-list){
+    border: $--border-default;
+    border-radius: $--border-radius-default;
+    box-shadow: $--box-shadow-default;
+    background-color: $--color-white;
+    font-weight: normal;
+  }
+
+  @include e(filter-footer){
+    padding: 7px 16px;
+    border-top: $--border-default;
+    &>:nth-last-child(1){
+      float: right;
+      margin-left: 10px;
+    }
+  }
+
+  @include e(filter-item){
+    display: block;
+    width: 100%;
+    padding: 7px 16px;
+    position: relative;
+    box-sizing: border-box;
+    text-align: left;
+    cursor: pointer;
+    line-height: normal;
+    font-size: $--font-size-default;
+    color: $--color-text-default;
+    transition: all $--animation-time;
+    background-color: $--color-white;
+    &:hover{
+      background-color: $--background-color-hover;
+    }
+    &.cl-table-head-cell__filter-item-active{
+      background-color: $--background-color-hover;
+      color: $--color-primary;
+    }
+  }
 }

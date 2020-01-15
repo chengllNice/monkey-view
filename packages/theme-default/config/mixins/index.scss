@@ -1,5 +1,5 @@
 
-@import "../config";
+@import "../../base/config";
 
 @mixin c($name){
   $C: $namespace + '-' + $name !global;
@@ -67,4 +67,15 @@
 
 @mixin utils-rotate {
   transform: rotate(-180deg);
+}
+
+@mixin clear-float{
+  &:after{
+    content: '';
+    width:0;
+    height:0;
+    visibility:hidden;
+    display: block;
+    clear: both;
+  }
 }

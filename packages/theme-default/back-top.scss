@@ -1,0 +1,19 @@
+@import "./base/var";
+@import "./config/mixins/index.scss";
+
+@include c(back-top){
+  position: fixed;
+  border-radius: $--border-radius-default;
+  overflow: hidden;
+  cursor: pointer;
+  z-index: $--back-top-z-index;
+
+  @include e(inner){
+    background-color: rgba(0, 0, 0, 0.75);
+    padding: 10px 16px;
+    color: $--color-white;
+    &:hover{
+      background-color: rgba(0, 0, 0, 0.85);
+    }
+  }
+}

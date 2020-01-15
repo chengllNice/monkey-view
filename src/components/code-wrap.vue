@@ -12,7 +12,7 @@
             </div>
             <div class="code-wrap-code-button">
                 <ClTooltip placement="top" content="复制代码">
-                    <i class="cl-icon-copy" @click="copyCodeClick"></i>
+                    <i class="cl-icon-file-copy" @click="copyCodeClick"></i>
                 </ClTooltip>
                 <ClTooltip placement="top" :content="openedCode ? '隐藏代码' : '显示代码'">
                     <i :class="iconCodeClass" @click="openedCodeClick"></i>
@@ -108,9 +108,6 @@
         padding: 0 10px;
         position: relative;
         font-size: 14px;
-        a{
-            opacity: 0;
-        }
         &>span{
             position: relative;
             background-color: #ffffff;

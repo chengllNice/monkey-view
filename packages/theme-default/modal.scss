@@ -1,4 +1,4 @@
-@import "./config/var";
+@import "./base/var";
 @import "./config/mixins/index.scss";
 
 
@@ -31,6 +31,11 @@
 
   @include e(hidden){
     display: none;
+  }
+
+  @include e(overhidden){
+    height: 100%;
+    overflow: hidden;
   }
 
   @include e(content){
@@ -102,7 +107,9 @@
 @include c(modal-confirm){
 
   @include e(icon){
-    font-size: $--modal-confirm-icon-font-size;
+    [class*='cl-icon']{
+      font-size: $--modal-confirm-icon-font-size;
+    }
     text-align: center;
   }
   @include m(info){

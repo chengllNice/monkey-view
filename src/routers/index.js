@@ -1,5 +1,4 @@
 import Vue from 'vue'
-import Config from '../config'
 import Router from 'vue-router'
 import Views from '../views/Views.vue'
 
@@ -19,7 +18,7 @@ export default new Router({
       path: '/',
       name: 'views',
       component: Views,
-      redirect: `${Config.env}/doc/home`,
+      redirect: `/zh-CN/doc/home`,
       children: routers
     },
   ]

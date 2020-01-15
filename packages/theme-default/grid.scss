@@ -1,4 +1,4 @@
-@import "./config/var";
+@import "./base/var";
 @import "./config/mixins/index.scss";
 
 @mixin res-grid($key, $map: $--media-points){
@@ -65,11 +65,7 @@
   display: block;
   position: relative;
 
-  &:after{
-    content: '';
-    display: block;
-    clear: both;
-  }
+  @include clear-float;
 
   @include m(flex){
     display: flex;

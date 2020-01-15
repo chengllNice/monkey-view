@@ -112,7 +112,11 @@
     created() {
     },
     mounted() {
-
+        this.$on('on-close-dropdown', () => {
+            if(this.menuComponent.mode!=='vertical'){
+                this.opened = false;
+            }
+        })
     },
     methods: {
       hanlderMouseenter() {

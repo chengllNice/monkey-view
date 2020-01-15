@@ -14,6 +14,9 @@ module.exports = {
         'cl-ui': path.resolve(__dirname, './')
       }
     },
+    // externals: {
+    //   vue: 'vue',
+    // },
     module: {
       rules: [
         {
@@ -30,13 +33,12 @@ module.exports = {
             {
               loader: path.resolve(__dirname, './md-loader/index.js')
             }
-            // {
-            //   loader: 'vue-markdown-loader/lib/markdown-compiler',
-            //   options: mdLoaderOption
-            // }
           ],
         },
       ]
     },
+    devServer: {
+      host: '127.0.0.1',
+    }
   },
 };

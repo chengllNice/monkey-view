@@ -1,0 +1,215 @@
+@import "./base/var";
+@import "./config/mixins/index.scss";
+
+@include c(tabs){
+  width: 100%;
+  @include e(header){
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: $--border-default;
+  }
+  @include e(nav-wrap){
+    flex: 1;
+    width: 100%;
+    margin-bottom: -1px;
+  }
+  @include e(nav){
+    display: inline-block;
+    white-space: nowrap;
+  }
+  @include e(nav-item-wrap){
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    &:not(.cl-tabs__nav-item-disabled):hover{
+      color: $--color-primary;
+    }
+  }
+  @include e(nav-item){
+    background-color: $--color-white;
+    border-top-left-radius: $--border-radius-default;
+    border-top-right-radius: $--border-radius-default;
+  }
+  @include e(nav-item-name){
+    display: inline-block;
+  }
+  @include e(close){
+    font-size: 10px;
+    transform-origin: top;
+    transform: scale(0.8);
+    margin-left: 10px;
+    vertical-align: middle;
+    color: $--color-text-default;
+
+    &:hover{
+      color: $--color-text-title;
+    }
+  }
+  @include e(extra){
+
+  }
+
+  @include e(nav-item-active){
+    &>.cl-tabs__nav-item{
+      color: $--color-primary;
+      border-bottom: 2px solid $--color-primary;
+    }
+  }
+  @include e(nav-item-disabled){
+    cursor: not-allowed;
+    &>.cl-tabs__nav-item{
+      opacity: $--opacity-disabled;
+    }
+  }
+
+  @include m(left){
+    @include e(nav-wrap, false){
+      align-items: flex-start;
+      order: 0;
+    }
+    @include e(extra, false){
+      align-items: flex-end;
+      order: 1;
+    }
+  }
+  @include m(center){
+    @include e(nav-wrap, false){
+      align-items: center;
+      order: 0;
+      text-align: center;
+    }
+    @include e(extra, false){
+      align-items: flex-end;
+      order: 1;
+    }
+  }
+  @include m(right){
+    @include e(nav-wrap, false){
+      align-items: flex-end;
+      order: 1;
+      text-align: right;
+    }
+    @include e(extra, false){
+      align-items: flex-start;
+      order: 0;
+    }
+  }
+
+  @include e(wrap){
+    overflow: hidden;
+    background-color: $--color-white;
+  }
+  @include e(content){
+    display: flex;
+  }
+  @include e(content-animation){
+    transition: all $--animation-time;
+  }
+
+
+  @include m(mini){
+    .cl-tabs__header{
+      font-size: $--font-size-mini;
+    }
+    .cl-tabs__nav-item-wrap{
+      margin-right: 4px;
+      &>.cl-tabs__nav-item{
+        padding: 4px 12px;
+      }
+      &:nth-last-of-type(1){
+        margin: 0;
+      }
+    }
+  }
+
+  @include m(small){
+    .cl-tabs__header{
+      font-size: $--font-size-small;
+    }
+    .cl-tabs__nav-item-wrap{
+      margin-right: 8px;
+      &>.cl-tabs__nav-item{
+        padding: 6px 14px;
+      }
+      &:nth-last-of-type(1){
+        margin: 0;
+      }
+    }
+  }
+
+  @include m(default){
+    .cl-tabs__header{
+      font-size: $--font-size-default;
+    }
+    .cl-tabs__nav-item-wrap{
+      margin-right: 12px;
+      &>.cl-tabs__nav-item{
+        padding: 8px 16px;
+      }
+      &:nth-last-of-type(1){
+        margin: 0;
+      }
+    }
+  }
+
+  @include m(large){
+    .cl-tabs__header{
+      font-size: $--font-size-large;
+    }
+    .cl-tabs__nav-item-wrap{
+      margin-right: 16px;
+      &>.cl-tabs__nav-item{
+        padding: 8px 16px;
+      }
+      &:nth-last-of-type(1){
+        margin: 0;
+      }
+    }
+  }
+
+
+  @include m(card){
+    .cl-tabs__nav-item-wrap{
+      margin-right: 4px;
+      &>.cl-tabs__nav-item{
+        border-top: $--border-default;
+        border-left: $--border-default;
+        border-right: $--border-default;
+        border-top-left-radius: $--border-radius-default;
+        border-top-right-radius: $--border-radius-default;
+        position: relative;
+        bottom: -1px;
+        left: 0;
+      }
+      &.cl-tabs__nav-item-active{
+        &>.cl-tabs__nav-item{
+          border-bottom: 2px solid $--color-white;
+        }
+      }
+      &.cl-tabs__nav-item-active:after{
+        content: "";
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        width: 100%;
+        border-bottom: 2px solid $--color-white;
+      }
+    }
+  }
+
+  @include m(border){
+    .cl-tabs__wrap{
+      border-left: $--border-default;
+      border-right: $--border-default;
+      border-bottom: $--border-default;
+    }
+  }
+}
+
+@include c(tab-pane){
+  width: 100%;
+  padding: 16px;
+  flex-shrink: 0;
+  background-color: $--color-white;
+}
