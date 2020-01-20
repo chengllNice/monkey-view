@@ -143,8 +143,13 @@
                 if (this.selectDate.length === 2) {
                     this.clearHover();
                 }
-                this.$emit('updateDate', [date.key]);
-                this.picker && this.picker.dateClick(dateFormat(date.key, this.format));
+                let _date = new Date(date.key);
+                _date.setHours(0);
+                _date.setMinutes(0);
+                _date.setSeconds(0);
+
+                this.$emit('updateDate', [_date]);
+                this.picker && this.picker.dateClick(dateFormat(_date, this.format));
             },
             handleSelectWeek(rowIndex){
                 if(this.type === 'date') return;
@@ -206,8 +211,7 @@
             }
         },
         watch: {
-            year(newVal, oldVal) {
-                console.log(newVal, oldVal,'newVal, oldVal')
+            year() {
                 this.setDateList();
             },
             month() {

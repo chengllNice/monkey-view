@@ -155,9 +155,9 @@
                         visibility: i <= 60,
                     });
                 }
-                this.nowDate.setHours(parseInt(this.defaultHours));
-                this.nowDate.setMinutes(parseInt(this.defaultMinutes));
-                this.nowDate.setSeconds(parseInt(this.defaultSecond));
+                this.nowDate.setHours(parseInt(this.defaultHours || 0));
+                this.nowDate.setMinutes(parseInt(this.defaultMinutes || 0));
+                this.nowDate.setSeconds(parseInt(this.defaultSecond || 0));
             },
             getSelected(){
                 this.selectedHours = '';
@@ -194,6 +194,7 @@
                 if(this.date[this.index]){
                     date = new Date(this.date[this.index]);
                 }
+
                 date.setHours(this.selectedHours || this.defaultHours);
                 date.setMinutes(this.selectedMinutes || this.defaultMinutes);
                 date.setSeconds(this.selectedSecond || this.defaultSecond);

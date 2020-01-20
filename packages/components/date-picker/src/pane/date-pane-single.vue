@@ -183,7 +183,6 @@
             },
             updateSingleDate(type, year, month, flag = true){
                 year = year || this.year;
-                console.log(year,'rrrrrr')
                 month = month || this.month;
                 this.$emit('update-pane', {
                     type,
