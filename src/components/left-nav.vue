@@ -296,6 +296,13 @@
                                 link: '/progress',
                                 query: {},
                             },
+                            {
+                                key: 'time',
+                                name: 'Time相对时间',
+                                icon: 'cl-icon-minus',
+                                link: '/time',
+                                query: {},
+                            },
                         ]
                     },
                     {

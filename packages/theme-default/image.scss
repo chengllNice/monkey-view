@@ -1,0 +1,43 @@
+@import "./base/var";
+@import "./config/mixins/index.scss";
+
+@include c(image){
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  overflow: hidden;
+  text-align: center;
+  font-size: $--font-size-base;
+  @include e(loading){
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  @include e(error){
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  @include e(inner){
+    width: 100%;
+    height: 100%;
+    vertical-align: top;
+  }
+  @include e(fill){
+    object-fit: fill;
+  }
+  @include e(contain){
+    object-fit: contain;
+  }
+  @include e(cover){
+    object-fit: cover;
+  }
+  @include e(none){
+    object-fit: none;
+  }
+  @include e(scale-down){
+    object-fit: scale-down;
+  }
+}
