@@ -42,6 +42,7 @@ import ClFormItem from './components/form-item'
 import ClDropdown from './components/drop-down'
 import ClTime from './components/time'
 import ClImage from './components/image'
+import ClSkeleton from './components/skeleton'
 
 import locale from './locale/index';
 
@@ -102,6 +103,8 @@ const components = {
     ClDropdownItem: ClDropdown.Item,
     ClTime,
     ClImage,
+    ClSkeleton,
+    ClSkeletonItem: ClSkeleton.Item,
 };
 
 const install = (Vue, opts = {}) => {

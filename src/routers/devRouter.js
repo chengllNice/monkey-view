@@ -36,6 +36,7 @@ import devForm from '../views/devPage/FormView.vue'
 import devDropdown from '../views/devPage/DropdownView.vue'
 import devTime from '../views/devPage/TimeView.vue'
 import devImage from '../views/devPage/ImageIview.vue'
+import devSkeleton from '../views/devPage/SkeletonView.vue'
 
 let routers = [
     {
@@ -227,6 +228,11 @@ let routers = [
         path: '/dev/image',
         name: 'devImage',
         component: devImage
+    },
+    {
+        path: '/dev/skeleton',
+        name: 'devSkeleton',
+        component: devSkeleton
     },
 ];
 

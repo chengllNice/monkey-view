@@ -303,6 +303,20 @@
                                 link: '/time',
                                 query: {},
                             },
+                            {
+                                key: 'image',
+                                name: 'Image图片',
+                                icon: 'cl-icon-minus',
+                                link: '/image',
+                                query: {},
+                            },
+                            {
+                                key: 'skeleton',
+                                name: 'Skeleton骨架屏',
+                                icon: 'cl-icon-minus',
+                                link: '/skeleton',
+                                query: {},
+                            },
                         ]
                     },
                     {

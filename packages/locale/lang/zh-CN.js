@@ -66,5 +66,8 @@ export default {
         tree: {
             emptyData: '暂无数据',
         },
+        image: {
+            errorText: '加载失败'
+        }
     }
 }

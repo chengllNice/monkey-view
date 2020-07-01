@@ -40,7 +40,9 @@ const routerTypes = [
     'dropdown',
     'time-picker',
     'color',
-    'time'
+    'time',
+    'image',
+    'skeleton',
 ];
 
 let routers = [];

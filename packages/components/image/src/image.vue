@@ -1,24 +1,40 @@
 <template>
-    <div class="cl-image">
-        <slot v-if="isLoading" name="loading">
-            <div class="cl-image__loading">加载中</div>
-        </slot>
-        <slot v-else-if="isError" name="error">
-            <div class="cl-image__error">加载失败</div>
-        </slot>
+    <div :class="[
+        'cl-image',
+        (isLoading || isError) && 'cl-image--status',
+        !clientWidth && 'cl-image--no-clientwidth',
+    ]">
+        <div v-if="isLoading" class="cl-image__loading">
+            <slot name="loading">
+                <cl-loading type="loading5" size="large" fix color="#ccc" :visible="isLoading" />
+            </slot>
+        </div>
+        <div v-else-if="isError" class="cl-image__error">
+            <slot name="error">{{t('cl.image.errorText')}}</slot>
+        </div>
         <img v-else :class="[
             'cl-image__inner',
             fit && `cl-image__${fit}`
             ]"
              :style="imageStyle"
-             :src="src" alt="">
+             :src="src"
+             :alt="alt"
+             @click="handleImageClick">
+        <template v-if="previewList.length">
+            <cl-image-preview :list="previewList" v-if="previewVisible" @close="previewVisible = false" :style="previewStyle"></cl-image-preview>
+        </template>
     </div>
 </template>
 
 <script>
+    import Locale from "../../../mixins/locale";
+    import ClImagePreview from './imagePreview.vue'
+
     const isObjectFit = document.documentElement.style.objectFit !== undefined;
+
     export default {
         name: "ClImage",
+        mixins: [Locale],
         props: {
             fit: {
                 type: String,
@@ -30,12 +46,32 @@
             src: {
                 type: String,
                 default: ''
+            },
+            alt: String,
+            previewList: {
+                type: Array,
+                default(){
+                    return []
+                }
+            },
+            zIndex: {
+                type: Number,
+                default: 2000
             }
         },
         computed: {
             imageStyle(){
-                return isObjectFit ? {} : this.computedImageStyle();
-            }
+                return this.computedImageStyle();
+                // return isObjectFit ? {} : this.computedImageStyle();
+            },
+            previewStyle(){
+                return {
+                    'z-index': this.zIndex
+                }
+            },
+        },
+        components: {
+            ClImagePreview
         },
         data(){
             return {
@@ -43,10 +79,15 @@
                 isError: false,
                 imageWidth: 0,
                 imageHeight: 0,
+                previewVisible: false,
+                clientWidth: 0
             }
         },
         mounted() {
             this.initImage();
+            this.$nextTick(() => {
+                this.computedClientWidth();
+            })
         },
         methods: {
             initImage(){
@@ -56,18 +97,19 @@
                 img.src = this.src;
             },
             loadImage(e, img){
-                setTimeout(()=>{
-                    this.imageWidth = img.width;
-                    this.imageHeight = img.height;
-                    this.isLoading = false;
-                    this.isError = false;
-                },2000)
-
+                this.imageWidth = img.width;
+                this.imageHeight = img.height;
+                this.isLoading = false;
+                this.isError = false;
+                this.$emit('load', e)
             },
             errorLoadImage(e){
                 this.isLoading = false;
                 this.isError = true;
                 this.$emit('error', e)
+            },
+            computedClientWidth(){
+               this.clientWidth = this.$el && this.$el.clientWidth;
             },
             computedImageStyle(){
                 let style = {
@@ -112,6 +154,10 @@
                         break;
                 }
                 return style;
+            },
+            handleImageClick(){
+                if(!this.previewList.length) return;
+                this.previewVisible = true;
             }
         }
     }
