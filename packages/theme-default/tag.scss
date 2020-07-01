@@ -1,5 +1,5 @@
 
-@import "./config/var";
+@import "./base/var";
 @import "./config/mixins/index.scss";
 
 
@@ -27,7 +27,7 @@
   line-height: $height;
 
   .cl-tag__icon{
-    font-size: #{$font-size - 2px};
+    font-size: $font-size;
     margin-left: $padding;
   }
 }
@@ -72,9 +72,8 @@
 
   @include e(icon, false){
     color: $--color-white;
-    transform: scale(0.75);
-    transform-origin: top;
     opacity: $--tag-hover-opacity;
+    line-height: normal;
 
     &:hover{
       opacity: 1;

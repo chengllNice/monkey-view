@@ -26,9 +26,13 @@ $--color-white: #ffffff !default;
 $--color-black: #000000 !default;
 $--color-expand: #c0c4cc !default;
 $--color-disabled: #dcdee2 !default;
+
+/*-----Animation-----*/
 $--animation-time: 0.3s;
 //$--animation-time-: 0.4s;
 
+
+/*-----text-color-----*/
 $--color-text-default: #515a6e !default;
 $--color-text-placeholder: $--color-expand !default;
 $--color-text-disabled: $--color-disabled !default;
@@ -37,6 +41,8 @@ $--color-text-des: #999999 !default;
 $--color-text-title: #17233d !default;
 $--color-text-legend: #999999 !default;
 
+
+/*-----border-color-----*/
 $--border-color-default: #e8eaec !default;//#dcdee2
 $--border-color-disabled: #e8e8e8 !default;//#c5c8ce
 $--border-color-primary: #2d8cf0 !default;
@@ -46,6 +52,8 @@ $--border-color-success: #19be6b !default;
 //$--border-color-success: #42b983 !default;
 $--border-color-info: #13c2c2 !default;
 
+
+/*-----background-color-----*/
 $--background-color-base: #f5f7fa !default;
 $--background-color-disabled: #f7f7f7 !default;
 //$--background-color-disabled: #c5c8ce !default;
@@ -98,6 +106,11 @@ $--media-points: (
   'xl': (min-width: $--xl),
   'xxl': (min-width: $--xxl),
 );
+
+
+
+/*-----page-----*/
+$--page-jump-color: $--color-text-des !default;
 
 /*-----dropdown-----*/
 $--dropdown-item-padding-vertical: 7px !default;
@@ -229,7 +242,7 @@ $--modal-confirm-title-font-size: $--font-size-title !default;
 $--modal-confirm-content-font-size: 14px !default;
 
 /*-----message-----*/
-$--message-icon-font-size: 16px !default;
+$--message-icon-font-size: 20px !default;
 $--message-vertical-padding: 8px !default;
 $--message-horizontal-padding: 16px !default;
 
@@ -386,3 +399,14 @@ $--button-font-color-text: $--color-primary !default;//text类型文字颜色
 
 $--button-hover-percent: 20% !default;
 $--button-active-percent: 10% !default;
+
+
+/*-----image-----*/
+$--image-preview-icon-font-size: 40px !default;
+$--image-preview-action-icon-font-size: 28px !default;
+
+
+/*-----skeleton-----*/
+$--skeleton-item-line-height: 20px !default;
+$--skeleton-item-circle-height: 50px !default;
+$--skeleton-item-background-color: $--background-color-disabled !default;

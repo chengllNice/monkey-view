@@ -4,8 +4,8 @@
             @click="clickHandler"
             :disabled="disabled"
             :class="[
-            type ? 'cl-button--' + type : '',
-            size ? 'cl-button--' + size : '',
+            type ? 'cl-button--type-' + type : '',
+            size ? 'cl-button--size-' + size : '',
             block ? 'cl-button--block' : '',
             circle ? 'cl-button--circle' : '',
             circle && !onlyIconCircle ? 'cl-button--circle-text' : '',
@@ -27,11 +27,17 @@
             disabled: Boolean,
             type: {
                 type: String,
-                default: 'default'
+                default: 'default',
+                validator(value) {
+                    return ['primary', 'default', 'warning', 'danger', 'success', 'info', 'text'].includes(value);
+                }
             },
             size: {
                 type: String,
-                default: ''
+                default: 'default',
+                validator(value){
+                    return ['mini', 'small', 'default', 'large'].includes(value)
+                }
             },
             block: Boolean,
             loading: Boolean,

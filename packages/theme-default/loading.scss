@@ -1,4 +1,4 @@
-@import "./config/var";
+@import "./base/var";
 @import "./config/mixins/index.scss";
 
 @include c(loading){
@@ -22,7 +22,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: hsla(0, 0%, 100%, .9);
+    //background-color: hsla(0, 0%, 100%, .9);
     text-align: center;
     z-index: $--loading-z-index;
     .cl-loading__content{

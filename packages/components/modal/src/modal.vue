@@ -26,19 +26,19 @@
                             <slot name="header">{{title}}</slot>
                         </div>
                         <div class="cl-modal__body" :style="bodyStyle">
-                            <ClScroll size="small">
+                            <cl-scroll size="small">
                                 <div class="cl-modal__body-content">
                                     <slot></slot>
                                 </div>
-                            </ClScroll>
+                            </cl-scroll>
                         </div>
                         <div class="cl-modal__footer" ref="modalFooter" v-if="!footerHide">
                             <slot name="footer">
-                                <ClButton @click="handlerButtonCancel" v-if="localCancelText">{{localCancelText}}
-                                </ClButton>
-                                <ClButton type="primary" :loading='okButtonLoading' @click="handlerButtonOk"
+                                <cl-button @click="handlerButtonCancel" v-if="localCancelText">{{localCancelText}}
+                                </cl-button>
+                                <cl-button type="primary" :loading='okButtonLoading' @click="handlerButtonOk"
                                           v-if="localOkText">{{localOkText}}
-                                </ClButton>
+                                </cl-button>
                             </slot>
                         </div>
                     </div>

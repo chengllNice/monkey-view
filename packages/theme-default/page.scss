@@ -1,4 +1,4 @@
-@import "./config/var";
+@import "./base/var";
 @import "./config/mixins/index.scss";
 
 @include c(page){
@@ -43,11 +43,11 @@
   }
   @include e(item-jump-pre){
     font-size: $--font-size-default;
-    color: $--color-text-disabled;
+    color: $--page-jump-color;
   }
   @include e(item-jump-next){
     font-size: $--font-size-default;
-    color: $--color-text-disabled;
+    color: $--page-jump-color;
   }
   @include e(jump-to){
 

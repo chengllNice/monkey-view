@@ -34,6 +34,10 @@ import devDatePicker from '../views/devPage/DatePickerView.vue'
 import devTimePicker from '../views/devPage/TimePickerView.vue'
 import devForm from '../views/devPage/FormView.vue'
 import devDropdown from '../views/devPage/DropdownView.vue'
+import devTime from '../views/devPage/TimeView.vue'
+import devImage from '../views/devPage/ImageIview.vue'
+import devSkeleton from '../views/devPage/SkeletonView.vue'
+import devCascader from '../views/devPage/CascaderView.vue'
 
 let routers = [
     {
@@ -215,6 +219,26 @@ let routers = [
         path: '/dev/dropdown',
         name: 'devDropdown',
         component: devDropdown
+    },
+    {
+        path: '/dev/time',
+        name: 'devTime',
+        component: devTime
+    },
+    {
+        path: '/dev/image',
+        name: 'devImage',
+        component: devImage
+    },
+    {
+        path: '/dev/skeleton',
+        name: 'devSkeleton',
+        component: devSkeleton
+    },
+    {
+        path: '/dev/cascader',
+        name: 'devCascader',
+        component: devCascader
     },
 ];
 

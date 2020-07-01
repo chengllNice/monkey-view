@@ -6,7 +6,7 @@
         typeof border === 'boolean' && border && 'cl-page--border',
         size === 'mini' && 'cl-page--mini',
     ]">
-        <div class="cl-page__common cl-page__total" :style="{order: orderList('total')}" v-if="orderList('total') > -1">{{localeTotalText.replace('total', total)}}</div>
+        <div class="cl-page__common cl-page__total" :style="{order: orderList('total')}" v-if="orderList('total') > -1">{{localeTotalText.replace('{total}', total)}}</div>
 
         <div class="cl-page__content" :style="{order: orderList('page')}">
             <div class="cl-page__common cl-page__item cl-page__pre"
@@ -75,7 +75,6 @@
 
 <script>
     import Locale from '../../../mixins/locale'
-    import {t} from '../../../locale'
     export default {
         name: "ClPage",
         mixins: [Locale],
@@ -177,14 +176,14 @@
             },
             localeTotalText(){
                 if(!this.totalText){
-                    return this.t('cl.page.total') + ' total ' + this.t('cl.page.item');
+                    return this.t('cl.page.total') + ' {total} ' + this.t('cl.page.item');
                 }else{
                     return this.totalText
                 }
             },
             localePageSizeText(){
                 if(!this.pageSizeText){
-                    return 'pageSize ' + this.t('cl.page.item') + '/' + this.t('cl.page.page');
+                    return '{pageSize} ' + this.t('cl.page.item') + '/' + this.t('cl.page.page');
                 }else{
                     return this.pageSizeText
                 }
@@ -242,7 +241,7 @@
             setPageSizeOption(){
                 this.pageSizeOption.forEach(item => {
                     this.currentPageSizeOption.push({
-                        label: this.localePageSizeText.replace('pageSize', item),
+                        label: this.localePageSizeText.replace('{pageSize}', item),
                         value: item
                     })
                 })

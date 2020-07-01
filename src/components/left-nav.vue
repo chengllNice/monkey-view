@@ -43,6 +43,13 @@
                                 query: {},
                             },
                             {
+                                key: 'color',
+                                name: 'Color色彩',
+                                icon: 'cl-icon-home',
+                                link: '/color',
+                                query: {},
+                            },
+                            {
                                 key: 'button',
                                 name: 'Button按钮',
                                 icon: 'cl-icon-button',
@@ -287,6 +294,27 @@
                                 name: 'Progress进度条',
                                 icon: 'cl-icon-minus',
                                 link: '/progress',
+                                query: {},
+                            },
+                            {
+                                key: 'time',
+                                name: 'Time相对时间',
+                                icon: 'cl-icon-minus',
+                                link: '/time',
+                                query: {},
+                            },
+                            {
+                                key: 'image',
+                                name: 'Image图片',
+                                icon: 'cl-icon-minus',
+                                link: '/image',
+                                query: {},
+                            },
+                            {
+                                key: 'skeleton',
+                                name: 'Skeleton骨架屏',
+                                icon: 'cl-icon-minus',
+                                link: '/skeleton',
                                 query: {},
                             },
                         ]
