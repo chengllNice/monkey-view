@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="cascader-view">
         <cl-cascader v-model="value" :data="data"></cl-cascader>
     </div>
 </template>
@@ -78,5 +78,7 @@
 </script>
 
 <style scoped>
-
+.cascader-view{
+    padding-bottom: 500px;
+}
 </style>

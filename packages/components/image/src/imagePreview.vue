@@ -22,7 +22,7 @@
                 <div class="cl-image-preview__footer">
                     <i class="cl-icon-circle-plus" @click="handleAction('zoomIn')"></i>
                     <i class="cl-icon-remove" @click="handleAction('zoomOut')"></i>
-                    <i class="cl-icon-look-up" @click="handleAction('zoomToggle')"></i>
+                    <i class="cl-icon-look-up" @click="handleAction('toggle')"></i>
                     <i class="cl-icon-refresh" @click="handleAction('rotateLeft')"></i>
                     <i class="cl-icon-refresh" @click="handleAction('rotateRight')"></i>
                 </div>
@@ -60,14 +60,22 @@
                     translateX: 0,
                     translateY: 0,
                 },
-                zoomToggle: 'normal', //当前缩放 out缩小 nomral正常
+                actionToggle: 'limit', //nomral正常 limit限制最大宽高
             }
         },
         computed: {
             imageStyle(){
                 let {scale, rotate, translateX, translateY} = this.transform;
+                let style = {};
+                if(this.actionToggle === 'limit'){
+                    style = {
+                        maxWidth: '100%',
+                        maxHeight: '100%',
+                    }
+                }
                 return {
-                    transform: `scale(${scale}) rotate(${rotate}deg) translateX(${translateX}px) translateY(${translateY}px)`
+                    ...style,
+                    transform: `scale(${scale}) rotate(${rotate}deg) translateX(${translateX}px) translateY(${translateY}px)`,
                 }
             }
         },
@@ -120,14 +128,8 @@
                     case 'zoomOut':
                         scale = scale - this.everyScale;
                         break;
-                    case 'zoomToggle':
-                        if(this.zoomToggle === 'out'){
-                            scale = this.minScale;
-                            this.zoomToggle = 'nomral';
-                        }else{
-                            scale = 1;
-                            this.zoomToggle = 'out';
-                        }
+                    case 'toggle':
+                        this.actionToggle = this.actionToggle === 'limit' ? 'normal' : 'limit';
                         break;
                     case 'rotateLeft':
                         rotate = rotate + this.everyRotate;

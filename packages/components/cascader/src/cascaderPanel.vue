@@ -44,43 +44,47 @@
             initCurrentData(){
                 if(this.panelIndex > 1) return;
                 this.currentData = JSON.parse(JSON.stringify(this.data));
-                let index = 0;//层级
-                let fn = (data) => {
-                    index++;
-                    data.forEach(item=>{
+                let index = 0;
+                let fn = (data, parentPathIndex) => {
+                    data.forEach((item, i)=>{
                         item.__deepIndex = index;
+                        item.__pathIndex = !parentPathIndex ? i.toString() : parentPathIndex + '.' + i;
                         item.__visible = false;//该值控制children的显示
                         item.__disabled = item.disabled || false;
                         item.__more = item.children && item.children.length;
                         item.__loading = false;
 
                         if(item.children && item.children.length){
-                            fn(item.children);
+                            index++;
+                            fn(item.children, item.__pathIndex);
+                            index--;
                         }
-                    })
-                }
+                    });
+                };
                 fn(this.currentData);
             },
-            setCurrentData(prop, value, propValue){
+            setCurrentData(prop, item, value){
+                let deepData = JSON.parse(JSON.stringify(this.currentData));
                 let has = false;//是否有满足的
                 let fn = (data) => {
-                    data.forEach(item=>{
+                    data.forEach(_item=>{
                         if(prop === '__visible'){
-                            item[prop] = false;
+                            _item[prop] = false;
                         }
-                        if(item.value === value && !has){
+                        if(_item.value === item.value && !has){
                             has = true;
-                            item[prop] = propValue;
+                            _item[prop] = value;
                         }
-                        if(item.children && item.children.length){
-                            fn(item.children);
+                        if(_item.children && _item.children.length){
+                            fn(_item.children);
                         }
                     })
-                }
-                fn(this.currentData);
+                };
+                fn(deepData);
+                this.currentData = deepData;
             },
             handleClick(item){
-                this.setCurrentData('__visible', item.value, true);
+                this.setCurrentData('__visible', item, true);
             },
         },
         watch: {
@@ -94,7 +98,3 @@
         }
     }
 </script>
-
-<style scoped>
-
-</style>

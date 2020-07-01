@@ -20,7 +20,7 @@
     export default {
       data(){
         return {
-          src: 'http://img1.imgtn.bdimg.com/it/u=33544438,1899075207&fm=26&gp=0.jpg'
+          src: 'http://a3.att.hudong.com/57/28/01300000921826141405283668131.jpg'
         }
       }
     }
@@ -62,7 +62,7 @@
     export default {
       data(){
         return {
-          src1: 'http://img1.imgtn.bdimg.com/it/u=33544438,1899075207&fm=26&gp=0.jpg',
+          src1: 'http://a3.att.hudong.com/57/28/01300000921826141405283668131.jpg',
           src2: ''
         }
       }
@@ -93,11 +93,11 @@
     export default {
       data(){
         return {
-            src: 'http://img1.imgtn.bdimg.com/it/u=33544438,1899075207&fm=26&gp=0.jpg',
+            src: 'http://a3.att.hudong.com/57/28/01300000921826141405283668131.jpg',
             list: [
-                'http://img1.imgtn.bdimg.com/it/u=33544438,1899075207&fm=26&gp=0.jpg',
-                'http://img0.imgtn.bdimg.com/it/u=1655832461,268672423&fm=26&gp=0.jpg',
-                'http://img2.imgtn.bdimg.com/it/u=3224110779,1779790953&fm=26&gp=0.jpg',
+                'http://a3.att.hudong.com/57/28/01300000921826141405283668131.jpg',
+                'http://a1.att.hudong.com/05/00/01300000194285122188000535877.jpg',
+                'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1593624021279&di=b496016fc934b543036bb4f376caa2da&imgtype=0&src=http%3A%2F%2F00.minipic.eastday.com%2F20161222%2F20161222195407_66e9861db58f43ca5d9a53437a400105_3.jpeg',
             ]
         }
       }
