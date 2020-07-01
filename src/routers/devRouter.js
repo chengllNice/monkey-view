@@ -37,6 +37,7 @@ import devDropdown from '../views/devPage/DropdownView.vue'
 import devTime from '../views/devPage/TimeView.vue'
 import devImage from '../views/devPage/ImageIview.vue'
 import devSkeleton from '../views/devPage/SkeletonView.vue'
+import devCascader from '../views/devPage/CascaderView.vue'
 
 let routers = [
     {
@@ -233,6 +234,11 @@ let routers = [
         path: '/dev/skeleton',
         name: 'devSkeleton',
         component: devSkeleton
+    },
+    {
+        path: '/dev/cascader',
+        name: 'devCascader',
+        component: devCascader
     },
 ];
 

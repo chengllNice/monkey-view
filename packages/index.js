@@ -43,6 +43,7 @@ import ClDropdown from './components/drop-down'
 import ClTime from './components/time'
 import ClImage from './components/image'
 import ClSkeleton from './components/skeleton'
+import ClCascader from './components/cascader'
 
 import locale from './locale/index';
 
@@ -105,6 +106,7 @@ const components = {
     ClImage,
     ClSkeleton,
     ClSkeletonItem: ClSkeleton.Item,
+    ClCascader,
 };
 
 const install = (Vue, opts = {}) => {
