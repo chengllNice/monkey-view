@@ -1,6 +1,14 @@
 <template>
     <div class="cascader-view">
+        value: {{value}}
         <cl-cascader v-model="value" :data="data"></cl-cascader>
+
+        value1: {{value1}}
+        <cl-cascader v-model="value1" :data="data" :format="format"></cl-cascader>
+
+
+        value2: {{value2}}
+        <cl-cascader v-model="value2" :data="data" change-on-select trigger="hover"></cl-cascader>
     </div>
 </template>
 
@@ -9,7 +17,9 @@
         name: "CascaderView",
         data(){
             return {
-                value: [],
+                value: ['beijing', 'haidian'],
+                value1: [],
+                value2: [],
                 data: [
                     {
                         value: 'beijing',
@@ -28,6 +38,10 @@
                                 label: '昌平区',
                             }
                         ]
+                    },
+                    {
+                        value: 'tianjin',
+                        label: '天津市',
                     },
                     {
                         value: 'henan',
@@ -68,10 +82,64 @@
                             {
                                 value: 'pingdingshan',
                                 label: '平顶山市',
+                            },
+                            {
+                                value: 'nanyang',
+                                label: '南阳市',
+                            },
+                            {
+                                value: 'anyang',
+                                label: '安阳市',
+                            },
+                            {
+                                value: 'luohe',
+                                label: '漯河市',
+                            },
+                            {
+                                value: 'zhoukou',
+                                label: '周口市',
                             }
                         ]
                     },
+                    {
+                        value: 'hebei',
+                        label: '河北省',
+                        children: [
+                            {
+                                value: 'handan',
+                                label: '邯郸市',
+                            },
+                            {
+                                value: 'shijiazhuang',
+                                label: '石家庄',
+                            },
+                        ]
+                    },
+                    {
+                        value: 'test',
+                        label: '测试测试测试测试测试测试测试测试测试',
+                        children: [
+                            {
+                                value: 'test-0',
+                                label: '0-测试测试测试测试测试测试测试测试测试',
+                            },
+                            {
+                                value: 'test-1',
+                                label: '石家庄',
+                            },
+                        ]
+                    },
+                    {
+                        value: 'has',
+                        label: '存在',
+                    },
                 ]
+            }
+        },
+        methods: {
+            format(labels, selectedData){
+                console.log(labels, selectedData);
+                return labels.join('-');
             }
         }
     }

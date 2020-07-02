@@ -1,100 +1,52 @@
 <template>
     <div class="cl-cascader-panel">
-        <div v-for="item in currentData" :key="item.value">
-            <div class="cl-cascader-panel__label" @click="handleClick(item)">
-                <span>{{item.label}}{{item.__visible}}</span>
-                <i class="cl-icon-right" v-if="item.__more"></i>
-                <!--            <i class="cl-icon-loading"></i>-->
-            </div>
-            <template v-if="item.children && item.children.length && item.__visible">
-                <cl-cascader-panel :data="item.children" :panel-index="item.__deepIndex"></cl-cascader-panel>
-            </template>
-        </div>
+        <cl-cascader-item :data="currentData"></cl-cascader-item>
     </div>
 </template>
 
 <script>
+    import ClCascaderItem from './cascaderItem'
+    import Mixin from './mixin'
+
     export default {
         name: "ClCascaderPanel",
+        mixins: [Mixin],
         inject: ['cascader'],
-        props: {
-            data: {
-                type: Array,
-                default() {
-                    return []
-                }
-            },
-            panelIndex: {
-                type: Number,
-                default: 1
+        provide(){
+            return {
+                cascaderPanel: this
             }
         },
-        computed: {
+        props: {
 
         },
+        computed: {},
         data() {
             return {
-                visible: false,
-                currentData: [],
+                currentValue: []
             }
         },
+        components: {
+            ClCascaderItem
+        },
         mounted() {
+
         },
         methods: {
-            initCurrentData(){
-                if(this.panelIndex > 1) return;
-                this.currentData = JSON.parse(JSON.stringify(this.data));
-                let index = 0;
-                let fn = (data, parentPathIndex) => {
-                    data.forEach((item, i)=>{
-                        item.__deepIndex = index;
-                        item.__pathIndex = !parentPathIndex ? i.toString() : parentPathIndex + '.' + i;
-                        item.__visible = false;//该值控制children的显示
-                        item.__disabled = item.disabled || false;
-                        item.__more = item.children && item.children.length;
-                        item.__loading = false;
 
-                        if(item.children && item.children.length){
-                            index++;
-                            fn(item.children, item.__pathIndex);
-                            index--;
-                        }
-                    });
-                };
-                fn(this.currentData);
-            },
-            setCurrentData(prop, item, value){
-                let deepData = JSON.parse(JSON.stringify(this.currentData));
-                let has = false;//是否有满足的
-                let fn = (data) => {
-                    data.forEach(_item=>{
-                        if(prop === '__visible'){
-                            _item[prop] = false;
-                        }
-                        if(_item.value === item.value && !has){
-                            has = true;
-                            _item[prop] = value;
-                        }
-                        if(_item.children && _item.children.length){
-                            fn(_item.children);
-                        }
-                    })
-                };
-                fn(deepData);
-                this.currentData = deepData;
-            },
-            handleClick(item){
-                this.setCurrentData('__visible', item, true);
-            },
         },
         watch: {
             data: {
-                handler(){
-                    this.initCurrentData();
+                handler(val){
+                    if(!this.cascader){
+                        this.deepCloneData();
+                    }
+                    this.currentData = val;
                 },
                 deep: true,
                 immediate: true
-            }
+            },
+
         }
     }
 </script>
