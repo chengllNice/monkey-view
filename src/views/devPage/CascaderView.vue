@@ -20,6 +20,18 @@
                 value: ['beijing', 'haidian'],
                 value1: [],
                 value2: [],
+                dataLoading: [
+                    {
+                        value: 'test-0',
+                        label: 'test-0',
+                        children: [],
+                    },
+                    {
+                        value: 'test-1',
+                        label: 'test-1',
+                        children: [],
+                    }
+                ],
                 data: [
                     {
                         value: 'beijing',

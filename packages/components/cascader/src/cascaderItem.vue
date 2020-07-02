@@ -12,8 +12,10 @@
                          @mouseover="handleMouseover(item)"
                          :key="item.value">
                         <span>{{item.label}}</span>
-                        <i class="cl-cascader-item__label-expand-icon cl-icon-right" v-if="item.__more"></i>
-                        <!--            <i class="cl-icon-loading"></i>-->
+                        <span class="cl-cascader-item__label-expand-icon" v-if="item.__loading">
+                            <i class="cl-rotate cl-icon-loading"></i>
+                        </span>
+                        <i class="cl-cascader-item__label-expand-icon cl-icon-right" v-else-if="item.__more"></i>
                     </div>
                 </template>
             </cl-scroll>

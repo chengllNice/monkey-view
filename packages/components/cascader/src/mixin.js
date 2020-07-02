@@ -24,6 +24,9 @@ export default {
         changeOnSelect: {
             type: Boolean,
             default: false
+        },
+        loadData: {
+            type: Function,
         }
     },
     data(){
@@ -48,7 +51,7 @@ export default {
                     item.__visible = item.__visible || false;//该值控制children的显示
                     item.__disabled = item.disabled || false;
                     item.__more = item.children && item.children.length;
-                    item.__loading = false;
+                    item.__loading = item.loading || false;
                     item.__selected = item.__selected || false;
 
                     if (item.children && item.children.length) {
@@ -171,6 +174,10 @@ export default {
             fn(deepData);
             return result;
         },
+
+        asyncLoadData(){
+
+        }
     },
     watch: {
         value: {
