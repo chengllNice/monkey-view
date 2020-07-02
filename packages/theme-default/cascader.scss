@@ -2,9 +2,65 @@
 @import "./config/mixins/index.scss";
 
 @include c(cascader){
-
+  @include e(drop-down-inner){
+    position: relative;
+    border: $--border-default;
+    box-shadow: $--box-shadow-default;
+    background-color: $--color-white;
+  }
 }
 
 @include c(cascader-panel){
 
+}
+
+@include c(cascader-item){
+  height: 200px;
+  vertical-align: top;
+  @include utils-ellipsis();
+
+  @include e(label){
+    display: inline-block;
+    height: 200px;
+    min-width: 100px;
+    vertical-align: top;
+    padding: 5px 0;
+    overflow: hidden;
+  }
+  @include e(label-inner){
+    padding: 8px 10px;
+    padding-right: 30px;
+    cursor: pointer;
+    position: relative;
+    &:not(.cl-cascader-item__disabled):hover{
+      background-color: $--background-color-hover;
+    }
+  }
+  @include e(selected){
+    color: $--color-primary;
+    background-color: $--background-color-hover;
+  }
+
+  @include e(disabled){
+    cursor: not-allowed;
+    color: $--color-disabled;
+    background-color: $--background-color-disabled;
+  }
+
+  @include e(label-expand-icon){
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    font-size: 14px;
+  }
+
+  @include e(expand){
+    height: 100%;
+    display: inline-block;
+
+    & .cl-cascader-item__label{
+      border-left: $--border-default;
+    }
+  }
 }

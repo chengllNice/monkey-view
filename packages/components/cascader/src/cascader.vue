@@ -20,7 +20,7 @@
                       :render-html="renderHtml"
                       v-model="visible">
                 <div class="cl-cascader__drop-down-inner">
-                    <cl-cascader-panel :data="data"></cl-cascader-panel>
+                    <cl-cascader-panel :data="currentData"></cl-cascader-panel>
                 </div>
             </drop-down>
         </transition>
@@ -31,27 +31,18 @@
     import {directive as clickOutside} from 'v-click-outside-x';
     import DropDown from '../../select/src/drop-down.vue'
     import ClCascaderPanel from './cascaderPanel'
+    import Mixin from './mixin'
+
     export default {
         name: "ClCascader",
         directives: {clickOutside},
+        mixins: [Mixin],
         provide() {
           return {
               cascader: this
           }
         },
         props: {
-            value: {
-                type: Array,
-                default(){
-                    return []
-                }
-            },
-            data: {
-                type: Array,
-                default(){
-                    return []
-                }
-            },
             transition: {
                 type: String,
                 default: 'slideUp'
@@ -68,6 +59,9 @@
                     return ['mini', 'small', 'default', 'large'].includes(value);
                 }
             },
+            format: {
+                type: Function,
+            },
             renderHtml: {
                 type: [HTMLElement, Boolean],
                 default: function () {
@@ -78,8 +72,6 @@
         data() {
             return {
                 inputValue: '',
-                currentValue: [],
-                currentLabel: [],
                 visible: false,
                 readonly: true,
             }
@@ -92,31 +84,18 @@
 
         },
         methods: {
-            initInputValue(){
-
-            },
-            getLabelByValue(data){
-                let len = this.currentValue.length;
-                if(!Array.isArray(data) || !len) return;
-
-                let index = 0;
-                let fn = (data) => {
-                    index++;
-                    data.forEach(item=>{
-                        if(item.value === this.currentValue[index]){
-                            this.currentLabel[index] = item.label;
-                            if(data.children && Array.isArray(data.children) && data.children.length){
-                                fn(data.children);
-                            }
-                        }
-                    })
-                };
-                fn();
-            },
             setInputValue(){
-                this.inputValue = this.currentLabel.join(' / ');
+                if(this.format){
+                    let result = this.format(this.currentLabel, this.currentSelectedData);
+                    if(typeof result === 'string'){
+                        this.inputValue = result;
+                    }
+                }else{
+                    this.inputValue = this.currentLabel.join(' / ');
+                }
             },
             handleFocus() {
+                if(this.disabled) return;
                 this.dropDownVisible(!this.visible);
             },
             dropDownVisible(visible) {
@@ -137,15 +116,12 @@
             },
         },
         watch: {
-            value(val){
-                this.currentValue = val;
-            },
-            currentValue(val){
-                this.initInputValue();
-                this.$emit('input', val)
-            },
-            currentLabel(){
-                this.setInputValue();
+            data: {
+                handler(){
+                    this.deepCloneData();
+                },
+                deep: true,
+                immediate: true
             },
         }
     }
