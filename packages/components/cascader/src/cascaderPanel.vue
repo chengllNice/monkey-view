@@ -42,7 +42,7 @@
         },
         methods: {
             initCurrentData(){
-                if(this.panelIndex > 1) return;
+                if(this.panelIndex >= 1) return;
                 this.currentData = JSON.parse(JSON.stringify(this.data));
                 let index = 0;
                 let fn = (data, parentPathIndex) => {
