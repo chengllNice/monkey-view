@@ -11,7 +11,8 @@
                          @click="handleClick(item)"
                          @mouseover="handleMouseover(item)"
                          :key="item.value">
-                        <span>{{item.label}}</span>
+                        <span v-if="showPathLabel" v-html="computedLable(item)"></span>
+                        <span v-else>{{parentComponent.formatLabel(item)}}</span>
                         <span class="cl-cascader-item__label-expand-icon" v-if="item.__loading">
                             <i class="cl-rotate cl-icon-loading"></i>
                         </span>
@@ -33,9 +34,10 @@
 
 <script>
     import ClScroll from '../../scroll/src/scroll.vue'
+    import {findComponent} from "../../../utils/tool";
+
     export default {
         name: "ClCascaderItem",
-        inject: ['cascader', 'cascaderPanel'],
         props: {
             data: {
                 type: Array,
@@ -43,14 +45,29 @@
                     return []
                 }
             },
+            showPathLabel: {
+                type: Boolean,
+                default: false
+            }
         },
-        computed: {},
+        computed: {
+            computedLable(){
+                return function (item) {
+                    if(!this.isCascader) return ;
+                    let searchValue = this.parentComponent.inputValue;
+                    let replaceValue = `<span class="cl-cascader-item__label-match">${searchValue}</span>`
+                    return item.__pathLabel.replace(searchValue, replaceValue);
+                }
+            }
+        },
         data() {
-            let parentComponent = this.cascader ? this.cascader : this.cascaderPanel;
+            let cascader = findComponent(this, 'ClCascader');
+            let cascaderPanel = findComponent(this, 'ClCascaderPanel');
             return {
                 visible: false,
                 currentValue: '',
-                parentComponent: parentComponent
+                isCascader: !!cascader,
+                parentComponent: cascader ? cascader : cascaderPanel
             }
         },
         components: {
@@ -61,8 +78,17 @@
         methods: {
             handleClick(item) {
                 if(this.parentComponent.disabled || item.disabled) return;
-                if(this.parentComponent.loadData){
-                    this.parentComponent.loadData(item);
+                if(this.parentComponent.loadData && !item.last && item.__more){
+                    this.parentComponent.setCurrentData('__loading', item, true);
+                    let promise = this.parentComponent.loadData(item);
+                    if(typeof promise === 'object' && promise.then){
+                        promise.then((result)=>{
+                            this.parentComponent.setCurrentData('children', item, result);
+                            this.parentComponent.setCurrentData('__loading', item, false);
+                        }).catch(e=>{
+                            this.parentComponent.setCurrentData('__loading', item, false);
+                        });
+                    }
                 }
                 this.handleTrigger(item);
             },
@@ -70,7 +96,8 @@
                 if(this.parentComponent.disabled || item.disabled) return;
                 if(this.parentComponent.trigger === 'hover'){
                     if(this.parentComponent.changeOnSelect && item.__more){
-                        this.handleTrigger(item);
+                        this.parentComponent.setCurrentData('__visible', item, true);
+                        this.parentComponent.setCurrentData('__selected', item, true);
                     }else{
                         this.parentComponent.setCurrentData('__visible', item, true);
                     }
@@ -79,7 +106,9 @@
             handleTrigger(item){
                 this.parentComponent.setCurrentData('__visible', item, true);
                 this.parentComponent.setCurrentData('__selected', item, true);
-                this.parentComponent.filterSelectedValue(item);
+                if(!item.__more || this.changeOnSelect){
+                    this.parentComponent.filterSelectedValue(item);
+                }
             }
         },
         watch: {

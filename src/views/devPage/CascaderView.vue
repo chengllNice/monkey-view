@@ -1,25 +1,40 @@
 <template>
     <div class="cascader-view">
-        value: {{value}}
-        <cl-cascader v-model="value" :data="data"></cl-cascader>
+<!--        clearable: {{value}}-->
+<!--        <cl-cascader v-model="value" :data="data" clearable @change="handleChange" loading></cl-cascader>-->
 
         value1: {{value1}}
-        <cl-cascader v-model="value1" :data="data" :format="format"></cl-cascader>
+        <cl-cascader v-model="value1" :data="data"></cl-cascader>
 
 
-        value2: {{value2}}
-        <cl-cascader v-model="value2" :data="data" change-on-select trigger="hover"></cl-cascader>
+<!--        value2: {{value2}}-->
+<!--        <cl-cascader v-model="value2" :data="data" change-on-select trigger="hover"></cl-cascader>-->
+
+<!--        valueLoading: {{valueLoading}}-->
+<!--        <cl-cascader v-model="valueLoading" :data="dataLoading" :loadData="handleLoadData"></cl-cascader>-->
+
+<!--        valueFilterable: {{valueFilterable}}-->
+<!--        <cl-cascader v-model="valueFilterable" :data="data" filterable change-on-select trigger="hover"></cl-cascader>-->
+
+
+<!--        <h4>Panel使用</h4>-->
+<!--        <cl-cascader-panel v-model="panelValue" :data="data"></cl-cascader-panel>-->
     </div>
 </template>
 
 <script>
+    import ClCascaderPanel from "../../../packages/components/cascader/src/cascaderPanel";
     export default {
         name: "CascaderView",
+        components: {ClCascaderPanel},
         data(){
             return {
+                panelValue: [],
                 value: ['henan', 'xuchang', 'xiangchengxian'],
                 value1: [],
                 value2: [],
+                valueLoading: [],
+                valueFilterable: [],
                 dataLoading: [
                     {
                         value: 'test-0',
@@ -154,9 +169,46 @@
           }, 2000)
         },
         methods: {
+            handleChange(value, selectedData){
+                console.log(value,'====',selectedData)
+            },
             format(labels, selectedData){
                 console.log(labels, selectedData);
                 return labels.join('-');
+            },
+            handleLoadData(item){
+                let result = [];
+                if(item.value === 'test-0'){
+                    result = [
+                        {
+                            value: 'test-0-0',
+                            label: 'test-0-0',
+                        },
+                        {
+                            value: 'test-0-1',
+                            label: 'test-0-1',
+                            last: true,
+                        }
+                    ]
+                }else if(item.value === 'test-1'){
+                    result = [
+                        {
+                            value: 'test-1-0',
+                            label: 'test-1-0',
+                        },
+                        {
+                            value: 'test-1-1',
+                            label: 'test-1-1',
+                            last: true,
+                        }
+                    ]
+                }
+
+                return new Promise((resolve, reject) => {
+                    setTimeout(()=>{
+                        resolve(result);
+                    }, 3000)
+                })
             }
         }
     }

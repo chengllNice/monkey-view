@@ -4,3 +4,17 @@
 @include c(tree){
 
 }
+
+
+@include c(tree-node){
+  @include e(item){
+    padding-left: 20px;
+  }
+  @include e(title){
+    height: 30px;
+    line-height: 30px;
+  }
+  @include e(expand-icon){
+    font-size: 14px;
+  }
+}

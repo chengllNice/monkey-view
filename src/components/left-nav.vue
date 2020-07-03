@@ -166,6 +166,13 @@
                                 query: {},
                             },
                             {
+                                key: 'cascader',
+                                name: 'Cascader级联选择',
+                                icon: 'cl-icon-down',
+                                link: '/cascader',
+                                query: {},
+                            },
+                            {
                                 key: 'switch',
                                 name: 'Switch开关',
                                 icon: 'cl-icon-switch',

@@ -68,6 +68,11 @@ export default {
         },
         image: {
             errorText: '加载失败'
+        },
+        cascader: {
+            loading: '加载中',
+            emptyData: '暂无数据',
+            placeholder: '请选择'
         }
     }
 }

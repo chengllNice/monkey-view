@@ -8,10 +8,33 @@
     box-shadow: $--box-shadow-default;
     background-color: $--color-white;
   }
+
+  @include e((empty, loading)){
+    text-align: center;
+    min-width: $--cascader-panel-item-min-width;
+    padding: 7px 16px;
+    font-size: $--font-size-default;
+    color: $--color-text-disabled;
+    vertical-align: middle;
+    @include utils-ellipsis();
+  }
+
+  @include e(suffix-icon){
+    transition: all $--animation-time ease-in-out;
+  }
+
+  @include e(suffix-icon-open){
+    @include utils-rotate();
+  }
 }
 
 @include c(cascader-panel){
-
+  @include m(border){
+    display: inline-block;
+    background-color: $--color-white;
+    border: $--border-default;
+    border-radius: $--border-radius-default;
+  }
 }
 
 @include c(cascader-item){
@@ -22,7 +45,7 @@
   @include e(label){
     display: inline-block;
     height: 200px;
-    min-width: 100px;
+    min-width: $--cascader-panel-item-min-width;
     vertical-align: top;
     padding: 5px 0;
     overflow: hidden;
@@ -35,6 +58,9 @@
     &:not(.cl-cascader-item__disabled):hover{
       background-color: $--background-color-hover;
     }
+  }
+  @include e(label-match){
+    color: $--color-danger;
   }
   @include e(selected){
     color: $--color-primary;

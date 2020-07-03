@@ -107,6 +107,7 @@ const components = {
     ClSkeleton,
     ClSkeletonItem: ClSkeleton.Item,
     ClCascader,
+    ClCascaderPanel: ClCascader.panel,
 };
 
 const install = (Vue, opts = {}) => {

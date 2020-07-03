@@ -1,9 +1,6 @@
 <template>
     <div class="cl-tree">
-        <ClTreeNode v-for="item in treeData"
-                    :key="item.key"
-                    :data="item"
-                    :async-loading="asyncLoading"></ClTreeNode>
+        <cl-tree-node :data="treeData"></cl-tree-node>
         <div class="cl-tree__empty" v-if="!treeData.length">{{localEmptyText}}</div>
     </div>
 </template>
@@ -34,7 +31,7 @@
         },
         data() {
             return {
-                treeData: this.data,
+                treeData: [],
                 activeKey: '',
                 openedKeys: [],
                 checkedKeys: [],
@@ -67,7 +64,49 @@
             });
         },
         methods: {
+            //深度克隆并给指定data添加初始值
+            deepCloneData(data, parentItem){
+                if(!data || !data.length) return [];
+                let deepData = JSON.parse(JSON.stringify(data));
+                let index = 0;
+                let fn = (data, parentItem) => {
+                    data.forEach((item, i) => {
+                        let pathIndex = (parentItem && parentItem.__pathIndex) ? parentItem.__pathIndex + '.' + i : i.toString();
+                        let pathLabel = (parentItem && parentItem.__pathLabel) ? parentItem.__pathLabel + ' / ' + item.label : item.label;
 
+                        item.__deepIndex = item.__deepIndex || index.toString();
+                        item.__pathIndex = item.__pathIndex || pathIndex;
+                        item.__visible = item.__visible || false;//该值控制children的显示
+                        item.__disabled = item.disabled || false;
+                        item.__more = item.children && item.children.length;
+                        item.__loading = false;
+                        item.__selected = item.__selected || false;
+                        item.__pathLabel = pathLabel || '';
+
+
+                        if(this.loadData){
+                            item.__more = !item.last;
+                        }
+
+                        if (item.children && item.children.length) {
+                            index++;
+                            fn(item.children, item);
+                            index--;
+                        }
+                    });
+                };
+                fn(deepData, parentItem);
+                return deepData;
+            },
+        },
+        watch: {
+            data: {
+                handler(val){
+                    this.treeData = this.deepCloneData(val);
+                },
+                deep: true,
+                immediate: true
+            }
         }
     }
 </script>

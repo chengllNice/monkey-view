@@ -40,6 +40,8 @@
                :disabled="isDisabled"
                :readonly="readonly"
                :placeholder="placeholder"
+               @compositionstart="handleCompositionStart"
+               @compositionend="handleCompositionEnd"
                @keydown.enter="handlerEnter"
                @blur="handlerBlur"
                @focus="handlerFocus"
@@ -53,6 +55,8 @@
                   :disabled="isDisabled"
                   :readonly="readonly"
                   :placeholder="placeholder"
+                  @compositionstart="handleCompositionStart"
+                  @compositionend="handleCompositionEnd"
                   @blur="handlerBlur"
                   @focus="handlerFocus"
                   @input="handlerInput"
@@ -185,6 +189,7 @@
                 expandStyle: {},//额外的样式
                 hovering: false,
                 showPasswordVisible: false,
+                composition: false,//中文输入
                 formItem: findComponent(this, 'ClFormItem')
             }
         },
@@ -280,6 +285,7 @@
                 this.$nextTick(this.resizeTextarea());
             },
             handlerInput(e) {
+                if (this.composition) return;
                 if (e && e.target && e.target.value === this.modelValue) return;
                 this.checkedModelValue((e && e.target ? e.target.value : this.modelValue));
                 this.$emit('input', this.modelValue);
@@ -292,6 +298,15 @@
             handlerChange(e) {
                 if (e.target.value === this.modelValue) return;
                 this.$emit('change', this.modelValue);
+            },
+            handleCompositionStart(){
+                this.composition = true;
+            },
+            handleCompositionEnd(e){
+                if(this.composition){
+                    this.composition = false;
+                    this.handlerInput(e);
+                }
             },
             handlerBlur() {
                 if (this.type === 'number') {

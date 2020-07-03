@@ -1,16 +1,23 @@
 <template>
-    <SlideTransition>
-        <div class="cl-tree-node">
-            <div class="cl-tree-node__title">
-                <span><i class="cl-icon-down"></i></span>
-                {{data.name}}
-            </div>
-            <ClTreeNode v-if="data.open && data.children && data.children.length"
-                        v-for="item in  data.children"
-                        :key="item.key"
-                        :data="item"></ClTreeNode>
+    <div class="cl-tree-node">
+        <div class="cl-tree-node__item" v-for="item in data" :key="item.key" @click="handleClick(item)">
+            <slide-transition>
+                <div class="cl-tree-node__title">
+                    <i class="cl-tree-node__expand-icon cl-icon-right"></i>
+                    <span class="cl-tree-node__label">{{item.label}}</span>
+                </div>
+            </slide-transition>
+            <template v-if="item.children && item.children.length">
+                <cl-tree-node :data="item.children" :key="item.key"></cl-tree-node>
+            </template>
         </div>
-    </SlideTransition>
+
+<!--        <template v-for="item in data" >-->
+<!--            <template v-if="item.children && item.children.length">-->
+<!--                <cl-tree-node :data="item.children" :key="item.key"></cl-tree-node>-->
+<!--            </template>-->
+<!--        </template>-->
+    </div>
 </template>
 
 <script>
@@ -23,9 +30,9 @@
         mixins: [Emitter],
         props: {
             data: {
-                type: Object,
+                type: Array,
                 default() {
-                    return {}
+                    return []
                 }
             },
             asyncLoading: Boolean,//是否开启异步数据加载
@@ -41,10 +48,10 @@
         },
         mounted() {
         },
-        methods: {}
+        methods: {
+            handleClick(item){
+
+            }
+        }
     }
 </script>
-
-<style scoped>
-
-</style>

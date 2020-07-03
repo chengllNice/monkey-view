@@ -11,35 +11,35 @@
             return {
                 treeData: [
                     {
-                        key: '0',
-                        name: 'name-0',
+                        key: 'node-0',
+                        label: 'node-0',
                         disabled: false,
                         disabledCheckbox: false,
                         children: [
                             {
-                                key: '0-1',
-                                name: 'name-0-1',
+                                key: 'node-0-1',
+                                label: 'node-0-1',
                                 disabled: false,
                                 disabledCheckbox: false,
                             },
                             {
-                                key: '0-2',
-                                name: 'name-0-2',
+                                key: 'node-0-2',
+                                label: 'node-0-2',
                                 disabled: false,
                                 disabledCheckbox: false,
                             }
                         ]
                     },
                     {
-                        key: '1',
-                        name: 'name-1',
+                        key: 'node-1',
+                        label: 'node-1',
                         disabled: false,
                         disabledCheckbox: false,
                         children: []
                     },
                     {
-                        key: '2',
-                        name: 'name-2',
+                        key: 'node-2',
+                        label: 'node-2',
                         disabled: false,
                         disabledCheckbox: false,
                         children: []

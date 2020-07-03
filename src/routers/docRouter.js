@@ -43,6 +43,7 @@ const routerTypes = [
     'time',
     'image',
     'skeleton',
+    'cascader',
 ];
 
 let routers = [];
