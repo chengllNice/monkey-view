@@ -8,11 +8,11 @@
 <script>
     import ClTreeNode from './tree-node'
     import Locale from '../../../mixins/locale'
-    import Mixins from './mixins'
+    import Mixin from './mixin'
 
     export default {
         name: "ClTree",
-        mixins: [Locale, Mixins],
+        mixins: [Locale, Mixin],
         provide(){
           return {
               treeRoot: this
@@ -57,6 +57,8 @@
             return {
                 componentName: 'ClTree',
                 renderType: 'normal',
+                reduceData: [],//展开data为一维数组
+                parentEmitChangeReduceData: false,//reduceData是否是上层组件触发修改的
                 filterLoading: false,//搜索中
             }
         },
@@ -96,44 +98,95 @@
             },
 
             getExpandNodes(){
-                return this.getDataByPropValue('__expand', true).data;
+                let data = this.filterDataByPropValueRemove('__expand', true);
+                return this.commonReduceData(data);
             },
             getCheckedNodes(){
-                return this.getDataByPropValue('__checked', true).data;
+                let data = this.filterDataByPropValueRemove('__checked', true);
+                return this.commonReduceData(data);
             },
             getSelectedNodes(){
-                return this.getDataByPropValue('__selected', true).data;
+                let data = this.filterDataByPropValueRemove('__selected', true);
+                return this.commonReduceData(data);
             },
             
             filterNodes(value){
                 this.filterLoading = true;
-
-                if(!value.trim()){
-                    this.reduceData.forEach(item=>{
-                        item.__visible = true;
-                        item.__expand = true;
-                    });
-                }else {
-                    this.reduceData.forEach(item=>{
-                        item.__visible = false;
-                        item.__expand = false;
-                    });
-                    let data = this.getDataByfilterValue(value);
-                    data.forEach(item=>{
-                        this.setReduceDataProp(item, '__visible', true);
-                        this.setReduceDataProp(item, '__expand', true);
+                if(!value) {
+                    this.setVisibleValue(true);
+                    // this.currentData = this.setVisibleValue(true);
+                }else{
+                    let deepData = this.filterDataByPropValue('__pathLabel', value, 'includes');
+                    this.setVisibleValue(false);
+                    deepData.forEach(item=>{
+                        this.setData('__visible', item, true);
+                        this.setData('__expand', item, true);
                     });
                 }
-
                 this.$nextTick(()=>{
                     this.filterLoading = false;
                 });
+
+                let data = this.filterDataByPropValueRemove('__visible', true);
+                return this.commonReduceData(data);
             },
 
-            //提供给上层调用的
-            getData(){
+            //指定数据展开成一维数组
+            commonReduceData(data){
+                let deepData = JSON.parse(JSON.stringify(data));
+                let fn = (data) => {
+                    if(!data || !data.length) return [];
+                    return data.reduce((r,item)=>{
+                        // this.deleteProp(item);
+                        return r.concat(item).concat(fn(item.children))
+                    },[])
+                };
+                return fn(deepData);
+            },
+
+            //currentData展开成一维数组
+            setReduceData(data){
+                if(JSON.stringify(data) === JSON.stringify(this.currentData)) return;
+                this.reduceData = this.commonReduceData(data || this.currentData);
+            },
+
+            getReduceData(){
                 return JSON.parse(JSON.stringify(this.reduceData));
             },
+
+            getFromReduceDataByKey(key){
+                for (let i = 0; i < this.reduceData.length; i++){
+                    if(this.reduceData[i].key === key){
+                        return this.reduceData[i]
+                    }
+                }
+            },
+
+            //聚合reduceData
+            aggregationReduceData(){
+                let reduceData = JSON.parse(JSON.stringify(this.reduceData));
+                let result = [];
+                reduceData.forEach(item=>{
+                    if(!item.parentKey) result.push(item);
+                })
+                return result;
+            }
         },
+        watch: {
+            data: {
+                handler(){
+                    this.initData();
+                },
+                deep: true,
+                immediate: true
+            },
+            reduceData: {
+                handler(){
+                   let result = this.aggregationReduceData();
+                    this.initData(result);
+                },
+                deep: true
+            }
+        }
     }
 </script>

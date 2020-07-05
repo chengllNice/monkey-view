@@ -84,7 +84,7 @@ export default {
         deepCloneData(data, parentItem){
             if(!data || !data.length) return [];
             let deepData = JSON.parse(JSON.stringify(data));
-            let index = 0;
+            let index = parentItem ? parseInt(parentItem.__deepIndex) + 1 : 0;
             let fn = (data, parentItem) => {
                 data.forEach((item, i) => {
                     let pathIndex = (parentItem && parentItem.__pathIndex) ? parentItem.__pathIndex + '.' + i : i.toString();

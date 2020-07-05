@@ -30,7 +30,9 @@
     $after-height: 10px;
   }
 
-  font-size: $font-size;
+  .cl-checkbox__label{
+    font-size: $font-size;
+  }
   .cl-checkbox__inner{
     width: $width;
     height: $height;
@@ -55,6 +57,7 @@
   transition: all 0.2s;
   //vertical-align: middle;
   margin-right: 20px;
+  font-size: 0;
 
   @include e(input){
     display: inline-block;
@@ -66,7 +69,7 @@
     //display: inline-block;
     margin-left: 5px;
     cursor: pointer;
-    //vertical-align: middle;
+    vertical-align: middle;
   }
 
   @include e(inner){
@@ -95,24 +98,6 @@
       position: absolute;
       top: 50%;
       left: 50%;
-    }
-  }
-
-  @include when(disabled){
-    cursor: not-allowed;
-    color: $--color-text-disabled;
-    .cl-checkbox__label{
-      cursor: not-allowed;
-    }
-    .cl-checkbox__inner{
-      cursor: not-allowed;
-      background-color: $--background-color-disabled;
-      border-color: $--border-color-disabled;
-
-      &::after{
-        cursor: not-allowed;
-        background: $--background-color-disabled;
-      }
     }
   }
 
@@ -145,6 +130,24 @@
     }
   }
 
+  @include when(disabled){
+    cursor: not-allowed;
+    color: $--color-text-disabled;
+    .cl-checkbox__label{
+      cursor: not-allowed;
+    }
+    .cl-checkbox__inner{
+      cursor: not-allowed;
+      background-color: $--background-color-disabled;
+      border-color: $--border-color-disabled;
+
+      &::after{
+        cursor: not-allowed;
+        background: $--background-color-disabled;
+      }
+    }
+  }
+
   &.is-disabled.is-checked{
     color: $--color-text-disabled;
     .cl-checkbox__inner{
@@ -154,6 +157,19 @@
 
       &::after{
         border-color: $--color-text-icon;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  &.is-disabled.is-indeterminate{
+    color: $--color-text-disabled;
+    .cl-checkbox__inner{
+      background-color: $--background-color-disabled;
+      border-color: $--border-color-disabled;
+      cursor: not-allowed;
+      &::after {
+        background-color: $--color-text-icon;
         cursor: not-allowed;
       }
     }

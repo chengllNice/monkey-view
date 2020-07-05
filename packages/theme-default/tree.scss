@@ -2,19 +2,60 @@
 @import "./config/mixins/index";
 
 @include c(tree){
-
+  background-color: $--color-white;
+  position: relative;
 }
 
 
 @include c(tree-node){
   @include e(item){
-    padding-left: 20px;
+
   }
   @include e(title){
-    height: 30px;
-    line-height: 30px;
+    display: flex;
+    align-items: center;
+    height: 28px;
+    line-height: 28px;
+    cursor: pointer;
+    color: $--color-text-default;
+    border-radius: $--border-radius-default;
+    background-color: $--color-white;
+    transition: background-color $--animation-time;
+
+    &:not(.is-disabled):hover{
+      background-color: $--background-color-hover;
+    }
+
+    @include when(expand){
+      .cl-tree-node__expand-icon i{
+        transform: rotate(90deg);
+      }
+    }
+    @include when(disabled){
+      cursor: not-allowed;
+      color: $--color-text-disabled;
+    }
   }
+
+  @include e(label){
+    flex: 1;
+    @include utils-ellipsis();
+  }
+
   @include e(expand-icon){
-    font-size: 14px;
+    width: 26px;
+    text-align: center;
+    flex: none;
+    i{
+      font-size: 12px;
+      font-weight: bold;
+      transition: all $--animation-time;
+    }
   }
+  @include e(checkbox){
+    margin-right: 10px;
+    flex: none;
+  }
+
+
 }

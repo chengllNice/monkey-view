@@ -324,6 +324,13 @@
                                 link: '/skeleton',
                                 query: {},
                             },
+                            {
+                                key: 'tree',
+                                name: 'Tree树形',
+                                icon: 'cl-icon-list',
+                                link: '/tree',
+                                query: {},
+                            },
                         ]
                     },
                     {

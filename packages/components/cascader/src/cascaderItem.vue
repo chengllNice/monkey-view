@@ -77,8 +77,8 @@
         },
         methods: {
             handleClick(item) {
-                if(this.parentComponent.disabled || item.disabled) return;
-                if(this.parentComponent.loadData && !item.last && item.__more){
+                if(this.parentComponent.disabled || item.disabled || item.loading) return;
+                if(this.parentComponent.loadData && !item.last && (!item.children || !item.children.length)){
                     this.parentComponent.setCurrentData('__loading', item, true);
                     let promise = this.parentComponent.loadData(item);
                     if(typeof promise === 'object' && promise.then){

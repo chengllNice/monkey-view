@@ -69,9 +69,9 @@
                     })
                 }
             },
-            clickHandler() {
+            clickHandler(event) {
                 if (this.disabled || this.loading) return;
-                this.$emit('click');
+                this.$emit('click', event);
             }
         }
     }
