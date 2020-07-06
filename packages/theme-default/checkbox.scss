@@ -81,6 +81,7 @@
     cursor: pointer;
     //vertical-align: middle;
     line-height: normal;
+    transition: all $--animation-time ease-in-out;
 
     &:hover{
       border-color: $--radio-border-color-hover;
@@ -91,7 +92,6 @@
       width: 0;
       height: 0;
       display: block;
-      transition: all $--animation-time ease-in-out;
       transform-origin: top;
       transform: rotate(45deg) scale(1) translate(-50%, -50%);
       border: 0 solid $--color-white;

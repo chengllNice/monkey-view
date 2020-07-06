@@ -137,9 +137,13 @@ export default {
                     // if(this.checkStrictly && item.key === key && !item.__disabled) item[prop] = value;
 
                     //如果不严格控制checked 所有子级的checked改变
-                    if(!this.checkStrictly && item.allparentKeys.includes(key)) item[prop] = value;
+                    if(!this.checkStrictly && item.allparentKeys.includes(key)) {
+                        item[prop] = value;
+                        item['__indeterminate'] = false;
+                    }
 
-                    if(value) item['__indeterminate'] = false;
+                    //当前项设置
+                    if(item.key === key) item['__indeterminate'] = false;
                 }
 
                 if(prop === '__visible'){
@@ -162,7 +166,10 @@ export default {
             }
 
             if(prop === 'children'){
-                this.initData(this.reduceData);
+                let filterData = this.reduceData.filter(item=>{
+                    return !item.parentKey
+                });
+                this.initData(filterData);
             }
 
             if(source === 'node' && prop === '__expand'){
@@ -180,7 +187,7 @@ export default {
             let checked = item.__checked;
 
             this.reduceData.forEach(_item=>{
-                if(_item.allChildrenKeys.includes(key) && _item.key !== key){
+                if(_item.allChildrenKeys.includes(key)){
                     let childrenCheckedArray = this.getChildrenPropValue(_item, '__checked');
 
                     //选中时 子项有没有选中的即为indeterminate
@@ -224,7 +231,7 @@ export default {
         },
         //获取所有子级指定prop属性的value值的数组集合
         getChildrenPropValue(item, prop){
-            if(!this.reduceData || !this.reduceData.length) return;
+            // if(!this.reduceData || !this.reduceData.length) return;
             let result = [];
             let key = item.key;
             this.reduceData.forEach(_item=>{
@@ -236,7 +243,7 @@ export default {
         },
         //获取所有子级指定prop=value值的项的数组和keys数组
         getDataByPropValue(prop, value){
-            if(!this.reduceData || !this.reduceData.length) return;
+            // if(!this.reduceData || !this.reduceData.length) return;
             let result = {
                 data: [],
                 keys: []
@@ -251,7 +258,7 @@ export default {
         },
         //获取label满足搜索value的项
         getDataByfilterValue(value){
-            if(!this.reduceData || !this.reduceData.length) return;
+            // if(!this.reduceData || !this.reduceData.length) return;
             if(!value.trim()) return ;
             let result = [];
             this.reduceData.forEach(item=>{
@@ -316,14 +323,6 @@ export default {
             });
             this.currentData = result;
         },
-        getDataFromReduceDataByKey(key){
-            if(!this.reduceData || !this.reduceData.length) return null;
-            let result = this.reduceData.filter(item=>{
-                return item.key === key;
-            });
-            if(result && result.length) return result[0];
-            return null;
-        },
 
         setRenderData(){
             let deepReduceData = JSON.parse(JSON.stringify(this.reduceData));
@@ -336,7 +335,7 @@ export default {
         },
         renderDataChange(){
             if(JSON.stringify(this.renderData) === JSON.stringify(this.reduceData)) return;
-            if(!this.renderData || !this.renderData.length) return;
+            // if(!this.renderData || !this.renderData.length) return;
 
             let result = this.renderData.filter(item=>{
                 return !item.parentKey

@@ -637,9 +637,14 @@
                 this.$set(data, 'children', children);
             },
             handleRemove({root, data}){
-                let parentItem = root.find(el => data.parentKey === el.key);
-                let index = parentItem.childrenKeys.findIndex(key => key === data.key);
-                parentItem.children.splice(index, 1);
+                if(!data.parentKey) {
+                    let index = root.findIndex(el => data.key === el.key);
+                    root.splice(index, 1)
+                }else{
+                    let parentItem = root.find(el => data.parentKey === el.key);
+                    let index = parentItem.childrenKeys.findIndex(key => key === data.key);
+                    parentItem.children.splice(index, 1);
+                }
             }
         }
     }
@@ -739,6 +744,8 @@ data数据中的`last`属性表示该节点是最后一级节点，最后一级�
 | indent | String, Number | 相邻数据节点之间水平缩进大小，单位px | 16 |
 | default-expand-all | Boolean | 是否默认展开所有数据，只在数据第一次加载时有效，`disabled`的节点不会展开 | - |
 | hide-icon | Boolean | 是否隐藏节点前的图标 | - |
+| expand-icon-class | String | 自定义展开收起的图标 | - |
+| loading-icon-class | String | 自定义异步加载数据时加载中的图标 | - |
 
 
 ### Tree event
@@ -757,6 +764,13 @@ data数据中的`last`属性表示该节点是最后一级节点，最后一级�
 | getCheckedNodes | 获取所有复选框已勾选的节点数据 | - |
 | getSelectedNodes | 获取所有已选中的节点数据 | - |
 | filterNodes | 根据参数`value`模糊匹配`label`字段筛选 | value |
+
+
+### Tree slot
+
+| 名称 | 说明 |
+| ---- | ---- |
+| - | 自定义节点的展示内容，参数为{root, data} |
 
 
 

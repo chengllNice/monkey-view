@@ -9,9 +9,11 @@
                   ]"
                      :style="titleStyle(item)"
                      @click.stop="handleClick(item)">
-                    <span class="cl-tree-node__expand-icon" @click="handleExpandClick(item)">
-                        <i class="cl-rotate cl-icon-loading" v-if="item.__loading"></i>
-                        <i class="cl-icon-right" v-else-if="item.__more"></i>
+                    <span v-if="!treeRoot.hideIcon"
+                          class="cl-tree-node__expand-icon"
+                          @click.stop="handleExpandClick(item)">
+                        <i :class="treeRoot.loadingIconClass" v-if="item.__loading"></i>
+                        <i :class="treeRoot.expandIconClass" v-else-if="item.__more"></i>
                     </span>
                     <cl-checkbox v-if="parentComponent.showCheckbox"
                                  v-model="item.__checked"

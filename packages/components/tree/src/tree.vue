@@ -41,8 +41,18 @@
             },
             //是否默认展开所有数据
             defaultExpandAll: Boolean,
-            //隐藏节点前的图标
+            //隐藏节点前的图标(包括展开收起和加载中的图标)
             hideIcon: Boolean,
+            //自定义展开收起图标
+            expandIconClass: {
+                type: String,
+                default: 'cl-icon-right'
+            },
+            //自定义加载中的图标
+            loadingIconClass: {
+                type: String,
+                default: 'cl-rotate cl-icon-loading'
+            },
             //异步加载数据的方法，参数为当前选择项，返回Promise
             loadData: {
                 type: Function
