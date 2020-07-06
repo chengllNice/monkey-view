@@ -18,7 +18,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: $--color-text-placeholder;
+    color: $--color-text-empty;
   }
 
   @include m(no-clientwidth){

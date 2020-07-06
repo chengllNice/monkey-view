@@ -30,7 +30,7 @@
     text-align: center;
     padding: 7px 16px;
     font-size: $--select-option-font-size;
-    color: $--color-text-disabled;
+    color: $--color-text-empty;
     @include utils-ellipsis();
   }
 
@@ -39,7 +39,7 @@
     text-align: center;
     padding: 7px 16px;
     font-size: $--select-option-font-size;
-    color: $--color-text-disabled;
+    color: $--color-text-empty;
     @include utils-ellipsis();
     & > i{
       margin-right: 10px;

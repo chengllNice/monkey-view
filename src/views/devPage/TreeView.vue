@@ -19,24 +19,27 @@
 <!--            </template>-->
 <!--        </cl-tree>-->
 
-<!--        <h4>renderContent</h4>-->
-<!--        <cl-tree :data="treeData" :render-content="renderContent" ref="tree"></cl-tree>-->
+        <h4>renderContent</h4>
+        <cl-tree :data="treeData" :render-content="renderContent" ref="tree"></cl-tree>
 
-        <h4>LoadData</h4>
-        <cl-tree :data="treeDataLoad" :load-data="handleLoadData" ref="tree"></cl-tree>
+<!--        <h4>LoadData</h4>-->
+<!--        <cl-tree :data="treeDataLoad" :load-data="handleLoadData" ref="tree"></cl-tree>-->
 
 
 <!--        <h4>checkedKeys</h4>-->
-<!--        <cl-tree :data="treeData" show-checkbox check-strictly :checked-keys="checkedKeys"></cl-tree>-->
+<!--        <cl-tree :data="treeData" show-checkbox :checked-keys="checkedKeys" ref="tree"></cl-tree>-->
+
+<!--        <h4>checkedKeys &#45;&#45; check-strictly</h4>-->
+<!--        <cl-tree :data="treeData" show-checkbox check-strictly :checked-keys="checkedKeys" ref="tree"></cl-tree>-->
 
 <!--        <h4>expandKeys</h4>-->
-<!--        <cl-tree :data="treeData" :expand-keys="expandKeys"></cl-tree>-->
+<!--        <cl-tree :data="treeData" :expand-keys="expandKeys" ref="tree"></cl-tree>-->
 
 <!--        <h4>手风琴</h4>-->
-<!--        <cl-tree :data="treeData" accordion></cl-tree>-->
+<!--        <cl-tree :data="treeData" accordion ref="tree"></cl-tree>-->
 
 <!--        <h4>显示checkbox</h4>-->
-<!--        <cl-tree :data="treeData" show-checkbox></cl-tree>-->
+<!--        <cl-tree :data="treeData" show-checkbox ref="tree"></cl-tree>-->
     </div>
 </template>
 
@@ -49,11 +52,24 @@
                 filterValue: '',
                 checkedKeys: ['node-0'],
                 expandKeys: ['node-0', 'node-0-1', 'node-0-2'],
+                keyIndex: 10,
                 reduceData: [],
                 treeDataLoad: [
                     {
                         key: 'node-0',
                         label: 'node-0',
+                        disabled: false,
+                        disabledCheckbox: false,
+                        children: [
+                            {
+                                key: 'node-0-1',
+                                label: 'node-0-1',
+                            }
+                        ]
+                    },
+                    {
+                        key: 'node-1',
+                        label: 'node-1',
                         disabled: false,
                         disabledCheckbox: false,
                     },
@@ -135,24 +151,25 @@
             })
         },
         methods: {
-            remove({root, node, data}){
-
-                // data.root.splice(0, 1)
-                // let a = data.root.find(el => el === data.data)
-                // console.log(data,'====',a)
+            remove({root, data}){
+                let parentItem = root.find(el => data.parentKey === el.key);
+                let index = parentItem.childrenKeys.findIndex(key => key === data.key);
+                parentItem.children.splice(index, 1);
             },
-            add({root, node, data}){
-                console.log(data,'===')
+            add(param){
+                let data = param.data;
                 let children = [
+                    ...(data.children || []),
                     {
-                        key: 'test-0' + root.length,
-                        label: 'test-0',
+                        key: 'test-0' + ++this.keyIndex,
+                        label: 'test-0' + this.keyIndex,
+                        children: []
                     }
-                ]
+                ];
                 this.$set(data, 'children', children);
             },
-            renderContent(h, {root, node, data}){
-                return `<span>${data.label}--render</span>`;
+            renderContent(h, {root, data}){
+                // return `<span>${data.label}--render</span>`;
                 // return h('div', [
                 //     h('i', {
                 //         attrs: {
@@ -161,6 +178,46 @@
                 //     }),
                 //     h('span', data.label)
                 // ])
+                return h('div', {
+                        attrs: {
+                            class: 'doc-tree-load-data'
+                        }
+                    },
+                    [
+                        h('span', [
+                            h('i', {
+                                attrs: {
+                                    class: 'cl-icon-file'
+                                }
+                            }),
+                            h('span', data.label),
+                        ]),
+                        h('ClButtonGroup', [
+                            h('ClButton', {
+                                props: {
+                                    type: 'primary',
+                                    icon: 'cl-icon-plus',
+                                    size: 'mini',
+                                },
+                                on: {
+                                    click: () => {
+                                        this.add({root, data})
+                                    }
+                                }
+                            }),
+                            h('ClButton', {
+                                props: {
+                                    icon: 'cl-icon-minus',
+                                    size: 'mini',
+                                },
+                                on: {
+                                    click: () => {
+                                        this.remove({root, data})
+                                    }
+                                }
+                            })
+                        ])
+                    ])
             },
             getReduceTreeData(){
                 this.$refs.tree.getData();
@@ -178,6 +235,7 @@
                             disabled: false,
                             disabledCheckbox: false,
                             disabledExpand: false,
+                            expand: true,
                             children: [
                                 {
                                     key: 'node-0-1-0',

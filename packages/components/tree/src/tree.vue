@@ -25,6 +25,24 @@
                     return []
                 }
             },
+            //相邻数据节点之间水平缩进大小，单位px
+            indent: {
+                type: [String, Number],
+                default: 16
+            },
+            //过滤node节点执行的方法 暂时不用
+            filterNodeMethods: {
+                type: Function,
+                default(){
+                    return function () {
+                        return true
+                    }
+                }
+            },
+            //是否默认展开所有数据
+            defaultExpandAll: Boolean,
+            //隐藏节点前的图标
+            hideIcon: Boolean,
             //异步加载数据的方法，参数为当前选择项，返回Promise
             loadData: {
                 type: Function
@@ -134,6 +152,15 @@
             getData(){
                 return JSON.parse(JSON.stringify(this.reduceData));
             },
+
+            expandChange(item){
+                let expandData = this.getExpandNodes();
+                this.$emit('expand-change', expandData, item);
+            },
+            checkChange(item){
+                let checkedData = this.getCheckedNodes();
+                this.$emit('check-change', checkedData, item);
+            }
         },
     }
 </script>

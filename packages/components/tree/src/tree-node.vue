@@ -18,6 +18,7 @@
                                  :indeterminate="item.__indeterminate"
                                  :disabled="item.__disabled || item.__disabledCheckbox"
                                  class="cl-tree-node__checkbox"
+                                 @click.native.stop
                                  @change="(value) => handleCheckboxChange(value, item)"></cl-checkbox>
                     <div class="cl-tree-node__label">
                         <Render v-bind="renderProps(item)"></Render>
@@ -60,7 +61,7 @@
             titleStyle() {
                 return function (item) {
                     return {
-                        paddingLeft: item.__deepIndex * 20 + 'px',
+                        paddingLeft: item.__deepIndex * parseFloat(this.treeRoot.indent) + 'px',
                     }
                 }
             },
@@ -68,9 +69,8 @@
                 return function (item) {
                     let props = {
                         type: this.parentComponent.renderType,
-                        data: this.parentComponent.getFromReduceDataByKey(item.key) || item,
-                        root: this.parentComponent.reduceData,
-                        node: this.parentComponent.currentData,
+                        data: this.parentComponent.getDataFromRenderDataByKey(item.key),
+                        root: this.parentComponent.renderData,
                     };
                     if(props.type === 'render'){
                         props.renderContent = this.parentComponent.renderContent;
@@ -108,11 +108,11 @@
                         });
                     }
                 }
-                this.parentComponent.setReduceDataProp(item,'__expand', !item.__expand);
+                this.parentComponent.setReduceDataProp(item,'__expand', !item.__expand, 'node');
             },
             handleCheckboxChange(value, item) {
                 if (item.__disabled || item.__disabledCheckbox || !this.parentComponent.showCheckbox) return;
-                this.parentComponent.setReduceDataProp(item,'__checked', value);
+                this.parentComponent.setReduceDataProp(item,'__checked', value, 'node');
             }
         },
     }

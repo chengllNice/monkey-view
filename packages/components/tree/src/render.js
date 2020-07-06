@@ -10,7 +10,6 @@ export default {
         renderContent: Function,
         data: Object,
         root: Array,
-        node: Array,
     },
     render: (h, ctx) => {
         if(ctx.props.type === 'slot'){
@@ -18,7 +17,6 @@ export default {
             if(r){
                 return h('div', r({
                     root: ctx.props.root,
-                    node: ctx.props.node,
                     data: ctx.props.data,
                 }));
             }
@@ -26,7 +24,6 @@ export default {
         }else if(ctx.props.type === 'render'){
             const params = {
                 root: ctx.props.root,
-                node: ctx.props.node,
                 data: ctx.props.data
             };
             let renderContent = ctx.props.renderContent(h, params);

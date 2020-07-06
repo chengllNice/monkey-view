@@ -14,7 +14,7 @@
     min-width: $--cascader-panel-item-min-width;
     padding: 7px 16px;
     font-size: $--font-size-default;
-    color: $--color-text-disabled;
+    color: $--color-text-empty;
     vertical-align: middle;
     @include utils-ellipsis();
   }

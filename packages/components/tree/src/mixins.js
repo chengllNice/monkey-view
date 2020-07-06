@@ -1,15 +1,15 @@
 
-import {getObjectValueByPath} from "../../../utils/global";
-
 export default {
     data(){
         return {
             currentData: [],
             reduceData: [],
+            renderData: [],
             initHasChecked: false,//初始数据是否存在checked的项
             initHasDisabled: false,//初始数据是否存在disabled的项
             initHasExpand: false,//初始数据是否存在expand的项
             isExpandKeysChange: false,
+            defaultLoad: true,//是否是默认第一次加载数据
         }
     },
     mounted(){
@@ -25,6 +25,8 @@ export default {
                 data.forEach((item, i) => {
                     let pathIndex = (parentItem && parentItem.__pathIndex) ? parentItem.__pathIndex + '.' + i : i.toString();
                     let pathLabel = (parentItem && parentItem.__pathLabel) ? parentItem.__pathLabel + ' / ' + item.label : item.label;
+
+                    if(!item.children) item.children = [];
 
                     item.__deepIndex = index.toString();
                     item.__pathIndex = pathIndex;
@@ -46,6 +48,10 @@ export default {
                     item.childrenKeys = [];
                     item.allChildrenKeys = [];
 
+                    if(this.defaultLoad && this.defaultExpandAll && !item.__disabled){
+                        item.__expand = true;
+                    }
+
 
                     if(this.loadData){
                         item.__more = !item.last;
@@ -62,6 +68,7 @@ export default {
                 });
             };
             fn(deepData, parentItem);
+            this.defaultLoad = false;
             return deepData;
         },
         //平铺数据
@@ -90,7 +97,7 @@ export default {
                     }
                 }
                 data[i].childrenKeys = childrenKeys;
-                data[i].allchildrenKeys = allChildrenKeys;
+                data[i].allChildrenKeys = allChildrenKeys;
             }
             return data;
         },
@@ -100,16 +107,14 @@ export default {
          * @param item 指定要设置的项
          * @param prop 要设置的属性
          * @param value 设置的值
+         * @param source 触发的来源 node(节点触发)
          */
-        setReduceDataProp(item, prop, value){
+        setReduceDataProp(item, prop, value, source){
             let key = item.key;
             let rootParentKey = item.rootParentKey;
 
             if(prop === 'children'){
-                let deepData = this.deepCloneData(value, item);
-                deepData = this.tileData(deepData);
-                this.setChildrenKeys(deepData);
-                this.reduceData.push(...deepData);
+                value = this.deepCloneData(value, item);
             }
 
             this.reduceData.forEach(item=>{
@@ -127,12 +132,14 @@ export default {
                     if(item.key === key) item[prop] = value;
                 }
 
-                if(this.showCheckbox && prop === '__checked' && !item.__disabled){
+                if(this.showCheckbox && prop === '__checked'){
                     //如果严格控制checked 只改变当前项的checked
-                    if(this.checkStrictly && item.key === key) item[prop] = value;
+                    // if(this.checkStrictly && item.key === key && !item.__disabled) item[prop] = value;
 
                     //如果不严格控制checked 所有子级的checked改变
                     if(!this.checkStrictly && item.allparentKeys.includes(key)) item[prop] = value;
+
+                    if(value) item['__indeterminate'] = false;
                 }
 
                 if(prop === '__visible'){
@@ -151,7 +158,18 @@ export default {
 
             //如果不是严格控制 所有父级checked改变
             if(prop === '__checked' && !this.checkStrictly){
-                this.setCheckboxStatus(this.currentData, item, value);
+                this.setCheckboxStatus(item);
+            }
+
+            if(prop === 'children'){
+                this.initData(this.reduceData);
+            }
+
+            if(source === 'node' && prop === '__expand'){
+                this.expandChange(item);
+            }
+            if(source === 'node' && prop === '__checked'){
+                this.checkChange(item);
             }
         },
         //设置被改变项的所有父级的Indeterminate和checked
@@ -166,14 +184,14 @@ export default {
                     let childrenCheckedArray = this.getChildrenPropValue(_item, '__checked');
 
                     //选中时 子项有没有选中的即为indeterminate
-                    if(checked && childrenCheckedArray.includes(false)) {
-                        _item.__indeterminate = true;
-                        _item.__checked = false;
+                    if(checked) {
+                        _item.__indeterminate = childrenCheckedArray.includes(false);
+                        _item.__checked = !childrenCheckedArray.includes(false);
                     }
 
                     //取消选中时 子项有一项checked即为indeterminate
-                    if(!checked && childrenCheckedArray.includes(true)){
-                        _item.__indeterminate = true;
+                    if(!checked){
+                        _item.__indeterminate = childrenCheckedArray.includes(true);
                         _item.__checked = false;
                     }
                 }
@@ -184,8 +202,11 @@ export default {
             if(!this.reduceData.length) return;
             this.isExpandKeysChange = true;
 
-            this.expandKeys.forEach(item=>{
-                this.setReduceDataProp(item.key, ['__expand'], true, 'parent', false);
+            let expandData = this.reduceData.filter(item=>{
+                return this.expandKeys.includes(item.key);
+            })
+            expandData.forEach(item=>{
+                this.setReduceDataProp(item, '__expand', true);
             });
 
             this.isExpandKeysChange = false;
@@ -194,8 +215,11 @@ export default {
         checkedKeysChange(){
             if(!this.reduceData.length || !this.showCheckbox) return;
 
-            this.checkedKeys.forEach(item=>{
-                this.setReduceDataProp(item.key, ['__checked'], true, 'children', false);
+            let checkedData = this.reduceData.filter(item=>{
+                return this.checkedKeys.includes(item.key);
+            })
+            checkedData.forEach(item=>{
+                this.setReduceDataProp(item, '__checked', true);
             });
         },
         //获取所有子级指定prop属性的value值的数组集合
@@ -292,14 +316,42 @@ export default {
             });
             this.currentData = result;
         },
-        //获取指定key的项
-        getFromReduceDataByKey(key){
+        getDataFromReduceDataByKey(key){
+            if(!this.reduceData || !this.reduceData.length) return null;
             let result = this.reduceData.filter(item=>{
-                return item.key === key
-            })
+                return item.key === key;
+            });
             if(result && result.length) return result[0];
             return null;
-        }
+        },
+
+        setRenderData(){
+            let deepReduceData = JSON.parse(JSON.stringify(this.reduceData));
+            deepReduceData = deepReduceData.filter(item=>{
+                return !item.parentKey
+            });
+
+            deepReduceData = this.tileData(deepReduceData);
+            this.renderData = deepReduceData;
+        },
+        renderDataChange(){
+            if(JSON.stringify(this.renderData) === JSON.stringify(this.reduceData)) return;
+            if(!this.renderData || !this.renderData.length) return;
+
+            let result = this.renderData.filter(item=>{
+                return !item.parentKey
+            });
+
+            this.initData(result);
+        },
+        getDataFromRenderDataByKey(key){
+            if(!this.renderData || !this.renderData.length) return null;
+            let result = this.renderData.filter(item=>{
+                return item.key === key;
+            });
+            if(result && result.length) return result[0];
+            return null;
+        },
     },
     watch: {
         data: {
@@ -311,11 +363,17 @@ export default {
         },
         reduceData: {
             handler(){
-                console.log(this.reduceData, 'reduce change')
+                this.setRenderData();
                 this.setCurrentData();
             },
             deep: true,
             immediate: true
+        },
+        renderData: {
+            handler(){
+                this.renderDataChange();
+            },
+            deep: true
         },
         expandKeys: {
             handler(){
