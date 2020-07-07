@@ -5,7 +5,6 @@
 ## 代码示例
 
 
-
 :::demo 按钮类型
 
 按钮有七种类型：`type`类型可设置为`primary` `primary` `danger` `warning` `info` `text`，不设置为默认样式

@@ -13,10 +13,12 @@
     "component",
     "ui"
   ],
+  "main": "./src/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/chengllNice/cl-ui"
   },
+  "license": "MIT",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",

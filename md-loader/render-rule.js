@@ -5,6 +5,8 @@ const renderRule = (md) => {
     const token = tokens[idx];
     if (token.info === 'html' && token.content) {
       return `<template slot="highlight"><pre v-pre><code class="html">${md.utils.escapeHtml(token.content)}</code></pre></template>`;
+    }else if(token.info === 'shell' && token.content){
+      return `<span v-highlight><pre v-pre><code class="shell">${token.content}</code></pre></span>`;
     }
     return defaultRender(tokens, idx, options, env, self);
   };

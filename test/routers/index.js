@@ -3,10 +3,9 @@ import Router from 'vue-router'
 import Views from '../views/Views.vue'
 
 
-import devRouter from './devRouter'
 import docRouter from './docRouter'
 
-let routers = devRouter.concat(docRouter);
+let routers = docRouter;
 
 Vue.use(Router);
 
