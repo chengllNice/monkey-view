@@ -21,19 +21,19 @@
              :alt="alt"
              @click="handleImageClick">
         <template v-if="previewList.length">
-            <cl-image-preview :list="previewList" v-if="previewVisible" @close="previewVisible = false" :style="previewStyle"></cl-image-preview>
+            <image-preview :list="previewList" v-if="previewVisible" @close="previewVisible = false" :style="previewStyle"></image-preview>
         </template>
     </div>
 </template>
 
 <script>
     import Locale from "main/mixins/locale";
-    import ClImagePreview from './imagePreview.vue'
+    import ImagePreview from './imagePreview.vue'
 
     const isObjectFit = document.documentElement.style.objectFit !== undefined;
 
     export default {
-        name: "ClImage",
+        name: "Image",
         mixins: [Locale],
         props: {
             fit: {
@@ -71,7 +71,7 @@
             },
         },
         components: {
-            ClImagePreview
+            ImagePreview
         },
         data(){
             return {

@@ -12,7 +12,7 @@
     import {findComponent} from "main/utils/tool";
 
     export default {
-        name: "ClDropdownItem",
+        name: "DropdownItem",
         props: {
             name: String,
             disabled: Boolean,
@@ -20,7 +20,7 @@
         },
         data(){
             return {
-                dropDown: findComponent(this, 'ClDropdown')
+                dropDown: findComponent(this, 'Dropdown')
             }
         },
         mounted(){

@@ -27,7 +27,7 @@
     import {createRandom} from "main/utils/global";
 
     export default {
-        name: "ClFormItem",
+        name: "FormItem",
         props: {
             validatorValue: {},//如果此字段值存在则根绝此值验证，在没有v-model时使用
             name: String,
@@ -50,7 +50,7 @@
         inject: ['form'],
         data() {
             return {
-                componentName: 'ClFormItem',
+                componentName: 'FormItem',
                 localRules: {},//当前所有的规则
                 currentLocalRules: {},//当前使用的规则
                 trigger: 'blur',//当前触发方式

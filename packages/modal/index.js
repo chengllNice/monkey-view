@@ -1,6 +1,6 @@
-import ClModal from './src/modal.vue'
+import Modal from './src/modal.vue'
 import $Modal from './modalConfirm'
 
-ClModal.$Modal = $Modal;
+Modal.$Modal = $Modal;
 
-export default ClModal
+export default Modal

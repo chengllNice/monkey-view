@@ -5,7 +5,7 @@
         </colgroup>
         <tbody>
             <template v-for="(row, index) in data">
-                <cl-table-tr type='body'
+                <table-tr type='body'
                              :row="row"
                              :key="index"
                              @mouseenter.native="trMouseEnter(row.__index)"
@@ -20,14 +20,14 @@
                         @dblclick.stop="rowDbCkick(row, column)">
                         <cl-table-cell :row="row" :column="column"></cl-table-cell>
                     </td>
-                </cl-table-tr>
+                </table-tr>
                 <tr v-if="row.__isExpand" :key="index + '-expand'">
                     <td :colspan="colgroupColumns.length"
                         :class="[
                             'cl-table-td__expand',
                             fixed && 'is-hidden'
                         ]">
-                        <cl-table-expand :row="emitDataFormat(row)" :columns="emitDataFormat(columns)"></cl-table-expand>
+                        <table-expand :row="emitDataFormat(row)" :columns="emitDataFormat(columns)"></table-expand>
                     </td>
                 </tr>
             </template>
@@ -46,15 +46,15 @@
 </template>
 
 <script>
-    import ClTableTr from './table-tr.vue'
-    import ClTableCell from './table-cell.vue'
+    import TableTr from './table-tr.vue'
+    import TableCell from './table-cell.vue'
     import tableMixins from './table-mixins'
-    import ClTableExpand from './table-expand'
+    import TableExpand from './table-expand'
     import {emitDataFormat} from "./util";
     import Locale from 'main/mixins/locale'
 
     export default {
-        name: "ClTableBody",
+        name: "TableBody",
         mixins: [tableMixins,Locale],
         inject: ['tableRoot'],
         props: {
@@ -88,9 +88,9 @@
             }
         },
         components: {
-            ClTableTr,
-            ClTableCell,
-            ClTableExpand
+            TableTr,
+            TableCell,
+            TableExpand
         },
         created() {
         },

@@ -1,3 +1,3 @@
-import ClSlider from './src/slider'
+import Slider from './src/slider'
 
-export default ClSlider
+export default Slider

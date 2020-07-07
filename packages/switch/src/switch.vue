@@ -21,7 +21,7 @@
 
 <script>
     export default {
-        name: "ClSwitch",
+        name: "Switch",
         props: {
             value: {
                 type: [String, Number, Boolean],

@@ -29,7 +29,7 @@
   import SlideTransition from '../../base/slide-transition.vue'
 
   export default {
-    name: "ClCollapseItem",
+    name: "CollapseItem",
     mixins: [Emitter],
     props: {
       cKey: {
@@ -42,9 +42,9 @@
     },
     data() {
       return {
-        componentName: 'ClCollapseItem',
+        componentName: 'CollapseItem',
         opened: false,
-        collapseComponent: findComponent(this, 'ClCollapse')
+        collapseComponent: findComponent(this, 'Collapse')
       }
     },
     computed: {},
@@ -59,7 +59,7 @@
       handlerClick(){
         if(this.disabled) return;
         this.opened = !this.opened;
-        this.parentEmit('ClCollapse', 'on-update-opened-key', this.cKey)
+        this.parentEmit('Collapse', 'on-update-opened-key', this.cKey)
       }
     },
     watch: {

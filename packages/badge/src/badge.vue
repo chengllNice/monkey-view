@@ -13,7 +13,7 @@
 
 <script>
   export default {
-    name: "ClBadge",
+    name: "Badge",
     props:{
       dot: Boolean,
       count: [Number, String],

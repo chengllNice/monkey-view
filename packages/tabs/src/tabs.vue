@@ -48,7 +48,7 @@
     import Emitter from 'main/mixins/emitter'
 
     export default {
-        name: "ClTabs",
+        name: "Tabs",
         mixins: [Emitter],
         props: {
             value: String,
@@ -95,7 +95,7 @@
         },
         data() {
             return {
-                componentName: 'ClTabs',
+                componentName: 'Tabs',
                 labelList: [],
                 activeTabIndex: '',
                 scrollOption: {
@@ -170,7 +170,7 @@
         },
         methods: {
             getTabs() {
-                const labelList = findComponentDirectChildrens(this, 'ClTabPane');
+                const labelList = findComponentDirectChildrens(this, 'TabPane');
                 labelList.sort((a, b) => {
                     if(a.order && b.order){
                         return a.order - b.order

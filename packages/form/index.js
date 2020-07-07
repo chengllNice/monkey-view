@@ -1,3 +1,3 @@
-import ClForm from './src/form'
+import Form from './src/form'
 
-export default ClForm
+export default Form

@@ -14,7 +14,7 @@
     import Emitter from 'main/mixins/emitter'
 
     export default {
-        name: "ClMenu",
+        name: "Menu",
         mixins: [Emitter],
         props: {
             width: {
@@ -57,7 +57,7 @@
         },
         data() {
             return {
-                componentName: 'ClMenu',
+                componentName: 'Menu',
                 currentActiveKey: '',
                 openedKeys: []
             }

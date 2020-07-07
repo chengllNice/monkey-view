@@ -1,7 +1,7 @@
 import Vue from 'vue'
-import ClLoading from './src/loading'
+import Loading from './src/loading'
 
-const ClLoadingInstance = Vue.extend(ClLoading);
+const LoadingInstance = Vue.extend(Loading);
 let loadingInstance = [];
 
 // 配置项的默认值
@@ -15,7 +15,7 @@ let defaultSize = ['mini', 'small', 'default', 'large'];
 let defaultType = ['default', 'loading1', 'loading2', 'loading3', 'loading4', 'loading5'];
 
 const initInstall = (el, type, size, text, expression) => {
-    let instance = new ClLoadingInstance({
+    let instance = new LoadingInstance({
         el: document.createElement('div'),
     });
     loadingInstance.push({

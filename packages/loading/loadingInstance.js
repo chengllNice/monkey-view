@@ -1,7 +1,7 @@
 import Vue from 'vue'
-import ClLoading from './src/loading'
+import Loading from './src/loading'
 
-const ClLoadingInstance = Vue.extend(ClLoading);
+const LoadingInstance = Vue.extend(Loading);
 let loadingInstance;
 
 // 不可配置项的默认值
@@ -18,7 +18,7 @@ let defaultOptions = {
 };
 
 const initInstall = (opts) => {
-    loadingInstance = new ClLoadingInstance({
+    loadingInstance = new LoadingInstance({
         el: document.createElement('div'),
     });
     document.body.appendChild(loadingInstance.$el);

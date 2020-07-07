@@ -1,13 +1,13 @@
-import ClLayout from './src/layout.vue'
-import ClSider from './src/sider.vue'
-import ClHeader from './src/header.vue'
-import ClFooter from './src/footer.vue'
-import ClContent from './src/content.vue'
+import Layout from './src/layout.vue'
+import Sider from './src/sider.vue'
+import Header from './src/header.vue'
+import Footer from './src/footer.vue'
+import Content from './src/content.vue'
 
-ClLayout.Sider = ClSider;
-ClLayout.Header = ClHeader;
-ClLayout.Footer = ClFooter;
-ClLayout.Content = ClContent;
+Layout.Sider = Sider;
+Layout.Header = Header;
+Layout.Footer = Footer;
+Layout.Content = Content;
 
 
-export default ClLayout
+export default Layout

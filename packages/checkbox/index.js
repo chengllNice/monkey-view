@@ -1,3 +1,3 @@
-import ClCheckbox from './src/checkbox'
+import Checkbox from './src/checkbox'
 
-export default ClCheckbox
+export default Checkbox

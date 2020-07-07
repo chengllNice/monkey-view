@@ -35,7 +35,7 @@
                         <i v-if="!loadingText" class="cl-rotate cl-icon-loading"></i>
                     </div>
                     <div v-else-if="showEmpty" class="cl-cascader__empty">{{computedEmptyText}}</div>
-                    <cl-cascader-panel v-else :data="currentData"></cl-cascader-panel>
+                    <cascader-panel v-else :data="currentData"></cascader-panel>
                 </div>
             </drop-down>
         </transition>
@@ -45,13 +45,13 @@
 <script>
     import {directive as clickOutside} from 'v-click-outside-x';
     import DropDown from '../../select/src/drop-down.vue'
-    import ClCascaderPanel from './cascaderPanel'
+    import CascaderPanel from './cascaderPanel'
     import Mixin from './mixin'
 
     import Locale from "main/mixins/locale";
 
     export default {
-        name: "ClCascader",
+        name: "Cascader",
         directives: {clickOutside},
         mixins: [Mixin, Locale],
         props: {
@@ -94,7 +94,7 @@
         },
         data() {
             return {
-                componentName: 'ClCascader',
+                componentName: 'Cascader',
                 inputValue: '',
                 visible: false,
                 openFilterable: false,//开启搜索
@@ -132,7 +132,7 @@
         },
         components: {
             DropDown,
-            ClCascaderPanel,
+            CascaderPanel,
         },
         mounted() {
 

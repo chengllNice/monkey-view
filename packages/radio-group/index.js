@@ -1,3 +1,3 @@
-import ClRadioGroup from '../radio/src/radio-group'
+import RadioGroup from '../radio/src/radio-group'
 
-export default ClRadioGroup
+export default RadioGroup

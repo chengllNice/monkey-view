@@ -1,3 +1,3 @@
-import ClAlter from './src/alter.vue'
+import Alter from './src/alter.vue'
 
-export default ClAlter
+export default Alter

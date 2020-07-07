@@ -6,7 +6,7 @@
 
 <script>
   export default {
-    name: "ClLayout",
+    name: "Layout",
     data() {
       return {
         hasSider: false,
@@ -24,7 +24,7 @@
     methods: {
       findSider(){
         return this.$children.some(item=>{
-          return item.componentName === 'ClSider'
+          return item.componentName === 'Sider'
         })
       }
     }

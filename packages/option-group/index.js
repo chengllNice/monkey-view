@@ -1,3 +1,3 @@
-import ClOptionGroup from '../select/src/option-group'
+import OptionGroup from '../select/src/option-group'
 
-export default ClOptionGroup
+export default OptionGroup

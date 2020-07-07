@@ -47,6 +47,12 @@
                                 link: '/install',
                                 query: {},
                             },
+                            {
+                                key: 'quick-start',
+                                name: '快速上手',
+                                link: '/quick-start',
+                                query: {},
+                            },
                         ]
                     },
                     {

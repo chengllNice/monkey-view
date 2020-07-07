@@ -6,20 +6,20 @@
          :style="styleObj">
         <div class="cl-table-fixed__content">
             <div class="cl-table-fixed__head" ref="fixedHeader" v-show="showHeader">
-                <cl-table-head :fixed='fixed'
+                <table-head :fixed='fixed'
                                :columns="headColumns"
                                :colgroup-columns="bodyColumns"
                                :data="data"
                                :columns-width="columnsWidth"
-                               :head-style="headStyle"></cl-table-head>
+                               :head-style="headStyle"></table-head>
             </div>
             <div class="cl-table-fixed__body" ref="fixedBody" :style="fixedBodyWrapStyle">
-                <cl-table-body :fixed='fixed'
+                <table-body :fixed='fixed'
                                :columns="bodyColumns"
                                :colgroup-columns="bodyColumns"
                                :data="data"
                                :columns-width="columnsWidth"
-                               :body-style="bodyStyle"></cl-table-body>
+                               :body-style="bodyStyle"></table-body>
             </div>
         </div>
 
@@ -29,14 +29,14 @@
 </template>
 
 <script>
-    import ClTableHead from './table-head.vue'
-    import ClTableBody from './table-body.vue'
+    import TableHead from './table-head.vue'
+    import TableBody from './table-body.vue'
     import { fixedIds} from "./util";
     import { getScrollBarWidth} from "main/utils/global";
     import { on, off} from "main/utils/dom";
 
     export default {
-        name: "ClTableFixed",
+        name: "TableFixed",
         props: {
             fixed: String,
             headColumns: Array,
@@ -92,8 +92,8 @@
             }
         },
         components: {
-            ClTableHead,
-            ClTableBody
+            TableHead,
+            TableBody
         },
         mounted() {
             on(this.$refs.fixedBody, 'mousewheel', this.mouseScroll);

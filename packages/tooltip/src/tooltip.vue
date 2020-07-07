@@ -24,10 +24,10 @@
 </template>
 
 <script>
-    import Popper from 'main/mixins/cl-popper'
+    import Popper from 'main/mixins/popper'
 
     export default {
-        name: "ClTooltip",
+        name: "Tooltip",
         mixins: [Popper],
         props: {
             placement: {

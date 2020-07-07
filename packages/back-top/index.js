@@ -1,3 +1,3 @@
-import ClBackTop from './src/back-top'
+import BackTop from './src/back-top'
 
-export default ClBackTop
+export default BackTop

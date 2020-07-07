@@ -12,7 +12,7 @@
     import {on, off} from "main/utils/dom";
 
     export default {
-        name: "ClAffix",
+        name: "Affix",
         props: {
             target: {
                 type: String

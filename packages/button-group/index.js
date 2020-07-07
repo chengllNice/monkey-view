@@ -1,3 +1,3 @@
-import ClButtonGroup from '../button/src/button-group'
+import ButtonGroup from '../button/src/button-group'
 
-export default ClButtonGroup
+export default ButtonGroup

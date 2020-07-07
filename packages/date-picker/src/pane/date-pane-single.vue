@@ -24,7 +24,7 @@
         </div>
         <div class="cl-date-pane-single__body">
             <template v-if="pickerType === 'date'">
-                <cl-date-pane-date :size="size"
+                <date-pane-date :size="size"
                                    :type="currentType"
                                    :year="year"
                                    :month="month"
@@ -37,8 +37,8 @@
                                    @updateWeek="updateSelectWeek"
                                    @updateDate="updateSelectDate"
                                    @hover-date="handleHoverDate"
-                                   v-show="currentType === 'date' || currentType === 'week'"></cl-date-pane-date>
-                <cl-date-pane-year :size="size"
+                                   v-show="currentType === 'date' || currentType === 'week'"></date-pane-date>
+                <date-pane-year :size="size"
                                    :type="currentType"
                                    :year="year"
                                    :month="month"
@@ -48,8 +48,8 @@
                                    :is-range="isRange"
                                    :format="format"
                                    @update-year="updateSelectYear"
-                                   v-show="currentType === 'year'"></cl-date-pane-year>
-                <cl-date-pane-month :size="size"
+                                   v-show="currentType === 'year'"></date-pane-year>
+                <date-pane-month :size="size"
                                     :type="currentType"
                                     :year="year"
                                     :month="month"
@@ -59,9 +59,9 @@
                                     :is-range="isRange"
                                     :format="format"
                                     @update-month="updateSelectMonth"
-                                    v-show="currentType === 'month'"></cl-date-pane-month>
+                                    v-show="currentType === 'month'"></date-pane-month>
             </template>
-            <cl-date-pane-time :size="size"
+            <date-pane-time :size="size"
                                :type="currentType"
                                :year="year"
                                :month="month"
@@ -72,21 +72,21 @@
                                :is-range="isRange"
                                :format="format"
                                @update-time="updateSelectTime"
-                               v-if="currentType === 'time' || currentType === 'timerange'"></cl-date-pane-time>
+                               v-if="currentType === 'time' || currentType === 'timerange'"></date-pane-time>
         </div>
     </div>
 </template>
 
 <script>
-    import ClDatePaneTime from './date-pane-time'
-    import ClDatePaneDate from './date-pane-date'
-    import ClDatePaneYear from './date-pane-year'
-    import ClDatePaneMonth from './date-pane-month'
+    import DatePaneTime from './date-pane-time'
+    import DatePaneDate from './date-pane-date'
+    import DatePaneYear from './date-pane-year'
+    import DatePaneMonth from './date-pane-month'
     import {dateFormat, zero} from "main/utils/date";
     import Locale from "main/mixins/locale";
 
     export default {
-        name: "ClDatePaneSingle",
+        name: "DatePaneSingle",
         mixins: [Locale],
         inject: ['picker'],
         props: {
@@ -134,10 +134,10 @@
             },
         },
         components: {
-            ClDatePaneTime,
-            ClDatePaneDate,
-            ClDatePaneYear,
-            ClDatePaneMonth
+            DatePaneTime,
+            DatePaneDate,
+            DatePaneYear,
+            DatePaneMonth
         },
         mounted() {
 

@@ -21,7 +21,7 @@
 <script>
 
     export default {
-        name: "ClList",
+        name: "List",
         props: {
             border: Boolean,
             hover: {
@@ -57,7 +57,7 @@
         },
         data() {
             return {
-                componentName: 'ClList',
+                componentName: 'List',
                 everyRowItemLen: [],//每一个list-row下item的数量的数组
                 itemWidth: '0%'
             }

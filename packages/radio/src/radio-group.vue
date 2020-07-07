@@ -1,21 +1,21 @@
 <template>
     <div class="cl-radio-group">
         <template v-if="$slots.default"><slot></slot></template>
-        <ClRadio v-else-if="options && options.length"
+        <radio v-else-if="options && options.length"
                  v-for="item in options"
                  :key="item.value"
                  :name="item.name"
                  :disabled="item.disabled"
                  :label="item.value">{{item.label}}
-        </ClRadio>
+        </radio>
     </div>
 </template>
 
 <script>
-    import ClRadio from './radio.vue'
+    import Radio from './radio.vue'
 
     export default {
-        name: "ClRadioGroup",
+        name: "RadioGroup",
         props: {
             value: [String, Number, Boolean],
             disabled: Boolean,
@@ -30,12 +30,12 @@
         },
         data() {
             return {
-                componentName: 'ClRadioGroup',
+                componentName: 'RadioGroup',
             }
         },
         computed: {},
         components: {
-            ClRadio
+            Radio
         },
         created() {
         },

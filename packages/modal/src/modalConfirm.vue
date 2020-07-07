@@ -1,5 +1,5 @@
 <template>
-    <ClModal class="cl-modal-confirm"
+    <modal class="cl-modal-confirm"
              :class="[
                 icon && `cl-modal-confirm--${icon}`,
                 type && `cl-modal-confirm--${type}`
@@ -16,17 +16,17 @@
             <div class="cl-modal-confirm_item" v-for="(content, index) in contentText" :key="index" v-html="content"></div>
         </div>
         <div class="cl-modal-confirm__footer">
-            <ClButton @click="handlerButtonCancel" v-if="icon === 'confirm' && localCancelText">{{localCancelText}}</ClButton>
-            <ClButton type="primary" :loading='okButtonLoading' @click="handlerButtonOk" v-if="localOkText">{{localOkText}}</ClButton>
+            <cl-button @click="handlerButtonCancel" v-if="icon === 'confirm' && localCancelText">{{localCancelText}}</cl-button>
+            <cl-button type="primary" :loading='okButtonLoading' @click="handlerButtonOk" v-if="localOkText">{{localOkText}}</cl-button>
         </div>
-    </ClModal>
+    </modal>
 </template>
 
 <script>
-    import ClModal from './modal.vue'
+    import Modal from './modal.vue'
     import ClButton from '../../button/src/button.vue'
   export default {
-    name: "ClModalConfirm",
+    name: "ModalConfirm",
     data() {
       return {
         visible: false,
@@ -83,7 +83,7 @@
       }
     },
     components: {
-      ClModal,
+      Modal,
       ClButton
     },
     created() {

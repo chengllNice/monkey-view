@@ -1,3 +1,3 @@
-import ClTable from './src/table.vue'
+import Table from './src/table.vue'
 
-export default ClTable
+export default Table

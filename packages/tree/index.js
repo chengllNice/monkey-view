@@ -1,3 +1,3 @@
-import ClTree from './src/tree'
+import Tree from './src/tree'
 
-export default ClTree
+export default Tree

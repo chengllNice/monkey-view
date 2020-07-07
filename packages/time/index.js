@@ -1,3 +1,3 @@
-import ClTime from './src/time'
+import Time from './src/time'
 
-export default ClTime
+export default Time

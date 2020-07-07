@@ -24,7 +24,7 @@
     import { dateObj, dateFormat} from "main/utils/date";
 
     export default {
-        name: "ClDatePaneMonth",
+        name: "DatePaneMonth",
         props: {
             size: String,
             type: String,

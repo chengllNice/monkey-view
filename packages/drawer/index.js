@@ -1,3 +1,3 @@
-import ClDrawer from './src/drawer.vue'
+import Drawer from './src/drawer.vue'
 
-export default ClDrawer
+export default Drawer

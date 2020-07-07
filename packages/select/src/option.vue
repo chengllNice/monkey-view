@@ -20,7 +20,7 @@
 
 <script>
     export default {
-        name: "ClOption",
+        name: "Option",
         inject: ['select'],
         props: {
             value: {
@@ -35,7 +35,7 @@
         },
         data() {
             return {
-                componentName: 'ClOption',
+                componentName: 'Option',
                 firstTrigger: true,
             }
         },
@@ -43,7 +43,7 @@
             optionGroupParentEl() {
                 let parent = this.$parent;
                 while (parent) {
-                    if (parent.componentName !== 'ClOptionGroup') {
+                    if (parent.componentName !== 'OptionGroup') {
                         parent = parent.$parent;
                     } else {
                         return parent

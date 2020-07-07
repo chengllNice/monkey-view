@@ -1,3 +1,3 @@
-import ClUpload from './src/upload'
+import Upload from './src/upload'
 
-export default ClUpload
+export default Upload

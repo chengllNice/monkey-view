@@ -1,6 +1,6 @@
-import ClCollapse from './src/collapse.vue'
-import ClCollapseItem from './src/collapse-item.vue'
+import Collapse from './src/collapse.vue'
+import CollapseItem from './src/collapse-item.vue'
 
-ClCollapse.Item = ClCollapseItem;
+Collapse.Item = CollapseItem;
 
-export default ClCollapse
+export default Collapse

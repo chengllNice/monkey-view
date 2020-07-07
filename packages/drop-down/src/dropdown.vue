@@ -26,7 +26,7 @@
     import DropDown from '../../select/src/drop-down.vue'
     import {directive as clickOutside} from 'v-click-outside-x';
     export default {
-        name: "ClDropdown",
+        name: "Dropdown",
         directives: {clickOutside},
         props: {
             transition: {
@@ -59,7 +59,7 @@
         },
         data(){
             return {
-                componentName: 'ClDropdown',
+                componentName: 'Dropdown',
                 currentVisible: this.visible,
                 timer: null,
             }

@@ -6,6 +6,7 @@ const langTypes = Config.langTypes;
 const routerTypes = [
     'introduce',
     'install',
+    'quick-start',
     'button',
     'layout',
     'menu',

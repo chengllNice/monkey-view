@@ -11,7 +11,7 @@
 <script>
   import Emitter from 'main/mixins/emitter'
   export default {
-    name: "ClCollapse",
+    name: "Collapse",
     mixins: [Emitter],
     props: {
       value: [String, Array],
@@ -33,7 +33,7 @@
     },
     data() {
       return {
-        componentName: 'ClCollapse',
+        componentName: 'Collapse',
         currentOpenedKey: []
       }
     },

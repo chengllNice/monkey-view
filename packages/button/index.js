@@ -1,3 +1,3 @@
-import ClButton from './src/button'
+import Button from './src/button'
 
-export default ClButton
+export default Button

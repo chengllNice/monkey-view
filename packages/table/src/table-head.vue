@@ -6,7 +6,7 @@
         </colgroup>
         <thead>
             <template v-for="(row, index) in columns">
-                <cl-table-tr type="head" :row="row[0]" :key="index">
+                <table-tr type="head" :row="row[0]" :key="index">
                     <th v-for="column in row"
                         :key="column.__id"
                         :class="[
@@ -20,19 +20,19 @@
                         <cl-table-head-cell :column="column" :sortType="sortType"></cl-table-head-cell>
                     </th>
                     <th class="cl-table-head__scroll-th" v-if="$parent.showVerticalScrollBar" :rowspan="columns.length"></th>
-                </cl-table-tr>
+                </table-tr>
             </template>
         </thead>
     </table>
 </template>
 
 <script>
-    import ClTableTr from './table-tr.vue'
-    import ClTableHeadCell from './table-head-cell'
+    import TableTr from './table-tr.vue'
+    import TableHeadCell from './table-head-cell'
     import tableMixins from './table-mixins'
 
     export default {
-        name: "ClTableHead",
+        name: "TableHead",
         mixins: [tableMixins],
         inject: ['tableRoot'],
         props: {
@@ -66,8 +66,8 @@
             }
         },
         components: {
-            ClTableTr,
-            ClTableHeadCell
+            TableTr,
+            TableHeadCell
         },
         created() {
         },

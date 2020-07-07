@@ -4,29 +4,29 @@
         `cl-skeleton--${type}`
     ]">
         <template v-if="type === 'list'">
-            <cl-skeleton-item :animation="animation" type="line" class="cl-skeleton__title" style="width: 60%"></cl-skeleton-item>
-            <cl-skeleton-item :animation="animation" type="line"></cl-skeleton-item>
-            <cl-skeleton-item :animation="animation" type="line"></cl-skeleton-item>
-            <cl-skeleton-item :animation="animation" type="line" style="width: 80%"></cl-skeleton-item>
+            <skeleton-item :animation="animation" type="line" class="cl-skeleton__title" style="width: 60%"></skeleton-item>
+            <skeleton-item :animation="animation" type="line"></skeleton-item>
+            <skeleton-item :animation="animation" type="line"></skeleton-item>
+            <skeleton-item :animation="animation" type="line" style="width: 80%"></skeleton-item>
         </template>
 
         <template v-if="type === 'avatar'">
-            <cl-skeleton-item :animation="animation" type="circle"></cl-skeleton-item>
+            <skeleton-item :animation="animation" type="circle"></skeleton-item>
             <div class="cl-skeleton__avatar-line">
-                <cl-skeleton-item :animation="animation" type="line" class="cl-skeleton__title" style="width: 60%"></cl-skeleton-item>
-                <cl-skeleton-item :animation="animation" type="line"></cl-skeleton-item>
-                <cl-skeleton-item :animation="animation" type="line"></cl-skeleton-item>
-                <cl-skeleton-item :animation="animation" type="line"></cl-skeleton-item>
-                <cl-skeleton-item :animation="animation" type="line" style="width: 80%"></cl-skeleton-item>
+                <skeleton-item :animation="animation" type="line" class="cl-skeleton__title" style="width: 60%"></skeleton-item>
+                <skeleton-item :animation="animation" type="line"></skeleton-item>
+                <skeleton-item :animation="animation" type="line"></skeleton-item>
+                <skeleton-item :animation="animation" type="line"></skeleton-item>
+                <skeleton-item :animation="animation" type="line" style="width: 80%"></skeleton-item>
             </div>
         </template>
     </div>
 </template>
 
 <script>
-    import ClSkeletonItem from './skeletonItem'
+    import SkeletonItem from './skeletonItem'
     export default {
-        name: "ClSkeleton",
+        name: "Skeleton",
         props: {
             type: {
                 type: String,
@@ -41,7 +41,7 @@
             }
         },
         components: {
-            ClSkeletonItem
+            SkeletonItem
         },
         data(){
             return {

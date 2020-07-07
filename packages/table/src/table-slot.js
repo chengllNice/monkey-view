@@ -1,6 +1,6 @@
 
 export default {
-    name: 'ClTableSlot',
+    name: 'TableSlot',
     functional: true,
     inject: ['tableRoot'],
     props: {

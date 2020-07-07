@@ -24,7 +24,7 @@
 
 <script>
     export default {
-        name: "ClNotice",
+        name: "Notice",
         data() {
             return {
                 placement: '',//出现的位置

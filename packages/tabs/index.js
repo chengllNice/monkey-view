@@ -1,4 +1,4 @@
-import ClTabs from './src/tabs.vue'
-import ClTabPane from './src/tab-pane.vue'
+import Tabs from './src/tabs.vue'
+import TabPane from './src/tab-pane.vue'
 
-export { ClTabs, ClTabPane }
+export { Tabs, TabPane }

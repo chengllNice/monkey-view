@@ -8,7 +8,7 @@
     import {dateFormat} from "main/utils/date";
 
     export default {
-        name: "ClTime",
+        name: "Time",
         props: {
             time: {
                 type: [String, Number, Date],

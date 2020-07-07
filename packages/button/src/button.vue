@@ -22,7 +22,7 @@
 
 <script>
     export default {
-        name: "ClButton",
+        name: "Button",
         props: {
             disabled: Boolean,
             type: {

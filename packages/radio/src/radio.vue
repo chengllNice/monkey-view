@@ -27,7 +27,7 @@
 
 <script>
     export default {
-        name: "ClRadio",
+        name: "Radio",
         props: {
             name: String,
             value: {
@@ -54,7 +54,7 @@
             parentGroup() {
                 let parent = this.$parent;
                 while (parent) {
-                    if (parent.componentName !== 'ClRadioGroup') {
+                    if (parent.componentName !== 'RadioGroup') {
                         parent = parent.$parent;
                     } else {
                         return parent

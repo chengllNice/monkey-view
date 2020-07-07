@@ -31,7 +31,7 @@
 
 <script>
     export default {
-        name: "ClCheckbox",
+        name: "Checkbox",
         props: {
             value: {
                 type: [Number, String, Boolean],
@@ -68,7 +68,7 @@
             parentGroup() {
                 let parent = this.$parent;
                 while (parent) {
-                    if (parent.componentName !== 'ClCheckboxGroup') {
+                    if (parent.componentName !== 'CheckboxGroup') {
                         parent = parent.$parent;
                     } else {
                         return parent

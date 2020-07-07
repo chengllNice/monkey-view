@@ -11,9 +11,9 @@
         </div>
         <div class="cl-sider__header" ref="header" v-if="$slots.header"><slot name="header"></slot></div>
         <div class="cl-sider__content" :style="contentStyle">
-            <ClScroll size="small" :scroll-option="scrollOption">
+            <cl-scroll size="small" :scroll-option="scrollOption">
                 <slot></slot>
-            </ClScroll>
+            </cl-scroll>
         </div>
         <div class="cl-sider__trigger" ref="trigger" v-if="!hideTrigger" @click="triggerClick">
             <slot name="trigger">
@@ -26,7 +26,7 @@
 <script>
   import elementResizeDetectorMaker from 'element-resize-detector';
   export default {
-    name: "ClSider",
+    name: "Sider",
     props: {
       value: Boolean,//展开收起
       width: {
@@ -42,7 +42,7 @@
     },
     data() {
       return {
-        componentName: 'ClSider',
+        componentName: 'Sider',
         observer: null,
         contentStyle: {},
         collapsed: this.value || false,

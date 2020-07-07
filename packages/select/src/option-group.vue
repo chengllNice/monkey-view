@@ -17,7 +17,7 @@
 
 <script>
   export default {
-    name: "ClOptionGroup",
+    name: "OptionGroup",
     props: {
       label: {
         type: String,
@@ -29,7 +29,7 @@
     },
     data() {
       return {
-        componentName: 'ClOptionGroup',
+        componentName: 'OptionGroup',
         isShow: true
       }
     },

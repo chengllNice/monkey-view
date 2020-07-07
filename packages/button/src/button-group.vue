@@ -6,6 +6,6 @@
 
 <script>
   export default {
-    name: "ClButtonGroup",
+    name: "ButtonGroup",
   }
 </script>

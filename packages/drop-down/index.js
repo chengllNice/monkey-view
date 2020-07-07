@@ -1,8 +1,8 @@
-import ClDropdown from './src/dropdown'
-import ClDropdownMenu from './src/dropdown-menu'
-import ClDropdownItem from './src/dropdown-item'
+import Dropdown from './src/dropdown'
+import DropdownMenu from './src/dropdown-menu'
+import DropdownItem from './src/dropdown-item'
 
-ClDropdown.Menu = ClDropdownMenu;
-ClDropdown.Item = ClDropdownItem;
+Dropdown.Menu = DropdownMenu;
+Dropdown.Item = DropdownItem;
 
-export default ClDropdown
+export default Dropdown

@@ -55,7 +55,7 @@
     import Locale from 'main/mixins/locale'
 
     export default {
-        name: "ClModal",
+        name: "Modal",
         mixins: [Locale],
         props: {
             transition: {

@@ -25,19 +25,19 @@
                             <slot name="header">{{title}}</slot>
                         </div>
                         <div class="cl-drawer__body" :style="bodyStyle">
-                            <ClScroll size="small">
+                            <cl-scroll size="small">
                                 <div class="cl-drawer__body-content">
                                     <slot></slot>
                                 </div>
-                            </ClScroll>
+                            </cl-scroll>
                         </div>
                         <div class="cl-drawer__footer" ref="drawerFooter" v-if="!footerHide">
                             <slot name="footer">
-                                <ClButton @click="handlerButtonCancel" v-if="localCancelText">{{localCancelText}}
-                                </ClButton>
-                                <ClButton type="primary" :loading='okButtonLoading' @click="handlerButtonOk"
+                                <cl-button @click="handlerButtonCancel" v-if="localCancelText">{{localCancelText}}
+                                </cl-button>
+                                <cl-button type="primary" :loading='okButtonLoading' @click="handlerButtonOk"
                                           v-if="localOkText">{{localOkText}}
-                                </ClButton>
+                                </cl-button>
                             </slot>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
     import Locale from 'main/mixins/locale'
 
     export default {
-        name: "ClDrawer",
+        name: "Drawer",
         mixins: [Locale],
         props: {
             width: {

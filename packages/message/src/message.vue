@@ -17,7 +17,7 @@
 
 <script>
     export default {
-        name: "ClMessage",
+        name: "Message",
         data() {
             return {
                 visible: false,

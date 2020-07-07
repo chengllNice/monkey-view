@@ -46,7 +46,7 @@
 
 <script>
     export default {
-        name: "loadingSvg",
+        name: "LoadingSvg",
         props: {
             type: String,
             size: String,

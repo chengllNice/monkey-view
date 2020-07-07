@@ -53,7 +53,7 @@
     import {dateOnMonth, dateObj, dateFormat, getWeekNumber, zero, getWeekNumberInfo} from "main/utils/date";
 
     export default {
-        name: "ClDatePaneDate",
+        name: "DatePaneDate",
         inject: ['picker'],
         props: {
             size: String,

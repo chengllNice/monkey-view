@@ -42,31 +42,31 @@
                         <div ref="optionList"
                              v-else-if="selectOptionsData&&selectOptionsData.length&&isOptionGroup&&!isSlotOption"
                              class="cl-select__option-list">
-                            <ClOptionGroup v-for="item in selectOptionsData"
+                            <OptionGroup v-for="item in selectOptionsData"
                                            ref="optionEl"
                                            :key="item.value"
                                            :noClick="item.noClick"
                                            :disabled="item.disabled"
                                            :value="item.value"
                                            :label="item.label">
-                                <ClOption class='cl-select__group-option'
+                                <Option class='cl-select__group-option'
                                           v-for="optionItem in item.option"
                                           :key="optionItem.value"
                                           :value="optionItem.value"
                                           :label="optionItem.label"
-                                          :disabled="optionItem.disabled"></ClOption>
-                            </ClOptionGroup>
+                                          :disabled="optionItem.disabled"></Option>
+                            </OptionGroup>
                         </div>
 
                         <div ref="optionList"
                              v-else-if="selectOptionsData&&selectOptionsData.length&&!isOptionGroup&&!isSlotOption"
                              class="cl-select__option-list">
-                            <ClOption v-for="item in selectOptionsData"
+                            <Option v-for="item in selectOptionsData"
                                       ref="optionEl"
                                       :key="item.value"
                                       :value="item.value"
                                       :label="item.label"
-                                      :disabled="item.disabled"></ClOption>
+                                      :disabled="item.disabled"></Option>
                         </div>
 
                         <div ref="optionList" class="cl-select__option-list" v-else-if="isSlotOption">
@@ -86,13 +86,13 @@
     import {directive as clickOutside} from 'v-click-outside-x';
     import SelectEl from './select-el.vue'
     import ClScroll from '../../scroll/src/scroll.vue'
-    import ClOption from './option.vue'
-    import ClOptionGroup from './option-group.vue'
+    import Option from './option.vue'
+    import OptionGroup from './option-group.vue'
     import DropDown from './drop-down.vue'
     import Locale from 'main/mixins/locale'
 
     export default {
-        name: "ClSelect",
+        name: "Select",
         directives: {clickOutside},
         mixins: [Locale],
         provide() {
@@ -137,7 +137,7 @@
         },
         data() {
             return {
-                componentName: 'ClSelect',
+                componentName: 'Select',
                 componentId: Math.floor(Math.random() * 10000) + '-' + new Date().getTime(),
                 cValue: null,
                 visible: false,
@@ -173,9 +173,9 @@
         components: {
             SelectEl,
             ClScroll,
-            ClOption,
+            Option,
             DropDown,
-            ClOptionGroup,
+            OptionGroup,
         },
         created() {
 
@@ -331,7 +331,7 @@
                         for (let option of this.$slots.default) {
                             let cOption = option.componentInstance;
                             let tag = cOption && (cOption.componentName || option.componentOptions.tag);
-                            if (cOption && (tag === 'ClOption' || tag === 'ClOptionGroup')) {
+                            if (cOption && (tag === 'Option' || tag === 'OptionGroup')) {
                                 optionShowArr.push(cOption.isShow);
                             }
                         }
@@ -343,7 +343,7 @@
                     if (this.$refs.optionEl) {
                         let optionShowArr = [];
                         for (let option of this.$refs.optionEl) {
-                            if (option.componentName === 'ClOption' || option.componentName === 'ClOptionGroup') {
+                            if (option.componentName === 'Option' || option.componentName === 'OptionGroup') {
                                 optionShowArr.push(option.isShow);
                             }
                         }

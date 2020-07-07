@@ -15,7 +15,7 @@
 
 <script>
     export default {
-        name: "ClTag",
+        name: "Tag",
         props: {
             size: {
                 type: String,

@@ -44,13 +44,13 @@
 </template>
 
 <script>
-    import Popper from 'main/mixins/cl-popper'
+    import Popper from 'main/mixins/popper'
     import {directive as clickOutside} from 'v-click-outside-x';
     import {on, off} from "main/utils/dom";
     import Locale from 'main/mixins/locale'
 
     export default {
-        name: "ClPopover",
+        name: "Popover",
         mixins: [Popper,Locale],
         directives: {clickOutside},
         props: {

@@ -1,3 +1,3 @@
-import ClImage from './src/image'
+import Image from './src/image'
 
-export default ClImage
+export default Image

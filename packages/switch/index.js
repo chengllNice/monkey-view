@@ -1,3 +1,3 @@
-import ClSwitch from './src/switch'
+import Switch from './src/switch'
 
-export default ClSwitch
+export default Switch

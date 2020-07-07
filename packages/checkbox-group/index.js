@@ -1,3 +1,3 @@
-import ClCheckboxGroup from '../checkbox/src/checkbox-group'
+import CheckboxGroup from '../checkbox/src/checkbox-group'
 
-export default ClCheckboxGroup
+export default CheckboxGroup

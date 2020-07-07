@@ -33,7 +33,7 @@
     import {findComponent, findComponentDirect} from "main/utils/tool";
     import Emitter from 'main/mixins/emitter'
     export default {
-        name: "ClListItem",
+        name: "ListItem",
         mixins: [Emitter],
         props: {
             type: {
@@ -48,9 +48,9 @@
         },
         data() {
             return {
-                componentName: 'ClListItem',
-                parentListComponent: findComponent(this, 'ClList'),
-                parentListRowComponent: findComponentDirect(this, 'ClListRow'),
+                componentName: 'ListItem',
+                parentListComponent: findComponent(this, 'List'),
+                parentListRowComponent: findComponentDirect(this, 'ListRow'),
             }
         },
         computed: {
@@ -89,7 +89,7 @@
         mounted() {
             this.$nextTick(()=>{
                 if(this.parentListRowComponent){
-                    this.parentEmit('ClListRow', 'on-update-item-len');
+                    this.parentEmit('ListRow', 'on-update-item-len');
                 }
             })
         },

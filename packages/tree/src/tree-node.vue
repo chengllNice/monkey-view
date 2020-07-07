@@ -27,8 +27,8 @@
                     </div>
                 </div>
                 <slide-transition>
-                    <cl-tree-node v-if="item.__expand && item.__more" :data="item.children"
-                                  :key="item.key"></cl-tree-node>
+                    <tree-node v-if="item.__expand && item.__more" :data="item.children"
+                                  :key="item.key"></tree-node>
                 </slide-transition>
             </template>
         </div>
@@ -42,7 +42,7 @@
     import Render from './render'
 
     export default {
-        name: "ClTreeNode",
+        name: "TreeNode",
         mixins: [Emitter],
         inject: ['treeRoot'],
         props: {
@@ -56,7 +56,7 @@
         },
         data() {
             return {
-                parentComponent: findComponent(this, 'ClTree'),
+                parentComponent: findComponent(this, 'Tree'),
             }
         },
         computed: {

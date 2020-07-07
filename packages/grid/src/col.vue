@@ -5,12 +5,12 @@
 </template>
 
 <script>
-    import {findBrothersComponents, findComponent} from "main/utils/tool";
+    import {findComponent} from "main/utils/tool";
     import Emitter from 'main/mixins/emitter'
 
     const responseSize = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'];
     export default {
-        name: "ClCol",
+        name: "Col",
         mixins: [Emitter],
         props: {
             span: [Number, String],
@@ -29,9 +29,9 @@
             const currentSpan = (!this.span && this.span !== 0 || parseFloat(this.span) < 0) ? -1 : Math.floor(this.span);
 
             return {
-                componentName: 'ClCol',
+                componentName: 'Col',
                 currentSpan: currentSpan,
-                parentRow: findComponent(this, 'ClRow'),
+                parentRow: findComponent(this, 'Row'),
                 gutter: 0,
             }
         },
@@ -76,7 +76,7 @@
         mounted() {
             this.$nextTick(() => {
                 this.updateGutter(this.parentRow && this.parentRow.gutter);
-                this.parentEmit('ClRow', 'on-update-span');
+                this.parentEmit('Row', 'on-update-span');
             })
         },
         methods: {

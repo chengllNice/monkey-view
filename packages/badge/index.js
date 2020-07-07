@@ -1,3 +1,3 @@
-import ClBadge from './src/badge.vue'
+import Badge from './src/badge.vue'
 
-export default ClBadge
+export default Badge

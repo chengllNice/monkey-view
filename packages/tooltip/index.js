@@ -1,3 +1,3 @@
-import ClTooltip from './src/tooltip'
+import Tooltip from './src/tooltip'
 
-export default ClTooltip
+export default Tooltip

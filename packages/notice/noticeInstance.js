@@ -1,8 +1,8 @@
 import Vue from 'vue'
-import ClNotice from './src/notice'
+import Notice from './src/notice'
 
-const ClNoticeInstance = Vue.extend(ClNotice);
-let NoticeInstance = {
+const NoticeInstance = Vue.extend(Notice);
+let NoticeInstances = {
     topLeft: [],
     topRight: [],
     bottomLeft: [],
@@ -44,11 +44,11 @@ const instanceType = {
 
 const topComputed = () => {
     let placement = globalConfigOptions.placement;
-    let len = NoticeInstance[placement].length;
+    let len = NoticeInstances[placement].length;
     let firstNoticeDisTop = defaultNoConfigOptions.currentPosition;
     if (len > 1) {
         let NoticeHeight = 0;
-        NoticeInstance[placement].forEach(item => {
+        NoticeInstances[placement].forEach(item => {
             NoticeHeight += item.$el.offsetHeight;
         });
         return (len - 1) * globalConfigOptions.noticeItemDis + NoticeHeight + firstNoticeDisTop;
@@ -57,29 +57,29 @@ const topComputed = () => {
 };
 
 const closeAfter = (placement) => {
-    let currentIndex = NoticeInstance[placement].findIndex(item=>{
+    let currentIndex = NoticeInstances[placement].findIndex(item=>{
        return item.duration !== 0
     });
-    let NoticeHeight = currentIndex > -1 ? NoticeInstance[placement][currentIndex].$el.offsetHeight : 0;
-    currentIndex > -1 && NoticeInstance[placement].splice(currentIndex, 1);
+    let NoticeHeight = currentIndex > -1 ? NoticeInstances[placement][currentIndex].$el.offsetHeight : 0;
+    currentIndex > -1 && NoticeInstances[placement].splice(currentIndex, 1);
 
-    currentIndex = currentIndex === -1 ? NoticeInstance[placement].length : currentIndex;
+    currentIndex = currentIndex === -1 ? NoticeInstances[placement].length : currentIndex;
 
-    NoticeInstance[placement].forEach((item, index) => {
+    NoticeInstances[placement].forEach((item, index) => {
         if (item.visible && index >= currentIndex) {
             item.currentPosition = item.currentPosition - (NoticeHeight + globalConfigOptions.noticeItemDis);
         }else if(!item.visible){
-            NoticeInstance[placement].splice(index, 1);
+            NoticeInstances[placement].splice(index, 1);
         }
     });
 };
 
 const initInstall = (opts) => {
-    let CreateInstance = new ClNoticeInstance({
+    let CreateInstance = new NoticeInstance({
         el: document.createElement('div'),
     });
     document.body.appendChild(CreateInstance.$el);
-    NoticeInstance[opts.placement].push(CreateInstance);
+    NoticeInstances[opts.placement].push(CreateInstance);
     Object.keys(opts).forEach(key => {
         if (key === 'currentPosition') {
             CreateInstance[key] = topComputed();

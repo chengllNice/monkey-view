@@ -31,7 +31,7 @@
   import {findComponent, findComponents} from "main/utils/tool";
 
   export default {
-    name: "ClMenuItem",
+    name: "MenuItem",
     mixins: [Emitter],
     props: {
       cKey: {
@@ -48,13 +48,13 @@
     },
     data() {
       return {
-        componentName: 'ClMenuItem',
+        componentName: 'MenuItem',
         defaultPadding: 20,
         smallPadding: 10,
         largePadding: 30,
         active: false,
-        menuComponent: findComponent(this, 'ClMenu'),
-        parentSubMenuComponentNum: findComponents(this, 'ClSubmenu').length,//父级元素有多少个subMenu组件
+        menuComponent: findComponent(this, 'Menu'),
+        parentSubMenuComponentNum: findComponents(this, 'Submenu').length,//父级元素有多少个subMenu组件
       }
     },
     computed: {
@@ -84,8 +84,8 @@
     methods: {
       handlerClick() {
         if (this.disabled) return;
-        this.parentEmit('ClMenu', 'on-update-active-key', this.cKey);
-        this.parentEmit('ClSubmenu', 'on-close-dropdown');
+        this.parentEmit('Menu', 'on-update-active-key', this.cKey);
+        this.parentEmit('Submenu', 'on-close-dropdown');
       },
     },
     watch: {

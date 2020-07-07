@@ -111,7 +111,7 @@
               ]"
               v-else-if="appendShow">
             <slot name="append">
-                <ClButton class="cl-input__append-button"
+                <cl-button class="cl-input__append-button"
                           v-if="type === 'search' && suffixButton"
                           type="primary"
                           :size="inputSize"
@@ -119,7 +119,7 @@
                           @click="handlerSearch">
                     <i class="cl-icon-search" v-if="suffixButton === true"></i>
                     <template v-else>{{suffixButton}}</template>
-                </ClButton>
+                </cl-button>
             </slot>
         </div>
     </div>
@@ -131,7 +131,7 @@
     import { findComponent} from "main/utils/tool";
 
     export default {
-        name: "ClInput",
+        name: "Input",
         props: {
             type: {
                 type: String,
@@ -190,7 +190,7 @@
                 hovering: false,
                 showPasswordVisible: false,
                 composition: false,//中文输入
-                formItem: findComponent(this, 'ClFormItem')
+                formItem: findComponent(this, 'FormItem')
             }
         },
         computed: {

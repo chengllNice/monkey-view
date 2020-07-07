@@ -1,4 +1,4 @@
-import ClRow from './src/row.vue'
-import ClCol from './src/col.vue'
+import Row from './src/row.vue'
+import Col from './src/col.vue'
 
-export {ClRow, ClCol}
+export {Row, Col}

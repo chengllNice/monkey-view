@@ -5,7 +5,7 @@
         </div>
         <div class="cl-date-pane__main">
             <div class="cl-date-pane__content">
-                <cl-date-pane-single class="cl-date-pane__left"
+                <date-pane-single class="cl-date-pane__left"
                                      ref="leftPane"
                                      :index="datePane0.id"
                                      :year="datePane0.year"
@@ -19,8 +19,8 @@
                                      :pickerType="pickerType"
                                      @hover-date="handleHoverDate"
                                      @update-date="updateValue"
-                                     @update-pane="updatePane"></cl-date-pane-single>
-                <cl-date-pane-single class="cl-date-pane__right"
+                                     @update-pane="updatePane"></date-pane-single>
+                <date-pane-single class="cl-date-pane__right"
                                      ref="rightPane"
                                      v-if="isRange"
                                      :index="datePane1.id"
@@ -35,7 +35,7 @@
                                      :pickerType="pickerType"
                                      @hover-date="handleHoverDate"
                                      @update-date="updateValue"
-                                     @update-pane="updatePane"></cl-date-pane-single>
+                                     @update-pane="updatePane"></date-pane-single>
             </div>
             <div class="cl-date-pane__footer" v-if="showFooter">
                 <cl-button class="cl-date-pane__footer-button cl-date-pane__footer-time"
@@ -59,13 +59,13 @@
 </template>
 
 <script>
-    import ClDatePaneSingle from './date-pane-single'
+    import DatePaneSingle from './date-pane-single'
     import ClButton from 'packages/button'
     import {zero, dateFormat, getWeekNumberInfo} from "main/utils/date";
     import Locale from "main/mixins/locale";
 
     export default {
-        name: "ClDatePane",
+        name: "DatePane",
         inject: ['picker'],
         mixins: [Locale],
         props: {
@@ -116,7 +116,7 @@
             }
         },
         components: {
-            ClDatePaneSingle,
+            DatePaneSingle,
             ClButton
         },
         mounted() {

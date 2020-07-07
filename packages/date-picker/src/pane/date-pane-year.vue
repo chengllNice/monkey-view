@@ -24,7 +24,7 @@
     import {dateFormat, yearListInit} from "main/utils/date";
 
     export default {
-        name: "ClDatePaneYear",
+        name: "DatePaneYear",
         props: {
             size: String,
             type: String,

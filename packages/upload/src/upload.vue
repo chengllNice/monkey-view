@@ -1,10 +1,10 @@
 <template>
     <div class="cl-upload">
-        <ClUploadList v-if="showUploadList && listType === 'picture-card'"
+        <upload-list v-if="showUploadList && listType === 'picture-card'"
                       :listType="listType"
                       :fileList="uploadFiles"
                       @preview="handlerPreview"
-                      @remove="handlerRemove"></ClUploadList>
+                      @remove="handlerRemove"></upload-list>
         <div :class="[
                 'cl-upload__target',
                 listType && `cl-upload__${listType}`,
@@ -27,20 +27,20 @@
             </div>
         </div>
         <slot name="tip"></slot>
-        <ClUploadList v-if="showUploadList && listType !== 'picture-card'"
+        <upload-list v-if="showUploadList && listType !== 'picture-card'"
                       :listType="listType"
                       :fileList="uploadFiles"
                       @preview="handlerPreview"
-                      @remove="handlerRemove"></ClUploadList>
+                      @remove="handlerRemove"></upload-list>
     </div>
 </template>
 
 <script>
-    import ClUploadList from './upload-list.vue'
+    import UploadList from './upload-list.vue'
     import uploadAjax from './ajax'
 
     export default {
-        name: "ClUpload",
+        name: "Upload",
         props: {
             name: {
                 type: String,
@@ -136,7 +136,7 @@
         },
         computed: {},
         components: {
-            ClUploadList
+            UploadList
         },
         created() {
         },

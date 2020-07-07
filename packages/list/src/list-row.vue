@@ -8,12 +8,12 @@
     import {findComponent, findComponentDirectChildrens} from "main/utils/tool";
     import Emitter from 'main/mixins/emitter'
     export default {
-        name: "ClListRow",
+        name: "ListRow",
         mixins: [Emitter],
         data() {
             return {
-                componentName: 'ClListRow',
-                parentListComponent: findComponent(this, 'ClList'),
+                componentName: 'ListRow',
+                parentListComponent: findComponent(this, 'List'),
                 itemLen: '',//list-item的数量
             }
         },
@@ -32,12 +32,12 @@
         },
         mounted() {
             this.$on('on-update-item-len', () => {
-                this.parentEmit('ClList', 'on-update-item-width', this.updateItemWidth());
+                this.parentEmit('List', 'on-update-item-width', this.updateItemWidth());
             })
         },
         methods: {
             updateItemWidth() {
-                let listItemChildren = findComponentDirectChildrens(this, 'ClListItem');
+                let listItemChildren = findComponentDirectChildrens(this, 'ListItem');
                 return listItemChildren.length;
             }
         }

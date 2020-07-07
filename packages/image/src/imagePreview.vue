@@ -36,7 +36,7 @@
     import {on, off} from "main/utils/dom";
 
     export default {
-        name: "ClImagePreview",
+        name: "ImagePreview",
         mixins: [Locale],
         props: {
             list: {

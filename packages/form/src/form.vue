@@ -12,7 +12,7 @@
 <script>
     import { ValidationObserver} from 'vee-validate'
     export default {
-        name: "ClForm",
+        name: "Form",
         props: {
             showRequiredIcon: {
                 type: Boolean,

@@ -1,3 +1,3 @@
-import ClAffix from './src/affix'
+import Affix from './src/affix'
 
-export default ClAffix
+export default Affix

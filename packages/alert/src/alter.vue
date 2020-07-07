@@ -26,7 +26,7 @@
 
 <script>
   export default {
-    name: "ClAlter",
+    name: "Alter",
     props: {
       type: {
         type: String,

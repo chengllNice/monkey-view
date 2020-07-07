@@ -1,8 +1,8 @@
-import ClList from './src/list'
-import ClListItem from './src/list-item'
-import ClListRow from './src/list-row'
+import List from './src/list'
+import ListItem from './src/list-item'
+import ListRow from './src/list-row'
 
-ClList.item = ClListItem;
-ClList.row = ClListRow;
+List.item = ListItem;
+List.row = ListRow;
 
-export default ClList
+export default List

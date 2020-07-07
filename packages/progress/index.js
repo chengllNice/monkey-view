@@ -1,3 +1,3 @@
-import ClProgress from './src/progress'
+import Progress from './src/progress'
 
-export default ClProgress
+export default Progress

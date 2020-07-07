@@ -1,6 +1,6 @@
 
 export default {
-    name: 'ClTableSlotHead',
+    name: 'TableSlotHead',
     functional: true,
     inject: ['tableRoot'],
     props: {

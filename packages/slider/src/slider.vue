@@ -14,26 +14,26 @@
             <div class="cl-slider__handle"
                  :style="handleStyle"
                  @mousedown="hanldeMousedown($event, 'min')">
-                <ClTooltip ref="minTooltip"
+                <tooltip ref="minTooltip"
                            :renderHtml="tooltipVisible === 'always' || false"
                            :disabled="tipDisabled"
                            :always="tooltipVisible === 'always'"
                            placement="top">
                     <span slot="content">{{tipFormat(emitValue[0])}}</span>
                     <div class="cl-slider__handle-rel" :style="{'border-color': this.barColor}"></div>
-                </ClTooltip>
+                </tooltip>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-  import ClTooltip from '../../tooltip/src/tooltip.vue'
+  import Tooltip from '../../tooltip/src/tooltip.vue'
   import {on, off} from "main/utils/dom";
   import elementResizeDetectorMaker from 'element-resize-detector';
 
   export default {
-    name: "ClSlider",
+    name: "Slider",
     props: {
       value: [Array, Number],
       min: {
@@ -134,7 +134,7 @@
       },
     },
     components: {
-      ClTooltip
+      Tooltip
     },
     created() {
     },

@@ -11,7 +11,7 @@
     import {findComponent} from "main/utils/tool";
     import Emitter from 'main/mixins/emitter'
     export default {
-        name: "ClTabPane",
+        name: "TabPane",
         mixins: [Emitter],
         props: {
             label: {
@@ -27,8 +27,8 @@
         },
         data() {
             return {
-                componentName: 'ClTabPane',
-                parentTabsComponent: findComponent(this, 'ClTabs')
+                componentName: 'TabPane',
+                parentTabsComponent: findComponent(this, 'Tabs')
             }
         },
         computed: {
@@ -65,7 +65,7 @@
         methods: {
             triggerUpdate(){
                 this.$nextTick(()=>{
-                    this.parentEmit('ClTabs', 'on-update-label-list');
+                    this.parentEmit('Tabs', 'on-update-label-list');
                 })
             }
         },

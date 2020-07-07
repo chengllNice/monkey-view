@@ -1,8 +1,8 @@
-import ClLoading from './src/loading'
-import ClLoadingInstance from './loadingInstance'
-import ClLoadingDirective from './loadingDirective'
+import Loading from './src/loading'
+import LoadingInstance from './loadingInstance'
+import LoadingDirective from './loadingDirective'
 
-ClLoading.instance = ClLoadingInstance;
-ClLoading.directive = ClLoadingDirective;
+Loading.instance = LoadingInstance;
+Loading.directive = LoadingDirective;
 
-export default ClLoading
+export default Loading

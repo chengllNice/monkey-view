@@ -6,7 +6,7 @@
 
 <script>
   export default {
-    name: "ClFooter",
+    name: "Footer",
     data() {
       return {}
     },

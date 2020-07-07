@@ -1,6 +1,6 @@
 
 export default {
-    name: 'ClTableExpand',
+    name: 'TableExpand',
     functional: true,
     inject: ['tableRoot'],
     props: {

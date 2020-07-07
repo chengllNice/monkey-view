@@ -3,18 +3,18 @@
         'cl-cascader-panel',
         !parentComponent && 'cl-cascader-panel--border'
     ]">
-        <cl-cascader-item v-if="parentComponent && parentComponent.showFilterablePanel" :data="parentComponent.currentFilterableData" show-path-label></cl-cascader-item>
-        <cl-cascader-item v-else :data="parentComponent ? data : currentData"></cl-cascader-item>
+        <cascader-item v-if="parentComponent && parentComponent.showFilterablePanel" :data="parentComponent.currentFilterableData" show-path-label></cascader-item>
+        <cascader-item v-else :data="parentComponent ? data : currentData"></cascader-item>
     </div>
 </template>
 
 <script>
-    import ClCascaderItem from './cascaderItem'
+    import CascaderItem from './cascaderItem'
     import Mixin from './mixin'
     import {findComponent} from "main/utils/tool";
 
     export default {
-        name: "ClCascaderPanel",
+        name: "CascaderPanel",
         mixins: [Mixin],
         props: {
 
@@ -25,13 +25,13 @@
         data() {
             let cascader = findComponent(this, 'ClCascader');
             return {
-                componentName: 'ClCascaderPanel',
+                componentName: 'CascaderPanel',
                 currentValue: [],
                 parentComponent: cascader || null
             }
         },
         components: {
-            ClCascaderItem
+            CascaderItem
         },
         mounted() {
 

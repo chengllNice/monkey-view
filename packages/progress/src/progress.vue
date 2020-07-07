@@ -49,7 +49,7 @@
 
 <script>
   export default {
-    name: "ClProgress",
+    name: "Progress",
     props: {
       percent: {
         type: Number,

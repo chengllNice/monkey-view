@@ -1,113 +1,116 @@
-import ClLayout from '../packages/layout'
-import ClMenu from '../packages/menu'
-import ClButton from '../packages/button'
-import ClButtonGroup from '../packages/button-group'
-import ClCheckbox from '../packages/checkbox'
-import ClCheckboxGroup from '../packages/checkbox-group'
-import ClRadio from '../packages/radio'
-import ClRadioGroup from '../packages/radio-group'
-import ClInput from '../packages/input'
-import ClSelect from '../packages/select'
-import ClOption from '../packages/option'
-import ClOptionGroup from '../packages/option-group'
-import ClUpload from '../packages/upload'
-import ClSwitch from '../packages/switch'
-import ClSlider from '../packages/slider'
-import ClModal from '../packages/modal'
-import ClMessage from '../packages/message'
-import ClNotice from '../packages/notice'
-import ClPopover from '../packages/popover'
-import ClTooltip from '../packages/tooltip'
-import ClProgress from '../packages/progress'
-import ClTag from '../packages/tag'
-import ClBadge from '../packages/badge'
-import ClScroll from '../packages/scroll'
-import ClAlter from '../packages/alert'
-import ClCard from '../packages/card'
-import ClDrawer from '../packages/drawer'
-import ClTable from '../packages/table'
-import ClCollapse from '../packages/collapse'
-import {ClRow, ClCol} from '../packages/grid'
-import {ClTabs, ClTabPane} from '../packages/tabs'
-import ClTree from '../packages/tree'
-import ClPage from '../packages/page'
-import ClList from '../packages/list'
-import ClLoading from '../packages/loading'
-import ClBackTop from '../packages/back-top'
-import ClAffix from '../packages/affix'
-import ClDatePicker from '../packages/date-picker'
-import ClTimePicker from '../packages/time-picker'
-import ClForm from '../packages/form'
-import ClFormItem from '../packages/form-item'
-import ClDropdown from '../packages/drop-down'
-import ClTime from '../packages/time'
-import ClImage from '../packages/image'
-import ClSkeleton from '../packages/skeleton'
-import ClCascader from '../packages/cascader'
+import Layout from '../packages/layout'
+import Menu from '../packages/menu'
+import Button from '../packages/button'
+import ButtonGroup from '../packages/button-group'
+import Checkbox from '../packages/checkbox'
+import CheckboxGroup from '../packages/checkbox-group'
+import Radio from '../packages/radio'
+import RadioGroup from '../packages/radio-group'
+import Input from '../packages/input'
+import Select from '../packages/select'
+import Option from '../packages/option'
+import OptionGroup from '../packages/option-group'
+import Upload from '../packages/upload'
+import Switch from '../packages/switch'
+import Slider from '../packages/slider'
+import Modal from '../packages/modal'
+import Message from '../packages/message'
+import Notice from '../packages/notice'
+import Popover from '../packages/popover'
+import Tooltip from '../packages/tooltip'
+import Progress from '../packages/progress'
+import Tag from '../packages/tag'
+import Badge from '../packages/badge'
+import Scroll from '../packages/scroll'
+import Alter from '../packages/alert'
+import Card from '../packages/card'
+import Drawer from '../packages/drawer'
+import Table from '../packages/table'
+import Collapse from '../packages/collapse'
+import {Row, Col} from '../packages/grid'
+import {Tabs, TabPane} from '../packages/tabs'
+import Tree from '../packages/tree'
+import Page from '../packages/page'
+import List from '../packages/list'
+import Loading from '../packages/loading'
+import BackTop from '../packages/back-top'
+import Affix from '../packages/affix'
+import DatePicker from '../packages/date-picker'
+import TimePicker from '../packages/time-picker'
+import Form from '../packages/form'
+import FormItem from '../packages/form-item'
+import Dropdown from '../packages/drop-down'
+import Time from '../packages/time'
+import Image from '../packages/image'
+import Skeleton from '../packages/skeleton'
+import Cascader from '../packages/cascader'
 
 import locale from './locale/index';
 
 const components = {
-    ClLayout,
-    ClSider: ClLayout.Sider,
-    ClHeader: ClLayout.Header,
-    ClFooter: ClLayout.Footer,
-    ClContent: ClLayout.Content,
-    ClMenu,
-    ClMenuItem: ClMenu.MenuItem,
-    ClMenuGroup: ClMenu.MenuGroup,
-    ClSubmenu: ClMenu.Submenu,
-    ClButton,
-    ClButtonGroup,
-    ClCheckbox,
-    ClCheckboxGroup,
-    ClRadio,
-    ClRadioGroup,
-    ClInput,
-    ClSelect,
-    ClOption,
-    ClOptionGroup,
-    ClUpload,
-    ClSwitch,
-    ClSlider,
-    ClModal,
-    ClPopover,
-    ClTooltip,
-    ClProgress,
-    ClTag,
-    ClBadge,
-    ClScroll,
-    ClAlter,
-    ClCard,
-    ClDrawer,
-    ClTable,
-    ClCollapse,
-    ClCollapseItem: ClCollapse.Item,
-    ClRow,
-    ClCol,
-    ClTabs,
-    ClTabPane,
-    ClTree,
-    ClPage,
-    ClList,
-    ClListItem: ClList.item,
-    ClListRow: ClList.row,
-    ClLoading: ClLoading,
-    ClBackTop,
-    ClAffix,
-    ClDatePicker,
-    ClTimePicker,
-    ClForm,
-    ClFormItem,
-    ClDropdown,
-    ClDropdownMenu: ClDropdown.Menu,
-    ClDropdownItem: ClDropdown.Item,
-    ClTime,
-    ClImage,
-    ClSkeleton,
-    ClSkeletonItem: ClSkeleton.Item,
-    ClCascader,
-    ClCascaderPanel: ClCascader.panel,
+    Layout,
+    Sider: Layout.Sider,
+    Header: Layout.Header,
+    Footer: Layout.Footer,
+    Content: Layout.Content,
+    Menu,
+    MenuItem: Menu.MenuItem,
+    MenuGroup: Menu.MenuGroup,
+    Submenu: Menu.Submenu,
+    Button,
+    ButtonGroup,
+    Checkbox,
+    CheckboxGroup,
+    Radio,
+    RadioGroup,
+    Input,
+    Select,
+    Option,
+    OptionGroup,
+    Upload,
+    Slider,
+    Modal,
+    Popover,
+    Tooltip,
+    Progress,
+    Tag,
+    Badge,
+    Scroll,
+    Alter,
+    Card,
+    Drawer,
+    Table,
+    Collapse,
+    CollapseItem: Collapse.Item,
+    Row,
+    Col,
+    Tabs,
+    TabPane,
+    Tree,
+    Page,
+    List,
+    ListItem: List.item,
+    ListRow: List.row,
+    Loading: Loading,
+    BackTop,
+    Affix,
+    DatePicker,
+    TimePicker,
+    Form,
+    FormItem,
+    Dropdown,
+    DropdownMenu: Dropdown.Menu,
+    DropdownItem: Dropdown.Item,
+    Time,
+    Skeleton,
+    SkeletonItem: Skeleton.Item,
+    Cascader,
+    CascaderPanel: Cascader.panel,
+};
+
+const ClComponents = {
+    Switch,
+    Image,
 };
 
 const install = (Vue, opts = {}) => {
@@ -117,19 +120,23 @@ const install = (Vue, opts = {}) => {
     locale.i18n(opts.i18n);
 
     Object.keys(components).forEach(key => {
-        Vue.component(key, components[key])
+        Vue.component(key, components[key]);
+        Vue.component(`Cl${key}`, components[key]);
+    });
+    Object.keys(ClComponents).forEach(key => {
+        Vue.component(`Cl${key}`, components[key]);
     });
 
     directive(Vue);
 
-    Vue.prototype.$Modal = ClModal.$Modal;
-    Vue.prototype.$Message = ClMessage;
-    Vue.prototype.$Notice = ClNotice;
-    Vue.prototype.$Loading = ClLoading.instance;
+    Vue.prototype.$Modal = Modal.$Modal;
+    Vue.prototype.$Message = Message;
+    Vue.prototype.$Notice = Notice;
+    Vue.prototype.$Loading = Loading.instance;
 };
 
 const directive = (Vue) => {
-    Vue.directive('loading', ClLoading.directive);
+    Vue.directive('loading', Loading.directive);
 };
 
 if (typeof window !== 'undefined' && window.Vue) {
@@ -142,7 +149,8 @@ const API = {
     locale: locale.use,
     i18n: locale.i18n,
     install,
-    ...components
+    ...components,
+    ...ClComponents,
 };
 
 export default API;

@@ -19,9 +19,9 @@
                     <i v-if="listType === 'text'" class="cl-icon-file"></i>
                     {{file.name}}
                 </span>
-                <ClProgress v-if="listType !== 'picture-card' && (file.status === 'uploading' || file.status === 'start')"
+                <progress v-if="listType !== 'picture-card' && (file.status === 'uploading' || file.status === 'start')"
                             :stroke-width="2"
-                            :percent="parsePercentage(file.percent)"></ClProgress>
+                            :percent="parsePercentage(file.percent)"></progress>
             </span>
             <i v-if="listType !== 'picture-card'" class="cl-icon-close cl-upload-list__remove" @click="handlerRemove(file)"></i>
             <span v-if="listType === 'picture-card'" class="cl-upload-list__picture-cover">
@@ -30,10 +30,10 @@
             </span>
             <span v-if="listType === 'picture-card' && (file.status === 'start' || file.status === 'uploading')" class="cl-upload-list__picture-progress">
                 <span class="cl-upload-list__picture-progress-inner">
-                    <ClProgress :stroke-width="5"
+                    <progress :stroke-width="5"
                                 type="circle"
                                 width="100%"
-                                :percent="parsePercentage(file.percent)"></ClProgress>
+                                :percent="parsePercentage(file.percent)"></progress>
                 </span>
             </span>
         </div>
@@ -41,9 +41,9 @@
 </template>
 
 <script>
-    import ClProgress from '../../progress/src/progress.vue'
+    import Progress from '../../progress/src/progress.vue'
   export default {
-    name: "ClUploadList",
+    name: "UploadList",
     props: {
       fileList: {
         type: Array,
@@ -58,7 +58,7 @@
     },
     computed: {},
     components: {
-      ClProgress
+      Progress
     },
     created() {
     },

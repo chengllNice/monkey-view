@@ -12,7 +12,7 @@
     import {on, off, scrollTop} from "main/utils/dom";
 
     export default {
-        name: "ClBackTop",
+        name: "BackTop",
         props: {
             target: {
               type: String,

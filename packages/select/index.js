@@ -1,3 +1,3 @@
-import ClSelect from './src/select'
+import Select from './src/select'
 
-export default ClSelect
+export default Select

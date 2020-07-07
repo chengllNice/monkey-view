@@ -11,7 +11,7 @@
     const Popper = isServer ? function () {
     } : require('popper.js/dist/umd/popper.js');
     export default {
-        name: "ClDropDown",
+        name: "DropDown",
         props: {
             dropdownMatchSelectWidth: Boolean,
             isMinWidth: {
@@ -74,7 +74,7 @@
             selectParentEl() {
                 let parent = this.$parent;
                 while (parent) {
-                    if (parent.componentName !== 'ClSelect') {
+                    if (parent.componentName !== 'Select') {
                         parent = parent.$parent;
                     } else {
                         return parent

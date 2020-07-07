@@ -1,3 +1,3 @@
-import ClNotice from './noticeInstance'
+import Notice from './noticeInstance'
 
-export default ClNotice
+export default Notice

@@ -1,8 +1,8 @@
 
 import Vue from 'vue'
-import ClModalConfirm from './src/modalConfirm.vue'
+import ModalConfirm from './src/modalConfirm.vue'
 
-const ClModalInstance = Vue.extend(ClModalConfirm);
+const ModalInstance = Vue.extend(ModalConfirm);
 let Instance;
 
 let confirmType = {
@@ -14,7 +14,7 @@ let confirmType = {
 };
 
 let initInstall = () => {
-  Instance = new ClModalInstance({
+  Instance = new ModalInstance({
     el: document.createElement('div')
   });
 

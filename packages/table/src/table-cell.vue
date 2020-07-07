@@ -6,9 +6,9 @@
          ]">
         <template v-if="renderType === 'normal'">
             <template v-if="column.tooltip">
-                <cl-tooltip class="cl-table-cell__tooltip" placement="top" :content="row[column.key]">
+                <tooltip class="cl-table-cell__tooltip" placement="top" :content="row[column.key]">
                     <span class="cl-table-cell__tooltip-content">{{row[column.key]}}</span>
-                </cl-tooltip>
+                </tooltip>
             </template>
             <span v-else>{{row[column.key]}}</span>
         </template>
@@ -16,10 +16,10 @@
             <table-slot :column="column" :row="row"></table-slot>
         </template>
         <template v-if="renderType === 'selection'">
-            <cl-checkbox class="cl-table-cell__checkbox"
+            <checkbox class="cl-table-cell__checkbox"
                          v-model="row.__isChecked"
                          :disabled="row.__isDisabled"
-                         @change="checkboxChange"></cl-checkbox>
+                         @change="checkboxChange"></checkbox>
         </template>
         <template v-if="renderType === 'index'">
             {{row.__index + 1}}
@@ -31,11 +31,11 @@
 </template>
 
 <script>
-    import ClTooltip from '../../tooltip/src/tooltip.vue'
-    import ClCheckbox from '../../checkbox/src/checkbox'
+    import Tooltip from '../../tooltip/src/tooltip.vue'
+    import Checkbox from '../../checkbox/src/checkbox'
     import tableSlot from './table-slot'
     export default {
-        name: "ClTableCell",
+        name: "TableCell",
         inject: ['tableRoot'],
         props: {
             row: {
@@ -54,8 +54,8 @@
         },
         computed: {},
         components: {
-            ClTooltip,
-            ClCheckbox,
+            Tooltip,
+            Checkbox,
             tableSlot
         },
         created() {

@@ -24,9 +24,9 @@
 
         <div class="cl-cascader-item__expand">
             <template v-for="item in data">
-                <cl-cascader-item v-if="item.children && item.children.length && item.__visible"
+                <cascader-item v-if="item.children && item.children.length && item.__visible"
                                    :key="item.value"
-                                   :data="item.children"></cl-cascader-item>
+                                   :data="item.children"></cascader-item>
             </template>
         </div>
     </div>
@@ -37,7 +37,7 @@
     import {findComponent} from "main/utils/tool";
 
     export default {
-        name: "ClCascaderItem",
+        name: "CascaderItem",
         props: {
             data: {
                 type: Array,
@@ -61,8 +61,8 @@
             }
         },
         data() {
-            let cascader = findComponent(this, 'ClCascader');
-            let cascaderPanel = findComponent(this, 'ClCascaderPanel');
+            let cascader = findComponent(this, 'Cascader');
+            let cascaderPanel = findComponent(this, 'CascaderPanel');
             return {
                 visible: false,
                 currentValue: '',

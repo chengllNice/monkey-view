@@ -41,7 +41,7 @@
   import DropDown from '../../select/src/drop-down.vue'
 
   export default {
-    name: "ClSubmenu",
+    name: "Submenu",
     mixins: [Emitter],
     props: {
       cKey: {
@@ -56,16 +56,16 @@
     },
     data() {
       return {
-        componentName: 'ClSubmenu',
+        componentName: 'Submenu',
         defaultPadding: 20,
         smallPadding: 10,
         largePadding: 30,
         opened: false,
         active: false,
-        menuComponent: findComponent(this, 'ClMenu'),
-        parentSubmenuComponents: findComponents(this, 'ClSubmenu'),
-        childrenMenuItemComponents: findComponentChildrens(this, 'ClMenuItem'),
-        parentSubMenuComponentNum: findComponents(this, 'ClSubmenu').length,//父级元素有多少个subMenu组件
+        menuComponent: findComponent(this, 'Menu'),
+        parentSubmenuComponents: findComponents(this, 'Submenu'),
+        childrenMenuItemComponents: findComponentChildrens(this, 'MenuItem'),
+        parentSubMenuComponentNum: findComponents(this, 'Submenu').length,//父级元素有多少个subMenu组件
         timer: null,
       }
     },
@@ -127,7 +127,7 @@
         this.timer = setTimeout(() => {
           this.opened = true;
         }, 200);
-        this.parentEmit('ClMenu', 'on-update-opened-key', this.cKey)
+        this.parentEmit('Menu', 'on-update-opened-key', this.cKey)
       },
       hanlderMouseleave() {
         if (this.disabled || this.forbidden) return;
@@ -137,7 +137,7 @@
         this.timer = setTimeout(() => {
           this.opened = false;
         }, 100);
-        this.parentEmit('ClMenu', 'on-update-opened-key', this.cKey)
+        this.parentEmit('Menu', 'on-update-opened-key', this.cKey)
       },
       handlerClick() {
         if (this.disabled || this.forbidden) return;
@@ -151,24 +151,24 @@
           } else {
             openedKeys = [...this.parentSubmenuComponentkeys]
           }
-          this.parentEmit('ClMenu', 'on-update-opened-key', openedKeys)
+          this.parentEmit('Menu', 'on-update-opened-key', openedKeys)
         } else {
-          this.parentEmit('ClMenu', 'on-update-opened-key', this.cKey)
+          this.parentEmit('Menu', 'on-update-opened-key', this.cKey)
         }
       },
       closeSubmenuChildren() {
         //关闭该组件下的所有submenu子组件
-        let childrens = findComponentChildrens(this, 'ClSubmenu');
+        let childrens = findComponentChildrens(this, 'Submenu');
         childrens.forEach(item => {
           if (item.opened) {
-            this.parentEmit('ClMenu', 'on-update-opened-key', item.cKey);
+            this.parentEmit('Menu', 'on-update-opened-key', item.cKey);
             item.opened = false;
           }
         })
       },
       menuItemChildrenActive(key) {
         if(this.disabled || this.forbidden) return;
-        let activeChildren = findComponentChildrens(this, 'ClMenuItem').filter(item => {
+        let activeChildren = findComponentChildrens(this, 'MenuItem').filter(item => {
           return item.cKey === key
         });
         this.active = activeChildren.length ? true : false;

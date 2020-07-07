@@ -21,7 +21,7 @@
 
 <script>
   export default {
-    name: "ClCard",
+    name: "Card",
     props:{
       title: String,
       noBorder: Boolean,

@@ -9,18 +9,18 @@
   import {findComponent, findComponents} from 'main/utils/tool.js'
 
   export default {
-    name: "ClMenuGroup",
+    name: "MenuGroup",
     props: {
       name: String,
     },
     data() {
       return {
-        componentName: 'ClMenuGroup',
+        componentName: 'MenuGroup',
         defaultPadding: 20,
         smallPadding: 10,
         largePadding: 30,
-        menuComponent: findComponent(this, 'ClMenu'),
-        parentSubMenuComponentNum: findComponents(this, 'ClSubmenu').length,//父级元素有多少个subMenu组件
+        menuComponent: findComponent(this, 'Menu'),
+        parentSubMenuComponentNum: findComponents(this, 'Submenu').length,//父级元素有多少个subMenu组件
       }
     },
     computed: {

@@ -1,3 +1,3 @@
-import ClFormItem from '../form/src/form-item'
+import FormItem from '../form/src/form-item'
 
-export default ClFormItem
+export default FormItem

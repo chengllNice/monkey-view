@@ -5,10 +5,10 @@
             (column.ellipsis || column.tooltip) && 'cl-table-cell--ellipsis',
          ]">
         <template v-if="renderType === 'selection'">
-            <cl-checkbox class="cl-table-cell__checkbox"
+            <checkbox class="cl-table-cell__checkbox"
                          v-model="column.__isChecked"
                          :disabled="column.__isDisabled"
-                         @change="checkboxChange"></cl-checkbox>
+                         @change="checkboxChange"></checkbox>
         </template>
         <template v-if="renderType === 'index'">
             #
@@ -58,14 +58,14 @@
                     </div>
 
                     <div v-else-if="column.filterMultiple" class="cl-table-head-cell__filter-list">
-                        <cl-checkbox-group v-model="filterMultipleValue">
+                        <checkbox-group v-model="filterMultipleValue">
                             <div class="cl-table-head-cell__filter-item"
                                  :class="[column.__filterCheckedValues.includes(item.value) && 'cl-table-head-cell__filter-item-active']"
                                  v-for="item in column.filters"
                                  :key="item.value">
-                                    <cl-checkbox :label="item.value">{{item.label}}</cl-checkbox>
+                                    <checkbox :label="item.value">{{item.label}}</checkbox>
                             </div>
-                        </cl-checkbox-group>
+                        </checkbox-group>
                         <div class="cl-table-head-cell__filter-footer">
                             <cl-button size="mini" type="primary" @click="filterMultiple">{{t('cl.table.filter')}}</cl-button>
                             <cl-button size="mini" @click="resetFilterMultiple">{{t('cl.table.reset')}}</cl-button>
@@ -78,15 +78,15 @@
 </template>
 
 <script>
-    import ClCheckbox from '../../checkbox/src/checkbox'
-    import ClCheckboxGroup from '../../checkbox/src/checkbox-group'
+    import Checkbox from '../../checkbox/src/checkbox'
+    import CheckboxGroup from '../../checkbox/src/checkbox-group'
     import ClButton from '../../button/src/button'
     import DropDown from '../../select/src/drop-down.vue'
     import tableSlotHead from './table-slot-head'
     import {directive as clickOutside} from 'v-click-outside-x';
     import Locale from 'main/mixins/locale'
     export default {
-        name: "ClTableHeadCell",
+        name: "TableHeadCell",
         directives: {clickOutside},
         mixins: [Locale],
         props: {
@@ -105,8 +105,8 @@
         },
         computed: {},
         components: {
-            ClCheckbox,
-            ClCheckboxGroup,
+            Checkbox,
+            CheckboxGroup,
             ClButton,
             DropDown,
             tableSlotHead

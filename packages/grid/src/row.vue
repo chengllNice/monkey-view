@@ -10,7 +10,7 @@
     import Emitter from 'main/mixins/emitter'
 
     export default {
-        name: "ClRow",
+        name: "Row",
         mixins: [Emitter],
         props: {
             type: {
@@ -38,7 +38,7 @@
         },
         data() {
             return {
-                componentName: 'ClRow',
+                componentName: 'Row',
             }
         },
         computed: {

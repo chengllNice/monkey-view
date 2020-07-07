@@ -1,3 +1,3 @@
-import ClTimePicker from '../date-picker/src/picker/time-picker'
+import TimePicker from '../date-picker/src/picker/time-picker'
 
-export default ClTimePicker
+export default TimePicker

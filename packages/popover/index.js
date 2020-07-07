@@ -1,3 +1,3 @@
-import ClPopover from './src/popover'
+import Popover from './src/popover'
 
-export default ClPopover
+export default Popover

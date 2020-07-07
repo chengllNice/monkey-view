@@ -1,3 +1,3 @@
-import ClRadio from './src/radio'
+import Radio from './src/radio'
 
-export default ClRadio
+export default Radio

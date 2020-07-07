@@ -1,3 +1,3 @@
-import ClOption from '../select/src/option'
+import Option from '../select/src/option'
 
-export default ClOption
+export default Option

@@ -1,8 +1,8 @@
 import Vue from 'vue'
-import ClMessage from './src/message.vue'
+import Message from './src/message.vue'
 
-const ClMessageInstance = Vue.extend(ClMessage);
-let MessageInstance = [];
+const MessageInstance = Vue.extend(Message);
+let MessageInstances = [];
 let MessageHeight = 0;
 
 
@@ -40,18 +40,18 @@ let instanceType = {
 };
 
 let topComputed = () => {
-    let len = MessageInstance.length;
+    let len = MessageInstances.length;
     let firstMessageDisTop = defaultNoConfigOptions.currentPosition;
     if (len > 1) {
-        MessageHeight = MessageInstance[len - 2].$el.offsetHeight;
+        MessageHeight = MessageInstances[len - 2].$el.offsetHeight;
         return (len - 1) * (globalConfigOptions.messageItemDis + MessageHeight) + firstMessageDisTop;
     }
     return firstMessageDisTop;
 };
 
 let closeAfter = () => {
-    MessageInstance.splice(0, 1);
-    MessageInstance.forEach((item) => {
+    MessageInstances.splice(0, 1);
+    MessageInstances.forEach((item) => {
         if (item.visible) {
             item.currentPosition = item.currentPosition - (MessageHeight + globalConfigOptions.messageItemDis);
         }
@@ -60,11 +60,11 @@ let closeAfter = () => {
 
 
 const initInstall = (opts) => {
-    let CreateInstance = new ClMessageInstance({
+    let CreateInstance = new MessageInstance({
         el: document.createElement('div'),
     });
     document.body.appendChild(CreateInstance.$el);
-    MessageInstance.push(CreateInstance);
+    MessageInstances.push(CreateInstance);
     Object.keys(opts).forEach(key => {
         if (key === 'currentPosition') {
             CreateInstance[key] = topComputed();

@@ -1,3 +1,3 @@
-import ClPage from './src/page'
+import Page from './src/page'
 
-export default ClPage
+export default Page

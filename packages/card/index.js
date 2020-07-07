@@ -1,3 +1,3 @@
-import ClCard from './src/card.vue'
+import Card from './src/card.vue'
 
-export default ClCard
+export default Card

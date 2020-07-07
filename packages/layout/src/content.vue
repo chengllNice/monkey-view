@@ -6,7 +6,7 @@
 
 <script>
   export default {
-    name: "ClContent",
+    name: "Content",
     data() {
       return {}
     },

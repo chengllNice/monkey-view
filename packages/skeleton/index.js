@@ -1,5 +1,5 @@
-import ClSkeleton from './src/skeleton'
-import ClSkeletonItem from './src/skeletonItem'
+import Skeleton from './src/skeleton'
+import SkeletonItem from './src/skeletonItem'
 
-ClSkeleton.Item = ClSkeletonItem;
-export default ClSkeleton
+Skeleton.Item = SkeletonItem;
+export default Skeleton

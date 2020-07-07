@@ -67,7 +67,7 @@
     import {dateFormat, zero} from "main/utils/date";
 
     export default {
-        name: "ClDatePaneTime",
+        name: "DatePaneTime",
         inject: ['picker'],
         props: {
             size: String,

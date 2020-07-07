@@ -1,3 +1,3 @@
-import ClInput from './src/input'
+import Input from './src/input'
 
-export default ClInput
+export default Input

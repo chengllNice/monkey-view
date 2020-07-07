@@ -6,7 +6,7 @@
 
 <script>
   export default {
-    name: "ClHeader",
+    name: "Header",
     props: {
       height: [String, Number]
     },

@@ -23,7 +23,7 @@
 <script>
     import LoadingSvg from './loading-svg'
     export default {
-        name: "ClLoading",
+        name: "Loading",
         props: {
             visible: {
                 type: Boolean,

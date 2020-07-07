@@ -1,17 +1,17 @@
 <template>
     <div class="cl-tree">
-        <cl-tree-node v-show="!filterLoading" :data="currentData"></cl-tree-node>
+        <tree-node v-show="!filterLoading" :data="currentData"></tree-node>
         <div class="cl-tree__empty" v-if="isEmpty">{{localEmptyText}}</div>
     </div>
 </template>
 
 <script>
-    import ClTreeNode from './tree-node'
+    import TreeNode from './tree-node'
     import Locale from 'main/mixins/locale'
     import Mixins from './mixins'
 
     export default {
-        name: "ClTree",
+        name: "Tree",
         mixins: [Locale, Mixins],
         provide(){
           return {
@@ -83,7 +83,7 @@
         },
         data() {
             return {
-                componentName: 'ClTree',
+                componentName: 'Tree',
                 renderType: 'normal',
                 filterLoading: false,//搜索中
             }
@@ -103,7 +103,7 @@
             }
         },
         components: {
-            ClTreeNode
+            TreeNode
         },
         created() {
         },

@@ -11,7 +11,7 @@
 
 <script>
     export default {
-        name: "ClTableTr",
+        name: "TableTr",
         inject: ['tableRoot'],
         props: {
             type: {

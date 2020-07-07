@@ -76,7 +76,7 @@
 <script>
     import Locale from 'main/mixins/locale'
     export default {
-        name: "ClPage",
+        name: "Page",
         mixins: [Locale],
         props: {
             page: {

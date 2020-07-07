@@ -31,7 +31,7 @@
                       :render-html="renderHtml"
                       v-model="visible">
                 <div class="cl-time-picker__drop-down-inner">
-                    <cl-date-pane picker-type='time'
+                    <date-pane picker-type='time'
                                   :size="size"
                                   :format="localeFormat"
                                   v-model="dateValue"
@@ -46,11 +46,11 @@
 <script>
     import {directive as clickOutside} from 'v-click-outside-x';
     import DropDown from '../../../select/src/drop-down.vue'
-    import ClDatePane from '../pane/date-pane.vue'
+    import DatePane from '../pane/date-pane.vue'
     import {dateFormat} from "main/utils/date";
 
     export default {
-        name: "ClTimePicker",
+        name: "TimePicker",
         directives: {clickOutside},
         provide() {
             return {
@@ -151,7 +151,7 @@
         },
         components: {
             DropDown,
-            ClDatePane
+            DatePane
         },
         mounted() {
             this.initDateValue();

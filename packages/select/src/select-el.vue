@@ -1,6 +1,6 @@
 <template>
     <div class="cl-select__el" @click="handlerClick" @mouseenter="isHover = true" @mouseleave="isHover = false">
-        <ClInput class="cl-select__el-input"
+        <cl-input class="cl-select__el-input"
                  v-if="!multiple"
                  v-model="cValue"
                  type="input"
@@ -17,19 +17,19 @@
                    :class="{'cl-select__el-icon-rotate': visible}"></i>
                 <i v-else class="cl-icon-error-fill cl-select__el-icon" @click.stop="handlerClear"></i>
             </span>
-        </ClInput>
+        </cl-input>
 
         <div ref="selectMultipleTag"
              v-if="multiple"
              tabindex="-1"
              class="cl-select__el-multiple-tag">
-            <ClTag class="cl-select__el-multiple-tag-item"
+            <tag class="cl-select__el-multiple-tag-item"
                    v-for="item in values"
                    :key="item.value"
                    :size="tagSize"
                    closable
                    @close="tagClose(item)">{{item.label}}
-            </ClTag>
+            </tag>
             <input v-if='filterable'
                    v-model="cValue"
                    type="text"
@@ -65,11 +65,11 @@
 
 <script>
     import ClInput from '../../input/src/input.vue'
-    import ClTag from '../../tag/src/tag.vue'
+    import Tag from '../../tag/src/tag.vue'
     import Locale from 'main/mixins/locale'
 
     export default {
-        name: "select-el",
+        name: "SelectEl",
         mixins: [Locale],
         props: {
             values: Array,
@@ -129,7 +129,7 @@
         },
         components: {
             ClInput,
-            ClTag
+            Tag
         },
         created() {
         },

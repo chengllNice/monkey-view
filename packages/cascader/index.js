@@ -1,6 +1,6 @@
-import ClCascader from './src/cascader'
-import ClCascaderPanel from './src/cascaderPanel'
+import Cascader from './src/cascader'
+import CascaderPanel from './src/cascaderPanel'
 
-ClCascader.panel = ClCascaderPanel
+Cascader.panel = CascaderPanel
 
-export default ClCascader
+export default Cascader

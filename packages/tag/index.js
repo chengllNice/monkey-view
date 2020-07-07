@@ -1,3 +1,3 @@
-import ClTag from './src/tag'
+import Tag from './src/tag'
 
-export default ClTag
+export default Tag

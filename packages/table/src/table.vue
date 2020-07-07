@@ -8,11 +8,11 @@
          :style="tableStyle">
         <div class="cl-table__wrap" ref="tableWrap">
             <div class="cl-table__head" ref="header" v-show="showHeader">
-                <cl-table-head :columns="headCloneColumns"
+                <table-head :columns="headCloneColumns"
                                :colgroup-columns="bodyCloneColumns"
                                :data="cloneData"
                                :columns-width="columnsWidth"
-                               :head-style="headStyle"></cl-table-head>
+                               :head-style="headStyle"></table-head>
             </div>
             <div class="cl-table__body"
                  :class="[
@@ -21,14 +21,14 @@
                  ref="body"
                  :style="bodyWrapStyle"
                  @scroll="bodyScrollHandle">
-                <cl-table-body ref='tbody'
+                <table-body ref='tbody'
                                :columns="bodyCloneColumns"
                                :colgroup-columns="bodyCloneColumns"
                                :data="cloneData"
                                :columns-width="columnsWidth"
-                               :body-style="bodyStyle"></cl-table-body>
+                               :body-style="bodyStyle"></table-body>
             </div>
-            <cl-table-fixed v-if='isFixedLeft'
+            <table-fixed v-if='isFixedLeft'
                             fixed="left"
                             ref="fixedTableLeft"
                             :head-columns="headCloneColumns"
@@ -39,8 +39,8 @@
                             :columns-width="columnsWidth"
                             :head-style="headStyle"
                             :body-style="bodyStyle"
-                            :bodyWrapStyle="bodyWrapStyle"></cl-table-fixed>
-            <cl-table-fixed v-if='isFixedRight'
+                            :bodyWrapStyle="bodyWrapStyle"></table-fixed>
+            <table-fixed v-if='isFixedRight'
                             fixed="right"
                             ref="fixedTableRight"
                             :head-columns="fixedRightHeadCloneColumns"
@@ -51,19 +51,19 @@
                             :columns-width="columnsWidth"
                             :head-style="headStyle"
                             :bodyWrapStyle="bodyWrapStyle"
-                            :body-style="bodyStyle"></cl-table-fixed>
+                            :body-style="bodyStyle"></table-fixed>
             <div class="cl-table__footer" ref="footer" v-if="$slots.footer"><slot name="footer"></slot></div>
         </div>
 
-        <cl-loading fix :visible="loading"></cl-loading>
+        <loading fix :visible="loading"></loading>
     </div>
 </template>
 
 <script>
-    import ClTableHead from './table-head.vue'
-    import ClTableBody from './table-body.vue'
-    import ClTableFixed from './table-fixed'
-    import ClLoading from '../../loading/src/loading'
+    import TableHead from './table-head.vue'
+    import TableBody from './table-body.vue'
+    import TableFixed from './table-fixed'
+    import Loading from '../../loading/src/loading'
     import {
         randomStr,
         getAllColumns,
@@ -79,7 +79,7 @@
 
 
     export default {
-        name: "ClTable",
+        name: "Table",
         mixins: [Locale],
         provide(){
           return {
@@ -189,10 +189,10 @@
             }
         },
         components: {
-            ClTableHead,
-            ClTableBody,
-            ClTableFixed,
-            ClLoading
+            TableHead,
+            TableBody,
+            TableFixed,
+            Loading
         },
         created() {
         },
