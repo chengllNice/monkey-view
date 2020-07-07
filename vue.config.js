@@ -6,18 +6,18 @@ const path = require('path');
 
 
 module.exports = {
-  entry: '',
   runtimeCompiler: true,
   // 配置插件
   configureWebpack: {
+    entry: path.resolve(__dirname, './examples/main.js'),
     resolve: {
       alias: {
-        'cl-ui': path.resolve(__dirname, './')
+        'cl-ui': path.resolve(__dirname, './'),
+        'packages': path.resolve(__dirname, './packages'),
+        'examples': path.resolve(__dirname, './examples'),
+        'main': path.resolve(__dirname, './src'),
       }
     },
-    // externals: {
-    //   vue: 'vue',
-    // },
     module: {
       rules: [
         {
@@ -40,6 +40,6 @@ module.exports = {
     },
     devServer: {
       host: '127.0.0.1',
-    }
+    },
   },
 };

@@ -116,8 +116,6 @@
 <script>
 
 
-  import ClRadio from 'cl-ui/packages/components/radio/src/radio.vue'
-  import ClRadioGroup from 'cl-ui/packages/components/radio/src/radio-group.vue'
   export default {
     name: "checkboxView",
     data() {
@@ -160,8 +158,6 @@
     },
     computed: {},
     components: {
-      ClRadio,
-      ClRadioGroup,
     },
     created() {
     },

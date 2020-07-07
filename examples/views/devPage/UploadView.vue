@@ -196,8 +196,6 @@
 </template>
 
 <script>
-  import ClUpload from 'cl-ui/packages/components/upload/src/upload.vue'
-
   export default {
     name: "UploadView",
     data() {
@@ -222,7 +220,6 @@
     },
     computed: {},
     components: {
-      ClUpload
     },
     created() {
     },

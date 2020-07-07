@@ -190,7 +190,6 @@
 </template>
 
 <script>
-  import ClTag from 'cl-ui/packages/components/tag/src/tag.vue'
   export default {
     name: "TagView",
     data() {
@@ -198,7 +197,6 @@
     },
     computed: {},
     components: {
-      ClTag
     },
     created() {
     },

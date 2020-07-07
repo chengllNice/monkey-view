@@ -1,0 +1,85 @@
+<template>
+    <div :class="[
+            'cl-collapse',
+            iconPosition && `cl-collapse--${iconPosition}`,
+            type && `cl-collapse--${type}`,
+         ]">
+        <slot></slot>
+    </div>
+</template>
+
+<script>
+  import Emitter from 'main/mixins/emitter'
+  export default {
+    name: "ClCollapse",
+    mixins: [Emitter],
+    props: {
+      value: [String, Array],
+      accordion: Boolean,
+      type: {
+        type: String,
+        default: 'default',
+        validator(value){
+          return ['default', 'simple'].includes(value)
+        }
+      },
+      iconPosition: {
+        type: String,
+        default: 'left',
+        validator(value){
+          return ['left', 'right'].includes(value)
+        }
+      }
+    },
+    data() {
+      return {
+        componentName: 'ClCollapse',
+        currentOpenedKey: []
+      }
+    },
+    computed: {},
+    components: {},
+    created() {
+    },
+    mounted() {
+      this.initOpenedKey();
+      this.$on('on-update-opened-key', (key) => {
+        this.updateOpenedKey(key);
+      })
+    },
+    methods: {
+      initOpenedKey(){
+        this.currentOpenedKey = typeof this.value === "string" ? [this.value] : this.value;
+      },
+      updateOpenedKey(key){
+        if(this.accordion){
+          if(Array.isArray(this.currentOpenedKey) && this.currentOpenedKey.includes(key)){
+            this.currentOpenedKey = [];
+          }else{
+            this.currentOpenedKey = [key]
+          }
+        }else{
+          if(Array.isArray(this.currentOpenedKey) && this.currentOpenedKey.includes(key)){
+            let index = this.currentOpenedKey.indexOf(key);
+            this.currentOpenedKey.splice(index, 1)
+          }else{
+            this.currentOpenedKey.push(key)
+          }
+        }
+        if(!this.currentOpenedKey) this.currentOpenedKey = [];
+
+        let inputKey = this.currentOpenedKey;
+        if(this.accordion){
+          inputKey = this.currentOpenedKey.length ? key : ''
+        }
+        this.$emit('input', inputKey);
+        this.$emit('change', key, this.currentOpenedKey);
+      }
+    },
+    watch: {
+      value(){
+        this.initOpenedKey();
+      }
+    }
+  }
+</script>

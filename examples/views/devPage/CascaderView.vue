@@ -23,10 +23,9 @@
 </template>
 
 <script>
-    import ClCascaderPanel from "../../../packages/components/cascader/src/cascaderPanel";
     export default {
         name: "CascaderView",
-        components: {ClCascaderPanel},
+        components: {},
         data(){
             return {
                 panelValue: [],

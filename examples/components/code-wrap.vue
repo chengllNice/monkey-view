@@ -28,7 +28,7 @@
 </template>
 
 <script>
-  import SlideTransition from 'cl-ui/packages/components/base/slide-transition.vue'
+  import SlideTransition from 'cl-ui/packages/base/slide-transition.vue'
 
   export default {
     name: "codeWrap",

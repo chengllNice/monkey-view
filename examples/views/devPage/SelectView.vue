@@ -357,9 +357,6 @@
 </template>
 
 <script>
-  import ClSelect from 'cl-ui/packages/components/select/src/select.vue'
-  import ClOption from 'cl-ui/packages/components/select/src/option.vue'
-  import ClOptionGroup from 'cl-ui/packages/components/select/src/option-group.vue'
   export default {
     name: "SelectView",
     data() {
@@ -458,9 +455,6 @@
     },
     computed: {},
     components: {
-      ClSelect,
-      ClOption,
-      ClOptionGroup
     },
     created() {
     },

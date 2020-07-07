@@ -51,8 +51,6 @@
 </template>
 
 <script>
-    import ClButton from 'cl-ui/packages/components/button/src/button.vue'
-
     export default {
         name: "MessageView",
         data() {
@@ -60,7 +58,6 @@
         },
         computed: {},
         components: {
-            ClButton
         },
         created() {
         },

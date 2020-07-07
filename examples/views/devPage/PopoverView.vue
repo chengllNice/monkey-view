@@ -179,9 +179,6 @@
 </template>
 
 <script>
-  import ClPopover from 'cl-ui/packages/components/popover/src/popover.vue'
-  import ClButton from 'cl-ui/packages/components/button/src/button.vue'
-  import ClInput from 'cl-ui/packages/components/input/src/input.vue'
 
   export default {
     name: "PopoverView",
@@ -192,9 +189,6 @@
     },
     computed: {},
     components: {
-      ClPopover,
-      ClButton,
-      ClInput
     },
     created() {
     },

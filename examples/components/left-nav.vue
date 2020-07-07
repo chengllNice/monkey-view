@@ -25,7 +25,7 @@
 </template>
 
 <script>
-    import Config from '@/config'
+    import Config from 'examples/config'
     export default {
         name: "leftNav",
         data() {

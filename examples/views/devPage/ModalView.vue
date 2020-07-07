@@ -450,8 +450,6 @@
 </template>
 
 <script>
-    import ClModal from 'cl-ui/packages/components/modal/src/modal.vue'
-    import ClButton from 'cl-ui/packages/components/button/src/button.vue'
 
   export default {
     name: "ModalView",
@@ -478,8 +476,6 @@
     },
     computed: {},
     components: {
-      ClModal,
-      ClButton
     },
     created() {
     },

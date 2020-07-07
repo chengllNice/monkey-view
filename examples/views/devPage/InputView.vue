@@ -294,7 +294,6 @@
 </template>
 
 <script>
-  import ClInput from 'cl-ui/packages/components/input/src/input.vue'
   export default {
     name: "InputView",
     data() {
@@ -350,7 +349,6 @@
     },
     computed: {},
     components: {
-      ClInput
     },
     created() {
     },

@@ -133,7 +133,6 @@
 </template>
 
 <script>
-    import ClSwitch from 'cl-ui/packages/components/switch/src/switch.vue'
   export default {
     name: "SwitchView",
     data() {
@@ -145,7 +144,6 @@
     },
     computed: {},
     components: {
-      ClSwitch
     },
     created() {
     },

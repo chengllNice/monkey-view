@@ -103,7 +103,6 @@
 </template>
 
 <script>
-  import ClSlider from 'cl-ui/packages/components/slider/src/slider.vue'
   export default {
     name: "SliderView",
     data() {
@@ -122,7 +121,6 @@
     },
     computed: {},
     components: {
-      ClSlider
     },
     created() {
     },

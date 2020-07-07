@@ -142,8 +142,6 @@
 </template>
 
 <script>
-    import ClTooltip from 'cl-ui/packages/components/tooltip/src/tooltip.vue'
-    import ClButton from 'cl-ui/packages/components/button/src/button.vue'
   export default {
     name: "TooltipView",
     data() {
@@ -151,8 +149,6 @@
     },
     computed: {},
     components: {
-      ClTooltip,
-      ClButton
     },
     created() {
     },
