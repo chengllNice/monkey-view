@@ -1,0 +1,33 @@
+
+.doc-card {
+
+}
+.doc-card-header{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.doc-card-header .extra{
+  font-weight: normal;
+}
+.doc-card-avatar{
+  width: 100%;
+  vertical-align: top;
+}
+.doc-card-content{
+  padding: 16px;
+}
+.doc-card-footer{
+  display: flex;
+  justify-content: space-between;
+  &>*{
+    flex: 1;
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;
+    &:hover{
+      color: #2d8cf0;
+    }
+  }
+}

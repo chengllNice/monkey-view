@@ -6,6 +6,7 @@ const path = require('path');
 
 
 module.exports = {
+  entry: '',
   runtimeCompiler: true,
   // 配置插件
   configureWebpack: {
