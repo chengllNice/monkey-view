@@ -1,11 +1,11 @@
 <template>
     <div>
         <transition name="fade">
-            <div class="cl-drawer__cover" v-if="coverShow" v-show="visible" @click="handlerCover"></div>
+            <div :class="[`${classPrefix}__cover`]" v-if="coverShow" v-show="visible" @click="handlerCover"></div>
         </transition>
-        <div class="cl-drawer__wrap"
-             :class="[
-                !wrapShow && 'cl-drawer__hidden'
+        <div :class="[
+                 `${classPrefix}__wrap`,
+                 !wrapShow && `${classPrefix}__hidden`
              ]"
              ref="drawerWrap"
              @click="handlerWrapClick">
@@ -14,30 +14,35 @@
                      ref="drawer"
                      :style="drawerStyle"
                      :class="[
-                        placement && `cl-drawer__${placement}`
-                     ]"
-                     class="cl-drawer">
-                    <div class="cl-drawer__content">
-                        <div class="cl-drawer__close" v-if="closable" @click="handlerClose">
-                            <slot name="close"><i class="cl-icon-close"></i></slot>
+                         `${classPrefix}`,
+                         placement && `cl-drawer__${placement}`
+                     ]">
+                    <div :class="[`${classPrefix}__content`]">
+                        <div :class="[`${classPrefix}__close`]" v-if="closable" @click="handlerClose">
+                            <slot name="close">
+                                <Icon type="icon-close"></Icon>
+                            </slot>
                         </div>
-                        <div class="cl-drawer__header" ref="drawerHeader" v-if="showHead">
+                        <div :class="[`${classPrefix}__header`]" ref="drawerHeader" v-if="showHead">
                             <slot name="header">{{title}}</slot>
                         </div>
-                        <div class="cl-drawer__body" :style="bodyStyle">
-                            <cl-scroll size="small">
-                                <div class="cl-drawer__body-content">
+                        <div :class="[`${classPrefix}__body`]" :style="bodyStyle">
+                            <scroll size="small">
+                                <div :class="[`${classPrefix}__body-content`]">
                                     <slot></slot>
                                 </div>
-                            </cl-scroll>
+                            </scroll>
                         </div>
-                        <div class="cl-drawer__footer" ref="drawerFooter" v-if="!footerHide">
+                        <div :class="[`${classPrefix}__footer`]" ref="drawerFooter" v-if="!footerHide">
                             <slot name="footer">
-                                <cl-button @click="handlerButtonCancel" v-if="localCancelText">{{localCancelText}}
-                                </cl-button>
-                                <cl-button type="primary" :loading='okButtonLoading' @click="handlerButtonOk"
-                                          v-if="localOkText">{{localOkText}}
-                                </cl-button>
+                                <Button @click="handlerButtonCancel"
+                                        v-if="localCancelText">{{localCancelText}}
+                                </Button>
+                                <Button type="primary"
+                                        :loading='okButtonLoading'
+                                        @click="handlerButtonOk"
+                                        v-if="localOkText">{{localOkText}}
+                                </Button>
                             </slot>
                         </div>
                     </div>
@@ -48,8 +53,10 @@
 </template>
 
 <script>
-    import ClButton from '../../button/src/button.vue'
-    import ClScroll from '../../scroll/src/scroll.vue'
+    import Config from 'main/config/config'
+    import Button from 'packages/button'
+    import Scroll from 'packages/scroll'
+    import Icon from 'packages/icon'
     import elementResizeDetectorMaker from 'element-resize-detector';
     import Locale from 'main/mixins/locale'
 
@@ -100,6 +107,7 @@
         },
         data() {
             return {
+                classPrefix: Config.classPrefix + '-drawer',
                 visible: this.value,
                 showHead: true,
                 wrapShow: false,
@@ -148,8 +156,9 @@
             }
         },
         components: {
-            ClButton,
-            ClScroll
+            Button,
+            Scroll,
+            Icon
         },
         created() {
         },
@@ -234,7 +243,7 @@
             },
             handlerWrapClick(event) {
                 const className = event.target.getAttribute('class');
-                className && (className.indexOf('cl-drawer__wrap') > -1) && (this.handlerCover());
+                className && (className.indexOf(`${this.classPrefix}__wrap`) > -1) && (this.handlerCover());
             },
             handlerCover() {
                 if (this.coverClosable) {

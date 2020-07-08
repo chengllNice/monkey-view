@@ -1,69 +1,70 @@
 <template>
     <div :class="[
-            'cl-date-pane-time',
-            size && `cl-date-pane-time--${size}`,
-            !showSsCol && `cl-date-pane-time--no-show-ss`,
+            `${classPrefix}`,
+            size && `${classPrefix}--${size}`,
+            !showSsCol && `${classPrefix}--no-show-ss`,
          ]">
-        <div class="cl-date-pane-time__hh">
-            <ClScroll size="small" ref="hhScroll">
-                <div class="cl-date-pane-time__hh-inner">
+        <div :class="[`${classPrefix}__hh`]">
+            <scroll size="small" ref="hhScroll">
+                <div :class="[`${classPrefix}__hh-inner`]">
                     <template v-for="hhItem in hhData">
                         <div v-if="!(picker.hideDisabledOptions && picker.disabledHours.includes(parseInt(hhItem.id)))"
-                             class="cl-date-pane-item__col"
                              :class="[
-                                !(hhItem.id === selectedHours) && !(picker.disabledHours && picker.disabledHours.includes(parseInt(hhItem.id))) && 'cl-date-pane-item__hover',
-                                !hhItem.visibility && 'cl-date-pane-time__hide',
-                                hhItem.id === selectedHours && 'cl-date-pane-item__selected',
-                                picker.disabledHours && picker.disabledHours.includes(parseInt(hhItem.id)) && 'cl-date-pane-item__disabled',
+                                 `${classPrefixItem}__col`,
+                                 !(hhItem.id === selectedHours) && !(picker.disabledHours && picker.disabledHours.includes(parseInt(hhItem.id))) && `${classPrefixItem}__hover`,
+                                 !hhItem.visibility && `${classPrefixItem}__hide`,
+                                 hhItem.id === selectedHours && `${classPrefixItem}__selected`,
+                                 picker.disabledHours && picker.disabledHours.includes(parseInt(hhItem.id)) && `${classPrefixItem}__disabled`,
                              ]"
 
                              :key="hhItem.id"
                              @click="selectHours(hhItem)"><em>{{hhItem.name}}</em></div>
                     </template>
                 </div>
-            </ClScroll>
+            </scroll>
         </div>
-        <div class="cl-date-pane-time__mm">
-            <ClScroll size="small" ref="mmScroll">
-                <div class="cl-date-pane-time__mm-inner">
+        <div :class="[`${classPrefix}__mm`]">
+            <scroll size="small" ref="mmScroll">
+                <div :class="[`${classPrefix}__mm-inner`]">
                     <template v-for="mmItem in mmData">
                         <div v-if="!(picker.hideDisabledOptions && picker.disabledMinutes.includes(parseInt(mmItem.id)))"
-                             class="cl-date-pane-item__col"
                              :class="[
-                                !(mmItem.id === selectedMinutes) && !(picker.disabledMinutes && picker.disabledMinutes.includes(parseInt(mmItem.id))) && 'cl-date-pane-item__hover',
-                                !mmItem.visibility && 'cl-date-pane-time__hide',
-                                mmItem.id === selectedMinutes && 'cl-date-pane-item__selected',
-                                picker.disabledMinutes && picker.disabledMinutes.includes(parseInt(mmItem.id)) && 'cl-date-pane-item__disabled',
+                                 `${classPrefixItem}__col`,
+                                 !(mmItem.id === selectedMinutes) && !(picker.disabledMinutes && picker.disabledMinutes.includes(parseInt(mmItem.id))) && `${classPrefixItem}__hover`,
+                                 !mmItem.visibility && `${classPrefixItem}__hide`,
+                                 mmItem.id === selectedMinutes && `${classPrefixItem}__selected`,
+                                 picker.disabledMinutes && picker.disabledMinutes.includes(parseInt(mmItem.id)) && `${classPrefixItem}__disabled`,
                              ]"
                              :key="mmItem.id"
                              @click="selectMinutes(mmItem)"><em>{{mmItem.name}}</em></div>
                     </template>
                 </div>
-            </ClScroll>
+            </scroll>
         </div>
-        <div class="cl-date-pane-time__ss" v-if="showSsCol">
-            <ClScroll size="small" ref="ssScroll">
-                <div class="cl-date-pane-time__ss-inner">
+        <div :class="[`${classPrefix}__ss`]" v-if="showSsCol">
+            <scroll size="small" ref="ssScroll">
+                <div :class="[`${classPrefix}__ss-inner`]">
                     <template v-for="ssItem in ssData">
                         <div v-if="!(picker.hideDisabledOptions && picker.disabledSeconds.includes(parseInt(ssItem.id)))"
-                             class="cl-date-pane-item__col"
                              :class="[
-                                !(ssItem.id === selectedSecond) && !(picker.disabledSeconds && picker.disabledSeconds.includes(parseInt(ssItem.id))) && 'cl-date-pane-item__hover',
-                                !ssItem.visibility && 'cl-date-pane-time__hide',
-                                ssItem.id === selectedSecond && 'cl-date-pane-item__selected',
-                                picker.disabledSeconds && picker.disabledSeconds.includes(parseInt(ssItem.id)) && 'cl-date-pane-item__disabled',
+                                 `${classPrefixItem}__col`,
+                                 !(ssItem.id === selectedSecond) && !(picker.disabledSeconds && picker.disabledSeconds.includes(parseInt(ssItem.id))) && `${classPrefixItem}__hover`,
+                                 !ssItem.visibility && `${classPrefixItem}__hide`,
+                                 ssItem.id === selectedSecond && `${classPrefixItem}__selected`,
+                                 picker.disabledSeconds && picker.disabledSeconds.includes(parseInt(ssItem.id)) && `${classPrefixItem}__disabled`,
                              ]"
                              :key="ssItem.id"
                              @click="selectSecond(ssItem)"><em>{{ssItem.name}}</em></div>
                     </template>
                 </div>
-            </ClScroll>
+            </scroll>
         </div>
     </div>
 </template>
 
 <script>
-    import ClScroll from '../../../scroll/src/scroll.vue'
+    import Config from 'main/config/config'
+    import Scroll from 'packages/scroll'
     import {dateFormat, zero} from "main/utils/date";
 
     export default {
@@ -92,6 +93,8 @@
             nowDate.setMinutes(0);
             nowDate.setSeconds(0);
             return {
+                classPrefix: Config.classPrefix + '-date-pane-time',
+                classPrefixItem: Config.classPrefix + '-date-pane-item',
                 hhData: [],
                 mmData: [],
                 ssData: [],
@@ -111,7 +114,7 @@
             }
         },
         components: {
-            ClScroll
+            Scroll
         },
         mounted(){
             this.initData();

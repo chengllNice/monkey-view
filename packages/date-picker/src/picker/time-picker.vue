@@ -1,13 +1,13 @@
 <template>
     <div :class="[
-            'cl-time-picker',
-            size && `cl-time-picker--${size}`,
+            `${classPrefix}`,
+            size && `${classPrefix}--${size}`,
             className,
          ]"
          v-click-outside.capture="handleClickOutside">
-        <div class="cl-time-picker__reference" ref="reference">
+        <div :class="[`${classPrefix}__reference`]" ref="reference">
             <slot>
-                <cl-input v-model="dateInputValue"
+                <sn-input v-model="dateInputValue"
                           ref="timeInput"
                           :suffix="suffix"
                           :size="size"
@@ -17,7 +17,7 @@
                           :readonly="readonlyInput"
                           @click.native="handleFocus"
                           @blur="updateInputValue"
-                          @clear="handleClear"></cl-input>
+                          @clear="handleClear"></sn-input>
             </slot>
         </div>
         <transition :name="transition">
@@ -30,13 +30,13 @@
                       :dropdownMatchSelectWidth="false"
                       :render-html="renderHtml"
                       v-model="visible">
-                <div class="cl-time-picker__drop-down-inner">
+                <div :class="[`${classPrefix}__drop-down-inner`]">
                     <date-pane picker-type='time'
-                                  :size="size"
-                                  :format="localeFormat"
-                                  v-model="dateValue"
-                                  :is-range="isRange"
-                                  :type="type"/>
+                               :size="size"
+                               :format="localeFormat"
+                               v-model="dateValue"
+                               :is-range="isRange"
+                               :type="type"/>
                 </div>
             </DropDown>
         </transition>
@@ -44,6 +44,8 @@
 </template>
 
 <script>
+    import Config from 'main/config/config'
+    import Input from 'packages/input'
     import {directive as clickOutside} from 'v-click-outside-x';
     import DropDown from '../../../select/src/drop-down.vue'
     import DatePane from '../pane/date-pane.vue'
@@ -99,7 +101,7 @@
             clearable: Boolean,
             suffix: {
                 type: String,
-                default: 'cl-icon-time'
+                default: 'icon-time'
             },
             transition: {
                 type: String,
@@ -134,6 +136,7 @@
         data() {
             const localeFormat = 'YYYY/MM/DD ' + this.format;
             return {
+                classPrefix: Config.classPrefix + '-time-picker',
                 dateValue: [],
                 dateInputValue: '',
                 visible: false,
@@ -151,7 +154,8 @@
         },
         components: {
             DropDown,
-            DatePane
+            DatePane,
+            'sn-input': Input
         },
         mounted() {
             this.initDateValue();

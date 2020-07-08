@@ -1,28 +1,32 @@
 <template>
-    <div class="cl-tree-node">
-        <div class="cl-tree-node__item" v-for="item in data" :key="item.key">
+    <div :class="[`${classPrefix}`]">
+        <div :class="[`${classPrefix}__item`]" v-for="item in data" :key="item.key">
             <template v-if="item.__visible">
                 <div :class="[
-                        'cl-tree-node__title',
+                        `${classPrefix}__title`,
                         item.__expand && 'is-expand',
                         item.__disabled && 'is-disabled',
                   ]"
                      :style="titleStyle(item)"
                      @click.stop="handleClick(item)">
                     <span v-if="!treeRoot.hideIcon"
-                          class="cl-tree-node__expand-icon"
+                          :class="[`${classPrefix}__expand-icon`]"
                           @click.stop="handleExpandClick(item)">
-                        <i :class="treeRoot.loadingIconClass" v-if="item.__loading"></i>
-                        <i :class="treeRoot.expandIconClass" v-else-if="item.__more"></i>
+                        <Icon :type="treeRoot.loadingIconClass"
+                              :class="[treeRoot.loadingIconClass, `${prefix}-rotate`]"
+                              v-if="item.__loading"></Icon>
+                        <Icon :type="treeRoot.expandIconClass"
+                              :class="treeRoot.expandIconClass"
+                              v-else-if="item.__more"></Icon>
                     </span>
-                    <cl-checkbox v-if="parentComponent.showCheckbox"
+                    <checkbox v-if="parentComponent.showCheckbox"
                                  v-model="item.__checked"
                                  :indeterminate="item.__indeterminate"
                                  :disabled="item.__disabled || item.__disabledCheckbox"
-                                 class="cl-tree-node__checkbox"
+                                 :class="[`${classPrefix}__checkbox`]"
                                  @click.native.stop
-                                 @change="(value) => handleCheckboxChange(value, item)"></cl-checkbox>
-                    <div class="cl-tree-node__label">
+                                 @change="(value) => handleCheckboxChange(value, item)"></checkbox>
+                    <div :class="[`${classPrefix}__label`]">
                         <Render v-bind="renderProps(item)"></Render>
                     </div>
                 </div>
@@ -36,10 +40,13 @@
 </template>
 
 <script>
+    import Config from 'main/config/config'
     import SlideTransition from '../../base/slide-transition.vue'
     import Emitter from 'main/mixins/emitter'
-    import {findComponent, findComponents} from "main/utils/tool";
+    import {findComponent} from "main/utils/tool";
     import Render from './render'
+    import Icon from 'packages/icon'
+    import Checkbox from 'packages/checkbox'
 
     export default {
         name: "TreeNode",
@@ -56,6 +63,8 @@
         },
         data() {
             return {
+                prefix: Config.classPrefix,
+                classPrefix: Config.classPrefix + '-tree-node',
                 parentComponent: findComponent(this, 'Tree'),
             }
         },
@@ -83,7 +92,9 @@
         },
         components: {
             SlideTransition,
-            Render
+            Render,
+            Icon,
+            Checkbox
         },
         created() {
         },

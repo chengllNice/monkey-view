@@ -1,15 +1,16 @@
 <template>
-    <label class="cl-radio" :class="[
-        radioSize && `cl-radio--${radioSize}`,
+    <label :class="[
+        `${classPrefix}`,
+        radioSize && `${classPrefix}--${radioSize}`,
         {
             'is-disabled': isDisabled,
             'is-checked': model === label,
         }
     ]">
-        <span class="cl-radio__input">
-            <span class="cl-radio__inner"></span>
+        <span :class="[`${classPrefix}__input`]">
+            <span :class="[`${classPrefix}__inner`]"></span>
             <input
-                    class="cl-radio__source"
+                    :class="[`${classPrefix}__source`]"
                     type="radio"
                     :value="label"
                     v-model="model"
@@ -19,13 +20,15 @@
                     @change="handleChange">
         </span>
 
-        <span class="cl-radio__label">
+        <span :class="[`${classPrefix}__label`]">
             <slot>{{label}}</slot>
         </span>
     </label>
 </template>
 
 <script>
+    import Config from 'main/config/config'
+
     export default {
         name: "Radio",
         props: {
@@ -48,7 +51,9 @@
             },
         },
         data() {
-            return {}
+            return {
+                classPrefix: Config.classPrefix + '-radio',
+            }
         },
         computed: {
             parentGroup() {

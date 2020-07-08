@@ -1,25 +1,36 @@
 <template>
     <transition name="MessageFade" @after-leave="handleAfterLeave">
-        <div class="cl-message"
-             :class="[
-                type && `cl-message--${type}`,
-                background && `cl-message--background`
+        <div :class="[
+                 `${classPrefix}`,
+                 type && `${classPrefix}--${type}`,
+                 background && `${classPrefix}--background`
              ]"
              :style="expandStyle"
              v-show="visible"
              @mouseenter="clearTimer"
              @mouseleave="startTimer">
-            <i class="cl-message__icon" :class="iconClass" v-if="iconClass"></i>
-            <span class="cl-message__content" v-html="content"></span>
+            <Icon v-if="iconType"
+                  :type="iconType"
+                  :class="[
+                      `${classPrefix}__icon`,
+                      type === 'loading' && `${prefix}-rotate`,
+                  ]">
+            </Icon>
+            <span :class="[`${classPrefix}__content`]" v-html="content"></span>
         </div>
     </transition>
 </template>
 
 <script>
+    import Config from 'main/config/config'
+    import Icon from 'packages/icon'
+
     export default {
         name: "Message",
         data() {
             return {
+                prefix: Config.classPrefix,
+                classPrefix: Config.classPrefix + '-message',
                 visible: false,
                 type: 'info',
                 content: '',
@@ -32,26 +43,26 @@
             }
         },
         computed: {
-            iconClass() {
+            iconType() {
                 let result;
                 switch (this.type) {
                     case 'info':
-                        result = 'cl-icon-info-fill';
+                        result = 'icon-info-fill';
                         break;
                     case 'success':
-                        result = 'cl-icon-success-fill';
+                        result = 'icon-success-fill';
                         break;
                     case 'warning':
-                        result = 'cl-icon-warning-fill';
+                        result = 'icon-warning-fill';
                         break;
                     case 'error':
-                        result = 'cl-icon-error-fill';
+                        result = 'icon-error-fill';
                         break;
                     case 'loading':
-                        result = 'cl-rotate cl-icon-loading';
+                        result = 'icon-loading';
                         break;
                     default:
-                        result = 'cl-icon-question-fill';
+                        result = 'icon-question-fill';
                         break;
                 }
                 return result;
@@ -60,7 +71,9 @@
                 return {top: parseFloat(this.currentPosition) + 'px'}
             }
         },
-        components: {},
+        components: {
+            Icon
+        },
         created() {
         },
         mounted() {

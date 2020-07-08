@@ -1,22 +1,22 @@
 <template>
-    <div class="cl-tooltip"
+    <div :class="[`${classPrefix}`]"
          @mouseenter="handlerMouseenter"
          @mouseleave="handlerMouseleave">
         <transition :name="transition">
-            <div class="cl-tooltip__popper"
+            <div :class="[`${classPrefix}__popper`]"
                  ref="popper"
                  @mouseenter="handlerPopperMouseenter"
                  @mouseleave="handlerPopperMouseleave"
                  v-show="!disabled && (visible || always)">
-                <div class="cl-tooltip__content">
-                    <div class="cl-tooltip__arrow" v-if="!this.backgroundColor"></div>
-                    <div class="cl-tooltip__inner" :style="expandStyle">
+                <div :class="[`${classPrefix}__content`]">
+                    <div :class="[`${classPrefix}__arrow`]" v-if="!this.backgroundColor"></div>
+                    <div :class="[`${classPrefix}__inner`]" :style="expandStyle">
                         <slot name="content">{{content}}</slot>
                     </div>
                 </div>
             </div>
         </transition>
-        <div class="cl-tooltip__target"
+        <div :class="[`${classPrefix}__target`]"
              ref="reference">
             <slot></slot>
         </div>
@@ -24,6 +24,7 @@
 </template>
 
 <script>
+    import Config from 'main/config/config'
     import Popper from 'main/mixins/popper'
 
     export default {
@@ -54,6 +55,7 @@
         },
         data() {
             return {
+                classPrefix: Config.classPrefix + '-tooltip',
                 hoverTimer: null,
                 popperHover: false,
                 targetHover: false,

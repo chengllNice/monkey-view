@@ -1,32 +1,40 @@
 <template>
     <transition :name="transitionName" @after-leave="handleAfterLeave">
-        <div class="cl-notice"
-             :class="[
-                type && type !== 'open' && `cl-notice--${type}`,
-                type && type !== 'open' && `cl-notice--type`,
-                isOnlyTitle && 'cl-notice--only-title',
-                placement && `cl-notice--${placement}`,
-                background && `cl-notice--background`,
+        <div :class="[
+                 `${classPrefix}`,
+                  type && type !== 'open' && `${classPrefix}--${type}`,
+                  type && type !== 'open' && `${classPrefix}--type`,
+                  isOnlyTitle && `${classPrefix}--only-title`,
+                  placement && `${classPrefix}--${placement}`,
+                  background && `${classPrefix}--background`,
              ]"
              :style="noticeStyle"
              v-show="visible">
-            <span class="cl-notice__icon" v-if="type && type !== 'open'"><i :class="iconClass"></i></span>
-            <div class="cl-notice__title" v-if="title">
+            <span :class="[`${classPrefix}__icon`]" v-if="type && type !== 'open'">
+                <Icon :type="iconType"></Icon>
+            </span>
+            <div :class="[`${classPrefix}__title`]" v-if="title">
                 {{title}}
             </div>
-            <div class="cl-notice__content" v-if="content" v-html="content"></div>
-            <div class="cl-notice__close" v-if="closable" @click="handlerClose">
-                <slot name="close"><i class="cl-icon-close"></i></slot>
+            <div :class="[`${classPrefix}__content`]" v-if="content" v-html="content"></div>
+            <div :class="[`${classPrefix}__close`]" v-if="closable" @click="handlerClose">
+                <slot name="close">
+                    <Icon type="icon-close"></Icon>
+                </slot>
             </div>
         </div>
     </transition>
 </template>
 
 <script>
+    import Config from 'main/config/config'
+    import Icon from 'packages/icon'
+
     export default {
         name: "Notice",
         data() {
             return {
+                classPrefix: Config.classPrefix + '-notice',
                 placement: '',//出现的位置
                 type: 'open',//默认值
                 isOnlyTitle: false,//是否只有标题
@@ -55,19 +63,19 @@
                 let bottom = 0;
                 let width = this.width;
 
-                if(['topLeft', 'bottomLeft'].includes(this.placement)){
+                if (['topLeft', 'bottomLeft'].includes(this.placement)) {
                     left = 0;
                     right = 'auto';
                 }
-                if(['topRight', 'bottomRight'].includes(this.placement)){
+                if (['topRight', 'bottomRight'].includes(this.placement)) {
                     left = 'auto';
                     right = 0;
                 }
-                if(['bottomRight', 'bottomLeft'].includes(this.placement)){
+                if (['bottomRight', 'bottomLeft'].includes(this.placement)) {
                     bottom = this.currentPosition + 'px';
                     top = 'auto';
                 }
-                if(['topRight', 'topLeft'].includes(this.placement)){
+                if (['topRight', 'topLeft'].includes(this.placement)) {
                     top = this.currentPosition + 'px';
                     bottom = 'auto';
                 }
@@ -81,33 +89,35 @@
             },
             transitionName() {
                 let name = '';
-                if(['topLeft', 'bottomLeft'].includes(this.placement)){
+                if (['topLeft', 'bottomLeft'].includes(this.placement)) {
                     name = 'DrawerMoveLeft'
-                }else{
+                } else {
                     name = 'DrawerMoveRight'
                 }
                 return name;
             },
-            iconClass() {
+            iconType() {
                 let icon = '';
                 switch (this.type) {
                     case 'success':
-                        icon = !this.isOnlyTitle ? 'cl-icon-success' : 'cl-icon-success-fill';
+                        icon = !this.isOnlyTitle ? 'icon-success' : 'icon-success-fill';
                         break;
                     case 'error':
-                        icon = !this.isOnlyTitle ? 'cl-icon-remove' : 'cl-icon-remove-fill';
+                        icon = !this.isOnlyTitle ? 'icon-remove' : 'icon-remove-fill';
                         break;
                     case 'warning':
-                        icon = !this.isOnlyTitle ? 'cl-icon-warning' : 'cl-icon-warning-fill';
+                        icon = !this.isOnlyTitle ? 'icon-warning' : 'icon-warning-fill';
                         break;
                     case 'info':
-                        icon = !this.isOnlyTitle ? 'cl-icon-info' : 'cl-icon-info-fill';
+                        icon = !this.isOnlyTitle ? 'icon-info' : 'icon-info-fill';
                         break;
                 }
                 return icon
             }
         },
-        components: {},
+        components: {
+            Icon
+        },
         created() {
         },
         mounted() {

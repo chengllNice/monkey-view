@@ -1,27 +1,27 @@
 <template>
     <div :class="[
-            'cl-date-pane-date',
-            size && `cl-date-pane-date--${size}`,
-            picker.showWeekNumber && 'cl-date-pane-date--show-week-number'
+            `${classPrefix}`,
+            size && `${classPrefix}--${size}`,
+            picker.showWeekNumber && `${classPrefix}--show-week-number`
          ]">
-        <div class="cl-date-pane-date__week">
-            <span class="cl-date-pane-item__col cl-date-pane-item__week" v-for="week in weekList" :key="week.key">
+        <div :class="[`${classPrefix}__week`]">
+            <span :class="[`${classPrefixItem}__col`, `${classPrefixItem}__week`]" v-for="week in weekList" :key="week.key">
                 <em>{{week.name}}</em>
             </span>
         </div>
-        <div class="cl-date-pane-date__date">
+        <div :class="[`${classPrefix}__date`]">
             <div :class="[
-                    'cl-date-pane-date__date-row',
-                    type === 'week' && 'cl-date-pane-date__date-row-week',
-                    type === 'week' && isWeekSelect(row[6]) && 'cl-date-pane-date__date-row-week-selected'
+                    `${classPrefix}__date-row`,
+                    type === 'week' && `${classPrefix}__date-row-week`,
+                    type === 'week' && isWeekSelect(row[6]) && `${classPrefix}__date-row-week-selected`
                  ]"
                  v-for="(row, rowIndex) in dateList"
                  :key="rowIndex"
                  @click.capture="handleSelectWeek(rowIndex)">
                 <template v-if="picker.showWeekNumber">
                     <span :class="[
-                            'cl-date-pane-item__col',
-                            'cl-date-pane-item__week-number',
+                            `${classPrefixItem}__col`,
+                            `${classPrefixItem}__week-number`,
                           ]">
                         <em>{{weekNumbers[rowIndex].week}}</em>
                     </span>
@@ -30,13 +30,13 @@
                     <span v-for="dateItem in row"
                           :key="dateItem.originDate"
                           :class="[
-                            'cl-date-pane-item__col',
-                            type === 'date' && !dateItem.isDisabled && dateItem.isNowMonth && !selectDate.includes(dateItem.key) && 'cl-date-pane-item__hover',
-                            dateItem.isNowDate && 'cl-date-pane-item__now',
-                            !dateItem.isNowMonth && 'cl-date-pane-item__no-now-month',
-                            selectDate.includes(dateItem.key) && dateItem.isNowMonth && 'cl-date-pane-item__selected',
-                            !selectDate.includes(dateItem.key) && dateItem.isBetween && 'cl-date-pane-item__between',
-                            dateItem.isDisabled && 'cl-date-pane-item__disabled',
+                                `${classPrefixItem}__col`,
+                                type === 'date' && !dateItem.isDisabled && dateItem.isNowMonth && !selectDate.includes(dateItem.key) && `${classPrefixItem}__hover`,
+                                dateItem.isNowDate && `${classPrefixItem}__now`,
+                                !dateItem.isNowMonth && `${classPrefixItem}__no-now-month`,
+                                selectDate.includes(dateItem.key) && dateItem.isNowMonth && `${classPrefixItem}__selected`,
+                                !selectDate.includes(dateItem.key) && dateItem.isBetween && `${classPrefixItem}__between`,
+                                dateItem.isDisabled && `${classPrefixItem}__disabled`,
                           ]"
                           @mouseenter="mouseEnter(dateItem)"
                           @mouseleave="mouseLeave(dateItem)"
@@ -50,6 +50,7 @@
 </template>
 
 <script>
+    import Config from 'main/config/config'
     import {dateOnMonth, dateObj, dateFormat, getWeekNumber, zero, getWeekNumberInfo} from "main/utils/date";
 
     export default {
@@ -74,6 +75,8 @@
         },
         data() {
             return {
+                classPrefix: Config.classPrefix + '-date-pane-date',
+                classPrefixItem: Config.classPrefix + '-date-pane-item',
                 dateList: [],
                 weekNumbers: [],
                 weekList: dateObj.week,

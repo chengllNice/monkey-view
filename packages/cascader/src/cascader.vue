@@ -1,8 +1,8 @@
 <template>
-    <div class="cl-cascader" v-click-outside.capture="handleClickOutside">
-        <div class="cl-cascader__reference" ref="reference">
+    <div :class="[`${classPrefix}`]" v-click-outside.capture="handleClickOutside">
+        <div :class="[`${classPrefix}__reference`]" ref="reference">
             <slot>
-                <cl-input v-model="inputValue"
+                <sn-input v-model="inputValue"
                           :disabled="disabled"
                           :size="size"
                           :readonly="readonly"
@@ -14,10 +14,15 @@
                           @change="handleInputChange"
                           @click.native="handleInputClick">
                     <template slot="suffix">
-                        <i v-if="showClear" class="cl-icon-error-fill cl-cascader__suffix-icon" @click.stop="handleInputClear"></i>
-                        <i v-else class="cl-icon-down cl-cascader__suffix-icon" :class="{'cl-cascader__suffix-icon-open': visible}"></i>
+                        <Icon v-if="showClear" type="icon-error-fill" :class="[`${classPrefix}__suffix-icon`]" @click.stop="handleInputClear"></Icon>
+                        <Icon v-else
+                              type="icon-down"
+                              :class="[
+                                  `${classPrefix}__suffix-icon`,
+                                  visible && `${classPrefix}__suffix-icon-open`,
+                              ]"></Icon>
                     </template>
-                </cl-input>
+                </sn-input>
             </slot>
         </div>
 
@@ -29,12 +34,12 @@
                       :dropdownMatchSelectWidth="false"
                       :render-html="renderHtml"
                       v-model="visible">
-                <div class="cl-cascader__drop-down-inner">
-                    <div v-if="loading" class="cl-cascader__loading">
+                <div :class="[`${classPrefix}__drop-down-inner`]">
+                    <div v-if="loading" :class="[`${classPrefix}__loading`]">
                         {{computedLoadingText}}
-                        <i v-if="!loadingText" class="cl-rotate cl-icon-loading"></i>
+                        <Icon v-if="!loadingText" type="icon-loading" :class="[`${prefix}-rotate`]"></Icon>
                     </div>
-                    <div v-else-if="showEmpty" class="cl-cascader__empty">{{computedEmptyText}}</div>
+                    <div v-else-if="showEmpty" :class="[`${classPrefix}__empty`]">{{computedEmptyText}}</div>
                     <cascader-panel v-else :data="currentData"></cascader-panel>
                 </div>
             </drop-down>
@@ -43,9 +48,12 @@
 </template>
 
 <script>
+    import Config from 'main/config/config'
     import {directive as clickOutside} from 'v-click-outside-x';
-    import DropDown from '../../select/src/drop-down.vue'
+    import DropDown from 'packages/select/src/drop-down.vue'
     import CascaderPanel from './cascaderPanel'
+    import Input from 'packages/input'
+    import Icon from 'packages/icon'
     import Mixin from './mixin'
 
     import Locale from "main/mixins/locale";
@@ -94,6 +102,8 @@
         },
         data() {
             return {
+                prefix: Config.classPrefix,
+                classPrefix: Config.classPrefix + '-cascader',
                 componentName: 'Cascader',
                 inputValue: '',
                 visible: false,
@@ -131,6 +141,8 @@
             }
         },
         components: {
+            'sn-input': Input,
+            Icon,
             DropDown,
             CascaderPanel,
         },

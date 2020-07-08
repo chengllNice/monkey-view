@@ -1,13 +1,13 @@
 <template>
-    <div class="cl-select"
-         :class="[
-         size && 'cl-select--' + size,
-            {
+    <div :class="[
+             `${classPrefix}`,
+             size && `${classPrefix}--size`,
+             {
                 'is-disabled': disabled
-            }
+             }
          ]"
          v-click-outside.capture="hanlderClose">
-        <div class="cl-select__reference" ref="reference">
+        <div :class="[`${classPrefix}__reference`]" ref="reference">
             <SelectEl :name="name"
                       :values="currentSelectedOption"
                       :placeholder="placeholder"
@@ -33,49 +33,53 @@
                       :render-html="renderHtml"
                       :dropdownMatchSelectWidth="dropdownMatchSelectWidth"
                       v-model="visible">
-                <div class="cl-select__drop-down-inner" :class="[`cl-select__${componentId}`]" :style="{'height': dropDownHeight}">
-                    <ClScroll size="small" :scrollOption="{scrollPanel:{scrollingX:false}}">
-                        <div ref="optionList" class="cl-select__loading" v-if="loading">
-                            <i class="cl-rotate cl-icon-loading"></i>{{t('cl.select.loading')}}
+                <div :class="[`${classPrefix}__drop-down-inner`, `${classPrefix}__${componentId}`]"
+                     :style="{'height': dropDownHeight}">
+                    <scroll size="small" :scrollOption="{scrollPanel:{scrollingX:false}}">
+                        <div ref="optionList" :class="[`${classPrefix}__loading`]" v-if="loading">
+                            <Icon type="icon-loading" :class="[`${prefix}-rotate`]"></Icon>{{t('cl.select.loading')}}
                         </div>
 
                         <div ref="optionList"
                              v-else-if="selectOptionsData&&selectOptionsData.length&&isOptionGroup&&!isSlotOption"
-                             class="cl-select__option-list">
+                             :class="[`${classPrefix}__option-list`]">
                             <OptionGroup v-for="item in selectOptionsData"
-                                           ref="optionEl"
-                                           :key="item.value"
-                                           :noClick="item.noClick"
-                                           :disabled="item.disabled"
-                                           :value="item.value"
-                                           :label="item.label">
-                                <Option class='cl-select__group-option'
-                                          v-for="optionItem in item.option"
-                                          :key="optionItem.value"
-                                          :value="optionItem.value"
-                                          :label="optionItem.label"
-                                          :disabled="optionItem.disabled"></Option>
+                                         ref="optionEl"
+                                         :key="item.value"
+                                         :noClick="item.noClick"
+                                         :disabled="item.disabled"
+                                         :value="item.value"
+                                         :label="item.label">
+                                <Option :class="[`${classPrefix}__group-option`]"
+                                        v-for="optionItem in item.option"
+                                        :key="optionItem.value"
+                                        :value="optionItem.value"
+                                        :label="optionItem.label"
+                                        :disabled="optionItem.disabled"></Option>
                             </OptionGroup>
                         </div>
 
                         <div ref="optionList"
                              v-else-if="selectOptionsData&&selectOptionsData.length&&!isOptionGroup&&!isSlotOption"
-                             class="cl-select__option-list">
+                             :class="[`${classPrefix}__option-list`]">
                             <Option v-for="item in selectOptionsData"
-                                      ref="optionEl"
-                                      :key="item.value"
-                                      :value="item.value"
-                                      :label="item.label"
-                                      :disabled="item.disabled"></Option>
+                                    ref="optionEl"
+                                    :key="item.value"
+                                    :value="item.value"
+                                    :label="item.label"
+                                    :disabled="item.disabled"></Option>
                         </div>
 
-                        <div ref="optionList" class="cl-select__option-list" v-else-if="isSlotOption">
+                        <div ref="optionList" :class="[`${classPrefix}__option-list`]" v-else-if="isSlotOption">
                             <slot></slot>
                         </div>
 
-                        <div v-if="!loading && isEmpty" ref="optionList" class="cl-select__empty">{{localEmptyText}}
+                        <div v-if="!loading && isEmpty"
+                             ref="optionList"
+                             :class="[`${classPrefix}__empty`]">
+                            {{localEmptyText}}
                         </div>
-                    </ClScroll>
+                    </scroll>
                 </div>
             </DropDown>
         </transition>
@@ -83,13 +87,15 @@
 </template>
 
 <script>
+    import Config from 'main/config/config'
     import {directive as clickOutside} from 'v-click-outside-x';
     import SelectEl from './select-el.vue'
-    import ClScroll from '../../scroll/src/scroll.vue'
+    import Scroll from 'packages/scroll'
     import Option from './option.vue'
     import OptionGroup from './option-group.vue'
     import DropDown from './drop-down.vue'
     import Locale from 'main/mixins/locale'
+    import Icon from 'packages/icon'
 
     export default {
         name: "Select",
@@ -137,6 +143,8 @@
         },
         data() {
             return {
+                prefix: Config.classPrefix,
+                classPrefix: Config.classPrefix + '-select',
                 componentName: 'Select',
                 componentId: Math.floor(Math.random() * 10000) + '-' + new Date().getTime(),
                 cValue: null,
@@ -172,10 +180,11 @@
         },
         components: {
             SelectEl,
-            ClScroll,
+            Scroll,
             Option,
             DropDown,
             OptionGroup,
+            Icon
         },
         created() {
 
@@ -263,14 +272,14 @@
                 }
             },
             hanlderClose(event) {
-                if(this.visible && this.multiple){
-                    if(this.renderHtml !== false){
+                if (this.visible && this.multiple) {
+                    if (this.renderHtml !== false) {
                         const {$el} = this.$refs.dropDown;
                         if ($el !== event.target && !$el.contains(event.target)) {
                             this.visible = false;
                         }
                     }
-                }else{
+                } else {
                     this.visible = false;
                 }
                 if (this.filterable) {
@@ -313,10 +322,10 @@
                 }
             },
             setDropDownHeight() {
-                let selectEl = document.getElementsByClassName(`cl-select__${this.componentId}`)[0];
-                let optionListEl = selectEl.getElementsByClassName('cl-select__option-list')[0];
-                if (this.loading) optionListEl = selectEl.getElementsByClassName('cl-select__loading')[0];
-                if (!this.loading && this.isEmpty) optionListEl = selectEl.getElementsByClassName('cl-select__empty')[0];
+                let selectEl = document.getElementsByClassName(`${this.classPrefix}__${this.componentId}`)[0];
+                let optionListEl = selectEl.getElementsByClassName(`${this.classPrefix}__option-list`)[0];
+                if (this.loading) optionListEl = selectEl.getElementsByClassName(`${this.classPrefix}__loading`)[0];
+                if (!this.loading && this.isEmpty) optionListEl = selectEl.getElementsByClassName(`${this.classPrefix}__empty`)[0];
                 let Listheight = optionListEl && optionListEl.offsetHeight;
                 let maxHeight = parseFloat(this.maxHeight);
                 let height = Listheight < maxHeight ? Listheight : maxHeight;
@@ -331,6 +340,7 @@
                         for (let option of this.$slots.default) {
                             let cOption = option.componentInstance;
                             let tag = cOption && (cOption.componentName || option.componentOptions.tag);
+                            // todo
                             if (cOption && (tag === 'Option' || tag === 'OptionGroup')) {
                                 optionShowArr.push(cOption.isShow);
                             }
@@ -343,6 +353,7 @@
                     if (this.$refs.optionEl) {
                         let optionShowArr = [];
                         for (let option of this.$refs.optionEl) {
+                            // todo
                             if (option.componentName === 'Option' || option.componentName === 'OptionGroup') {
                                 optionShowArr.push(option.isShow);
                             }

@@ -1,80 +1,139 @@
 <template>
     <div v-if="!(hidenOnlySinglePage && allPage <= 1)"
          :class="[
-        'cl-page',
-        typeof background === 'boolean' && background && 'cl-page--background',
-        typeof border === 'boolean' && border && 'cl-page--border',
-        size === 'mini' && 'cl-page--mini',
-    ]">
-        <div class="cl-page__common cl-page__total" :style="{order: orderList('total')}" v-if="orderList('total') > -1">{{localeTotalText.replace('{total}', total)}}</div>
+            `${classPrefix}`,
+            typeof background === 'boolean' && background && `${classPrefix}--background`,
+            typeof border === 'boolean' && border && `${classPrefix}--border`,
+            size === 'mini' && `${classPrefix}--mini`,
+        ]">
+        <div :style="{order: orderList('total')}"
+             v-if="orderList('total') > -1"
+             :class="[
+                 `${classPrefix}__common`,
+                  `${classPrefix}__total`
+             ]">
+            {{localeTotalText.replace('{total}', total)}}
+        </div>
 
-        <div class="cl-page__content" :style="{order: orderList('page')}">
-            <div class="cl-page__common cl-page__item cl-page__pre"
-                 :class="[currentPage === 1 && 'cl-page__item-disabled']"
+        <div :class="[`${classPrefix}__content`]" :style="{order: orderList('page')}">
+            <div :class="[
+                    `${classPrefix}__common`,
+                    `${classPrefix}__item`,
+                    `${classPrefix}__pre`,
+                    currentPage === 1 && `${classPrefix}__item-disabled`
+                 ]"
                  @click.stop="changePage(currentPage - 1)">
-                <template v-if="preText">{{preText}}</template><i v-else class="cl-icon-left"></i>
+                <template v-if="preText">{{preText}}</template>
+                <Icon v-else type="icon-left"></Icon>
             </div>
 
-            <div class="cl-page__common cl-page__item cl-page__item-first"
-                 :class="[currentPage === 1 && 'cl-page__item-active']"
+            <div :class="[
+                     `${classPrefix}__common`,
+                     `${classPrefix}__item`,
+                     `${classPrefix}__item-first`,
+                     currentPage === 1 && `${classPrefix}__item-active`
+                 ]"
                  @click.stop="changePage(1)">1
             </div>
 
-            <div class="cl-page__common cl-page__item cl-page__item-jump-pre"
+            <div :class="[
+                     `${classPrefix}__common`,
+                     `${classPrefix}__item`,
+                     `${classPrefix}__item-jump-pre`,
+                 ]"
                  v-if="pageItemPreShow"
                  @mouseenter="jumpMouseEnter('pre')"
                  @mouseleave="jumpMouseLeave('pre')"
                  @click.stop="jumpPage('pre')">
-                <i :class="jumpPreIcon"></i>
+                <Icon :type="jumpPreIcon"></Icon>
             </div>
 
             <template v-for="item in allPage">
-                <div class="cl-page__common cl-page__item"
-                     :class="[currentPage === item && 'cl-page__item-active']"
+                <div :class="[
+                         `${classPrefix}__common`,
+                         `${classPrefix}__item`,
+                         currentPage === item && `${classPrefix}__item-active`
+                     ]"
                      v-if="pageShow(item)"
                      :key="item" @click.stop="changePage(item)">{{item}}
                 </div>
             </template>
 
-            <div class="cl-page__common cl-page__item cl-page__item-jump-next"
+            <div :class="[
+                     `${classPrefix}__common`,
+                     `${classPrefix}__item`,
+                     `${classPrefix}__item-jump-next`,
+                 ]"
                  v-if="pageItemNextShow"
                  @mouseenter="jumpMouseEnter('next')"
                  @mouseleave="jumpMouseLeave('next')"
                  @click.stop="jumpPage('next')">
-                <i :class="jumpNextIcon"></i>
+                <Icon :type="jumpNextIcon"></Icon>
             </div>
 
-            <div class="cl-page__common cl-page__item cl-page__item-final"
+            <div :class="[
+                     `${classPrefix}__common`,
+                     `${classPrefix}__item`,
+                     `${classPrefix}__item-final`,
+                     currentPage === allPage && `${classPrefix}__item-active`
+                 ]"
                  v-if="allPage > 1"
-                 :class="[currentPage === allPage && 'cl-page__item-active']"
                  @click.stop="changePage(allPage)">{{allPage}}
             </div>
 
-            <div class="cl-page__common cl-page__item cl-page__next"
-                 :class="[currentPage === allPage && 'cl-page__item-disabled']"
+            <div :class="[
+                     `${classPrefix}__common`,
+                     `${classPrefix}__item`,
+                     `${classPrefix}__next`,
+                     currentPage === allPage && `${classPrefix}__item-disabled`
+                 ]"
                  @click.stop="changePage(currentPage + 1)">
-                <template v-if="nextText">{{nextText}}</template><i v-else class="cl-icon-right"></i>
+                <template v-if="nextText">{{nextText}}</template>
+                <Icon v-else type="icon-right"></Icon>
             </div>
         </div>
 
-        <div class="cl-page__common cl-page__page-size" :style="{order: orderList('pageSize')}" v-if="orderList('pageSize') > -1">
-            <cl-select class="cl-page__page-size-select" v-model="currentPageSize" :size="size" @change="pageSizeChange">
-                <cl-option v-for="item in currentPageSizeOption" :key="item.value" :value="item.value"
-                           :label="item.label"></cl-option>
-            </cl-select>
+        <div :class="[
+                 `${classPrefix}__common`,
+                 `${classPrefix}__page-size`,
+             ]"
+             :style="{order: orderList('pageSize')}"
+             v-if="orderList('pageSize') > -1">
+            <sn-select :class="[`${classPrefix}__page-size-select`]" v-model="currentPageSize" :size="size"
+                       @change="pageSizeChange">
+                <sn-option v-for="item in currentPageSizeOption"
+                           :key="item.value"
+                           :value="item.value"
+                           :label="item.label"></sn-option>
+            </sn-select>
         </div>
 
-        <div class="cl-page__common cl-page__jump-to" :style="{order: orderList('jump')}" v-if="orderList('jump') > -1">
-            {{t('cl.page.goto')}}
-            <cl-input class="cl-page__jump-to-input" type="number" v-model="jumpToPage" :step="false" :size="size"
-                      @enter="jumpToPageChange"/>
-            {{t('cl.page.page')}}
+        <div :class="[
+                `${classPrefix}__common`,
+                 `${classPrefix}__jump-to`
+             ]"
+             :style="{order: orderList('jump')}"
+             v-if="orderList('jump') > -1">
+                {{t('cl.page.goto')}}
+                <sn-input :class="[`${classPrefix}__jump-to-input`]"
+                          type="number"
+                          v-model="jumpToPage"
+                          :step="false"
+                          :size="size"
+                          @enter="jumpToPageChange"/>
+                {{t('cl.page.page')}}
         </div>
     </div>
 </template>
 
 <script>
+    import Config from 'main/config/config'
     import Locale from 'main/mixins/locale'
+    import Input from 'packages/input'
+    import Select from 'packages/select'
+    import Option from 'packages/option'
+    import Icon from 'packages/icon'
+
     export default {
         name: "Page",
         mixins: [Locale],
@@ -131,13 +190,14 @@
         },
         data() {
             return {
+                classPrefix: Config.classPrefix + '-page',
                 currentPage: this.page,
                 currentPageSize: this.pageSize,
                 jumpToPage: this.page,
                 currentPageSizeOption: [],
                 currentSelectPageSize: '',
-                jumpPreIcon: 'cl-icon-more',
-                jumpNextIcon: 'cl-icon-more',
+                jumpPreIcon: 'icon-more',
+                jumpNextIcon: 'icon-more',
             }
         },
         computed: {
@@ -167,29 +227,34 @@
                     }
                 }
             },
-            orderList(){
+            orderList() {
                 return function (type) {
-                    return this.order.split(',').findIndex(item=>{
+                    return this.order.split(',').findIndex(item => {
                         return item.trim() === type
                     });
                 }
             },
-            localeTotalText(){
-                if(!this.totalText){
+            localeTotalText() {
+                if (!this.totalText) {
                     return this.t('cl.page.total') + ' {total} ' + this.t('cl.page.item');
-                }else{
+                } else {
                     return this.totalText
                 }
             },
-            localePageSizeText(){
-                if(!this.pageSizeText){
+            localePageSizeText() {
+                if (!this.pageSizeText) {
                     return '{pageSize} ' + this.t('cl.page.item') + '/' + this.t('cl.page.page');
-                }else{
+                } else {
                     return this.pageSizeText
                 }
             }
         },
-        components: {},
+        components: {
+            'sn-input': Input,
+            'sn-select': Select,
+            'sn-option': Option,
+            Icon
+        },
         created() {
         },
         mounted() {
@@ -202,15 +267,15 @@
                 if (page >= this.allPage) {
                     page = this.allPage
                 }
-                if(page === this.currentPage){
+                if (page === this.currentPage) {
                     return;
                 }
                 this.currentPage = page;
                 this.jumpToPage = parseInt(page);
                 this.$emit('change', page, this.currentPageSize);
             },
-            pageSizeChange(){
-                if(this.allPage < this.currentPage){
+            pageSizeChange() {
+                if (this.allPage < this.currentPage) {
                     this.changePage(this.allPage);
                 }
             },
@@ -226,19 +291,19 @@
             },
             jumpMouseEnter(type) {
                 if (type === 'pre') {
-                    this.jumpPreIcon = 'cl-icon-arrow-left';
+                    this.jumpPreIcon = 'icon-arrow-left';
                 } else if (type === 'next') {
-                    this.jumpNextIcon = 'cl-icon-arrow-right';
+                    this.jumpNextIcon = 'icon-arrow-right';
                 }
             },
             jumpMouseLeave(type) {
                 if (type === 'pre') {
-                    this.jumpPreIcon = 'cl-icon-more';
+                    this.jumpPreIcon = 'icon-more';
                 } else if (type === 'next') {
-                    this.jumpNextIcon = 'cl-icon-more';
+                    this.jumpNextIcon = 'icon-more';
                 }
             },
-            setPageSizeOption(){
+            setPageSizeOption() {
                 this.pageSizeOption.forEach(item => {
                     this.currentPageSizeOption.push({
                         label: this.localePageSizeText.replace('{pageSize}', item),

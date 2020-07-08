@@ -1,20 +1,23 @@
 <template>
     <ValidationProvider :mode="mode" :name="name" slim :rules="currentLocalRules" v-slot="v" ref="provider">
         <div :class="[
-            'cl-form-item',
-            `cl-form-item--${form.labelAlgin}`,
-            v.invalid && v.validated && 'cl-form-item--error'
+            `${classPrefix}`,
+            `${classPrefix}--${form.labelAlgin}`,
+            v.invalid && v.validated && `${classPrefix}--error`
         ]">
-            <label class="cl-form-item__label" :style="labelStyle" v-if="isShowLabel">
+            <label :class="[`${classPrefix}__label`]" :style="labelStyle" v-if="isShowLabel">
                 <slot name="label">
-                    <span class="cl-form-item__label-icon" v-if="form.showRequiredIcon && isRequired">*</span>
-                    <span class="cl-form-item__label-name" :class="[form.showLabelColon && 'cl-form-item__label-name-colon']">{{label}}</span>
+                    <span :class="[`${classPrefix}__label-icon`]" v-if="form.showRequiredIcon && isRequired">*</span>
+                    <span :class="[
+                            `${classPrefix}__label-name`,
+                            form.showLabelColon && `${classPrefix}__label-name-colon`
+                        ]">{{label}}</span>
                 </slot>
             </label>
-            <div class="cl-form-item__content" :style="contentStyle">
+            <div :class="[`${classPrefix}__content`]" :style="contentStyle">
                 <slot></slot>
                 <transition name="slideUp">
-                    <div v-if="form.showMessage && v.invalid && v.validated" class="cl-form-item__error-tip">{{v.errors[0]}}</div>
+                    <div v-if="form.showMessage && v.invalid && v.validated" :class="[`${classPrefix}__error-tip`]">{{v.errors[0]}}</div>
                 </transition>
             </div>
         </div>
@@ -22,6 +25,7 @@
 </template>
 
 <script>
+    import Config from 'main/config/config'
     import {ValidationProvider} from 'vee-validate'
     import {validator} from './validate'
     import {createRandom} from "main/utils/global";
@@ -50,6 +54,7 @@
         inject: ['form'],
         data() {
             return {
+                classPrefix: Config.classPrefix + '-form-item',
                 componentName: 'FormItem',
                 localRules: {},//当前所有的规则
                 currentLocalRules: {},//当前使用的规则

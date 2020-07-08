@@ -1,66 +1,70 @@
 <template>
-    <div class="cl-date-pane">
-        <div class="cl-date-pane__shortcuts" v-if="shortcuts && shortcuts.length">
-            <div class="cl-date-pane__shortcuts-item" v-for="(item, index) in shortcuts" :key="index" @click="shortcutsClick(item)">{{item.text}}</div>
+    <div :class="[`${classPrefix}`]">
+        <div :class="[`${classPrefix}__shortcuts`]" v-if="shortcuts && shortcuts.length">
+            <div :class="[`${classPrefix}__shortcuts-item`]"
+                 v-for="(item, index) in shortcuts"
+                 :key="index"
+                 @click="shortcutsClick(item)">{{item.text}}</div>
         </div>
-        <div class="cl-date-pane__main">
-            <div class="cl-date-pane__content">
-                <date-pane-single class="cl-date-pane__left"
-                                     ref="leftPane"
-                                     :index="datePane0.id"
-                                     :year="datePane0.year"
-                                     :month="datePane0.month"
-                                     :date="selectedDateValue"
-                                     :hover-date="hoverDate"
-                                     :is-range="isRange"
-                                     :size="size"
-                                     :format="format"
-                                     :type="type"
-                                     :pickerType="pickerType"
-                                     @hover-date="handleHoverDate"
-                                     @update-date="updateValue"
-                                     @update-pane="updatePane"></date-pane-single>
-                <date-pane-single class="cl-date-pane__right"
-                                     ref="rightPane"
-                                     v-if="isRange"
-                                     :index="datePane1.id"
-                                     :year="datePane1.year"
-                                     :month="datePane1.month"
-                                     :date="selectedDateValue"
-                                     :hover-date="hoverDate"
-                                     :is-range="isRange"
-                                     :size="size"
-                                     :format="format"
-                                     :type="type"
-                                     :pickerType="pickerType"
-                                     @hover-date="handleHoverDate"
-                                     @update-date="updateValue"
-                                     @update-pane="updatePane"></date-pane-single>
+        <div :class="[`${classPrefix}__main`]">
+            <div :class="[`${classPrefix}__content`]">
+                <date-pane-single ref="leftPane"
+                                  :class="[`${classPrefix}__left`]"
+                                  :index="datePane0.id"
+                                  :year="datePane0.year"
+                                  :month="datePane0.month"
+                                  :date="selectedDateValue"
+                                  :hover-date="hoverDate"
+                                  :is-range="isRange"
+                                  :size="size"
+                                  :format="format"
+                                  :type="type"
+                                  :pickerType="pickerType"
+                                  @hover-date="handleHoverDate"
+                                  @update-date="updateValue"
+                                  @update-pane="updatePane"></date-pane-single>
+                <date-pane-single ref="rightPane"
+                                  v-if="isRange"
+                                  :class="[`${classPrefix}__right`]"
+                                  :index="datePane1.id"
+                                  :year="datePane1.year"
+                                  :month="datePane1.month"
+                                  :date="selectedDateValue"
+                                  :hover-date="hoverDate"
+                                  :is-range="isRange"
+                                  :size="size"
+                                  :format="format"
+                                  :type="type"
+                                  :pickerType="pickerType"
+                                  @hover-date="handleHoverDate"
+                                  @update-date="updateValue"
+                                  @update-pane="updatePane"></date-pane-single>
             </div>
-            <div class="cl-date-pane__footer" v-if="showFooter">
-                <cl-button class="cl-date-pane__footer-button cl-date-pane__footer-time"
-                           v-if="pickerType === 'date'"
-                           type="text"
-                           :size="size"
-                           :disabled="changeTimeDisabled"
-                           @click="changeTimeAndDate">
+            <div :class="[`${classPrefix}__footer`]" v-if="showFooter">
+                <Button :class="[`${classPrefix}__footer-button`, `${classPrefix}__footer-time`]"
+                        v-if="pickerType === 'date'"
+                        type="text"
+                        :size="size"
+                        :disabled="changeTimeDisabled"
+                        @click="changeTimeAndDate">
                     {{isTime ? t('cl.datePicker.selectDate') : t('cl.datePicker.selectTime')}}
-                </cl-button>
-                <cl-button class="cl-date-pane__footer-button"
-                           :size="size"
-                           @click="handleClean">{{t('cl.datePicker.clean')}}</cl-button>
-                <cl-button class="cl-date-pane__footer-button"
-                           type="primary"
-                           :size="size"
-                           @click="closeDropDown(true)">{{t('cl.datePicker.ok')}}</cl-button>
+                </Button>
+                <Button :class="[`${classPrefix}__footer-button`]"
+                        :size="size"
+                        @click="handleClean">{{t('cl.datePicker.clean')}}</Button>
+                <Button :class="[`${classPrefix}__footer-button`]"
+                        type="primary"
+                        :size="size"
+                        @click="closeDropDown(true)">{{t('cl.datePicker.ok')}}</Button>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+    import Config from 'main/config/config'
     import DatePaneSingle from './date-pane-single'
-    import ClButton from 'packages/button'
+    import Button from 'packages/button'
     import {zero, dateFormat, getWeekNumberInfo} from "main/utils/date";
     import Locale from "main/mixins/locale";
 
@@ -85,6 +89,7 @@
         },
         data(){
             return {
+                classPrefix: Config.classPrefix + '-date-pane',
                 datePane0: {
                     id: '0',
                     year: '',
@@ -117,7 +122,7 @@
         },
         components: {
             DatePaneSingle,
-            ClButton
+            Button
         },
         mounted() {
             this.$nextTick(()=>{

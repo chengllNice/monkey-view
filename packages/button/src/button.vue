@@ -1,26 +1,28 @@
 <template>
-    <button
-            class="cl-button"
-            @click="clickHandler"
+    <button @click="clickHandler"
             :disabled="disabled"
             :class="[
-            type ? 'cl-button--type-' + type : '',
-            size ? 'cl-button--size-' + size : '',
-            block ? 'cl-button--block' : '',
-            circle ? 'cl-button--circle' : '',
-            circle && !onlyIconCircle ? 'cl-button--circle-text' : '',
-            {
-                'is-disabled': disabled,
-                'is-loading': loading
-            }
-        ]">
-        <i v-if="loading" class="cl-icon-loading cl-rotate"></i>
-        <i v-else-if="icon" :class="[`${icon}`]"></i>
+                `${classPrefix}`,
+                type && `${classPrefix}--type-${type}`,
+                size && `${classPrefix}--size-${size}`,
+                block && `${classPrefix}--block`,
+                circle && `${classPrefix}--circle`,
+                circle && !onlyIconCircle && `${classPrefix}--circle-text`,
+                {
+                    'is-disabled': disabled,
+                    'is-loading': loading
+                }
+            ]">
+        <Icon v-if="loading" type="icon-loading" :class="`${prefix}-rotate`"></Icon>
+        <Icon v-else-if="icon || customIcon" :type="icon" :class="customIcon"></Icon>
         <span v-if="$slots.default"><slot></slot></span>
     </button>
 </template>
 
 <script>
+    import Config from 'main/config/config'
+    import Icon from 'packages/icon'
+
     export default {
         name: "Button",
         props: {
@@ -42,15 +44,20 @@
             block: Boolean,
             loading: Boolean,
             circle: Boolean,
-            icon: String
+            icon: String,
+            customIcon: String,
         },
         data() {
             return {
+                prefix: Config.classPrefix,
+                classPrefix: Config.classPrefix + '-button',
                 onlyIconCircle: true,//是否只是icon的circle
             }
         },
         computed: {},
-        components: {},
+        components: {
+            Icon
+        },
         created() {
         },
         mounted() {

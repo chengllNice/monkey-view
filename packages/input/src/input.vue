@@ -1,38 +1,37 @@
 <template>
-    <div class="cl-input" :class="[
-        {
-            'cl-input-number': type === 'number',
-            'cl-input-search': type === 'search',
-            'cl-input-password': type === 'password',
-            'cl-textarea': type === 'textarea',
-        },
-        inputSize && type !== 'textarea' && `cl-input--${inputSize}`,
-        inputSize && type === 'textarea' && `cl-textarea--${inputSize}`,
-        isDisabled && 'is-disabled'
-    ]" @mouseenter="hovering = true" @mouseleave="hovering = false">
-        <div class="cl-input__prepend"
+    <div :class="[
+            `${classPrefix}`,
+            ['number', 'search', 'password'].includes(type) && `${classPrefix}-${type}`,
+            type === 'textarea' && `${classPrefixTextArea}`,
+            inputSize && type !== 'textarea' && `${classPrefix}--${inputSize}`,
+            inputSize && type === 'textarea' && `${classPrefixTextArea}--${inputSize}`,
+            isDisabled && 'is-disabled'
+        ]"
+         @mouseenter="hovering = true"
+         @mouseleave="hovering = false">
+        <div :class="[`${classPrefix}__prepend`]"
               v-if="$slots.prepend && type !== 'textarea'">
             <slot name="prepend"></slot>
         </div>
-        <span class="cl-input__prefix"
+        <span :class="[`${classPrefix}__prefix`]"
               v-else-if="showPrefix">
-            <span class="cl-input__prefix-inner" v-if="$slots.prefix"><slot name="prefix"></slot></span>
-             <span class="cl-input__prefix-inner cl-input__prefix-step"
+            <span :class="[`${classPrefix}__prefix-inner`]" v-if="$slots.prefix"><slot name="prefix"></slot></span>
+            <span :class="[`${classPrefix}__prefix-inner`,`${classPrefix}__prefix-step`]"
                    v-else-if="type === 'number'"
                    @click="handlerNumberMinus">
-                <i class="cl-icon-minus"></i>
+                <Icon type="icon-minus"></Icon>
             </span>
-            <i v-else :class="`cl-input__prefix-inner ${prefix}`"></i>
+            <Icon v-else :type="prefix" :class="`${classPrefix}__prefix-inner ${prefix}`"></Icon>
         </span>
 
         <input v-if="['input', 'number', 'search', 'password'].includes(type)"
                :type="type === 'password' && !showPasswordVisible ? 'password' : 'text'"
                :class="[
-                    `cl-input__source`,
-                    (suffixButton || $slots.append) && `cl-input__source-append`,
-                    $slots.prepend && `cl-input__source-prepend`,
-                    showSuffix && `cl-input__source-suffix`,
-                    showPrefix && `cl-input__source-prefix`,
+                    `${classPrefix}__source`,
+                    (suffixButton || $slots.append) && `${classPrefix}__source-append`,
+                    $slots.prepend && `${classPrefix}__source-prepend`,
+                    showSuffix && `${classPrefix}__source-suffix`,
+                    showPrefix && `${classPrefix}__source-prefix`,
                ]"
                ref="input"
                :style="inputStyle"
@@ -48,7 +47,7 @@
                @input="handlerInput"
                @change="handlerChange">
         <textarea v-else-if="type === 'textarea'"
-                  class="cl-textarea__source"
+                  :class="[`${classPrefixTextArea}__source`]"
                   ref="textarea"
                   :name="name"
                   :style="expandStyle"
@@ -64,70 +63,88 @@
                   :cols="cols"
                   :rows="rows"></textarea>
 
-        <span v-if="showSuffix" :class="[
-            type !== 'textarea' && `cl-input__suffix`,
-            type === 'textarea' && `cl-textarea__suffix`,
-        ]">
-            <i v-if="showClearable"
-               class="cl-input__suffix-inner cl-input__clearable cl-icon-error-fill"
-               @click.stop="handlerClear"></i>
-            <span class="cl-input__suffix-inner"
-                  v-else-if="$slots.suffix">
-                <slot name="suffix"></slot>
-            </span>
-            <span class="cl-input__suffix-inner cl-input__suffix-step"
-                  :class="[step && stepType && 'cl-input__suffix-step-right']"
-                  v-else-if="type === 'number' && !stepType" @click="handlerNumberPlus">
-                <i class="cl-icon-plus" v-if="step && !stepType"></i>
-            </span>
-            <span class="cl-input__suffix-inner cl-input__suffix-step cl-input__suffix-step-right"
-                  v-else-if="type === 'number' && stepType">
-                <span class="cl-input__suffix-step-right-up" @click="handlerNumberPlus">
-                    <i class="cl-icon-up" v-if="step && stepType"></i></span>
-                <span class="cl-input__suffix-step-right-down" @click="handlerNumberMinus">
-                    <i class="cl-icon-down" v-if="step && stepType"></i></span>
-            </span>
-            <i v-else-if="suffix"
-               :class="`cl-input__suffix-inner ${suffix}`"></i>
-            <i v-else-if="type === 'password' && showPasswordIcon && !readonly"
-               :class="[
-                    `cl-input__suffix-inner`,
-                    showPasswordVisible && showPasswordIcon === true ? 'cl-icon-eye-close' : 'cl-icon-eye-open',
-                    showPasswordVisible && typeof showPasswordIcon === 'object' ? `${showPasswordIcon.close}` : `${showPasswordIcon.open}`,
-               ]"
-               @click="passwordVisibleChange"></i>
-            <i v-else-if="type === 'search'"
-               class="cl-input__suffix-inner cl-input__search cl-icon-search"
-               @click="handlerSearch"></i>
-            <span v-else-if="['input', 'textarea'].includes(type) && showLimitLabel && maxLength.toString()"
-                  :class="`cl-${type}__limit`">
-                {{modelValue !== undefined ? modelValue.length : 0}}/{{maxLength || 0}}
-            </span>
+        <span v-if="showSuffix"
+              :class="[
+                  type !== 'textarea' && `${classPrefix}__suffix`,
+                  type === 'textarea' && `${classPrefixTextArea}__suffix`,
+              ]">
+                    <Icon v-if="showClearable"
+                          type="icon-error-fill"
+                          :class="[`${classPrefix}__suffix-inner`, `${classPrefix}__clearable`]"
+                          @click.stop="handlerClear"></Icon>
+                    <span :class="[`${classPrefix}__suffix-inner`]"
+                          v-else-if="$slots.suffix">
+                            <slot name="suffix"></slot>
+                    </span>
+                    <span v-else-if="type === 'number' && !stepType" @click="handlerNumberPlus"
+                          :class="[
+                              `${classPrefix}__suffix-inner`,
+                              `${classPrefix}__suffix-step`,
+                              step && stepType && `${classPrefix}__suffix-step-right`
+                          ]">
+                        <Icon type="icon-plus" v-if="step && !stepType"></Icon>
+                    </span>
+                    <span  v-else-if="type === 'number' && stepType"
+                           :class="[
+                               `${classPrefix}__suffix-inner`,
+                               `${classPrefix}__suffix-step`,
+                               `${classPrefix}__suffix-step-right`
+                           ]">
+                        <span :class="[`${classPrefix}__suffix-step-right-up`]" @click="handlerNumberPlus">
+                            <Icon type="icon-up" v-if="step && stepType"></Icon>
+                        </span>
+                        <span :class="[`${classPrefix}__suffix-step-right-down`]" @click="handlerNumberMinus">
+                            <Icon type="icon-down" v-if="step && stepType"></Icon>
+                        </span>
+                    </span>
+                    <Icon v-else-if="suffix"
+                          :type="suffix"
+                          :class="`${classPrefix}__suffix-inner ${suffix}`"></Icon>
+                    <Icon v-else-if="type === 'password' && showPasswordIcon && !readonly"
+                          :type="showPasswordVisible && showPasswordIcon === true ? 'icon-eye-close' : 'icon-eye-open'"
+                          :class="[
+                                `${classPrefix}__suffix-inner`,
+                                showPasswordVisible && typeof showPasswordIcon === 'object' ? `${showPasswordIcon.close}` : `${showPasswordIcon.open}`,
+                          ]"
+                          @click="passwordVisibleChange"></Icon>
+                    <Icon v-else-if="type === 'search'"
+                          type="icon-search"
+                          :class="[`${classPrefix}__suffix-inner`, `${classPrefix}__search`]"
+                          @click="handlerSearch"></Icon>
+                    <span v-else-if="['input', 'textarea'].includes(type) && showLimitLabel && maxLength.toString()"
+                          :class="[
+                              type === 'input' && `${classPrefix}__limit`,
+                              type === 'textarea' && `${classPrefixTextArea}__limit`,
+                          ]">
+                        {{modelValue !== undefined ? modelValue.length : 0}}/{{maxLength || 0}}
+                    </span>
         </span>
 
-        <div class="cl-input__append"
-              :class="[
-                  !$slots.append ? 'cl-input__append-button-wrap' : 'cl-input__append-color'
-              ]"
-              v-else-if="appendShow">
+        <div v-else-if="appendShow"
+             :class="[
+                  `${classPrefix}__append`,
+                  !$slots.append ? `${classPrefix}__append-button-wrap` : `${classPrefix}__append-color`
+             ]">
             <slot name="append">
-                <cl-button class="cl-input__append-button"
+                <Button :class="[`${classPrefix}__append-button`]"
                           v-if="type === 'search' && suffixButton"
                           type="primary"
                           :size="inputSize"
                           :disabled="isDisabled"
                           @click="handlerSearch">
-                    <i class="cl-icon-search" v-if="suffixButton === true"></i>
+                    <Icon type="icon-search" v-if="suffixButton === true"></Icon>
                     <template v-else>{{suffixButton}}</template>
-                </cl-button>
+                </Button>
             </slot>
         </div>
     </div>
 </template>
 
 <script>
+    import Config from 'main/config/config'
+    import Icon from 'packages/icon'
+    import Button from 'packages/button'
     import calcTextareaHeight from './calcTextareaHeight';
-    import ClButton from '../../button/src/button'
     import { findComponent} from "main/utils/tool";
 
     export default {
@@ -185,6 +202,8 @@
         },
         data() {
             return {
+                classPrefix: Config.classPrefix + '-input',
+                classPrefixTextArea: Config.classPrefix + '-textarea',
                 modelValue: undefined,
                 expandStyle: {},//额外的样式
                 hovering: false,
@@ -220,7 +239,8 @@
             }
         },
         components: {
-            ClButton
+            Button,
+            Icon
         },
         created() {
         },

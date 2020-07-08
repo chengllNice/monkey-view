@@ -4,48 +4,50 @@
             <col v-for="column in colgroupColumns" :key="column.__id" :width="setColWidth(column)">
         </colgroup>
         <tbody>
-            <template v-for="(row, index) in data">
-                <table-tr type='body'
-                             :row="row"
-                             :key="index"
-                             @mouseenter.native="trMouseEnter(row.__index)"
-                             @mouseleave.native="trMouseLeave(row.__index)">
-                    <td v-for="column in columns"
-                        :key="column.__id"
-                        :class="[
+        <template v-for="(row, index) in data">
+            <table-tr type='body'
+                      :row="row"
+                      :key="index"
+                      @mouseenter.native="trMouseEnter(row.__index)"
+                      @mouseleave.native="trMouseLeave(row.__index)">
+                <td v-for="column in columns"
+                    :key="column.__id"
+                    :class="[
                             fixed && column.fixed !== fixed && 'is-hidden',
                             column.className
                         ]"
-                        @click.stop="rowClick(row, column)"
-                        @dblclick.stop="rowDbCkick(row, column)">
-                        <cl-table-cell :row="row" :column="column"></cl-table-cell>
-                    </td>
-                </table-tr>
-                <tr v-if="row.__isExpand" :key="index + '-expand'">
-                    <td :colspan="colgroupColumns.length"
-                        :class="[
-                            'cl-table-td__expand',
+                    @click.stop="rowClick(row, column)"
+                    @dblclick.stop="rowDbCkick(row, column)">
+                    <table-cell :row="row" :column="column"></table-cell>
+                </td>
+            </table-tr>
+            <tr v-if="row.__isExpand" :key="index + '-expand'">
+                <td :colspan="colgroupColumns.length"
+                    :class="[
+                            `${classPrefixTd}__expand`,
                             fixed && 'is-hidden'
                         ]">
-                        <table-expand :row="emitDataFormat(row)" :columns="emitDataFormat(columns)"></table-expand>
-                    </td>
-                </tr>
-            </template>
+                    <table-expand :row="emitDataFormat(row)" :columns="emitDataFormat(columns)"></table-expand>
+                </td>
+            </tr>
+        </template>
         </tbody>
     </table>
     <table v-else cellspacing="0" cellpadding="0" border="0" :style="tableBodyStyle">
         <tbody>
-            <tr>
-                <td :class="[
+        <tr>
+            <td :class="[
                         fixed && 'is-hidden'
                     ]"
-                    :colspan="colgroupColumns.length">{{t('cl.table.emptyData')}}</td>
-            </tr>
+                :colspan="colgroupColumns.length">{{t('cl.table.emptyData')}}
+            </td>
+        </tr>
         </tbody>
     </table>
 </template>
 
 <script>
+    import Config from 'main/config/config'
     import TableTr from './table-tr.vue'
     import TableCell from './table-cell.vue'
     import tableMixins from './table-mixins'
@@ -55,7 +57,7 @@
 
     export default {
         name: "TableBody",
-        mixins: [tableMixins,Locale],
+        mixins: [tableMixins, Locale],
         inject: ['tableRoot'],
         props: {
             data: {
@@ -77,13 +79,15 @@
         },
         data() {
             return {
+                classPrefix: Config.classPrefix + '-table-body',
+                classPrefixTd: Config.classPrefix + '-table-td',
                 emitDataFormat: emitDataFormat,
             }
         },
         computed: {
-            tableBodyStyle(){
+            tableBodyStyle() {
                 let style = {};
-                if(this.bodyStyle && this.bodyStyle.width) style.width = this.bodyStyle.width;
+                if (this.bodyStyle && this.bodyStyle.width) style.width = this.bodyStyle.width;
                 return style;
             }
         },
@@ -97,23 +101,23 @@
         mounted() {
         },
         methods: {
-            trMouseEnter(__id){
-                if(!this.tableRoot.hover) return;
+            trMouseEnter(__id) {
+                if (!this.tableRoot.hover) return;
                 this.tableRoot.setCloneDataDefaultProps({
                     __isHover: true
                 }, [__id])
             },
-            trMouseLeave(__id){
-                if(!this.tableRoot.hover) return;
+            trMouseLeave(__id) {
+                if (!this.tableRoot.hover) return;
                 this.tableRoot.setCloneDataDefaultProps({
                     __isHover: false
                 }, [__id])
             },
-            rowClick(row, column){
+            rowClick(row, column) {
                 this.tableRoot.rowClick(row, column);
                 this.tableRoot.cellClick(row, column);
             },
-            rowDbCkick(row, column){
+            rowDbCkick(row, column) {
                 this.tableRoot.rowDbCkick(row, column);
                 this.tableRoot.cellDbCkick(row, column);
             }

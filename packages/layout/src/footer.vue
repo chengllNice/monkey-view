@@ -1,21 +1,25 @@
 <template>
-    <div class="cl-footer">
+    <div :class="[`${classPrefix}`]">
         <slot></slot>
     </div>
 </template>
 
 <script>
-  export default {
-    name: "Footer",
-    data() {
-      return {}
-    },
-    computed: {},
-    components: {},
-    created() {
-    },
-    mounted() {
-    },
-    methods: {}
-  }
+    import Config from 'main/config/config'
+
+    export default {
+        name: "Footer",
+        data() {
+            return {
+                classPrefix: Config.classPrefix + '-footer',
+            }
+        },
+        computed: {},
+        components: {},
+        created() {
+        },
+        mounted() {
+        },
+        methods: {}
+    }
 </script>

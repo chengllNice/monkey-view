@@ -1,5 +1,5 @@
 <template>
-    <table cellspacing="0" cellpadding="0" border="0" class="cl-table-head" :style="tableHeadStyle">
+    <table cellspacing="0" cellpadding="0" border="0" :class="[`${classPrefix}`]" :style="tableHeadStyle">
         <colgroup>
             <col v-for="column in colgroupColumns" :key="column.__id" :width="setColWidth(column)">
             <col v-if="$parent.showVerticalScrollBar" :width="$parent.scrollBarWidth">
@@ -11,13 +11,13 @@
                         :key="column.__id"
                         :class="[
                             fixed && column.fixed !== fixed && 'is-hidden',
-                            sortType.includes(column.__sort) && column.__sort && 'cl-table-head__sort',
+                            sortType.includes(column.__sort) && column.__sort && `${classPrefix}__sort`,
                             column.className
                         ]"
                         :rowspan="column.__rowSpan"
                         :colspan="column.__colSpan"
                         @click.stop="sortHandle(column)">
-                        <cl-table-head-cell :column="column" :sortType="sortType"></cl-table-head-cell>
+                        <table-head-cell :column="column" :sortType="sortType"></table-head-cell>
                     </th>
                     <th class="cl-table-head__scroll-th" v-if="$parent.showVerticalScrollBar" :rowspan="columns.length"></th>
                 </table-tr>
@@ -27,6 +27,7 @@
 </template>
 
 <script>
+    import Config from 'main/config/config'
     import TableTr from './table-tr.vue'
     import TableHeadCell from './table-head-cell'
     import tableMixins from './table-mixins'
@@ -55,6 +56,7 @@
         },
         data() {
             return {
+                classPrefix: Config.classPrefix + '-table-head',
                 sortType: ['ascend', 'descend', true, false, 'remote']
             }
         },

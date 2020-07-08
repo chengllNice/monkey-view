@@ -1,24 +1,26 @@
 <template>
     <div :class="[
-        'cl-list',
-        border && 'cl-list--border',
-        size && `cl-list--${size}`,
-        split && `cl-list--split`,
+        `${classPrefix}`,
+        border && `${classPrefix}--border`,
+        size && `${classPrefix}--${size}`,
+        split && `${classPrefix}--split`,
     ]">
-        <div class="cl-list__header" v-if="header || $slots.header">
+        <div :class="[`${classPrefix}__header`]" v-if="header || $slots.header">
             <slot name="header">{{header}}</slot>
         </div>
-        <div class="cl-list__content">
+        <div :class="[`${classPrefix}__content`]">
             <slot></slot>
         </div>
-        <div class="cl-list__footer" v-if="footer || $slots.footer">
+        <div :class="[`${classPrefix}__footer`]" v-if="footer || $slots.footer">
             <slot name="footer">{{footer}}</slot>
         </div>
-        <cl-loading fix :visible="loading" />
+        <loading fix :visible="loading"/>
     </div>
 </template>
 
 <script>
+    import Config from 'main/config/config'
+    import Loading from 'packages/loading'
 
     export default {
         name: "List",
@@ -50,21 +52,23 @@
             size: {
                 type: String,
                 default: 'default',
-                validator(value){
+                validator(value) {
                     return ['mini', 'small', 'default', 'large'].includes(value)
                 }
             }
         },
         data() {
             return {
+                classPrefix: Config.classPrefix + '-list',
                 componentName: 'List',
                 everyRowItemLen: [],//每一个list-row下item的数量的数组
                 itemWidth: '0%'
             }
         },
-        computed: {
+        computed: {},
+        components: {
+            Loading
         },
-        components: {},
         created() {
         },
         mounted() {
@@ -73,7 +77,7 @@
                 let sortArr = this.everyRowItemLen.sort((a, b) => {
                     return a - b;
                 }).reverse();
-                if(sortArr && sortArr.length){
+                if (sortArr && sortArr.length) {
                     this.itemWidth = 100 / sortArr[0] + '%'
                 }
             })

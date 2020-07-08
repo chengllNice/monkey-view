@@ -1,7 +1,7 @@
 <template>
     <div :class="[
-        'cl-cascader-panel',
-        !parentComponent && 'cl-cascader-panel--border'
+        `${classPrefix}`,
+        !parentComponent && `${classPrefix}--border`
     ]">
         <cascader-item v-if="parentComponent && parentComponent.showFilterablePanel" :data="parentComponent.currentFilterableData" show-path-label></cascader-item>
         <cascader-item v-else :data="parentComponent ? data : currentData"></cascader-item>
@@ -9,6 +9,7 @@
 </template>
 
 <script>
+    import Config from 'main/config/config'
     import CascaderItem from './cascaderItem'
     import Mixin from './mixin'
     import {findComponent} from "main/utils/tool";
@@ -23,8 +24,9 @@
 
         },
         data() {
-            let cascader = findComponent(this, 'ClCascader');
+            let cascader = findComponent(this, 'Cascader');
             return {
+                classPrefix: Config.classPrefix + '-cascader-panel',
                 componentName: 'CascaderPanel',
                 currentValue: [],
                 parentComponent: cascader || null

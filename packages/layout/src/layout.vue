@@ -1,32 +1,36 @@
 <template>
-    <div class="cl-layout" :class="{'cl-layout--hasSider': hasSider}">
+    <div :class="[
+            `${classPrefix}`,
+            hasSider && `${classPrefix}--hasSider`
+        ]">
         <slot></slot>
     </div>
 </template>
 
 <script>
-  export default {
-    name: "Layout",
-    data() {
-      return {
-        hasSider: false,
-      }
-    },
-    computed: {
+    import Config from 'main/config/config'
 
-    },
-    components: {},
-    created() {
-    },
-    mounted() {
-      this.hasSider = this.findSider();
-    },
-    methods: {
-      findSider(){
-        return this.$children.some(item=>{
-          return item.componentName === 'Sider'
-        })
-      }
+    export default {
+        name: "Layout",
+        data() {
+            return {
+                classPrefix: Config.classPrefix + '-layout',
+                hasSider: false,
+            }
+        },
+        computed: {},
+        components: {},
+        created() {
+        },
+        mounted() {
+            this.hasSider = this.findSider();
+        },
+        methods: {
+            findSider() {
+                return this.$children.some(item => {
+                    return item.componentName === 'Sider'
+                })
+            }
+        }
     }
-  }
 </script>

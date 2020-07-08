@@ -1,7 +1,7 @@
 <template>
     <ValidationObserver :class="[
-                            'cl-form',
-                            `cl-form--${layout}`
+                            `${classPrefix}`,
+                            `${classPrefix}--${layout}`
                          ]"
                         tag="div"
                         ref="form">
@@ -10,7 +10,9 @@
 </template>
 
 <script>
+    import Config from 'main/config/config'
     import { ValidationObserver} from 'vee-validate'
+
     export default {
         name: "Form",
         props: {
@@ -64,7 +66,9 @@
             ValidationObserver
         },
         data() {
-            return {}
+            return {
+                classPrefix: Config.classPrefix + '-form',
+            }
         },
 
         mounted() {

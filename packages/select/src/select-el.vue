@@ -1,62 +1,73 @@
 <template>
-    <div class="cl-select__el" @click="handlerClick" @mouseenter="isHover = true" @mouseleave="isHover = false">
-        <cl-input class="cl-select__el-input"
-                 v-if="!multiple"
-                 v-model="cValue"
-                 type="input"
-                 :name="name"
-                 :size="selectSize"
-                 :disabled="selectDisabled"
-                 :placeholder="selectElPlaceholder"
-                 :readonly="selectReadonly"
-                 @focus="handlerFocus"
-                 @blur="handlerBlur"
-                 @change="handlerChange">
+    <div :class="[`${classPrefix}__el`]" @click="handlerClick" @mouseenter="isHover = true" @mouseleave="isHover = false">
+        <sn-input :class="[`${classPrefix}__el-input`]"
+                  v-if="!multiple"
+                  v-model="cValue"
+                  type="input"
+                  :name="name"
+                  :size="selectSize"
+                  :disabled="selectDisabled"
+                  :placeholder="selectElPlaceholder"
+                  :readonly="selectReadonly"
+                  @focus="handlerFocus"
+                  @blur="handlerBlur"
+                  @change="handlerChange">
             <span slot="suffix">
-                <i v-if="!isClearable" class="cl-icon-down cl-select__el-icon"
-                   :class="{'cl-select__el-icon-rotate': visible}"></i>
-                <i v-else class="cl-icon-error-fill cl-select__el-icon" @click.stop="handlerClear"></i>
+                <Icon v-if="!isClearable"
+                      type="icon-down"
+                      :class="[
+                          `${classPrefix}__el-icon`,
+                          visible && `${classPrefix}__el-icon-rotate`
+                      ]"></Icon>
+                <Icon v-else type="icon-error-fill" :class="[`${classPrefix}__el-icon`]" @click.stop="handlerClear"></Icon>
             </span>
-        </cl-input>
+        </sn-input>
 
         <div ref="selectMultipleTag"
              v-if="multiple"
              tabindex="-1"
-             class="cl-select__el-multiple-tag">
-            <tag class="cl-select__el-multiple-tag-item"
-                   v-for="item in values"
-                   :key="item.value"
-                   :size="tagSize"
-                   closable
-                   @close="tagClose(item)">{{item.label}}
+             :class="[`${classPrefix}__el-multiple-tag`]">
+            <tag :class="[`${classPrefix}__el-multiple-tag-item`]"
+                 v-for="item in values"
+                 :key="item.value"
+                 :size="tagSize"
+                 closable
+                 @close="tagClose(item)">{{item.label}}
             </tag>
-            <input v-if='filterable'
+            <sn-input v-if='filterable'
                    v-model="cValue"
                    type="text"
                    ref="multipleInput"
                    spellcheck="false"
-                   class="cl-select__el-multiple-tag-item cl-select__el-multiple-input"
+                   :class="[
+                       `${classPrefix}__el-multiple-tag-item`,
+                       `${classPrefix}__el-multiple-input`
+                   ]"
                    :disabled="selectDisabled"
                    :style="inputStyle"
                    @focus="handlerFocus"
                    @blur="handlerBlur"
-                   @input="handlerInput">
+                   @input="handlerInput" />
         </div>
 
         <div v-if="multiple"
              :class="[
-                'cl-select__el-multiple',
-                isFocused && 'cl-select__el-focus'
+                `${classPrefix}__el-multiple`,
+                isFocused && `${classPrefix}__el-focus`
              ]"
              tabindex="0"
              :style="multipleStyle">
             <span v-if="selectElPlaceholder && !cValue"
-                  class="cl-select__el-placeholder">{{selectElPlaceholder}}</span>
-            <span class="cl-select__el-suffix">
-                <span class="cl-select__el-suffix-inner">
-                    <i v-if="!isClearable" class="cl-icon-down cl-select__el-icon"
-                       :class="{'cl-select__el-icon-rotate': visible}"></i>
-                    <i v-else class="cl-icon-error-fill cl-select__el-icon" @click.stop="handlerClear"></i>
+                  :class="[`${classPrefix}__el-placeholder`]">{{selectElPlaceholder}}</span>
+            <span :class="[`${classPrefix}__el-suffix`]">
+                <span :class="[`${classPrefix}__el-suffix-inner`]">
+                    <Icon v-if="!isClearable"
+                          type="icon-down"
+                          :class="[
+                              `${classPrefix}__el-icon`,
+                              visible && `${classPrefix}__el-icon-rotate`
+                          ]"></Icon>
+                    <Icon v-else type="icon-error-fill" :class="[`${classPrefix}__el-icon`]" @click.stop="handlerClear"></Icon>
                 </span>
             </span>
         </div>
@@ -64,8 +75,10 @@
 </template>
 
 <script>
-    import ClInput from '../../input/src/input.vue'
-    import Tag from '../../tag/src/tag.vue'
+    import Config from 'main/config/config'
+    import Input from 'packages/input'
+    import Icon from 'packages/icon'
+    import Tag from 'packages/tag'
     import Locale from 'main/mixins/locale'
 
     export default {
@@ -86,6 +99,7 @@
         },
         data() {
             return {
+                classPrefix: Config.classPrefix + '-select',
                 cValue: '',
                 isHover: false,
                 multipleStyle: {},
@@ -128,7 +142,8 @@
             },
         },
         components: {
-            ClInput,
+            'sn-input': Input,
+            Icon,
             Tag
         },
         created() {

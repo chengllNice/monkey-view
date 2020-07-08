@@ -1,3 +1,5 @@
+import Config from 'main/config/config'
+
 import Layout from '../packages/layout'
 import Menu from '../packages/menu'
 import Button from '../packages/button'
@@ -44,6 +46,7 @@ import Time from '../packages/time'
 import Image from '../packages/image'
 import Skeleton from '../packages/skeleton'
 import Cascader from '../packages/cascader'
+import Icon from '../packages/icon'
 
 import locale from './locale/index';
 
@@ -106,6 +109,7 @@ const components = {
     SkeletonItem: Skeleton.Item,
     Cascader,
     CascaderPanel: Cascader.panel,
+    Icon
 };
 
 const ClComponents = {
@@ -121,10 +125,10 @@ const install = (Vue, opts = {}) => {
 
     Object.keys(components).forEach(key => {
         Vue.component(key, components[key]);
-        Vue.component(`Cl${key}`, components[key]);
+        Vue.component(`${Config.name}${key}`, components[key]);
     });
     Object.keys(ClComponents).forEach(key => {
-        Vue.component(`Cl${key}`, components[key]);
+        Vue.component(`${Config.name}${key}`, components[key]);
     });
 
     directive(Vue);

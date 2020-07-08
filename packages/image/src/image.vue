@@ -1,20 +1,20 @@
 <template>
     <div :class="[
-        'cl-image',
-        (isLoading || isError) && 'cl-image--status',
-        !clientWidth && 'cl-image--no-clientwidth',
+        `${classPrefix}`,
+        (isLoading || isError) && `${classPrefix}--status`,
+        !clientWidth && `${classPrefix}--no-clientwidth`,
     ]">
-        <div v-if="isLoading" class="cl-image__loading">
+        <div v-if="isLoading" :class="[`${classPrefix}__loading`]">
             <slot name="loading">
-                <cl-loading type="loading5" size="large" fix color="#ccc" :visible="isLoading" />
+                <loading type="loading5" size="large" fix color="#ccc" :visible="isLoading" />
             </slot>
         </div>
-        <div v-else-if="isError" class="cl-image__error">
+        <div v-else-if="isError" :class="[`${classPrefix}__error`]">
             <slot name="error">{{t('cl.image.errorText')}}</slot>
         </div>
         <img v-else :class="[
-            'cl-image__inner',
-            fit && `cl-image__${fit}`
+            `${classPrefix}__inner`,
+            fit && `${classPrefix}__${fit}`
             ]"
              :style="imageStyle"
              :src="src"
@@ -27,6 +27,8 @@
 </template>
 
 <script>
+    import Config from 'main/config/config'
+    import Loading from 'packages/loading'
     import Locale from "main/mixins/locale";
     import ImagePreview from './imagePreview.vue'
 
@@ -61,8 +63,8 @@
         },
         computed: {
             imageStyle(){
-                return this.computedImageStyle();
-                // return isObjectFit ? {} : this.computedImageStyle();
+                // return this.computedImageStyle();
+                return isObjectFit ? {} : this.computedImageStyle();
             },
             previewStyle(){
                 return {
@@ -71,10 +73,12 @@
             },
         },
         components: {
-            ImagePreview
+            ImagePreview,
+            Loading
         },
         data(){
             return {
+                classPrefix: Config.classPrefix + '-image',
                 isLoading: true,
                 isError: false,
                 imageWidth: 0,

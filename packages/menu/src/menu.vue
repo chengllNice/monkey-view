@@ -1,16 +1,17 @@
 <template>
-    <div class="cl-menu"
-         :class="[
-            theme && `cl-menu--${theme}`,
-            size && `cl-menu--${size}`,
-            mode && `cl-menu--${mode}`,
-            noHoverBackground && `cl-menu--nohover`,
+    <div :class="[
+            `${classPrefix}`,
+            theme && `${classPrefix}--${theme}`,
+            size && `${classPrefix}--${size}`,
+            mode && `${classPrefix}--${mode}`,
+            noHoverBackground && `${classPrefix}--nohover`,
          ]" :style="menuStyle">
         <slot></slot>
     </div>
 </template>
 
 <script>
+    import Config from 'main/config/config'
     import Emitter from 'main/mixins/emitter'
 
     export default {
@@ -57,6 +58,7 @@
         },
         data() {
             return {
+                classPrefix: Config.classPrefix + '-menu',
                 componentName: 'Menu',
                 currentActiveKey: '',
                 openedKeys: []

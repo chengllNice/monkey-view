@@ -1,17 +1,17 @@
 <template>
     <div :class="[
-            'cl-date-pane-month',
-            size && `cl-date-pane-month--${size}`
+            `${classPrefix}`,
+            size && `${classPrefix}--${size}`
          ]">
-        <div class="cl-date-pane-month__row" v-for="(row, rowIndex) in monthList" :key="rowIndex">
+        <div :class="[`${classPrefix}__row`]" v-for="(row, rowIndex) in monthList" :key="rowIndex">
             <span v-for="_month in row"
                   :key="_month.key"
                   :class="[
-                    'cl-date-pane-item__col',
-                    !(isSelectYear && _month.id === selectedMonth) && 'cl-date-pane-item__hover',
-                    _month.id === currentDate.month && currentDate.year === year && 'cl-date-pane-item__now',
-                    isSelectYear && _month.id === selectedMonth && 'cl-date-pane-item__selected'
-              ]"
+                        `${classPrefixItem}__col`,
+                        !(isSelectYear && _month.id === selectedMonth) && `${classPrefixItem}__hover`,
+                        _month.id === currentDate.month && currentDate.year === year && `${classPrefixItem}__now`,
+                        isSelectYear && _month.id === selectedMonth && `${classPrefixItem}__selected`
+                  ]"
                   @click.stop="handleSelectMonth(_month)">
             <em>{{_month.name}}</em>
         </span>
@@ -21,6 +21,7 @@
 </template>
 
 <script>
+    import Config from 'main/config/config'
     import { dateObj, dateFormat} from "main/utils/date";
 
     export default {
@@ -42,6 +43,8 @@
         },
         data(){
             return {
+                classPrefix: Config.classPrefix + '-date-pane-month',
+                classPrefixItem: Config.classPrefix + '-date-pane-item',
                 monthList: [],
             }
         },

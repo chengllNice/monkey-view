@@ -6,6 +6,7 @@
 </template>
 
 <script>
+    import Config from 'main/config/config'
     import {findComponentDirectChildrens} from "main/utils/tool";
     import Emitter from 'main/mixins/emitter'
 
@@ -38,21 +39,22 @@
         },
         data() {
             return {
+                classPrefix: Config.classPrefix + '-row',
                 componentName: 'Row',
             }
         },
         computed: {
             rowClass() {
                 let classList = [
-                    'cl-row',
+                    `${this.classPrefix}`,
                     {
-                        [`cl-row--${this.type}`]: this.type,
-                        [`cl-row--flex-${this.align}`]: this.align,
-                        [`cl-row--flex-${this.justify}`]: this.justify,
+                        [`${this.classPrefix}--${this.type}`]: this.type,
+                        [`${this.classPrefix}--flex-${this.align}`]: this.align,
+                        [`${this.classPrefix}--flex-${this.justify}`]: this.justify,
                     },
                 ];
                 if ((this.align || this.justify) && !this.type) {
-                    classList.push(`cl-row--flex`)
+                    classList.push(`${this.classPrefix}--flex`)
                 }
                 return classList;
             },
@@ -77,7 +79,7 @@
         },
         methods: {
             initNoSetColChildrenSpan() {
-                let colChildren = findComponentDirectChildrens(this, 'ClCol');
+                let colChildren = findComponentDirectChildrens(this, 'Col');
                 let allSpan = 0;//所有span之和
                 let noSpanComponents = [];//没有设置span的元素（不包括设置为0的）
                 let noSpanComponentsNum = 0;

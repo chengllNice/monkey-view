@@ -45,6 +45,7 @@
 </template>
 
 <script>
+
     export default {
         name: "LoadingSvg",
         props: {

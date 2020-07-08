@@ -3,13 +3,15 @@
 </template>
 
 <script>
+    import Config from 'main/config/config'
+
     export default {
         name: "SkeletonItem",
         props: {
             type: {
                 type: String,
                 default: 'line',
-                validator(value){
+                validator(value) {
                     return ['line', 'circle'].includes(value)
                 }
             },
@@ -18,17 +20,17 @@
                 default: false
             },
         },
-        data(){
+        data() {
             return {
-
+                classPrefix: Config.classPrefix + '-skeleton-item',
             }
         },
         computed: {
-            itemClass(){
+            itemClass() {
                 return [
-                    'cl-skeleton-item',
-                    `cl-skeleton-item--${this.type}`,
-                    this.animation && 'cl-skeleton-item--animation',
+                    `${this.classPrefix}`,
+                    `${this.classPrefix}--${this.type}`,
+                    this.animation && `${this.classPrefix}--animation`,
                 ]
             },
         }

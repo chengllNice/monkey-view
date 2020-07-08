@@ -1,28 +1,31 @@
 <template>
     <div :class="[
-            'cl-date-pane-single',
-            size && `cl-date-pane-single--${size}`
+            `${classPrefix}`,
+            size && `${classPrefix}--${size}`
          ]">
-        <div class="cl-date-pane-single__header" v-if="showDateHeader">
-            <span class="cl-date-pane-single__header-pre">
-                <i class="cl-icon-arrow-left" @click.stop="jumpDate('pre-year')"></i>
-                <i class="cl-icon-left" @click.stop="jumpDate('pre-month')" v-if="dateChangeIconShow"></i>
+        <div :class="[`${classPrefix}__header`]" v-if="showDateHeader">
+            <span :class="[`${classPrefix}__header-pre`]">
+                <Icon type="icon-arrow-left" @click.stop="jumpDate('pre-year')"></Icon>
+                <Icon type="icon-left" @click.stop="jumpDate('pre-month')" v-if="dateChangeIconShow"></Icon>
             </span>
-            <span class="cl-date-pane-single__header-date">
-                <span class="cl-date-pane-single__header-date-label" @click.stop="updateCurrentType('year')">{{year}}{{t('cl.datePicker.year')}} </span>
-                <span class="cl-date-pane-single__header-date-label" @click.stop="updateCurrentType('month')" v-if="headerMonthShow">{{month}}{{t('cl.datePicker.month')}}</span>
+            <span :class="[`${classPrefix}__header-date`]">
+                <span :class="[`${classPrefix}__header-date-label`]"
+                      @click.stop="updateCurrentType('year')">{{year}}{{t('cl.datePicker.year')}} </span>
+                <span :class="[`${classPrefix}__header-date-label`]"
+                      @click.stop="updateCurrentType('month')"
+                      v-if="headerMonthShow">{{month}}{{t('cl.datePicker.month')}}</span>
             </span>
-            <span class="cl-date-pane-single__header-next">
-                <i class="cl-icon-right" @click.stop="jumpDate('next-month')" v-if="dateChangeIconShow"></i>
-                <i class="cl-icon-arrow-right" @click.stop="jumpDate('next-year')"></i>
+            <span :class="[`${classPrefix}__header-next`]">
+                <Icon type="icon-right" @click.stop="jumpDate('next-month')" v-if="dateChangeIconShow"></Icon>
+                <Icon type="icon-arrow-right" @click.stop="jumpDate('next-year')"></Icon>
             </span>
         </div>
-        <div class="cl-date-pane-single__header" v-if="showTimeHeader">
-            <span class="cl-date-pane-single__header-date">
+        <div :class="[`${classPrefix}__header`]" v-if="showTimeHeader">
+            <span :class="[`${classPrefix}__header-date`]">
                 {{index === '0' ? t('cl.datePicker.startTime') : t('cl.datePicker.endTime')}}
             </span>
         </div>
-        <div class="cl-date-pane-single__body">
+        <div :class="[`${classPrefix}__body`]">
             <template v-if="pickerType === 'date'">
                 <date-pane-date :size="size"
                                    :type="currentType"
@@ -78,12 +81,15 @@
 </template>
 
 <script>
+    import Config from 'main/config/config'
+    import Icon from 'packages/icon'
     import DatePaneTime from './date-pane-time'
     import DatePaneDate from './date-pane-date'
     import DatePaneYear from './date-pane-year'
     import DatePaneMonth from './date-pane-month'
     import {dateFormat, zero} from "main/utils/date";
     import Locale from "main/mixins/locale";
+
 
     export default {
         name: "DatePaneSingle",
@@ -105,6 +111,7 @@
         data(){
             const currentType = ['date', 'daterange', 'datetime', 'datetimerange'].includes(this.type) ? 'date' : this.type;
             return {
+                classPrefix: Config.classPrefix + '-date-pane-single',
                 currentType: currentType,
                 currentDate: {
                     year: new Date().getFullYear().toString(),
@@ -134,6 +141,7 @@
             },
         },
         components: {
+            Icon,
             DatePaneTime,
             DatePaneDate,
             DatePaneYear,

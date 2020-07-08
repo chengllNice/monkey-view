@@ -1,11 +1,18 @@
 <template>
-    <div class="cl-button-group">
+    <div :class="[`${classPrefix}`]">
         <slot></slot>
     </div>
 </template>
 
 <script>
-  export default {
-    name: "ButtonGroup",
-  }
+    import Config from 'main/config/config'
+
+    export default {
+        name: "ButtonGroup",
+        data() {
+            return {
+                classPrefix: Config.classPrefix + '-button-group',
+            }
+        },
+    }
 </script>

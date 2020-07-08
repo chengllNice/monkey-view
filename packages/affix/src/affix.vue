@@ -1,15 +1,16 @@
 <template>
-    <div class="cl-affix">
-        <div class="cl-affix__slot" ref="affixSlot" :style="slotStyle">
+    <div :class="[`${classPrefix}`]">
+        <div :class="[`${classPrefix}__slot`]" ref="affixSlot" :style="slotStyle">
             <slot></slot>
         </div>
         <!--占位元素-->
-        <div class="cl-affix__seat" v-show="!fix && showSeat" :style="seatStyle"></div>
+        <div :class="[`${classPrefix}__seat`]" v-show="!fix && showSeat" :style="seatStyle"></div>
     </div>
 </template>
 
 <script>
     import {on, off} from "main/utils/dom";
+    import Config from 'main/config/config'
 
     export default {
         name: "Affix",
@@ -26,6 +27,7 @@
         },
         data() {
             return {
+                classPrefix: Config.classPrefix + '-affix',
                 defaultSlotStyle: {
                     width: 0,
                     height: 0,

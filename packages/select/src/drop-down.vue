@@ -1,15 +1,17 @@
 <template>
-    <div class="cl-drop-down" :style="expandStyle">
+    <div :class="[`${classPrefix}`]" :style="expandStyle">
         <slot></slot>
     </div>
 </template>
 
 <script>
+    import Config from 'main/config/config'
     import Vue from 'vue'
 
     const isServer = Vue.prototype.$isServer;
     const Popper = isServer ? function () {
     } : require('popper.js/dist/umd/popper.js');
+
     export default {
         name: "DropDown",
         props: {
@@ -52,6 +54,7 @@
         },
         data() {
             return {
+                classPrefix: Config.classPrefix + '-drop-down',
                 visible: false,
                 width: '',
             }

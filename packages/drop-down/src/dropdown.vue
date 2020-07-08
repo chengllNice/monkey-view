@@ -1,5 +1,5 @@
 <template>
-    <div class="cl-dropdown"
+    <div :class="[`${classPrefix}`]"
          v-click-outside.capture="handleClose"
          @mouseenter="handleMouseEnter"
          @mouseleave="handleMouseLeave">
@@ -23,8 +23,10 @@
 </template>
 
 <script>
+    import Config from 'main/config/config'
     import DropDown from '../../select/src/drop-down.vue'
     import {directive as clickOutside} from 'v-click-outside-x';
+
     export default {
         name: "Dropdown",
         directives: {clickOutside},
@@ -59,6 +61,7 @@
         },
         data(){
             return {
+                classPrefix: Config.classPrefix + '-dropdown',
                 componentName: 'Dropdown',
                 currentVisible: this.visible,
                 timer: null,

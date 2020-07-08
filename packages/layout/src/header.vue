@@ -1,31 +1,35 @@
 <template>
-    <div class="cl-header" :style="expandStyle">
+    <div :class="[`${classPrefix}`]" :style="expandStyle">
         <slot></slot>
     </div>
 </template>
 
 <script>
-  export default {
-    name: "Header",
-    props: {
-      height: [String, Number]
-    },
-    data() {
-      return {}
-    },
-    computed: {
-      expandStyle(){
-        return {
-          'height': parseFloat(this.height) + 'px',
-          'line-height': parseFloat(this.height) + 'px',
-        }
-      }
-    },
-    components: {},
-    created() {
-    },
-    mounted() {
-    },
-    methods: {}
-  }
+    import Config from 'main/config/config'
+
+    export default {
+        name: "Header",
+        props: {
+            height: [String, Number]
+        },
+        data() {
+            return {
+                classPrefix: Config.classPrefix + '-header',
+            }
+        },
+        computed: {
+            expandStyle() {
+                return {
+                    'height': parseFloat(this.height) + 'px',
+                    'line-height': parseFloat(this.height) + 'px',
+                }
+            }
+        },
+        components: {},
+        created() {
+        },
+        mounted() {
+        },
+        methods: {}
+    }
 </script>

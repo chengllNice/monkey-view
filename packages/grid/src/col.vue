@@ -5,6 +5,7 @@
 </template>
 
 <script>
+    import Config from 'main/config/config'
     import {findComponent} from "main/utils/tool";
     import Emitter from 'main/mixins/emitter'
 
@@ -29,6 +30,7 @@
             const currentSpan = (!this.span && this.span !== 0 || parseFloat(this.span) < 0) ? -1 : Math.floor(this.span);
 
             return {
+                classPrefix: Config.classPrefix + '-col',
                 componentName: 'Col',
                 currentSpan: currentSpan,
                 parentRow: findComponent(this, 'Row'),
@@ -38,22 +40,22 @@
         computed: {
             colClass() {
                 let classList = [
-                    'cl-col',
+                    `${this.classPrefix}`,
                     {
-                        [`cl-col--span-${this.currentSpan}`]: this.currentSpan !== -1,
-                        [`cl-col--order-${this.order}`]: this.order,
-                        [`cl-col--offset-${this.offset}`]: this.offset,
-                        [`cl-col--push-${this.push}`]: this.push,
-                        [`cl-col--pull-${this.pull}`]: this.pull,
+                        [`${this.classPrefix}--span-${this.currentSpan}`]: this.currentSpan !== -1,
+                        [`${this.classPrefix}--order-${this.order}`]: this.order,
+                        [`${this.classPrefix}--offset-${this.offset}`]: this.offset,
+                        [`${this.classPrefix}--push-${this.push}`]: this.push,
+                        [`${this.classPrefix}--pull-${this.pull}`]: this.pull,
                     }
                 ];
                 responseSize.forEach(size => {
                     if (typeof this[size] === 'number') {
-                        classList.push(`cl-col--span-${size}-${this[size]}`);
+                        classList.push(`${this.classPrefix}--span-${size}-${this[size]}`);
                     } else if (typeof this[size] === 'object') {
                         let sizeObj = this[size];
                         Object.keys(sizeObj).forEach(key => {
-                            classList.push(`cl-col--${key}-${size}-${sizeObj[key]}`)
+                            classList.push(`${this.classPrefix}--${key}-${size}-${sizeObj[key]}`)
                         })
                     }
                 });

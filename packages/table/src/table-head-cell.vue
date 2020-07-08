@@ -1,14 +1,15 @@
 <template>
-    <div class="cl-table-cell cl-table-head-cell"
-         :class="[
-            column.align && `cl-table-cell--${column.align}`,
-            (column.ellipsis || column.tooltip) && 'cl-table-cell--ellipsis',
+    <div :class="[
+             `${classPrefix}`,
+             `${classPrefixCell}`,
+             column.align && `${classPrefixCell}--${column.align}`,
+             (column.ellipsis || column.tooltip) && `${classPrefixCell}--ellipsis`,
          ]">
         <template v-if="renderType === 'selection'">
-            <checkbox class="cl-table-cell__checkbox"
-                         v-model="column.__isChecked"
-                         :disabled="column.__isDisabled"
-                         @change="checkboxChange"></checkbox>
+            <checkbox :class="[`${classPrefixCell}__checkbox`]"
+                      v-model="column.__isChecked"
+                      :disabled="column.__isDisabled"
+                      @change="checkboxChange"></checkbox>
         </template>
         <template v-if="renderType === 'index'">
             #
@@ -18,21 +19,27 @@
             <template v-else>{{column.title}}</template>
             <!--排序-->
             <span v-if="column.sort && sortType.includes(column.sort)"
-                  class="cl-table-cell__icon cl-table-head-cell__sort">
-                <i class="cl-icon-care-up" :class="[column.__sort === 'ascend' && 'cl-table-cell__icon-active']" @click.self="sortHandle('ascend')"></i>
-                <i class="cl-icon-care-down" :class="[column.__sort === 'descend' && 'cl-table-cell__icon-active']" @click.self="sortHandle('descend')"></i>
+                  :class="[`${classPrefixCell}__icon`, `${classPrefix}__sort`]">
+                <Icon type="icon-care-up"
+                      :class="[
+                          column.__sort === 'ascend' && `${classPrefixCell}__icon-active`
+                      ]"
+                      @click.self="sortHandle('ascend')"></Icon>
+                <Icon type="icon-care-down"
+                      :class="[column.__sort === 'descend' && `${classPrefixCell}__icon-active`]"
+                      @click.self="sortHandle('descend')"></Icon>
             </span>
 
             <!--过滤-->
             <span v-if="column.filterSlot || (column.filters && Array.isArray(column.filters))"
-                  class="cl-table-cell__icon cl-table-head-cell__filter"
+                  :class="[`${classPrefixCell}__icon`, `${classPrefix}__filter`]"
                   v-click-outside.capture="handleClickOutside">
-                <i class="cl-icon-filter"
-                   :class="[
-                        column.__isFilterChecked && 'cl-table-cell__icon-active'
-                   ]"
-                   ref="reference"
-                   @click.stop="filterShow"></i>
+                <Icon type="icon-filter"
+                      :class="[
+                           column.__isFilterChecked && `${classPrefixCell}__icon-active`
+                      ]"
+                      ref="reference"
+                      @click.stop="filterShow"></Icon>
                 <DropDown v-show="visible"
                           ref="dropDown"
                           :reference="this.$refs.reference"
@@ -46,29 +53,36 @@
                         <table-slot-head :column="column" :slot-name="column.filterSlot"></table-slot-head>
                     </template>
 
-                    <div v-else-if="!column.filterMultiple" class="cl-table-head-cell__filter-list">
-                        <div class="cl-table-head-cell__filter-item"
-                                      :class="[!column.__filterCheckedValues.length && 'cl-table-head-cell__filter-item-active']"
-                                      @click.self="filterHandle()">{{t('cl.table.all')}}</div>
-                        <div class="cl-table-head-cell__filter-item"
-                                      :class="[column.__filterCheckedValues.includes(item.value) && 'cl-table-head-cell__filter-item-active']"
-                                      v-for="item in column.filters"
-                                      :key="item.value"
-                                      @click.self="filterHandle(item)">{{item.label}}</div>
+                    <div v-else-if="!column.filterMultiple" :class="[`${classPrefix}__filter-list`]">
+                        <div :class="[
+                                 `${classPrefix}__filter-item`,
+                                 !column.__filterCheckedValues.length && `${classPrefix}__filter-item-active`
+                             ]"
+                             @click.self="filterHandle()">{{t('cl.table.all')}}</div>
+                        <div :class="[
+                                 `${classPrefix}__filter-item`,
+                                 column.__filterCheckedValues.includes(item.value) && `${classPrefix}__filter-item-active`
+                             ]"
+                             v-for="item in column.filters"
+                             :key="item.value"
+                             @click.self="filterHandle(item)">{{item.label}}</div>
                     </div>
 
-                    <div v-else-if="column.filterMultiple" class="cl-table-head-cell__filter-list">
+                    <div v-else-if="column.filterMultiple" :class="[`${classPrefix}__filter-list`]">
                         <checkbox-group v-model="filterMultipleValue">
-                            <div class="cl-table-head-cell__filter-item"
-                                 :class="[column.__filterCheckedValues.includes(item.value) && 'cl-table-head-cell__filter-item-active']"
+                            <div :class="[
+                                     `${classPrefix}__filter-item`,
+                                     column.__filterCheckedValues.includes(item.value) && `${classPrefix}__filter-item-active`
+                                 ]"
                                  v-for="item in column.filters"
                                  :key="item.value">
                                     <checkbox :label="item.value">{{item.label}}</checkbox>
                             </div>
                         </checkbox-group>
-                        <div class="cl-table-head-cell__filter-footer">
-                            <cl-button size="mini" type="primary" @click="filterMultiple">{{t('cl.table.filter')}}</cl-button>
-                            <cl-button size="mini" @click="resetFilterMultiple">{{t('cl.table.reset')}}</cl-button>
+                        <div :class="[`${classPrefix}__filter-footer`]">
+                            <Button size="mini" type="primary"
+                                    @click="filterMultiple">{{t('cl.table.filter')}}</Button>
+                            <Button size="mini" @click="resetFilterMultiple">{{t('cl.table.reset')}}</Button>
                         </div>
                     </div>
                 </DropDown>
@@ -78,13 +92,16 @@
 </template>
 
 <script>
-    import Checkbox from '../../checkbox/src/checkbox'
-    import CheckboxGroup from '../../checkbox/src/checkbox-group'
-    import ClButton from '../../button/src/button'
+    import Config from 'main/config/config'
+    import Checkbox from 'packages/checkbox'
+    import CheckboxGroup from 'packages/checkbox-group'
+    import Button from 'packages/button'
     import DropDown from '../../select/src/drop-down.vue'
     import tableSlotHead from './table-slot-head'
     import {directive as clickOutside} from 'v-click-outside-x';
     import Locale from 'main/mixins/locale'
+    import Icon from 'packages/icon'
+
     export default {
         name: "TableHeadCell",
         directives: {clickOutside},
@@ -96,6 +113,8 @@
         inject: ['tableRoot'],
         data() {
             return {
+                classPrefix: Config.classPrefix + '-table-head-cell',
+                classPrefixCell: Config.classPrefix + '-table-cell',
                 renderType: 'normal',
                 isDefaultSort: null,//初始化时默认的排序方式
                 visible: false,
@@ -107,7 +126,8 @@
         components: {
             Checkbox,
             CheckboxGroup,
-            ClButton,
+            Button,
+            Icon,
             DropDown,
             tableSlotHead
         },
@@ -117,7 +137,7 @@
             this.setRenderType();
         },
         methods: {
-            setRenderType(){
+            setRenderType() {
                 let type = this.column.type;
                 switch (type) {
                     case 'selection':
@@ -131,18 +151,18 @@
                         break;
                 }
             },
-            checkboxChange(value){
+            checkboxChange(value) {
                 this.tableRoot.selectAll(value);
             },
-            sortHandle(type){
+            sortHandle(type) {
                 this.tableRoot.sortHandle(this.column, type);
             },
-            filterShow(){
+            filterShow() {
                 this.visible = !this.visible;
             },
-            handleClickOutside(event){
-                if(this.visible && (this.column.filterMultiple || this.column.filterSlot)){
-                    if(this.renderHtml !== false){
+            handleClickOutside(event) {
+                if (this.visible && (this.column.filterMultiple || this.column.filterSlot)) {
+                    if (this.renderHtml !== false) {
                         const {$el} = this.$refs.dropDown;
                         if ($el === event.target || $el.contains(event.target)) {
                             return;
@@ -151,18 +171,18 @@
                 }
                 this.closeDropDownPane(false);
             },
-            closeDropDownPane(visible){
+            closeDropDownPane(visible) {
                 this.visible = visible;
             },
-            filterHandle(filterItem){
+            filterHandle(filterItem) {
                 this.tableRoot.filterHandle('single', this.column, filterItem ? [filterItem.value] : []);
                 this.visible = false;
             },
-            filterMultiple(){
+            filterMultiple() {
                 this.tableRoot.filterHandle('multiple', this.column, this.filterMultipleValue);
                 this.visible = false;
             },
-            resetFilterMultiple(){
+            resetFilterMultiple() {
                 this.filterMultipleValue = [];
                 this.tableRoot.filterHandle('multiple', this.column, []);
                 this.visible = false;
@@ -170,8 +190,8 @@
         },
         watch: {
             column: {
-                handler(newVal){
-                    if(this.isDefaultSort === null && newVal.__sort){
+                handler(newVal) {
+                    if (this.isDefaultSort === null && newVal.__sort) {
                         this.isDefaultSort = newVal.__sort;
                     }
                 },
@@ -179,14 +199,14 @@
                 immediate: true,
             },
             isDefaultSort: {
-                handler(newVal){
-                    this.$nextTick(()=>{
+                handler(newVal) {
+                    this.$nextTick(() => {
                         newVal && newVal !== true && newVal !== 'remote' && this.sortHandle(newVal);
                     });
                 },
                 immediate: true
             },
-            visible(newVal){
+            visible(newVal) {
                 this.tableRoot.filterClick(this.column, newVal);
             }
         }

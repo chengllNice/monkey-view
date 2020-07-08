@@ -1,24 +1,27 @@
 <template>
-    <div class="cl-option"
-         :class="[
+    <div :class="[
+             `${classPrefix}`,
+             this.isMultiple && `${classPrefix}__multiple`,
             {
                 'is-selected': this.isSelected,
                 'is-disabled': this.disabled,
-                'cl-option__multiple': this.isMultiple
             }
          ]"
          v-show="isShow"
          @click.stop="handlerClick"
          @mousedown.prevent>
-        <span class="cl-option__text" v-if="$slots.default">
+        <span :class="[`${classPrefix}__text`]" v-if="$slots.default">
             <slot></slot>
         </span>
-        <span class="cl-option__text" v-else>{{optionsLabel}}</span>
-        <i v-if="isMultiple && isSelected" class="cl-icon-check cl-option__icon"></i>
+        <span :class="[`${classPrefix}__text`]" v-else>{{optionsLabel}}</span>
+        <Icon v-if="isMultiple && isSelected" type="icon-check" :class="[`${classPrefix}__icon`]"></Icon>
     </div>
 </template>
 
 <script>
+    import Config from 'main/config/config'
+    import Icon from 'packages/icon'
+
     export default {
         name: "Option",
         inject: ['select'],
@@ -35,6 +38,7 @@
         },
         data() {
             return {
+                classPrefix: Config.classPrefix + '-option',
                 componentName: 'Option',
                 firstTrigger: true,
             }
@@ -80,7 +84,9 @@
                 return true;
             }
         },
-        components: {},
+        components: {
+            Icon
+        },
         created() {
         },
         mounted() {

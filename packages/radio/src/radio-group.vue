@@ -1,5 +1,5 @@
 <template>
-    <div class="cl-radio-group">
+    <div :class="[`${classPrefix}`]">
         <template v-if="$slots.default"><slot></slot></template>
         <radio v-else-if="options && options.length"
                  v-for="item in options"
@@ -12,6 +12,7 @@
 </template>
 
 <script>
+    import Config from 'main/config/config'
     import Radio from './radio.vue'
 
     export default {
@@ -30,6 +31,7 @@
         },
         data() {
             return {
+                classPrefix: Config.classPrefix + '-radio-group',
                 componentName: 'RadioGroup',
             }
         },
@@ -49,7 +51,3 @@
         }
     }
 </script>
-
-<style scoped>
-
-</style>

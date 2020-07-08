@@ -1,15 +1,15 @@
 <template>
-    <div class="cl-upload">
+    <div :class="[`${classPrefix}`]">
         <upload-list v-if="showUploadList && listType === 'picture-card'"
                       :listType="listType"
                       :fileList="uploadFiles"
                       @preview="handlerPreview"
                       @remove="handlerRemove"></upload-list>
         <div :class="[
-                'cl-upload__target',
-                listType && `cl-upload__${listType}`,
-                drag && 'cl-upload__drag',
-                drag && dragOver && 'cl-upload__dragOver',
+                `${classPrefix}__target`,
+                listType && `${classPrefix}__${listType}`,
+                drag && `${classPrefix}__drag`,
+                drag && dragOver && `${classPrefix}__dragOver`,
             ]"
              @drop.prevent="onDrop"
              @dragover.prevent="dragOver = true"
@@ -17,12 +17,12 @@
              @click="handlerClick">
             <input type="file"
                    ref="input"
-                   class="cl-upload__input"
+                   :class="[`${classPrefix}__input`]"
                    @change="handlerChange"
                    :name="name"
                    :multiple="multiple"
                    :accept="accept">
-            <div class="cl-upload__target-slot">
+            <div :class="[`${classPrefix}__target-slot`]">
                 <slot></slot>
             </div>
         </div>
@@ -36,6 +36,7 @@
 </template>
 
 <script>
+    import Config from 'main/config/config'
     import UploadList from './upload-list.vue'
     import uploadAjax from './ajax'
 
@@ -129,6 +130,7 @@
         },
         data() {
             return {
+                classPrefix: Config.classPrefix + '-upload',
                 uploadFiles: [],
                 tempIndex: 1,
                 dragOver: false,

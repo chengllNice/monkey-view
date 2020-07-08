@@ -1,10 +1,11 @@
 <template>
-    <span class="cl-time">
+    <span :class="[`${classPrefix}`]">
         {{currentTime}}
     </span>
 </template>
 
 <script>
+    import Config from 'main/config/config'
     import {dateFormat} from "main/utils/date";
 
     export default {
@@ -18,7 +19,7 @@
             type: {
                 type: String,
                 default: 'relative',
-                validator(value){
+                validator(value) {
                     return ['relative', 'date', 'datetime'].includes(value)
                 }
             },//relative类型：一分钟之内显示（..秒前），1小时之内显示（..分钟前）,今天之内显示（时间点(时分秒，根据format)），昨天显示（昨天 时间点(时分秒，根据format)），昨天之前显示（时间点(根据format)）
@@ -27,8 +28,9 @@
                 default: ''
             },
         },
-        data(){
+        data() {
             return {
+                classPrefix: Config.classPrefix + '-time',
                 defaultFormat: 'YYYY-MM-DD hh:mm:ss',
                 currentFormatDate: '',//日期格式化
                 currentFormatTime: '',//时间格式化
@@ -39,9 +41,9 @@
             this.initFormat();
         },
         methods: {
-            initFormat(){
+            initFormat() {
                 let format = this.format || this.defaultFormat;
-                if(this.type === 'date'){
+                if (this.type === 'date') {
                     format = this.format || 'YYYY-MM-DD'
                 }
                 let splitIndex = format.indexOf(' ');
@@ -49,7 +51,7 @@
                 this.currentFormatTime = format.substring(splitIndex + 1).trim() || 'hh:mm:ss';
                 this.initCurrentTime();
             },
-            initCurrentTime(){
+            initCurrentTime() {
                 let time = '';
                 switch (this.type) {
                     case 'relative':
@@ -64,8 +66,8 @@
                 }
                 this.currentTime = time;
             },
-            autoTime(time){
-                if(!time) return;
+            autoTime(time) {
+                if (!time) return;
                 let result = '';
                 let nowDate = new Date();
                 let yesterDate = new Date();
@@ -84,47 +86,45 @@
                 let tomorrowDay = tomorrowDate.getDate();//明天的日期
                 let day = date.getDate();//设置时间的日期
 
-                if(disTimeStamp >= 0){
+                if (disTimeStamp >= 0) {
                     //一分钟之内
-                    if(disTimeStamp <= oneMinutesTimeStamp){
+                    if (disTimeStamp <= oneMinutesTimeStamp) {
                         result = parseInt(disTimeStamp / 1000) + '秒前';
                     }
                     //一小时之内
-                    else if(disTimeStamp <= oneHoursTimeStamp){
+                    else if (disTimeStamp <= oneHoursTimeStamp) {
                         result = parseInt(disTimeStamp / 1000 / 60) + '分钟前';
                     }
                     //今天之内
-                    else if(nowDay === day){
+                    else if (nowDay === day) {
                         result = dateFormat(date, this.currentFormatTime);
                     }
                     //昨天
-                    else if(yesterDay === day){
+                    else if (yesterDay === day) {
                         result = '昨天' + dateFormat(date, this.currentFormatTime);
-                    }
-                    else{
+                    } else {
                         result = dateFormat(date, this.format || this.defaultFormat);
                     }
-                }else{
+                } else {
                     //设置的时间是当前时间点之后的时间
 
                     disTimeStamp = Math.abs(disTimeStamp);
                     //一分钟之内
-                    if(disTimeStamp <= oneMinutesTimeStamp){
+                    if (disTimeStamp <= oneMinutesTimeStamp) {
                         result = parseInt(disTimeStamp / 1000) + '秒后';
                     }
                     //一小时之内
-                    else if(disTimeStamp <= oneHoursTimeStamp){
+                    else if (disTimeStamp <= oneHoursTimeStamp) {
                         result = parseInt(disTimeStamp / 1000 / 60) + '分钟后';
                     }
                     //今天
-                    else if(nowDay === day){
+                    else if (nowDay === day) {
                         result = parseInt(disTimeStamp / 1000 / 60 / 60) + '小时后';
                     }
                     //明天
-                    else if(tomorrowDay === day){
+                    else if (tomorrowDay === day) {
                         result = '明天' + dateFormat(date, this.currentFormatTime);
-                    }
-                    else{
+                    } else {
                         result = dateFormat(date, this.format || this.defaultFormat);
                     }
                 }
@@ -133,7 +133,7 @@
 
         },
         watch: {
-            value(){
+            value() {
                 this.initFormat();
             }
         }

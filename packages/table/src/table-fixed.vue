@@ -1,39 +1,41 @@
 <template>
     <div :class="[
-            'cl-table-fixed',
-            fixed && `cl-table-fixed--${fixed}`
+            `${classPrefix}`,
+            fixed && `${classPrefix}--${fixed}`
          ]"
          :style="styleObj">
-        <div class="cl-table-fixed__content">
-            <div class="cl-table-fixed__head" ref="fixedHeader" v-show="showHeader">
+        <div :class="[`${classPrefix}__content`]">
+            <div :class="[`${classPrefix}__head`]" ref="fixedHeader" v-show="showHeader">
                 <table-head :fixed='fixed'
-                               :columns="headColumns"
-                               :colgroup-columns="bodyColumns"
-                               :data="data"
-                               :columns-width="columnsWidth"
-                               :head-style="headStyle"></table-head>
+                            :columns="headColumns"
+                            :colgroup-columns="bodyColumns"
+                            :data="data"
+                            :columns-width="columnsWidth"
+                            :head-style="headStyle"></table-head>
             </div>
-            <div class="cl-table-fixed__body" ref="fixedBody" :style="fixedBodyWrapStyle">
+            <div :class="[`${classPrefix}__body`]" ref="fixedBody" :style="fixedBodyWrapStyle">
                 <table-body :fixed='fixed'
-                               :columns="bodyColumns"
-                               :colgroup-columns="bodyColumns"
-                               :data="data"
-                               :columns-width="columnsWidth"
-                               :body-style="bodyStyle"></table-body>
+                            :columns="bodyColumns"
+                            :colgroup-columns="bodyColumns"
+                            :data="data"
+                            :columns-width="columnsWidth"
+                            :body-style="bodyStyle"></table-body>
             </div>
         </div>
 
 
-        <div class="cl-table-fixed__right-col" :style="fixedRightStyle" v-if="fixed === 'right' && $parent.showVerticalScrollBar"></div>
+        <div :class="[`${classPrefix}__right-col`]" :style="fixedRightStyle"
+             v-if="fixed === 'right' && $parent.showVerticalScrollBar"></div>
     </div>
 </template>
 
 <script>
+    import Config from 'main/config/config'
     import TableHead from './table-head.vue'
     import TableBody from './table-body.vue'
-    import { fixedIds} from "./util";
-    import { getScrollBarWidth} from "main/utils/global";
-    import { on, off} from "main/utils/dom";
+    import {fixedIds} from "./util";
+    import {getScrollBarWidth} from "main/utils/global";
+    import {on, off} from "main/utils/dom";
 
     export default {
         name: "TableFixed",
@@ -49,32 +51,33 @@
             bodyWrapStyle: Object,
             showHeader: Boolean
         },
-        data(){
+        data() {
             return {
+                classPrefix: Config.classPrefix + '-table-fixed',
                 headerHeight: 0,
             }
         },
         computed: {
-            styleObj(){
+            styleObj() {
                 let style = {};
                 let width = 0;
                 let fixedId = fixedIds(this.bodyColumns, this.fixed);
-                Object.keys(this.columnsWidth).forEach(key=>{
-                    if(fixedId.includes(key)){
+                Object.keys(this.columnsWidth).forEach(key => {
+                    if (fixedId.includes(key)) {
                         width += this.columnsWidth[key].width
                     }
                 });
                 style.width = width + 'px';
-                if(this.fixed === 'right' && this.$parent.showVerticalScrollBar){
+                if (this.fixed === 'right' && this.$parent.showVerticalScrollBar) {
                     style.right = this.$parent.scrollBarWidth + 'px';
                 }
                 return style;
             },
-            fixedBodyWrapStyle(){
+            fixedBodyWrapStyle() {
                 let style = {};
-                if(this.bodyWrapStyle && this.bodyWrapStyle.height) {
+                if (this.bodyWrapStyle && this.bodyWrapStyle.height) {
                     let height = 0;
-                    if(this.$parent.showHorizontalScrollBar){
+                    if (this.$parent.showHorizontalScrollBar) {
                         height = getScrollBarWidth();
                     }
                     style = {
@@ -83,7 +86,7 @@
                 }
                 return style
             },
-            fixedRightStyle(){
+            fixedRightStyle() {
                 return {
                     width: this.$parent.scrollBarWidth + 'px',
                     height: this.headerHeight - 1 + 'px',
@@ -99,23 +102,23 @@
             on(this.$refs.fixedBody, 'mousewheel', this.mouseScroll);
             on(this.$refs.fixedBody, 'DOMMouseScroll', this.mouseScroll);
         },
-        destroyed(){
+        destroyed() {
             off(this.$refs.fixedBody, 'mousewheel', this.mouseScroll);
             off(this.$refs.fixedBody, 'DOMMouseScroll', this.mouseScroll);
         },
         methods: {
-            mouseScroll(event){
+            mouseScroll(event) {
                 let deltaY = event.deltaY;
-                if(!deltaY && event.detail){
+                if (!deltaY && event.detail) {
                     deltaY = event.detail * 40;
                 }
-                if(!deltaY && event.wheelDeltaY){
+                if (!deltaY && event.wheelDeltaY) {
                     deltaY = -event.wheelDeltaY;
                 }
-                if(!deltaY && event.wheelDelta){
+                if (!deltaY && event.wheelDelta) {
                     deltaY = -event.wheelDelta;
                 }
-                if(!deltaY) return;
+                if (!deltaY) return;
                 const body = this.$parent.$refs.body;
                 const currentScrollTop = body.scrollTop;
                 if (deltaY < 0 && currentScrollTop !== 0) {
@@ -126,15 +129,14 @@
                 }
                 //body.scrollTop += deltaY;
                 let step = 0;
-                let timeId = setInterval(()=>{
+                let timeId = setInterval(() => {
                     step += 5;
-                    if(deltaY>0){
+                    if (deltaY > 0) {
                         body.scrollTop += 2;
-                    }
-                    else{
+                    } else {
                         body.scrollTop -= 2;
                     }
-                    if(step >= Math.abs(deltaY)){
+                    if (step >= Math.abs(deltaY)) {
                         clearInterval(timeId);
                     }
                 }, 5);
@@ -142,7 +144,7 @@
         },
         watch: {
             headColumns: {
-                handler(){
+                handler() {
                     this.headerHeight = this.$refs.fixedHeader && this.$refs.fixedHeader.offsetHeight;
                 },
                 deep: true,

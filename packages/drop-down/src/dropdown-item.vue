@@ -1,14 +1,15 @@
 <template>
     <div :class="[
-            'cl-dropdown-item',
+            `${classPrefix}`,
             disabled && 'is-disabled',
-            divided && 'cl-dropdown-item--divided',
+            divided && `${classPrefix}--divided`,
          ]" @click="handleClick">
         <slot></slot>
     </div>
 </template>
 
 <script>
+    import Config from 'main/config/config'
     import {findComponent} from "main/utils/tool";
 
     export default {
@@ -20,6 +21,7 @@
         },
         data(){
             return {
+                classPrefix: Config.classPrefix + '-dropdown-item',
                 dropDown: findComponent(this, 'Dropdown')
             }
         },

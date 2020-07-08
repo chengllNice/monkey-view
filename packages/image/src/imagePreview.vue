@@ -1,16 +1,16 @@
 <template>
     <transition name="fade">
         <div v-if="visible"
-             class="cl-image-preview">
-            <div class="cl-image-preview__wrap">
-                <div class="cl-image-preview__close" @click="handlerClose">
-                    <i class="cl-icon-close"></i>
+             :class="[`${classPrefix}`]">
+            <div :class="[`${classPrefix}__wrap`]">
+                <div :class="[`${classPrefix}__close`]" @click="handlerClose">
+                    <Icon type="icon-close"></Icon>
                 </div>
-                <i class="cl-image-preview__left cl-icon-left" @click="handleChange('left')"></i>
-                <i class="cl-image-preview__right cl-icon-right" @click="handleChange('right')"></i>
-                <div class="cl-image-preview__body">
+                <Icon type="icon-left" :class="[`${classPrefix}__left`]" @click="handleChange('left')"></Icon>
+                <Icon type="icon-right" :class="[`${classPrefix}__right`]" @click="handleChange('right')"></Icon>
+                <div :class="[`${classPrefix}__body`]">
                     <template v-for="(item, index) in list" >
-                        <img class="cl-image-preview__image"
+                        <img :class="[`${classPrefix}__image`]"
                              v-if="index === selectedIndex"
                              :style="imageStyle"
                              :key="index"
@@ -19,12 +19,12 @@
                              alt="">
                     </template>
                 </div>
-                <div class="cl-image-preview__footer">
-                    <i class="cl-icon-circle-plus" @click="handleAction('zoomIn')"></i>
-                    <i class="cl-icon-remove" @click="handleAction('zoomOut')"></i>
-                    <i class="cl-icon-look-up" @click="handleAction('toggle')"></i>
-                    <i class="cl-icon-refresh" @click="handleAction('rotateLeft')"></i>
-                    <i class="cl-icon-refresh" @click="handleAction('rotateRight')"></i>
+                <div :class="[`${classPrefix}__footer`]">
+                    <Icon type="icon-circle-plus" @click="handleAction('zoomIn')"></Icon>
+                    <Icon type="icon-remove" @click="handleAction('zoomOut')"></Icon>
+                    <Icon type="icon-look-up" @click="handleAction('toggle')"></Icon>
+                    <Icon type="icon-refresh" @click="handleAction('rotateLeft')"></Icon>
+                    <Icon type="icon-refresh" @click="handleAction('rotateRight')"></Icon>
                 </div>
             </div>
         </div>
@@ -32,6 +32,8 @@
 </template>
 
 <script>
+    import Config from 'main/config/config'
+    import Icon from 'packages/icon'
     import Locale from 'main/mixins/locale'
     import {on, off} from "main/utils/dom";
 
@@ -48,6 +50,7 @@
         },
         data() {
             return {
+                classPrefix: Config.classPrefix + '-image-preview',
                 visible: false,
                 selectedIndex: 0,
                 minScale: 0.1,//最小缩小
@@ -80,7 +83,7 @@
             }
         },
         components: {
-
+            Icon
         },
         created() {
         },

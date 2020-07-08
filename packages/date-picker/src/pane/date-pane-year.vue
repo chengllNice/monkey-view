@@ -1,16 +1,16 @@
 <template>
     <div :class="[
-            'cl-date-pane-year',
-            size && `cl-date-pane-year--${size}`
+            `${classPrefix}`,
+            size && `${classPrefix}--${size}`
          ]">
-        <div class="cl-date-pane-year__row" v-for="(row, rowIndex) in yearList" :key="rowIndex">
+        <div :class="[`${classPrefix}__row`]" v-for="(row, rowIndex) in yearList" :key="rowIndex">
             <span v-for="_year in row"
                   :key="_year.id"
                   :class="[
-                    'cl-date-pane-item__col',
-                    selectYear !== _year.id && 'cl-date-pane-item__hover',
-                    _year.id === currentDate.year && 'cl-date-pane-item__now',
-                    selectYear === _year.id && 'cl-date-pane-item__selected'
+                      `${classPrefixItem}_col`,
+                      selectYear !== _year.id && `${classPrefixItem}__hover`,
+                      _year.id === currentDate.year && `${classPrefixItem}__now`,
+                      selectYear === _year.id && `${classPrefixItem}__selected`
                   ]"
                   @click.stop="handleSelectYear(_year)">
             <em>{{_year.name}}</em>
@@ -21,6 +21,7 @@
 </template>
 
 <script>
+    import Config from 'main/config/config'
     import {dateFormat, yearListInit} from "main/utils/date";
 
     export default {
@@ -42,6 +43,8 @@
         },
         data() {
             return {
+                classPrefix: Config.classPrefix + '-date-pane-year',
+                classPrefixItem: Config.classPrefix + '-date-pane-item',
                 yearList: [],
             }
         },

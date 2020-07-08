@@ -1,14 +1,18 @@
 <template>
     <transition name="fade">
-        <div v-show="visible" class="cl-back-top" :style="backTopStyle" @click="backTopClick">
+        <div v-show="visible" :class="[`${classPrefix}`]" :style="backTopStyle" @click="backTopClick">
             <slot>
-                <div class="cl-back-top__inner"><i class="cl-icon-up"></i></div>
+                <div :class="[`${classPrefix}__inner`]">
+                    <Icon type="icon-up"></Icon>
+                </div>
             </slot>
         </div>
     </transition>
 </template>
 
 <script>
+    import Config from 'main/config/config'
+    import Icon from 'packages/icon'
     import {on, off, scrollTop} from "main/utils/dom";
 
     export default {
@@ -37,6 +41,7 @@
         },
         data() {
             return {
+                classPrefix: Config.classPrefix + '-back-top',
                 visible: false,
                 targetElement: null,//监听滚动的元素
             }
@@ -48,6 +53,9 @@
                     right: parseInt(this.right) + 'px',
                 }
             }
+        },
+        components: {
+            Icon
         },
         mounted() {
             this.$nextTick(()=>{

@@ -1,32 +1,32 @@
 <template>
-    <div class="cl-popover"
+    <div :class="[`${classPrefix}`]"
          @mouseenter="handlerMouseenter"
          @mouseleave="handlerMouseleave"
          v-click-outside="handleClose">
         <transition :name="transition">
-            <div class="cl-popover__popper"
+            <div :class="[`${classPrefix}__popper`]"
                  ref="popper"
                  @mouseenter="handlerMouseenter"
                  @mouseleave="handlerMouseleave"
                  v-show="visible">
-                <div class="cl-popover__content" :style="expandStyle">
-                    <div class="cl-popover__arrow"></div>
-                    <div class="cl-popover__inner cl-popover__confirm" v-if="confirm">
-                        <div class="cl-popover__title" v-if="showTitle">
-                            <slot name="title"><i class="cl-icon-question-fill"></i>{{title}}</slot>
+                <div :class="[`${classPrefix}__content`]" :style="expandStyle">
+                    <div :class="[`${classPrefix}__arrow`]"></div>
+                    <div :class="[`${classPrefix}__inner`, `${classPrefix}__confirm`]" v-if="confirm">
+                        <div :class="[`${classPrefix}__title`]" v-if="showTitle">
+                            <slot name="title"><Icon type="icon-question-fill"></Icon>{{title}}</slot>
                         </div>
-                        <div class="cl-popover__body">
-                            <cl-button size="mini" type="text" @click="cancelClick">{{localeCancelText}}</cl-button>
-                            <cl-button size="mini" type="primary" @click="okClick">{{localeOkText}}</cl-button>
+                        <div :class="[`${classPrefix}__body`]">
+                            <Button size="mini" type="text" @click="cancelClick">{{localeCancelText}}</Button>
+                            <Button size="mini" type="primary" @click="okClick">{{localeOkText}}</Button>
                         </div>
                     </div>
-                    <div class="cl-popover__inner" v-else>
-                        <div class="cl-popover__title" v-if="showTitle">
+                    <div :class="[`${classPrefix}__inner`]" v-else>
+                        <div :class="[`${classPrefix}__title`]" v-if="showTitle">
                             <slot name="title">{{title}}</slot>
                         </div>
                         <div :class="[
-                            `cl-popover__body`,
-                            wordWrap && `cl-popover__body-wrap`
+                            `${classPrefix}__body`,
+                            wordWrap && `${classPrefix}__body-wrap`
                         ]">
                             <div v-if="!$slots.content">{{content}}</div>
                             <slot name="content"></slot>
@@ -35,7 +35,7 @@
                 </div>
             </div>
         </transition>
-        <div class="cl-popover__target"
+        <div :class="[`${classPrefix}__target`]"
              @click="handlerClick"
              ref="reference">
             <slot></slot>
@@ -44,14 +44,17 @@
 </template>
 
 <script>
+    import Config from 'main/config/config'
     import Popper from 'main/mixins/popper'
     import {directive as clickOutside} from 'v-click-outside-x';
     import {on, off} from "main/utils/dom";
     import Locale from 'main/mixins/locale'
+    import Icon from 'packages/icon'
+    import Button from 'packages/button'
 
     export default {
         name: "Popover",
-        mixins: [Popper,Locale],
+        mixins: [Popper, Locale],
         directives: {clickOutside},
         props: {
             placement: {
@@ -92,6 +95,7 @@
         },
         data() {
             return {
+                classPrefix: Config.classPrefix + '-popover',
                 hoverTimer: null,//hover延时
                 isInput: false,
                 popperHover: false,
@@ -121,7 +125,10 @@
                 }
             },
         },
-        components: {},
+        components: {
+            Icon,
+            Button
+        },
         created() {
         },
         mounted() {

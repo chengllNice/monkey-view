@@ -1,17 +1,18 @@
 <template>
-    <label class="cl-checkbox" :class="[
-        size && `cl-checkbox--${size}`,
+    <label :class="[
+        `${classPrefix}`,
+        size && `${classPrefix}--${size}`,
         {
             'is-checked': isChecked,
             'is-indeterminate': !isChecked && indeterminate,
             'is-disabled': isDisabled,
         }
     ]">
-        <span class="cl-checkbox__input">
-            <span class="cl-checkbox__inner"></span>
+        <span :class="[`${classPrefix}__input`]">
+            <span :class="[`${classPrefix}__inner`]"></span>
             <input
                     hidden
-                    class="cl-checkbox__source"
+                    :class="[`${classPrefix}__source`]"
                     type="checkbox"
                     :true-value="trueValue"
                     :false-value="falseValue"
@@ -19,17 +20,18 @@
                     v-model="model"
                     :name="name"
                     :disabled="isDisabled"
-                    @change="handleChange"
-            >
+                    @change="handleChange">
         </span>
 
-        <span v-if="showLabel" class="cl-checkbox__label">
+        <span v-if="showLabel" :class="[`${classPrefix}__label`]">
             <slot>{{label}}</slot>
         </span>
     </label>
 </template>
 
 <script>
+    import Config from 'main/config/config'
+
     export default {
         name: "Checkbox",
         props: {
@@ -59,6 +61,7 @@
         },
         data() {
             return {
+                classPrefix: Config.classPrefix + '-checkbox',
                 model: false,
                 isChecked: false,
                 showLabel: true,

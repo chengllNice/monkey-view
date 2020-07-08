@@ -1,12 +1,12 @@
 <template>
     <div>
         <transition :name="transition[0]">
-            <div class="cl-modal__cover" v-if="coverShow" v-show="visible" @click="handlerCover"></div>
+            <div :class="[`${classPrefix}__cover`]" v-if="coverShow" v-show="visible" @click="handlerCover"></div>
         </transition>
-        <div class="cl-modal__wrap"
-             :class="[
-                !visible && 'cl-modal__hidden',
-                (bodyScroll || fullscreen) && 'cl-modal__overhidden'
+        <div :class="[
+                 `${classPrefix}__wrap`,
+                 !visible && `${classPrefix}__hidden`,
+                 (bodyScroll || fullscreen) && `${classPrefix}__overhidden`
              ]"
              ref="modalWrap"
              @click="handlerWrapClick">
@@ -15,30 +15,32 @@
                      ref="modal"
                      :style="modalStyle"
                      :class="[
-                        fullscreen && 'cl-modal__fullscreen',
-                     ]"
-                     class="cl-modal">
-                    <div class="cl-modal__content">
-                        <div class="cl-modal__close" v-if="closable" @click="handlerClose">
-                            <slot name="close"><i class="cl-icon-close"></i></slot>
+                         `${classPrefix}`,
+                         fullscreen && `${classPrefix}__fullscreen`
+                     ]">
+                    <div :class="[`${classPrefix}__content`]">
+                        <div :class="[`${classPrefix}__close`]" v-if="closable" @click="handlerClose">
+                            <slot name="close"><Icon type="icon-close"></Icon></slot>
                         </div>
-                        <div class="cl-modal__header" ref="modalHeader" v-if="showHead">
+                        <div :class="[`${classPrefix}__header`]" ref="modalHeader" v-if="showHead">
                             <slot name="header">{{title}}</slot>
                         </div>
-                        <div class="cl-modal__body" :style="bodyStyle">
-                            <cl-scroll size="small">
-                                <div class="cl-modal__body-content">
+                        <div :class="[`${classPrefix}__body`]" :style="bodyStyle">
+                            <scroll size="small">
+                                <div :class="[`${classPrefix}__body-content`]">
                                     <slot></slot>
                                 </div>
-                            </cl-scroll>
+                            </scroll>
                         </div>
-                        <div class="cl-modal__footer" ref="modalFooter" v-if="!footerHide">
+                        <div :class="[`${classPrefix}__footer`]" ref="modalFooter" v-if="!footerHide">
                             <slot name="footer">
-                                <cl-button @click="handlerButtonCancel" v-if="localCancelText">{{localCancelText}}
-                                </cl-button>
-                                <cl-button type="primary" :loading='okButtonLoading' @click="handlerButtonOk"
-                                          v-if="localOkText">{{localOkText}}
-                                </cl-button>
+                                <Button @click="handlerButtonCancel" v-if="localCancelText">{{localCancelText}}</Button>
+                                <Button type="primary"
+                                        :loading='okButtonLoading'
+                                        @click="handlerButtonOk"
+                                        v-if="localOkText">
+                                    {{localOkText}}
+                                </Button>
                             </slot>
                         </div>
                     </div>
@@ -49,8 +51,10 @@
 </template>
 
 <script>
-    import ClButton from '../../button/src/button.vue'
-    import ClScroll from '../../scroll/src/scroll.vue'
+    import Config from 'main/config/config'
+    import Button from 'packages/button'
+    import Scroll from 'packages/scroll'
+    import Icon from 'packages/icon'
     import elementResizeDetectorMaker from 'element-resize-detector';
     import Locale from 'main/mixins/locale'
 
@@ -105,6 +109,7 @@
         },
         data() {
             return {
+                classPrefix: Config.classPrefix + '-modal',
                 visible: this.value,
                 showHead: true,
                 okButtonLoading: false,
@@ -133,8 +138,9 @@
             },
         },
         components: {
-            ClButton,
-            ClScroll
+            Button,
+            Scroll,
+            Icon
         },
         created() {
         },
@@ -219,7 +225,7 @@
             },
             handlerWrapClick(event) {
                 const className = event.target.getAttribute('class');
-                className && (className.indexOf('cl-modal__wrap') > -1) && (this.handlerCover());
+                className && (className.indexOf(`${this.classPrefix}__wrap`) > -1) && (this.handlerCover());
             },
             handlerCover() {
                 if (this.coverClosable) {

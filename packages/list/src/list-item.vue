@@ -1,27 +1,35 @@
 <template>
     <div :class="[
-        'cl-list-item',
-        parentListComponent.size && `cl-list-item--${parentListComponent.size}`,
-        parentListComponent.split && `cl-list-item--split`,
-        parentListComponent.hover && `cl-list-item--hover`,
-        currentType === 'meta' && `cl-list-item--meta`,
-        parentListRowComponent && `cl-list-item--row`,
-    ]"
+            `${classPrefix}`,
+            parentListComponent.size && `${classPrefix}--${parentListComponent.size}`,
+            parentListComponent.split && `${classPrefix}--split`,
+            parentListComponent.hover && `${classPrefix}--hover`,
+            currentType === 'meta' && `${classPrefix}--meta`,
+            parentListRowComponent && `${classPrefix}--row`,
+        ]"
          :style="itemStyle" @click="clickHandle">
-        <div class="cl-list-item__row" v-if="parentListRowComponent">
-            <div class="cl-list-item__label" :style="labelStyle"><slot name="label">{{label}}</slot></div>
-            <div class="cl-list-item__value"><slot name="value">{{value}}</slot></div>
+        <div :class="[`${classPrefix}__row`]" v-if="parentListRowComponent">
+            <div :class="[`${classPrefix}__label`]" :style="labelStyle">
+                <slot name="label">{{label}}</slot>
+            </div>
+            <div :class="[`${classPrefix}__value`]">
+                <slot name="value">{{value}}</slot>
+            </div>
         </div>
         <template v-if="currentType === 'meta'">
-            <div class="cl-list-item__avatar" v-if="avatar || $slots.avatar">
+            <div :class="[`${classPrefix}__avatar`]" v-if="avatar || $slots.avatar">
                 <slot name="avatar"><img :src="avatar" alt=""></slot>
             </div>
-            <div class="cl-list-item__content">
-                <div class="cl-list-item__title" v-if="title || $slots.title"><slot name="title">{{title}}</slot></div>
-                <div class="cl-list-item__description" v-if="description || $slots.description"><slot name="description">{{description}}</slot></div>
+            <div :class="[`${classPrefix}__content`]">
+                <div :class="[`${classPrefix}__title`]" v-if="title || $slots.title">
+                    <slot name="title">{{title}}</slot>
+                </div>
+                <div :class="[`${classPrefix}__description`]" v-if="description || $slots.description">
+                    <slot name="description">{{description}}</slot>
+                </div>
                 <slot></slot>
             </div>
-            <div class="cl-list-item__extra" v-if="$slots.extra">
+            <div :class="[`${classPrefix}__extra`]" v-if="$slots.extra">
                 <slot name="extra"></slot>
             </div>
         </template>
@@ -30,8 +38,10 @@
 </template>
 
 <script>
+    import Config from 'main/config/config'
     import {findComponent, findComponentDirect} from "main/utils/tool";
     import Emitter from 'main/mixins/emitter'
+
     export default {
         name: "ListItem",
         mixins: [Emitter],
@@ -48,19 +58,20 @@
         },
         data() {
             return {
+                classPrefix: Config.classPrefix + '-list-item',
                 componentName: 'ListItem',
                 parentListComponent: findComponent(this, 'List'),
                 parentListRowComponent: findComponentDirect(this, 'ListRow'),
             }
         },
         computed: {
-            currentType(){
-                if(this.parentListRowComponent) return '';
+            currentType() {
+                if (this.parentListRowComponent) return '';
                 return this.type ? this.type : this.parentListComponent.type;
             },
-            itemStyle(){
+            itemStyle() {
                 let style = {};
-                if(this.parentListRowComponent){
+                if (this.parentListRowComponent) {
                     style = {
                         width: this.parentListComponent.itemWidth
                     };
@@ -74,27 +85,25 @@
                 }
                 return style
             },
-            labelStyle(){
+            labelStyle() {
 
                 return {
                     width: parseFloat(this.parentListComponent.labelWidth) + 'px'
                 }
             },
         },
-        components: {
-
-        },
+        components: {},
         created() {
         },
         mounted() {
-            this.$nextTick(()=>{
-                if(this.parentListRowComponent){
+            this.$nextTick(() => {
+                if (this.parentListRowComponent) {
                     this.parentEmit('ListRow', 'on-update-item-len');
                 }
             })
         },
         methods: {
-            clickHandle(){
+            clickHandle() {
                 this.$emit('click')
             }
         }

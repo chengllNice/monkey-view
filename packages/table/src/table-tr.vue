@@ -1,8 +1,8 @@
 <template>
     <tr :class="[
-            'cl-table-row',
-            row.__isHover && 'cl-table-row--hover',
-            row.__isStripe && `cl-table-row--stripe-${row.__index % 2}`,
+            `${classPrefix}`,
+            row.__isHover && `${classPrefix}--hover`,
+            row.__isStripe && `${classPrefix}--stripe-${row.__index % 2}`,
             className,
         ]">
         <slot></slot>
@@ -10,6 +10,8 @@
 </template>
 
 <script>
+    import Config from 'main/config/config'
+
     export default {
         name: "TableTr",
         inject: ['tableRoot'],
@@ -26,11 +28,13 @@
             }
         },
         data() {
-            return {}
+            return {
+                classPrefix: Config.classPrefix + '-table-row',
+            }
         },
         computed: {
-            className(){
-                if(this.type === 'body'){
+            className() {
+                if (this.type === 'body') {
                     return this.tableRoot.getRowClassName(this.row, this.row.__index);
                 }
                 return ''

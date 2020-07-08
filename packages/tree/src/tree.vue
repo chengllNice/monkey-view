@@ -1,11 +1,12 @@
 <template>
-    <div class="cl-tree">
+    <div :class="[`${classPrefix}`]">
         <tree-node v-show="!filterLoading" :data="currentData"></tree-node>
-        <div class="cl-tree__empty" v-if="isEmpty">{{localEmptyText}}</div>
+        <div :class="[`${classPrefix}__empty`]" v-if="isEmpty">{{localEmptyText}}</div>
     </div>
 </template>
 
 <script>
+    import Config from 'main/config/config'
     import TreeNode from './tree-node'
     import Locale from 'main/mixins/locale'
     import Mixins from './mixins'
@@ -13,10 +14,10 @@
     export default {
         name: "Tree",
         mixins: [Locale, Mixins],
-        provide(){
-          return {
-              treeRoot: this
-          }
+        provide() {
+            return {
+                treeRoot: this
+            }
         },
         props: {
             data: {
@@ -33,7 +34,7 @@
             //过滤node节点执行的方法 暂时不用
             filterNodeMethods: {
                 type: Function,
-                default(){
+                default() {
                     return function () {
                         return true
                     }
@@ -46,12 +47,12 @@
             //自定义展开收起图标
             expandIconClass: {
                 type: String,
-                default: 'cl-icon-right'
+                default: 'icon-right'
             },
             //自定义加载中的图标
             loadingIconClass: {
                 type: String,
-                default: 'cl-rotate cl-icon-loading'
+                default: 'icon-loading'
             },
             //异步加载数据的方法，参数为当前选择项，返回Promise
             loadData: {
@@ -83,6 +84,7 @@
         },
         data() {
             return {
+                classPrefix: Config.classPrefix + '-tree',
                 componentName: 'Tree',
                 renderType: 'normal',
                 filterLoading: false,//搜索中
@@ -92,9 +94,9 @@
             localEmptyText() {
                 return this.emptyText ? this.emptyText : this.t('cl.tree.emptyData');
             },
-            isEmpty(){
-                if(this.currentData && this.currentData.length){
-                    let visibleData = this.currentData.filter(item=>{
+            isEmpty() {
+                if (this.currentData && this.currentData.length) {
+                    let visibleData = this.currentData.filter(item => {
                         return !!item.__visible
                     });
                     return !visibleData.length;
@@ -123,51 +125,51 @@
                 }
             },
 
-            getExpandNodes(){
+            getExpandNodes() {
                 return this.getDataByPropValue('__expand', true).data;
             },
-            getCheckedNodes(){
+            getCheckedNodes() {
                 return this.getDataByPropValue('__checked', true).data;
             },
-            getSelectedNodes(){
+            getSelectedNodes() {
                 return this.getDataByPropValue('__selected', true).data;
             },
-            
-            filterNodes(value){
+
+            filterNodes(value) {
                 this.filterLoading = true;
 
-                if(!value.trim()){
-                    this.reduceData.forEach(item=>{
+                if (!value.trim()) {
+                    this.reduceData.forEach(item => {
                         item.__visible = true;
                         item.__expand = true;
                     });
-                }else {
-                    this.reduceData.forEach(item=>{
+                } else {
+                    this.reduceData.forEach(item => {
                         item.__visible = false;
                         item.__expand = false;
                     });
                     let data = this.getDataByfilterValue(value);
-                    data.forEach(item=>{
+                    data.forEach(item => {
                         this.setReduceDataProp(item, '__visible', true);
                         this.setReduceDataProp(item, '__expand', true);
                     });
                 }
 
-                this.$nextTick(()=>{
+                this.$nextTick(() => {
                     this.filterLoading = false;
                 });
             },
 
             //提供给上层调用的
-            getData(){
+            getData() {
                 return JSON.parse(JSON.stringify(this.reduceData));
             },
 
-            expandChange(item){
+            expandChange(item) {
                 let expandData = this.getExpandNodes();
                 this.$emit('expand-change', expandData, item);
             },
-            checkChange(item){
+            checkChange(item) {
                 let checkedData = this.getCheckedNodes();
                 this.$emit('check-change', checkedData, item);
             }

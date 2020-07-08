@@ -1,27 +1,32 @@
 <template>
     <transition name="fade">
-        <div class=""
-             :class="[
-                'cl-loading',
-                size && `cl-loading--${size}`,
-                (fix || fullscreen) && `cl-loading--fix`,
-                fullscreen && `cl-loading--fullscreen`,
+        <div :class="[
+                `${classPrefix}`,
+                size && `${classPrefix}--${size}`,
+                (fix || fullscreen) && `${classPrefix}--fix`,
+                fullscreen && `${classPrefix}--fullscreen`,
              ]"
              v-if="showLoading">
-            <div class="cl-loading__content">
+            <div :class="[`${classPrefix}__content`]">
                 <slot>
-                    <i v-if="type === 'loading1'" class="cl-icon-loading cl-rotate cl-loading__icon-font"></i>
-                    <loading-svg :color="color" :type="type" :size="size" class="cl-loading__icon-svg" v-else-if="showLoadingSvg"></loading-svg>
-                    <div v-else class="cl-loading__icon"></div>
+                    <Icon v-if="type === 'loading1'" type="icon-loading" :class="[`${prefix}-rotate`, `${classPrefix}__icon-font`]"></Icon>
+                    <loading-svg :color="color" :type="type" :size="size" :class="[`${classPrefix}__icon-svg`]"
+                                 v-else-if="showLoadingSvg"></loading-svg>
+                    <div v-else :class="[`${classPrefix}__icon`]"></div>
                 </slot>
-                <div class="cl-loading__text" v-if="text || $slots.text"><slot name="text">{{text}}</slot></div>
+                <div :class="[`${classPrefix}__text`]" v-if="text || $slots.text">
+                    <slot name="text">{{text}}</slot>
+                </div>
             </div>
         </div>
     </transition>
 </template>
 
 <script>
+    import Config from 'main/config/config'
     import LoadingSvg from './loading-svg'
+    import Icon from 'packages/icon'
+
     export default {
         name: "Loading",
         props: {
@@ -41,7 +46,7 @@
             size: {
                 type: String,
                 default: 'default',
-                validator(value){
+                validator(value) {
                     return ['mini', 'small', 'default', 'large'].includes(value)
                 }
             },
@@ -54,29 +59,32 @@
                 default: false,
             },//覆盖整个屏幕
         },
-        data(){
+        data() {
             return {
+                prefix: Config.classPrefix,
+                classPrefix: Config.classPrefix + '-loading',
                 showLoading: this.visible
             }
         },
         computed: {
-            showLoadingSvg(){
+            showLoadingSvg() {
                 return ['loading2', 'loading3', 'loading4', 'loading5'].includes(this.type)
             }
         },
         components: {
-            LoadingSvg
+            LoadingSvg,
+            Icon
         },
         methods: {
-            show(){
+            show() {
                 this.showLoading = true;
             },
-            close(){
+            close() {
                 this.showLoading = false;
             }
         },
         watch: {
-            visible(newVal){
+            visible(newVal) {
                 this.showLoading = newVal;
             }
         }

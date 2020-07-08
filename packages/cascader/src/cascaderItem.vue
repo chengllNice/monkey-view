@@ -1,28 +1,28 @@
 <template>
-    <div class="cl-cascader-item">
-        <div class="cl-cascader-item__label">
-            <cl-scroll size="small" :scrollOption="{scrollPanel:{scrollingX:false}}">
+    <div :class="[`${classPrefix}`]">
+        <div :class="[`${classPrefix}__label`]">
+            <scroll size="small" :scrollOption="{scrollPanel:{scrollingX:false}}">
                 <template v-for="item in data">
                     <div :class="[
-                            'cl-cascader-item__label-inner',
-                            (item.__selected || item.__visible) && 'cl-cascader-item__selected',
-                            item.__disabled && 'cl-cascader-item__disabled',
+                            `${classPrefix}__label-inner`,
+                            (item.__selected || item.__visible) && `${classPrefix}__selected`,
+                            item.__disabled && `${classPrefix}__disabled`,
                         ]"
                          @click="handleClick(item)"
                          @mouseover="handleMouseover(item)"
                          :key="item.value">
                         <span v-if="showPathLabel" v-html="computedLable(item)"></span>
                         <span v-else>{{parentComponent.formatLabel(item)}}</span>
-                        <span class="cl-cascader-item__label-expand-icon" v-if="item.__loading">
-                            <i class="cl-rotate cl-icon-loading"></i>
+                        <span :class="[`${classPrefix}__label-expand-icon`]" v-if="item.__loading">
+                            <Icon type="icon-loading" :class="[`${prefix}-rotate`]"></Icon>
                         </span>
-                        <i class="cl-cascader-item__label-expand-icon cl-icon-right" v-else-if="item.__more"></i>
+                        <Icon type="icon-right" :class="[`${classPrefix}__label-expand-icon`]" v-else-if="item.__more"></Icon>
                     </div>
                 </template>
-            </cl-scroll>
+            </scroll>
         </div>
 
-        <div class="cl-cascader-item__expand">
+        <div :class="[`${classPrefix}__expand`]">
             <template v-for="item in data">
                 <cascader-item v-if="item.children && item.children.length && item.__visible"
                                    :key="item.value"
@@ -33,7 +33,9 @@
 </template>
 
 <script>
-    import ClScroll from '../../scroll/src/scroll.vue'
+    import Config from 'main/config/config'
+    import Scroll from 'packages/scroll'
+    import Icon from 'packages/icon'
     import {findComponent} from "main/utils/tool";
 
     export default {
@@ -55,7 +57,7 @@
                 return function (item) {
                     if(!this.isCascader) return ;
                     let searchValue = this.parentComponent.inputValue;
-                    let replaceValue = `<span class="cl-cascader-item__label-match">${searchValue}</span>`
+                    let replaceValue = `<span class="${this.classPrefix}__label-match">${searchValue}</span>`
                     return item.__pathLabel.replace(searchValue, replaceValue);
                 }
             }
@@ -64,6 +66,8 @@
             let cascader = findComponent(this, 'Cascader');
             let cascaderPanel = findComponent(this, 'CascaderPanel');
             return {
+                prefix: Config.classPrefix,
+                classPrefix: Config.classPrefix + '-cascader-item',
                 visible: false,
                 currentValue: '',
                 isCascader: !!cascader,
@@ -71,7 +75,8 @@
             }
         },
         components: {
-            ClScroll
+            Scroll,
+            Icon
         },
         mounted() {
         },

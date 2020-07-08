@@ -1,13 +1,13 @@
 <template>
     <div :class="[
-            'cl-date-picker',
-            size && `cl-date-picker--${size}`,
+            `${classPrefix}`,
+            size && `${classPrefix}--${size}`,
             className,
          ]"
          v-click-outside.capture="handleClickOutside">
-        <div class="cl-date-picker__reference" ref="reference">
+        <div :class="[`${classPrefix}__reference`]" ref="reference">
             <slot>
-                <cl-input v-model="dateInputValue"
+                <sn-input v-model="dateInputValue"
                           ref="dateInput"
                           :suffix="suffix"
                           :size="size"
@@ -18,7 +18,7 @@
                           @enter="handleEnter"
                           @click.native="handleFocus"
                           @blur="handleBlur"
-                          @clear="handleClear"></cl-input>
+                          @clear="handleClear"></sn-input>
             </slot>
         </div>
         <transition :name="transition">
@@ -31,15 +31,15 @@
                       :dropdownMatchSelectWidth="false"
                       :render-html="renderHtml"
                       v-model="visible">
-                <div class="cl-date-picker__drop-down-inner">
+                <div :class="[`${classPrefix}__drop-down-inner`]">
                     <date-pane picker-type='date'
-                                  :size="size"
-                                  :multiple="multiple"
-                                  :format="formatType"
-                                  v-model="dateValue"
-                                  :shortcuts="shortcuts"
-                                  :is-range="isRange"
-                                  :type="type"/>
+                               :size="size"
+                               :multiple="multiple"
+                               :format="formatType"
+                               v-model="dateValue"
+                               :shortcuts="shortcuts"
+                               :is-range="isRange"
+                               :type="type"/>
                 </div>
             </DropDown>
         </transition>
@@ -47,6 +47,8 @@
 </template>
 
 <script>
+    import Config from 'main/config/config'
+    import Input from 'packages/input'
     import {directive as clickOutside} from 'v-click-outside-x';
     import DropDown from '../../../select/src/drop-down.vue'
     import DatePane from '../pane/date-pane.vue'
@@ -82,7 +84,7 @@
             clearable: Boolean,
             suffix: {
                 type: String,
-                default: 'cl-icon-date'
+                default: 'icon-date'
             },
             transition: {
                 type: String,
@@ -120,6 +122,7 @@
         },
         data() {
             return {
+                classPrefix: Config.classPrefix + '-date-picker',
                 dateValue: [],
                 dateInputValue: '',
                 visible: false,
@@ -166,7 +169,8 @@
         },
         components: {
             DropDown,
-            DatePane
+            DatePane,
+            'sn-input': Input
         },
         mounted() {
             this.initDateValue();

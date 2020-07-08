@@ -1,19 +1,28 @@
 <template>
-    <div class="cl-tag"
-         :class="[
-            size && 'cl-tag--' + size,
-            noCustomColor && 'cl-tag--color-' + color,
-            ghost && 'cl-tag--ghost',
-            isChecked && 'is-checked'
+    <div :class="[
+             `${classPrefix}`,
+             size && `${classPrefix}--${size}`,
+             noCustomColor && `${classPrefix}--color-${color}`,
+             ghost && `${classPrefix}--ghost`,
+             isChecked && 'is-checked'
         ]"
          :style="customStyle"
          @click.stop="handlerClick">
-        <span class="cl-tag__text"><slot></slot></span>
-        <i v-if="closable" :class="iconClass" :style="iconStyle" @click.stop="handlerClose"></i>
+        <span :class="[`${classPrefix}__text`]"><slot></slot></span>
+        <Icon v-if="closable"
+              :type="iconType"
+              :class="[
+                  `${classPrefix}__icon`
+              ]"
+              :style="iconStyle"
+              @click.stop="handlerClose"></Icon>
     </div>
 </template>
 
 <script>
+    import Config from 'main/config/config'
+    import Icon from 'packages/icon'
+
     export default {
         name: "Tag",
         props: {
@@ -38,16 +47,14 @@
         },
         data() {
             return {
+                classPrefix: Config.classPrefix + '-tag',
                 isHover: false,
                 isChecked: this.checked,
             }
         },
         computed: {
-            iconClass() {
-                return [
-                    'cl-tag__icon',
-                    this.isHover ? 'cl-icon-remove-fill' : 'cl-icon-close',
-                ]
+            iconType() {
+                return this.isHover ? 'icon-remove-fill' : 'icon-close'
             },
             noCustomColor() {
                 return ['primary', 'success', 'danger', 'warning', 'info', 'default', 'primary-o', 'success-o', 'danger-o', 'warning-o', 'info-o', 'default-o'].includes(this.color)
@@ -79,7 +86,9 @@
                 };
             }
         },
-        components: {},
+        components: {
+            Icon
+        },
         created() {
         },
         mounted() {

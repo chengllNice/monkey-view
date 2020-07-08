@@ -1,5 +1,5 @@
 <template>
-    <div class="cl-checkbox-group">
+    <div :class="[`${classPrefix}`]">
         <template v-if="$slots.default"><slot></slot></template>
         <Checkbox v-else-if="options && options.length"
                     v-for="item in options"
@@ -12,6 +12,7 @@
 </template>
 
 <script>
+    import Config from 'main/config/config'
     import Checkbox from './checkbox.vue'
 
     export default {
@@ -30,6 +31,7 @@
         },
         data() {
             return {
+                classPrefix: Config.classPrefix + '-checkbox-group',
                 componentName: 'CheckboxGroup',
             }
         },

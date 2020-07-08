@@ -1,23 +1,23 @@
 <template>
     <transition :name="transition">
-        <div class="cl-alter"
-             v-if="!closed"
+        <div v-if="!closed"
              :class="[
-                type && `cl-alter--${type}`,
-                isDescription && `cl-alter--with-des`,
-                showIcon && `cl-alter--with-icon`,
-                theme && `cl-alter--${theme}`
+                 `${classPrefix}`,
+                 type && `${classPrefix}--${type}`,
+                 isDescription && `${classPrefix}--with-des`,
+                 showIcon && `${classPrefix}--with-icon`,
+                 theme && `${classPrefix}--${theme}`
              ]">
-            <span class="cl-alter__icon" v-if="showIcon">
+            <span :class="[`${classPrefix}__icon`]" v-if="showIcon">
                 <slot name="icon">
-                    <i :class="iconClass"></i>
+                    <Icon :type="iconType"></Icon>
                 </slot>
             </span>
-            <span class="cl-alter__message"><slot></slot></span>
-            <span class="cl-alter__description"><slot name="description"></slot></span>
-            <span class="cl-alter__close" v-if="closable" @click="handlerClose">
+            <span :class="[`${classPrefix}__message`]"><slot></slot></span>
+            <span :class="[`${classPrefix}__description`]"><slot name="description"></slot></span>
+            <span :class="[`${classPrefix}__close`]" v-if="closable" @click="handlerClose">
                 <slot name="close">
-                    <i class="cl-icon-close"></i>
+                    <Icon type="icon-close"></Icon>
                 </slot>
             </span>
         </div>
@@ -25,68 +25,74 @@
 </template>
 
 <script>
-  export default {
-    name: "Alter",
-    props: {
-      type: {
-        type: String,
-        default: 'info',
-        validator (value) {
-          return ['success', 'info', 'warning', 'error'].includes(value);
+    import Config from 'main/config/config'
+    import Icon from 'packages/icon'
+
+    export default {
+        name: "Alter",
+        props: {
+            type: {
+                type: String,
+                default: 'info',
+                validator(value) {
+                    return ['success', 'info', 'warning', 'error'].includes(value);
+                },
+            },
+            transition: {
+                type: String,
+                default: 'AlterFade'
+            },
+            showIcon: Boolean,
+            closable: Boolean,
+            theme: {
+                type: String,
+                default: 'light',
+                validator(value) {
+                    return ['light', 'dark'].includes(value)
+                }
+            }
         },
-      },
-      transition: {
-        type: String,
-        default: 'AlterFade'
-      },
-      showIcon: Boolean,
-      closable: Boolean,
-      theme: {
-        type: String,
-        default: 'light',
-        validator(value){
-          return ['light', 'dark'].includes(value)
+        data() {
+            return {
+                classPrefix: Config.classPrefix + '-alter',
+                closed: false,
+            }
+        },
+        computed: {
+            isDescription() {
+                return this.$slots.description
+            },
+            iconType() {
+                let icon = '';
+                switch (this.type) {
+                    case 'success':
+                        icon = this.isDescription ? 'icon-success' : 'icon-success-fill';
+                        break;
+                    case 'error':
+                        icon = this.isDescription ? 'icon-error' : 'icon-error-fill';
+                        break;
+                    case 'warning':
+                        icon = this.isDescription ? 'icon-warning' : 'icon-warning-fill';
+                        break;
+                    default:
+                        icon = this.isDescription ? 'icon-info' : 'icon-info-fill';
+                        break;
+                }
+                return icon
+            }
+        },
+        components: {
+            Icon
+        },
+        created() {
+        },
+        mounted() {
+        },
+        methods: {
+            handlerClose() {
+                this.closed = true;
+                this.$emit('close')
+            }
         }
-      }
-    },
-    data() {
-      return {
-        closed: false,
-      }
-    },
-    computed: {
-      isDescription(){
-        return this.$slots.description
-      },
-      iconClass(){
-        let icon = '';
-        switch (this.type) {
-          case 'success':
-            icon = this.isDescription ? 'cl-icon-success' : 'cl-icon-success-fill';
-            break;
-          case 'error':
-            icon = this.isDescription ? 'cl-icon-error' : 'cl-icon-error-fill';
-            break;
-          case 'warning':
-            icon = this.isDescription ? 'cl-icon-warning' : 'cl-icon-warning-fill';
-            break;
-          default:
-            icon = this.isDescription ? 'cl-icon-info' : 'cl-icon-info-fill';
-            break;
-        }
-        return icon
-      }
-    },
-    components: {},
-    created() {
-    },
-    mounted() {
-    },
-    methods: {
-      handlerClose(){
-        this.closed = true;
-        this.$emit('close')
-      }
     }
-  }
 </script>

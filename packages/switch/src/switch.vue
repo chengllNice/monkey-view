@@ -1,18 +1,18 @@
 <template>
     <span tabindex="0"
-          class="cl-switch"
           :class="[
-            size && `cl-switch--${size}`,
-            {
-                'is-checked': currentValue === trueValue,
-                'is-disabled': isDisabled,
-                'is-loading': loading
-            }
+              `${classPrefix}`,
+              size && `${classPrefix}--${size}`,
+              {
+                 'is-checked': currentValue === trueValue,
+                 'is-disabled': isDisabled,
+                 'is-loading': loading
+              }
           ]"
           :style="expandStyle"
           @click.stop="handlerClick">
         <input type="hidden" :name="name" v-model="currentValue">
-        <span class="cl-switch__inner">
+        <span :class="[`${classPrefix}__inner`]">
             <slot name="open" class="" v-if="currentValue === trueValue"></slot>
             <slot name="close" class="" v-if="currentValue === falseValue"></slot>
         </span>
@@ -20,6 +20,8 @@
 </template>
 
 <script>
+    import Config from 'main/config/config'
+
     export default {
         name: "Switch",
         props: {
@@ -51,6 +53,7 @@
         },
         data() {
             return {
+                classPrefix: Config.classPrefix + '-switch',
                 currentValue: false
             }
         },

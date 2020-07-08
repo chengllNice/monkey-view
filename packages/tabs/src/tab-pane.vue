@@ -1,5 +1,5 @@
 <template>
-    <div class="cl-tab-pane" :style="tabPaneStyle">
+    <div :class="[`${classPrefix}`]" :style="tabPaneStyle">
         <div v-show="false">
             <slot name="label"></slot>
         </div>
@@ -8,8 +8,10 @@
 </template>
 
 <script>
+    import Config from 'main/config/config'
     import {findComponent} from "main/utils/tool";
     import Emitter from 'main/mixins/emitter'
+
     export default {
         name: "TabPane",
         mixins: [Emitter],
@@ -27,6 +29,7 @@
         },
         data() {
             return {
+                classPrefix: Config.classPrefix + '-tab-pane',
                 componentName: 'TabPane',
                 parentTabsComponent: findComponent(this, 'Tabs')
             }
@@ -39,17 +42,17 @@
                 }
                 return label;
             },
-            tabPaneIndex(){
-                let currentPane = this.parentTabsComponent.labelList.filter(item=>{
+            tabPaneIndex() {
+                let currentPane = this.parentTabsComponent.labelList.filter(item => {
                     return item.cKey === this.cKey
                 });
                 let index = -1;
-                if(currentPane && currentPane.length){
+                if (currentPane && currentPane.length) {
                     index = currentPane[0].index;
                 }
                 return index
             },
-            tabPaneStyle(){
+            tabPaneStyle() {
                 return {
                     visibility: this.tabPaneIndex === this.parentTabsComponent.activeTabIndex ? 'visible' : 'hidden',
                     order: this.tabPaneIndex
@@ -63,13 +66,13 @@
             this.triggerUpdate();
         },
         methods: {
-            triggerUpdate(){
-                this.$nextTick(()=>{
+            triggerUpdate() {
+                this.$nextTick(() => {
                     this.parentEmit('Tabs', 'on-update-label-list');
                 })
             }
         },
-        beforeDestroy(){
+        beforeDestroy() {
             this.triggerUpdate();
         }
     }
