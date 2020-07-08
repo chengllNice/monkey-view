@@ -35,7 +35,7 @@
     const isObjectFit = document.documentElement.style.objectFit !== undefined;
 
     export default {
-        name: "Image",
+        name: `${Config.componentPrefix}Image`,
         mixins: [Locale],
         props: {
             fit: {

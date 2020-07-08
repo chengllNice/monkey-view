@@ -9,7 +9,7 @@
   }
 }
 
-@mixin e($element, $root: true){
+@mixin e($element, $root: true, $self: false){
   $selector: &;
   $currentSeletor: '';
   @each $key in $element {
@@ -29,7 +29,7 @@
   }
 }
 
-@mixin m($element, $root: true){
+@mixin m($element, $root: true, $self: false){
   $selector: &;
   $currentSeletor: '';
   @each $key in $element {

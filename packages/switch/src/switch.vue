@@ -23,7 +23,7 @@
     import Config from 'main/config/config'
 
     export default {
-        name: "Switch",
+        name: `${Config.componentPrefix}Switch`,
         props: {
             value: {
                 type: [String, Number, Boolean],

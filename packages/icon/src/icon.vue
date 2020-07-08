@@ -1,5 +1,5 @@
 <template>
-    <i :class="[`${classPrefix}-${type}`, `${customIcon}`]"></i>
+    <i :class="iconClass"></i>
 </template>
 
 <script>
@@ -13,6 +13,16 @@
         data(){
             return {
                 classPrefix: Config.classPrefix,
+            }
+        },
+        computed: {
+            iconClass(){
+                let isPrefix = this.type.indexOf(this.classPrefix) === 0;
+                return [
+                    this.customIcon && `${this.customIcon}`,
+                    isPrefix && `${this.type}`,
+                    !isPrefix && `${this.classPrefix}-${this.type}`,
+                ]
             }
         }
     }

@@ -113,8 +113,8 @@ const components = {
 };
 
 const ClComponents = {
-    Switch,
-    Image,
+    [`${Config.componentPrefix}Switch`]: Switch,
+    [`${Config.componentPrefix}Image`]: Image,
 };
 
 const install = (Vue, opts = {}) => {
@@ -125,10 +125,10 @@ const install = (Vue, opts = {}) => {
 
     Object.keys(components).forEach(key => {
         Vue.component(key, components[key]);
-        Vue.component(`${Config.name}${key}`, components[key]);
+        Vue.component(`${Config.componentPrefix}${key}`, components[key]);
     });
     Object.keys(ClComponents).forEach(key => {
-        Vue.component(`${Config.name}${key}`, components[key]);
+        Vue.component(key, ClComponents[key]);
     });
 
     directive(Vue);
