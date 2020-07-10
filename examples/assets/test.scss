@@ -1,0 +1,75 @@
+
+@mixin c($name){
+  $C: 'cl-' + $name !global;
+
+
+  .#{$C}{
+    @content;
+  }
+}
+
+@mixin b($name){
+  $B: 'cl-' + $name;
+
+
+  .#{$B}{
+    @content;
+  }
+}
+
+@mixin t($element, $root: true, $self: false){
+  $selector: &;
+  $currentSeletor: '';
+  @each $key in $element {
+    $currentSeletor: #{$currentSeletor + '.' + $C + '--' + $key + ','};
+  }
+
+  @if($root){
+    @at-root {
+      #{$currentSeletor} {
+        @content;
+      }
+    }
+  }@else {
+    @if($self){
+      &#{$currentSeletor} {
+        @content;
+      }
+    }@else {
+      #{$currentSeletor} {
+        @content;
+      }
+    }
+
+  }
+}
+
+@mixin when($state) {
+  $status-prefix: 'is-';
+  @at-root {
+    &.#{$status-prefix + $state} {
+      @content;
+    }
+  }
+}
+
+
+
+@include c(test){
+  @include t(bb, false, true){
+    font-size: 12px;
+
+
+
+    &_item{
+      font-size: 14px;
+    }
+
+    & > {
+      @include t(cc, false){
+        color: #cccccc;
+      }
+    }
+  }
+}
+

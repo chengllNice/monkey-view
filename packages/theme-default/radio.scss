@@ -16,13 +16,18 @@
     $height: $--radio-input-height-large;
   }
   font-size: $font-size;
-  .cl-radio__inner{
+
+  @include e(inner, false){
     width: $height;
     height: $height;
   }
-  &.is-checked .cl-radio__inner::after{
-    width: #{$height / 2};
-    height: #{$height / 2};
+  &.is-checked{
+    @include e(inner, false){
+      &::after{
+        width: #{$height / 2};
+        height: #{$height / 2};
+      }
+    }
   }
 }
 
@@ -80,10 +85,12 @@
   @include when(disabled){
     cursor: not-allowed;
     color: $--radio-font-color-disabled;
-    .cl-radio__label{
+
+    @include e(label, false){
       cursor: not-allowed;
     }
-    .cl-radio__inner{
+
+    @include e(inner, false){
       cursor: not-allowed;
       background-color: $--radio-background-color-disabled;
       border-color: $--radio-border-color-disabled;
@@ -97,7 +104,7 @@
 
   @include when(checked){
     color: $--radio-font-color-checked;
-    .cl-radio__inner{
+    @include e(inner, false){
       background-color: $--radio-background-color-checked;
       border-color: $--radio-border-color-checked;
     }
@@ -105,7 +112,7 @@
 
   &.is-disabled.is-checked{
     color: $--radio-font-color-disabled;
-    .cl-radio__inner{
+    @include e(inner, false){
       cursor: not-allowed;
       background-color: $--radio-background-color-disabled;
       border-color: $--radio-border-color-disabled;

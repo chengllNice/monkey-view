@@ -78,6 +78,7 @@
   }
   td{
     @include utils-ellipsis();
+
     &.cl-table-td__expand{
       word-break: break-all;
       white-space: normal;

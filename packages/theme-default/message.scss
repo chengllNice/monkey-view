@@ -22,7 +22,7 @@
   }
 
   @include m(info){
-    &.cl-message--background{
+    @include m(background, false, true){
       background-color: mix($--color-info, $--color-white, 10%);
     }
     @include e(icon, false){
@@ -30,7 +30,7 @@
     }
   }
   @include m(success){
-    &.cl-message--background{
+    @include m(background, false, true){
       background-color: mix($--color-success, $--color-white, 10%);
     }
     @include e(icon, false){
@@ -38,7 +38,7 @@
     }
   }
   @include m(error){
-    &.cl-message--background{
+    @include m(background, false, true){
       background-color: mix($--color-danger, $--color-white, 10%);
     }
     @include e(icon, false){
@@ -46,7 +46,7 @@
     }
   }
   @include m(warning){
-    &.cl-message--background{
+    @include m(background, false, true){
       background-color: mix($--color-warning, $--color-white, 10%);
     }
     @include e(icon, false){

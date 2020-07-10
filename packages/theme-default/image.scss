@@ -22,7 +22,7 @@
   }
 
   @include m(no-clientwidth){
-    .cl-image__loading, .cl-image__error{
+    @include e((loading, error), false){
       position: static;
       transform: none;
     }

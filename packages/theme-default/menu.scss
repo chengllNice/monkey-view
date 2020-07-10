@@ -24,36 +24,59 @@
       display: block;
       clear: both;
     }
-    .cl-menu-item, .cl-submenu{
+
+    @include ci(menu-item){
       float: left;
       width: auto;
       border-bottom: 2px solid transparent;
-      .cl-menu-item, .cl-submenu{
+
+      @include ci(menu-item){
+        float: none;
+        border: none;
+      }
+
+      @include ci(submenu){
         float: none;
         border: none;
       }
     }
-    .cl-submenu{
+    @include ci(submenu){
+      float: left;
+      width: auto;
+      //border-bottom: 2px solid transparent;
       border: none;
+      @include ci(menu-item){
+        float: none;
+        border: none;
+      }
+
+      @include ci(submenu){
+        float: none;
+        border: none;
+      }
     }
-    .cl-submenu__title{
+
+    @include e(title, false){
       border-bottom: 2px solid transparent;
     }
-    &.cl-menu--light{
+
+    @include m(light, false, true){
       border-bottom: 1px solid #dcdee2;
       border-right: none;
       background-color: $--menu-theme-light-background-color;
       @include theme-horizontal($--menu-theme-light-background-color, $--menu-theme-light-font-color, $--background-color-hover,$--menu-theme-light-horizontal-border-color, $--menu-theme-light-group-title-font-color,$--color-primary)
     }
-    &.cl-menu--dark{
-      .cl-submenu__drop-inner{
+
+    @include m(dark, false, true){
+      @include ci(submenu__drop-inner){
         border-color: $--menu-theme-dark-background-color;
         background-color: $--menu-theme-dark-background-color;
       }
       @include theme-horizontal($--menu-theme-dark-background-color, $--menu-theme-dark-font-color, $--menu-theme-dark-active-background-color, $--menu-theme-dark-horizontal-border-color, $--menu-theme-dark-group-title-font-color, $--color-white)
     }
-    &.cl-menu--green{
-      .cl-submenu__drop-inner{
+
+    @include m(green, false, true){
+      @include ci(submenu__drop-inner){
         border-color: $--menu-theme-green-background-color;
         background-color: $--menu-theme-green-background-color;
       }
@@ -97,8 +120,10 @@
   }
 
   @include m(opened){
-    &>*>.cl-submenu__title-slide-icon{
-      transform: translate(50%, -50%) rotate(180deg);
+    & > * > {
+      @include e(title-slide-icon){
+        transform: translate(50%, -50%) rotate(180deg);
+      }
     }
   }
 

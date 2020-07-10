@@ -30,22 +30,30 @@
     $after-height: 10px;
   }
 
-  .cl-checkbox__label{
+  @include e(label, false){
     font-size: $font-size;
   }
-  .cl-checkbox__inner{
+  @include e(inner, false){
     width: $width;
     height: $height;
   }
-  &.is-checked .cl-checkbox__inner::after{
-    border-width: $border-width;
-    width: $after-width;
-    height: $after-height;
+  &.is-checked{
+    @include e(inner, false){
+      &::after{
+        border-width: $border-width;
+        width: $after-width;
+        height: $after-height;
+      }
+    }
   }
-  &.is-indeterminate .cl-checkbox__inner::after{
-    border-width: $border-width;
-    width: #{$width / 2};
-    height: $border-width;
+  &.is-indeterminate{
+    @include e(inner, false){
+      &::after{
+        border-width: $border-width;
+        width: #{$width / 2};
+        height: $border-width;
+      }
+    }
   }
 }
 
@@ -103,7 +111,7 @@
 
   @include when(checked){
     color: $--checkbox-font-color-checked;
-    .cl-checkbox__inner{
+    @include e(inner, false){
       background-color: $--checkbox-background-color-checked;
       border-color: $--checkbox-border-color-checked;
       &::after{
@@ -114,7 +122,7 @@
   }
 
   @include when(indeterminate) {
-    .cl-checkbox__inner {
+    @include e(inner, false){
       background-color: $--checkbox-background-color-checked;
       border-color: $--checkbox-border-color-checked;
       &::after {
@@ -133,14 +141,13 @@
   @include when(disabled){
     cursor: not-allowed;
     color: $--color-text-disabled;
-    .cl-checkbox__label{
+    @include e(label, false){
       cursor: not-allowed;
     }
-    .cl-checkbox__inner{
+    @include e(inner, false){
       cursor: not-allowed;
       background-color: $--background-color-disabled;
       border-color: $--border-color-disabled;
-
       &::after{
         cursor: not-allowed;
         background: $--background-color-disabled;
@@ -150,11 +157,11 @@
 
   &.is-disabled.is-checked{
     color: $--color-text-disabled;
-    .cl-checkbox__inner{
+
+    @include e(inner, false){
       cursor: not-allowed;
       background-color: $--background-color-disabled;
       border-color: $--border-color-disabled;
-
       &::after{
         border-color: $--color-text-icon;
         cursor: not-allowed;
@@ -164,11 +171,12 @@
 
   &.is-disabled.is-indeterminate{
     color: $--color-text-disabled;
-    .cl-checkbox__inner{
+
+    @include e(inner, false){
       background-color: $--background-color-disabled;
       border-color: $--border-color-disabled;
       cursor: not-allowed;
-      &::after {
+      &::after{
         background-color: $--color-text-icon;
         cursor: not-allowed;
       }

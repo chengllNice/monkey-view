@@ -65,7 +65,7 @@
       font-size: 16px;
     }
 
-    &.cl-alter--with-des{
+    @include m(with-des, false, true){
       padding-left: $--alter-padding-with-description-horizontal;
       @include e(icon, false){
         left: #{$--alter-padding-with-description-horizontal / 2};
@@ -83,7 +83,7 @@
     @include e(icon, false){
       color: $--color-info;
     }
-    &.cl-alter--dark{
+    @include m(dark, false, true){
       background-color: $--color-info;
       border-color:  $--color-info;
     }
@@ -94,7 +94,7 @@
     @include e(icon, false){
       color: $--color-success;
     }
-    &.cl-alter--dark{
+    @include m(dark, false, true){
       background-color: $--color-success;
       border-color:  $--color-success;
     }
@@ -105,7 +105,7 @@
     @include e(icon, false){
       color: $--color-danger;
     }
-    &.cl-alter--dark{
+    @include m(dark, false, true){
       background-color: $--color-danger;
       border-color:  $--color-danger;
     }
@@ -116,7 +116,7 @@
     @include e(icon, false){
       color: $--color-warning;
     }
-    &.cl-alter--dark{
+    @include m(dark, false, true){
       background-color: $--color-warning;
       border-color:  $--color-warning;
     }

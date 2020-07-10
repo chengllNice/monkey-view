@@ -49,7 +49,7 @@
 
 
   @include m(only-title){
-    .cl-notice__title{
+    @include e(title, false){
       margin-bottom: 0;
     }
   }
@@ -62,16 +62,20 @@
 
   @include m(type){
     padding-left: $--notice-padding-with-content-icon-horizontal;
-    .cl-notice__icon{
+
+    @include e(icon, false){
       left: #{$--notice-padding-with-content-icon-horizontal / 2};
       i{
         font-size: 36px;
       }
     }
-    &.cl-notice--only-title{
+
+    @include m(only-title, false, true){
       padding-left: $--notice-padding-with-icon-horizontal;
-      .cl-notice__icon{
+
+      @include e(icon, false, true){
         left: #{$--notice-padding-with-icon-horizontal / 2};
+
         i{
           font-size: 20px;
         }
@@ -80,37 +84,42 @@
   }
 
   @include m(info){
-    &.cl-notice--background{
+
+    @include m(background, false, true){
       background-color: mix($--color-info, $--color-white, 10%);
     }
-    .cl-notice__icon{
+
+    @include e(icon, false){
       color: $--color-info;
     }
   }
 
   @include m(success){
-    &.cl-notice--background{
+    @include m(background, false, true){
       background-color: mix($--color-success, $--color-white, 10%);
     }
-    .cl-notice__icon{
+
+    @include e(icon, false){
       color: $--color-success;
     }
   }
 
   @include m(error){
-    &.cl-notice--background{
+    @include m(background, false, true){
       background-color: mix($--color-danger, $--color-white, 10%);
     }
-    .cl-notice__icon{
+
+    @include e(icon, false){
       color: $--color-danger;
     }
   }
 
   @include m(warning){
-    &.cl-notice--background{
+    @include m(background, false, true){
       background-color: mix($--color-warning, $--color-white, 10%);
     }
-    .cl-notice__icon{
+
+    @include e(icon, false){
       color: $--color-warning;
     }
   }

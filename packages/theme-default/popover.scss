@@ -46,7 +46,8 @@
     }
 
     &[x-placement^="top"] {
-      .cl-popover__arrow {
+
+      @include e(arrow, false){
         bottom: -#{$--popover-arrow-border-width + 1px};
         border-top-color: $--border-color-default;
         border-width: $--popover-arrow-border-width $--popover-arrow-border-width 0;
@@ -61,7 +62,7 @@
     }
 
     &[x-placement^="bottom"] {
-      .cl-popover__arrow {
+      @include e(arrow, false){
         top: -#{$--popover-arrow-border-width + 1px};
         border-bottom-color: $--border-color-default;
         border-width: 0 $--popover-arrow-border-width $--popover-arrow-border-width;
@@ -76,26 +77,26 @@
     }
 
     &[x-placement="top"], &[x-placement="bottom"] {
-      .cl-popover__arrow {
+      @include e(arrow, false){
         left: 50%;
         margin-left: -$--popover-arrow-border-width;
       }
     }
 
     &[x-placement="top-start"], &[x-placement="bottom-start"] {
-      .cl-popover__arrow {
+      @include e(arrow, false){
         left: 16px;
       }
     }
 
     &[x-placement="top-end"], &[x-placement="bottom-end"] {
-      .cl-popover__arrow {
+      @include e(arrow, false){
         right: 16px;
       }
     }
 
     &[x-placement^="left"] {
-      .cl-popover__arrow {
+      @include e(arrow, false){
         right: -#{$--popover-arrow-border-width + 1px};
         border-left-color: $--border-color-default;
         border-width: #{$--popover-arrow-border-width + 1px} 0 #{$--popover-arrow-border-width + 1px} #{$--popover-arrow-border-width + 1px};
@@ -110,7 +111,7 @@
     }
 
     &[x-placement^="right"] {
-      .cl-popover__arrow {
+      @include e(arrow, false){
         left: -#{$--popover-arrow-border-width + 1px};
         border-right-color: $--border-color-default;
         border-width: #{$--popover-arrow-border-width + 1px} #{$--popover-arrow-border-width + 1px} #{$--popover-arrow-border-width + 1px} 0;
@@ -125,20 +126,20 @@
     }
 
     &[x-placement="left"], &[x-placement="right"] {
-      .cl-popover__arrow {
+      @include e(arrow, false){
         top: 50%;
         margin-top: -$--popover-arrow-border-width;
       }
     }
 
     &[x-placement="left-start"], &[x-placement="right-start"] {
-      .cl-popover__arrow {
+      @include e(arrow, false){
         top: 7px;
       }
     }
 
     &[x-placement="left-end"], &[x-placement="right-end"] {
-      .cl-popover__arrow {
+      @include e(arrow, false){
         bottom: 7px;
       }
     }

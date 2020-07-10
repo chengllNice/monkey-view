@@ -28,21 +28,28 @@
   padding: $padding-vertical $padding-horizontal;
   font-size: $fontSize;
 
-  &>.cl-list-item__avatar{
-    width: $avatarWidth;
-    height: $avatarWidth;
-    line-height: $avatarWidth;
-    margin-right: $padding-horizontal;
-  }
+  & > {
+    @include e(avatar, false){
+      width: $avatarWidth;
+      height: $avatarWidth;
+      line-height: $avatarWidth;
+      margin-right: $padding-horizontal;
+    }
 
-  &>.cl-list-item__extra{
-    margin-left: $padding-horizontal;
-  }
-  &>.cl-list-item__row>.cl-list-item__label, &>.cl-list-item__row>.cl-list-item__value{
-    padding-top: $padding-vertical;
-    padding-bottom: $padding-vertical;
-    padding-left: #{$padding-horizontal / 2};
-    padding-right: #{$padding-horizontal / 2};
+    @include e(extra, false){
+      margin-left: $padding-horizontal;
+    }
+
+    @include e(row, false){
+      & > {
+        @include e((label, value), false){
+          padding-top: $padding-vertical;
+          padding-bottom: $padding-vertical;
+          padding-left: #{$padding-horizontal / 2};
+          padding-right: #{$padding-horizontal / 2};
+        }
+      }
+    }
   }
 }
 
@@ -50,11 +57,11 @@
   background-color: $--color-white;
   position: relative;
 
-  &.cl-list--split{
-    .cl-list__header{
+  @include m(split, false, true){
+    @include e(header, false){
       border-bottom: $--border-default;
     }
-    .cl-list__footer{
+    @include e(footer, false){
       border-top: $--border-default;
     }
   }
@@ -74,30 +81,39 @@
   }
 
   @include m(mini){
-    &>.cl-list__header, &>.cl-list__footer{
-      @include list-size(mini)
+    &>{
+      @include e((header, footer), false){
+        @include list-size(mini)
+      }
     }
   }
   @include m(small){
-    &>.cl-list__header, &>.cl-list__footer{
-      @include list-size(small)
+    &>{
+      @include e((header, footer), false){
+        @include list-size(small)
+      }
     }
   }
   @include m(default){
-    &>.cl-list__header, &>.cl-list__footer{
-      @include list-size(default)
+    &>{
+      @include e((header, footer), false){
+        @include list-size(default)
+      }
     }
   }
   @include m(large){
-    &>.cl-list__header, &>.cl-list__footer{
-      @include list-size(large)
+    &>{
+      @include e((header, footer), false){
+        @include list-size(large)
+      }
     }
   }
 }
 
 @include c(list-row){
   @include clear-float;
-  .cl-list-item{
+
+  @include ci(list-item){
     float: left;
     padding: 0;
     border: none;
@@ -106,11 +122,11 @@
 
 @include c(list-item){
 
-  &:not(.cl-list-item--row){
-    &.cl-list-item--split{
+  &:not(&--row){
+    @include m(split, false, true){
       border-bottom: $--border-default;
     }
-    &.cl-list-item--hover{
+    @include m(hover, false, true){
       transition: background-color $--animation-time;
       &:hover{
         background-color: $--background-color-hover;
@@ -124,24 +140,26 @@
     justify-content: space-between;
   }
 
-  &.cl-list-item--row{
-    @include e(row){
+  @include m(row, false, true){
+    @include e(row, false){
       display: flex;
       margin-top: -1px;
     }
-    &.cl-list-item--split{
-      .cl-list-item__row{
+
+    @include m(split, false, true){
+      @include e(row, false){
         border: $--border-default;
       }
-      .cl-list-item__label{
+      @include e(label, false){
         border-right: $--border-default;
       }
-      .cl-list-item__value{
+      @include e(value, false){
         border-left: $--border-default;
       }
     }
-    &.cl-list-item--hover{
-      .cl-list-item__row{
+
+    @include m(hover, false, true){
+      @include e(row, false){
         transition: background-color $--animation-time;
         &:hover{
           background-color: $--background-color-hover;
@@ -178,12 +196,14 @@
     flex: 1;
     overflow: hidden;
     word-wrap: break-word;
-    &>.cl-list-item__title{
+
+    @include e(title, false, true){
       color: $--color-text-title;
       margin-bottom: 5px;
       font-weight: 600;
     }
-    &>.cl-list-item__description{
+
+    @include e(description, false, true){
       color: $--color-text-des;
       margin-bottom: 5px;
     }

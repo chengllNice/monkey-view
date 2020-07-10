@@ -4,32 +4,62 @@
 @mixin res-grid($key, $map: $--media-points){
   @if map-has-key($map, $key){
     @media only screen and #{inspect(map-get($map, $key))} {
-      .cl-col--span-#{$key}-0 {
+
+      //.cl-col--span-#{$key}-0 {
+      //  display: none;
+      //}
+      //@for $i from 0 through 24 {
+      //  .cl-col--span-#{$key}-#{$i} {
+      //    width: (1 / 24 * $i * 100) * 1%;
+      //  }
+      //
+      //  .cl-col--offset-#{$key}-#{$i} {
+      //    margin-left: (1 / 24 * $i * 100) * 1%;
+      //  }
+      //
+      //  .cl-col--pull-#{$key}-#{$i} {
+      //    position: relative;
+      //    right: (1 / 24 * $i * 100) * 1%;
+      //  }
+      //
+      //  .cl-col--push-#{$key}-#{$i} {
+      //    position: relative;
+      //    left: (1 / 24 * $i * 100) * 1%;
+      //  }
+      //
+      //  .cl-col--order-#{$key}-#{$i} {
+      //    order: $i;
+      //  }
+      //}
+
+      @include m(span-#{$key}-0){
         display: none;
       }
+
       @for $i from 0 through 24 {
-        .cl-col--span-#{$key}-#{$i} {
+        @include m(span-#{$key}-#{$i}, false){
           width: (1 / 24 * $i * 100) * 1%;
         }
 
-        .cl-col--offset-#{$key}-#{$i} {
+        @include m(offset-#{$key}-#{$i}, false){
           margin-left: (1 / 24 * $i * 100) * 1%;
         }
 
-        .cl-col--pull-#{$key}-#{$i} {
+        @include m(pull-#{$key}-#{$i}, false){
           position: relative;
           right: (1 / 24 * $i * 100) * 1%;
         }
 
-        .cl-col--push-#{$key}-#{$i} {
+        @include m(push-#{$key}-#{$i}, false){
           position: relative;
           left: (1 / 24 * $i * 100) * 1%;
         }
 
-        .cl-col--order-#{$key}-#{$i} {
+        @include m(order-#{$key}-#{$i}, false){
           order: $i;
         }
       }
+
       @content;
     }
   }@else {
@@ -37,29 +67,56 @@
   }
 }
 
-@for $i from 0 through 24 {
-  .cl-col--span-#{$i} {
-    width: (1 / 24 * $i * 100) * 1%;
-  }
 
-  .cl-col--offset-#{$i} {
-    margin-left: (1 / 24 * $i * 100) * 1%;
-  }
+@mixin colInit(){
+  @for $i from 0 through 24 {
+    //.cl-col--span-#{$i} {
+    //  width: (1 / 24 * $i * 100) * 1%;
+    //}
+    //
+    //.cl-col--offset-#{$i} {
+    //  margin-left: (1 / 24 * $i * 100) * 1%;
+    //}
+    //
+    //.cl-col--pull-#{$i} {
+    //  position: relative;
+    //  right: (1 / 24 * $i * 100) * 1%;
+    //}
+    //
+    //.cl-col--push-#{$i} {
+    //  position: relative;
+    //  left: (1 / 24 * $i * 100) * 1%;
+    //}
+    //
+    //.cl-col--order-#{$i} {
+    //  order: $i;
+    //}
 
-  .cl-col--pull-#{$i} {
-    position: relative;
-    right: (1 / 24 * $i * 100) * 1%;
-  }
 
-  .cl-col--push-#{$i} {
-    position: relative;
-    left: (1 / 24 * $i * 100) * 1%;
-  }
+    @include m(span-#{$i}, false){
+      width: (1 / 24 * $i * 100) * 1%;
+    }
 
-  .cl-col--order-#{$i} {
-    order: $i;
+    @include m(offset-#{$i}, false){
+      margin-left: (1 / 24 * $i * 100) * 1%;
+    }
+
+    @include m(pull-#{$i}, false){
+      position: relative;
+      right: (1 / 24 * $i * 100) * 1%;
+    }
+
+    @include m(push-#{$i}, false){
+      position: relative;
+      left: (1 / 24 * $i * 100) * 1%;
+    }
+
+    @include m(order-#{$i}, false){
+      order: $i;
+    }
   }
 }
+
 
 @include c(row){
   display: block;
@@ -112,14 +169,18 @@
   float: left;
   flex: 0 0 auto;
 
+  @include colInit();
+
   @include m(span-0){
     display: none;
   }
+
+  @include res-grid(xs);
+  @include res-grid(sm);
+  @include res-grid(md);
+  @include res-grid(lg);
+  @include res-grid(xl);
+  @include res-grid(xxl);
 }
 
-@include res-grid(xs);
-@include res-grid(sm);
-@include res-grid(md);
-@include res-grid(lg);
-@include res-grid(xl);
-@include res-grid(xxl);
+

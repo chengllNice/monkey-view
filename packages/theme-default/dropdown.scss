@@ -11,7 +11,8 @@
   box-shadow: $--box-shadow-default;
   background-color: $--color-white;
   padding: 5px 0;
-  .cl-dropdown{
+
+  @include ci(dropdown){
     width: 100%;
   }
 }

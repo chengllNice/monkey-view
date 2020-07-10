@@ -55,7 +55,7 @@
     padding-right: 30px;
     cursor: pointer;
     position: relative;
-    &:not(.cl-cascader-item__disabled):hover{
+    &:hover{
       background-color: $--background-color-hover;
     }
   }
@@ -71,6 +71,9 @@
     cursor: not-allowed;
     color: $--color-disabled;
     background-color: $--background-color-disabled;
+    &:hover{
+      background-color: transparent;
+    }
   }
 
   @include e(label-expand-icon){
@@ -85,7 +88,7 @@
     height: 100%;
     display: inline-block;
 
-    & .cl-cascader-item__label{
+    @include e(label, false){
       border-left: $--border-default;
     }
   }

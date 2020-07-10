@@ -126,10 +126,9 @@
 
 
 @include c(date-pane-date){
-  .cl-date-pane-date__week{
+  @include e(week, false){
     text-align: right;
   }
-
 
   @include date-pane-item-common;
 

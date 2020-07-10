@@ -56,7 +56,8 @@
     width: 1px;
     position: relative;
     color: $--color-text-icon;
-    .cl-select{
+
+    @include ci(select){
       vertical-align: middle;
       input{
         background-color: transparent;

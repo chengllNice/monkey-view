@@ -38,7 +38,7 @@
     width: #{$height - 4px + ($height - 4px) / 2};
   }
 
-  .cl-switch__inner{
+  @include e(inner, false){
     right: #{$height / 4 + 2px};
   }
 
@@ -55,7 +55,7 @@
       right: 2px;
     }
 
-    .cl-switch__inner{
+    @include e(inner, false){
       left: #{$height / 4};
       right: auto;
     }

@@ -9,6 +9,14 @@
   }
 }
 
+@mixin ci($name){
+  $CI: $namespace + '-' + $name;
+
+  .#{$CI}{
+    @content;
+  }
+}
+
 @mixin e($element, $root: true, $self: false){
   $selector: &;
   $currentSeletor: '';
@@ -23,8 +31,14 @@
       }
     }
   }@else {
-    #{$currentSeletor} {
-      @content;
+    @if($self){
+      &#{$currentSeletor} {
+        @content;
+      }
+    }@else {
+      #{$currentSeletor} {
+        @content;
+      }
     }
   }
 }
@@ -43,8 +57,14 @@
       }
     }
   }@else {
-    #{$currentSeletor} {
-      @content;
+    @if($self){
+      &#{$currentSeletor} {
+        @content;
+      }
+    }@else {
+      #{$currentSeletor} {
+        @content;
+      }
     }
   }
 }

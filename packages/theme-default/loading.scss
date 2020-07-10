@@ -25,7 +25,7 @@
     background-color: hsla(0, 0%, 100%, .9);
     text-align: center;
     z-index: $--loading-z-index;
-    .cl-loading__content{
+    @include e(content, false){
       position: absolute;
       top: 50%;
       left: 50%;
@@ -39,41 +39,41 @@
   }
 
   @include m(mini){
-    .cl-loading__icon, .cl-loading__icon-svg{
+    @include e((icon, icon-svg), false){
       width: $--loading-size-mini;
       height: $--loading-size-mini;
     }
-    .cl-loading__icon-font{
+    @include e(icon-font, false){
       font-size: $--loading-size-mini;
     }
   }
 
   @include m(small){
-    .cl-loading__icon, .cl-loading__icon-svg{
+    @include e((icon, icon-svg), false){
       width: $--loading-size-small;
       height: $--loading-size-small;
     }
-    .cl-loading__icon-font{
+    @include e(icon-font, false){
       font-size: $--loading-size-small;
     }
   }
 
   @include m(default){
-    .cl-loading__icon, .cl-loading__icon-svg{
+    @include e((icon, icon-svg), false){
       width: $--loading-size-default;
       height: $--loading-size-default;
     }
-    .cl-loading__icon-font{
+    @include e(icon-font, false){
       font-size: $--loading-size-default;
     }
   }
 
   @include m(large){
-    .cl-loading__icon, .cl-loading__icon-svg{
+    @include e((icon, icon-svg), false){
       width: $--loading-size-large;
       height: $--loading-size-large;
     }
-    .cl-loading__icon-font{
+    @include e(icon-font, false){
       font-size: $--loading-size-large;
     }
   }

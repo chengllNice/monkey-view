@@ -48,7 +48,7 @@
 
   @include when(disabled){
     cursor: not-allowed;
-    .cl-select-el__input{
+    @include e(el__input, false){
       cursor: not-allowed;
     }
   }
@@ -63,7 +63,7 @@
     &:hover,
     &:focus,
     &:active{
-      .cl-select__el-multiple{
+      @include e(el-multiple, false){
         border-color: $--color-primary;
       }
     }
@@ -73,7 +73,8 @@
       input{
         cursor: pointer;
       }
-      .cl-input__source-suffix{
+
+      @include e(source-suffix){
         padding-right: $--select-suffix-width;
       }
     }
@@ -93,7 +94,7 @@
       color: $--color-text-placeholder;
     }
 
-    .cl-input__suffix{
+    @include e(suffix){
       width: $--select-suffix-width;
     }
     @include e(el-suffix){
@@ -178,73 +179,104 @@
 
   @include m(large){
     height: 50px;
-    .cl-option,.cl-option-group{
+
+    @include ci(option){
       font-size: $--font-size-large;
     }
-    .cl-select__el{
+    @include ci(option-group){
       font-size: $--font-size-large;
-      .cl-select__el-multiple{
+    }
+
+    @include e(el, false){
+      font-size: $--font-size-large;
+
+      @include e(el-multiple, false){
         height: $--height-large;
         line-height: $--height-large;
       }
-      .cl-select__el-placeholder{
+
+      @include e(el-placeholder, false){
         height: #{$--height-large - 2px};
         line-height: #{$--height-large - 2px};
       }
-      .cl-select__el-multiple-input{
+
+      @include e(el-multiple-input, false){
         height: #{$--height-large - 10px};
       }
-      .cl-select__el-multiple-tag .cl-select__el-multiple-tag-item{
-        margin-top: #{($--height-large - $--tag-height-large) / 2};
-        margin-bottom: #{($--height-large - $--tag-height-large) / 2};
+
+      @include e(el-multiple-tag, false){
+        @include e(el-multiple-tag-item, false){
+          margin-top: #{($--height-large - $--tag-height-large) / 2};
+          margin-bottom: #{($--height-large - $--tag-height-large) / 2};
+        }
       }
     }
   }
 
   @include m(small){
-    .cl-option,.cl-option-group{
+    @include ci(option){
       font-size: $--font-size-small;
     }
-    .cl-select__el{
+    @include ci(option-group){
       font-size: $--font-size-small;
-      .cl-select__el-multiple{
+    }
+
+    @include e(el, false){
+      font-size: $--font-size-small;
+
+      @include e(el-multiple, false){
         height: $--height-small;
         line-height: $--height-small;
       }
-      .cl-select__el-placeholder{
+
+      @include e(el-placeholder, false){
         height: #{$--height-small - 2px};
         line-height: #{$--height-small - 2px};
       }
-      .cl-select__el-multiple-input{
+
+      @include e(el-multiple-input, false){
         height: #{$--height-small - 10px};
       }
-      .cl-select__el-multiple-tag .cl-select__el-multiple-tag-item{
-        margin-top: #{($--height-small - $--tag-height-small) / 2};
-        margin-bottom: #{($--height-small - $--tag-height-small) / 2};
+
+      @include e(el-multiple-tag, false){
+        @include e(el-multiple-tag-item, false){
+          margin-top: #{($--height-small - $--tag-height-small) / 2};
+          margin-bottom: #{($--height-small - $--tag-height-small) / 2};
+        }
       }
     }
   }
 
   @include m(mini){
-    .cl-option,.cl-option-group{
+    @include ci(option){
       font-size: $--font-size-mini;
     }
-    .cl-select__el{
+    @include ci(option-group){
       font-size: $--font-size-mini;
-      .cl-select__el-multiple{
+    }
+
+    @include e(el, false){
+      font-size: $--font-size-mini;
+
+      @include e(el-multiple, false){
         height: $--height-mini;
         line-height: $--height-mini;
       }
-      .cl-select__el-placeholder{
+
+      @include e(el-placeholder, false){
         height: #{$--height-mini - 2px};
         line-height: #{$--height-mini - 2px};
       }
-      .cl-select__el-multiple-input{
+
+      @include e(el-multiple-input, false){
         height: #{$--height-mini - 10px};
       }
-      .cl-select__el-multiple-tag .cl-select__el-multiple-tag-item{
-        margin-top: #{($--height-mini - $--tag-height-mini) / 2};
-        margin-bottom: #{($--height-mini - $--tag-height-mini) / 2};
+
+      @include e(el-multiple-tag, false){
+        @include e(el-multiple-tag-item, false){
+          margin-top: #{($--height-mini - $--tag-height-mini) / 2};
+          margin-bottom: #{($--height-mini - $--tag-height-mini) / 2};
+        }
       }
     }
   }
@@ -335,7 +367,7 @@
   }
 
   @include e(wrap){
-    .cl-option{
+    @include ci(option){
       padding-left: 32px;
       padding-right: 32px;
     }

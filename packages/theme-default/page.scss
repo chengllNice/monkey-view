@@ -25,7 +25,8 @@
   }
   @include e(item){
     transition: all $--animation-time;
-    &:not(.cl-page__item-disabled):not(.cl-page__item-active):hover{
+
+    &:not(&-disabled):not(&-active):hover{
       color: $--color-primary;
     }
   }
@@ -75,7 +76,7 @@
 
 
   @include m(mini){
-    .cl-page__common{
+    @include e(common, false){
       font-size: $--font-size-mini;
       height: $--height-mini;
       line-height: $--height-mini;
@@ -84,23 +85,25 @@
   }
 
   @include m(border){
-    .cl-page__item{
+    @include e(item, false){
       border: $--border-default;
       margin: 0 5px;
       border-radius: $--border-radius-default;
     }
-    .cl-page__item-active{
+
+    @include e(item-active, false){
       border-color: $--border-color-primary;
     }
   }
 
   @include m(background){
-    .cl-page__item{
+    @include e(item, false){
       background-color: #f8f8f9;
       margin: 0 5px;
       border-radius: $--border-radius-default;
     }
-    .cl-page__item-active{
+
+    @include e(item-active, false){
       background-color: $--color-primary;
       color: $--color-white;
     }

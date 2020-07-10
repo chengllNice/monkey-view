@@ -3,19 +3,21 @@
 
 @include c(form){
   @include m(horizontal){
-    .cl-form-item{
-      .cl-form-item__content{
+    @include ci(form-item){
+      &__content{
         position: relative;
       }
     }
   }
   @include m(vertical){
-    .cl-form-item__label{
-      position: static;
+    @include ci(form-item){
+      &__label{
+        position: static;
+      }
     }
   }
   @include m(inline){
-    .cl-form-item{
+    @include ci(form-item){
       display: inline-block;
       margin-right: 14px;
       vertical-align: top;
@@ -33,20 +35,49 @@
     display: table;
   }
   @include m(error){
-    .cl-input .cl-input__source, .cl-textarea .cl-textarea__source, .cl-select__el-multiple{
-      border-color: $--color-danger!important;
-      &:hover,
-      &:focus,
-      &:active{
+    @include ci(input){
+      &__source{
         border-color: $--color-danger!important;
-      }
-      &:focus{
-        box-shadow: 0 0 0 2px mix($--color-danger, $--color-white, $--button-hover-percent)!important;
+        &:hover,
+        &:focus,
+        &:active{
+          border-color: $--color-danger!important;
+        }
+        &:focus{
+          box-shadow: 0 0 0 2px mix($--color-danger, $--color-white, $--button-hover-percent)!important;
+        }
       }
     }
-    .cl-select__el-focus{
-      border-color: $--color-danger!important;
-      box-shadow: 0 0 0 2px mix($--color-danger, $--color-white, $--button-hover-percent)!important;
+    @include ci(textarea){
+      &__source{
+        border-color: $--color-danger!important;
+        &:hover,
+        &:focus,
+        &:active{
+          border-color: $--color-danger!important;
+        }
+        &:focus{
+          box-shadow: 0 0 0 2px mix($--color-danger, $--color-white, $--button-hover-percent)!important;
+        }
+      }
+    }
+    @include ci(select){
+      &__el-multiple{
+        border-color: $--color-danger!important;
+        &:hover,
+        &:focus,
+        &:active{
+          border-color: $--color-danger!important;
+        }
+        &:focus{
+          box-shadow: 0 0 0 2px mix($--color-danger, $--color-white, $--button-hover-percent)!important;
+        }
+      }
+
+      &__el-focus{
+        border-color: $--color-danger!important;
+        box-shadow: 0 0 0 2px mix($--color-danger, $--color-white, $--button-hover-percent)!important;
+      }
     }
   }
 
@@ -90,17 +121,17 @@
     }
   }
   @include m(left){
-    .cl-form-item__label{
+    @include e(label, false){
       text-align: left;
     }
   }
   @include m(center){
-    .cl-form-item__label{
+    @include e(label, false){
       text-align: center;
     }
   }
   @include m(right){
-    .cl-form-item__label{
+    @include e(label, false){
       text-align: right;
     }
   }

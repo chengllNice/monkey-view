@@ -10,20 +10,22 @@
     border-left: none;
     border-right: none;
     border-radius: 0;
-    .cl-collapse-item{
-      &>.cl-collapse-item__header{
+
+
+    @include ci(collapse-item){
+      & > &__header {
         background-color: transparent;
       }
-      &--opened{
-        &>.cl-collapse-item__header{
-          border-bottom-color: transparent;
-        }
+
+      &--opened > &__header {
+        border-bottom-color: transparent;
       }
     }
   }
 
   @include m(right){
-    .cl-collapse-item{
+
+    @include ci(collapse-item){
       &__header{
         padding-right: 34px;
         &-icon{
@@ -36,12 +38,8 @@
         }
       }
 
-      &--opened{
-        &>.cl-collapse-item__header{
-          &>.cl-collapse-item__header-icon{
-            transform: translateY(-50%) rotate(90deg);
-          }
-        }
+      &--opened > &__header > &__header-icon{
+        transform: translateY(-50%) rotate(90deg);
       }
     }
   }
@@ -87,10 +85,14 @@
   }
 
   @include m(opened){
-    &>.cl-collapse-item__header{
-      border-bottom: $--border-default;
-      &>.cl-collapse-item__header-icon{
-        transform: rotate(90deg);
+    &>{
+      @include e(header, false){
+        border-bottom: $--border-default;
+        &>{
+          @include e(header-icon, false){
+            transform: rotate(90deg);
+          }
+        }
       }
     }
   }
