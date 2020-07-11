@@ -5,8 +5,8 @@
                 <template v-for="item in data">
                     <div :class="[
                             `${classPrefix}__label-inner`,
-                            (item.__selected || item.__visible) && `${classPrefix}__selected`,
-                            item.__disabled && `${classPrefix}__disabled`,
+                            (item.__selected || item.__visible) && `${classPrefix}__label-inner-selected`,
+                            item.__disabled && `${classPrefix}__label-inner-disabled`,
                         ]"
                          @click="handleClick(item)"
                          @mouseover="handleMouseover(item)"

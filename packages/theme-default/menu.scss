@@ -121,7 +121,7 @@
 
   @include m(opened){
     & > * > {
-      @include e(title-slide-icon){
+      @include e(title-slide-icon, false){
         transform: translate(50%, -50%) rotate(180deg);
       }
     }

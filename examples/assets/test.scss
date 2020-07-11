@@ -56,8 +56,14 @@
 
 
 @include c(test){
-  @include t(bb, false, true){
+  @include t(bb){
     font-size: 12px;
+
+    & > * {
+      @include t(title-slide-icon){
+        transform: translate(50%, -50%) rotate(180deg);
+      }
+    }
 
     & > {
       @include t(cc, false){

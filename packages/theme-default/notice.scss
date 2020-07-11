@@ -73,7 +73,7 @@
     @include m(only-title, false, true){
       padding-left: $--notice-padding-with-icon-horizontal;
 
-      @include e(icon, false, true){
+      @include e(icon, false){
         left: #{$--notice-padding-with-icon-horizontal / 2};
 
         i{

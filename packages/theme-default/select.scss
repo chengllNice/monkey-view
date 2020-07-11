@@ -48,7 +48,7 @@
 
   @include when(disabled){
     cursor: not-allowed;
-    @include e(el__input, false){
+    @include ci(select-el__input){
       cursor: not-allowed;
     }
   }
@@ -73,8 +73,7 @@
       input{
         cursor: pointer;
       }
-
-      @include e(source-suffix){
+      @include ci(input__source-suffix) {
         padding-right: $--select-suffix-width;
       }
     }
@@ -94,8 +93,10 @@
       color: $--color-text-placeholder;
     }
 
-    @include e(suffix){
-      width: $--select-suffix-width;
+    @include ci(input){
+      &__suffix {
+        width: $--select-suffix-width;
+      }
     }
     @include e(el-suffix){
       position: absolute;

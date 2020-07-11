@@ -4,38 +4,9 @@
 @mixin res-grid($key, $map: $--media-points){
   @if map-has-key($map, $key){
     @media only screen and #{inspect(map-get($map, $key))} {
-
-      //.cl-col--span-#{$key}-0 {
-      //  display: none;
-      //}
-      //@for $i from 0 through 24 {
-      //  .cl-col--span-#{$key}-#{$i} {
-      //    width: (1 / 24 * $i * 100) * 1%;
-      //  }
-      //
-      //  .cl-col--offset-#{$key}-#{$i} {
-      //    margin-left: (1 / 24 * $i * 100) * 1%;
-      //  }
-      //
-      //  .cl-col--pull-#{$key}-#{$i} {
-      //    position: relative;
-      //    right: (1 / 24 * $i * 100) * 1%;
-      //  }
-      //
-      //  .cl-col--push-#{$key}-#{$i} {
-      //    position: relative;
-      //    left: (1 / 24 * $i * 100) * 1%;
-      //  }
-      //
-      //  .cl-col--order-#{$key}-#{$i} {
-      //    order: $i;
-      //  }
-      //}
-
       &--span-#{$key}-0 {
         display: none;
       }
-
       @for $i from 0 through 24 {
         &--span-#{$key}-#{$i} {
           width: (1 / 24 * $i * 100) * 1%;
@@ -59,40 +30,14 @@
           order: $i;
         }
       }
-
       @content;
     }
   }@else {
     @warn 'Error, Not Set Media'
   }
 }
-
-
 @mixin colInit(){
   @for $i from 0 through 24 {
-    //.cl-col--span-#{$i} {
-    //  width: (1 / 24 * $i * 100) * 1%;
-    //}
-    //
-    //.cl-col--offset-#{$i} {
-    //  margin-left: (1 / 24 * $i * 100) * 1%;
-    //}
-    //
-    //.cl-col--pull-#{$i} {
-    //  position: relative;
-    //  right: (1 / 24 * $i * 100) * 1%;
-    //}
-    //
-    //.cl-col--push-#{$i} {
-    //  position: relative;
-    //  left: (1 / 24 * $i * 100) * 1%;
-    //}
-    //
-    //.cl-col--order-#{$i} {
-    //  order: $i;
-    //}
-
-
     &--span-#{$i} {
       width: (1 / 24 * $i * 100) * 1%;
     }
@@ -116,7 +61,6 @@
     }
   }
 }
-
 
 @include c(row){
   display: block;
@@ -168,9 +112,7 @@
 @include c(col){
   float: left;
   flex: 0 0 auto;
-
   @include colInit();
-
   @include m(span-0){
     display: none;
   }
@@ -182,5 +124,3 @@
   @include res-grid(xl);
   @include res-grid(xxl);
 }
-
-

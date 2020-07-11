@@ -1,7 +1,31 @@
 @import "./base/var";
 @import "./config/mixins/index.scss";
 
+
 @mixin list-size($size){
+  $padding-vertical: $--list-item-padding-vertical-default;
+  $padding-horizontal: $--list-item-padding-horizontal-default;
+  $fontSize: $--font-size-default;
+  @if($size == 'mini') {
+    $padding-vertical: $--list-item-padding-vertical-mini;
+    $padding-horizontal: $--list-item-padding-horizontal-mini;
+    $fontSize: $--font-size-mini;
+
+  }@else if($size == 'small'){
+    $padding-vertical: $--list-item-padding-vertical-small;
+    $padding-horizontal: $--list-item-padding-horizontal-small;
+    $fontSize: $--font-size-small;
+
+  }@else if($size == 'large'){
+    $padding-vertical: $--list-item-padding-vertical-large;
+    $padding-horizontal: $--list-item-padding-horizontal-large;
+    $fontSize: $--font-size-large;
+  }
+  padding: $padding-vertical $padding-horizontal;
+  font-size: $fontSize;
+}
+
+@mixin list-item-size($size){
   $padding-vertical: $--list-item-padding-vertical-default;
   $padding-horizontal: $--list-item-padding-horizontal-default;
   $fontSize: $--font-size-default;
@@ -23,7 +47,6 @@
     $padding-horizontal: $--list-item-padding-horizontal-large;
     $fontSize: $--font-size-large;
     $avatarWidth: $--list-item-avatar-width-large;
-
   }
   padding: $padding-vertical $padding-horizontal;
   font-size: $fontSize;
@@ -197,15 +220,17 @@
     overflow: hidden;
     word-wrap: break-word;
 
-    @include e(title, false, true){
-      color: $--color-text-title;
-      margin-bottom: 5px;
-      font-weight: 600;
-    }
+    & > {
+      @include e(title, false){
+        color: $--color-text-title;
+        margin-bottom: 5px;
+        font-weight: 600;
+      }
 
-    @include e(description, false, true){
-      color: $--color-text-des;
-      margin-bottom: 5px;
+      @include e(description, false){
+        color: $--color-text-des;
+        margin-bottom: 5px;
+      }
     }
   }
 
@@ -214,15 +239,15 @@
   }
 
   @include m(mini){
-    @include list-size(mini)
+    @include list-item-size(mini)
   }
   @include m(small){
-    @include list-size(small)
+    @include list-item-size(small)
   }
   @include m(default){
-    @include list-size(default)
+    @include list-item-size(default)
   }
   @include m(large){
-    @include list-size(large)
+    @include list-item-size(large)
   }
 }

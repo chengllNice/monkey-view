@@ -55,25 +55,22 @@
     padding-right: 30px;
     cursor: pointer;
     position: relative;
-    &:hover{
+    &:not(&-diabled):hover{
       background-color: $--background-color-hover;
     }
   }
   @include e(label-match){
     color: $--color-danger;
   }
-  @include e(selected){
+  @include e(label-inner-selected){
     color: $--color-primary;
     background-color: $--background-color-hover;
   }
 
-  @include e(disabled){
+  @include e(label-inner-disabled){
     cursor: not-allowed;
     color: $--color-disabled;
     background-color: $--background-color-disabled;
-    &:hover{
-      background-color: transparent;
-    }
   }
 
   @include e(label-expand-icon){

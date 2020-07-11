@@ -13,12 +13,17 @@
 
 
     @include ci(collapse-item){
-      & > &__header {
-        background-color: transparent;
+      & > {
+        @include ci(collapse-item__header){
+          background-color: transparent;
+        }
       }
 
-      &--opened > &__header {
-        border-bottom-color: transparent;
+
+      &--opened > {
+        @include ci(collapse-item__header){
+          border-bottom-color: transparent;
+        }
       }
     }
   }
@@ -38,8 +43,14 @@
         }
       }
 
-      &--opened > &__header > &__header-icon{
-        transform: translateY(-50%) rotate(90deg);
+      &--opened > {
+        @include ci(collapse-item__header){
+          & > {
+            @include ci(collapse-item__header-icon){
+              transform: translateY(-50%) rotate(90deg);
+            }
+          }
+        }
       }
     }
   }
@@ -85,10 +96,10 @@
   }
 
   @include m(opened){
-    &>{
+    & > {
       @include e(header, false){
         border-bottom: $--border-default;
-        &>{
+        & > {
           @include e(header-icon, false){
             transform: rotate(90deg);
           }

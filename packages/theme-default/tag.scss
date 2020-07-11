@@ -147,79 +147,79 @@
 
 
   @include m(ghost, false, true){
-    @include m(default, false, true){
+    @include m(color-default, false, true){
       @include tag-color($--tag-font-color-default,$--tag-font-color-default,'ghost');
     }
   }
 
   @include m(ghost, false, true){
-    @include m(primary, false, true){
+    @include m(color-primary, false, true){
       @include tag-color($--color-primary,$--color-primary,'ghost');
     }
   }
 
   @include m(ghost, false, true){
-    @include m(danger, false, true){
+    @include m(color-danger, false, true){
       @include tag-color($--color-danger,$--color-danger,'ghost');
     }
   }
 
   @include m(ghost, false, true){
-    @include m(success, false, true){
+    @include m(color-success, false, true){
       @include tag-color($--color-success,$--color-success,'ghost');
     }
   }
 
   @include m(ghost, false, true){
-    @include m(warning, false, true){
+    @include m(color-warning, false, true){
       @include tag-color($--color-warning,$--color-warning,'ghost');
     }
   }
 
   @include m(ghost, false, true){
-    @include m(info, false, true){
+    @include m(color-info, false, true){
       @include tag-color($--color-info,$--color-info,'ghost');
     }
   }
 
 
   @include m(ghost, false, true){
-    @include m(default-o, false, true){
+    @include m(color-default-o, false, true){
       @include tag-color($--tag-font-color-default,$--tag-font-color-default,'ghost-o');
     }
   }
 
   @include m(ghost, false, true){
-    @include m(primary-o, false, true){
+    @include m(color-primary-o, false, true){
       @include tag-color($--color-primary,$--color-primary,'ghost-o');
     }
   }
 
   @include m(ghost, false, true){
-    @include m(danger-o, false, true){
+    @include m(color-danger-o, false, true){
       @include tag-color($--color-danger,$--color-danger,'ghost-o');
     }
   }
 
   @include m(ghost, false, true){
-    @include m(success-o, false, true){
+    @include m(color-success-o, false, true){
       @include tag-color($--color-success,$--color-success,'ghost-o');
     }
   }
 
   @include m(ghost, false, true){
-    @include m(warning-o, false, true){
+    @include m(color-warning-o, false, true){
       @include tag-color($--color-warning,$--color-warning,'ghost-o');
     }
   }
 
   @include m(ghost, false, true){
-    @include m(info-o, false, true){
+    @include m(color-info-o, false, true){
       @include tag-color($--color-info,$--color-info,'ghost-o');
     }
   }
 
-  &:not(is-checked){
+  &:not(.is-checked){
     background-color: transparent;
     border-color: transparent;
     color: $--tag-font-color-default;

@@ -1,6 +1,6 @@
-.cl-test.cl-test--bb {
+.cl-test--bb {
   font-size: 12px; }
-  .cl-test.cl-test--bb > .cl-test--cc {
+  .cl-test--title-slide-icon {
+    transform: translate(50%, -50%) rotate(180deg); }
+  .cl-test--bb > .cl-test--cc {
     color: #cccccc; }
-
-/*# sourceMappingURL=test.css.map */

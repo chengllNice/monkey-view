@@ -1,9 +1,27 @@
+@charset "UTF-8";
 /*-----Common Var-----*/
+/*-----Height-----*/
+/*
+适用于button input select 的高度
+适用于list组件avatar的宽度
+*/
+/*-----Color-----*/
+/*-----Animation-----*/
+/*-----text-color-----*/
+/*-----border-color-----*/
+/*-----background-color-----*/
 /*-----border-----*/
 /*-----box-shadow-----*/
 /*-----font-----*/
 /*-----zIndex-----*/
 /*-----opacity-----*/
+/*-----response-media-----*/
+/*-----page-----*/
+/*-----dropdown-----*/
+/*-----date-picker-----*/
+/*-----loading-----*/
+/*-----list-----*/
+/*-----collapse-----*/
 /*-----menu-----*/
 /*-----table-----*/
 /*-----upload-----*/
@@ -12,6 +30,7 @@
 /*-----alter-----*/
 /*-----modal-----*/
 /*-----message-----*/
+/*-----notice-----*/
 /*-----tag-----*/
 /*-----popover-----*/
 /*------tooltip-----*/
@@ -23,3 +42,6 @@
 /*-----radio-----*/
 /*-----checkbox-----*/
 /*-----button-----*/
+/*-----image-----*/
+/*-----skeleton-----*/
+/*-----cascader-----*/
