@@ -14,8 +14,8 @@
                     <div :class="[`${classPrefix}__nav`]">
                         <div :class="[
                                 `${classPrefix}__nav-item-wrap`,
-                                activeTabIndex === item.index && `${classPrefix}__nav-item-active`,
-                                item.disabled && `${classPrefix}__nav-item-disabled`,
+                                activeTabIndex === item.index && `is-active`,
+                                item.disabled && `is-disabled`,
                              ]"
                              v-for="item in labelList"
                              :key="item.cKey"

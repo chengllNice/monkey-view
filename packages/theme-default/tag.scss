@@ -26,7 +26,7 @@
   height: $height;
   line-height: $height;
 
-  .cl-tag__icon{
+  @include e(icon, false){
     font-size: $font-size;
     margin-left: $padding;
   }
@@ -96,7 +96,7 @@
 
   //颜色default
   @include m(color-default){
-    .cl-tag__icon{
+    @include e(icon, false){
       color: $--tag-font-color-default;
     }
   }
@@ -144,61 +144,87 @@
   @include m(color-info-o){
     @include tag-color($--color-info,$--color-info,'o');
   }
-}
 
-.cl-tag--ghost.cl-tag--color-default{
-  @include tag-color($--tag-font-color-default,$--tag-font-color-default,'ghost');
-}
 
-.cl-tag--ghost.cl-tag--color-primary{
-  @include tag-color($--color-primary,$--color-primary,'ghost');
-}
+  @include m(ghost, false, true){
+    @include m(default, false, true){
+      @include tag-color($--tag-font-color-default,$--tag-font-color-default,'ghost');
+    }
+  }
 
-.cl-tag--ghost.cl-tag--color-danger{
-  @include tag-color($--color-danger,$--color-danger,'ghost');
-}
+  @include m(ghost, false, true){
+    @include m(primary, false, true){
+      @include tag-color($--color-primary,$--color-primary,'ghost');
+    }
+  }
 
-.cl-tag--ghost.cl-tag--color-success{
-  @include tag-color($--color-success,$--color-success,'ghost');
-}
+  @include m(ghost, false, true){
+    @include m(danger, false, true){
+      @include tag-color($--color-danger,$--color-danger,'ghost');
+    }
+  }
 
-.cl-tag--ghost.cl-tag--color-warning{
-  @include tag-color($--color-warning,$--color-warning,'ghost');
-}
+  @include m(ghost, false, true){
+    @include m(success, false, true){
+      @include tag-color($--color-success,$--color-success,'ghost');
+    }
+  }
 
-.cl-tag--ghost.cl-tag--color-info{
-  @include tag-color($--color-info,$--color-info,'ghost');
-}
+  @include m(ghost, false, true){
+    @include m(warning, false, true){
+      @include tag-color($--color-warning,$--color-warning,'ghost');
+    }
+  }
 
-.cl-tag--ghost.cl-tag--color-default-o{
-  @include tag-color($--tag-font-color-default,$--tag-font-color-default,'ghost-o');
-}
+  @include m(ghost, false, true){
+    @include m(info, false, true){
+      @include tag-color($--color-info,$--color-info,'ghost');
+    }
+  }
 
-.cl-tag--ghost.cl-tag--color-primary-o{
-  @include tag-color($--color-primary,$--color-primary,'ghost-o');
-}
 
-.cl-tag--ghost.cl-tag--color-danger-o{
-  @include tag-color($--color-danger,$--color-danger,'ghost-o');
-}
+  @include m(ghost, false, true){
+    @include m(default-o, false, true){
+      @include tag-color($--tag-font-color-default,$--tag-font-color-default,'ghost-o');
+    }
+  }
 
-.cl-tag--ghost.cl-tag--color-success-o{
-  @include tag-color($--color-success,$--color-success,'ghost-o');
-}
+  @include m(ghost, false, true){
+    @include m(primary-o, false, true){
+      @include tag-color($--color-primary,$--color-primary,'ghost-o');
+    }
+  }
 
-.cl-tag--ghost.cl-tag--color-warning-o{
-  @include tag-color($--color-warning,$--color-warning,'ghost-o');
-}
+  @include m(ghost, false, true){
+    @include m(danger-o, false, true){
+      @include tag-color($--color-danger,$--color-danger,'ghost-o');
+    }
+  }
 
-.cl-tag--ghost.cl-tag--color-info-o{
-  @include tag-color($--color-info,$--color-info,'ghost-o');
-}
+  @include m(ghost, false, true){
+    @include m(success-o, false, true){
+      @include tag-color($--color-success,$--color-success,'ghost-o');
+    }
+  }
 
-.cl-tag:not(.is-checked){
-  background-color: transparent;
-  border-color: transparent;
-  color: $--tag-font-color-default;
-  .cl-tag__icon{
+  @include m(ghost, false, true){
+    @include m(warning-o, false, true){
+      @include tag-color($--color-warning,$--color-warning,'ghost-o');
+    }
+  }
+
+  @include m(ghost, false, true){
+    @include m(info-o, false, true){
+      @include tag-color($--color-info,$--color-info,'ghost-o');
+    }
+  }
+
+  &:not(is-checked){
+    background-color: transparent;
+    border-color: transparent;
     color: $--tag-font-color-default;
+    @include e(icon, false){
+      color: $--tag-font-color-default;
+    }
   }
 }

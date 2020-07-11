@@ -50,6 +50,7 @@
     $currentSeletor: #{$currentSeletor + '.' + $C + $modifier-separator + $key + ','};
   }
 
+
   @if($root){
     @at-root {
       #{$currentSeletor} {

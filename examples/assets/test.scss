@@ -59,12 +59,6 @@
   @include t(bb, false, true){
     font-size: 12px;
 
-
-
-    &_item{
-      font-size: 14px;
-    }
-
     & > {
       @include t(cc, false){
         color: #cccccc;

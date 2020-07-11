@@ -22,7 +22,25 @@
     display: inline-block;
     cursor: pointer;
     position: relative;
-    &:not(.cl-tabs__nav-item-disabled):hover{
+
+    @include when(active){
+      & > {
+        @include e(nav-item, false){
+          color: $--color-primary;
+          border-bottom: 2px solid $--color-primary;
+        }
+      }
+    }
+    @include when(disabled){
+      cursor: not-allowed;
+      & > {
+        @include e(nav-item, false){
+          opacity: $--opacity-disabled;
+        }
+      }
+    }
+
+    &:not(.is-disabled):hover{
       color: $--color-primary;
     }
   }
@@ -48,18 +66,7 @@
 
   }
 
-  @include e(nav-item-active){
-    &>.cl-tabs__nav-item{
-      color: $--color-primary;
-      border-bottom: 2px solid $--color-primary;
-    }
-  }
-  @include e(nav-item-disabled){
-    cursor: not-allowed;
-    &>.cl-tabs__nav-item{
-      opacity: $--opacity-disabled;
-    }
-  }
+
 
   @include m(left){
     @include e(nav-wrap, false){
@@ -107,13 +114,15 @@
 
 
   @include m(mini){
-    .cl-tabs__header{
+    @include e(header, false){
       font-size: $--font-size-mini;
     }
-    .cl-tabs__nav-item-wrap{
+    @include e(nav-item-wrap, false){
       margin-right: 4px;
-      &>.cl-tabs__nav-item{
-        padding: 4px 12px;
+      & > {
+        @include e(nav-item, false){
+          padding: 4px 12px;
+        }
       }
       &:nth-last-of-type(1){
         margin: 0;
@@ -122,13 +131,15 @@
   }
 
   @include m(small){
-    .cl-tabs__header{
+    @include e(header, false){
       font-size: $--font-size-small;
     }
-    .cl-tabs__nav-item-wrap{
+    @include e(nav-item-wrap, false){
       margin-right: 8px;
-      &>.cl-tabs__nav-item{
-        padding: 6px 14px;
+      & > {
+        @include e(nav-item, false){
+          padding: 6px 14px;
+        }
       }
       &:nth-last-of-type(1){
         margin: 0;
@@ -137,13 +148,15 @@
   }
 
   @include m(default){
-    .cl-tabs__header{
+    @include e(header, false){
       font-size: $--font-size-default;
     }
-    .cl-tabs__nav-item-wrap{
+    @include e(nav-item-wrap, false){
       margin-right: 12px;
-      &>.cl-tabs__nav-item{
-        padding: 8px 16px;
+      & > {
+        @include e(nav-item, false){
+          padding: 8px 16px;
+        }
       }
       &:nth-last-of-type(1){
         margin: 0;
@@ -152,13 +165,15 @@
   }
 
   @include m(large){
-    .cl-tabs__header{
+    @include e(header, false){
       font-size: $--font-size-large;
     }
-    .cl-tabs__nav-item-wrap{
+    @include e(nav-item-wrap, false){
       margin-right: 16px;
-      &>.cl-tabs__nav-item{
-        padding: 8px 16px;
+      & > {
+        @include e(nav-item, false){
+          padding: 8px 16px;
+        }
       }
       &:nth-last-of-type(1){
         margin: 0;
@@ -168,36 +183,43 @@
 
 
   @include m(card){
-    .cl-tabs__nav-item-wrap{
+    @include e(nav-item-wrap, false){
       margin-right: 4px;
-      &>.cl-tabs__nav-item{
-        border-top: $--border-default;
-        border-left: $--border-default;
-        border-right: $--border-default;
-        border-top-left-radius: $--border-radius-default;
-        border-top-right-radius: $--border-radius-default;
-        position: relative;
-        bottom: -1px;
-        left: 0;
-      }
-      &.cl-tabs__nav-item-active{
-        &>.cl-tabs__nav-item{
-          border-bottom: 2px solid $--color-white;
+
+      & > {
+        @include e(nav-item, false){
+          border-top: $--border-default;
+          border-left: $--border-default;
+          border-right: $--border-default;
+          border-top-left-radius: $--border-radius-default;
+          border-top-right-radius: $--border-radius-default;
+          position: relative;
+          bottom: -1px;
+          left: 0;
         }
       }
-      &.cl-tabs__nav-item-active:after{
-        content: "";
-        position: absolute;
-        bottom: -1px;
-        left: 0;
-        width: 100%;
-        border-bottom: 2px solid $--color-white;
+
+      @include when(active){
+        & > {
+          @include e(nav-item, false){
+            border-bottom: 2px solid $--color-white;
+          }
+        }
+
+        &:after{
+          content: "";
+          position: absolute;
+          bottom: -1px;
+          left: 0;
+          width: 100%;
+          border-bottom: 2px solid $--color-white;
+        }
       }
     }
   }
 
   @include m(border){
-    .cl-tabs__wrap{
+    @include e(wrap, false){
       border-left: $--border-default;
       border-right: $--border-default;
       border-bottom: $--border-default;

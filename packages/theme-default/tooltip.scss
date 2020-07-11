@@ -35,7 +35,7 @@
     }
 
     &[x-placement^="top"] {
-      .cl-tooltip__arrow{
+      @include e(arrow, false){
         bottom: 0;
         transform: translateY(100%);
         border-width: $--popover-arrow-border-width $--popover-arrow-border-width 0;
@@ -44,7 +44,7 @@
     }
 
     &[x-placement^="bottom"] {
-      .cl-tooltip__arrow{
+      @include e(arrow, false){
         top: 0;
         transform: translateY(-100%);
         border-width: 0 $--popover-arrow-border-width $--popover-arrow-border-width;
@@ -53,14 +53,14 @@
     }
 
     &[x-placement="top"], &[x-placement="bottom"] {
-      .cl-tooltip__arrow{
+      @include e(arrow, false){
         left: 50%;
         margin-left: -$--popover-arrow-border-width;
       }
     }
 
     &[x-placement="top-start"], &[x-placement="bottom-start"] {
-      .cl-tooltip__arrow{
+      @include e(arrow, false){
         left: #{$--popover-arrow-border-width * 2};
       }
     }
@@ -72,7 +72,7 @@
     }
 
     &[x-placement^="left"] {
-      .cl-tooltip__arrow{
+      @include e(arrow, false){
         right: 0;
         transform: translateX(100%);
         border-width: $--popover-arrow-border-width 0 $--popover-arrow-border-width $--popover-arrow-border-width;
@@ -81,7 +81,7 @@
     }
 
     &[x-placement^="right"] {
-      .cl-tooltip__arrow{
+      @include e(arrow, false){
         left: 0;
         transform: translateX(-100%);
         border-width: $--popover-arrow-border-width $--popover-arrow-border-width $--popover-arrow-border-width 0;
@@ -90,20 +90,20 @@
     }
 
     &[x-placement="left"], &[x-placement="right"] {
-      .cl-tooltip__arrow{
+      @include e(arrow, false){
         top: 50%;
         margin-top: -$--popover-arrow-border-width;
       }
     }
 
     &[x-placement="left-start"], &[x-placement="right-start"] {
-      .cl-tooltip__arrow{
+      @include e(arrow, false){
         top: $--popover-arrow-border-width;
       }
     }
 
     &[x-placement="left-end"], &[x-placement="right-end"] {
-      .cl-tooltip__arrow{
+      @include e(arrow, false){
         bottom: $--popover-arrow-border-width;
       }
     }

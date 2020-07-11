@@ -31,7 +31,7 @@ $picture-thumbnial-height: #{$--upload-picture-height - $--upload-picture-paddin
     font-size: $--font-size-large;
     position: relative;
 
-    &.cl-upload__text{
+    @include e(text, false, true){
       display: block;
       padding: 20px 0;
     }

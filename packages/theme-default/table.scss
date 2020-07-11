@@ -79,6 +79,8 @@
   td{
     @include utils-ellipsis();
 
+
+
     &.cl-table-td__expand{
       word-break: break-all;
       white-space: normal;
@@ -96,6 +98,13 @@
       border-top-left-radius: $--border-radius-default;
       border-top-right-radius: $--border-radius-default;
     }
+
+    @include ci(table-cell){
+      &:not(&--ellipsis){
+        text-overflow: inherit;
+      }
+    }
+
     .cl-table-cell:not(.cl-table-cell--ellipsis){
       text-overflow: inherit;
     }

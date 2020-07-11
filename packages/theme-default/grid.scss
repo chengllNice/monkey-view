@@ -32,30 +32,30 @@
       //  }
       //}
 
-      @include m(span-#{$key}-0){
+      &--span-#{$key}-0 {
         display: none;
       }
 
       @for $i from 0 through 24 {
-        @include m(span-#{$key}-#{$i}, false){
+        &--span-#{$key}-#{$i} {
           width: (1 / 24 * $i * 100) * 1%;
         }
 
-        @include m(offset-#{$key}-#{$i}, false){
+        &--offset-#{$key}-#{$i} {
           margin-left: (1 / 24 * $i * 100) * 1%;
         }
 
-        @include m(pull-#{$key}-#{$i}, false){
+        &--pull-#{$key}-#{$i} {
           position: relative;
           right: (1 / 24 * $i * 100) * 1%;
         }
 
-        @include m(push-#{$key}-#{$i}, false){
+        &--push-#{$key}-#{$i} {
           position: relative;
           left: (1 / 24 * $i * 100) * 1%;
         }
 
-        @include m(order-#{$key}-#{$i}, false){
+        &--order-#{$key}-#{$i} {
           order: $i;
         }
       }
@@ -93,25 +93,25 @@
     //}
 
 
-    @include m(span-#{$i}, false){
+    &--span-#{$i} {
       width: (1 / 24 * $i * 100) * 1%;
     }
 
-    @include m(offset-#{$i}, false){
+    &--offset-#{$i} {
       margin-left: (1 / 24 * $i * 100) * 1%;
     }
 
-    @include m(pull-#{$i}, false){
+    &--pull-#{$i} {
       position: relative;
       right: (1 / 24 * $i * 100) * 1%;
     }
 
-    @include m(push-#{$i}, false){
+    &--push-#{$i} {
       position: relative;
       left: (1 / 24 * $i * 100) * 1%;
     }
 
-    @include m(order-#{$i}, false){
+    &--order-#{$i} {
       order: $i;
     }
   }
