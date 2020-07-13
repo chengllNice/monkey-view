@@ -22,7 +22,7 @@
         </SlideTransition>
 
         <transition v-else name="fade">
-            <DropDown v-show="opened && !disabled"
+            <Drop v-show="opened && !disabled"
                       ref="dropDown"
                       :reference="this.$refs.reference"
                       :placement="placement"
@@ -30,7 +30,7 @@
                 <div :class="[`${classPrefix}__drop-inner`]">
                     <slot></slot>
                 </div>
-            </DropDown>
+            </Drop>
         </transition>
     </div>
 </template>
@@ -41,7 +41,7 @@
     import Icon from 'packages/icon'
     import {findComponent, findComponents, findComponentChildrens} from "main/utils/tool";
     import Emitter from 'main/mixins/emitter'
-    import DropDown from '../../select/src/drop-down.vue'
+    import Drop from 'packages/base/drop'
 
     export default {
         name: "Submenu",
@@ -111,7 +111,7 @@
         },
         components: {
             SlideTransition,
-            DropDown,
+            Drop,
             Icon
         },
         created() {

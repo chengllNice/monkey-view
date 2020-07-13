@@ -1,13 +1,13 @@
 <template>
     <div class="SelectView">
-<!--        <ClSelect size="mini" v-model="selectValueBase4" :option="optionBaseEmpty" @change="handlerChange"></ClSelect>-->
-<!--        <ClSelect size="small" v-model="selectValueBase4" :option="optionBaseEmpty" @change="handlerChange"></ClSelect>-->
-<!--        <ClSelect v-model="selectValueBase4" :option="optionBaseEmpty" @change="handlerChange"></ClSelect>-->
-<!--        <ClSelect size="large" v-model="selectValueBase4" :option="optionBaseEmpty" @change="handlerChange"></ClSelect>-->
-<!--        <ClSelect size="mini" v-model="selectValueMultiple2" multiple valueLable :option="optionMultiple" @change="handlerChange"></ClSelect>-->
-<!--        <ClSelect size="small" v-model="selectValueMultiple2" multiple valueLable :option="optionMultiple" @change="handlerChange"></ClSelect>-->
-<!--        <ClSelect v-model="selectValueMultiple2" multiple valueLable :option="optionMultiple" @change="handlerChange"></ClSelect>-->
-<!--        <ClSelect size="large" v-model="selectValueMultiple2" multiple valueLable :option="optionMultiple" @change="handlerChange"></ClSelect>-->
+        <ClSelect size="mini" v-model="selectValueBase4" :option="optionBaseEmpty" @change="handlerChange"></ClSelect>
+        <ClSelect size="small" v-model="selectValueBase4" :option="optionBaseEmpty" @change="handlerChange"></ClSelect>
+        <ClSelect v-model="selectValueBase4" :option="optionBaseEmpty" @change="handlerChange"></ClSelect>
+        <ClSelect size="large" v-model="selectValueBase4" :option="optionBaseEmpty" @change="handlerChange"></ClSelect>
+        <ClSelect size="mini" v-model="selectValueMultiple2" multiple valueLable :option="optionMultiple" @change="handlerChange"></ClSelect>
+        <ClSelect size="small" v-model="selectValueMultiple2" multiple valueLable :option="optionMultiple" @change="handlerChange"></ClSelect>
+        <ClSelect v-model="selectValueMultiple2" multiple valueLable :option="optionMultiple" @change="handlerChange"></ClSelect>
+        <ClSelect size="large" v-model="selectValueMultiple2" multiple valueLable :option="optionMultiple" @change="handlerChange"></ClSelect>
 
         <div class="view">
             <h2>基础</h2>
@@ -27,7 +27,7 @@
 
             <p>slots:option</p>
             <ClSelect v-model="selectValueBase2" @change="handlerChange">
-                <ClOption v-for="item in optionBase" :key="item.value" :value="item.value" :label="item.label"></ClOption>
+                <Option v-for="item in optionBase" :key="item.value" :value="item.value" :label="item.label"></Option>
             </ClSelect>
 
             <p>返回值valueLabel格式props:option</p>
@@ -41,12 +41,18 @@
         <div class="view">
             <h2>禁用</h2>
             <ClSelect v-model="selectValueDisabled1" :option="optionDisabled" disabled @change="handlerChange"></ClSelect>
-            <ClSelect v-model="selectValueDisabled2" :option="optionDisabled" disabled @change="handlerChange"></ClSelect>
+            <ClSelect v-model="selectValueDisabled2" :option="optionDisabled" @change="handlerChange"></ClSelect>
         </div>
 
 
         <div class="view">
             <h2>size</h2>
+            <p>mini: </p>
+            <ClSelect v-model="selectValueSizeMini" size="mini">
+                <ClOption v-for="item in optionSizeMini" :key="item.value" :value="item.value" :selected="item.selected" :disabled="item.disabled">
+                    {{item.label}}
+                </ClOption>
+            </ClSelect>
             <p>small: </p>
             <ClSelect v-model="selectValueSizeSmall" size="small">
                 <ClOption v-for="item in optionSizeSmall" :key="item.value" :value="item.value" :selected="item.selected" :disabled="item.disabled">
@@ -103,9 +109,9 @@
 
             <p>自定义模板：slots:option</p>
             <ClSelect v-model="selectValueCustomModel1" @change="handlerChange">
-                <ClOption v-for="item in optionCustomModel" :key="item.value" :value="item.value" :label="item.label" :disabled="item.disabled">
+                <Option v-for="item in optionCustomModel" :key="item.value" :value="item.value" :label="item.label" :disabled="item.disabled">
                     <i :class="item.icon" style="margin-right: 10px;"></i> {{item.label}}
-                </ClOption>
+                </Option>
             </ClSelect>
 
             <p>自定义模板：props:option</p>
@@ -165,6 +171,7 @@
 
             <p>可搜索多选可清空props:optionGroup</p>
             <ClSelect v-model="selectValueSearchGroup3" :option="optionSearchGroup" multiple filterable clearable @change="handlerChange"></ClSelect>
+
         </div>
 
 
@@ -401,8 +408,11 @@
         ],
 
         selectValueDisabled1: '',
-        selectValueDisabled2: '0',
+        selectValueDisabled2: '1',
         optionDisabled: [],
+
+          selectValueSizeMini: '',
+          optionSizeMini: [],
 
         selectValueSizeSmall: '',
         optionSizeSmall: [],
@@ -708,40 +718,30 @@
           {
             value: 'group1',
             label: 'group1',
-            selected: true,
-            disabled: true,
-            noClick: false,
             option: [
               {
-                value: 'group0',
-                label: '测试group0',
-                selected: true,
+                value: 'option0',
+                label: 'option0',
                 disabled: true
               },
               {
-                value: 'group1',
-                label: '测试group1',
-                selected: false,
+                value: 'option1',
+                label: 'option1',
               }
             ]
           },
           {
             value: 'group2',
             label: 'group2',
-            selected: true,
-            disabled: true,
-            noClick: true,
             option: [
               {
-                value: 'group2',
-                label: '测试group2',
-                selected: true,
+                value: 'option2-1',
+                label: 'option2-1',
                 disabled: true
               },
               {
-                value: 'group3',
-                label: '测试group3',
-                selected: false,
+                value: 'option2-2',
+                label: 'option2-2',
               }
             ]
           },

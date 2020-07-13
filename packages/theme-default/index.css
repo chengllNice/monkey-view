@@ -9123,7 +9123,8 @@ textarea {
       width: 100%;
       border-top: 1px solid #e8eaec; }
   .cl-dropdown-item.is-disabled {
-    color: #dcdee2; }
+    color: #dcdee2;
+    cursor: not-allowed; }
 
 /*-----Common Var-----*/
 /*-----Height-----*/

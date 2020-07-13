@@ -15,7 +15,7 @@
                   `${classPrefix}__icon`
               ]"
               :style="iconStyle"
-              @click.stop="handlerClose"></Icon>
+              @click.native.stop="handlerClose"></Icon>
     </div>
 </template>
 

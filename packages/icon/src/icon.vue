@@ -1,5 +1,5 @@
 <template>
-    <i :class="iconClass"></i>
+    <i :class="iconClass" @click="handleClick"></i>
 </template>
 
 <script>
@@ -23,6 +23,11 @@
                     isPrefix && `${this.type}`,
                     !isPrefix && `${this.classPrefix}-${this.type}`,
                 ]
+            }
+        },
+        methods: {
+            handleClick(event){
+                this.$emit('click', event)
             }
         }
     }

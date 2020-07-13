@@ -40,7 +40,7 @@
                       ]"
                       ref="reference"
                       @click.stop="filterShow"></Icon>
-                <DropDown v-show="visible"
+                <Drop v-show="visible"
                           ref="dropDown"
                           :reference="this.$refs.reference"
                           :dropdownMatchSelectWidth="false"
@@ -85,7 +85,7 @@
                             <Button size="mini" @click="resetFilterMultiple">{{t('cl.table.reset')}}</Button>
                         </div>
                     </div>
-                </DropDown>
+                </Drop>
             </span>
         </template>
     </div>
@@ -96,7 +96,7 @@
     import Checkbox from 'packages/checkbox'
     import CheckboxGroup from 'packages/checkbox-group'
     import Button from 'packages/button'
-    import DropDown from '../../select/src/drop-down.vue'
+    import Drop from 'packages/base/drop'
     import tableSlotHead from './table-slot-head'
     import {directive as clickOutside} from 'v-click-outside-x';
     import Locale from 'main/mixins/locale'
@@ -128,7 +128,7 @@
             CheckboxGroup,
             Button,
             Icon,
-            DropDown,
+            Drop,
             tableSlotHead
         },
         created() {

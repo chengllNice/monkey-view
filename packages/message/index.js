@@ -1,6 +1,3 @@
-import Message from './src/message'
-import $Message from './messageInstance'
-
-Message.$Message = $Message
+import Message from './messageInstance'
 
 export default Message

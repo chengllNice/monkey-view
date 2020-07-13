@@ -1,6 +1,6 @@
 <template>
-    <div :class="[`${classPrefix}__el`]" @click="handlerClick" @mouseenter="isHover = true" @mouseleave="isHover = false">
-        <sn-input :class="[`${classPrefix}__el-input`]"
+    <div :class="[`${classPrefix}`]" @click="handlerClick" @mouseenter="isHover = true" @mouseleave="isHover = false">
+        <sn-input :class="[`${classPrefix}__input`]"
                   v-if="!multiple"
                   v-model="cValue"
                   type="input"
@@ -16,32 +16,32 @@
                 <Icon v-if="!isClearable"
                       type="icon-down"
                       :class="[
-                          `${classPrefix}__el-icon`,
-                          visible && `${classPrefix}__el-icon-rotate`
+                          `${classPrefix}__icon`,
+                          visible && `${classPrefix}__icon-rotate`
                       ]"></Icon>
-                <Icon v-else type="icon-error-fill" :class="[`${classPrefix}__el-icon`]" @click.stop="handlerClear"></Icon>
+                <Icon v-else type="icon-error-fill" :class="[`${classPrefix}__icon`]" @click.stop="handlerClear"></Icon>
             </span>
         </sn-input>
 
         <div ref="selectMultipleTag"
              v-if="multiple"
              tabindex="-1"
-             :class="[`${classPrefix}__el-multiple-tag`]">
-            <tag :class="[`${classPrefix}__el-multiple-tag-item`]"
+             :class="[`${classPrefix}__multiple-tag`]">
+            <tag :class="[`${classPrefix}__multiple-tag-item`]"
                  v-for="item in values"
                  :key="item.value"
                  :size="tagSize"
                  closable
                  @close="tagClose(item)">{{item.label}}
             </tag>
-            <sn-input v-if='filterable'
+            <input v-if='filterable'
                    v-model="cValue"
                    type="text"
                    ref="multipleInput"
                    spellcheck="false"
                    :class="[
-                       `${classPrefix}__el-multiple-tag-item`,
-                       `${classPrefix}__el-multiple-input`
+                       `${classPrefix}__multiple-tag-item`,
+                       `${classPrefix}__multiple-input`
                    ]"
                    :disabled="selectDisabled"
                    :style="inputStyle"
@@ -52,22 +52,22 @@
 
         <div v-if="multiple"
              :class="[
-                `${classPrefix}__el-multiple`,
-                isFocused && `${classPrefix}__el-focus`
+                `${classPrefix}__multiple`,
+                isFocused && `${classPrefix}__focus`
              ]"
              tabindex="0"
              :style="multipleStyle">
             <span v-if="selectElPlaceholder && !cValue"
-                  :class="[`${classPrefix}__el-placeholder`]">{{selectElPlaceholder}}</span>
-            <span :class="[`${classPrefix}__el-suffix`]">
-                <span :class="[`${classPrefix}__el-suffix-inner`]">
+                  :class="[`${classPrefix}__placeholder`]">{{selectElPlaceholder}}</span>
+            <span :class="[`${classPrefix}__suffix`]">
+                <span :class="[`${classPrefix}__suffix-inner`]">
                     <Icon v-if="!isClearable"
                           type="icon-down"
                           :class="[
-                              `${classPrefix}__el-icon`,
-                              visible && `${classPrefix}__el-icon-rotate`
+                              `${classPrefix}__icon`,
+                              visible && `${classPrefix}__icon-rotate`
                           ]"></Icon>
-                    <Icon v-else type="icon-error-fill" :class="[`${classPrefix}__el-icon`]" @click.stop="handlerClear"></Icon>
+                    <Icon v-else type="icon-error-fill" :class="[`${classPrefix}__icon`]" @click.stop="handlerClear"></Icon>
                 </span>
             </span>
         </div>
@@ -82,7 +82,7 @@
     import Locale from 'main/mixins/locale'
 
     export default {
-        name: "SelectEl",
+        name: "SelectReference",
         mixins: [Locale],
         props: {
             values: Array,
@@ -99,7 +99,7 @@
         },
         data() {
             return {
-                classPrefix: Config.classPrefix + '-select',
+                classPrefix: Config.classPrefix + '-select-reference',
                 cValue: '',
                 isHover: false,
                 multipleStyle: {},

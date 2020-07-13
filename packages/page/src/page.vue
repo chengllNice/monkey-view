@@ -261,6 +261,7 @@
         },
         methods: {
             changePage(page) {
+                page = parseInt(page);
                 if (page <= 1) {
                     page = 1
                 }
@@ -271,7 +272,7 @@
                     return;
                 }
                 this.currentPage = page;
-                this.jumpToPage = parseInt(page);
+                this.jumpToPage = page;
                 this.$emit('change', page, this.currentPageSize);
             },
             pageSizeChange() {

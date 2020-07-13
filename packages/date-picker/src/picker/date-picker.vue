@@ -22,7 +22,7 @@
             </slot>
         </div>
         <transition :name="transition">
-            <DropDown v-show="visible && !disabled"
+            <Drop v-show="visible && !disabled"
                       ref="dropDown"
                       :class="dropdownClassName"
                       :reference="this.$refs.reference"
@@ -41,7 +41,7 @@
                                :is-range="isRange"
                                :type="type"/>
                 </div>
-            </DropDown>
+            </Drop>
         </transition>
     </div>
 </template>
@@ -50,7 +50,7 @@
     import Config from 'main/config/config'
     import Input from 'packages/input'
     import {directive as clickOutside} from 'v-click-outside-x';
-    import DropDown from '../../../select/src/drop-down.vue'
+    import Drop from 'packages/base/drop'
     import DatePane from '../pane/date-pane.vue'
     import {dateFormat} from "main/utils/date";
 
@@ -168,7 +168,7 @@
             }
         },
         components: {
-            DropDown,
+            Drop,
             DatePane,
             'sn-input': Input
         },

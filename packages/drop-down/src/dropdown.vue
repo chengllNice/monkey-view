@@ -7,7 +7,7 @@
             <slot></slot>
         </div>
         <transition :name="transition">
-            <DropDown ref="dropDown"
+            <Drop ref="dropDown"
                       v-show="currentVisible"
                       v-model="currentVisible"
                       :reference="this.$refs.reference"
@@ -17,14 +17,14 @@
                       @mouseenter.native="handleMouseEnter"
                       @mouseleave.native="handleMouseLeave">
                 <slot name="menu"></slot>
-            </DropDown>
+            </Drop>
         </transition>
     </div>
 </template>
 
 <script>
     import Config from 'main/config/config'
-    import DropDown from '../../select/src/drop-down.vue'
+    import Drop from 'packages/base/drop'
     import {directive as clickOutside} from 'v-click-outside-x';
 
     export default {
@@ -68,7 +68,7 @@
             }
         },
         components: {
-            DropDown
+            Drop
         },
         mounted(){
 

@@ -45,5 +45,6 @@
 
   @include when(disabled){
     color: $--color-text-disabled;
+    cursor: not-allowed;
   }
 }

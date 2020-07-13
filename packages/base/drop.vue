@@ -13,7 +13,7 @@
     } : require('popper.js/dist/umd/popper.js');
 
     export default {
-        name: "DropDown",
+        name: "Drop",
         props: {
             dropdownMatchSelectWidth: Boolean,
             isMinWidth: {
@@ -54,7 +54,7 @@
         },
         data() {
             return {
-                classPrefix: Config.classPrefix + '-drop-down',
+                classPrefix: Config.classPrefix + '-drop',
                 visible: false,
                 width: '',
             }

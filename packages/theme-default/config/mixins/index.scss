@@ -87,7 +87,7 @@
 }
 
 @mixin utils-rotate {
-  transform: rotate(-180deg);
+  transform: rotate(180deg);
 }
 
 @mixin clear-float{

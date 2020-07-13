@@ -308,14 +308,6 @@ $--switch-background-color-default: #cccccc !default;
 $--switch-background-color-checked: $--color-primary !default;
 
 
-/*----select----*/
-$--select-option-text-color: $--color-text-default !default;
-$--select-option-padding-right-mutiple: 36px !default;
-$--select-option-font-size: $--font-size-default !default;
-$--select-drop-down-max-height: 200px !default;
-$--select-suffix-width: 28px !default;
-
-
 /*-----input-----*/
 $--input-background-color-append-prepend: $--background-color-base !default;
 $--input-suffix-width: 36px !default;
@@ -331,6 +323,14 @@ $--input-padding-horizontal-small: 5px !default;
 
 $--input-padding-vertical-large: 6px !default;
 $--input-padding-horizontal-large: 10px !default;
+
+
+/*----select----*/
+$--select-option-text-color: $--color-text-default !default;
+$--select-option-padding-right-mutiple: 36px !default;
+$--select-option-font-size: $--font-size-default !default;
+$--select-drop-down-max-height: 200px !default;
+$--select-suffix-width: $--input-suffix-width !default;
 
 
 

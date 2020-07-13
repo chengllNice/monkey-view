@@ -1,36 +1,31 @@
 <template>
-    <div :class="[
-             `${classPrefix}`,
-             this.isMultiple && `${classPrefix}__multiple`,
-            {
-                'is-selected': this.isSelected,
-                'is-disabled': this.disabled,
-            }
-         ]"
-         v-show="isShow"
-         @click.stop="handlerClick"
+    <div v-if="selectRoot"
+         v-show="show"
+         :class="optionClass"
+         @click.stop="handleClick"
+         @mouseenter="handleMouseenter"
+         @mouseleave="handleMouseleave"
          @mousedown.prevent>
-        <span :class="[`${classPrefix}__text`]" v-if="$slots.default">
-            <slot></slot>
+        <span :class="[`${classPrefix}__text`]">
+            <slot>{{label}}</slot>
         </span>
-        <span :class="[`${classPrefix}__text`]" v-else>{{optionsLabel}}</span>
-        <Icon v-if="isMultiple && isSelected" type="icon-check" :class="[`${classPrefix}__icon`]"></Icon>
+        <Icon v-if="multipleIconShow" type="icon-check" :class="[`${classPrefix}__icon`]"></Icon>
     </div>
 </template>
 
 <script>
     import Config from 'main/config/config'
     import Icon from 'packages/icon'
+    import {findComponent} from "main/utils/tool";
 
     export default {
         name: "Option",
-        inject: ['select'],
         props: {
             value: {
                 type: [String, Number],
                 required: true
             },
-            label: [String, Number],
+            label: String,
             disabled: {
                 type: Boolean,
                 default: false,
@@ -40,48 +35,33 @@
             return {
                 classPrefix: Config.classPrefix + '-option',
                 componentName: 'Option',
-                firstTrigger: true,
+                selectRoot: findComponent(this, 'Select'),
+                optionGroupRoot: findComponent(this, 'OptionGroup'),
             }
         },
         computed: {
-            optionGroupParentEl() {
-                let parent = this.$parent;
-                while (parent) {
-                    if (parent.componentName !== 'OptionGroup') {
-                        parent = parent.$parent;
-                    } else {
-                        return parent
-                    }
+            optionClass() {
+                let result = [
+                    `${this.classPrefix}`,
+                    this.disabled && `is-disabled`,
+                ];
+                if (this.selectRoot) {
+                    result = [
+                        ...result,
+                        this.selectRoot.multiple && `${this.classPrefix}__multiple`,
+                        this.selectRoot.currentValue.includes(this.value) && `is-selected`,
+                        this.selectRoot.hoverItemValue === this.value && `is-hover`,
+                    ]
                 }
-                return false
+                return result;
             },
-            optionsLabel() {
-                let label = '';
-                if (this.$slots.default && this.$slots.default.length === 1 && !this.$slots.default[0].tag) {
-                    label = this.$slots.default[0].text || ''
-                }
-                label = this.label || label || this.value;
-                return label.replace(/\n/g, '').trim();
+            show(){
+                if(!this.selectRoot.isFilter) return true;
+                return this.selectRoot.filterableValue.includes(this.value)
             },
-            isSelected() {
-                if (!this.select || this.select.cValue === null) return false;
-                if (this.select.multiple && Array.isArray(this.select.cValue)) {
-                    return this.select.cValue.includes(this.value)
-                } else {
-                    return this.select.cValue === this.value
-                }
-            },
-            isMultiple() {
-                return this.select && this.select.multiple
-            },
-            isShow() {
-                if (this.select.filterable && this.select.isSearching) {
-                    if (!this.select.selectElLabel) {
-                        return true
-                    }
-                    return this.optionsLabel.includes(this.select.selectElLabel)
-                }
-                return true;
+            multipleIconShow(){
+                if(!this.selectRoot || !this.selectRoot.multiple) return false;
+                return this.selectRoot.multiple && this.selectRoot.currentValue.includes(this.value)
             }
         },
         components: {
@@ -90,37 +70,35 @@
         created() {
         },
         mounted() {
-            if (this.isSelected && this.firstTrigger) {
-                this.handlerClick('mounted');
-            }
-            this.optionGroupParentEl && this.optionGroupParentEl.setIsShow();
-            this.select && this.select.getIsEmpty();
+            this.$nextTick(this.optionGroupRoot && this.optionGroupRoot.setShow());
+            this.$nextTick(this.selectRoot.initOption());
         },
         updated() {
-            this.optionGroupParentEl && this.optionGroupParentEl.setIsShow();
-            this.select && this.select.getIsEmpty();
+            this.$nextTick(this.optionGroupRoot && this.optionGroupRoot.setShow());
         },
-        watch: {
-            isSelected: function (newVal) {
-                if (newVal) this.handlerClick('mounted');
+        destroyed() {
+            //slot模式下远程搜索需要重新计算
+            if(this.selectRoot.renderType === 'slot'){
+                this.$nextTick(this.optionGroupRoot && this.optionGroupRoot.setShow());
+                this.$nextTick(this.selectRoot.initOption());
             }
         },
         methods: {
-            handlerClick(type) {
+            handleClick() {
                 if (this.disabled) return false;
-                this.firstTrigger = false;
-                this.select && this.select.handlerSelected({
-                    value: this.value,
-                    label: this.optionsLabel,
-                    disabled: this.disabled,
-                    type: type === 'mounted' ? type : undefined
-                });
-                // this.$emit('on-selected', {
-                //   value: this.value,
-                //   label: this.optionsLabel,
-                //   disabled: this.disabled,
-                // });
+                this.selectRoot && this.selectRoot.handleOptionClick(this.value);
+            },
+            handleMouseenter(){
+                if (this.disabled) return false;
+                this.selectRoot && this.selectRoot.handleOptionHover(this.value, true);
+            },
+            handleMouseleave(){
+                if (this.disabled) return false;
+                this.selectRoot && this.selectRoot.handleOptionHover(this.value, false);
             }
+        },
+        watch: {
+
         }
     }
 </script>

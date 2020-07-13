@@ -1,0 +1,11 @@
+
+@import "./base/var";
+@import "./config/mixins/index.scss";
+
+@include c(drop){
+  display: inline-block;
+  padding: 5px 0;
+  box-sizing: border-box;
+  z-index: $--popover-z-index;
+  width: inherit;
+}

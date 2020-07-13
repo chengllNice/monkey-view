@@ -22,23 +22,34 @@
     $tag-height: $--tag-height-mini;
   }
 
+
+  @include ci(option){
+    font-size: $font-size;
+  }
+  @include ci(option-group){
+    font-size: $font-size;
+  }
+
   @include ci(select-reference){
     font-size: $font-size;
 
-    &--multiple{
-      height: auto;
-      min-height: $height;
+    &__multiple {
+      height: $height;
+      line-height: $height;
+    }
+
+    &__placeholder {
+      height: #{$height - 2px};
+      line-height: #{$height - 2px};
     }
 
     &__multiple-input {
-      height: #{$height - 2px};
+      height: #{$height - 10px};
     }
 
-    &__multiple-tag {
-      height: $tag-height;
-      line-height: $tag-height;
-      margin-top: #{($height - $tag-height - 2) / 2};
-      margin-bottom: #{($height - $tag-height - 2) / 2};
+    &__multiple-tag &__multiple-tag-item {
+      margin-top: #{($height - $tag-height) / 2};
+      margin-bottom: #{($height - $tag-height) / 2};
     }
   }
 }
@@ -47,7 +58,7 @@
   display: inline-block;
   width: 100%;
 
-  @include e(drop-inner){
+  @include e(drop-down-inner){
     position: relative;
     width: 100%;
     box-sizing: border-box;
@@ -56,13 +67,17 @@
     border-radius: $--border-radius-default;
     box-shadow: $--box-shadow-default;
     background-color: $--color-white;
-    padding: 5px 0;
+    //padding: 10px 0;
+  }
+
+  @include e(option-list){
+    box-sizing: border-box;
   }
 
   @include e(empty){
     box-sizing: border-box;
     text-align: center;
-    //padding: 7px 16px;
+    padding: 7px 16px;
     font-size: $--select-option-font-size;
     color: $--color-text-empty;
     @include utils-ellipsis();
@@ -71,7 +86,7 @@
   @include e(loading){
     box-sizing: border-box;
     text-align: center;
-    //padding: 7px 16px;
+    padding: 7px 16px;
     font-size: $--select-option-font-size;
     color: $--color-text-empty;
     @include utils-ellipsis();
@@ -80,12 +95,16 @@
     }
   }
 
-  @include m(large){
-    @include selectSize(large);
+  @include when(disabled){
+    cursor: not-allowed;
+    @include ci(select-el__input){
+      cursor: not-allowed;
+    }
   }
 
-  @include m(default){
-    @include selectSize(default);
+  @include m(large){
+    height: 50px;
+    @include selectSize(large);
   }
 
   @include m(small){
@@ -97,6 +116,13 @@
   }
 }
 
+@include c(drop-down){
+  display: inline-block;
+  padding: 5px 0;
+  box-sizing: border-box;
+  z-index: $--popover-z-index;
+  width: inherit;
+}
 
 @include c(option){
   display: block;
@@ -106,7 +132,7 @@
   box-sizing: border-box;
   text-align: left;
   cursor: pointer;
-  //line-height: normal;
+  line-height: normal;
   font-size: $--select-option-font-size;
   color: $--select-option-text-color;
   transition: all $--animation-time ease-in-out;
@@ -120,7 +146,6 @@
 
   @include e(text){
     display: inline-block;
-    vertical-align: middle;
     width: 100%;
     @include utils-ellipsis();
   }
@@ -140,7 +165,7 @@
     color: $--color-primary;
   }
 
-  @include when(hover){
+  &:hover{
     background-color: $--background-color-hover;
   }
 
@@ -162,9 +187,9 @@
   position: relative;
   box-sizing: border-box;
   text-align: left;
-  cursor: default;
-  //line-height: normal;
-  //font-size: $--select-option-font-size;
+  //cursor: pointer;
+  line-height: normal;
+  font-size: $--select-option-font-size;
   color: $--select-option-text-color;
   transition: all $--animation-time ease-in-out;
   background-color: $--color-white;
@@ -191,7 +216,64 @@
   width: 100%;
   vertical-align: middle;
 
-  @include m(multiple){
+  &:hover,
+  &:focus,
+  &:active{
+    @include e(multiple, false){
+      border-color: $--color-primary;
+    }
+  }
+
+  @include e(input){
+    cursor: pointer;
+    input{
+      cursor: pointer;
+    }
+    @include ci(input__source-suffix) {
+      padding-right: $--select-suffix-width;
+    }
+  }
+
+  @include e(icon){
+    transition: all $--animation-time ease-in-out;
+    //font-size: 14px;
+  }
+  @include e(icon-rotate){
+    @include utils-rotate();
+  }
+
+  @include e(placeholder){
+    display: inline-block;
+    width: 100%;
+    height: #{$--height-default - 2px};
+    line-height: #{$--height-default - 2px};
+    color: $--color-text-placeholder;
+  }
+
+  @include ci(input){
+    &__suffix {
+      width: $--select-suffix-width;
+    }
+  }
+
+  @include e(suffix){
+    position: absolute;
+    right: 1px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    text-align: center;
+    width: $--select-suffix-width;
+
+    @include e(suffix-inner){
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  @include e(multiple){
     outline: none;
     box-sizing: border-box;
     width: 100%;
@@ -206,54 +288,38 @@
     padding-right: $--select-suffix-width;
     padding-top: 0;
     padding-bottom: 0;
+    height: $--height-default;
     font-size: $--font-size-default;
     color: $--color-text-default;
     transition: all $--animation-time ease-in-out;
   }
 
-  @include m(focus){
+  @include e(focus){
     border-color: $--color-primary;
     box-shadow: 0 0 0 2px mix($--color-primary, $--color-white, $--button-hover-percent);
   }
 
-  @include m(hover){
-    border-color: $--color-primary;
-  }
-
-  @include e(input){
-    input{
-      cursor: pointer;
-    }
-  }
-
-  @include e(suffix){
-    position: absolute;
-    right: 1px;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    text-align: center;
-    width: $--select-suffix-width;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  @include e(suffix-icon){
-    transition: all $--animation-time ease-in-out;
-  }
-  @include e(suffix-icon-rotate){
-    @include utils-rotate();
-  }
-
-  @include e(multiple-tag, false){
+  @include e(multiple-tag){
     outline: none;
     display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     text-align: left;
     box-sizing: border-box;
     overflow: hidden;
-    margin-left: 0;
-    margin-right: 5px;
-    vertical-align: middle;
+    z-index: 2;
+    padding-left: $--input-padding-horizontal-default;
+    padding-right: $--select-suffix-width;
+
+    @include e(multiple-tag-item, false){
+      margin-top: #{($--height-default - $--tag-height-default) / 2};
+      margin-bottom: #{($--height-default - $--tag-height-default) / 2};
+      margin-left: 0;
+      margin-right: 5px;
+      vertical-align: middle;
+    }
   }
 
   @include e(multiple-input){
@@ -264,14 +330,9 @@
     background-color: transparent;
     cursor: pointer;
     box-sizing: border-box;
-    vertical-align: middle;
     font-size: $--font-size-default;
     color: $--color-text-default;
     height: #{$--height-default - 10px};
-
-    &::placeholder{
-      color: $--color-text-placeholder;
-    }
   }
 }
 

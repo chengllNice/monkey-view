@@ -12,7 +12,7 @@
 
         data(){
             return {
-                classPrefix: Config.classPrefix + '-dropdown-meun',
+                classPrefix: Config.classPrefix + '-dropdown-menu',
             }
         },
 

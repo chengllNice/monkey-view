@@ -27,7 +27,7 @@
         </div>
 
         <transition :name="transition">
-            <drop-down v-show="visible && !disabled"
+            <Drop v-show="visible && !disabled"
                       ref="dropDown"
                       :reference="this.$refs.reference"
                       :isMinWidth="false"
@@ -42,7 +42,7 @@
                     <div v-else-if="showEmpty" :class="[`${classPrefix}__empty`]">{{computedEmptyText}}</div>
                     <cascader-panel v-else :data="currentData"></cascader-panel>
                 </div>
-            </drop-down>
+            </Drop>
         </transition>
     </div>
 </template>
@@ -50,7 +50,7 @@
 <script>
     import Config from 'main/config/config'
     import {directive as clickOutside} from 'v-click-outside-x';
-    import DropDown from 'packages/select/src/drop-down.vue'
+    import Drop from 'packages/base/drop'
     import CascaderPanel from './cascaderPanel'
     import Input from 'packages/input'
     import Icon from 'packages/icon'
@@ -143,7 +143,7 @@
         components: {
             'sn-input': Input,
             Icon,
-            DropDown,
+            Drop,
             CascaderPanel,
         },
         mounted() {

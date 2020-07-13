@@ -1,15 +1,7 @@
 <template>
-    <div v-show="isShow"
-         :class="[
-             `${classPrefix}`,
-            {
-                'is-disabled': disabled,
-                'is-selected': selected
-            }
-        ]">
+    <div :class="groupClass" v-show="show">
         <div :class="[`${classPrefix}__title`]">
-            <span v-if="!$slots.groupTitle">{{label}}</span>
-            <slot name="groupTitle"></slot>
+            <slot name="groupTitle">{{label}}</slot>
         </div>
         <div :class="[`${classPrefix}__wrap`]">
             <slot></slot>
@@ -27,46 +19,49 @@
                 type: String,
                 default: ''
             },
-            disabled: Boolean,//暂时不用
-            selected: Boolean,//暂时不用
-            value: [String, Number],//暂时不用
         },
         data() {
             return {
                 classPrefix: Config.classPrefix + '-option-group',
                 componentName: 'OptionGroup',
-                isShow: true
+                show: true,
             }
         },
-        computed: {},
+        computed: {
+            groupClass(){
+                return [
+                    `${this.classPrefix}`
+                ]
+            },
+        },
         components: {},
         created() {
         },
         mounted() {
-            this.$nextTick(this.setIsShow);
+            this.$nextTick(this.setShow());
         },
         methods: {
-            setIsShow() {
-                let result;
+            setShow() {
+                let result = true;
                 if (this.$slots.default) {
-                    let optionShowArr = [];
+                    let childrenOptionShowArr = [];
                     for (let option of this.$slots.default) {
-                        let cOption = option.componentInstance;
-                        let tag = cOption.componentName || option.componentOptions.tag;
-                        // todo
+                        let Instance = option.componentInstance;
+                        let Options = option.componentOptions;
+                        let tag = (Instance && Instance.componentName) || (Options && Options.tag);
                         if (tag === 'Option') {
-                            optionShowArr.push(cOption.isShow);
+                            childrenOptionShowArr.push(Instance.show || false);
                         }
                     }
-                    result = optionShowArr.includes(true)
+                    result = childrenOptionShowArr.includes(true)
                 } else {
-                    result = true;
+                    result = false;
                 }
-                this.isShow = result;
+                this.show = result;
             }
         },
         updated() {
-            this.$nextTick(this.setIsShow);
+
         }
     }
 </script>
