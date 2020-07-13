@@ -41,6 +41,8 @@
                        ]"
                        :disabled="selectRoot.disabled"
                        :style="inputStyle"
+                       @focus="isFocused = true"
+                       @blur="isFocused = false"
                        @input="handleMultipleInput" />
             </div>
 
@@ -73,6 +75,7 @@
                 selectRoot: this.$parent,
 
                 isHover: false,
+                isFocused: false,
                 multipleStyle: {},
             }
         },
@@ -82,7 +85,7 @@
                   `${this.classPrefix}`,
                   this.selectRoot.multiple && `${this.classPrefix}--multiple`,
                   this.selectRoot.disabled && `${this.classPrefix}--disabled`,
-                  this.selectRoot.multiple && this.selectRoot.visible && `${this.classPrefix}--focus`,
+                  this.selectRoot.multiple && (this.selectRoot.visible || this.isFocused) && `${this.classPrefix}--focus`,
                   this.selectRoot.multiple && this.isHover && `${this.classPrefix}--hover`,
               ]
             },

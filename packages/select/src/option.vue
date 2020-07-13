@@ -50,7 +50,7 @@
                         ...result,
                         this.selectRoot.multiple && `${this.classPrefix}__multiple`,
                         this.selectRoot.currentValue.includes(this.value) && `is-selected`,
-                        this.selectRoot.hoverItemValue === this.value && `is-hover`,
+                        (this.selectRoot.hoverItemValue === this.value || this.selectRoot.keySelectValue === this.value) && `is-hover`,
                     ]
                 }
                 return result;

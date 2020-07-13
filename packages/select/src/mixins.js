@@ -2,11 +2,12 @@ export default {
     data() {
         return {
             currentOption: [],
-            currentReduceOption: [],//展开的option，不包含optionGroup
+            currentOptionValue: [],//option 的value数组 搜索时为搜索到的value数组 不包含disabled的项
             currentValue: [],//被选中的option的value数组，单选时只有一项，多选时有多项
             currentSelectedItems: [],
             visible: false,
             hoverItemValue: '',//被hover的option的value值
+            keySelectValue: '',//预选的value
             isFilter: false,//是否搜索 不是远程搜索
             filterableValue: [],//搜索到的value数组
             renderType: this.option ? 'option' : 'slot',//渲染类型，option为数据渲染，slot为插槽渲染
@@ -25,32 +26,35 @@ export default {
             }
             this.setCurrentSelectedItems();
         },
+        setKeySelectValue(){
+            this.keySelectValue = this.currentValue.length ? this.currentValue[this.currentValue.length - 1] : '';
+        },
         initOption() {
             if (this.renderType === 'option') {
                 this.currentOption = this.option || [];
             } else if (this.renderType === 'slot') {
                 this.currentOption = this.formatSlotOption();
             }
-            this.reduceOption();
+            this.reduceOptionValue();
             this.initValue();
             this.$nextTick(this.setScrollInnerHeight());
         },
-        reduceOption() {
+        reduceOptionValue() {
             let deepData = JSON.parse(JSON.stringify(this.currentOption));
 
-            let currentReduceOption = [];
+            let currentOptionValue = [];
 
             deepData.forEach(item => {
                 if (item.option && Array.isArray(item.option)) {
                     item.option.forEach(oItem => {
-                        currentReduceOption.push(oItem)
+                        !oItem.disabled && currentOptionValue.push(oItem.value)
                     })
                 }else {
-                    currentReduceOption.push(item)
+                    !item.disabled && currentOptionValue.push(item.value)
                 }
             });
 
-            this.currentReduceOption = currentReduceOption;
+            this.currentOptionValue = currentOptionValue;
         },
         //格式化slotoption数据
         formatSlotOption(vNodes) {
@@ -109,6 +113,7 @@ export default {
 
             if (JSON.stringify(deepValue) !== JSON.stringify(this.currentValue)) {
                 this.currentValue = deepValue;
+                this.setKeySelectValue();
                 this.setCurrentSelectedItems(value, isRemove);
                 this.updateDropdownPosition();
 
@@ -116,27 +121,24 @@ export default {
             } else {
                 if (this.multiple && this.filterable && !this.remote) {
                     this.isFilter = false;
+                    this.reduceOptionValue();
                 } else {
                     this.setDropDownVisible(false);
                 }
             }
         },
         handleOptionNavigate(num = 0) {
-            let nextIndex = 0;
-            if (this.currentValue.length) {
-                let lastValue = this.currentValue[0];
-                let currentIndex = this.currentReduceOption.findIndex(item => item.value === lastValue);
+            if(!this.currentOptionValue.length) return;
+            let nextValue = this.currentOptionValue[0];
+            if (this.keySelectValue) {
+                let index = this.currentOptionValue.findIndex(item => item === this.keySelectValue);
+                index = index + num;
+                if(index > this.currentOptionValue.length - 1) index = 0;
+                if(index < 0) index = this.currentOptionValue.length - 1;
 
-                nextIndex = currentIndex + num;
-
-                if(nextIndex > this.currentReduceOption.length - 1) nextIndex = 0;
-                if(nextIndex < 0) nextIndex = this.currentReduceOption.length - 1;
+                nextValue = this.currentOptionValue[index];
             }
-            console.log(nextIndex,'nextIndex')
-            if(nextIndex > -1 && this.currentReduceOption[nextIndex]){
-                let value = this.currentReduceOption[nextIndex].value;
-                if(value) this.hoverItemValue = value;
-            }
+            this.keySelectValue = nextValue;
         },
         //设置当前选中项数据
         setCurrentSelectedItems(value, isRemove) {
@@ -182,25 +184,31 @@ export default {
             }
             if (this.visible) {
                 this.isFilter = false;
+                this.reduceOptionValue();
                 this.$nextTick(this.setScrollInnerHeight());
             }
         },
         //搜索filterable
         handleFilterable(value) {
             let filterableValue = [];
+            let currentOptionValue = [];
             if (value) {
                 this.isFilter = true;
                 this.currentOption.forEach(item => {
                     if (item.option && Array.isArray(item.option)) {
                         item.option.forEach(oItem => {
-                            if (oItem.label.includes(value)) filterableValue.push(oItem.value)
+                            if (oItem.label.includes(value)) filterableValue.push(oItem.value);
+                            if (oItem.label.includes(value) && !oItem.disabled) currentOptionValue.push(oItem.value);
                         })
                     } else {
                         if (item.label.includes(value)) filterableValue.push(item.value)
+                        if (item.label.includes(value) && !item.disabled) currentOptionValue.push(item.value)
                     }
                 })
+                this.currentOptionValue = currentOptionValue;
             } else {
                 this.isFilter = false;
+                this.reduceOptionValue();
             }
             this.filterableValue = filterableValue;
         },
@@ -211,10 +219,12 @@ export default {
         //clearable清空
         handleClearable() {
             this.currentValue = [];
+            this.keySelectValue = '';
             this.currentSelectedItems = [];
             this.hoverItemValue = '';
             this.filterableValue = [];
             this.isFilter = false;
+            this.reduceOptionValue();
             this.updateDropdownPosition();
             this.$emit('clear');
             this.emitInputAndChange();
@@ -227,6 +237,7 @@ export default {
             if (this.multiple) {
                 if (this.filterable) {
                     this.isFilter = false;
+                    this.reduceOptionValue();
                 }
 
                 this.$emit('input', this.currentValue);
@@ -244,6 +255,7 @@ export default {
             if (index > -1) {
                 this.currentValue.splice(index, 1);
                 this.currentSelectedItems.splice(index, 1);
+                this.setKeySelectValue();
                 this.emitInputAndChange();
             }
         },
@@ -295,31 +307,16 @@ export default {
                 // Esc slide-up
                 if (key === 'Escape') {
                     event.stopPropagation();
-                    // this.hideMenu();
+                    this.setDropDownVisible(false);
                 }
                 // next
-                if (key === 'ArrowUp') {
-                    this.handleOptionNavigate(-1);
-                }
+                if (key === 'ArrowUp') this.handleOptionNavigate(-1);
                 // prev
-                if (key === 'ArrowDown') {
-                    this.handleOptionNavigate(1);
-                }
-                // enter
-                // if ( key === 'Enter') {
-                //     if (this.focusIndex === -1) return this.hideMenu();
-                //     const optionComponent = this.flatOptions[this.focusIndex];
-                //     // fix a script error when searching
-                //     if (optionComponent) {
-                //         const option = this.getOptionData(optionComponent.componentOptions.propsData.value);
-                //         this.onOptionClick(option);
-                //     } else {
-                //         this.hideMenu();
-                //     }
-                // }
+                if (key === 'ArrowDown') this.handleOptionNavigate(1);
+
+                if(key === 'Enter') this.handleOptionClick(this.keySelectValue);
             } else {
-                // const keysThatCanOpenSelect = ['ArrowUp', 'ArrowDown'];
-                // if (keysThatCanOpenSelect.includes(e.key)) this.toggleMenu(null, true);
+                if (['ArrowUp', 'ArrowDown'].includes(key)) this.setDropDownVisible(true);
             }
         }
     },
