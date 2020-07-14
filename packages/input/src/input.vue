@@ -230,6 +230,16 @@
                     this.showClearable ||
                     ((this.suffix || this.$slots.suffix || this.clearable) && ['input', 'password', 'search', 'number'].includes(this.type));
             },
+            suffixIconClass(){
+                let result = [
+                    `${this.classPrefix}__suffix-inner`,
+                ];
+                if(this.clearable) result.push('cl-icon-error-fill')
+                else if(this.type === 'number' && !this.stepType) result.push('cl-icon-plus', `${this.classPrefix}__suffix-step`)
+                else if (this.suffix) result.push(this.suffix)
+                else if (this.type === 'search') result = 'cl-icon-search'
+                return result;
+            },
             showPrefix() {
                 return ((this.prefix || this.$slots.prefix) && this.type !== 'textarea') ||
                     (this.type === 'number' && this.step && !this.stepType)
