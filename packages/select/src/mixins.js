@@ -2,12 +2,15 @@ export default {
     data() {
         return {
             currentOption: [],
-            currentOptionValue: [],//option 的value数组 搜索时为搜索到的value数组 不包含disabled的项
+            currentOptionValue: [],//分解得到option的value数组，不包含disabled的项 作用：键盘操作选中时使用，无搜索时为全部的option，搜索时为搜索到的value数组
+            currentAllOptionValue: [],//分解得到option的value数组，包含disabled的项
             currentValue: [],//被选中的option的value数组，单选时只有一项，多选时有多项
             currentSelectedItems: [],
+            currentAllowCreateOption: [],//新建的条目，初始化时需要合并到currentOption中
+            allowCreateOption: null,//allowCreate将要新建的条目，还没确认创建，确认创建之后会添加到currentOption数组
             visible: false,
             hoverItemValue: '',//被hover的option的value值
-            keySelectValue: '',//预选的value
+            keySelectValue: '',//预选的value,键盘操作时回车选中
             isFilter: false,//是否搜索 不是远程搜索
             filterableValue: [],//搜索到的value数组
             renderType: this.option ? 'option' : 'slot',//渲染类型，option为数据渲染，slot为插槽渲染
@@ -26,35 +29,61 @@ export default {
             }
             this.setCurrentSelectedItems();
         },
-        setKeySelectValue(){
-            this.keySelectValue = this.currentValue.length ? this.currentValue[this.currentValue.length - 1] : '';
-        },
         initOption() {
             if (this.renderType === 'option') {
-                this.currentOption = this.option || [];
+                this.currentOption = (this.option || []).concat(this.currentAllowCreateOption);
             } else if (this.renderType === 'slot') {
-                this.currentOption = this.formatSlotOption();
+                this.currentOption = this.formatSlotOption().concat(this.currentAllowCreateOption);
             }
             this.reduceOptionValue();
             this.initValue();
             this.$nextTick(this.setScrollInnerHeight());
         },
+        //allowCreate将要新建的条目
+        handleAllowCreate(value){
+            this.keySelectValue = value;
+            if(!value || this.currentAllOptionValue.includes(value)) {
+                this.allowCreateOption = null;
+                return;
+            }
+            this.allowCreateOption = {
+                value: value,
+                label: value,
+            };
+        },
+        //allowCreate确认新建
+        handleConfirmAllowCreate(){
+            let deepData = JSON.parse(JSON.stringify(this.allowCreateOption));
+            this.allowCreateOption = null;
+            this.isFilter = false;
+            this.currentOption.push(deepData);
+            this.currentOptionValue.push(deepData.value);
+            this.currentAllOptionValue.push(deepData.value);
+            this.handleOptionClick(deepData.value);
+            //数据改变需要在最后一步，因为需要在最后触发initOption 不能在之前触发
+            this.currentAllowCreateOption.push(deepData);
+        },
         reduceOptionValue() {
+            if(this.isFilter) return;
             let deepData = JSON.parse(JSON.stringify(this.currentOption));
 
             let currentOptionValue = [];
+            let currentAllOptionValue = [];
 
             deepData.forEach(item => {
                 if (item.option && Array.isArray(item.option)) {
                     item.option.forEach(oItem => {
+                        currentAllOptionValue.push(oItem.value)
                         !oItem.disabled && currentOptionValue.push(oItem.value)
                     })
                 }else {
+                    currentAllOptionValue.push(item.value)
                     !item.disabled && currentOptionValue.push(item.value)
                 }
             });
 
             this.currentOptionValue = currentOptionValue;
+            this.currentAllOptionValue = currentAllOptionValue;
         },
         //格式化slotoption数据
         formatSlotOption(vNodes) {
@@ -92,6 +121,7 @@ export default {
         },
         //option 点击
         handleOptionClick(value) {
+            if(!value.toString()) return;
             let deepValue = JSON.parse(JSON.stringify(this.currentValue));
 
             //多选时是否要删除改项
@@ -111,9 +141,16 @@ export default {
                 deepValue = [value];
             }
 
+            this.keySelectValue = value;
+            this.isFilter = false;
+            this.allowCreateOption = null;
+
+            if(this.multiple && this.multipleLimit > 0 && deepValue.length > this.multipleLimit){
+                //多选限制
+                return;
+            }
             if (JSON.stringify(deepValue) !== JSON.stringify(this.currentValue)) {
                 this.currentValue = deepValue;
-                this.setKeySelectValue();
                 this.setCurrentSelectedItems(value, isRemove);
                 this.updateDropdownPosition();
 
@@ -148,12 +185,13 @@ export default {
                     this.currentSelectedItems.splice(index, 1);
                 }
             } else {
+                let deepData = JSON.parse(JSON.stringify(this.currentSelectedItems));
                 this.currentOption.forEach(item => {
                     if (item.option && Array.isArray(item.option)) {
                         item.option.forEach(oItem => {
                             let index = this.currentValue.indexOf(oItem.value);
                             if (index > -1) {
-                                this.currentSelectedItems[index] = {
+                                deepData[index] = {
                                     value: oItem.value,
                                     label: oItem.label,
                                 };
@@ -162,13 +200,14 @@ export default {
                     } else {
                         let index = this.currentValue.indexOf(item.value);
                         if (index > -1) {
-                            this.currentSelectedItems[index] = {
+                            deepData[index] = {
                                 value: item.value,
                                 label: item.label,
                             };
                         }
                     }
                 });
+                this.currentSelectedItems = deepData;
             }
         },
         //option hover变化
@@ -183,7 +222,7 @@ export default {
                 this.visible = visible;
             }
             if (this.visible) {
-                this.isFilter = false;
+                this.isFilter = (this.allowCreate && this.filterable) ? this.isFilter : false;
                 this.reduceOptionValue();
                 this.$nextTick(this.setScrollInnerHeight());
             }
@@ -204,7 +243,7 @@ export default {
                         if (item.label.includes(value)) filterableValue.push(item.value)
                         if (item.label.includes(value) && !item.disabled) currentOptionValue.push(item.value)
                     }
-                })
+                });
                 this.currentOptionValue = currentOptionValue;
             } else {
                 this.isFilter = false;
@@ -255,7 +294,6 @@ export default {
             if (index > -1) {
                 this.currentValue.splice(index, 1);
                 this.currentSelectedItems.splice(index, 1);
-                this.setKeySelectValue();
                 this.emitInputAndChange();
             }
         },
@@ -294,8 +332,36 @@ export default {
 
             this.setDropDownVisible(false);
         },
+        //设置scroll的位置
+        setScrollToPosition(){
+            let dropDown = this.$refs.dropDown;
+            let focusOption = dropDown && dropDown.$el.getElementsByClassName(`${this.prefix}-option__focus`)[0];
+            if(focusOption){
+                let top = focusOption.offsetTop;
+                let height = focusOption.offsetHeight;
+                let bottomTop = parseInt(top + height);
+                let maxHeight = parseInt(this.maxHeight);
+                if(bottomTop > maxHeight){
+                    let y = bottomTop - maxHeight;
+                    let position = {
+                        x: 0,
+                        y: y
+                    }
+                    this.$refs.scroll && this.$refs.scroll.scrollTo(position, 200);
+                }
+
+                if(bottomTop <= maxHeight){
+                    let position = {
+                        x: 0,
+                        y: 0
+                    }
+                    this.$refs.scroll && this.$refs.scroll.scrollTo(position, 200);
+                }
+            }
+        },
         handleKeydown(event) {
             const key = event.key || event.code;
+            console.log(key,'key')
             if (key === 'Backspace') {
                 return; // so we don't call preventDefault
             }
@@ -304,17 +370,22 @@ export default {
                 if (key === 'Tab') {
                     event.stopPropagation();
                 }
-                // Esc slide-up
-                if (key === 'Escape') {
-                    event.stopPropagation();
-                    this.setDropDownVisible(false);
+                if (key === 'Escape') this.setDropDownVisible(false);
+                if(key === 'Enter') {
+                    if(this.allowCreate && this.allowCreateOption && this.allowCreateOption.value === this.keySelectValue) {
+                        this.handleConfirmAllowCreate();
+                    }else {
+                        this.handleOptionClick(this.keySelectValue)
+                    }
                 }
-                // next
-                if (key === 'ArrowUp') this.handleOptionNavigate(-1);
-                // prev
-                if (key === 'ArrowDown') this.handleOptionNavigate(1);
-
-                if(key === 'Enter') this.handleOptionClick(this.keySelectValue);
+                if (key === 'ArrowUp') {
+                    this.handleOptionNavigate(-1);
+                    setTimeout(()=>{this.setScrollToPosition()})
+                }
+                if (key === 'ArrowDown') {
+                    this.handleOptionNavigate(1);
+                    setTimeout(()=>{this.setScrollToPosition()})
+                }
             } else {
                 if (['ArrowUp', 'ArrowDown'].includes(key)) this.setDropDownVisible(true);
             }

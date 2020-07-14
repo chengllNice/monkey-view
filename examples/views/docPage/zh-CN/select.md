@@ -367,10 +367,10 @@
 
 ```html
 <template>
+    <p>{{valueMultiple}}</p>
     <cl-select v-model="valueMultiple" multiple>
         <cl-option v-for="item in valueBaseOption" :key="item.value" :value="item.value" :label="item.label" :disabled="item.disabled"></cl-option>
     </cl-select>
-    <p>{{valueMultiple}}</p>
 </template>
 <script>
     export default {
@@ -591,6 +591,65 @@
 :::
 
 
+:::demo 创建条目
+
+设置`allow-create`属性可以开启创建条目，必须配合`filterable`属性一起使用。默认选中新建的项目，键盘回车键即可创建。
+
+```html
+<template>
+    <Row :gutter="16">
+        <Col>
+            <h4>props模式</h4>
+            <cl-select v-model="value1" allow-create filterable :option="valueBaseOption"></cl-select>
+        </Col>
+        <Col>
+            <h4>slot模式</h4>
+            <cl-select v-model="value2" allow-create filterable>
+                <cl-option v-for="item in valueBaseOption" :key="item.value" :value="item.value" :label="item.label" :disabled="item.disabled"></cl-option>
+            </cl-select>
+        </Col>
+    </Row>
+</template>
+<script>
+    export default {
+      data(){
+        return {
+          value1: '',
+          value2: '',
+          valueBaseOption: [
+            {
+              label: 'Fruit',
+              value: 'fruit',
+            },
+            {
+              label: 'Apple',
+              value: 'apple',
+            },
+            {
+              label: 'Banana',
+              value: 'banana',
+            },
+            {
+              label: 'Orange',
+              value: 'orange',
+            },
+            {
+              label: 'Pear',
+              value: 'pear',
+            },
+            {
+              label: 'Peach',
+              value: 'peach',
+            },
+          ]
+        }
+      }
+    }
+</script>
+```
+:::
+
+
 
 ## API
 
@@ -611,10 +670,14 @@
 | filterable | Boolean | 开始搜索（option数据搜索） | - |
 | remote | Boolean | 开启远程搜索（需要自己控制数据） | - |
 | loading | Boolean | 远程搜索时显示loading加载中的效果 | - |
+| allow-create | Boolean | 是否可以新建条目，需要配合`filterable`使用 | - |
+| multiple-limit | Number | 多选时限制选择的数量，值为0时表示不限制 | 0 |
+| max-tag-count | Number | 多选时限制最多显示的`tag`数量，值为0时表示不限制 | 0 |
+| max-tag-text | Function | 配合`max-tag-count`使用，指定超出限制数量后显示的文本内容，参数为隐藏的数量 | - |
 | maxHeight | String, Number | 设置下拉框的最大高度，超出后滚动 | 200px |
 | placement | String | 设置下拉框显示的位置 | bottom-start |
 | valueLable | Boolean | 默认返回值只有value。设置此项返回值为value,label组成的对象 | - |
-| dropdownMatchSelectWidth | Boolean | 下拉框宽度默认和选择框同宽，文本超出后省略。设置此项后当内容比较长时下拉框宽度自动拉伸。下拉框最小和选择框同宽 | true |
+| dropdown-match-select-width | Boolean | 下拉框宽度默认和选择框同宽，文本超出后省略。设置此项后当内容比较长时下拉框宽度自动拉伸。下拉框最小和选择框同宽 | true |
 | renderHtml | HTMLElement, Boolean | 指定下拉框所在的元素, true时添加到body中 | false |
 
 
@@ -631,7 +694,7 @@
 
 | 属性 | 类型 | 说明 | 默认值 |
 | ---- | ---- | ---- | ---- |
-| value | String, Number | 选项值 | - |
+| value | String, Number | 选项值,必选值 | - |
 | label | String, Number | 选项显示的内容。默认在无slot内容时显示此项的内容。在通过slot自定义option显示内容时，此项为必填项。默认根据此项进行搜索 | - |
 | disabled | Boolean | 禁用 | - |
 

@@ -10,6 +10,7 @@
             <slot>{{label}}</slot>
         </span>
         <Icon v-if="multipleIconShow" type="icon-check" :class="[`${classPrefix}__icon`]"></Icon>
+        <Icon v-else-if="allowCreate" type="icon-check" :class="[`${classPrefix}__icon`]"></Icon>
     </div>
 </template>
 
@@ -29,7 +30,8 @@
             disabled: {
                 type: Boolean,
                 default: false,
-            }
+            },
+            allowCreate: Boolean,//新建条目
         },
         data() {
             return {
@@ -43,7 +45,7 @@
             optionClass() {
                 let result = [
                     `${this.classPrefix}`,
-                    this.disabled && `is-disabled`,
+                    this.localDisabled && `is-disabled`,
                 ];
                 if (this.selectRoot) {
                     result = [
@@ -51,17 +53,25 @@
                         this.selectRoot.multiple && `${this.classPrefix}__multiple`,
                         this.selectRoot.currentValue.includes(this.value) && `is-selected`,
                         (this.selectRoot.hoverItemValue === this.value || this.selectRoot.keySelectValue === this.value) && `is-hover`,
+                        this.selectRoot.keySelectValue === this.value && `${this.classPrefix}__focus`,
                     ]
                 }
                 return result;
             },
             show(){
                 if(!this.selectRoot.isFilter) return true;
+                if(this.allowCreate && this.selectRoot.allowCreate) return true;
                 return this.selectRoot.filterableValue.includes(this.value)
             },
             multipleIconShow(){
                 if(!this.selectRoot || !this.selectRoot.multiple) return false;
                 return this.selectRoot.multiple && this.selectRoot.currentValue.includes(this.value)
+            },
+            localDisabled(){
+                if(this.selectRoot.openMultipleLimitDisabled){
+                    return !this.selectRoot.currentValue.includes(this.value);
+                }
+                return this.disabled;
             }
         },
         components: {
@@ -85,15 +95,19 @@
         },
         methods: {
             handleClick() {
-                if (this.disabled) return false;
-                this.selectRoot && this.selectRoot.handleOptionClick(this.value);
+                if (this.localDisabled) return false;
+                if(this.allowCreate) {
+                    this.selectRoot && this.selectRoot.handleConfirmAllowCreate();
+                }else {
+                    this.selectRoot && this.selectRoot.handleOptionClick(this.value);
+                }
             },
             handleMouseenter(){
-                if (this.disabled) return false;
+                if (this.localDisabled) return false;
                 this.selectRoot && this.selectRoot.handleOptionHover(this.value, true);
             },
             handleMouseleave(){
-                if (this.disabled) return false;
+                if (this.localDisabled) return false;
                 this.selectRoot && this.selectRoot.handleOptionHover(this.value, false);
             }
         },

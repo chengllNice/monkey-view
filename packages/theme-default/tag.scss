@@ -4,30 +4,30 @@
 
 
 @mixin tagSize($size){
-  $font-size: $--font-size-default;
+  $font-size: $--tag-font-size-default;
   $padding: $--tag-padding-horizontal-default;
   $height: $--tag-height-default;
 
   @if($size == 'mini'){
-    $font-size: $--font-size-mini;
+    $font-size: $--tag-font-size-mini;
     $height: $--tag-height-mini;
     $padding: $--tag-padding-horizontal-mini;
   }@else if($size == 'small'){
-    $font-size: $--font-size-small;
+    $font-size: $--tag-font-size-small;
     $height: $--tag-height-small;
     $padding: $--tag-padding-horizontal-small;
   }@else if($size == 'large'){
-    $font-size: $--font-size-large;
+    $font-size: $--tag-font-size-large;
     $height: $--tag-height-large;
     $padding: $--tag-padding-horizontal-large;
   }
   font-size: $font-size;
   padding: 0 $padding;
   height: $height;
-  line-height: $height;
+  line-height: #{$height - 2px};
 
   @include e(icon, false){
-    font-size: $font-size;
+    font-size: #{$font-size + 2px};
     margin-left: $padding;
   }
 }
@@ -71,9 +71,10 @@
   }
 
   @include e(icon, false){
-    color: $--color-white;
+    //color: $--color-white;
     opacity: $--tag-hover-opacity;
     line-height: normal;
+    vertical-align: middle;
 
     &:hover{
       opacity: 1;
@@ -97,7 +98,7 @@
   //颜色default
   @include m(color-default){
     @include e(icon, false){
-      color: $--tag-font-color-default;
+      //color: $--tag-font-color-default;
     }
   }
 

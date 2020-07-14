@@ -32,13 +32,14 @@
 
     &__multiple-input {
       height: #{$height - 2px};
+      font-size: $font-size;
     }
 
     &__multiple-tag {
-      height: $tag-height;
-      line-height: $tag-height;
-      margin-top: #{($height - $tag-height - 2) / 2};
-      margin-bottom: #{($height - $tag-height - 2) / 2};
+      height: #{$tag-height - 4px};
+      line-height: #{$tag-height - 6px};
+      margin-top: #{($height - ($tag-height - 2px)) / 2};
+      margin-bottom: #{($height - ($tag-height - 2px)) / 2};
     }
   }
 }
@@ -46,6 +47,11 @@
 @include c(select){
   display: inline-block;
   width: 100%;
+
+  @include e(reference){
+    outline: none;
+    user-select: none;
+  }
 
   @include e(drop-inner){
     position: relative;
@@ -62,7 +68,7 @@
   @include e(empty){
     box-sizing: border-box;
     text-align: center;
-    //padding: 7px 16px;
+    padding: 7px 16px;
     font-size: $--select-option-font-size;
     color: $--color-text-empty;
     @include utils-ellipsis();
@@ -71,7 +77,7 @@
   @include e(loading){
     box-sizing: border-box;
     text-align: center;
-    //padding: 7px 16px;
+    padding: 7px 16px;
     font-size: $--select-option-font-size;
     color: $--color-text-empty;
     @include utils-ellipsis();
@@ -93,7 +99,7 @@
   }
 
   @include m(mini){
-    @include selectSize(small);
+    @include selectSize(mini);
   }
 }
 
@@ -115,7 +121,7 @@
 
   @include when(selected){
     color: $--color-primary;
-    background-color: $--background-color-hover;
+    //background-color: $--background-color-hover;
   }
 
   @include e(text){
@@ -220,6 +226,18 @@
     border-color: $--color-primary;
   }
 
+  @include m(disabled){
+    background-color: $--background-color-disabled;
+    border-color: $--border-color-disabled;
+    color: $--color-disabled;
+    cursor: not-allowed;
+    
+    @include e((multiple-input, multiple-tag), false){
+      cursor: not-allowed;
+      color: $--color-disabled;
+    }
+  }
+
   @include e(input){
     input{
       cursor: pointer;
@@ -260,14 +278,14 @@
     border: none;
     outline: none;
     max-width: 100%;
-    min-width: 32px;
+    //min-width: 32px;
     background-color: transparent;
     cursor: pointer;
     box-sizing: border-box;
     vertical-align: middle;
-    font-size: $--font-size-default;
+    //font-size: $--font-size-default;
     color: $--color-text-default;
-    height: #{$--height-default - 10px};
+    //height: #{$--height-default - 10px};
 
     &::placeholder{
       color: $--color-text-placeholder;

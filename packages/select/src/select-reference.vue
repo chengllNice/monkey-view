@@ -25,16 +25,19 @@
         <template v-if="selectRoot.multiple">
             <div class="">
                 <tag :class="[`${classPrefix}__multiple-tag`]"
-                     v-for="item in selectRoot.currentSelectedItems"
+                     v-for="item in selectRoot.localCurrentSelectedItems"
                      :key="item.value"
                      :size="selectRoot.size"
                      closable
                      @close="tagClose(item.value)">{{item.label}}</tag>
+                <tag v-if="selectRoot.showMaxTagText"
+                     :class="[`${classPrefix}__multiple-tag`]"
+                     :size="selectRoot.size">{{selectRoot.localMaxTagText}}</tag>
                 <input v-model="currentValue"
                        type="text"
                        ref="multipleInput"
                        :readonly="!selectRoot.filterable"
-                       :placeholder="selectRoot.currentValue.length ? '' : computedPlaceholder"
+                       :placeholder="computedPlaceholder"
                        spellcheck="false"
                        :class="[
                            `${classPrefix}__multiple-input`
@@ -76,7 +79,6 @@
 
                 isHover: false,
                 isFocused: false,
-                multipleStyle: {},
             }
         },
         computed: {
@@ -90,19 +92,20 @@
               ]
             },
             computedPlaceholder() {
+                if(this.selectRoot.currentSelectedItems.length) return '';
                 return this.selectRoot.placeholder || this.t('cl.select.placeholder')
             },
             clearableShow() {
-                return this.selectRoot.clearable && this.selectRoot.currentValue.length && this.isHover
+                return !this.selectRoot.disabled && this.selectRoot.clearable && this.selectRoot.currentValue.length && this.isHover
             },
             inputStyle() {
-                if (!this.selectRoot.currentValue.length) {
+                if (!this.selectRoot.currentSelectedItems.length) {
                     return {width: '100%'}
                 }
                 if (this.selectRoot.multiple && this.selectRoot.filterable) {
                     return {width: (this.currentValue.length * 12 + 32) + 'px'};
                 }
-                return {};
+                return {width: '0px'};
             },
         },
         components: {
@@ -132,24 +135,30 @@
             handleChange(value) {
                 if(!this.selectRoot.filterable || this.selectRoot.disabled) return;
                 this.selectRoot.setDropDownVisible(true);
-                if(this.selectRoot.filterable && !this.selectRoot.remote) this.selectRoot.handleFilterable(value);
-                if (this.selectRoot.filterable && this.selectRoot.remote) this.selectRoot.emitRemoteChange(value);
+                if(!this.selectRoot.remote) this.selectRoot.handleFilterable(value);
+                if(this.selectRoot.remote) this.selectRoot.emitRemoteChange(value);
+                if(this.selectRoot.allowCreate) this.selectRoot.handleAllowCreate(value);
             },
             handleMultipleInput(e) {
-                this.currentValue = this.$refs.multipleInput.value;
-                this.handleChange(e.target.value);
+                if(!this.selectRoot.multiple || !this.selectRoot.filterable || this.selectRoot.disabled) return;
+                let value = e.target.value;
+                this.currentValue = value;
+                this.handleChange(value);
                 this.selectRoot.updateDropdownPosition();
             },
             handleClear() {
+                if (this.selectRoot.disabled) return;
                 this.currentValue = '';
                 this.selectRoot.handleClearable();
             },
             tagClose(value) {
+                if (this.selectRoot.disabled) return;
                 this.setMultipleInputFocusAndBlur();
                 this.selectRoot.handleTagClose(value);
                 this.selectRoot.updateDropdownPosition();
             },
             setCurrentValue(){
+                if(this.selectRoot.allowCreate && this.selectRoot.isFilter) return;
                 if(!this.selectRoot.multiple){
                     this.currentValue = this.selectRoot.currentSelectedItems.length ? this.selectRoot.currentSelectedItems[0].label : '';
                 }else {
@@ -160,8 +169,7 @@
             }
         },
         watch: {
-            'selectRoot.currentValue': function(newV, oldV){
-                if(JSON.stringify(newV) === JSON.stringify(oldV)) return;
+            'selectRoot.currentValue': function(){
                 this.setCurrentValue();
             },
             'selectRoot.visible': function(val){

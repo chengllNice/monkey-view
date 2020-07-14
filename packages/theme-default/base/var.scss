@@ -44,7 +44,7 @@ $--color-text-empty: #999999 !default;
 
 
 /*-----border-color-----*/
-$--border-color-default: #e8eaec !default;//#dcdee2
+$--border-color-default: #e9e9eb !default;//#dcdee2 #e9e9eb
 $--border-color-disabled: #e8e8e8 !default;//#c5c8ce
 $--border-color-primary: #2d8cf0 !default;
 $--border-color-danger: #ed4014 !default;
@@ -55,7 +55,8 @@ $--border-color-info: #13c2c2 !default;
 
 
 /*-----background-color-----*/
-$--background-color-base: #f5f7fa !default;
+$--background-color-base: #f4f4f5 !default;//f5f7fa
+//$--background-color-base: #f4f4f5 !default;
 $--background-color-disabled: #f7f7f7 !default;
 //$--background-color-disabled: #c5c8ce !default;
 $--background-color-hover: mix($--color-white, $--color-primary, 90%) !default;
@@ -261,16 +262,20 @@ $--tag-border-color-default: $--border-color-default !default;
 $--tag-background-color-default: $--background-color-base !default;
 $--tag-hover-opacity: 0.85 !default;
 
-$--tag-height-mini: 16px !default;
+$--tag-font-size-mini: 10px !default;
+$--tag-height-mini: 20px !default;
 $--tag-padding-horizontal-mini: 4px !default;
 
-$--tag-height-small: 20px !default;
+$--tag-font-size-small: 12px !default;
+$--tag-height-small: 24px !default;
 $--tag-padding-horizontal-small: 4px !default;
 
-$--tag-height-default: 24px !default;
+$--tag-font-size-default: 12px !default;
+$--tag-height-default: 28px !default;
 $--tag-padding-horizontal-default: 6px !default;
 
-$--tag-height-large: 28px !default;
+$--tag-font-size-large: 14px !default;
+$--tag-height-large: 32px !default;
 $--tag-padding-horizontal-large: 10px !default;
 
 
