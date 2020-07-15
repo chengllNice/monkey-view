@@ -19,7 +19,7 @@
             <div :class="[`${classPrefix}__content`]" v-if="content" v-html="content"></div>
             <div :class="[`${classPrefix}__close`]" v-if="closable" @click="handlerClose">
                 <slot name="close">
-                    <Icon type="icon-close"></Icon>
+                    <Icon type="close"></Icon>
                 </slot>
             </div>
         </div>
@@ -100,16 +100,16 @@
                 let icon = '';
                 switch (this.type) {
                     case 'success':
-                        icon = !this.isOnlyTitle ? 'icon-success' : 'icon-success-fill';
+                        icon = !this.isOnlyTitle ? 'success' : 'success-fill';
                         break;
                     case 'error':
-                        icon = !this.isOnlyTitle ? 'icon-remove' : 'icon-remove-fill';
+                        icon = !this.isOnlyTitle ? 'remove' : 'remove-fill';
                         break;
                     case 'warning':
-                        icon = !this.isOnlyTitle ? 'icon-warning' : 'icon-warning-fill';
+                        icon = !this.isOnlyTitle ? 'warning' : 'warning-fill';
                         break;
                     case 'info':
-                        icon = !this.isOnlyTitle ? 'icon-info' : 'icon-info-fill';
+                        icon = !this.isOnlyTitle ? 'info' : 'info-fill';
                         break;
                 }
                 return icon

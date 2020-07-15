@@ -121,7 +121,7 @@
 ```html
 <template>
     <cl-upload action="//jsonplaceholder.typicode.com/posts/" drag>
-        <i class="cl-icon-cloud-upload" style="color: #2d8cf0;"></i>
+        <Icon type="cloud-upload" style="color: #2d8cf0;"></Icon>
         <div class="doc-upload-title">drag upload file</div>
     </cl-upload>
 </template>
@@ -142,7 +142,7 @@
     :onPreview="handlerPreview" 
     :onRemove="handlerRemove" 
     :onSuccess="handlerSuccess">
-        <i class="cl-icon-plus"></i>
+        <Icon type="plus"></Icon>
         <div>上传文件</div>
     </cl-upload>
     <cl-modal v-model="modalVisible" footer-hide>

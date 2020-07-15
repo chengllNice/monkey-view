@@ -107,8 +107,8 @@
 <template>
     <cl-progress :percent="percent" type="circle"></cl-progress>
     <cl-button-group>
-        <cl-button icon="cl-icon-plus" @click="percentChange('plus')"></cl-button>
-        <cl-button icon="cl-icon-minus" @click="percentChange('minus')"></cl-button>
+        <cl-button icon="plus" @click="percentChange('plus')"></cl-button>
+        <cl-button icon="minus" @click="percentChange('minus')"></cl-button>
     </cl-button-group>
     <br>
     <cl-progress :percent="25" type="circle"></cl-progress>

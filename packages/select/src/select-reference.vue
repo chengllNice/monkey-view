@@ -14,12 +14,12 @@
                   :placeholder="computedPlaceholder"
                   :readonly="!selectRoot.filterable"
                   @change="handleChange">
-            <span slot="suffix">
+            <template slot="suffix">
                 <Icon v-show="!clearableShow"
-                      type="icon-down"
+                      type="down"
                       :class="[`${classPrefix}__suffix-icon`,selectRoot.visible && `${classPrefix}__suffix-icon-rotate`]"></Icon>
-                <Icon v-show="clearableShow" type="icon-error-fill" :class="[`${classPrefix}__suffix-clear-icon`]" @click.stop="handleClear"></Icon>
-            </span>
+                <Icon v-show="clearableShow" type="error-fill" :class="[`${classPrefix}__suffix-clear-icon`]" @click.stop="handleClear"></Icon>
+            </template>
         </n-input>
 
         <template v-if="selectRoot.multiple">
@@ -51,9 +51,9 @@
 
             <span :class="[`${classPrefix}__suffix`]">
                 <Icon v-show="!clearableShow"
-                      type="icon-down"
+                      type="down"
                       :class="[`${classPrefix}__suffix-icon`, selectRoot.visible && `${classPrefix}__suffix-icon-rotate`]"></Icon>
-                <Icon v-show="clearableShow" type="icon-error-fill" :class="[`${classPrefix}__suffix-clear-icon`]" @click.stop="handleClear"></Icon>
+                <Icon v-show="clearableShow" type="error-fill" :class="[`${classPrefix}__suffix-clear-icon`]" @click.stop="handleClear"></Icon>
             </span>
         </template>
     </div>

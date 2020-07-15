@@ -6,8 +6,8 @@
         </ClBadge>
         <br>
         <ClButtonGroup>
-            <ClButton type="primary" icon="cl-icon-plus" @click="handlerClick('add')"></ClButton>
-            <ClButton type="primary" icon="cl-icon-minus" @click="handlerClick('minus')"></ClButton>
+            <ClButton type="primary" icon="plus" @click="handlerClick('add')"></ClButton>
+            <ClButton type="primary" icon="minus" @click="handlerClick('minus')"></ClButton>
         </ClButtonGroup>
         <ClSwitch v-model="badgeshowZero" width="120px">
             <span slot="open">showZero=true</span>

@@ -53,30 +53,30 @@
 ```html
 <template>
     <div class="doc-button-content">
-        <cl-button size="mini" icon="cl-icon-search"></cl-button>
-        <cl-button size="mini" icon="cl-icon-search">Default</cl-button>
-        <cl-button size="mini" icon="cl-icon-search" circle></cl-button>
-        <cl-button size="mini" icon="cl-icon-search" circle>Default</cl-button>
+        <cl-button size="mini" icon="search"></cl-button>
+        <cl-button size="mini" icon="search">Default</cl-button>
+        <cl-button size="mini" icon="search" circle></cl-button>
+        <cl-button size="mini" icon="search" circle>Default</cl-button>
         <br>
-        <cl-button size="small" icon="cl-icon-search"></cl-button>
-        <cl-button size="small" icon="cl-icon-search">Default</cl-button>
-        <cl-button size="small" icon="cl-icon-search" circle></cl-button>
-        <cl-button size="small" icon="cl-icon-search" circle>Default</cl-button>
+        <cl-button size="small" icon="search"></cl-button>
+        <cl-button size="small" icon="search">Default</cl-button>
+        <cl-button size="small" icon="search" circle></cl-button>
+        <cl-button size="small" icon="search" circle>Default</cl-button>
         <br>
-        <cl-button icon="cl-icon-search"></cl-button>
-        <cl-button icon="cl-icon-search">Default</cl-button>
-        <cl-button icon="cl-icon-search" circle></cl-button>
-        <cl-button icon="cl-icon-search" circle>Default</cl-button>
+        <cl-button icon="search"></cl-button>
+        <cl-button icon="search">Default</cl-button>
+        <cl-button icon="search" circle></cl-button>
+        <cl-button icon="search" circle>Default</cl-button>
         <br>
-        <cl-button type="primary" icon="cl-icon-search"></cl-button>
-        <cl-button type="primary" icon="cl-icon-search">Primary</cl-button>
-        <cl-button type="primary" icon="cl-icon-search" circle></cl-button>
-        <cl-button type="primary" icon="cl-icon-search" circle>Primary</cl-button>
+        <cl-button type="primary" icon="search"></cl-button>
+        <cl-button type="primary" icon="search">Primary</cl-button>
+        <cl-button type="primary" icon="search" circle></cl-button>
+        <cl-button type="primary" icon="search" circle>Primary</cl-button>
         <br>
-        <cl-button size="large" type="primary" icon="cl-icon-search"></cl-button>
-        <cl-button size="large" type="primary" icon="cl-icon-search">Primary</cl-button>
-        <cl-button size="large" type="primary" icon="cl-icon-search" circle></cl-button>
-        <cl-button size="large" type="primary" icon="cl-icon-search" circle>Primary</cl-button>
+        <cl-button size="large" type="primary" icon="search"></cl-button>
+        <cl-button size="large" type="primary" icon="search">Primary</cl-button>
+        <cl-button size="large" type="primary" icon="search" circle></cl-button>
+        <cl-button size="large" type="primary" icon="search" circle>Primary</cl-button>
     </div>
 </template>
 ```
@@ -93,15 +93,15 @@
     <div class="doc-button-content">
         <cl-button>Default</cl-button>
         <cl-button disabled>Default</cl-button>
-        <cl-button disabled icon="cl-icon-search">Default</cl-button>
+        <cl-button disabled icon="search">Default</cl-button>
         <br>
         <cl-button type="primary">Primary</cl-button>
         <cl-button type="primary" disabled>Primary</cl-button>
-        <cl-button type="primary" disabled icon="cl-icon-search">Primary</cl-button>
+        <cl-button type="primary" disabled icon="search">Primary</cl-button>
         <br>
         <cl-button type="text">Text</cl-button>
         <cl-button type="text" disabled>Text</cl-button>
-        <cl-button type="text" disabled icon="cl-icon-search">Text</cl-button>
+        <cl-button type="text" disabled icon="search">Text</cl-button>
     </div>
 </template>
 ```
@@ -117,10 +117,10 @@
 <template>
     <div class="doc-button-content">
         <cl-button loading>Default</cl-button>
-        <cl-button icon="cl-icon-search" loading></cl-button>
+        <cl-button icon="search" loading></cl-button>
         <cl-button type="primary" loading>Primary</cl-button>
         <cl-button type="primary" :loading="loading1" @click="loading1 = true">Click me!</cl-button>
-        <cl-button type="primary" :loading="loading2" @click="loading2 = true" icon="cl-icon-search">Click me!</cl-button>
+        <cl-button type="primary" :loading="loading2" @click="loading2 = true" icon="search">Click me!</cl-button>
     </div>
 </template>
 <script>
@@ -147,7 +147,7 @@
 <template>
     <div class="doc-button-content">
         <cl-button block>Default</cl-button>
-        <cl-button type="primary" icon="cl-icon-search" block></cl-button>
+        <cl-button type="primary" icon="search" block></cl-button>
         <cl-button type="danger" block>Danger</cl-button>
     </div>
 </template>
@@ -177,27 +177,27 @@
         <h4>Icon</h4>
         <cl-button-group>
             <cl-button type="primary">
-                <i class="cl-icon-left"></i> Left
+                <Icon type="left"></Icon> Left
             </cl-button>
-            <cl-button type="primary">Right <i class="cl-icon-right"></i></cl-button>
+            <cl-button type="primary">Right <Icon type="right"></Icon></cl-button>
         </cl-button-group>
         <cl-button-group>
-            <cl-button type="primary" icon="cl-icon-arrow-left"></cl-button>
-            <cl-button type="primary" icon="cl-icon-arrow-right"></cl-button>
+            <cl-button type="primary" icon="arrow-left"></cl-button>
+            <cl-button type="primary" icon="arrow-right"></cl-button>
         </cl-button-group>
         <cl-button-group>
-            <cl-button icon="cl-icon-edit"></cl-button>
-            <cl-button icon="cl-icon-plus"></cl-button>
-            <cl-button icon="cl-icon-check"></cl-button>
-            <cl-button icon="cl-icon-close"></cl-button>
+            <cl-button icon="edit"></cl-button>
+            <cl-button icon="plus"></cl-button>
+            <cl-button icon="check"></cl-button>
+            <cl-button icon="close"></cl-button>
         </cl-button-group>
         <h4>Circle</h4>
         <cl-button-group>
             <cl-button type="primary" circle>
-                <i class="cl-icon-left"></i> Left
+                <Icon type="left"></Icon> Left
             </cl-button>
             <cl-button type="primary" circle>
-                Right <i class="cl-icon-right"></i>
+                Right <Icon type="right"></Icon>
             </cl-button>
         </cl-button-group>
         <br>

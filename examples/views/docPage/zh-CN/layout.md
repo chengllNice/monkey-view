@@ -149,19 +149,19 @@
                      <cl-menu width="auto" theme="dark">
                          <cl-tooltip class="doc-layout-menu-tooltip" placement="right" :disabled="!collapsed" content="options1">
                              <cl-menu-item c-key="options1">
-                                 <i class="doc-layout-menu-icon cl-icon-home"></i>
+                                 <Icon type="home" class="doc-layout-menu-icon"></Icon>
                                  <span class="doc-layout-menu-name">options1</span>
                              </cl-menu-item>
                          </cl-tooltip>
                          <cl-tooltip class="doc-layout-menu-tooltip" placement="right" :disabled="!collapsed" content="options2">
                              <cl-menu-item c-key="options2">
-                                 <i class="doc-layout-menu-icon cl-icon-home"></i>
+                                 <Icon type="home" class="doc-layout-menu-icon"></Icon>
                                  <span class="doc-layout-menu-name">options2</span>
                              </cl-menu-item>
                          </cl-tooltip>
                          <cl-tooltip class="doc-layout-menu-tooltip" placement="right" :disabled="!collapsed" content="options3">
                              <cl-menu-item c-key="options3">
-                                 <i class="doc-layout-menu-icon cl-icon-home"></i>
+                                 <Icon type="home" class="doc-layout-menu-icon"></Icon>
                                  <span class="doc-layout-menu-name">options3</span>
                              </cl-menu-item>
                          </cl-tooltip>
@@ -265,19 +265,19 @@
                  <cl-menu width="auto" theme="dark">
                      <cl-tooltip class="doc-layout-menu-tooltip" placement="right" :disabled="!collapsedCustom" content="options1">
                          <cl-menu-item c-key="options1">
-                             <i class="doc-layout-menu-icon cl-icon-home"></i>
+                             <Icon type="home" class="doc-layout-menu-icon"></Icon>
                              <span class="doc-layout-menu-name">options1</span>
                          </cl-menu-item>
                      </cl-tooltip>
                      <cl-tooltip class="doc-layout-menu-tooltip" placement="right" :disabled="!collapsedCustom" content="options2">
                          <cl-menu-item c-key="options2">
-                             <i class="doc-layout-menu-icon cl-icon-home"></i>
+                             <Icon type="home" class="doc-layout-menu-icon"></Icon>
                              <span class="doc-layout-menu-name">options2</span>
                          </cl-menu-item>
                      </cl-tooltip>
                      <cl-tooltip class="doc-layout-menu-tooltip" placement="right" :disabled="!collapsedCustom" content="options3">
                          <cl-menu-item c-key="options3">
-                             <i class="doc-layout-menu-icon cl-icon-home"></i>
+                             <Icon type="home" class="doc-layout-menu-icon"></Icon>
                              <span class="doc-layout-menu-name">options3</span>
                          </cl-menu-item>
                      </cl-tooltip>
@@ -285,7 +285,7 @@
              </cl-sider>
              <cl-layout>
                  <cl-header class="doc-layout-header doc-layout-header-toggle">
-                     <i class="cl-icon-list" @click="triggerClick"></i>
+                     <Icon type="list" @click="triggerClick"></Icon>
                  </cl-header>
                  <cl-content class="doc-layout-content">content</cl-content>
                  <cl-footer class="doc-layout-footer">footer</cl-footer>

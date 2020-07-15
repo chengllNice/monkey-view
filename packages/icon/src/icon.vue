@@ -12,13 +12,15 @@
         },
         data(){
             return {
-                classPrefix: Config.classPrefix,
+                prefix: Config.classPrefix,
+                classPrefix: `${Config.classPrefix}-icon`,
             }
         },
         computed: {
             iconClass(){
-                let isPrefix = this.type.indexOf(this.classPrefix) === 0;
+                let isPrefix = this.type && this.type.indexOf(this.prefix) === 0;
                 return [
+                    `${this.classPrefix}`,
                     this.customIcon && `${this.customIcon}`,
                     isPrefix && `${this.type}`,
                     !isPrefix && `${this.classPrefix}-${this.type}`,

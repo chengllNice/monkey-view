@@ -26,7 +26,7 @@
                                  :style="navItemStyle(item)">
                                 <div :class="[`${classPrefix}__nav-item-name`]" v-html="item.label"></div>
                                 <Icon v-if="closable"
-                                      type="icon-close"
+                                      type="close"
                                       :class="[`${classPrefix}__close`]"
                                       @click.stop="close(item)"></Icon>
                             </div>

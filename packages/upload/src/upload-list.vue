@@ -16,7 +16,7 @@
                       !(listType !== 'picture-card' && (file.status === 'uploading' || file.status === 'start')) && `${classPrefix}__hide-progress`
                   ]">
                 <span :class="[`${classPrefix}__file-name`]">
-                    <Icon v-if="listType === 'text'" type="icon-file"></Icon>
+                    <Icon v-if="listType === 'text'" type="file"></Icon>
                     {{file.name}}
                 </span>
                 <Progress v-if="listType !== 'picture-card' && (file.status === 'uploading' || file.status === 'start')"
@@ -24,16 +24,16 @@
                           :percent="parsePercentage(file.percent)"></Progress>
             </span>
             <Icon v-if="listType !== 'picture-card'"
-                  type="icon-close"
+                  type="close"
                   :class="[`${classPrefix}__remove`]"
                   @click="handlerRemove(file)"></Icon>
             <span v-if="listType === 'picture-card'" :class="[`${classPrefix}__picture-cover`]">
                 <span :class="[`${classPrefix}__preview`]"
                       @click="handlerPreview(file)">
-                    <Icon type="icon-eye-open"></Icon>
+                    <Icon type="eye-open"></Icon>
                 </span>
                 <span :class="[`${classPrefix}__delete`]" @click="handlerRemove(file)">
-                    <Icon type="icon-delete"></Icon>
+                    <Icon type="delete"></Icon>
                 </span>
             </span>
             <span v-if="listType === 'picture-card' && (file.status === 'start' || file.status === 'uploading')"

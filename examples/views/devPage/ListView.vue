@@ -81,8 +81,8 @@
         <!--<cl-list type="meta" border :split="false" header="我的音乐列表">-->
             <!--<cl-list-item v-for="item in listData" :key="item.id" :title="item.title" :description="item.description">-->
                 <!--<div slot="extra">-->
-                    <!--<cl-button type="text" size="mini"><i class="cl-icon-heart"></i></cl-button>-->
-                    <!--<cl-button type="text" size="mini"><i class="cl-icon-plus"></i></cl-button>-->
+                    <!--<cl-button type="text" size="mini"><Icon type="heart"></Icon></cl-button>-->
+                    <!--<cl-button type="text" size="mini"><Icon type="plus"></Icon></cl-button>-->
                 <!--</div>-->
             <!--</cl-list-item>-->
         <!--</cl-list>-->

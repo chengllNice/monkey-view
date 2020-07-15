@@ -344,7 +344,7 @@
 | placeholder | String | 占位文本 | - |
 | size | String | 尺寸，可选值 `mini` `small` `large`或者不设置 | - |
 | clearable | Boolean | 显示清除图标 | - |
-| suffix | String | 输入框尾部图标 | cl-icon-time |
+| suffix | String | 输入框尾部图标 | time |
 | transition | String | 自定义时间下拉框的动画效果 | slideUp |
 | editable | Boolean | 是否可以输入 | true |
 | placement | String | 和`tooltip`一样 | bottom-start |

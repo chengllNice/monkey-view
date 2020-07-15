@@ -17,7 +17,7 @@
             <span :class="[`${classPrefix}__description`]"><slot name="description"></slot></span>
             <span :class="[`${classPrefix}__close`]" v-if="closable" @click="handlerClose">
                 <slot name="close">
-                    <Icon type="icon-close"></Icon>
+                    <Icon type="close"></Icon>
                 </slot>
             </span>
         </div>
@@ -66,16 +66,16 @@
                 let icon = '';
                 switch (this.type) {
                     case 'success':
-                        icon = this.isDescription ? 'icon-success' : 'icon-success-fill';
+                        icon = this.isDescription ? 'success' : 'success-fill';
                         break;
                     case 'error':
-                        icon = this.isDescription ? 'icon-error' : 'icon-error-fill';
+                        icon = this.isDescription ? 'error' : 'error-fill';
                         break;
                     case 'warning':
-                        icon = this.isDescription ? 'icon-warning' : 'icon-warning-fill';
+                        icon = this.isDescription ? 'warning' : 'warning-fill';
                         break;
                     default:
-                        icon = this.isDescription ? 'icon-info' : 'icon-info-fill';
+                        icon = this.isDescription ? 'info' : 'info-fill';
                         break;
                 }
                 return icon

@@ -10,7 +10,7 @@
            :closable="false"
            @cancel="handlerButtonCancel">
         <div :class="[`${classPrefix}__header`]" v-if="title">
-            <div :class="[`${classPrefix}__icon`]"><i :class="iconClass"></i></div>
+            <div :class="[`${classPrefix}__icon`]"><Icon :type="iconClass"></Icon></div>
             <div :class="[`${classPrefix}__title`]">{{title}}</div>
         </div>
         <div :class="[`${classPrefix}__content`]">
@@ -34,6 +34,7 @@
     import Config from 'main/config/config'
     import Modal from './modal.vue'
     import Button from 'packages/button'
+    import Icon from 'packages/icon'
 
     export default {
         name: "ModalConfirm",
@@ -63,22 +64,22 @@
                 let result;
                 switch (this.icon) {
                     case 'info':
-                        result = 'icon-info-fill';
+                        result = 'info-fill';
                         break;
                     case 'success':
-                        result = 'icon-success-fill';
+                        result = 'success-fill';
                         break;
                     case 'warning':
-                        result = 'icon-warning-fill';
+                        result = 'warning-fill';
                         break;
                     case 'error':
-                        result = 'icon-remove-fill';
+                        result = 'remove-fill';
                         break;
                     case 'confirm':
-                        result = 'icon-question-fill';
+                        result = 'question-fill';
                         break;
                     default:
-                        result = 'icon-question-fill';
+                        result = 'question-fill';
                         break;
                 }
                 return result;
@@ -95,7 +96,8 @@
         },
         components: {
             Modal,
-            Button
+            Button,
+            Icon
         },
         created() {
         },

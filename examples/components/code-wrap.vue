@@ -12,10 +12,10 @@
             </div>
             <div class="code-wrap-code-button">
                 <ClTooltip placement="top" content="复制代码">
-                    <i class="cl-icon-file-copy" @click="copyCodeClick"></i>
+                    <Icon type="file-copy" @click="copyCodeClick"></Icon>
                 </ClTooltip>
                 <ClTooltip placement="top" :content="openedCode ? '隐藏代码' : '显示代码'">
-                    <i :class="iconCodeClass" @click="openedCodeClick"></i>
+                    <Icon :type="iconCodeClass" @click="openedCodeClick"></Icon>
                 </ClTooltip>
             </div>
             <SlideTransition>
@@ -43,9 +43,9 @@
     computed: {
       iconCodeClass(){
         if(this.openedCode){
-          return 'cl-icon-code-open'
+          return 'code-open'
         }
-        return 'cl-icon-code-close'
+        return 'code-close'
       }
     },
     components: {

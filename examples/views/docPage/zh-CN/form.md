@@ -18,10 +18,10 @@
 <template>
     <cl-form ref="form" layout="inline" :show-required-icon="false" label-width="0">
         <cl-form-item name="username" required>
-            <cl-input placeholder="username" prefix="icon-user" v-model="username"></cl-input>
+            <cl-input placeholder="username" prefix="user" v-model="username"></cl-input>
         </cl-form-item>
         <cl-form-item name="password" required>
-            <cl-input placeholder="password" prefix="icon-password" v-model="password"></cl-input>
+            <cl-input placeholder="password" prefix="password" v-model="password"></cl-input>
         </cl-form-item>
     </cl-form>
     <cl-button type="primary" @click="submit">SignIn</cl-button>
@@ -113,7 +113,7 @@
                         :onPreview="handlerPreview" 
                         :onRemove="handlerRemove" 
                         :onSuccess="handlerSuccess">
-                <i class="cl-icon-plus"></i>
+                <Icon type="plus"></Icon>
                 <div>上传文件</div>
             </cl-upload>
         </cl-form-item>
@@ -258,7 +258,7 @@
             </cl-select>
         </cl-form-item>
     </cl-form>
-    <cl-button type="primary" icon="cl-icon-plus" @click="addForm">添加域名</cl-button>
+    <cl-button type="primary" icon="plus" @click="addForm">添加域名</cl-button>
     <cl-button type="primary" @click="submit">提交</cl-button>
     <cl-button @click="reset">重置</cl-button>
 </template>

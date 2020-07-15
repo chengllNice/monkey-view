@@ -25,19 +25,19 @@
                     <ClMenu width="auto">
                         <ClTooltip class="menu-tooltip" placement="right" :disabled="!collapsed" content="options1">
                             <ClMenuItem c-key="options1">
-                                <i class="menu-icon cl-icon-home"></i>
+                                <Icon type="home" class="menu-icon"></Icon>
                                 <span class="menu-name">options1</span>
                             </ClMenuItem>
                         </ClTooltip>
                         <ClTooltip class="menu-tooltip" placement="right" :disabled="!collapsed" content="options2">
                             <ClMenuItem c-key="options2">
-                                <i class="menu-icon cl-icon-home"></i>
+                                <Icon type="home" class="menu-icon"></Icon>
                                 <span class="menu-name">options2</span>
                             </ClMenuItem>
                         </ClTooltip>
                         <ClTooltip class="menu-tooltip" placement="right" :disabled="!collapsed" content="options3">
                             <ClMenuItem c-key="options3">
-                                <i class="menu-icon cl-icon-home"></i>
+                                <Icon type="home" class="menu-icon"></Icon>
                                 <span class="menu-name">options3</span>
                             </ClMenuItem>
                         </ClTooltip>
@@ -56,79 +56,79 @@
                     <ClMenu :class="{'sider-close': collapsedScroll}" :open-keys="openKeys" width="auto" theme="dark">
                         <ClSubmenu class="fixed-layout-submenu" :forbidden="collapsedScroll" :hideDropIcon="collapsedScroll" name="submenu-option1" c-key="submenu-option1">
                             <template slot="title">
-                                <i class="menu-icon cl-icon-home"></i>
+                                <Icon type="home" class="menu-icon"></Icon>
                                 <span class="menu-name">submenu-option1</span>
                             </template>
                             <ClMenuItem c-key="menuItem-option1">
-                                <i class="cl-icon-home"></i>
+                                <Icon type="home"></Icon>
                                 <span>menuItem-option1</span>
                             </ClMenuItem>
                             <ClMenuItem c-key="menuItem-option2">
-                                <i class="cl-icon-home"></i>
+                                <Icon type="home"></Icon>
                                 <span>menuItem-option2</span>
                             </ClMenuItem>
                             <ClMenuItem c-key="menuItem-option3">
-                                <i class="cl-icon-home"></i>
+                                <Icon type="home"></Icon>
                                 <span>menuItem-option3</span>
                             </ClMenuItem>
                             <ClMenuItem c-key="menuItem-option4">
-                                <i class="cl-icon-home"></i>
+                                <Icon type="home"></Icon>
                                 <span>menuItem-option4</span>
                             </ClMenuItem>
                             <ClMenuItem c-key="menuItem-option5">
-                                <i class="cl-icon-home"></i>
+                                <Icon type="home"></Icon>
                                 <span>menuItem-option5</span>
                             </ClMenuItem>
                         </ClSubmenu>
                         <ClSubmenu class="fixed-layout-submenu" :forbidden="collapsedScroll" :hideDropIcon="collapsedScroll" name="submenu-option2" c-key="submenu-option2">
                             <template slot="title">
-                                <i class="menu-icon cl-icon-home"></i>
+                                <Icon type="home" class="menu-icon"></Icon>
                                 <span class="menu-name">submenu-option2</span>
                             </template>
                             <ClMenuItem c-key="menuItem-option2-1">
-                                <i class="cl-icon-home"></i>
+                                <Icon type="home"></Icon>
                                 <span>menuItem-option2-1</span>
                             </ClMenuItem>
                             <ClMenuItem c-key="menuItem-option2-2">
-                                <i class="cl-icon-home"></i>
+                                <Icon type="home"></Icon>
                                 <span>menuItem-option2-2</span>
                             </ClMenuItem>
                             <ClMenuItem c-key="menuItem-option2-3">
-                                <i class="cl-icon-home"></i>
+                                <Icon type="home"></Icon>
                                 <span>menuItem-option2-3</span>
                             </ClMenuItem>
                             <ClMenuItem c-key="menuItem-option2-4">
-                                <i class="cl-icon-home"></i>
+                                <Icon type="home"></Icon>
                                 <span>menuItem-option2-4</span>
                             </ClMenuItem>
                             <ClMenuItem c-key="menuItem-option2-5">
-                                <i class="cl-icon-home"></i>
+                                <Icon type="home"></Icon>
                                 <span>menuItem-option2-5</span>
                             </ClMenuItem>
                         </ClSubmenu>
                         <ClSubmenu class="fixed-layout-submenu" :forbidden="collapsedScroll" :hideDropIcon="collapsedScroll" name="submenu-option3" c-key="submenu-option3">
                             <template slot="title">
-                                <i class="menu-icon cl-icon-home"></i>
+                                <Icon type="home" class="menu-icon"></Icon>
                                 <span class="menu-name">submenu-option3</span>
                             </template>
                             <ClMenuItem c-key="menuItem-option3-1">
-                                <i class="cl-icon-home"></i>
+                                <Icon type="home"></Icon>
                                 <span>menuItem-option3-1</span>
                             </ClMenuItem>
                             <ClMenuItem c-key="menuItem-option3-2">
-                                <i class="cl-icon-home"></i>
+                                <Icon type="home"></Icon>
                                 <span>menuItem-option3-2</span>
                             </ClMenuItem>
                             <ClMenuItem c-key="menuItem-option3-3">
-                                <i class="cl-icon-home"></i>
+                                <Icon type="home"></Icon>
                                 <span>menuItem-option3-3</span>
                             </ClMenuItem>
                             <ClMenuItem c-key="menuItem-option3-4">
-                                <i class="cl-icon-home"></i>
+                                <Icon type="home"></Icon>
                                 <span>menuItem-option3-4</span>
                             </ClMenuItem>
                             <ClMenuItem c-key="menuItem-option3-5">
-                                <i class="cl-icon-home"></i>
+                                <Icon type="home"></Icon>
                                 <span>menuItem-option3-5</span>
                             </ClMenuItem>
                         </ClSubmenu>
@@ -162,7 +162,7 @@
             </ClSider>
             <ClLayout>
                 <ClHeader :style="{padding: 0}">
-                    <ClButton type="text" size='large' icon="cl-icon-square" @click="collapsedCustom = !collapsedCustom"></ClButton>
+                    <ClButton type="text" size='large' icon="square" @click="collapsedCustom = !collapsedCustom"></ClButton>
                     <div class="center">header</div>
                 </ClHeader>
                 <ClContent class="center layout-content">content</ClContent>
@@ -244,24 +244,24 @@
           {
             key: 'home',
             name: 'home',
-            icon: 'cl-icon-list',
-            rightIcon: 'cl-icon-down',
+            icon: 'list',
+            rightIcon: 'down',
             link: '/homeView',
             query: {},
           },
           {
             key: 'button',
             name: 'button',
-            icon: 'cl-icon-list',
-            rightIcon: 'cl-icon-down',
+            icon: 'list',
+            rightIcon: 'down',
             link: '/buttonView',
             query: {},
           },
           {
             key: 'input',
             name: 'input',
-            icon: 'cl-icon-list',
-            rightIcon: 'cl-icon-down',
+            icon: 'list',
+            rightIcon: 'down',
             link: '/inputView',
             query: {},
           },

@@ -87,8 +87,8 @@
 ```html
 <template>
     <cl-switch>
-        <span slot="open"><i class="cl-icon-check"></i></span>
-        <span slot="close"><i class="cl-icon-close"></i></span>
+        <span slot="open"><Icon type="check"></Icon></span>
+        <span slot="close"><Icon type="close"></Icon></span>
     </cl-switch>
     <cl-switch>
         <span slot="open">开</span>

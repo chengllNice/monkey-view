@@ -47,22 +47,22 @@
                 let result;
                 switch (this.type) {
                     case 'info':
-                        result = 'icon-info-fill';
+                        result = 'info-fill';
                         break;
                     case 'success':
-                        result = 'icon-success-fill';
+                        result = 'success-fill';
                         break;
                     case 'warning':
-                        result = 'icon-warning-fill';
+                        result = 'warning-fill';
                         break;
                     case 'error':
-                        result = 'icon-error-fill';
+                        result = 'error-fill';
                         break;
                     case 'loading':
-                        result = 'icon-loading';
+                        result = 'loading';
                         break;
                     default:
-                        result = 'icon-question-fill';
+                        result = 'question-fill';
                         break;
                 }
                 return result;

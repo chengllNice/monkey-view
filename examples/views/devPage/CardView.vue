@@ -27,9 +27,9 @@
             </div>
 
             <div class="footer" slot="footer">
-                <i class="cl-icon-list"></i>
-                <i class="cl-icon-setting"></i>
-                <i class="cl-icon-thumbs"></i>
+                <Icon type="list"></Icon>
+                <Icon type="setting"></Icon>
+                <Icon type="thumbs"></Icon>
             </div>
         </ClCard>
     </div>

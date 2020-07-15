@@ -29,7 +29,7 @@
                     `${classPrefix}__icon`,
                     row.__isExpand && `${classPrefix}__expand`
                 ]"
-                  @click="expandChange"><Icon type="icon-right"></Icon></span>
+                  @click="expandChange"><Icon type="right"></Icon></span>
         </template>
     </div>
 </template>

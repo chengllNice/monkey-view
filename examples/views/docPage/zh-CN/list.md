@@ -147,20 +147,20 @@
     <cl-list type="meta" border :split="false" header="我的音乐列表">
         <cl-list-item title="感谢你曾来过" description="周思涵/Ayo97">
             <div slot="extra">
-                <cl-button type="text" size="mini"><i class="cl-icon-heart"></i></cl-button>
-                <cl-button type="text" size="mini"><i class="cl-icon-plus"></i></cl-button>
+                <cl-button type="text" size="mini"><Icon type="heart"></Icon></cl-button>
+                <cl-button type="text" size="mini"><Icon type="plus"></Icon></cl-button>
             </div>
         </cl-list-item>
         <cl-list-item title="孤单心事" description="颜人中">
             <div slot="extra">
-                <cl-button type="text" size="mini"><i class="cl-icon-heart"></i></cl-button>
-                <cl-button type="text" size="mini"><i class="cl-icon-plus"></i></cl-button>
+                <cl-button type="text" size="mini"><Icon type="heart"></Icon></cl-button>
+                <cl-button type="text" size="mini"><Icon type="plus"></Icon></cl-button>
             </div>
         </cl-list-item>
         <cl-list-item title="云烟成雨" description="房东的猫">
             <div slot="extra">
-                <cl-button type="text" size="mini"><i class="cl-icon-heart"></i></cl-button>
-                <cl-button type="text" size="mini"><i class="cl-icon-plus"></i></cl-button>
+                <cl-button type="text" size="mini"><Icon type="heart"></Icon></cl-button>
+                <cl-button type="text" size="mini"><Icon type="plus"></Icon></cl-button>
             </div>
         </cl-list-item>
     </cl-list>
@@ -236,7 +236,7 @@
     <cl-list type="meta" border :split="false" :loading="loading" header="异步加载列表">
         <cl-list-item v-for="item in dataList" :key="item.id" :title="item.title" :description="item.description">
             <div slot="extra">
-                <cl-button type="text" size="mini"><i class="cl-icon-delete" @click="deleteData(item)"></i></cl-button>
+                <cl-button type="text" size="mini"><Icon type="delete" @click="deleteData(item)"></Icon></cl-button>
             </div>
         </cl-list-item>
     </cl-list>

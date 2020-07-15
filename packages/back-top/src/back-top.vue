@@ -3,7 +3,7 @@
         <div v-show="visible" :class="[`${classPrefix}`]" :style="backTopStyle" @click="backTopClick">
             <slot>
                 <div :class="[`${classPrefix}__inner`]">
-                    <Icon type="icon-up"></Icon>
+                    <Icon type="up"></Icon>
                 </div>
             </slot>
         </div>

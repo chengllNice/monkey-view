@@ -260,15 +260,15 @@
 <template>
     <cl-collapse v-model="openedExtra">
         <cl-collapse-item c-key="1" name="我说不爱你，那是假话">
-            <cl-button type="text" icon="cl-icon-setting" slot="extra"></cl-button>
+            <cl-button type="text" icon="setting" slot="extra"></cl-button>
             I lied when I said I didn’t like you. I lied when I said I didn’t care. I lie every time I try to tell myself I will never fall for you.
         </cl-collapse-item>
         <cl-collapse-item c-key="2" name="喜欢一个人， 一定要让对方知道">
-            <cl-button type="text" icon="cl-icon-setting" slot="extra"></cl-button>
+            <cl-button type="text" icon="setting" slot="extra"></cl-button>
             If you love someone,you must let him know.Maybe you‘d get no answer,but at least you have tied and won‘t regret.
         </cl-collapse-item>
         <cl-collapse-item c-key="3" name="人生就是一场旅行">
-            <cl-button type="text" icon="cl-icon-setting" slot="extra"></cl-button>
+            <cl-button type="text" icon="setting" slot="extra"></cl-button>
             Life is a journey, not the destination, but the scenery along the should be and the mood at the view.
         </cl-collapse-item>
     </cl-collapse>

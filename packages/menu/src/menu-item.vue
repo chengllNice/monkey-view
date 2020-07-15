@@ -8,7 +8,7 @@
                  :style="itemStyle"
                  @click.native="handlerClick"
                  :to="disabled ? $route.fullPath : to">
-        <i v-if="icon" :class="icon"></i>
+        <Icon v-if="icon" :type="icon" :class="icon"></Icon>
         <span>{{name}}</span>
     </router-link>
     <div v-else
@@ -20,7 +20,7 @@
          :style="itemStyle"
          @click="handlerClick">
         <slot>
-            <i v-if="icon" :class="icon"></i>
+            <Icon v-if="icon" :type="icon" :class="icon"></Icon>
             <span>{{name}}</span>
         </slot>
     </div>
@@ -30,6 +30,7 @@
     import Config from 'main/config/config'
     import Emitter from 'main/mixins/emitter'
     import {findComponent, findComponents} from "main/utils/tool";
+    import Icon from 'packages/icon'
 
     export default {
         name: "MenuItem",
@@ -77,7 +78,9 @@
                 return style
             }
         },
-        components: {},
+        components: {
+            Icon
+        },
         created() {
         },
         mounted() {

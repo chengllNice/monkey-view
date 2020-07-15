@@ -75,7 +75,7 @@
         <div slot="description">Content of prompt. Content of prompt. Content of prompt. Content of prompt.</div>
     </cl-alter>
     <cl-alter type="warning" show-icon>
-        <i slot="icon" class="cl-icon-sound"></i>
+        <Icon slot="icon" type="sound"></Icon>
         custom icon
         <div slot="description">Content of prompt. Content of prompt. Content of prompt. Content of prompt.</div>
     </cl-alter>

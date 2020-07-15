@@ -7,7 +7,7 @@
          ref="sider"
          :style="sliderStyle">
         <div :class="[`${classPrefix}__zero-trigger`]" v-if="showZeroTrigger" @click="triggerClick">
-            <Icon type="icon-arrow-right"></Icon>
+            <Icon type="arrow-right"></Icon>
         </div>
         <div :class="[`${classPrefix}__header`]" ref="header" v-if="$slots.header">
             <slot name="header"></slot>
@@ -19,7 +19,7 @@
         </div>
         <div :class="[`${classPrefix}__trigger`]" ref="trigger" v-if="!hideTrigger" @click="triggerClick">
             <slot name="trigger">
-                <Icon type="icon-left" :class="[`${classPrefix}__trigger-icon`]"></Icon>
+                <Icon type="left" :class="[`${classPrefix}__trigger-icon`]"></Icon>
             </slot>
         </div>
     </div>

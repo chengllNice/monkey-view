@@ -53,7 +53,7 @@
         <cl-col>
             <h4>自定义加载失败</h4>
             <cl-image class="doc-status-image" fit="fill" :src="src2">
-                <i slot="error" class="cl-icon-picture"></i>
+                <Icon slot="error" type="picture" class="doc-status-image-icon"></Icon>
             </cl-image>
         </cl-col>
     </cl-row>
@@ -73,7 +73,7 @@
   width: 200px;
   height: 200px;
 }
-.doc-status-image .cl-icon-picture{
+.doc-status-image .doc-status-image-icon{
   font-size: 30px;
 }
 </style>

@@ -41,6 +41,10 @@
       margin-top: #{($height - ($tag-height - 2px)) / 2};
       margin-bottom: #{($height - ($tag-height - 2px)) / 2};
     }
+
+    &__suffix {
+      font-size: $font-size;
+    }
   }
 }
 

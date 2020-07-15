@@ -3,66 +3,66 @@
         <h4>mode=vertical,theme=light,size=small</h4>
         <ClMenu @open-change="handlerOpenChange" @select="handlerSelect" size="small" width="300px">
             <ClMenuItem c-key="button-item-1" name="button-item" to="/buttonView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 <span>button-item</span>
             </ClMenuItem>
             <ClSubmenu c-key="submenu-sub-1" name="submenu">
                 <ClMenuItem c-key="button-1" disabled name="button" to="/buttonView">
-                    <i class="cl-icon-list"></i>
+                    <Icon type="list"></Icon>
                     <span>button</span>
                 </ClMenuItem>
-                <ClMenuItem c-key="input-1" name="input" to="/inputView" icon="cl-icon-list">
-                    <i class="cl-icon-list"></i>
+                <ClMenuItem c-key="input-1" name="input" to="/inputView" icon="list">
+                    <Icon type="list"></Icon>
                     <span>input</span>
                 </ClMenuItem>
                 <ClMenuItem c-key="badge-1" name="badge" to="/badgeView">
-                    <i class="cl-icon-list"></i>
+                    <Icon type="list"></Icon>
                     <span>badge</span>
                 </ClMenuItem>
                 <ClSubmenu c-key="submenu-sub-1-2" name="submenu1-2">
                     <ClMenuItem c-key="button-1-2" name="button" to="/buttonView">
-                        <i class="cl-icon-list"></i>
+                        <Icon type="list"></Icon>
                         <span>button</span>
                     </ClMenuItem>
                     <ClMenuGroup name="groupTitle1-2-1">
                         <ClMenuItem c-key="button-1-2-1" name="button" to="/buttonView">
-                            <i class="cl-icon-list"></i>
+                            <Icon type="list"></Icon>
                             <span>button</span>
                         </ClMenuItem>
-                        <ClMenuItem c-key="input-1-2-1" name="input" to="/inputView" icon="cl-icon-list">
-                            <i class="cl-icon-list"></i>
+                        <ClMenuItem c-key="input-1-2-1" name="input" to="/inputView" icon="list">
+                            <Icon type="list"></Icon>
                             <span>input</span>
                         </ClMenuItem>
                         <ClMenuItem c-key="badge-1-2-1" name="badge" to="/badgeView">
-                            <i class="cl-icon-list"></i>
+                            <Icon type="list"></Icon>
                             <span>badge</span>
                         </ClMenuItem>
                     </ClMenuGroup>
 
-                    <ClMenuItem c-key="input-1-2" name="input" to="/inputView" icon="cl-icon-list">
-                        <i class="cl-icon-list"></i>
+                    <ClMenuItem c-key="input-1-2" name="input" to="/inputView" icon="list">
+                        <Icon type="list"></Icon>
                         <span>input</span>
                     </ClMenuItem>
                     <ClMenuItem c-key="badge-1-2" name="badge" to="/badgeView">
-                        <i class="cl-icon-list"></i>
+                        <Icon type="list"></Icon>
                         <span>badge</span>
                     </ClMenuItem>
                 </ClSubmenu>
             </ClSubmenu>
             <ClSubmenu c-key="submenu-sub-2" disabled name="submenu2">
                 <ClMenuItem c-key="button-2" name="button2" to="/buttonView"></ClMenuItem>
-                <ClMenuItem c-key="input-2" name="input2" to="/inputView" icon="cl-icon-list"></ClMenuItem>
+                <ClMenuItem c-key="input-2" name="input2" to="/inputView" icon="list"></ClMenuItem>
                 <ClMenuItem c-key="badge-2" name="badge2" to="/badgeView"></ClMenuItem>
             </ClSubmenu>
             <ClSubmenu c-key="submenu-sub-3" name="submenu3">
                 <ClMenuGroup name="groupTitle3">
                     <ClMenuItem c-key="button-3-1" name="button3-1" to="/buttonView"></ClMenuItem>
-                    <ClMenuItem c-key="input-3-1" name="input3-1" to="/inputView" icon="cl-icon-list"></ClMenuItem>
+                    <ClMenuItem c-key="input-3-1" name="input3-1" to="/inputView" icon="list"></ClMenuItem>
                     <ClMenuItem c-key="badge-3-1" name="badge3-1" to="/badgeView"></ClMenuItem>
                 </ClMenuGroup>
                 <ClMenuGroup name="groupTitle3-2">
                     <ClMenuItem c-key="button-3-2" name="button3-2" to="/buttonView"></ClMenuItem>
-                    <ClMenuItem c-key="input-3-2" name="input3-2" to="/inputView" icon="cl-icon-list"></ClMenuItem>
+                    <ClMenuItem c-key="input-3-2" name="input3-2" to="/inputView" icon="list"></ClMenuItem>
                     <ClMenuItem c-key="badge-3-2" name="badge3-2" to="/badgeView"></ClMenuItem>
                 </ClMenuGroup>
             </ClSubmenu>
@@ -70,66 +70,66 @@
         <h4>mode=vertical,theme=light,size--default</h4>
         <ClMenu @open-change="handlerOpenChange" @select="handlerSelect" size="default" width="300px">
             <ClMenuItem c-key="button-item-1" name="button-item" to="/buttonView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 <span>button-item</span>
             </ClMenuItem>
             <ClSubmenu c-key="submenu-sub-1" name="submenu">
                 <ClMenuItem c-key="button-1" name="button" to="/buttonView">
-                    <i class="cl-icon-list"></i>
+                    <Icon type="list"></Icon>
                     <span>button</span>
                 </ClMenuItem>
-                <ClMenuItem c-key="input-1" name="input" to="/inputView" icon="cl-icon-list">
-                    <i class="cl-icon-list"></i>
+                <ClMenuItem c-key="input-1" name="input" to="/inputView" icon="list">
+                    <Icon type="list"></Icon>
                     <span>input</span>
                 </ClMenuItem>
                 <ClMenuItem c-key="badge-1" name="badge" to="/badgeView">
-                    <i class="cl-icon-list"></i>
+                    <Icon type="list"></Icon>
                     <span>badge</span>
                 </ClMenuItem>
                 <ClSubmenu c-key="submenu-sub-1-2" name="submenu1-2">
                     <ClMenuItem c-key="button-1-2" name="button" to="/buttonView">
-                        <i class="cl-icon-list"></i>
+                        <Icon type="list"></Icon>
                         <span>button</span>
                     </ClMenuItem>
                     <ClMenuGroup name="groupTitle1-2-1">
                         <ClMenuItem c-key="button-1-2-1" name="button" to="/buttonView">
-                            <i class="cl-icon-list"></i>
+                            <Icon type="list"></Icon>
                             <span>button</span>
                         </ClMenuItem>
-                        <ClMenuItem c-key="input-1-2-1" name="input" to="/inputView" icon="cl-icon-list">
-                            <i class="cl-icon-list"></i>
+                        <ClMenuItem c-key="input-1-2-1" name="input" to="/inputView" icon="list">
+                            <Icon type="list"></Icon>
                             <span>input</span>
                         </ClMenuItem>
                         <ClMenuItem c-key="badge-1-2-1" name="badge" to="/badgeView">
-                            <i class="cl-icon-list"></i>
+                            <Icon type="list"></Icon>
                             <span>badge</span>
                         </ClMenuItem>
                     </ClMenuGroup>
 
-                    <ClMenuItem c-key="input-1-2" name="input" to="/inputView" icon="cl-icon-list">
-                        <i class="cl-icon-list"></i>
+                    <ClMenuItem c-key="input-1-2" name="input" to="/inputView" icon="list">
+                        <Icon type="list"></Icon>
                         <span>input</span>
                     </ClMenuItem>
                     <ClMenuItem c-key="badge-1-2" name="badge" to="/badgeView">
-                        <i class="cl-icon-list"></i>
+                        <Icon type="list"></Icon>
                         <span>badge</span>
                     </ClMenuItem>
                 </ClSubmenu>
             </ClSubmenu>
             <ClSubmenu c-key="submenu-sub-2" name="submenu2">
                 <ClMenuItem c-key="button-2" name="button2" to="/buttonView"></ClMenuItem>
-                <ClMenuItem c-key="input-2" name="input2" to="/inputView" icon="cl-icon-list"></ClMenuItem>
+                <ClMenuItem c-key="input-2" name="input2" to="/inputView" icon="list"></ClMenuItem>
                 <ClMenuItem c-key="badge-2" name="badge2" to="/badgeView"></ClMenuItem>
             </ClSubmenu>
             <ClSubmenu c-key="submenu-sub-3" name="submenu3">
                 <ClMenuGroup name="groupTitle3">
                     <ClMenuItem c-key="button-3-1" name="button3-1" to="/buttonView"></ClMenuItem>
-                    <ClMenuItem c-key="input-3-1" name="input3-1" to="/inputView" icon="cl-icon-list"></ClMenuItem>
+                    <ClMenuItem c-key="input-3-1" name="input3-1" to="/inputView" icon="list"></ClMenuItem>
                     <ClMenuItem c-key="badge-3-1" name="badge3-1" to="/badgeView"></ClMenuItem>
                 </ClMenuGroup>
                 <ClMenuGroup name="groupTitle3-2">
                     <ClMenuItem c-key="button-3-2" name="button3-2" to="/buttonView"></ClMenuItem>
-                    <ClMenuItem c-key="input-3-2" name="input3-2" to="/inputView" icon="cl-icon-list"></ClMenuItem>
+                    <ClMenuItem c-key="input-3-2" name="input3-2" to="/inputView" icon="list"></ClMenuItem>
                     <ClMenuItem c-key="badge-3-2" name="badge3-2" to="/badgeView"></ClMenuItem>
                 </ClMenuGroup>
             </ClSubmenu>
@@ -137,66 +137,66 @@
         <h4>mode=vertical,theme=light,size--large</h4>
         <ClMenu @open-change="handlerOpenChange" @select="handlerSelect" size="large" width="300px">
             <ClMenuItem c-key="button-item-1" name="button-item" to="/buttonView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 <span>button-item</span>
             </ClMenuItem>
             <ClSubmenu c-key="submenu-sub-1" name="submenu">
                 <ClMenuItem c-key="button-1" name="button" to="/buttonView">
-                    <i class="cl-icon-list"></i>
+                    <Icon type="list"></Icon>
                     <span>button</span>
                 </ClMenuItem>
-                <ClMenuItem c-key="input-1" name="input" to="/inputView" icon="cl-icon-list">
-                    <i class="cl-icon-list"></i>
+                <ClMenuItem c-key="input-1" name="input" to="/inputView" icon="list">
+                    <Icon type="list"></Icon>
                     <span>input</span>
                 </ClMenuItem>
                 <ClMenuItem c-key="badge-1" name="badge" to="/badgeView">
-                    <i class="cl-icon-list"></i>
+                    <Icon type="list"></Icon>
                     <span>badge</span>
                 </ClMenuItem>
                 <ClSubmenu c-key="submenu-sub-1-2" name="submenu1-2">
                     <ClMenuItem c-key="button-1-2" name="button" to="/buttonView">
-                        <i class="cl-icon-list"></i>
+                        <Icon type="list"></Icon>
                         <span>button</span>
                     </ClMenuItem>
                     <ClMenuGroup name="groupTitle1-2-1">
                         <ClMenuItem c-key="button-1-2-1" name="button" to="/buttonView">
-                            <i class="cl-icon-list"></i>
+                            <Icon type="list"></Icon>
                             <span>button</span>
                         </ClMenuItem>
-                        <ClMenuItem c-key="input-1-2-1" name="input" to="/inputView" icon="cl-icon-list">
-                            <i class="cl-icon-list"></i>
+                        <ClMenuItem c-key="input-1-2-1" name="input" to="/inputView" icon="list">
+                            <Icon type="list"></Icon>
                             <span>input</span>
                         </ClMenuItem>
                         <ClMenuItem c-key="badge-1-2-1" name="badge" to="/badgeView">
-                            <i class="cl-icon-list"></i>
+                            <Icon type="list"></Icon>
                             <span>badge</span>
                         </ClMenuItem>
                     </ClMenuGroup>
 
-                    <ClMenuItem c-key="input-1-2" name="input" to="/inputView" icon="cl-icon-list">
-                        <i class="cl-icon-list"></i>
+                    <ClMenuItem c-key="input-1-2" name="input" to="/inputView" icon="list">
+                        <Icon type="list"></Icon>
                         <span>input</span>
                     </ClMenuItem>
                     <ClMenuItem c-key="badge-1-2" name="badge" to="/badgeView">
-                        <i class="cl-icon-list"></i>
+                        <Icon type="list"></Icon>
                         <span>badge</span>
                     </ClMenuItem>
                 </ClSubmenu>
             </ClSubmenu>
             <ClSubmenu c-key="submenu-sub-2" name="submenu2">
                 <ClMenuItem c-key="button-2" name="button2" to="/buttonView"></ClMenuItem>
-                <ClMenuItem c-key="input-2" name="input2" to="/inputView" icon="cl-icon-list"></ClMenuItem>
+                <ClMenuItem c-key="input-2" name="input2" to="/inputView" icon="list"></ClMenuItem>
                 <ClMenuItem c-key="badge-2" name="badge2" to="/badgeView"></ClMenuItem>
             </ClSubmenu>
             <ClSubmenu c-key="submenu-sub-3" name="submenu3">
                 <ClMenuGroup name="groupTitle3">
                     <ClMenuItem c-key="button-3-1" name="button3-1" to="/buttonView"></ClMenuItem>
-                    <ClMenuItem c-key="input-3-1" name="input3-1" to="/inputView" icon="cl-icon-list"></ClMenuItem>
+                    <ClMenuItem c-key="input-3-1" name="input3-1" to="/inputView" icon="list"></ClMenuItem>
                     <ClMenuItem c-key="badge-3-1" name="badge3-1" to="/badgeView"></ClMenuItem>
                 </ClMenuGroup>
                 <ClMenuGroup name="groupTitle3-2">
                     <ClMenuItem c-key="button-3-2" name="button3-2" to="/buttonView"></ClMenuItem>
-                    <ClMenuItem c-key="input-3-2" name="input3-2" to="/inputView" icon="cl-icon-list"></ClMenuItem>
+                    <ClMenuItem c-key="input-3-2" name="input3-2" to="/inputView" icon="list"></ClMenuItem>
                     <ClMenuItem c-key="badge-3-2" name="badge3-2" to="/badgeView"></ClMenuItem>
                 </ClMenuGroup>
             </ClSubmenu>
@@ -204,66 +204,66 @@
         <h4>mode=vertical,theme=light,size--default,accordion(手风琴模式)</h4>
         <ClMenu @open-change="handlerOpenChange" @select="handlerSelect" accordion size="default" width="300px">
             <ClMenuItem c-key="button-item-1" name="button-item" to="/buttonView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 <span>button-item</span>
             </ClMenuItem>
             <ClSubmenu c-key="submenu-sub-1" name="submenu">
                 <ClMenuItem c-key="button-1" name="button" to="/buttonView">
-                    <i class="cl-icon-list"></i>
+                    <Icon type="list"></Icon>
                     <span>button</span>
                 </ClMenuItem>
-                <ClMenuItem c-key="input-1" name="input" to="/inputView" icon="cl-icon-list">
-                    <i class="cl-icon-list"></i>
+                <ClMenuItem c-key="input-1" name="input" to="/inputView" icon="list">
+                    <Icon type="list"></Icon>
                     <span>input</span>
                 </ClMenuItem>
                 <ClMenuItem c-key="badge-1" name="badge" to="/badgeView">
-                    <i class="cl-icon-list"></i>
+                    <Icon type="list"></Icon>
                     <span>badge</span>
                 </ClMenuItem>
                 <ClSubmenu c-key="submenu-sub-1-2" name="submenu1-2">
                     <ClMenuItem c-key="button-1-2" name="button" to="/buttonView">
-                        <i class="cl-icon-list"></i>
+                        <Icon type="list"></Icon>
                         <span>button</span>
                     </ClMenuItem>
                     <ClMenuGroup name="groupTitle1-2-1">
                         <ClMenuItem c-key="button-1-2-1" name="button" to="/buttonView">
-                            <i class="cl-icon-list"></i>
+                            <Icon type="list"></Icon>
                             <span>button</span>
                         </ClMenuItem>
-                        <ClMenuItem c-key="input-1-2-1" name="input" to="/inputView" icon="cl-icon-list">
-                            <i class="cl-icon-list"></i>
+                        <ClMenuItem c-key="input-1-2-1" name="input" to="/inputView" icon="list">
+                            <Icon type="list"></Icon>
                             <span>input</span>
                         </ClMenuItem>
                         <ClMenuItem c-key="badge-1-2-1" name="badge" to="/badgeView">
-                            <i class="cl-icon-list"></i>
+                            <Icon type="list"></Icon>
                             <span>badge</span>
                         </ClMenuItem>
                     </ClMenuGroup>
 
-                    <ClMenuItem c-key="input-1-2" name="input" to="/inputView" icon="cl-icon-list">
-                        <i class="cl-icon-list"></i>
+                    <ClMenuItem c-key="input-1-2" name="input" to="/inputView" icon="list">
+                        <Icon type="list"></Icon>
                         <span>input</span>
                     </ClMenuItem>
                     <ClMenuItem c-key="badge-1-2" name="badge" to="/badgeView">
-                        <i class="cl-icon-list"></i>
+                        <Icon type="list"></Icon>
                         <span>badge</span>
                     </ClMenuItem>
                 </ClSubmenu>
             </ClSubmenu>
             <ClSubmenu c-key="submenu-sub-2" name="submenu2">
                 <ClMenuItem c-key="button-2" name="button2" to="/buttonView"></ClMenuItem>
-                <ClMenuItem c-key="input-2" name="input2" to="/inputView" icon="cl-icon-list"></ClMenuItem>
+                <ClMenuItem c-key="input-2" name="input2" to="/inputView" icon="list"></ClMenuItem>
                 <ClMenuItem c-key="badge-2" name="badge2" to="/badgeView"></ClMenuItem>
             </ClSubmenu>
             <ClSubmenu c-key="submenu-sub-3" name="submenu3">
                 <ClMenuGroup name="groupTitle3">
                     <ClMenuItem c-key="button-3-1" name="button3-1" to="/buttonView"></ClMenuItem>
-                    <ClMenuItem c-key="input-3-1" name="input3-1" to="/inputView" icon="cl-icon-list"></ClMenuItem>
+                    <ClMenuItem c-key="input-3-1" name="input3-1" to="/inputView" icon="list"></ClMenuItem>
                     <ClMenuItem c-key="badge-3-1" name="badge3-1" to="/badgeView"></ClMenuItem>
                 </ClMenuGroup>
                 <ClMenuGroup name="groupTitle3-2">
                     <ClMenuItem c-key="button-3-2" name="button3-2" to="/buttonView"></ClMenuItem>
-                    <ClMenuItem c-key="input-3-2" name="input3-2" to="/inputView" icon="cl-icon-list"></ClMenuItem>
+                    <ClMenuItem c-key="input-3-2" name="input3-2" to="/inputView" icon="list"></ClMenuItem>
                     <ClMenuItem c-key="badge-3-2" name="badge3-2" to="/badgeView"></ClMenuItem>
                 </ClMenuGroup>
             </ClSubmenu>
@@ -272,66 +272,66 @@
         <h4>mode=vertical,theme=dark,size=small</h4>
         <ClMenu @open-change="handlerOpenChange" @select="handlerSelect" size="small" theme="dark" width="300px">
             <ClMenuItem c-key="button-item-1" name="button-item" to="/buttonView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 <span>button-item</span>
             </ClMenuItem>
             <ClSubmenu c-key="submenu-sub-1" name="submenu">
                 <ClMenuItem c-key="button-1" name="button" to="/buttonView">
-                    <i class="cl-icon-list"></i>
+                    <Icon type="list"></Icon>
                     <span>button</span>
                 </ClMenuItem>
-                <ClMenuItem c-key="input-1" disabled name="input" to="/inputView" icon="cl-icon-list">
-                    <i class="cl-icon-list"></i>
+                <ClMenuItem c-key="input-1" disabled name="input" to="/inputView" icon="list">
+                    <Icon type="list"></Icon>
                     <span>input</span>
                 </ClMenuItem>
                 <ClMenuItem c-key="badge-1" name="badge" to="/badgeView">
-                    <i class="cl-icon-list"></i>
+                    <Icon type="list"></Icon>
                     <span>badge</span>
                 </ClMenuItem>
                 <ClSubmenu c-key="submenu-sub-1-2" name="submenu1-2">
                     <ClMenuItem c-key="button-1-2" name="button" to="/buttonView">
-                        <i class="cl-icon-list"></i>
+                        <Icon type="list"></Icon>
                         <span>button</span>
                     </ClMenuItem>
                     <ClMenuGroup name="groupTitle1-2-1">
                         <ClMenuItem c-key="button-1-2-1" name="button" to="/buttonView">
-                            <i class="cl-icon-list"></i>
+                            <Icon type="list"></Icon>
                             <span>button</span>
                         </ClMenuItem>
-                        <ClMenuItem c-key="input-1-2-1" name="input" to="/inputView" icon="cl-icon-list">
-                            <i class="cl-icon-list"></i>
+                        <ClMenuItem c-key="input-1-2-1" name="input" to="/inputView" icon="list">
+                            <Icon type="list"></Icon>
                             <span>input</span>
                         </ClMenuItem>
                         <ClMenuItem c-key="badge-1-2-1" name="badge" to="/badgeView">
-                            <i class="cl-icon-list"></i>
+                            <Icon type="list"></Icon>
                             <span>badge</span>
                         </ClMenuItem>
                     </ClMenuGroup>
 
-                    <ClMenuItem c-key="input-1-2" name="input" to="/inputView" icon="cl-icon-list">
-                        <i class="cl-icon-list"></i>
+                    <ClMenuItem c-key="input-1-2" name="input" to="/inputView" icon="list">
+                        <Icon type="list"></Icon>
                         <span>input</span>
                     </ClMenuItem>
                     <ClMenuItem c-key="badge-1-2" name="badge" to="/badgeView">
-                        <i class="cl-icon-list"></i>
+                        <Icon type="list"></Icon>
                         <span>badge</span>
                     </ClMenuItem>
                 </ClSubmenu>
             </ClSubmenu>
             <ClSubmenu c-key="submenu-sub-2" disabled name="submenu2">
                 <ClMenuItem c-key="button-2" name="button2" to="/buttonView"></ClMenuItem>
-                <ClMenuItem c-key="input-2" name="input2" to="/inputView" icon="cl-icon-list"></ClMenuItem>
+                <ClMenuItem c-key="input-2" name="input2" to="/inputView" icon="list"></ClMenuItem>
                 <ClMenuItem c-key="badge-2" name="badge2" to="/badgeView"></ClMenuItem>
             </ClSubmenu>
             <ClSubmenu c-key="submenu-sub-3" name="submenu3">
                 <ClMenuGroup name="groupTitle3">
                     <ClMenuItem c-key="button-3-1" name="button3-1" to="/buttonView"></ClMenuItem>
-                    <ClMenuItem c-key="input-3-1" name="input3-1" to="/inputView" icon="cl-icon-list"></ClMenuItem>
+                    <ClMenuItem c-key="input-3-1" name="input3-1" to="/inputView" icon="list"></ClMenuItem>
                     <ClMenuItem c-key="badge-3-1" name="badge3-1" to="/badgeView"></ClMenuItem>
                 </ClMenuGroup>
                 <ClMenuGroup name="groupTitle3-2">
                     <ClMenuItem c-key="button-3-2" name="button3-2" to="/buttonView"></ClMenuItem>
-                    <ClMenuItem c-key="input-3-2" name="input3-2" to="/inputView" icon="cl-icon-list"></ClMenuItem>
+                    <ClMenuItem c-key="input-3-2" name="input3-2" to="/inputView" icon="list"></ClMenuItem>
                     <ClMenuItem c-key="badge-3-2" name="badge3-2" to="/badgeView"></ClMenuItem>
                 </ClMenuGroup>
             </ClSubmenu>
@@ -339,66 +339,66 @@
         <h4>mode=vertical,theme=dark,size--default</h4>
         <ClMenu @open-change="handlerOpenChange" @select="handlerSelect" size="default" theme="dark" width="300px">
             <ClMenuItem c-key="button-item-1" name="button-item" to="/buttonView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 <span>button-item</span>
             </ClMenuItem>
             <ClSubmenu c-key="submenu-sub-1" name="submenu">
                 <ClMenuItem c-key="button-1" name="button" to="/buttonView">
-                    <i class="cl-icon-list"></i>
+                    <Icon type="list"></Icon>
                     <span>button</span>
                 </ClMenuItem>
-                <ClMenuItem c-key="input-1" name="input" to="/inputView" icon="cl-icon-list">
-                    <i class="cl-icon-list"></i>
+                <ClMenuItem c-key="input-1" name="input" to="/inputView" icon="list">
+                    <Icon type="list"></Icon>
                     <span>input</span>
                 </ClMenuItem>
                 <ClMenuItem c-key="badge-1" name="badge" to="/badgeView">
-                    <i class="cl-icon-list"></i>
+                    <Icon type="list"></Icon>
                     <span>badge</span>
                 </ClMenuItem>
                 <ClSubmenu c-key="submenu-sub-1-2" name="submenu1-2">
                     <ClMenuItem c-key="button-1-2" name="button" to="/buttonView">
-                        <i class="cl-icon-list"></i>
+                        <Icon type="list"></Icon>
                         <span>button</span>
                     </ClMenuItem>
                     <ClMenuGroup name="groupTitle1-2-1">
                         <ClMenuItem c-key="button-1-2-1" name="button" to="/buttonView">
-                            <i class="cl-icon-list"></i>
+                            <Icon type="list"></Icon>
                             <span>button</span>
                         </ClMenuItem>
-                        <ClMenuItem c-key="input-1-2-1" name="input" to="/inputView" icon="cl-icon-list">
-                            <i class="cl-icon-list"></i>
+                        <ClMenuItem c-key="input-1-2-1" name="input" to="/inputView" icon="list">
+                            <Icon type="list"></Icon>
                             <span>input</span>
                         </ClMenuItem>
                         <ClMenuItem c-key="badge-1-2-1" name="badge" to="/badgeView">
-                            <i class="cl-icon-list"></i>
+                            <Icon type="list"></Icon>
                             <span>badge</span>
                         </ClMenuItem>
                     </ClMenuGroup>
 
-                    <ClMenuItem c-key="input-1-2" name="input" to="/inputView" icon="cl-icon-list">
-                        <i class="cl-icon-list"></i>
+                    <ClMenuItem c-key="input-1-2" name="input" to="/inputView" icon="list">
+                        <Icon type="list"></Icon>
                         <span>input</span>
                     </ClMenuItem>
                     <ClMenuItem c-key="badge-1-2" name="badge" to="/badgeView">
-                        <i class="cl-icon-list"></i>
+                        <Icon type="list"></Icon>
                         <span>badge</span>
                     </ClMenuItem>
                 </ClSubmenu>
             </ClSubmenu>
             <ClSubmenu c-key="submenu-sub-2" name="submenu2">
                 <ClMenuItem c-key="button-2" name="button2" to="/buttonView"></ClMenuItem>
-                <ClMenuItem c-key="input-2" name="input2" to="/inputView" icon="cl-icon-list"></ClMenuItem>
+                <ClMenuItem c-key="input-2" name="input2" to="/inputView" icon="list"></ClMenuItem>
                 <ClMenuItem c-key="badge-2" name="badge2" to="/badgeView"></ClMenuItem>
             </ClSubmenu>
             <ClSubmenu c-key="submenu-sub-3" name="submenu3">
                 <ClMenuGroup name="groupTitle3">
                     <ClMenuItem c-key="button-3-1" name="button3-1" to="/buttonView"></ClMenuItem>
-                    <ClMenuItem c-key="input-3-1" name="input3-1" to="/inputView" icon="cl-icon-list"></ClMenuItem>
+                    <ClMenuItem c-key="input-3-1" name="input3-1" to="/inputView" icon="list"></ClMenuItem>
                     <ClMenuItem c-key="badge-3-1" name="badge3-1" to="/badgeView"></ClMenuItem>
                 </ClMenuGroup>
                 <ClMenuGroup name="groupTitle3-2">
                     <ClMenuItem c-key="button-3-2" name="button3-2" to="/buttonView"></ClMenuItem>
-                    <ClMenuItem c-key="input-3-2" name="input3-2" to="/inputView" icon="cl-icon-list"></ClMenuItem>
+                    <ClMenuItem c-key="input-3-2" name="input3-2" to="/inputView" icon="list"></ClMenuItem>
                     <ClMenuItem c-key="badge-3-2" name="badge3-2" to="/badgeView"></ClMenuItem>
                 </ClMenuGroup>
             </ClSubmenu>
@@ -406,66 +406,66 @@
         <h4>mode=vertical,theme=dark,size--large</h4>
         <ClMenu @open-change="handlerOpenChange" @select="handlerSelect" size="large" theme="dark" width="300px">
             <ClMenuItem c-key="button-item-1" name="button-item" to="/buttonView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 <span>button-item</span>
             </ClMenuItem>
             <ClSubmenu c-key="submenu-sub-1" name="submenu">
                 <ClMenuItem c-key="button-1" name="button" to="/buttonView">
-                    <i class="cl-icon-list"></i>
+                    <Icon type="list"></Icon>
                     <span>button</span>
                 </ClMenuItem>
-                <ClMenuItem c-key="input-1" name="input" to="/inputView" icon="cl-icon-list">
-                    <i class="cl-icon-list"></i>
+                <ClMenuItem c-key="input-1" name="input" to="/inputView" icon="list">
+                    <Icon type="list"></Icon>
                     <span>input</span>
                 </ClMenuItem>
                 <ClMenuItem c-key="badge-1" name="badge" to="/badgeView">
-                    <i class="cl-icon-list"></i>
+                    <Icon type="list"></Icon>
                     <span>badge</span>
                 </ClMenuItem>
                 <ClSubmenu c-key="submenu-sub-1-2" name="submenu1-2">
                     <ClMenuItem c-key="button-1-2" name="button" to="/buttonView">
-                        <i class="cl-icon-list"></i>
+                        <Icon type="list"></Icon>
                         <span>button</span>
                     </ClMenuItem>
                     <ClMenuGroup name="groupTitle1-2-1">
                         <ClMenuItem c-key="button-1-2-1" name="button" to="/buttonView">
-                            <i class="cl-icon-list"></i>
+                            <Icon type="list"></Icon>
                             <span>button</span>
                         </ClMenuItem>
-                        <ClMenuItem c-key="input-1-2-1" name="input" to="/inputView" icon="cl-icon-list">
-                            <i class="cl-icon-list"></i>
+                        <ClMenuItem c-key="input-1-2-1" name="input" to="/inputView" icon="list">
+                            <Icon type="list"></Icon>
                             <span>input</span>
                         </ClMenuItem>
                         <ClMenuItem c-key="badge-1-2-1" name="badge" to="/badgeView">
-                            <i class="cl-icon-list"></i>
+                            <Icon type="list"></Icon>
                             <span>badge</span>
                         </ClMenuItem>
                     </ClMenuGroup>
 
-                    <ClMenuItem c-key="input-1-2" name="input" to="/inputView" icon="cl-icon-list">
-                        <i class="cl-icon-list"></i>
+                    <ClMenuItem c-key="input-1-2" name="input" to="/inputView" icon="list">
+                        <Icon type="list"></Icon>
                         <span>input</span>
                     </ClMenuItem>
                     <ClMenuItem c-key="badge-1-2" name="badge" to="/badgeView">
-                        <i class="cl-icon-list"></i>
+                        <Icon type="list"></Icon>
                         <span>badge</span>
                     </ClMenuItem>
                 </ClSubmenu>
             </ClSubmenu>
             <ClSubmenu c-key="submenu-sub-2" name="submenu2">
                 <ClMenuItem c-key="button-2" name="button2" to="/buttonView"></ClMenuItem>
-                <ClMenuItem c-key="input-2" name="input2" to="/inputView" icon="cl-icon-list"></ClMenuItem>
+                <ClMenuItem c-key="input-2" name="input2" to="/inputView" icon="list"></ClMenuItem>
                 <ClMenuItem c-key="badge-2" name="badge2" to="/badgeView"></ClMenuItem>
             </ClSubmenu>
             <ClSubmenu c-key="submenu-sub-3" name="submenu3">
                 <ClMenuGroup name="groupTitle3">
                     <ClMenuItem c-key="button-3-1" name="button3-1" to="/buttonView"></ClMenuItem>
-                    <ClMenuItem c-key="input-3-1" name="input3-1" to="/inputView" icon="cl-icon-list"></ClMenuItem>
+                    <ClMenuItem c-key="input-3-1" name="input3-1" to="/inputView" icon="list"></ClMenuItem>
                     <ClMenuItem c-key="badge-3-1" name="badge3-1" to="/badgeView"></ClMenuItem>
                 </ClMenuGroup>
                 <ClMenuGroup name="groupTitle3-2">
                     <ClMenuItem c-key="button-3-2" name="button3-2" to="/buttonView"></ClMenuItem>
-                    <ClMenuItem c-key="input-3-2" name="input3-2" to="/inputView" icon="cl-icon-list"></ClMenuItem>
+                    <ClMenuItem c-key="input-3-2" name="input3-2" to="/inputView" icon="list"></ClMenuItem>
                     <ClMenuItem c-key="badge-3-2" name="badge3-2" to="/badgeView"></ClMenuItem>
                 </ClMenuGroup>
             </ClSubmenu>
@@ -473,66 +473,66 @@
         <h4>mode=vertical,theme=dark,size--default,accordion(手风琴模式)</h4>
         <ClMenu @open-change="handlerOpenChange" @select="handlerSelect" accordion theme="dark" size="default" width="300px">
             <ClMenuItem c-key="button-item-1" name="button-item" to="/buttonView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 <span>button-item</span>
             </ClMenuItem>
             <ClSubmenu c-key="submenu-sub-1" name="submenu">
                 <ClMenuItem c-key="button-1" name="button" to="/buttonView">
-                    <i class="cl-icon-list"></i>
+                    <Icon type="list"></Icon>
                     <span>button</span>
                 </ClMenuItem>
-                <ClMenuItem c-key="input-1" name="input" to="/inputView" icon="cl-icon-list">
-                    <i class="cl-icon-list"></i>
+                <ClMenuItem c-key="input-1" name="input" to="/inputView" icon="list">
+                    <Icon type="list"></Icon>
                     <span>input</span>
                 </ClMenuItem>
                 <ClMenuItem c-key="badge-1" name="badge" to="/badgeView">
-                    <i class="cl-icon-list"></i>
+                    <Icon type="list"></Icon>
                     <span>badge</span>
                 </ClMenuItem>
                 <ClSubmenu c-key="submenu-sub-1-2" name="submenu1-2">
                     <ClMenuItem c-key="button-1-2" name="button" to="/buttonView">
-                        <i class="cl-icon-list"></i>
+                        <Icon type="list"></Icon>
                         <span>button</span>
                     </ClMenuItem>
                     <ClMenuGroup name="groupTitle1-2-1">
                         <ClMenuItem c-key="button-1-2-1" name="button" to="/buttonView">
-                            <i class="cl-icon-list"></i>
+                            <Icon type="list"></Icon>
                             <span>button</span>
                         </ClMenuItem>
-                        <ClMenuItem c-key="input-1-2-1" name="input" to="/inputView" icon="cl-icon-list">
-                            <i class="cl-icon-list"></i>
+                        <ClMenuItem c-key="input-1-2-1" name="input" to="/inputView" icon="list">
+                            <Icon type="list"></Icon>
                             <span>input</span>
                         </ClMenuItem>
                         <ClMenuItem c-key="badge-1-2-1" name="badge" to="/badgeView">
-                            <i class="cl-icon-list"></i>
+                            <Icon type="list"></Icon>
                             <span>badge</span>
                         </ClMenuItem>
                     </ClMenuGroup>
 
-                    <ClMenuItem c-key="input-1-2" name="input" to="/inputView" icon="cl-icon-list">
-                        <i class="cl-icon-list"></i>
+                    <ClMenuItem c-key="input-1-2" name="input" to="/inputView" icon="list">
+                        <Icon type="list"></Icon>
                         <span>input</span>
                     </ClMenuItem>
                     <ClMenuItem c-key="badge-1-2" name="badge" to="/badgeView">
-                        <i class="cl-icon-list"></i>
+                        <Icon type="list"></Icon>
                         <span>badge</span>
                     </ClMenuItem>
                 </ClSubmenu>
             </ClSubmenu>
             <ClSubmenu c-key="submenu-sub-2" name="submenu2">
                 <ClMenuItem c-key="button-2" name="button2" to="/buttonView"></ClMenuItem>
-                <ClMenuItem c-key="input-2" name="input2" to="/inputView" icon="cl-icon-list"></ClMenuItem>
+                <ClMenuItem c-key="input-2" name="input2" to="/inputView" icon="list"></ClMenuItem>
                 <ClMenuItem c-key="badge-2" name="badge2" to="/badgeView"></ClMenuItem>
             </ClSubmenu>
             <ClSubmenu c-key="submenu-sub-3" name="submenu3">
                 <ClMenuGroup name="groupTitle3">
                     <ClMenuItem c-key="button-3-1" name="button3-1" to="/buttonView"></ClMenuItem>
-                    <ClMenuItem c-key="input-3-1" name="input3-1" to="/inputView" icon="cl-icon-list"></ClMenuItem>
+                    <ClMenuItem c-key="input-3-1" name="input3-1" to="/inputView" icon="list"></ClMenuItem>
                     <ClMenuItem c-key="badge-3-1" name="badge3-1" to="/badgeView"></ClMenuItem>
                 </ClMenuGroup>
                 <ClMenuGroup name="groupTitle3-2">
                     <ClMenuItem c-key="button-3-2" name="button3-2" to="/buttonView"></ClMenuItem>
-                    <ClMenuItem c-key="input-3-2" name="input3-2" to="/inputView" icon="cl-icon-list"></ClMenuItem>
+                    <ClMenuItem c-key="input-3-2" name="input3-2" to="/inputView" icon="list"></ClMenuItem>
                     <ClMenuItem c-key="badge-3-2" name="badge3-2" to="/badgeView"></ClMenuItem>
                 </ClMenuGroup>
             </ClSubmenu>
@@ -541,66 +541,66 @@
         <h4>mode=vertical,theme=green,size=small</h4>
         <ClMenu @open-change="handlerOpenChange" @select="handlerSelect" size="small" theme="green" width="300px">
             <ClMenuItem c-key="button-item-1" name="button-item" to="/buttonView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 <span>button-item</span>
             </ClMenuItem>
             <ClSubmenu c-key="submenu-sub-1" name="submenu">
                 <ClMenuItem c-key="button-1" name="button" to="/buttonView">
-                    <i class="cl-icon-list"></i>
+                    <Icon type="list"></Icon>
                     <span>button</span>
                 </ClMenuItem>
-                <ClMenuItem c-key="input-1" disabled name="input" to="/inputView" icon="cl-icon-list">
-                    <i class="cl-icon-list"></i>
+                <ClMenuItem c-key="input-1" disabled name="input" to="/inputView" icon="list">
+                    <Icon type="list"></Icon>
                     <span>input</span>
                 </ClMenuItem>
                 <ClMenuItem c-key="badge-1" name="badge" to="/badgeView">
-                    <i class="cl-icon-list"></i>
+                    <Icon type="list"></Icon>
                     <span>badge</span>
                 </ClMenuItem>
                 <ClSubmenu c-key="submenu-sub-1-2" name="submenu1-2">
                     <ClMenuItem c-key="button-1-2" name="button" to="/buttonView">
-                        <i class="cl-icon-list"></i>
+                        <Icon type="list"></Icon>
                         <span>button</span>
                     </ClMenuItem>
                     <ClMenuGroup name="groupTitle1-2-1">
                         <ClMenuItem c-key="button-1-2-1" name="button" to="/buttonView">
-                            <i class="cl-icon-list"></i>
+                            <Icon type="list"></Icon>
                             <span>button</span>
                         </ClMenuItem>
-                        <ClMenuItem c-key="input-1-2-1" name="input" to="/inputView" icon="cl-icon-list">
-                            <i class="cl-icon-list"></i>
+                        <ClMenuItem c-key="input-1-2-1" name="input" to="/inputView" icon="list">
+                            <Icon type="list"></Icon>
                             <span>input</span>
                         </ClMenuItem>
                         <ClMenuItem c-key="badge-1-2-1" name="badge" to="/badgeView">
-                            <i class="cl-icon-list"></i>
+                            <Icon type="list"></Icon>
                             <span>badge</span>
                         </ClMenuItem>
                     </ClMenuGroup>
 
-                    <ClMenuItem c-key="input-1-2" name="input" to="/inputView" icon="cl-icon-list">
-                        <i class="cl-icon-list"></i>
+                    <ClMenuItem c-key="input-1-2" name="input" to="/inputView" icon="list">
+                        <Icon type="list"></Icon>
                         <span>input</span>
                     </ClMenuItem>
                     <ClMenuItem c-key="badge-1-2" name="badge" to="/badgeView">
-                        <i class="cl-icon-list"></i>
+                        <Icon type="list"></Icon>
                         <span>badge</span>
                     </ClMenuItem>
                 </ClSubmenu>
             </ClSubmenu>
             <ClSubmenu c-key="submenu-sub-2" disabled name="submenu2">
                 <ClMenuItem c-key="button-2" name="button2" to="/buttonView"></ClMenuItem>
-                <ClMenuItem c-key="input-2" name="input2" to="/inputView" icon="cl-icon-list"></ClMenuItem>
+                <ClMenuItem c-key="input-2" name="input2" to="/inputView" icon="list"></ClMenuItem>
                 <ClMenuItem c-key="badge-2" name="badge2" to="/badgeView"></ClMenuItem>
             </ClSubmenu>
             <ClSubmenu c-key="submenu-sub-3" name="submenu3">
                 <ClMenuGroup name="groupTitle3">
                     <ClMenuItem c-key="button-3-1" name="button3-1" to="/buttonView"></ClMenuItem>
-                    <ClMenuItem c-key="input-3-1" name="input3-1" to="/inputView" icon="cl-icon-list"></ClMenuItem>
+                    <ClMenuItem c-key="input-3-1" name="input3-1" to="/inputView" icon="list"></ClMenuItem>
                     <ClMenuItem c-key="badge-3-1" name="badge3-1" to="/badgeView"></ClMenuItem>
                 </ClMenuGroup>
                 <ClMenuGroup name="groupTitle3-2">
                     <ClMenuItem c-key="button-3-2" name="button3-2" to="/buttonView"></ClMenuItem>
-                    <ClMenuItem c-key="input-3-2" name="input3-2" to="/inputView" icon="cl-icon-list"></ClMenuItem>
+                    <ClMenuItem c-key="input-3-2" name="input3-2" to="/inputView" icon="list"></ClMenuItem>
                     <ClMenuItem c-key="badge-3-2" name="badge3-2" to="/badgeView"></ClMenuItem>
                 </ClMenuGroup>
             </ClSubmenu>
@@ -608,66 +608,66 @@
         <h4>mode=vertical,theme=dark,size--default</h4>
         <ClMenu @open-change="handlerOpenChange" @select="handlerSelect" size="default" theme="green" width="300px">
             <ClMenuItem c-key="button-item-1" name="button-item" to="/buttonView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 <span>button-item</span>
             </ClMenuItem>
             <ClSubmenu c-key="submenu-sub-1" name="submenu">
                 <ClMenuItem c-key="button-1" name="button" to="/buttonView">
-                    <i class="cl-icon-list"></i>
+                    <Icon type="list"></Icon>
                     <span>button</span>
                 </ClMenuItem>
-                <ClMenuItem c-key="input-1" name="input" to="/inputView" icon="cl-icon-list">
-                    <i class="cl-icon-list"></i>
+                <ClMenuItem c-key="input-1" name="input" to="/inputView" icon="list">
+                    <Icon type="list"></Icon>
                     <span>input</span>
                 </ClMenuItem>
                 <ClMenuItem c-key="badge-1" name="badge" to="/badgeView">
-                    <i class="cl-icon-list"></i>
+                    <Icon type="list"></Icon>
                     <span>badge</span>
                 </ClMenuItem>
                 <ClSubmenu c-key="submenu-sub-1-2" name="submenu1-2">
                     <ClMenuItem c-key="button-1-2" name="button" to="/buttonView">
-                        <i class="cl-icon-list"></i>
+                        <Icon type="list"></Icon>
                         <span>button</span>
                     </ClMenuItem>
                     <ClMenuGroup name="groupTitle1-2-1">
                         <ClMenuItem c-key="button-1-2-1" name="button" to="/buttonView">
-                            <i class="cl-icon-list"></i>
+                            <Icon type="list"></Icon>
                             <span>button</span>
                         </ClMenuItem>
-                        <ClMenuItem c-key="input-1-2-1" name="input" to="/inputView" icon="cl-icon-list">
-                            <i class="cl-icon-list"></i>
+                        <ClMenuItem c-key="input-1-2-1" name="input" to="/inputView" icon="list">
+                            <Icon type="list"></Icon>
                             <span>input</span>
                         </ClMenuItem>
                         <ClMenuItem c-key="badge-1-2-1" name="badge" to="/badgeView">
-                            <i class="cl-icon-list"></i>
+                            <Icon type="list"></Icon>
                             <span>badge</span>
                         </ClMenuItem>
                     </ClMenuGroup>
 
-                    <ClMenuItem c-key="input-1-2" name="input" to="/inputView" icon="cl-icon-list">
-                        <i class="cl-icon-list"></i>
+                    <ClMenuItem c-key="input-1-2" name="input" to="/inputView" icon="list">
+                        <Icon type="list"></Icon>
                         <span>input</span>
                     </ClMenuItem>
                     <ClMenuItem c-key="badge-1-2" name="badge" to="/badgeView">
-                        <i class="cl-icon-list"></i>
+                        <Icon type="list"></Icon>
                         <span>badge</span>
                     </ClMenuItem>
                 </ClSubmenu>
             </ClSubmenu>
             <ClSubmenu c-key="submenu-sub-2" name="submenu2">
                 <ClMenuItem c-key="button-2" name="button2" to="/buttonView"></ClMenuItem>
-                <ClMenuItem c-key="input-2" name="input2" to="/inputView" icon="cl-icon-list"></ClMenuItem>
+                <ClMenuItem c-key="input-2" name="input2" to="/inputView" icon="list"></ClMenuItem>
                 <ClMenuItem c-key="badge-2" name="badge2" to="/badgeView"></ClMenuItem>
             </ClSubmenu>
             <ClSubmenu c-key="submenu-sub-3" name="submenu3">
                 <ClMenuGroup name="groupTitle3">
                     <ClMenuItem c-key="button-3-1" name="button3-1" to="/buttonView"></ClMenuItem>
-                    <ClMenuItem c-key="input-3-1" name="input3-1" to="/inputView" icon="cl-icon-list"></ClMenuItem>
+                    <ClMenuItem c-key="input-3-1" name="input3-1" to="/inputView" icon="list"></ClMenuItem>
                     <ClMenuItem c-key="badge-3-1" name="badge3-1" to="/badgeView"></ClMenuItem>
                 </ClMenuGroup>
                 <ClMenuGroup name="groupTitle3-2">
                     <ClMenuItem c-key="button-3-2" name="button3-2" to="/buttonView"></ClMenuItem>
-                    <ClMenuItem c-key="input-3-2" name="input3-2" to="/inputView" icon="cl-icon-list"></ClMenuItem>
+                    <ClMenuItem c-key="input-3-2" name="input3-2" to="/inputView" icon="list"></ClMenuItem>
                     <ClMenuItem c-key="badge-3-2" name="badge3-2" to="/badgeView"></ClMenuItem>
                 </ClMenuGroup>
             </ClSubmenu>
@@ -675,66 +675,66 @@
         <h4>mode=vertical,theme=dark,size--large</h4>
         <ClMenu @open-change="handlerOpenChange" @select="handlerSelect" size="large" theme="green" width="300px">
             <ClMenuItem c-key="button-item-1" name="button-item" to="/buttonView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 <span>button-item</span>
             </ClMenuItem>
             <ClSubmenu c-key="submenu-sub-1" name="submenu">
                 <ClMenuItem c-key="button-1" name="button" to="/buttonView">
-                    <i class="cl-icon-list"></i>
+                    <Icon type="list"></Icon>
                     <span>button</span>
                 </ClMenuItem>
-                <ClMenuItem c-key="input-1" name="input" to="/inputView" icon="cl-icon-list">
-                    <i class="cl-icon-list"></i>
+                <ClMenuItem c-key="input-1" name="input" to="/inputView" icon="list">
+                    <Icon type="list"></Icon>
                     <span>input</span>
                 </ClMenuItem>
                 <ClMenuItem c-key="badge-1" name="badge" to="/badgeView">
-                    <i class="cl-icon-list"></i>
+                    <Icon type="list"></Icon>
                     <span>badge</span>
                 </ClMenuItem>
                 <ClSubmenu c-key="submenu-sub-1-2" name="submenu1-2">
                     <ClMenuItem c-key="button-1-2" name="button" to="/buttonView">
-                        <i class="cl-icon-list"></i>
+                        <Icon type="list"></Icon>
                         <span>button</span>
                     </ClMenuItem>
                     <ClMenuGroup name="groupTitle1-2-1">
                         <ClMenuItem c-key="button-1-2-1" name="button" to="/buttonView">
-                            <i class="cl-icon-list"></i>
+                            <Icon type="list"></Icon>
                             <span>button</span>
                         </ClMenuItem>
-                        <ClMenuItem c-key="input-1-2-1" name="input" to="/inputView" icon="cl-icon-list">
-                            <i class="cl-icon-list"></i>
+                        <ClMenuItem c-key="input-1-2-1" name="input" to="/inputView" icon="list">
+                            <Icon type="list"></Icon>
                             <span>input</span>
                         </ClMenuItem>
                         <ClMenuItem c-key="badge-1-2-1" name="badge" to="/badgeView">
-                            <i class="cl-icon-list"></i>
+                            <Icon type="list"></Icon>
                             <span>badge</span>
                         </ClMenuItem>
                     </ClMenuGroup>
 
-                    <ClMenuItem c-key="input-1-2" name="input" to="/inputView" icon="cl-icon-list">
-                        <i class="cl-icon-list"></i>
+                    <ClMenuItem c-key="input-1-2" name="input" to="/inputView" icon="list">
+                        <Icon type="list"></Icon>
                         <span>input</span>
                     </ClMenuItem>
                     <ClMenuItem c-key="badge-1-2" name="badge" to="/badgeView">
-                        <i class="cl-icon-list"></i>
+                        <Icon type="list"></Icon>
                         <span>badge</span>
                     </ClMenuItem>
                 </ClSubmenu>
             </ClSubmenu>
             <ClSubmenu c-key="submenu-sub-2" name="submenu2">
                 <ClMenuItem c-key="button-2" name="button2" to="/buttonView"></ClMenuItem>
-                <ClMenuItem c-key="input-2" name="input2" to="/inputView" icon="cl-icon-list"></ClMenuItem>
+                <ClMenuItem c-key="input-2" name="input2" to="/inputView" icon="list"></ClMenuItem>
                 <ClMenuItem c-key="badge-2" name="badge2" to="/badgeView"></ClMenuItem>
             </ClSubmenu>
             <ClSubmenu c-key="submenu-sub-3" name="submenu3">
                 <ClMenuGroup name="groupTitle3">
                     <ClMenuItem c-key="button-3-1" name="button3-1" to="/buttonView"></ClMenuItem>
-                    <ClMenuItem c-key="input-3-1" name="input3-1" to="/inputView" icon="cl-icon-list"></ClMenuItem>
+                    <ClMenuItem c-key="input-3-1" name="input3-1" to="/inputView" icon="list"></ClMenuItem>
                     <ClMenuItem c-key="badge-3-1" name="badge3-1" to="/badgeView"></ClMenuItem>
                 </ClMenuGroup>
                 <ClMenuGroup name="groupTitle3-2">
                     <ClMenuItem c-key="button-3-2" name="button3-2" to="/buttonView"></ClMenuItem>
-                    <ClMenuItem c-key="input-3-2" name="input3-2" to="/inputView" icon="cl-icon-list"></ClMenuItem>
+                    <ClMenuItem c-key="input-3-2" name="input3-2" to="/inputView" icon="list"></ClMenuItem>
                     <ClMenuItem c-key="badge-3-2" name="badge3-2" to="/badgeView"></ClMenuItem>
                 </ClMenuGroup>
             </ClSubmenu>
@@ -742,66 +742,66 @@
         <h4>mode=vertical,theme=dark,size--default,accordion(手风琴模式)</h4>
         <ClMenu @open-change="handlerOpenChange" @select="handlerSelect" accordion theme="green" size="default" width="300px">
             <ClMenuItem c-key="button-item-1" name="button-item" to="/buttonView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 <span>button-item</span>
             </ClMenuItem>
             <ClSubmenu c-key="submenu-sub-1" name="submenu">
                 <ClMenuItem c-key="button-1" name="button" to="/buttonView">
-                    <i class="cl-icon-list"></i>
+                    <Icon type="list"></Icon>
                     <span>button</span>
                 </ClMenuItem>
-                <ClMenuItem c-key="input-1" name="input" to="/inputView" icon="cl-icon-list">
-                    <i class="cl-icon-list"></i>
+                <ClMenuItem c-key="input-1" name="input" to="/inputView" icon="list">
+                    <Icon type="list"></Icon>
                     <span>input</span>
                 </ClMenuItem>
                 <ClMenuItem c-key="badge-1" name="badge" to="/badgeView">
-                    <i class="cl-icon-list"></i>
+                    <Icon type="list"></Icon>
                     <span>badge</span>
                 </ClMenuItem>
                 <ClSubmenu c-key="submenu-sub-1-2" name="submenu1-2">
                     <ClMenuItem c-key="button-1-2" name="button" to="/buttonView">
-                        <i class="cl-icon-list"></i>
+                        <Icon type="list"></Icon>
                         <span>button</span>
                     </ClMenuItem>
                     <ClMenuGroup name="groupTitle1-2-1">
                         <ClMenuItem c-key="button-1-2-1" name="button" to="/buttonView">
-                            <i class="cl-icon-list"></i>
+                            <Icon type="list"></Icon>
                             <span>button</span>
                         </ClMenuItem>
-                        <ClMenuItem c-key="input-1-2-1" name="input" to="/inputView" icon="cl-icon-list">
-                            <i class="cl-icon-list"></i>
+                        <ClMenuItem c-key="input-1-2-1" name="input" to="/inputView" icon="list">
+                            <Icon type="list"></Icon>
                             <span>input</span>
                         </ClMenuItem>
                         <ClMenuItem c-key="badge-1-2-1" name="badge" to="/badgeView">
-                            <i class="cl-icon-list"></i>
+                            <Icon type="list"></Icon>
                             <span>badge</span>
                         </ClMenuItem>
                     </ClMenuGroup>
 
-                    <ClMenuItem c-key="input-1-2" name="input" to="/inputView" icon="cl-icon-list">
-                        <i class="cl-icon-list"></i>
+                    <ClMenuItem c-key="input-1-2" name="input" to="/inputView" icon="list">
+                        <Icon type="list"></Icon>
                         <span>input</span>
                     </ClMenuItem>
                     <ClMenuItem c-key="badge-1-2" name="badge" to="/badgeView">
-                        <i class="cl-icon-list"></i>
+                        <Icon type="list"></Icon>
                         <span>badge</span>
                     </ClMenuItem>
                 </ClSubmenu>
             </ClSubmenu>
             <ClSubmenu c-key="submenu-sub-2" name="submenu2">
                 <ClMenuItem c-key="button-2" name="button2" to="/buttonView"></ClMenuItem>
-                <ClMenuItem c-key="input-2" name="input2" to="/inputView" icon="cl-icon-list"></ClMenuItem>
+                <ClMenuItem c-key="input-2" name="input2" to="/inputView" icon="list"></ClMenuItem>
                 <ClMenuItem c-key="badge-2" name="badge2" to="/badgeView"></ClMenuItem>
             </ClSubmenu>
             <ClSubmenu c-key="submenu-sub-3" name="submenu3">
                 <ClMenuGroup name="groupTitle3">
                     <ClMenuItem c-key="button-3-1" name="button3-1" to="/buttonView"></ClMenuItem>
-                    <ClMenuItem c-key="input-3-1" name="input3-1" to="/inputView" icon="cl-icon-list"></ClMenuItem>
+                    <ClMenuItem c-key="input-3-1" name="input3-1" to="/inputView" icon="list"></ClMenuItem>
                     <ClMenuItem c-key="badge-3-1" name="badge3-1" to="/badgeView"></ClMenuItem>
                 </ClMenuGroup>
                 <ClMenuGroup name="groupTitle3-2">
                     <ClMenuItem c-key="button-3-2" name="button3-2" to="/buttonView"></ClMenuItem>
-                    <ClMenuItem c-key="input-3-2" name="input3-2" to="/inputView" icon="cl-icon-list"></ClMenuItem>
+                    <ClMenuItem c-key="input-3-2" name="input3-2" to="/inputView" icon="list"></ClMenuItem>
                     <ClMenuItem c-key="badge-3-2" name="badge3-2" to="/badgeView"></ClMenuItem>
                 </ClMenuGroup>
             </ClSubmenu>
@@ -811,46 +811,46 @@
         <ClMenu @open-change="handlerOpenChange" @select="handlerSelect" size="small" mode="horizontal">
             <ClSubmenu c-key="submenu-1" name="submenusubmenu-1">
                 <ClMenuItem c-key="button-1" name="button" to="/buttonView">
-                    <i class="cl-icon-list"></i>
+                    <Icon type="list"></Icon>
                     buttonbuttonbuttonbuttonbuttonbuttonbuttonbutton
                 </ClMenuItem>
-                <ClMenuItem c-key="input-1" name="input" to="/inputView" icon="cl-icon-list">
-                    <i class="cl-icon-list"></i>
+                <ClMenuItem c-key="input-1" name="input" to="/inputView" icon="list">
+                    <Icon type="list"></Icon>
                     input
                 </ClMenuItem>
             </ClSubmenu>
             <ClSubmenu c-key="submenu-2" name="submenusubmenu-2">
                 <ClMenuGroup name="group1">
                     <ClMenuItem c-key="group1-badge-1" name="group1-badge" to="/badgeView">
-                        <i class="cl-icon-list"></i>
+                        <Icon type="list"></Icon>
                         group1-badge
                     </ClMenuItem>
                 </ClMenuGroup>
                 <ClMenuGroup name="group2">
                     <ClMenuItem c-key="group2-badge-1" name="group2-badge" to="/badgeView">
-                        <i class="cl-icon-list"></i>
+                        <Icon type="list"></Icon>
                         group2-badge
                     </ClMenuItem>
                 </ClMenuGroup>
             </ClSubmenu>
             <ClMenuItem c-key="badge-1" name="badge" to="/badgeView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 badge
             </ClMenuItem>
             <ClMenuItem c-key="list-1" name="list" to="/badgeView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 list
             </ClMenuItem>
             <ClMenuItem c-key="test-1" name="test" to="/badgeView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 test
             </ClMenuItem>
             <ClMenuItem c-key="checkbox-1" name="checkbox" to="/badgeView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 checkbox
             </ClMenuItem>
             <ClMenuItem c-key="radio-1" name="radio" to="/badgeView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 radio
             </ClMenuItem>
         </ClMenu>
@@ -858,46 +858,46 @@
         <ClMenu @open-change="handlerOpenChange" @select="handlerSelect" size="default" mode="horizontal">
             <ClSubmenu c-key="submenu-1" name="submenusubmenu-1">
                 <ClMenuItem c-key="button-1" name="button" to="/buttonView">
-                    <i class="cl-icon-list"></i>
+                    <Icon type="list"></Icon>
                     buttonbuttonbuttonbuttonbuttonbuttonbuttonbutton
                 </ClMenuItem>
-                <ClMenuItem c-key="input-1" name="input" to="/inputView" icon="cl-icon-list">
-                    <i class="cl-icon-list"></i>
+                <ClMenuItem c-key="input-1" name="input" to="/inputView" icon="list">
+                    <Icon type="list"></Icon>
                     input
                 </ClMenuItem>
             </ClSubmenu>
             <ClSubmenu c-key="submenu-2" name="submenusubmenu-2">
                 <ClMenuGroup name="group1">
                     <ClMenuItem c-key="group1-badge-1" name="group1-badge" to="/badgeView">
-                        <i class="cl-icon-list"></i>
+                        <Icon type="list"></Icon>
                         group1-badge
                     </ClMenuItem>
                 </ClMenuGroup>
                 <ClMenuGroup name="group2">
                     <ClMenuItem c-key="group2-badge-1" name="group2-badge" to="/badgeView">
-                        <i class="cl-icon-list"></i>
+                        <Icon type="list"></Icon>
                         group2-badge
                     </ClMenuItem>
                 </ClMenuGroup>
             </ClSubmenu>
             <ClMenuItem c-key="badge-1" name="badge" to="/badgeView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 badge
             </ClMenuItem>
             <ClMenuItem c-key="list-1" name="list" to="/badgeView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 list
             </ClMenuItem>
             <ClMenuItem c-key="test-1" name="test" to="/badgeView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 test
             </ClMenuItem>
             <ClMenuItem c-key="checkbox-1" name="checkbox" to="/badgeView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 checkbox
             </ClMenuItem>
             <ClMenuItem c-key="radio-1" name="radio" to="/badgeView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 radio
             </ClMenuItem>
         </ClMenu>
@@ -905,46 +905,46 @@
         <ClMenu @open-change="handlerOpenChange" @select="handlerSelect" size="large" mode="horizontal">
             <ClSubmenu c-key="submenu-1" name="submenusubmenu-1">
                 <ClMenuItem c-key="button-1" name="button" to="/buttonView">
-                    <i class="cl-icon-list"></i>
+                    <Icon type="list"></Icon>
                     buttonbuttonbuttonbuttonbuttonbuttonbuttonbutton
                 </ClMenuItem>
-                <ClMenuItem c-key="input-1" name="input" to="/inputView" icon="cl-icon-list">
-                    <i class="cl-icon-list"></i>
+                <ClMenuItem c-key="input-1" name="input" to="/inputView" icon="list">
+                    <Icon type="list"></Icon>
                     input
                 </ClMenuItem>
             </ClSubmenu>
             <ClSubmenu c-key="submenu-2" name="submenusubmenu-2">
                 <ClMenuGroup name="group1">
                     <ClMenuItem c-key="group1-badge-1" name="group1-badge" to="/badgeView">
-                        <i class="cl-icon-list"></i>
+                        <Icon type="list"></Icon>
                         group1-badge
                     </ClMenuItem>
                 </ClMenuGroup>
                 <ClMenuGroup name="group2">
                     <ClMenuItem c-key="group2-badge-1" name="group2-badge" to="/badgeView">
-                        <i class="cl-icon-list"></i>
+                        <Icon type="list"></Icon>
                         group2-badge
                     </ClMenuItem>
                 </ClMenuGroup>
             </ClSubmenu>
             <ClMenuItem c-key="badge-1" name="badge" to="/badgeView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 badge
             </ClMenuItem>
             <ClMenuItem c-key="list-1" name="list" to="/badgeView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 list
             </ClMenuItem>
             <ClMenuItem c-key="test-1" name="test" to="/badgeView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 test
             </ClMenuItem>
             <ClMenuItem c-key="checkbox-1" name="checkbox" to="/badgeView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 checkbox
             </ClMenuItem>
             <ClMenuItem c-key="radio-1" name="radio" to="/badgeView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 radio
             </ClMenuItem>
         </ClMenu>
@@ -954,46 +954,46 @@
         <ClMenu @open-change="handlerOpenChange" @select="handlerSelect" size="small" theme="dark" mode="horizontal">
             <ClSubmenu c-key="submenu-1" name="submenusubmenu-1">
                 <ClMenuItem c-key="button-1" name="button" to="/buttonView">
-                    <i class="cl-icon-list"></i>
+                    <Icon type="list"></Icon>
                     buttonbuttonbuttonbuttonbuttonbuttonbuttonbutton
                 </ClMenuItem>
-                <ClMenuItem c-key="input-1" name="input" to="/inputView" icon="cl-icon-list">
-                    <i class="cl-icon-list"></i>
+                <ClMenuItem c-key="input-1" name="input" to="/inputView" icon="list">
+                    <Icon type="list"></Icon>
                     input
                 </ClMenuItem>
             </ClSubmenu>
             <ClSubmenu c-key="submenu-2" name="submenusubmenu-2">
                 <ClMenuGroup name="group1">
                     <ClMenuItem c-key="group1-badge-1" name="group1-badge" to="/badgeView">
-                        <i class="cl-icon-list"></i>
+                        <Icon type="list"></Icon>
                         group1-badge
                     </ClMenuItem>
                 </ClMenuGroup>
                 <ClMenuGroup name="group2">
                     <ClMenuItem c-key="group2-badge-1" name="group2-badge" to="/badgeView">
-                        <i class="cl-icon-list"></i>
+                        <Icon type="list"></Icon>
                         group2-badge
                     </ClMenuItem>
                 </ClMenuGroup>
             </ClSubmenu>
             <ClMenuItem c-key="badge-1" name="badge" to="/badgeView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 badge
             </ClMenuItem>
             <ClMenuItem c-key="list-1" name="list" to="/badgeView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 list
             </ClMenuItem>
             <ClMenuItem c-key="test-1" name="test" to="/badgeView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 test
             </ClMenuItem>
             <ClMenuItem c-key="checkbox-1" name="checkbox" to="/badgeView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 checkbox
             </ClMenuItem>
             <ClMenuItem c-key="radio-1" name="radio" to="/badgeView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 radio
             </ClMenuItem>
         </ClMenu>
@@ -1001,20 +1001,20 @@
         <ClMenu @open-change="handlerOpenChange" @select="handlerSelect" size="default" theme="dark" mode="horizontal">
             <ClSubmenu c-key="submenu-1" name="submenu-1">
                 <ClMenuItem c-key="button-1" name="button" to="/buttonView">
-                    <i class="cl-icon-list"></i>
+                    <Icon type="list"></Icon>
                     buttonbuttonbuttonbuttonbuttonbuttonbuttonbutton
                 </ClMenuItem>
-                <ClMenuItem c-key="input-1" name="input" to="/inputView" icon="cl-icon-list">
-                    <i class="cl-icon-list"></i>
+                <ClMenuItem c-key="input-1" name="input" to="/inputView" icon="list">
+                    <Icon type="list"></Icon>
                     input
                 </ClMenuItem>
                 <ClSubmenu c-key="submenu-submenu-1" name="submenusubmenu-1">
                     <ClMenuItem c-key="button-submenu-1" name="submenu-button" to="/buttonView">
-                        <i class="cl-icon-list"></i>
+                        <Icon type="list"></Icon>
                         submenu-button
                     </ClMenuItem>
-                    <ClMenuItem c-key="input-submenu-1" name="submenu-input" to="/inputView" icon="cl-icon-list">
-                        <i class="cl-icon-list"></i>
+                    <ClMenuItem c-key="input-submenu-1" name="submenu-input" to="/inputView" icon="list">
+                        <Icon type="list"></Icon>
                         submenu-input
                     </ClMenuItem>
                 </ClSubmenu>
@@ -1022,35 +1022,35 @@
             <ClSubmenu c-key="submenu-2" name="submenusubmenu-2">
                 <ClMenuGroup name="group1">
                     <ClMenuItem c-key="group1-badge-1" name="group1-badge" to="/badgeView">
-                        <i class="cl-icon-list"></i>
+                        <Icon type="list"></Icon>
                         group1-badge
                     </ClMenuItem>
                 </ClMenuGroup>
                 <ClMenuGroup name="group2">
                     <ClMenuItem c-key="group2-badge-1" name="group2-badge" to="/badgeView">
-                        <i class="cl-icon-list"></i>
+                        <Icon type="list"></Icon>
                         group2-badge
                     </ClMenuItem>
                 </ClMenuGroup>
             </ClSubmenu>
             <ClMenuItem c-key="badge-1" name="badge" to="/badgeView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 badge
             </ClMenuItem>
             <ClMenuItem c-key="list-1" name="list" to="/badgeView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 list
             </ClMenuItem>
             <ClMenuItem c-key="test-1" name="test" to="/badgeView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 test
             </ClMenuItem>
             <ClMenuItem c-key="checkbox-1" name="checkbox" to="/badgeView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 checkbox
             </ClMenuItem>
             <ClMenuItem c-key="radio-1" name="radio" to="/badgeView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 radio
             </ClMenuItem>
         </ClMenu>
@@ -1058,46 +1058,46 @@
         <ClMenu @open-change="handlerOpenChange" @select="handlerSelect" size="large" theme="dark" mode="horizontal">
             <ClSubmenu c-key="submenu-1" name="submenusubmenu-1">
                 <ClMenuItem c-key="button-1" name="button" to="/buttonView">
-                    <i class="cl-icon-list"></i>
+                    <Icon type="list"></Icon>
                     buttonbuttonbuttonbuttonbuttonbuttonbuttonbutton
                 </ClMenuItem>
-                <ClMenuItem c-key="input-1" name="input" to="/inputView" icon="cl-icon-list">
-                    <i class="cl-icon-list"></i>
+                <ClMenuItem c-key="input-1" name="input" to="/inputView" icon="list">
+                    <Icon type="list"></Icon>
                     input
                 </ClMenuItem>
             </ClSubmenu>
             <ClSubmenu c-key="submenu-2" name="submenusubmenu-2">
                 <ClMenuGroup name="group1">
                     <ClMenuItem c-key="group1-badge-1" name="group1-badge" to="/badgeView">
-                        <i class="cl-icon-list"></i>
+                        <Icon type="list"></Icon>
                         group1-badge
                     </ClMenuItem>
                 </ClMenuGroup>
                 <ClMenuGroup name="group2">
                     <ClMenuItem c-key="group2-badge-1" name="group2-badge" to="/badgeView">
-                        <i class="cl-icon-list"></i>
+                        <Icon type="list"></Icon>
                         group2-badge
                     </ClMenuItem>
                 </ClMenuGroup>
             </ClSubmenu>
             <ClMenuItem c-key="badge-1" name="badge" to="/badgeView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 badge
             </ClMenuItem>
             <ClMenuItem c-key="list-1" name="list" to="/badgeView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 list
             </ClMenuItem>
             <ClMenuItem c-key="test-1" name="test" to="/badgeView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 test
             </ClMenuItem>
             <ClMenuItem c-key="checkbox-1" name="checkbox" to="/badgeView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 checkbox
             </ClMenuItem>
             <ClMenuItem c-key="radio-1" name="radio" to="/badgeView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 radio
             </ClMenuItem>
         </ClMenu>
@@ -1107,46 +1107,46 @@
         <ClMenu @open-change="handlerOpenChange" @select="handlerSelect" size="small" theme="green" mode="horizontal">
             <ClSubmenu c-key="submenu-1" name="submenusubmenu-1">
                 <ClMenuItem c-key="button-1" name="button" to="/buttonView">
-                    <i class="cl-icon-list"></i>
+                    <Icon type="list"></Icon>
                     buttonbuttonbuttonbuttonbuttonbuttonbuttonbutton
                 </ClMenuItem>
-                <ClMenuItem c-key="input-1" name="input" to="/inputView" icon="cl-icon-list">
-                    <i class="cl-icon-list"></i>
+                <ClMenuItem c-key="input-1" name="input" to="/inputView" icon="list">
+                    <Icon type="list"></Icon>
                     input
                 </ClMenuItem>
             </ClSubmenu>
             <ClSubmenu c-key="submenu-2" name="submenusubmenu-2">
                 <ClMenuGroup name="group1">
                     <ClMenuItem c-key="group1-badge-1" name="group1-badge" to="/badgeView">
-                        <i class="cl-icon-list"></i>
+                        <Icon type="list"></Icon>
                         group1-badge
                     </ClMenuItem>
                 </ClMenuGroup>
                 <ClMenuGroup name="group2">
                     <ClMenuItem c-key="group2-badge-1" name="group2-badge" to="/badgeView">
-                        <i class="cl-icon-list"></i>
+                        <Icon type="list"></Icon>
                         group2-badge
                     </ClMenuItem>
                 </ClMenuGroup>
             </ClSubmenu>
             <ClMenuItem c-key="badge-1" name="badge" to="/badgeView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 badge
             </ClMenuItem>
             <ClMenuItem c-key="list-1" name="list" to="/badgeView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 list
             </ClMenuItem>
             <ClMenuItem c-key="test-1" name="test" to="/badgeView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 test
             </ClMenuItem>
             <ClMenuItem c-key="checkbox-1" name="checkbox" to="/badgeView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 checkbox
             </ClMenuItem>
             <ClMenuItem c-key="radio-1" name="radio" to="/badgeView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 radio
             </ClMenuItem>
         </ClMenu>
@@ -1154,20 +1154,20 @@
         <ClMenu @open-change="handlerOpenChange" @select="handlerSelect" size="default" theme="green" mode="horizontal">
             <ClSubmenu c-key="submenu-1" name="submenu-1">
                 <ClMenuItem c-key="button-1" name="button" to="/buttonView">
-                    <i class="cl-icon-list"></i>
+                    <Icon type="list"></Icon>
                     buttonbuttonbuttonbuttonbuttonbuttonbuttonbutton
                 </ClMenuItem>
-                <ClMenuItem c-key="input-1" name="input" to="/inputView" icon="cl-icon-list">
-                    <i class="cl-icon-list"></i>
+                <ClMenuItem c-key="input-1" name="input" to="/inputView" icon="list">
+                    <Icon type="list"></Icon>
                     input
                 </ClMenuItem>
                 <ClSubmenu c-key="submenu-submenu-1" name="submenusubmenu-1">
                     <ClMenuItem c-key="button-submenu-1" name="submenu-button" to="/buttonView">
-                        <i class="cl-icon-list"></i>
+                        <Icon type="list"></Icon>
                         submenu-button
                     </ClMenuItem>
-                    <ClMenuItem c-key="input-submenu-1" name="submenu-input" to="/inputView" icon="cl-icon-list">
-                        <i class="cl-icon-list"></i>
+                    <ClMenuItem c-key="input-submenu-1" name="submenu-input" to="/inputView" icon="list">
+                        <Icon type="list"></Icon>
                         submenu-input
                     </ClMenuItem>
                 </ClSubmenu>
@@ -1175,35 +1175,35 @@
             <ClSubmenu c-key="submenu-2" name="submenusubmenu-2">
                 <ClMenuGroup name="group1">
                     <ClMenuItem c-key="group1-badge-1" name="group1-badge" to="/badgeView">
-                        <i class="cl-icon-list"></i>
+                        <Icon type="list"></Icon>
                         group1-badge
                     </ClMenuItem>
                 </ClMenuGroup>
                 <ClMenuGroup name="group2">
                     <ClMenuItem c-key="group2-badge-1" name="group2-badge" to="/badgeView">
-                        <i class="cl-icon-list"></i>
+                        <Icon type="list"></Icon>
                         group2-badge
                     </ClMenuItem>
                 </ClMenuGroup>
             </ClSubmenu>
             <ClMenuItem c-key="badge-1" name="badge" to="/badgeView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 badge
             </ClMenuItem>
             <ClMenuItem c-key="list-1" name="list" to="/badgeView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 list
             </ClMenuItem>
             <ClMenuItem c-key="test-1" name="test" to="/badgeView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 test
             </ClMenuItem>
             <ClMenuItem c-key="checkbox-1" name="checkbox" to="/badgeView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 checkbox
             </ClMenuItem>
             <ClMenuItem c-key="radio-1" name="radio" to="/badgeView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 radio
             </ClMenuItem>
         </ClMenu>
@@ -1211,46 +1211,46 @@
         <ClMenu @open-change="handlerOpenChange" @select="handlerSelect" size="large" theme="green" mode="horizontal">
             <ClSubmenu c-key="submenu-1" name="submenusubmenu-1">
                 <ClMenuItem c-key="button-1" name="button" to="/buttonView">
-                    <i class="cl-icon-list"></i>
+                    <Icon type="list"></Icon>
                     buttonbuttonbuttonbuttonbuttonbuttonbuttonbutton
                 </ClMenuItem>
-                <ClMenuItem c-key="input-1" name="input" to="/inputView" icon="cl-icon-list">
-                    <i class="cl-icon-list"></i>
+                <ClMenuItem c-key="input-1" name="input" to="/inputView" icon="list">
+                    <Icon type="list"></Icon>
                     input
                 </ClMenuItem>
             </ClSubmenu>
             <ClSubmenu c-key="submenu-2" name="submenusubmenu-2">
                 <ClMenuGroup name="group1">
                     <ClMenuItem c-key="group1-badge-1" name="group1-badge" to="/badgeView">
-                        <i class="cl-icon-list"></i>
+                        <Icon type="list"></Icon>
                         group1-badge
                     </ClMenuItem>
                 </ClMenuGroup>
                 <ClMenuGroup name="group2">
                     <ClMenuItem c-key="group2-badge-1" name="group2-badge" to="/badgeView">
-                        <i class="cl-icon-list"></i>
+                        <Icon type="list"></Icon>
                         group2-badge
                     </ClMenuItem>
                 </ClMenuGroup>
             </ClSubmenu>
             <ClMenuItem c-key="badge-1" name="badge" to="/badgeView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 badge
             </ClMenuItem>
             <ClMenuItem c-key="list-1" name="list" to="/badgeView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 list
             </ClMenuItem>
             <ClMenuItem c-key="test-1" name="test" to="/badgeView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 test
             </ClMenuItem>
             <ClMenuItem c-key="checkbox-1" name="checkbox" to="/badgeView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 checkbox
             </ClMenuItem>
             <ClMenuItem c-key="radio-1" name="radio" to="/badgeView">
-                <i class="cl-icon-list"></i>
+                <Icon type="list"></Icon>
                 radio
             </ClMenuItem>
         </ClMenu>

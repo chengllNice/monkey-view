@@ -13,7 +13,7 @@
                     <div :class="[`${classPrefix}__arrow`]"></div>
                     <div :class="[`${classPrefix}__inner`, `${classPrefix}__confirm`]" v-if="confirm">
                         <div :class="[`${classPrefix}__title`]" v-if="showTitle">
-                            <slot name="title"><Icon type="icon-question-fill"></Icon>{{title}}</slot>
+                            <slot name="title"><Icon type="question-fill"></Icon>{{title}}</slot>
                         </div>
                         <div :class="[`${classPrefix}__body`]">
                             <Button size="mini" type="text" @click="cancelClick">{{localeCancelText}}</Button>

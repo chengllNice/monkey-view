@@ -9,7 +9,7 @@
              v-if="showLoading">
             <div :class="[`${classPrefix}__content`]">
                 <slot>
-                    <Icon v-if="type === 'loading1'" type="icon-loading" :class="[`${prefix}-rotate`, `${classPrefix}__icon-font`]"></Icon>
+                    <Icon v-if="type === 'loading1'" type="loading" :class="[`${prefix}-rotate`, `${classPrefix}__icon-font`]"></Icon>
                     <loading-svg :color="color" :type="type" :size="size" :class="[`${classPrefix}__icon-svg`]"
                                  v-else-if="showLoadingSvg"></loading-svg>
                     <div v-else :class="[`${classPrefix}__icon`]"></div>

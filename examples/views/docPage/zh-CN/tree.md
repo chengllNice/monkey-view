@@ -497,12 +497,12 @@
             <cl-tree :data="data" :expand-click-on-node="false">
                 <div class="doc-tree-load-data" slot-scope="data">
                     <span>
-                        <i class="cl-icon-file"></i>
+                        <Icon type="file"></Icon>
                         {{data.data.label}}
                     </span>
                     <cl-button-group>
-                        <cl-button icon="cl-icon-plus" type="primary" size="mini" @click="handleAdd(data)"></cl-button>
-                        <cl-button icon="cl-icon-minus" size="mini" @click="handleRemove(data)"></cl-button>
+                        <cl-button icon="plus" type="primary" size="mini" @click="handleAdd(data)"></cl-button>
+                        <cl-button icon="minus" size="mini" @click="handleRemove(data)"></cl-button>
                     </cl-button-group>
                 </div>
             </cl-tree>
@@ -594,7 +594,7 @@
                             h('span', [
                                 h('i', {
                                     attrs: {
-                                        class: 'cl-icon-file'
+                                        class: 'file'
                                     }
                                 }),
                                 h('span', data.label),
@@ -603,7 +603,7 @@
                                 h('ClButton', {
                                     props: {
                                         type: 'primary',
-                                        icon: 'cl-icon-plus',
+                                        icon: 'plus',
                                         size: 'mini',
                                     },
                                     on: {
@@ -614,7 +614,7 @@
                                 }),
                                 h('ClButton', {
                                     props: {
-                                        icon: 'cl-icon-minus',
+                                        icon: 'minus',
                                         size: 'mini',
                                     },
                                     on: {

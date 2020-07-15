@@ -20,12 +20,12 @@
             <!--排序-->
             <span v-if="column.sort && sortType.includes(column.sort)"
                   :class="[`${classPrefixCell}__icon`, `${classPrefix}__sort`]">
-                <Icon type="icon-care-up"
+                <Icon type="care-up"
                       :class="[
                           column.__sort === 'ascend' && `${classPrefixCell}__icon-active`
                       ]"
                       @click.self="sortHandle('ascend')"></Icon>
-                <Icon type="icon-care-down"
+                <Icon type="care-down"
                       :class="[column.__sort === 'descend' && `${classPrefixCell}__icon-active`]"
                       @click.self="sortHandle('descend')"></Icon>
             </span>
@@ -34,7 +34,7 @@
             <span v-if="column.filterSlot || (column.filters && Array.isArray(column.filters))"
                   :class="[`${classPrefixCell}__icon`, `${classPrefix}__filter`]"
                   v-click-outside.capture="handleClickOutside">
-                <Icon type="icon-filter"
+                <Icon type="filter"
                       :class="[
                            column.__isFilterChecked && `${classPrefixCell}__icon-active`
                       ]"

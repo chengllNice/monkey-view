@@ -13,8 +13,8 @@
                     'is-loading': loading
                 }
             ]">
-        <Icon v-if="loading" type="icon-loading" :class="`${prefix}-rotate`"></Icon>
-        <Icon v-else-if="icon || customIcon" :type="icon" :class="customIcon"></Icon>
+        <Icon v-if="loading" type="loading" :class="`${prefix}-rotate`"></Icon>
+        <Icon v-else-if="icon" :type="icon"></Icon>
         <span v-if="$slots.default"><slot></slot></span>
     </button>
 </template>
@@ -45,7 +45,6 @@
             loading: Boolean,
             circle: Boolean,
             icon: String,
-            customIcon: String,
         },
         data() {
             return {

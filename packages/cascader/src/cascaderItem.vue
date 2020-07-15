@@ -14,9 +14,9 @@
                         <span v-if="showPathLabel" v-html="computedLable(item)"></span>
                         <span v-else>{{parentComponent.formatLabel(item)}}</span>
                         <span :class="[`${classPrefix}__label-expand-icon`]" v-if="item.__loading">
-                            <Icon type="icon-loading" :class="[`${prefix}-rotate`]"></Icon>
+                            <Icon type="loading" :class="[`${prefix}-rotate`]"></Icon>
                         </span>
-                        <Icon type="icon-right" :class="[`${classPrefix}__label-expand-icon`]" v-else-if="item.__more"></Icon>
+                        <Icon type="right" :class="[`${classPrefix}__label-expand-icon`]" v-else-if="item.__more"></Icon>
                     </div>
                 </template>
             </scroll>

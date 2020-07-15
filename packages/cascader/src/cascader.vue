@@ -14,9 +14,9 @@
                           @change="handleInputChange"
                           @click.native="handleInputClick">
                     <template slot="suffix">
-                        <Icon v-if="showClear" type="icon-error-fill" :class="[`${classPrefix}__suffix-icon`]" @click.stop="handleInputClear"></Icon>
+                        <Icon v-if="showClear" type="error-fill" :class="[`${classPrefix}__suffix-icon`]" @click.stop="handleInputClear"></Icon>
                         <Icon v-else
-                              type="icon-down"
+                              type="down"
                               :class="[
                                   `${classPrefix}__suffix-icon`,
                                   visible && `${classPrefix}__suffix-icon-open`,
@@ -37,7 +37,7 @@
                 <div :class="[`${classPrefix}__drop-down-inner`]">
                     <div v-if="loading" :class="[`${classPrefix}__loading`]">
                         {{computedLoadingText}}
-                        <Icon v-if="!loadingText" type="icon-loading" :class="[`${prefix}-rotate`]"></Icon>
+                        <Icon v-if="!loadingText" type="loading" :class="[`${prefix}-rotate`]"></Icon>
                     </div>
                     <div v-else-if="showEmpty" :class="[`${classPrefix}__empty`]">{{computedEmptyText}}</div>
                     <cascader-panel v-else :data="currentData"></cascader-panel>

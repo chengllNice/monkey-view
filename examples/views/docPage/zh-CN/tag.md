@@ -138,7 +138,7 @@
     <cl-tag v-for="item in tagList" :key="item.id" closable @close="tagClose(item)">{{item.name}}</cl-tag>
     <p>添加</p>
     <cl-input ref="tagInput" v-model="tagInputValue" v-show="showInput" size="mini" @enter="inputEnter" style="width: 78px;" @blur="blurInput"></cl-input>
-    <cl-tag v-show="!showInput" @click="newTagClick"><i class="cl-icon-plus"></i> New Tag</cl-tag>
+    <cl-tag v-show="!showInput" @click="newTagClick"><Icon type="plus"></Icon> New Tag</cl-tag>
 </template>
 <script>
     export default {

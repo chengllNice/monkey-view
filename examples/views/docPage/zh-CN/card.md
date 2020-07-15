@@ -144,9 +144,9 @@
         </div>
 
         <div class="doc-card-footer" slot="footer">
-            <i class="cl-icon-list"></i>
-            <i class="cl-icon-video"></i>
-            <i class="cl-icon-setting"></i>
+            <Icon type="list"></Icon>
+            <Icon type="video"></Icon>
+            <Icon type="setting"></Icon>
         </div>
     </cl-card>
 </template>

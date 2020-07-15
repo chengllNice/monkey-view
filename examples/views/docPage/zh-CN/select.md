@@ -310,7 +310,7 @@
 <template>
     <cl-select v-model="valueModel">
         <cl-option v-for="item in valueModelOption" :key="item.value" :value="item.value" :label="item.label" :disabled="item.disabled">
-            <i :class="item.icon" style="margin-right: 10px;"></i>
+            <Icon :type="item.icon" style="margin-right: 10px;"></Icon>
             <span>{{item.label}}</span>
         </cl-option>
     </cl-select>
@@ -322,33 +322,33 @@
           valueModel: '',
           valueModelOption: [
             {
-              icon: 'cl-icon-home',
+              icon: 'home',
               label: 'Fruit',
               value: 'fruit',
             },
             {
-              icon: 'cl-icon-star',
+              icon: 'star',
               label: 'Apple',
               value: 'apple',
               disabled: true,
             },
             {
-              icon: 'cl-icon-button',
+              icon: 'button',
               label: 'Banana',
               value: 'banana',
             },
             {
-              icon: 'cl-icon-sound',
+              icon: 'sound',
               label: 'Orange',
               value: 'orange',
             },
             {
-              icon: 'cl-icon-setting',
+              icon: 'setting',
               label: 'Pear',
               value: 'pear',
             },
             {
-              icon: 'cl-icon-user',
+              icon: 'user',
               label: 'Peach',
               value: 'peach',
             },

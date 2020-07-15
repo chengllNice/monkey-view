@@ -48,7 +48,7 @@
         </cl-col>
         <cl-col span="6">
             <cl-badge :count="10" dot>
-                <i class="doc-badge-icon cl-icon-notification"></i>
+                <Icon type="notification" class="doc-badge-icon"></Icon>
             </cl-badge>
         </cl-col>
     </cl-row>

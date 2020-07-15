@@ -5,7 +5,7 @@
         disabled && 'is-disabled'
     ]">
         <div :class="[`${classPrefix}__header`]" @click="handlerClick">
-            <Icon v-if="!hideArrow" type="icon-right" :class="[`${classPrefix}__header-icon`]"></Icon>
+            <Icon v-if="!hideArrow" type="right" :class="[`${classPrefix}__header-icon`]"></Icon>
             <div :class="[`${classPrefix}__header-name`]">
                 <slot name="title">
                     {{name}}

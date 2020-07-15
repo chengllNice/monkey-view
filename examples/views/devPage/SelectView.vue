@@ -158,7 +158,7 @@
 <!--            <ClSelect v-model="selectValueCustomModel1" @change="handlerChange">-->
 <!--                <Option v-for="item in optionCustomModel" :key="item.value" :value="item.value" :label="item.label"-->
 <!--                        :disabled="item.disabled">-->
-<!--                    <i :class="item.icon" style="margin-right: 10px;"></i> {{item.label}}-->
+<!--                    <Icon :type="item.icon" style="margin-right: 10px;"></Icon> {{item.label}}-->
 <!--                </Option>-->
 <!--            </ClSelect>-->
 
@@ -211,7 +211,7 @@
             <ClSelect v-model="selectValueSearch1" filterable clearable @change="handlerChange">
                 <ClOption v-for="item in optionSearch" :key="item.value" :value="item.value" :label="item.label"
                           :disabled="item.disabled">
-                    <i :class="item.icon" style="margin-right: 10px;"></i>{{item.label}}
+                    <Icon :type="item.icon" style="margin-right: 10px;"></Icon>{{item.label}}
                 </ClOption>
             </ClSelect>
 
@@ -256,7 +256,7 @@
 <!--                      @change="handlerChange" @remote-change="handlerChangeRemote">-->
 <!--                <ClOption v-for="item in optionRemote" :key="item.value" :value="item.value" :label="item.label"-->
 <!--                          :disabled="item.disabled">-->
-<!--                    <i :class="item.icon" style="margin-right: 10px;"></i>{{item.label}}-->
+<!--                    <Icon :class="item.icon" style="margin-right: 10px;"></Icon>{{item.label}}-->
 <!--                </ClOption>-->
 <!--            </ClSelect>-->
 <!--            <p>远程搜索多选可清空slot:option</p>-->
@@ -264,7 +264,7 @@
 <!--                      @change="handlerChange" @remote-change="handlerChangeRemote">-->
 <!--                <ClOption v-for="item in optionRemote" :key="item.value" :value="item.value" :label="item.label"-->
 <!--                          :disabled="item.disabled">-->
-<!--                    <i :class="item.icon" style="margin-right: 10px;"></i>{{item.label}}-->
+<!--                    <Icon :class="item.icon" style="margin-right: 10px;"></Icon>{{item.label}}-->
 <!--                </ClOption>-->
 <!--            </ClSelect>-->
 <!--            <p>远程搜索多选可清空props:option</p>-->
@@ -891,56 +891,56 @@
                     {
                         value: '0',
                         label: '测试0',
-                        icon: 'cl-icon-home',
+                        icon: 'home',
                         disabled: true
                     },
                     {
                         value: '1',
                         label: '测试1',
-                        icon: 'cl-icon-star',
+                        icon: 'star',
                     },
                     {
                         value: '2',
                         label: '测试2',
-                        icon: 'cl-icon-button',
+                        icon: 'button',
                     },
                     {
                         value: '3',
                         label: '测试3',
-                        icon: 'cl-icon-sound',
+                        icon: 'sound',
                     },
                     {
                         value: '4',
                         label: '测试5',
-                        icon: 'cl-icon-setting',
+                        icon: 'setting',
                     }
                 ];
                 this.optionSearch = [
                     {
                         value: '0',
                         label: '测试0',
-                        icon: 'cl-icon-home',
+                        icon: 'home',
                         disabled: true
                     },
                     {
                         value: '1',
                         label: '测试1',
-                        icon: 'cl-icon-star',
+                        icon: 'star',
                     },
                     {
                         value: '2',
                         label: '测试2',
-                        icon: 'cl-icon-button',
+                        icon: 'button',
                     },
                     {
                         value: '3',
                         label: '测试3',
-                        icon: 'cl-icon-sound',
+                        icon: 'sound',
                     },
                     {
                         value: '4',
                         label: '测试5',
-                        icon: 'cl-icon-setting',
+                        icon: 'setting',
                     }
                 ];
                 this.optionSearchGroup0 = [
@@ -1014,56 +1014,56 @@
                     {
                         value: '0',
                         label: '测试0',
-                        icon: 'cl-icon-home',
+                        icon: 'home',
                         disabled: true
                     },
                     {
                         value: '1',
                         label: '测试1',
-                        icon: 'cl-icon-star',
+                        icon: 'star',
                     },
                     {
                         value: '2',
                         label: '测试2',
-                        icon: 'cl-icon-button',
+                        icon: 'button',
                     },
                     {
                         value: '3',
                         label: '测试3',
-                        icon: 'cl-icon-sound',
+                        icon: 'sound',
                     },
                     {
                         value: '4',
                         label: '测试5',
-                        icon: 'cl-icon-setting',
+                        icon: 'setting',
                     }
                 ];
                 this.optionRemoteData = [
                     {
                         value: '0',
                         label: '测试0',
-                        icon: 'cl-icon-home',
+                        icon: 'home',
                         disabled: true
                     },
                     {
                         value: '1',
                         label: '测试1',
-                        icon: 'cl-icon-star',
+                        icon: 'star',
                     },
                     {
                         value: '2',
                         label: '测试2',
-                        icon: 'cl-icon-button',
+                        icon: 'button',
                     },
                     {
                         value: '3',
                         label: '测试3',
-                        icon: 'cl-icon-sound',
+                        icon: 'sound',
                     },
                     {
                         value: '4',
                         label: '测试5',
-                        icon: 'cl-icon-setting',
+                        icon: 'setting',
                     }
                 ];
 

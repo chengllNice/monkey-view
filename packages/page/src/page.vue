@@ -24,7 +24,7 @@
                  ]"
                  @click.stop="changePage(currentPage - 1)">
                 <template v-if="preText">{{preText}}</template>
-                <Icon v-else type="icon-left"></Icon>
+                <Icon v-else type="left"></Icon>
             </div>
 
             <div :class="[
@@ -89,7 +89,7 @@
                  ]"
                  @click.stop="changePage(currentPage + 1)">
                 <template v-if="nextText">{{nextText}}</template>
-                <Icon v-else type="icon-right"></Icon>
+                <Icon v-else type="right"></Icon>
             </div>
         </div>
 
@@ -196,8 +196,8 @@
                 jumpToPage: this.page,
                 currentPageSizeOption: [],
                 currentSelectPageSize: '',
-                jumpPreIcon: 'icon-more',
-                jumpNextIcon: 'icon-more',
+                jumpPreIcon: 'more',
+                jumpNextIcon: 'more',
             }
         },
         computed: {

@@ -10,13 +10,13 @@
 
         <ClUpload action="//jsonplaceholder.typicode.com/posts/" listType="picture-card"
                   :file-list="fileListBase" :onPreview="handlerPreview" :onSuccess="handlerSuccess">
-            <i class="cl-icon-plus"></i>
+            <Icon type="plus"></Icon>
             <div>上传文件</div>
         </ClUpload>
 
 
         <ClUpload action="//jsonplaceholder.typicode.com/posts/" listType="picture-card" :file-list="fileListBase" :onPreview="handlerPreview" drag>
-            <i class="cl-icon-plus"></i>
+            <Icon type="plus"></Icon>
             <div>拖拽上传</div>
         </ClUpload>
 

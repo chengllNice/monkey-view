@@ -4,10 +4,10 @@
              :class="[`${classPrefix}`]">
             <div :class="[`${classPrefix}__wrap`]">
                 <div :class="[`${classPrefix}__close`]" @click="handlerClose">
-                    <Icon type="icon-close"></Icon>
+                    <Icon type="close"></Icon>
                 </div>
-                <Icon type="icon-left" :class="[`${classPrefix}__left`]" @click="handleChange('left')"></Icon>
-                <Icon type="icon-right" :class="[`${classPrefix}__right`]" @click="handleChange('right')"></Icon>
+                <Icon type="left" :class="[`${classPrefix}__left`]" @click="handleChange('left')"></Icon>
+                <Icon type="right" :class="[`${classPrefix}__right`]" @click="handleChange('right')"></Icon>
                 <div :class="[`${classPrefix}__body`]">
                     <template v-for="(item, index) in list" >
                         <img :class="[`${classPrefix}__image`]"
@@ -20,11 +20,11 @@
                     </template>
                 </div>
                 <div :class="[`${classPrefix}__footer`]">
-                    <Icon type="icon-circle-plus" @click="handleAction('zoomIn')"></Icon>
-                    <Icon type="icon-remove" @click="handleAction('zoomOut')"></Icon>
-                    <Icon type="icon-look-up" @click="handleAction('toggle')"></Icon>
-                    <Icon type="icon-refresh" @click="handleAction('rotateLeft')"></Icon>
-                    <Icon type="icon-refresh" @click="handleAction('rotateRight')"></Icon>
+                    <Icon type="circle-plus" @click="handleAction('zoomIn')"></Icon>
+                    <Icon type="remove" @click="handleAction('zoomOut')"></Icon>
+                    <Icon type="look-up" @click="handleAction('toggle')"></Icon>
+                    <Icon type="refresh" @click="handleAction('rotateLeft')"></Icon>
+                    <Icon type="refresh" @click="handleAction('rotateRight')"></Icon>
                 </div>
             </div>
         </div>

@@ -20,7 +20,7 @@
                      ]">
                     <div :class="[`${classPrefix}__content`]">
                         <div :class="[`${classPrefix}__close`]" v-if="closable" @click="handlerClose">
-                            <slot name="close"><Icon type="icon-close"></Icon></slot>
+                            <slot name="close"><Icon type="close"></Icon></slot>
                         </div>
                         <div :class="[`${classPrefix}__header`]" ref="modalHeader" v-if="showHead">
                             <slot name="header">{{title}}</slot>

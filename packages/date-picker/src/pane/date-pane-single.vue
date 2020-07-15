@@ -5,8 +5,8 @@
          ]">
         <div :class="[`${classPrefix}__header`]" v-if="showDateHeader">
             <span :class="[`${classPrefix}__header-pre`]">
-                <Icon type="icon-arrow-left" @click.stop="jumpDate('pre-year')"></Icon>
-                <Icon type="icon-left" @click.stop="jumpDate('pre-month')" v-if="dateChangeIconShow"></Icon>
+                <Icon type="arrow-left" @click.stop="jumpDate('pre-year')"></Icon>
+                <Icon type="left" @click.stop="jumpDate('pre-month')" v-if="dateChangeIconShow"></Icon>
             </span>
             <span :class="[`${classPrefix}__header-date`]">
                 <span :class="[`${classPrefix}__header-date-label`]"
@@ -16,8 +16,8 @@
                       v-if="headerMonthShow">{{month}}{{t('cl.datePicker.month')}}</span>
             </span>
             <span :class="[`${classPrefix}__header-next`]">
-                <Icon type="icon-right" @click.stop="jumpDate('next-month')" v-if="dateChangeIconShow"></Icon>
-                <Icon type="icon-arrow-right" @click.stop="jumpDate('next-year')"></Icon>
+                <Icon type="right" @click.stop="jumpDate('next-month')" v-if="dateChangeIconShow"></Icon>
+                <Icon type="arrow-right" @click.stop="jumpDate('next-year')"></Icon>
             </span>
         </div>
         <div :class="[`${classPrefix}__header`]" v-if="showTimeHeader">

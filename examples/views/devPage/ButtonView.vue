@@ -9,139 +9,139 @@
 
             <h4>type=default(默认)</h4>
             文字：<ClButton>你好</ClButton>
-            纯图标：<ClButton icon="cl-icon-list"></ClButton>
-            文字+图标：<ClButton icon="cl-icon-list">你好</ClButton>
+            纯图标：<ClButton icon="list"></ClButton>
+            文字+图标：<ClButton icon="list">你好</ClButton>
             文字disabled：<ClButton disabled>你好</ClButton>
-            纯图标disabled：<ClButton disabled icon="cl-icon-list"></ClButton>
-            文字+图标disabled：<ClButton disabled icon="cl-icon-list">你好</ClButton>
+            纯图标disabled：<ClButton disabled icon="list"></ClButton>
+            文字+图标disabled：<ClButton disabled icon="list">你好</ClButton>
             loading：<ClButton loading>你好</ClButton>
 
             <h4>type=primary</h4>
             文字：<ClButton type="primary">你好</ClButton>
-            纯图标：<ClButton type="primary" icon="cl-icon-list"></ClButton>
-            文字+图标：<ClButton type="primary" icon="cl-icon-list">你好</ClButton>
+            纯图标：<ClButton type="primary" icon="list"></ClButton>
+            文字+图标：<ClButton type="primary" icon="list">你好</ClButton>
             文字disabled：<ClButton type="primary" disabled >你好</ClButton>
-            纯图标disabled：<ClButton type="primary" disabled icon="cl-icon-list"></ClButton>
-            文字+图标disabled：<ClButton type="primary" disabled icon="cl-icon-list">你好</ClButton>
+            纯图标disabled：<ClButton type="primary" disabled icon="list"></ClButton>
+            文字+图标disabled：<ClButton type="primary" disabled icon="list">你好</ClButton>
             loading：<ClButton type="primary" loading>你好</ClButton>
 
             <h4>type=danger</h4>
             文字：<ClButton type="danger">你好</ClButton>
-            纯图标：<ClButton type="danger" icon="cl-icon-list"></ClButton>
-            文字+图标：<ClButton type="danger" icon="cl-icon-list">你好</ClButton>
+            纯图标：<ClButton type="danger" icon="list"></ClButton>
+            文字+图标：<ClButton type="danger" icon="list">你好</ClButton>
             文字disabled：<ClButton type="danger" disabled>你好</ClButton>
-            纯图标disabled：<ClButton type="danger" disabled icon="cl-icon-list"></ClButton>
-            文字+图标disabled：<ClButton type="danger" disabled icon="cl-icon-list">你好</ClButton>
+            纯图标disabled：<ClButton type="danger" disabled icon="list"></ClButton>
+            文字+图标disabled：<ClButton type="danger" disabled icon="list">你好</ClButton>
             loading：<ClButton type="danger" loading>你好</ClButton>
 
             <h4>type=warning</h4>
             文字：<ClButton type="warning">你好</ClButton>
-            纯图标：<ClButton type="warning" icon="cl-icon-list"></ClButton>
-            文字+图标：<ClButton type="warning" icon="cl-icon-list">你好</ClButton>
+            纯图标：<ClButton type="warning" icon="list"></ClButton>
+            文字+图标：<ClButton type="warning" icon="list">你好</ClButton>
             文字disabled：<ClButton type="warning" disabled>你好</ClButton>
-            纯图标disabled：<ClButton type="warning" disabled icon="cl-icon-list"></ClButton>
-            文字+图标disabled：<ClButton type="warning" disabled icon="cl-icon-list">你好</ClButton>
+            纯图标disabled：<ClButton type="warning" disabled icon="list"></ClButton>
+            文字+图标disabled：<ClButton type="warning" disabled icon="list">你好</ClButton>
             loading：<ClButton type="warning" loading>你好</ClButton>
 
             <h4>type=success</h4>
             文字：<ClButton type="success">你好</ClButton>
-            纯图标：<ClButton type="success" icon="cl-icon-list"></ClButton>
-            文字+图标：<ClButton type="success" icon="cl-icon-list">你好</ClButton>
+            纯图标：<ClButton type="success" icon="list"></ClButton>
+            文字+图标：<ClButton type="success" icon="list">你好</ClButton>
             文字disabled：<ClButton type="success" disabled>你好</ClButton>
-            纯图标disabled：<ClButton type="success" disabled icon="cl-icon-list"></ClButton>
-            文字+图标disabled：<ClButton type="success" disabled icon="cl-icon-list">你好</ClButton>
+            纯图标disabled：<ClButton type="success" disabled icon="list"></ClButton>
+            文字+图标disabled：<ClButton type="success" disabled icon="list">你好</ClButton>
             loading：<ClButton type="success" loading>你好</ClButton>
 
             <h4>type=info</h4>
             文字：<ClButton type="info">你好</ClButton>
-            纯图标：<ClButton type="info" icon="cl-icon-list"></ClButton>
-            文字+图标：<ClButton type="info" icon="cl-icon-list">你好</ClButton>
+            纯图标：<ClButton type="info" icon="list"></ClButton>
+            文字+图标：<ClButton type="info" icon="list">你好</ClButton>
             文字disabled：<ClButton type="info" disabled>你好</ClButton>
-            纯图标disabled：<ClButton type="info" disabled icon="cl-icon-list"></ClButton>
-            文字+图标disabled：<ClButton type="info" disabled icon="cl-icon-list">你好</ClButton>
+            纯图标disabled：<ClButton type="info" disabled icon="list"></ClButton>
+            文字+图标disabled：<ClButton type="info" disabled icon="list">你好</ClButton>
             loading：<ClButton type="info" loading>你好</ClButton>
 
             <h4>type=text</h4>
             文字：<ClButton type="text">你好</ClButton>
-            纯图标：<ClButton type="text" icon="cl-icon-list"></ClButton>
-            文字+图标：<ClButton type="text" icon="cl-icon-list">你好</ClButton>
+            纯图标：<ClButton type="text" icon="list"></ClButton>
+            文字+图标：<ClButton type="text" icon="list">你好</ClButton>
             文字disabled：<ClButton type="text" disabled>你好</ClButton>
-            纯图标disabled：<ClButton type="text" disabled icon="cl-icon-list"></ClButton>
-            文字+图标disabled：<ClButton type="text" disabled icon="cl-icon-list">你好</ClButton>
+            纯图标disabled：<ClButton type="text" disabled icon="list"></ClButton>
+            文字+图标disabled：<ClButton type="text" disabled icon="list">你好</ClButton>
             loading：<ClButton type="text" loading>你好</ClButton>
 
             <h4>block</h4>
             文字：<ClButton type="primary" block>你好</ClButton>
-            纯图标：<ClButton type="primary" block icon="cl-icon-list"></ClButton>
-            文字+图标：<ClButton type="primary" block icon="cl-icon-list">你好</ClButton>
+            纯图标：<ClButton type="primary" block icon="list"></ClButton>
+            文字+图标：<ClButton type="primary" block icon="list">你好</ClButton>
             文字disabled：<ClButton type="primary" disabled block>你好</ClButton>
-            纯图标disabled：<ClButton type="primary" disabled block icon="cl-icon-list"></ClButton>
-            文字+图标disabled：<ClButton type="primary" disabled block icon="cl-icon-list">你好</ClButton>
+            纯图标disabled：<ClButton type="primary" disabled block icon="list"></ClButton>
+            文字+图标disabled：<ClButton type="primary" disabled block icon="list">你好</ClButton>
             loading：<ClButton type="primary" block loading>你好</ClButton>
 
             <h4>circle</h4>
             文字：<ClButton type="primary" circle>你好</ClButton>
-            纯图标：<ClButton type="primary" circle icon="cl-icon-plus"></ClButton>
-            文字+图标：<ClButton type="primary" circle icon="cl-icon-plus">你好</ClButton>
+            纯图标：<ClButton type="primary" circle icon="plus"></ClButton>
+            文字+图标：<ClButton type="primary" circle icon="plus">你好</ClButton>
             文字disabled：<ClButton type="primary" disabled circle>你好</ClButton>
-            纯图标disabled：<ClButton type="primary" disabled circle icon="cl-icon-plus"></ClButton>
-            文字+图标disabled：<ClButton type="primary" disabled circle icon="cl-icon-plus">你好</ClButton>
+            纯图标disabled：<ClButton type="primary" disabled circle icon="plus"></ClButton>
+            文字+图标disabled：<ClButton type="primary" disabled circle icon="plus">你好</ClButton>
             loading：<ClButton type="primary" circle loading>你好</ClButton>
 
 
             <h4>按钮组</h4>
             <ClButtonGroup>
-                <ClButton icon="cl-icon-left">你好</ClButton>
+                <ClButton icon="left">你好</ClButton>
                 <ClButton>你好</ClButton>
-                <ClButton>你好<i class="cl-icon-right"></i></ClButton>
+                <ClButton>你好<Icon type="right"></Icon></ClButton>
             </ClButtonGroup>
             <br>
             <ClButtonGroup>
-                <ClButton type="primary" icon="cl-icon-left">你好</ClButton>
+                <ClButton type="primary" icon="left">你好</ClButton>
                 <ClButton type="primary">你好</ClButton>
-                <ClButton type="primary">你好<i class="cl-icon-right"></i></ClButton>
+                <ClButton type="primary">你好<Icon type="right"></Icon></ClButton>
             </ClButtonGroup>
             <br>
             <ClButtonGroup>
-                <ClButton type="success" icon="cl-icon-left">你好</ClButton>
+                <ClButton type="success" icon="left">你好</ClButton>
                 <ClButton type="success">你好</ClButton>
-                <ClButton type="success">你好<i class="cl-icon-right"></i></ClButton>
+                <ClButton type="success">你好<Icon type="right"></Icon></ClButton>
             </ClButtonGroup>
             <br>
             <ClButtonGroup>
-                <ClButton type="info" icon="cl-icon-left">你好</ClButton>
+                <ClButton type="info" icon="left">你好</ClButton>
                 <ClButton type="info">你好</ClButton>
-                <ClButton type="info">你好<i class="cl-icon-right"></i></ClButton>
+                <ClButton type="info">你好<Icon type="right"></Icon></ClButton>
             </ClButtonGroup>
             <br>
             <ClButtonGroup>
-                <ClButton type="danger" icon="cl-icon-left">你好</ClButton>
+                <ClButton type="danger" icon="left">你好</ClButton>
                 <ClButton type="danger">你好</ClButton>
-                <ClButton type="danger">你好<i class="cl-icon-right"></i></ClButton>
+                <ClButton type="danger">你好<Icon type="right"></Icon></ClButton>
             </ClButtonGroup>
             <br>
             <ClButtonGroup>
-                <ClButton type="warning" icon="cl-icon-left">你好</ClButton>
+                <ClButton type="warning" icon="left">你好</ClButton>
                 <ClButton type="warning">你好</ClButton>
-                <ClButton type="warning">你好<i class="cl-icon-right"></i></ClButton>
+                <ClButton type="warning">你好<Icon type="right"></Icon></ClButton>
             </ClButtonGroup>
             <br>
             <ClButtonGroup>
-                <ClButton icon="cl-icon-left"></ClButton>
-                <ClButton icon="cl-icon-list"></ClButton>
-                <ClButton icon="cl-icon-right"></ClButton>
+                <ClButton icon="left"></ClButton>
+                <ClButton icon="list"></ClButton>
+                <ClButton icon="right"></ClButton>
             </ClButtonGroup>
             <br>
             <ClButtonGroup>
-                <ClButton type="info" icon="cl-icon-plus" circle></ClButton>
-                <ClButton type="info" icon="cl-icon-plus" circle></ClButton>
-                <ClButton type="info" icon="cl-icon-plus" circle></ClButton>
+                <ClButton type="info" icon="plus" circle></ClButton>
+                <ClButton type="info" icon="plus" circle></ClButton>
+                <ClButton type="info" icon="plus" circle></ClButton>
             </ClButtonGroup>
         </div>-->
 
-        <ClButton type="info" icon="cl-icon-plus" circle></ClButton>
-        <ClButton type="info" icon="cl-icon-plus" circle>BUtton</ClButton>
-        <ClButton type="info" circle><i class="cl-icon-plus"></i>BUtton</ClButton>
+        <ClButton type="info" icon="plus" circle></ClButton>
+        <ClButton type="info" icon="plus" circle>BUtton</ClButton>
+        <ClButton type="info" circle><Icon type="plus"></Icon>BUtton</ClButton>
 
         <div class="viewDes">
             <h3>API</h3>

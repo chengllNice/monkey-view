@@ -9,8 +9,8 @@
         <span :class="[`${classPrefix}__text`]">
             <slot>{{label}}</slot>
         </span>
-        <Icon v-if="multipleIconShow" type="icon-check" :class="[`${classPrefix}__icon`]"></Icon>
-        <Icon v-else-if="allowCreate" type="icon-check" :class="[`${classPrefix}__icon`]"></Icon>
+        <Icon v-if="multipleIconShow" type="check" :class="[`${classPrefix}__icon`]"></Icon>
+        <Icon v-else-if="allowCreate" type="check" :class="[`${classPrefix}__icon`]"></Icon>
     </div>
 </template>
 

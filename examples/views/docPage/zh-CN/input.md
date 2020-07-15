@@ -35,7 +35,24 @@
 
 ```html
 <template>
-    <cl-input disabled placeholder="placeholder" v-model="valueDisabled" style="width: 300px"></cl-input>
+    <Row :gutter="16">
+        <Col>
+            <h4>input</h4>
+            <cl-input disabled placeholder="placeholder" v-model="valueDisabled"></cl-input>
+        </Col>
+        <Col>
+            <h4>number</h4>
+            <cl-input type="number" disabled placeholder="placeholder" v-model="valueDisabled"></cl-input>
+        </Col>
+        <Col>
+            <h4>search</h4>
+            <cl-input type="search" disabled placeholder="placeholder" v-model="valueDisabled"></cl-input>
+        </Col>
+        <Col>
+            <h4>password</h4>
+            <cl-input type="password" disabled placeholder="placeholder" v-model="valueDisabled"></cl-input>
+        </Col>
+    </Row>
 </template>
 <script>
     export default {
@@ -121,17 +138,17 @@
 ```html
 <template>
     <h4>属性方式</h4>
-    <cl-input placeholder="placeholder" v-model="valuePrefix" prefix="icon-user-fill" style="width: 300px"></cl-input>
+    <cl-input placeholder="placeholder" v-model="valuePrefix" prefix="user-fill" style="width: 300px"></cl-input>
     <br>
-    <cl-input placeholder="placeholder" v-model="valueSuffix" suffix="icon-search" style="width: 300px"></cl-input>
+    <cl-input placeholder="placeholder" v-model="valueSuffix" suffix="search" style="width: 300px"></cl-input>
 
     <h4>slot方式</h4>
     <cl-input placeholder="placeholder" v-model="valuePrefixSlot" style="width: 300px">
-        <i slot="prefix" class="cl-icon-user-fill"></i>
+        <Icon slot="prefix" type="user-fill"></Icon>
     </cl-input>
     <br>
     <cl-input placeholder="placeholder" v-model="valueSuffixSlot" style="width: 300px">
-        <i slot="suffix" class="cl-icon-search"></i>
+        <Icon slot="suffix" type="search"></Icon>
     </cl-input>
 </template>
 <script>
@@ -164,12 +181,12 @@
     </cl-input>
     <br>
     <cl-input placeholder="placeholder" v-model="valueAppend">
-        <cl-select slot="prepend" style="width: 70px;" v-model="inputPrependSelect" :option="inputPrependSelectOptions"></cl-select>
-        <cl-select slot="append" style="width: 70px;" v-model="inputAppendSelect" :option="inputAppendSelectOptions"></cl-select>
+        <cl-select slot="prepend" style="width: 70px;" v-model="inputPrependSelect" :option="inputPrependSelectOptions" :dropdownMatchSelectWidth="false"></cl-select>
+        <cl-select slot="append" style="width: 70px;" v-model="inputAppendSelect" :option="inputAppendSelectOptions" :dropdownMatchSelectWidth="false"></cl-select>
     </cl-input>
     <br>
     <cl-input placeholder="placeholder" v-model="valuePrepend">
-        <i slot="append" class="cl-icon-setting"></i>
+        <Icon slot="append" type="setting"></Icon>
     </cl-input>
 </template>
 <script>
@@ -258,7 +275,7 @@
     <cl-input type="password" placeholder="placeholder" v-model="valuePassword1" :showPasswordIcon="false"></cl-input>
     <br>
     <cl-input type="password" placeholder="placeholder" v-model="valuePassword2">
-        <i slot="suffix" class="cl-icon-password"></i>
+        <Icon slot="suffix" type="password"></Icon>
     </cl-input>
 </template>
 <script>
@@ -371,7 +388,7 @@
 | showLimitLabel | Boolean | 是否显示限制。为true时会在输入框或者textarea尾部显示当前字符长度和限制长度manLength。该值需要和maxLength配合使用。 | - |
 | autosize | Boolean, Object | type为textarea时有效。自适应内容高度，可设置对象，如{minRows: 2, maxRows: 6} | - |
 | rows | Number | type为textarea时有效。默认行数，超出时显示滚动条 | - |
-| showPasswordIcon | Boolean, Object | type为password时尾部显示控制字符显示的icon图标。false时不显示。可设置对象，设置icon，如：{close: 'cl-icon-close', open: 'cl-icon-square-plus'} | true |
+| showPasswordIcon | Boolean, Object | type为password时尾部显示控制字符显示的icon图标。false时不显示。可设置对象，设置icon，如：{close: 'close', open: 'square-plus'} | true |
 | suffix | String | 输入框尾部图标。textarea时无效。type为search时默认显示搜索图标 | - |
 | prefix | Boolean, String | 输入框头部图标。textarea时无效 | - |
 | suffixButton | String | type为search时有效。定义搜索按钮，true时显示纯图标的按钮，string时可定义按钮的文字 | false |

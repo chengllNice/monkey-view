@@ -14,8 +14,8 @@
 <!--            <template slot-scope="data">-->
 <!--                {{data.data.label}}-->
 <!--                <cl-button-group>-->
-<!--                    <cl-button icon="cl-icon-plus" type="primary" size="mini" @click="add(data)"></cl-button>-->
-<!--                    <cl-button icon="cl-icon-remove" size="mini" @click="remove(data)"></cl-button>-->
+<!--                    <cl-button icon="plus" type="primary" size="mini" @click="add(data)"></cl-button>-->
+<!--                    <cl-button icon="remove" size="mini" @click="remove(data)"></cl-button>-->
 <!--                </cl-button-group>-->
 <!--            </template>-->
 <!--        </cl-tree>-->
@@ -28,7 +28,7 @@
 
 
 <!--        <h4>icon</h4>-->
-<!--        <cl-tree :data="treeData" ref="tree" expand-icon-class="cl-icon-file"></cl-tree>-->
+<!--        <cl-tree :data="treeData" ref="tree" expand-icon-class="file"></cl-tree>-->
 
             <h4>icon</h4>
             <cl-tree :data="treeData" ref="tree" hide-icon></cl-tree>
@@ -277,7 +277,7 @@
                 // return h('div', [
                 //     h('i', {
                 //         attrs: {
-                //             class: 'cl-icon-file'
+                //             class: 'file'
                 //         }
                 //     }),
                 //     h('span', data.label)
@@ -291,7 +291,7 @@
                         h('span', [
                             h('i', {
                                 attrs: {
-                                    class: 'cl-icon-file'
+                                    class: 'file'
                                 }
                             }),
                             h('span', data.label),
@@ -300,7 +300,7 @@
                             h('ClButton', {
                                 props: {
                                     type: 'primary',
-                                    icon: 'cl-icon-plus',
+                                    icon: 'plus',
                                     size: 'mini',
                                 },
                                 on: {
@@ -311,7 +311,7 @@
                             }),
                             h('ClButton', {
                                 props: {
-                                    icon: 'cl-icon-minus',
+                                    icon: 'minus',
                                     size: 'mini',
                                 },
                                 on: {

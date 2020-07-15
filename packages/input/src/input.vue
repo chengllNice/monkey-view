@@ -14,10 +14,10 @@
                 <slot name="prepend"></slot>
             </div>
             <div v-if="showPrefix" :class="[`${classPrefix}__prefix`]">
-                <template v-if="$slots.prefix"><slot name="prefix"></slot></template>
+                <div :class="[`${classPrefix}__prefix-slot`]" v-if="$slots.prefix"><slot name="prefix"></slot></div>
                 <Icon v-else-if="type === 'number'"
-                      type="icon-minus"
-                      :class="[`${classPrefix}__prefix-icon`, `${classPrefix}__prefix-step`]"
+                      type="minus"
+                      :class="[`${classPrefix}__prefix-icon`, `${classPrefix}__prefix-step`, numberStepDisabled.min && `${classPrefix}__step-disabled`]"
                       @click="handlerNumberMinus"></Icon>
                 <Icon v-else :type="prefix" :class="`${classPrefix}__prefix-icon ${prefix}`"></Icon>
             </div>
@@ -44,13 +44,15 @@
                    @change="handlerChange"/>
             <div v-if="showSuffix" :class="[`${classPrefix}__suffix`]">
                 <i v-if="suffixIconClass.length" :class="suffixIconClass" @click.stop="handleSuffixClick"></i>
-                <template v-else-if="$slots.suffix">
+                <div :class="[`${classPrefix}__suffix-slot`]" v-else-if="$slots.suffix">
                     <slot name="suffix"></slot>
-                </template>
+                </div>
                 <template v-else-if="type === 'number' && stepType && step">
-                    <Icon type="icon-up" :class="[`${classPrefix}__suffix-step-up`, `${classPrefix}__suffix-step`]"
+                    <Icon type="up"
+                          :class="[`${classPrefix}__suffix-step-up`, `${classPrefix}__suffix-step`, numberStepDisabled.max && `${classPrefix}__step-disabled`]"
                           @click="handlerNumberPlus"></Icon>
-                    <Icon type="icon-down" :class="[`${classPrefix}__suffix-step-down`, `${classPrefix}__suffix-step`]"
+                    <Icon type="down"
+                          :class="[`${classPrefix}__suffix-step-down`, `${classPrefix}__suffix-step`, numberStepDisabled.min && `${classPrefix}__step-disabled`]"
                           @click="handlerNumberMinus"></Icon>
                 </template>
             </div>
@@ -65,7 +67,7 @@
                             :size="inputSize"
                             :disabled="isDisabled"
                             @click="handlerSearch">
-                        <Icon type="icon-search" v-if="suffixButton === true"></Icon>
+                        <Icon type="search" v-if="suffixButton === true"></Icon>
                         <template v-else>{{suffixButton}}</template>
                     </Button>
                 </slot>
@@ -183,18 +185,30 @@
                     this.showClearable ||
                     ((this.suffix || this.$slots.suffix || this.clearable) && ['input', 'password', 'search', 'number'].includes(this.type));
             },
+            //number类型 step禁用
+            numberStepDisabled(){
+                let result = {min: false, max: false};
+                if(this.type === 'number'){
+                    if(typeof this.min === 'number' && this.min >= parseFloat(this.modelValue)) result.min = true;
+                    if(typeof this.max === 'number' && this.max <= parseFloat(this.modelValue)) result.max = true;
+                }
+                return result;
+            },
             suffixIconClass() {
                 let prefix = Config.classPrefix;
                 let result = [];
                 if (this.showClearable) result.push(`${prefix}-icon-error-fill`)
-                else if (this.suffix) result.push(`${prefix}-${this.suffix}`)
-                else if (this.type === 'number' && !this.stepType && this.step) result.push(`${prefix}-icon-plus`, `${this.classPrefix}__suffix-step`)
+                else if (this.suffix) result.push(`${prefix}-icon-${this.suffix}`)
+                else if (this.type === 'number' && !this.stepType && this.step) {
+                    result.push(`${prefix}-icon-plus`, `${this.classPrefix}__suffix-step`);
+                    if(this.numberStepDisabled.max) result.push(`${this.classPrefix}__step-disabled`)
+                }
                 else if (this.type === 'search') result.push(`${prefix}-icon-search`)
                 else if (this.type === 'password' && this.showPasswordIcon) {
                     if (this.showPasswordIcon === true) this.showPasswordVisible ? result.push(`${prefix}-icon-eye-close`) : result.push(`${prefix}-icon-eye-open`)
                     else if (typeof this.showPasswordIcon === 'object') this.showPasswordVisible ? result.push(this.showPasswordIcon.close) : result.push(this.showPasswordIcon.open)
                 }
-                if (result.length) result.unshift(`${this.classPrefix}__suffix-icon`);
+                if (result.length) result.unshift(`${this.classPrefix}__suffix-icon`, `${prefix}-icon`);
                 return result;
             },
             showPrefix() {

@@ -32,7 +32,7 @@
                     <scroll ref="scroll" size="small" :scrollOption="{scrollPanel:{scrollingX:false}}">
                         <div ref="scrollInner">
                             <div v-if="loading" :class="[`${classPrefix}__loading`]">
-                                <Icon type="icon-loading" :class="[`${prefix}-rotate`]"></Icon>
+                                <Icon type="loading" :class="[`${prefix}-rotate`]"></Icon>
                                 {{t('cl.select.loading')}}
                             </div>
 
