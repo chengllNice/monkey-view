@@ -1,71 +1,6 @@
 @import "./base/var";
 @import "./config/mixins/index.scss";
-
-@mixin inputSize($size){
-  $height: $--height-default;
-  $font-size: $--font-size-default;
-  $padding-append: $--button-padding-horizontal-default;
-  $padding-input: $--input-padding-horizontal-default;
-  @if($size == 'mini'){
-    $height: $--height-mini;
-    $font-size: $--font-size-mini;
-    $padding-append: $--button-padding-horizontal-mini;
-    $padding-input: $--input-padding-horizontal-mini;
-  }@else if($size == 'small'){
-    $height: $--height-small;
-    $font-size: $--font-size-small;
-    $padding-append: $--button-padding-horizontal-small;
-    $padding-input: $--input-padding-horizontal-small;
-  }@else if($size == 'large'){
-    $height: $--height-large;
-    $font-size: $--font-size-large;
-    $padding-append: $--button-padding-horizontal-large;
-    $padding-input: $--input-padding-horizontal-large;
-  }
-
-  //textarea 、input
-  @include e(source, false){
-    min-height: $height;
-    font-size: $font-size;
-    padding-left: $padding-input;
-    padding-right: $padding-input;
-  }
-
-  //input
-  @include e(source-prefix, false){
-    padding-left: $--input-suffix-width;
-  }
-  @include e(source-suffix, false){
-    padding-right: $--input-suffix-width;
-  }
-  @include e((prepend, append), false){
-    height: $height;
-    padding: 0 $padding-append;
-    .cl-select{
-      height: #{$height - 2px};
-      margin: 0 -#{$padding-append + 1px};
-      input{
-        height: #{$height - 2px};
-        &:focus{
-          box-shadow: none;
-        }
-      }
-      .cl-input__suffix{
-        line-height: #{$height - 2px};
-      }
-    }
-  }
-
-  //number
-  @include m(number, false, true){
-    @include e(source-prefix, false){
-      padding-left: #{$--input-suffix-width + $padding-input};
-    }
-    @include e(source-suffix, false){
-      padding-right: #{$--input-suffix-width + $padding-input};
-    }
-  }
-}
+@import "./config/mixins/inputMixins.scss";
 
 @include c(input){
   display: table;
@@ -83,7 +18,6 @@
     outline: none;
     box-sizing: border-box;
     width: 100%;
-    vertical-align: middle;
     border-radius: $--border-radius-default;
     background-color: $--color-white;
     border: $--border-default;
@@ -109,15 +43,12 @@
       box-shadow: 0 0 0 2px mix($--color-primary, $--color-white, $--button-hover-percent);
     }
   }
-  @include e(source-prepend, false){
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-  }
-  @include e(source-append, false){
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-  }
 
+  @include e(append-color, false){
+    cursor: default;
+    border: $--border-default;
+    background-color: $--input-background-color-append-prepend;
+  }
   @include e((prepend, append), false){
     display: table-cell;
     box-sizing: border-box;
@@ -125,10 +56,6 @@
     width: 1px;
     position: relative;
     color: $--color-text-icon;
-    cursor: default;
-    border: $--border-default;
-    background-color: $--input-background-color-append-prepend;
-    border-radius: $--border-radius-default;
 
     @include ci(select){
       vertical-align: middle;
@@ -140,19 +67,24 @@
     }
   }
   @include e(prepend, false){
+    border: $--border-default;
     border-right: none;
+    cursor: default;
+    border-radius: $--border-radius-default;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
+    background-color: $--input-background-color-append-prepend;
   }
-  @include e((append, append-button), false){
+  @include e(append, false){
     border-left: none;
+    border-radius: $--border-radius-default;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
   }
 
-
   @include e((prefix,suffix), false){
     position: absolute;
+    left: 1px;
     top: 0;
     bottom: 0;
     margin: auto;
@@ -160,76 +92,88 @@
     text-align: center;
     width: $--input-suffix-width;
     box-sizing: border-box;
-    height: calc(100% - 2px);
-
-    @include e((suffix-icon, prefix-icon), false){
+    i{
+      cursor: pointer;
+    }
+    @include e((limit,suffix-inner,prefix-inner), false){
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       width: 100%;
       height: 100%;
-      position: relative;
-      cursor: pointer;
-      &::before{
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
+      box-sizing: border-box;
+      color: $--color-text-icon;
     }
-    @include e((suffix-step, prefix-step), false){
-      background-color: $--background-color-base;
+
+    @include e((prefix-step,suffix-step), false){
+      border-left: $--border-default;
+      cursor: pointer;
+      background: $--background-color-base;
       &:hover,
       &:focus,
       &:active{
         color: $--color-primary;
       }
+
       &:active{
-        background-color: mix($--color-black, $--background-color-base, $--button-active-percent);
+        background: mix($--color-black, $--background-color-base, $--button-active-percent);
       }
     }
-    @include e(suffix-step, false){
-      border-left: $--border-default;
+
+    @include e(suffix-step-right, false){
+      padding: 0;
+      line-height: normal;
+      &:hover,
+      &:focus,
+      &:active{
+        color: $--color-text-icon;
+      }
+      &:active{
+        background: $--background-color-base;
+      }
+      @include e((suffix-step-right-down, suffix-step-right-up), false){
+        display: block;
+        height: calc( 100% / 2 );
+        line-height: normal;
+        &:hover,
+        &:focus,
+        &:active{
+          color: $--color-primary;
+        }
+        &:active{
+          background: mix($--color-black, $--background-color-base, $--button-active-percent);
+        }
+        i{
+          transform: scale(0.8);
+          vertical-align: middle;
+        }
+      }
+      @include e(suffix-step-right-up, false){
+        border-bottom: $--border-default;
+      }
     }
+
+
     @include e(prefix-step, false){
       border-right: $--border-default;
+      border-left: none;
     }
-    @include e(suffix-step-up, false){
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 50%;
-      width: 100%;
-      border-bottom: $--border-default;
-    }
-    @include e(suffix-step-down, false){
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      height: 50%;
-      width: 100%;
-    }
-
-  }
-  @include e(prefix, false){
-    left: 1px;
   }
   @include e(suffix, false){
+    left: auto;
     right: 1px;
   }
-  @include e(suffix-limit, false){
-    height: calc(100% - 2px);
-    position: absolute;
-    padding-right: 10px;
-    padding-left: 10px;
-    top: 50%;
-    right: 1px;
-    transform: translateY(-50%);
-    display: flex;
-    align-items: center;
-    text-align: right;
-    background-color: $--color-white;
-    color: $--color-text-icon;
+
+  @include e(source-prepend, false){
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
   }
 
-
+  @include e(source-append, false){
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
 
   @include m(mini){
     @include inputSize(mini);
@@ -243,14 +187,16 @@
   @include m(large){
     @include inputSize(large);
   }
-  //抵消 size 带来的padding
+
   @include e(append-button-wrap, false){
     padding: 0;
-    border: none;
-    background-color: transparent;
+    @include e(append-button, false){
+      border-left: none;
+      border-radius: $--border-radius-default;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
   }
-
-
 
   @include when(disabled){
     cursor: not-allowed;
@@ -267,7 +213,7 @@
       }
     }
 
-    @include e((prefix-icon,suffix-icon), false){
+    @include e((prefix-step,suffix-step), false){
       cursor: not-allowed;
       &:hover,
       &:focus,
@@ -282,19 +228,21 @@
   }
 }
 
+@include c(input-search){
+
+}
+
+@include c(input-number){
+
+}
+
 @include c(textarea){
   display: inline-block;
   width: 100%;
-  line-height: normal;
-  transition: all $--animation-time ease-in-out;
-  position: relative;
-  vertical-align: middle;
-  border-collapse: separate;
 
   @include e(source, false){
     max-width: 100%;
     width: 100%;
-    vertical-align: middle;
     outline: none;
     box-sizing: border-box;
     transition: all $--animation-time ease-in-out;
@@ -302,9 +250,14 @@
     border-radius: $--border-radius-default;
     background-color: $--color-white;
     border: $--border-default;
+    //padding-left: $--input-padding-horizontal-default;
+    //padding-right: $--input-padding-horizontal-default;
     padding-top: $--input-padding-vertical-default;
     padding-bottom: $--input-padding-vertical-default;
+    //font-size: $--font-size-default;
     color: $--color-text-default;
+    //min-height: $--input-height-default;
+
 
     &::placeholder{
       color: $--color-text-placeholder;
@@ -321,12 +274,13 @@
     }
   }
 
-  @include e(suffix-limit, false){
+  @include e(suffix, false){
     position: absolute;
-    padding: 5px 10px;
-    bottom: 1px;
-    right: 1px;
-    color: $--color-text-icon;
+    right: 5px;
+    bottom: 4px;
+    text-align: center;
+    height: auto;
+    width: $--input-suffix-width;
   }
 
   @include when(disabled){
@@ -347,10 +301,22 @@
 
   @include m(mini){
     @include inputSize(mini);
+    //@include e(source, false){
+    //  padding-left: $--input-padding-horizontal-mini;
+    //  padding-right: $--input-padding-horizontal-mini;
+    //  height: $--input-height-mini;
+    //  font-size: $--font-size-mini;
+    //}
   }
 
   @include m(small){
     @include inputSize(small);
+    //@include e(source, false){
+    //  padding-left: $--input-padding-horizontal-small;
+    //  padding-right: $--input-padding-horizontal-small;
+    //  height: $--input-height-small;
+    //  font-size: $--font-size-small;
+    //}
   }
 
   @include m(default){
@@ -359,5 +325,11 @@
 
   @include m(large){
     @include inputSize(large);
+    //@include e(source, false){
+    //  padding-left: $--input-padding-horizontal-large;
+    //  padding-right: $--input-padding-horizontal-large;
+    //  height: $--input-height-large;
+    //  font-size: $--font-size-large;
+    //}
   }
 }

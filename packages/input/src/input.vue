@@ -1,7 +1,7 @@
 <template>
     <div :class="[
-            `${classPrefix}`,
-            ['number', 'search', 'password'].includes(type) && `${classPrefix}-${type}`,
+            type !== 'textarea' && `${classPrefix}`,
+            type === 'number' && `${classPrefix}--number`,
             type === 'textarea' && `${classPrefixTextArea}`,
             inputSize && type !== 'textarea' && `${classPrefix}--${inputSize}`,
             inputSize && type === 'textarea' && `${classPrefixTextArea}--${inputSize}`,
@@ -9,134 +9,88 @@
         ]"
          @mouseenter="hovering = true"
          @mouseleave="hovering = false">
-        <div :class="[`${classPrefix}__prepend`]"
-              v-if="$slots.prepend && type !== 'textarea'">
-            <slot name="prepend"></slot>
-        </div>
-        <span :class="[`${classPrefix}__prefix`]"
-              v-else-if="showPrefix">
-            <span :class="[`${classPrefix}__prefix-inner`]" v-if="$slots.prefix"><slot name="prefix"></slot></span>
-            <span :class="[`${classPrefix}__prefix-inner`,`${classPrefix}__prefix-step`]"
-                   v-else-if="type === 'number'"
-                   @click="handlerNumberMinus">
-                <Icon type="icon-minus"></Icon>
-            </span>
-            <Icon v-else :type="prefix" :class="`${classPrefix}__prefix-inner ${prefix}`"></Icon>
-        </span>
-
-        <input v-if="['input', 'number', 'search', 'password'].includes(type)"
-               :type="type === 'password' && !showPasswordVisible ? 'password' : 'text'"
-               :class="[
-                    `${classPrefix}__source`,
-                    (suffixButton || $slots.append) && `${classPrefix}__source-append`,
-                    $slots.prepend && `${classPrefix}__source-prepend`,
-                    showSuffix && `${classPrefix}__source-suffix`,
-                    showPrefix && `${classPrefix}__source-prefix`,
-               ]"
-               ref="input"
-               :style="inputStyle"
-               :name="name"
-               :disabled="isDisabled"
-               :readonly="readonly"
-               :placeholder="placeholder"
-               @compositionstart="handleCompositionStart"
-               @compositionend="handleCompositionEnd"
-               @keydown.enter="handlerEnter"
-               @blur="handlerBlur"
-               @focus="handlerFocus"
-               @input="handlerInput"
-               @change="handlerChange">
-        <textarea v-else-if="type === 'textarea'"
-                  :class="[`${classPrefixTextArea}__source`]"
-                  ref="textarea"
-                  :name="name"
-                  :style="expandStyle"
-                  :disabled="isDisabled"
-                  :readonly="readonly"
-                  :placeholder="placeholder"
-                  @compositionstart="handleCompositionStart"
-                  @compositionend="handleCompositionEnd"
-                  @blur="handlerBlur"
-                  @focus="handlerFocus"
-                  @input="handlerInput"
-                  @change="handlerChange"
-                  :cols="cols"
-                  :rows="rows"></textarea>
-
-        <span v-if="showSuffix"
-              :class="[
-                  type !== 'textarea' && `${classPrefix}__suffix`,
-                  type === 'textarea' && `${classPrefixTextArea}__suffix`,
-              ]">
-                    <Icon v-if="showClearable"
-                          type="icon-error-fill"
-                          :class="[`${classPrefix}__suffix-inner`, `${classPrefix}__clearable`]"
-                          @click.stop="handlerClear"></Icon>
-                    <span :class="[`${classPrefix}__suffix-inner`]"
-                          v-else-if="$slots.suffix">
-                            <slot name="suffix"></slot>
-                    </span>
-                    <span v-else-if="type === 'number' && !stepType" @click="handlerNumberPlus"
-                          :class="[
-                              `${classPrefix}__suffix-inner`,
-                              `${classPrefix}__suffix-step`,
-                              step && stepType && `${classPrefix}__suffix-step-right`
-                          ]">
-                        <Icon type="icon-plus" v-if="step && !stepType"></Icon>
-                    </span>
-                    <span  v-else-if="type === 'number' && stepType"
-                           :class="[
-                               `${classPrefix}__suffix-inner`,
-                               `${classPrefix}__suffix-step`,
-                               `${classPrefix}__suffix-step-right`
-                           ]">
-                        <span :class="[`${classPrefix}__suffix-step-right-up`]" @click="handlerNumberPlus">
-                            <Icon type="icon-up" v-if="step && stepType"></Icon>
-                        </span>
-                        <span :class="[`${classPrefix}__suffix-step-right-down`]" @click="handlerNumberMinus">
-                            <Icon type="icon-down" v-if="step && stepType"></Icon>
-                        </span>
-                    </span>
-                    <Icon v-else-if="suffix"
-                          :type="suffix"
-                          :class="`${classPrefix}__suffix-inner ${suffix}`"></Icon>
-                    <Icon v-else-if="type === 'password' && showPasswordIcon && !readonly"
-                          :type="showPasswordVisible && showPasswordIcon === true ? 'icon-eye-close' : 'icon-eye-open'"
-                          :class="[
-                                `${classPrefix}__suffix-inner`,
-                                showPasswordVisible && typeof showPasswordIcon === 'object' ? `${showPasswordIcon.close}` : `${showPasswordIcon.open}`,
-                          ]"
-                          @click="passwordVisibleChange"></Icon>
-                    <Icon v-else-if="type === 'search'"
-                          type="icon-search"
-                          :class="[`${classPrefix}__suffix-inner`, `${classPrefix}__search`]"
-                          @click="handlerSearch"></Icon>
-                    <span v-else-if="['input', 'textarea'].includes(type) && showLimitLabel && maxLength.toString()"
-                          :class="[
-                              type === 'input' && `${classPrefix}__limit`,
-                              type === 'textarea' && `${classPrefixTextArea}__limit`,
-                          ]">
-                        {{modelValue !== undefined ? modelValue.length : 0}}/{{maxLength || 0}}
-                    </span>
-        </span>
-
-        <div v-else-if="appendShow"
-             :class="[
-                  `${classPrefix}__append`,
-                  !$slots.append ? `${classPrefix}__append-button-wrap` : `${classPrefix}__append-color`
-             ]">
-            <slot name="append">
-                <Button :class="[`${classPrefix}__append-button`]"
-                          v-if="type === 'search' && suffixButton"
-                          type="primary"
-                          :size="inputSize"
-                          :disabled="isDisabled"
-                          @click="handlerSearch">
-                    <Icon type="icon-search" v-if="suffixButton === true"></Icon>
-                    <template v-else>{{suffixButton}}</template>
-                </Button>
-            </slot>
-        </div>
+        <template v-if="type !== 'textarea'">
+            <div v-if="$slots.prepend" :class="[`${classPrefix}__prepend`]">
+                <slot name="prepend"></slot>
+            </div>
+            <div v-if="showPrefix" :class="[`${classPrefix}__prefix`]">
+                <template v-if="$slots.prefix"><slot name="prefix"></slot></template>
+                <Icon v-else-if="type === 'number'"
+                      type="icon-minus"
+                      :class="[`${classPrefix}__prefix-icon`, `${classPrefix}__prefix-step`]"
+                      @click="handlerNumberMinus"></Icon>
+                <Icon v-else :type="prefix" :class="`${classPrefix}__prefix-icon ${prefix}`"></Icon>
+            </div>
+            <input :type="type === 'password' && !showPasswordVisible ? 'password' : 'text'"
+                   :class="[
+                        `${classPrefix}__source`,
+                        ((type === 'search' && suffixButton) || $slots.append) && `${classPrefix}__source-append`,
+                        $slots.prepend && `${classPrefix}__source-prepend`,
+                        showSuffix && `${classPrefix}__source-suffix`,
+                        showPrefix && `${classPrefix}__source-prefix`,
+                   ]"
+                   ref="input"
+                   :style="inputStyle"
+                   :name="name"
+                   :disabled="isDisabled"
+                   :readonly="readonly"
+                   :placeholder="placeholder"
+                   @compositionstart="handleCompositionStart"
+                   @compositionend="handleCompositionEnd"
+                   @keydown.enter="handlerEnter"
+                   @blur="handlerBlur"
+                   @focus="handlerFocus"
+                   @input="handlerInput"
+                   @change="handlerChange"/>
+            <div v-if="showSuffix" :class="[`${classPrefix}__suffix`]">
+                <i v-if="suffixIconClass.length" :class="suffixIconClass" @click.stop="handleSuffixClick"></i>
+                <template v-else-if="$slots.suffix">
+                    <slot name="suffix"></slot>
+                </template>
+                <template v-else-if="type === 'number' && stepType && step">
+                    <Icon type="icon-up" :class="[`${classPrefix}__suffix-step-up`, `${classPrefix}__suffix-step`]"
+                          @click="handlerNumberPlus"></Icon>
+                    <Icon type="icon-down" :class="[`${classPrefix}__suffix-step-down`, `${classPrefix}__suffix-step`]"
+                          @click="handlerNumberMinus"></Icon>
+                </template>
+            </div>
+            <div v-else-if="showLimitLabel && maxLength.toString()" :class="[`${classPrefix}__suffix-limit`]">
+                {{modelValue !== undefined ? modelValue.length : 0}}/{{maxLength || 0}}
+            </div>
+            <div v-else-if="$slots.append || (type === 'search' && suffixButton)"
+                 :class="[`${classPrefix}__append`, (type === 'search' && suffixButton) && `${classPrefix}__append-button-wrap`]">
+                <slot name="append">
+                    <Button :class="[`${classPrefix}__append-button`]"
+                            type="primary"
+                            :size="inputSize"
+                            :disabled="isDisabled"
+                            @click="handlerSearch">
+                        <Icon type="icon-search" v-if="suffixButton === true"></Icon>
+                        <template v-else>{{suffixButton}}</template>
+                    </Button>
+                </slot>
+            </div>
+        </template>
+        <template v-if="type === 'textarea'">
+            <textarea :class="[`${classPrefixTextArea}__source`]"
+                      ref="textarea"
+                      :name="name"
+                      :style="expandStyle"
+                      :disabled="isDisabled"
+                      :readonly="readonly"
+                      :placeholder="placeholder"
+                      @compositionstart="handleCompositionStart"
+                      @compositionend="handleCompositionEnd"
+                      @blur="handlerBlur"
+                      @focus="handlerFocus"
+                      @input="handlerInput"
+                      @change="handlerChange"
+                      :cols="cols"
+                      :rows="rows"></textarea>
+            <div v-if="showLimitLabel && maxLength.toString()" :class="[`${classPrefixTextArea}__suffix-limit`]">
+                {{modelValue !== undefined ? modelValue.length : 0}}/{{maxLength || 0}}
+            </div>
+        </template>
     </div>
 </template>
 
@@ -145,7 +99,7 @@
     import Icon from 'packages/icon'
     import Button from 'packages/button'
     import calcTextareaHeight from './calcTextareaHeight';
-    import { findComponent} from "main/utils/tool";
+    import {findComponent} from "main/utils/tool";
 
     export default {
         name: "Input",
@@ -223,30 +177,30 @@
                 return this.clearable && this.modelValue && !this.isDisabled && this.hovering && this.type !== 'textarea' && !this.readonly
             },
             showSuffix() {
-                return (['input', 'textarea'].includes(this.type) && this.maxLength && this.showLimitLabel) ||
-                    (this.type === 'search' && !this.suffixButton) ||
+                return (this.type === 'search' && !this.suffixButton) ||
                     (this.type === 'number' && this.step) ||
                     (this.type === 'password' && this.showPasswordIcon) ||
                     this.showClearable ||
                     ((this.suffix || this.$slots.suffix || this.clearable) && ['input', 'password', 'search', 'number'].includes(this.type));
             },
-            suffixIconClass(){
-                let result = [
-                    `${this.classPrefix}__suffix-inner`,
-                ];
-                if(this.clearable) result.push('cl-icon-error-fill')
-                else if(this.type === 'number' && !this.stepType) result.push('cl-icon-plus', `${this.classPrefix}__suffix-step`)
-                else if (this.suffix) result.push(this.suffix)
-                else if (this.type === 'search') result = 'cl-icon-search'
+            suffixIconClass() {
+                let prefix = Config.classPrefix;
+                let result = [];
+                if (this.showClearable) result.push(`${prefix}-icon-error-fill`)
+                else if (this.suffix) result.push(`${prefix}-${this.suffix}`)
+                else if (this.type === 'number' && !this.stepType && this.step) result.push(`${prefix}-icon-plus`, `${this.classPrefix}__suffix-step`)
+                else if (this.type === 'search') result.push(`${prefix}-icon-search`)
+                else if (this.type === 'password' && this.showPasswordIcon) {
+                    if (this.showPasswordIcon === true) this.showPasswordVisible ? result.push(`${prefix}-icon-eye-close`) : result.push(`${prefix}-icon-eye-open`)
+                    else if (typeof this.showPasswordIcon === 'object') this.showPasswordVisible ? result.push(this.showPasswordIcon.close) : result.push(this.showPasswordIcon.open)
+                }
+                if (result.length) result.unshift(`${this.classPrefix}__suffix-icon`);
                 return result;
             },
             showPrefix() {
-                return ((this.prefix || this.$slots.prefix) && this.type !== 'textarea') ||
-                    (this.type === 'number' && this.step && !this.stepType)
+                if (this.type === 'textarea') return false;
+                return (this.prefix || this.$slots.prefix) || (this.type === 'number' && this.step && !this.stepType)
             },
-            appendShow() {
-                return this.type !== 'textarea' && (this.$slots.append || this.suffixButton)
-            }
         },
         components: {
             Button,
@@ -329,11 +283,11 @@
                 if (e.target.value === this.modelValue) return;
                 this.$emit('change', this.modelValue);
             },
-            handleCompositionStart(){
+            handleCompositionStart() {
                 this.composition = true;
             },
-            handleCompositionEnd(e){
-                if(this.composition){
+            handleCompositionEnd(e) {
+                if (this.composition) {
                     this.composition = false;
                     this.handlerInput(e);
                 }
@@ -382,6 +336,12 @@
                 if (this.type !== 'textarea' || !this.autosize) return;
                 let {minRows, maxRows} = this.autosize;
                 this.expandStyle = calcTextareaHeight(this.getInputEl(), minRows, maxRows);
+            },
+            handleSuffixClick() {
+                if (this.showClearable) this.handlerClear();
+                else if (this.type === 'number' && !this.stepType && this.step) this.handlerNumberPlus()
+                else if (this.type === 'search') this.handlerSearch()
+                else if (this.type === 'password' && this.showPasswordIcon) this.passwordVisibleChange()
             },
             focus() {
                 setTimeout(() => {

@@ -18,10 +18,10 @@
 <template>
     <cl-form ref="form" layout="inline" :show-required-icon="false" label-width="0">
         <cl-form-item name="username" required>
-            <cl-input placeholder="username" prefix="cl-icon-user" v-model="username"></cl-input>
+            <cl-input placeholder="username" prefix="icon-user" v-model="username"></cl-input>
         </cl-form-item>
         <cl-form-item name="password" required>
-            <cl-input placeholder="password" prefix="cl-icon-password" v-model="password"></cl-input>
+            <cl-input placeholder="password" prefix="icon-password" v-model="password"></cl-input>
         </cl-form-item>
     </cl-form>
     <cl-button type="primary" @click="submit">SignIn</cl-button>

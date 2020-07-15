@@ -121,9 +121,9 @@
 ```html
 <template>
     <h4>属性方式</h4>
-    <cl-input placeholder="placeholder" v-model="valuePrefix" prefix="cl-icon-user-fill" style="width: 300px"></cl-input>
+    <cl-input placeholder="placeholder" v-model="valuePrefix" prefix="icon-user-fill" style="width: 300px"></cl-input>
     <br>
-    <cl-input placeholder="placeholder" v-model="valueSuffix" suffix="cl-icon-search" style="width: 300px"></cl-input>
+    <cl-input placeholder="placeholder" v-model="valueSuffix" suffix="icon-search" style="width: 300px"></cl-input>
 
     <h4>slot方式</h4>
     <cl-input placeholder="placeholder" v-model="valuePrefixSlot" style="width: 300px">

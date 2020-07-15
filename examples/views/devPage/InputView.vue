@@ -4,14 +4,17 @@
             <h2>input</h2>
             normal:<ClInput placeholder="placeholder" v-model="inputValueNormal" @change="changHandler"></ClInput>
             clearable:<ClInput placeholder="placeholder" v-model="inputValueClearable" clearable @change="changHandler"></ClInput>
-            maxLength,showLimitLabel:<ClInput placeholder="placeholder" v-model="inputValueMaxLength" :maxLength="30" showLimitLabel @change="changHandler"></ClInput>
+            maxLength,showLimitLabel,size:mini:<ClInput placeholder="placeholder" v-model="inputValueMaxLength" size="mini" :maxLength="3000" showLimitLabel @change="changHandler"></ClInput>
+            maxLength,showLimitLabel,size:small:<ClInput placeholder="placeholder" v-model="inputValueMaxLength" size="small" :maxLength="3000" showLimitLabel @change="changHandler"></ClInput>
+            maxLength,showLimitLabel,size:default:<ClInput placeholder="placeholder" v-model="inputValueMaxLength" size="default" :maxLength="3000" showLimitLabel @change="changHandler"></ClInput>
+            maxLength,showLimitLabel,size:large:<ClInput placeholder="placeholder" v-model="inputValueMaxLength" size="large" :maxLength="3000" showLimitLabel @change="changHandler"></ClInput>
             disabled:<ClInput v-model="inputValueDisabled" placeholder="placeholder" disabled @change="changHandler"></ClInput>
             mini:<ClInput v-model="inputValueMini" placeholder="placeholder" size="mini" @change="changHandler"></ClInput>
             small:<ClInput v-model="inputValueSmall" placeholder="placeholder" size="small" @change="changHandler"></ClInput>
             large:<ClInput v-model="inputValueLarge" placeholder="placeholder" size="large" @change="changHandler"></ClInput>
-            prefix<ClInput v-model="inputValuePrefix" placeholder="placeholder" prefix="cl-icon-home" @change="changHandler"></ClInput>
-            suffix<ClInput v-model="inputValueSuffix" placeholder="placeholder" suffix="cl-icon-home" @change="changHandler"></ClInput>
-            suffix,disabled<ClInput v-model="inputValueSuffixDisabled" placeholder="placeholder" suffix="cl-icon-home" disabled @change="changHandler"></ClInput>
+            prefix<ClInput v-model="inputValuePrefix" placeholder="placeholder" prefix="icon-home" @change="changHandler"></ClInput>
+            suffix<ClInput v-model="inputValueSuffix" placeholder="placeholder" suffix="icon-home" @change="changHandler"></ClInput>
+            suffix,disabled<ClInput v-model="inputValueSuffixDisabled" placeholder="placeholder" suffix="icon-home" disabled @change="changHandler"></ClInput>
             prepend<ClInput v-model="inputValuePrepend" placeholder="placeholder" @change="changHandler"><span slot="prepend">.com</span></ClInput>
             prepend,size=small<ClInput v-model="inputValuePrependSmall" placeholder="placeholder" size="small" @change="changHandler"><span slot="prepend">.com</span></ClInput>
             append<ClInput v-model="inputValueAppend" placeholder="placeholder" @change="changHandler"><span slot="append">.com</span></ClInput>
@@ -52,9 +55,11 @@
             maxLength:20<ClInput v-model="textareaValueMaxLength" size="large" placeholder="placeholder" type="textarea" :maxLength="20" showLimitLabel></ClInput>
             maxLength:20,showLimitLabel<ClInput v-model="textareaValueMaxLengthShowLimitLabel" placeholder="placeholder" type="textarea" :maxLength="20" showLimitLabel></ClInput>
             rows:5, cols:300<ClInput v-model="textareaValueRowsCols" placeholder="placeholder" type="textarea" :rows="5" :cols="30"></ClInput>
-            autosize:true<ClInput v-model="textareaValueAutosize" placeholder="placeholder" type="textarea" autosize></ClInput>
+            autosize:true<ClInput v-model="textareaValueAutosize" placeholder="placeholder" type="textarea" autosize :maxLength="20" showLimitLabel></ClInput>
             autosize:{minRows: 2, maxRows: 5}<ClInput v-model="textareaValueAutosizeObject" placeholder="placeholder" type="textarea" :autosize="{minRows: 2, maxRows: 5}"></ClInput>
+            size:mini<ClInput v-model="textareaValueSmall" placeholder="placeholder" type="textarea" size="mini"></ClInput>
             size:small<ClInput v-model="textareaValueSmall" placeholder="placeholder" type="textarea" size="small"></ClInput>
+            size:default<ClInput v-model="textareaValueSmall" placeholder="placeholder" type="textarea" size="default"></ClInput>
             size:large<ClInput v-model="textareaValueLarge" placeholder="placeholder" type="textarea" size="large"></ClInput>
         </div>
 
