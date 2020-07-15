@@ -26,7 +26,7 @@
                         `${classPrefix}__source`,
                         ((type === 'search' && suffixButton) || $slots.append) && `${classPrefix}__source-append`,
                         $slots.prepend && `${classPrefix}__source-prepend`,
-                        showSuffix && `${classPrefix}__source-suffix`,
+                        (showSuffix || clearable) && `${classPrefix}__source-suffix`,
                         showPrefix && `${classPrefix}__source-prefix`,
                    ]"
                    ref="input"
@@ -176,14 +176,14 @@
                 return this.disabled
             },
             showClearable() {
-                return this.clearable && this.modelValue && !this.isDisabled && this.hovering && this.type !== 'textarea' && !this.readonly
+                return this.clearable && !!this.modelValue && !this.isDisabled && this.hovering && this.type !== 'textarea' && !this.readonly
             },
             showSuffix() {
                 return (this.type === 'search' && !this.suffixButton) ||
                     (this.type === 'number' && this.step) ||
                     (this.type === 'password' && this.showPasswordIcon) ||
                     this.showClearable ||
-                    ((this.suffix || this.$slots.suffix || this.clearable) && ['input', 'password', 'search', 'number'].includes(this.type));
+                    ((this.suffix || this.$slots.suffix) && ['input', 'password', 'search', 'number'].includes(this.type));
             },
             //number类型 step禁用
             numberStepDisabled(){

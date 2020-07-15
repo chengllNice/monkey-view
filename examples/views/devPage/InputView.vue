@@ -1,208 +1,208 @@
 <template>
     <div class="InputView">
-        <div>
-            <h2>input</h2>
-            normal:
-            <ClInput placeholder="placeholder" v-model="inputValueNormal" @change="changHandler"></ClInput>
-            clearable:
+<!--        <div>-->
+<!--            <h2>input</h2>-->
+<!--            normal:-->
+<!--            <ClInput placeholder="placeholder" v-model="inputValueNormal" @change="changHandler"></ClInput>-->
+<!--            clearable:-->
             <ClInput placeholder="placeholder" v-model="inputValueClearable" clearable @change="changHandler"></ClInput>
-            maxLength,showLimitLabel,size:mini:
-            <ClInput placeholder="placeholder" v-model="inputValueMaxLength" size="mini" :maxLength="3000"
-                     showLimitLabel @change="changHandler"></ClInput>
-            maxLength,showLimitLabel,size:small:
-            <ClInput placeholder="placeholder" v-model="inputValueMaxLength" size="small" :maxLength="3000"
-                     showLimitLabel @change="changHandler"></ClInput>
-            maxLength,showLimitLabel,size:default:
-            <ClInput placeholder="placeholder" v-model="inputValueMaxLength" size="default" :maxLength="3000"
-                     showLimitLabel @change="changHandler"></ClInput>
-            maxLength,showLimitLabel,size:large:
-            <ClInput placeholder="placeholder" v-model="inputValueMaxLength" size="large" :maxLength="3000"
-                     showLimitLabel @change="changHandler"></ClInput>
-            disabled:
-            <ClInput v-model="inputValueDisabled" placeholder="placeholder" disabled @change="changHandler"></ClInput>
-            mini:
-            <ClInput v-model="inputValueMini" placeholder="placeholder" size="mini" @change="changHandler"></ClInput>
-            small:
-            <ClInput v-model="inputValueSmall" placeholder="placeholder" size="small" @change="changHandler"></ClInput>
-            large:
-            <ClInput v-model="inputValueLarge" placeholder="placeholder" size="large" @change="changHandler"></ClInput>
-            prefix
-            <ClInput v-model="inputValuePrefix" placeholder="placeholder" prefix="home"
-                     @change="changHandler"></ClInput>
-            suffix
-            <ClInput v-model="inputValueSuffix" placeholder="placeholder" suffix="home"
-                     @change="changHandler"></ClInput>
-            suffix,disabled
-            <ClInput v-model="inputValueSuffixDisabled" placeholder="placeholder" suffix="home" disabled
-                     @change="changHandler"></ClInput>
-            prepend
-            <ClInput v-model="inputValuePrepend" placeholder="placeholder" @change="changHandler"><span slot="prepend">.com</span>
-            </ClInput>
-            prepend,size=small
-            <ClInput v-model="inputValuePrependSmall" placeholder="placeholder" size="small" @change="changHandler">
-                <span slot="prepend">.com</span></ClInput>
-            append
-            <ClInput v-model="inputValueAppend" placeholder="placeholder" @change="changHandler"><span slot="append">.com</span>
-            </ClInput>
-            append,size=small
-            <ClInput v-model="inputValueAppendSmall" placeholder="placeholder" size="small" @change="changHandler"><span
-                    slot="append">.com</span></ClInput>
-            prepend,append, size:mini
-            <cl-input placeholder="placeholder" v-model="valuePrepend" size="mini">
-                <span slot="prepend">http://</span>
-                <span slot="append">.com</span>
-            </cl-input>
-            <br>
-            <cl-input placeholder="placeholder" v-model="valueAppend" size="mini">
-                <cl-select slot="prepend" style="width: 70px;" v-model="inputPrependSelect"
-                           :option="inputPrependSelectOptions"></cl-select>
-                <cl-select slot="append" style="width: 70px;" v-model="inputAppendSelect"
-                           :option="inputAppendSelectOptions"></cl-select>
-            </cl-input>
-            <br>
-            <cl-input placeholder="placeholder" v-model="valuePrepend" size="mini">
-                <Icon slot="append" type="setting"></Icon>
-            </cl-input>
+<!--            maxLength,showLimitLabel,size:mini:-->
+<!--            <ClInput placeholder="placeholder" v-model="inputValueMaxLength" size="mini" :maxLength="3000"-->
+<!--                     showLimitLabel @change="changHandler"></ClInput>-->
+<!--            maxLength,showLimitLabel,size:small:-->
+<!--            <ClInput placeholder="placeholder" v-model="inputValueMaxLength" size="small" :maxLength="3000"-->
+<!--                     showLimitLabel @change="changHandler"></ClInput>-->
+<!--            maxLength,showLimitLabel,size:default:-->
+<!--            <ClInput placeholder="placeholder" v-model="inputValueMaxLength" size="default" :maxLength="3000"-->
+<!--                     showLimitLabel @change="changHandler"></ClInput>-->
+<!--            maxLength,showLimitLabel,size:large:-->
+<!--            <ClInput placeholder="placeholder" v-model="inputValueMaxLength" size="large" :maxLength="3000"-->
+<!--                     showLimitLabel @change="changHandler"></ClInput>-->
+<!--            disabled:-->
+<!--            <ClInput v-model="inputValueDisabled" placeholder="placeholder" disabled @change="changHandler"></ClInput>-->
+<!--            mini:-->
+<!--            <ClInput v-model="inputValueMini" placeholder="placeholder" size="mini" @change="changHandler"></ClInput>-->
+<!--            small:-->
+<!--            <ClInput v-model="inputValueSmall" placeholder="placeholder" size="small" @change="changHandler"></ClInput>-->
+<!--            large:-->
+<!--            <ClInput v-model="inputValueLarge" placeholder="placeholder" size="large" @change="changHandler"></ClInput>-->
+<!--            prefix-->
+<!--            <ClInput v-model="inputValuePrefix" placeholder="placeholder" prefix="home"-->
+<!--                     @change="changHandler"></ClInput>-->
+<!--            suffix-->
+<!--            <ClInput v-model="inputValueSuffix" placeholder="placeholder" suffix="home"-->
+<!--                     @change="changHandler"></ClInput>-->
+<!--            suffix,disabled-->
+<!--            <ClInput v-model="inputValueSuffixDisabled" placeholder="placeholder" suffix="home" disabled-->
+<!--                     @change="changHandler"></ClInput>-->
+<!--            prepend-->
+<!--            <ClInput v-model="inputValuePrepend" placeholder="placeholder" @change="changHandler"><span slot="prepend">.com</span>-->
+<!--            </ClInput>-->
+<!--            prepend,size=small-->
+<!--            <ClInput v-model="inputValuePrependSmall" placeholder="placeholder" size="small" @change="changHandler">-->
+<!--                <span slot="prepend">.com</span></ClInput>-->
+<!--            append-->
+<!--            <ClInput v-model="inputValueAppend" placeholder="placeholder" @change="changHandler"><span slot="append">.com</span>-->
+<!--            </ClInput>-->
+<!--            append,size=small-->
+<!--            <ClInput v-model="inputValueAppendSmall" placeholder="placeholder" size="small" @change="changHandler"><span-->
+<!--                    slot="append">.com</span></ClInput>-->
+<!--            prepend,append, size:mini-->
+<!--            <cl-input placeholder="placeholder" v-model="valuePrepend" size="mini">-->
+<!--                <span slot="prepend">http://</span>-->
+<!--                <span slot="append">.com</span>-->
+<!--            </cl-input>-->
+<!--            <br>-->
+<!--            <cl-input placeholder="placeholder" v-model="valueAppend" size="mini">-->
+<!--                <cl-select slot="prepend" style="width: 70px;" v-model="inputPrependSelect"-->
+<!--                           :option="inputPrependSelectOptions"></cl-select>-->
+<!--                <cl-select slot="append" style="width: 70px;" v-model="inputAppendSelect"-->
+<!--                           :option="inputAppendSelectOptions"></cl-select>-->
+<!--            </cl-input>-->
+<!--            <br>-->
+<!--            <cl-input placeholder="placeholder" v-model="valuePrepend" size="mini">-->
+<!--                <Icon slot="append" type="setting"></Icon>-->
+<!--            </cl-input>-->
 
-            prepend,append, size:small
-            <cl-input placeholder="placeholder" v-model="valuePrepend" size="small">
-                <span slot="prepend">http://</span>
-                <span slot="append">.com</span>
-            </cl-input>
-            <br>
-            <cl-input placeholder="placeholder" v-model="valueAppend" size="small">
-                <cl-select slot="prepend" style="width: 70px;" v-model="inputPrependSelect"
-                           :option="inputPrependSelectOptions"></cl-select>
-                <cl-select slot="append" style="width: 70px;" v-model="inputAppendSelect"
-                           :option="inputAppendSelectOptions"></cl-select>
-            </cl-input>
-            <br>
-            <cl-input placeholder="placeholder" v-model="valuePrepend" size="small">
-                <Icon slot="append" type="setting"></Icon>
-            </cl-input>
+<!--            prepend,append, size:small-->
+<!--            <cl-input placeholder="placeholder" v-model="valuePrepend" size="small">-->
+<!--                <span slot="prepend">http://</span>-->
+<!--                <span slot="append">.com</span>-->
+<!--            </cl-input>-->
+<!--            <br>-->
+<!--            <cl-input placeholder="placeholder" v-model="valueAppend" size="small">-->
+<!--                <cl-select slot="prepend" style="width: 70px;" v-model="inputPrependSelect"-->
+<!--                           :option="inputPrependSelectOptions"></cl-select>-->
+<!--                <cl-select slot="append" style="width: 70px;" v-model="inputAppendSelect"-->
+<!--                           :option="inputAppendSelectOptions"></cl-select>-->
+<!--            </cl-input>-->
+<!--            <br>-->
+<!--            <cl-input placeholder="placeholder" v-model="valuePrepend" size="small">-->
+<!--                <Icon slot="append" type="setting"></Icon>-->
+<!--            </cl-input>-->
 
-            prepend,append, size:default
-            <cl-input placeholder="placeholder" v-model="valuePrepend" size="default">
-                <span slot="prepend">http://</span>
-                <span slot="append">.com</span>
-            </cl-input>
-            <br>
-            <cl-input placeholder="placeholder" v-model="valueAppend" size="default">
-                <cl-select slot="prepend" style="width: 70px;" v-model="inputPrependSelect"
-                           :option="inputPrependSelectOptions"></cl-select>
-                <cl-select slot="append" style="width: 70px;" v-model="inputAppendSelect"
-                           :option="inputAppendSelectOptions"></cl-select>
-            </cl-input>
-            <br>
-            <cl-input placeholder="placeholder" v-model="valuePrepend" size="default">
-                <Icon slot="append" type="setting"></Icon>
-            </cl-input>
+<!--            prepend,append, size:default-->
+<!--            <cl-input placeholder="placeholder" v-model="valuePrepend" size="default">-->
+<!--                <span slot="prepend">http://</span>-->
+<!--                <span slot="append">.com</span>-->
+<!--            </cl-input>-->
+<!--            <br>-->
+<!--            <cl-input placeholder="placeholder" v-model="valueAppend" size="default">-->
+<!--                <cl-select slot="prepend" style="width: 70px;" v-model="inputPrependSelect"-->
+<!--                           :option="inputPrependSelectOptions"></cl-select>-->
+<!--                <cl-select slot="append" style="width: 70px;" v-model="inputAppendSelect"-->
+<!--                           :option="inputAppendSelectOptions"></cl-select>-->
+<!--            </cl-input>-->
+<!--            <br>-->
+<!--            <cl-input placeholder="placeholder" v-model="valuePrepend" size="default">-->
+<!--                <Icon slot="append" type="setting"></Icon>-->
+<!--            </cl-input>-->
 
-            prepend,append, size:large
-            <cl-input placeholder="placeholder" v-model="valuePrepend" size="large">
-                <span slot="prepend">http://</span>
-                <span slot="append">.com</span>
-            </cl-input>
-            <br>
-            <cl-input placeholder="placeholder" v-model="valueAppend" size="large">
-                <cl-select slot="prepend" style="width: 70px;" v-model="inputPrependSelect"
-                           :option="inputPrependSelectOptions"></cl-select>
-                <cl-select slot="append" style="width: 70px;" v-model="inputAppendSelect"
-                           :option="inputAppendSelectOptions"></cl-select>
-            </cl-input>
-            <br>
-            <cl-input placeholder="placeholder" v-model="valuePrepend" size="large">
-                <Icon slot="append" type="setting"></Icon>
-            </cl-input>
+<!--            prepend,append, size:large-->
+<!--            <cl-input placeholder="placeholder" v-model="valuePrepend" size="large">-->
+<!--                <span slot="prepend">http://</span>-->
+<!--                <span slot="append">.com</span>-->
+<!--            </cl-input>-->
+<!--            <br>-->
+<!--            <cl-input placeholder="placeholder" v-model="valueAppend" size="large">-->
+<!--                <cl-select slot="prepend" style="width: 70px;" v-model="inputPrependSelect"-->
+<!--                           :option="inputPrependSelectOptions"></cl-select>-->
+<!--                <cl-select slot="append" style="width: 70px;" v-model="inputAppendSelect"-->
+<!--                           :option="inputAppendSelectOptions"></cl-select>-->
+<!--            </cl-input>-->
+<!--            <br>-->
+<!--            <cl-input placeholder="placeholder" v-model="valuePrepend" size="large">-->
+<!--                <Icon slot="append" type="setting"></Icon>-->
+<!--            </cl-input>-->
 
-            <h2>password</h2>
-            <ClInput v-model="passwordValue" placeholder="placeholder" type="password" @change="changHandler"></ClInput>
-            disabled:
-            <ClInput v-model="passwordValueDisabled" placeholder="placeholder" type="password" disabled
-                     @change="changHandler"></ClInput>
-            showPasswordIcon=false:
-            <ClInput v-model="passwordValueShowPasswordIcon" placeholder="placeholder" type="password"
-                     :showPasswordIcon="false" @change="changHandler"></ClInput>
+<!--            <h2>password</h2>-->
+<!--            <ClInput v-model="passwordValue" placeholder="placeholder" type="password" @change="changHandler"></ClInput>-->
+<!--            disabled:-->
+<!--            <ClInput v-model="passwordValueDisabled" placeholder="placeholder" type="password" disabled-->
+<!--                     @change="changHandler"></ClInput>-->
+<!--            showPasswordIcon=false:-->
+<!--            <ClInput v-model="passwordValueShowPasswordIcon" placeholder="placeholder" type="password"-->
+<!--                     :showPasswordIcon="false" @change="changHandler"></ClInput>-->
 
-            <h2>number</h2>
-            默认step=1:
-            <ClInput placeholder="placeholder" v-model="numberValue" type="number"></ClInput>
-            默认step=1,disabled
-            <ClInput placeholder="placeholder" v-model="numberValueDisabled" type="number" disabled></ClInput>
-            step=2:
-            <ClInput placeholder="placeholder" v-model="numberValueStep" type="number" :step="2"></ClInput>
-            step=false:
-            <ClInput placeholder="placeholder" v-model="numberValueStepFalse" type="number" :step="false"></ClInput>
-            stepType=right:
-            <ClInput placeholder="placeholder" v-model="numberValueStepType" type="number" stepType="right"></ClInput>
-            stepType=right,size=large:
-            <ClInput placeholder="placeholder" v-model="numberValueStepTypeLarge" type="number" stepType="right"
-                     size="large"></ClInput>
-            min:-50,max:100
-            <ClInput placeholder="placeholder" v-model="numberValueMinMax" type="number" :min="-50"
-                     :max='100'></ClInput>
-            小数位precision:2
-            <ClInput placeholder="placeholder" v-model="numberValuePrecision2" type="number" :precision="2"></ClInput>
-            小数位precision:0
-            <ClInput placeholder="placeholder" v-model="numberValuePrecision" type="number" :precision="0"></ClInput>
-            size:small:
-            <ClInput placeholder="placeholder" v-model="numberValueSmall" type="number" size="small"></ClInput>
-            size:large
-            <ClInput placeholder="placeholder" v-model="numberValueLarge" type="number" size="large"></ClInput>
+<!--            <h2>number</h2>-->
+<!--            默认step=1:-->
+<!--            <ClInput placeholder="placeholder" v-model="numberValue" type="number"></ClInput>-->
+<!--            默认step=1,disabled-->
+<!--            <ClInput placeholder="placeholder" v-model="numberValueDisabled" type="number" disabled></ClInput>-->
+<!--            step=2:-->
+<!--            <ClInput placeholder="placeholder" v-model="numberValueStep" type="number" :step="2"></ClInput>-->
+<!--            step=false:-->
+<!--            <ClInput placeholder="placeholder" v-model="numberValueStepFalse" type="number" :step="false"></ClInput>-->
+<!--            stepType=right:-->
+<!--            <ClInput placeholder="placeholder" v-model="numberValueStepType" type="number" stepType="right"></ClInput>-->
+<!--            stepType=right,size=large:-->
+<!--            <ClInput placeholder="placeholder" v-model="numberValueStepTypeLarge" type="number" stepType="right"-->
+<!--                     size="large"></ClInput>-->
+<!--            min:-50,max:100-->
+<!--            <ClInput placeholder="placeholder" v-model="numberValueMinMax" type="number" :min="-50"-->
+<!--                     :max='100'></ClInput>-->
+<!--            小数位precision:2-->
+<!--            <ClInput placeholder="placeholder" v-model="numberValuePrecision2" type="number" :precision="2"></ClInput>-->
+<!--            小数位precision:0-->
+<!--            <ClInput placeholder="placeholder" v-model="numberValuePrecision" type="number" :precision="0"></ClInput>-->
+<!--            size:small:-->
+<!--            <ClInput placeholder="placeholder" v-model="numberValueSmall" type="number" size="small"></ClInput>-->
+<!--            size:large-->
+<!--            <ClInput placeholder="placeholder" v-model="numberValueLarge" type="number" size="large"></ClInput>-->
 
-            <h2>search</h2>
-            <ClInput v-model="searchValueBase" placeholder="placeholder" type="search" @change="changHandler"
-                     @enter="changeEnter"></ClInput>
-            suffixButton
-            <ClInput v-model="searchValueSuffixButton" placeholder="placeholder" type="search" suffixButton></ClInput>
-            suffixButton,size:small
-            <ClInput v-model="searchValueSuffixButtonSmall" placeholder="placeholder" type="search" size="small"
-                     suffixButton></ClInput>
-            suffixButton,disabled
-            <ClInput v-model="searchValueSuffixButtonDisabled" placeholder="placeholder" type="search" suffixButton
-                     disabled></ClInput>
-            suffixButton:search
-            <ClInput v-model="searchValueSuffixButtonText" placeholder="placeholder" type="search"
-                     suffixButton="search"></ClInput>
+<!--            <h2>search</h2>-->
+<!--            <ClInput v-model="searchValueBase" placeholder="placeholder" type="search" @change="changHandler"-->
+<!--                     @enter="changeEnter"></ClInput>-->
+<!--            suffixButton-->
+<!--            <ClInput v-model="searchValueSuffixButton" placeholder="placeholder" type="search" suffixButton></ClInput>-->
+<!--            suffixButton,size:small-->
+<!--            <ClInput v-model="searchValueSuffixButtonSmall" placeholder="placeholder" type="search" size="small"-->
+<!--                     suffixButton></ClInput>-->
+<!--            suffixButton,disabled-->
+<!--            <ClInput v-model="searchValueSuffixButtonDisabled" placeholder="placeholder" type="search" suffixButton-->
+<!--                     disabled></ClInput>-->
+<!--            suffixButton:search-->
+<!--            <ClInput v-model="searchValueSuffixButtonText" placeholder="placeholder" type="search"-->
+<!--                     suffixButton="search"></ClInput>-->
 
 
-            <h2>textarea</h2>
-            <ClInput v-model="textareaValueBase" placeholder="placeholder" type="textarea"></ClInput>
-            disabled
-            <ClInput v-model="textareaValueDisabled" placeholder="placeholder" type="textarea" disabled></ClInput>
-            maxLength:20
-            <ClInput v-model="textareaValueMaxLength" placeholder="placeholder" type="textarea"
-                     :maxLength="20"></ClInput>
-            maxLength:20
-            <ClInput v-model="textareaValueMaxLength" size="mini" placeholder="placeholder" type="textarea"
-                     :maxLength="20" showLimitLabel></ClInput>
-            maxLength:20
-            <ClInput v-model="textareaValueMaxLength" size="small" placeholder="placeholder" type="textarea"
-                     :maxLength="20" showLimitLabel></ClInput>
-            maxLength:20
-            <ClInput v-model="textareaValueMaxLength" size="large" placeholder="placeholder" type="textarea"
-                     :maxLength="20" showLimitLabel></ClInput>
-            maxLength:20,showLimitLabel
-            <ClInput v-model="textareaValueMaxLengthShowLimitLabel" placeholder="placeholder" type="textarea"
-                     :maxLength="20" showLimitLabel></ClInput>
-            rows:5, cols:300
-            <ClInput v-model="textareaValueRowsCols" placeholder="placeholder" type="textarea" :rows="5"
-                     :cols="30"></ClInput>
-            autosize:true
-            <ClInput v-model="textareaValueAutosize" placeholder="placeholder" type="textarea" autosize :maxLength="20"
-                     showLimitLabel></ClInput>
-            autosize:{minRows: 2, maxRows: 5}
-            <ClInput v-model="textareaValueAutosizeObject" placeholder="placeholder" type="textarea"
-                     :autosize="{minRows: 2, maxRows: 5}"></ClInput>
-            size:mini
-            <ClInput v-model="textareaValueSmall" placeholder="placeholder" type="textarea" size="mini"></ClInput>
-            size:small
-            <ClInput v-model="textareaValueSmall" placeholder="placeholder" type="textarea" size="small"></ClInput>
-            size:default
-            <ClInput v-model="textareaValueSmall" placeholder="placeholder" type="textarea" size="default"></ClInput>
-            size:large
-            <ClInput v-model="textareaValueLarge" placeholder="placeholder" type="textarea" size="large"></ClInput>
-        </div>
+<!--            <h2>textarea</h2>-->
+<!--            <ClInput v-model="textareaValueBase" placeholder="placeholder" type="textarea"></ClInput>-->
+<!--            disabled-->
+<!--            <ClInput v-model="textareaValueDisabled" placeholder="placeholder" type="textarea" disabled></ClInput>-->
+<!--            maxLength:20-->
+<!--            <ClInput v-model="textareaValueMaxLength" placeholder="placeholder" type="textarea"-->
+<!--                     :maxLength="20"></ClInput>-->
+<!--            maxLength:20-->
+<!--            <ClInput v-model="textareaValueMaxLength" size="mini" placeholder="placeholder" type="textarea"-->
+<!--                     :maxLength="20" showLimitLabel></ClInput>-->
+<!--            maxLength:20-->
+<!--            <ClInput v-model="textareaValueMaxLength" size="small" placeholder="placeholder" type="textarea"-->
+<!--                     :maxLength="20" showLimitLabel></ClInput>-->
+<!--            maxLength:20-->
+<!--            <ClInput v-model="textareaValueMaxLength" size="large" placeholder="placeholder" type="textarea"-->
+<!--                     :maxLength="20" showLimitLabel></ClInput>-->
+<!--            maxLength:20,showLimitLabel-->
+<!--            <ClInput v-model="textareaValueMaxLengthShowLimitLabel" placeholder="placeholder" type="textarea"-->
+<!--                     :maxLength="20" showLimitLabel></ClInput>-->
+<!--            rows:5, cols:300-->
+<!--            <ClInput v-model="textareaValueRowsCols" placeholder="placeholder" type="textarea" :rows="5"-->
+<!--                     :cols="30"></ClInput>-->
+<!--            autosize:true-->
+<!--            <ClInput v-model="textareaValueAutosize" placeholder="placeholder" type="textarea" autosize :maxLength="20"-->
+<!--                     showLimitLabel></ClInput>-->
+<!--            autosize:{minRows: 2, maxRows: 5}-->
+<!--            <ClInput v-model="textareaValueAutosizeObject" placeholder="placeholder" type="textarea"-->
+<!--                     :autosize="{minRows: 2, maxRows: 5}"></ClInput>-->
+<!--            size:mini-->
+<!--            <ClInput v-model="textareaValueSmall" placeholder="placeholder" type="textarea" size="mini"></ClInput>-->
+<!--            size:small-->
+<!--            <ClInput v-model="textareaValueSmall" placeholder="placeholder" type="textarea" size="small"></ClInput>-->
+<!--            size:default-->
+<!--            <ClInput v-model="textareaValueSmall" placeholder="placeholder" type="textarea" size="default"></ClInput>-->
+<!--            size:large-->
+<!--            <ClInput v-model="textareaValueLarge" placeholder="placeholder" type="textarea" size="large"></ClInput>-->
+<!--        </div>-->
 
 
         <div class="viewDes">

@@ -365,18 +365,51 @@
 
 设置 `multiple`属性实现多选。多选模式下 `value`类型为数组格式，返回值也为数组格式。
 
+多选状态下设置`max-tag-count`可以实现超过折叠效果，通过设置`max-tag-text`可以实现自定义折叠的显示内容。
+
+设置`multiple-limit`可以限制多选的数量。
+
 ```html
 <template>
-    <p>{{valueMultiple}}</p>
-    <cl-select v-model="valueMultiple" multiple>
-        <cl-option v-for="item in valueBaseOption" :key="item.value" :value="item.value" :label="item.label" :disabled="item.disabled"></cl-option>
-    </cl-select>
+    <Row :gutter="16">
+        <Col>
+            <h4>基础多选</h4>
+            <p>{{valueMultiple1}}</p>
+            <cl-select v-model="valueMultiple1" multiple>
+                <cl-option v-for="item in valueBaseOption" :key="item.value" :value="item.value" :label="item.label" :disabled="item.disabled"></cl-option>
+            </cl-select>
+        </Col>
+        <Col>
+            <h4>超出折叠</h4>
+            <p>{{valueMultiple2}}</p>
+            <cl-select v-model="valueMultiple2" multiple :max-tag-count="2">
+                <cl-option v-for="item in valueBaseOption" :key="item.value" :value="item.value" :label="item.label" :disabled="item.disabled"></cl-option>
+            </cl-select>
+        </Col>
+        <Col>
+            <h4>自定义折叠内容</h4>
+            <p>{{valueMultiple3}}</p>
+            <cl-select v-model="valueMultiple3" multiple :max-tag-count="2" :max-tag-text="handleMaxTagText">
+                <cl-option v-for="item in valueBaseOption" :key="item.value" :value="item.value" :label="item.label" :disabled="item.disabled"></cl-option>
+            </cl-select>
+        </Col>
+        <Col>
+            <h4>限制多选数量</h4>
+            <p>{{valueMultiple4}}</p>
+            <cl-select v-model="valueMultiple4" multiple :multiple-limit="3">
+                <cl-option v-for="item in valueBaseOption" :key="item.value" :value="item.value" :label="item.label" :disabled="item.disabled"></cl-option>
+            </cl-select>
+        </Col>
+    </Row>
 </template>
 <script>
     export default {
       data(){
         return {
-          valueMultiple: [],
+          valueMultiple1: [],
+          valueMultiple2: [],
+          valueMultiple3: [],
+          valueMultiple4: [],
           valueBaseOption: [
             {
               label: 'Fruit',
@@ -403,6 +436,11 @@
               value: 'peach',
             },
           ]
+        }
+      },
+      methods: {
+        handleMaxTagText(num){
+            return `more ${num}`
         }
       }
     }

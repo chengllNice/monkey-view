@@ -59,18 +59,16 @@
 
 @include c(checkbox){
   color: $--color-text-default;
-  //line-height: 1;
   display: inline-block;
   position: relative;
   transition: all 0.2s;
-  //vertical-align: middle;
   margin-right: 20px;
-  font-size: 0;
 
   @include e(input){
     display: inline-block;
     vertical-align: middle;
     line-height: normal;
+    font-size: 0;
   }
 
   @include e(label){
@@ -87,8 +85,6 @@
     display: inline-block;
     position: relative;
     cursor: pointer;
-    //vertical-align: middle;
-    line-height: normal;
     transition: all $--animation-time ease-in-out;
 
     &:hover{

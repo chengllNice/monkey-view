@@ -102,7 +102,7 @@
 @include c(input){
   display: table;
   line-height: normal;
-  transition: all $--animation-time ease-in-out;
+  //transition: border-color $--animation-time ease-in-out;
   position: relative;
   //top: -1px;
   width: 100%;
@@ -129,7 +129,7 @@
     background-color: $--color-white;
     border: $--border-default;
     color: $--color-text-default;
-    transition: all $--animation-time ease-in-out;
+    transition: border-color $--animation-time ease-in-out, box-shadow $--animation-time ease-in-out;
     position: relative;
 
     &, &:after, &:before{
@@ -141,6 +141,7 @@
     }
 
     &:focus{
+      border-color: $--color-primary;
       box-shadow: 0 0 0 2px mix($--color-primary, $--color-white, $--button-hover-percent);
     }
   }

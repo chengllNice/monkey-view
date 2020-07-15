@@ -292,16 +292,16 @@
             },
             jumpMouseEnter(type) {
                 if (type === 'pre') {
-                    this.jumpPreIcon = 'icon-arrow-left';
+                    this.jumpPreIcon = 'arrow-left';
                 } else if (type === 'next') {
-                    this.jumpNextIcon = 'icon-arrow-right';
+                    this.jumpNextIcon = 'arrow-right';
                 }
             },
             jumpMouseLeave(type) {
                 if (type === 'pre') {
-                    this.jumpPreIcon = 'icon-more';
+                    this.jumpPreIcon = 'more';
                 } else if (type === 'next') {
-                    this.jumpNextIcon = 'icon-more';
+                    this.jumpNextIcon = 'more';
                 }
             },
             setPageSizeOption() {

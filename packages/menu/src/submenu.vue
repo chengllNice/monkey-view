@@ -21,7 +21,7 @@
             </div>
         </SlideTransition>
 
-        <transition v-else name="fade">
+        <transition v-else name="slideUp">
             <Drop v-show="opened && !disabled"
                       ref="dropDown"
                       :reference="this.$refs.reference"
@@ -98,9 +98,9 @@
             },
             openedIcon() {
                 if (this.parentSubMenuComponentNum && this.menuComponent.mode === 'horizontal') {
-                    return 'icon-left'
+                    return 'left'
                 }
-                return 'icon-down'
+                return 'down'
             },
             placement() {
                 if (this.parentSubMenuComponentNum) {
