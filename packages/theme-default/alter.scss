@@ -14,16 +14,6 @@
   font-size: $--font-size-default;
   transform-origin: top;
 
-
-  @include e(icon){
-
-  }
-  @include e(message){
-
-  }
-  @include e(description){
-
-  }
   @include e(close){
     position: absolute;
     right: $--alter-padding-horizontal;
@@ -39,19 +29,15 @@
   }
 
   @include m(with-des){
-    line-height: 1.5;
+    line-height: $--line-height-default;
     padding: $--alter-padding-horizontal;
     @include e(close){
       top: $--alter-padding-vertical;
       transform: translateY(0);
     }
     @include e(message, false){
-      display: block;
-      font-size: $--font-size-large;
+      font-size: $--font-size-title;
       color: $--color-text-title;
-    }
-    @include e(description, false){
-      display: block;
     }
   }
 
@@ -66,12 +52,10 @@
     }
 
     @include m(with-des, false, true){
-      padding-left: $--alter-padding-with-description-horizontal;
+      padding-left: $--alter-padding-with-icon-description-horizontal;
       @include e(icon, false){
-        left: #{$--alter-padding-with-description-horizontal / 2};
-        i{
-          font-size: 26px;
-        }
+        left: #{$--alter-padding-with-icon-description-horizontal / 2};
+        font-size: 26px;
       }
     }
   }
@@ -125,16 +109,7 @@
   @include m(dark){
     color: $--color-white;
 
-    @include e(icon, false){
-      color: $--color-white;
-    }
-    @include e(message, false){
-      color: $--color-white;
-    }
-    @include e(description, false){
-      color: $--color-white;
-    }
-    @include e(close, false){
+    @include e((icon, message, description, close), false){
       color: $--color-white;
     }
   }

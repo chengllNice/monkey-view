@@ -8,7 +8,7 @@
     ]">
         <slot v-if="!status"></slot>
         <sup :class="[`${classPrefix}__sup`]" :style="supStyle" v-if="supShow" :title="supTitle">{{supText}}</sup>
-        <span :class="[`${classPrefix}__status-text`]" v-if="status">{{statusText}}</span>
+        <span :class="[`${classPrefix}__status-text`]" v-if="status">{{text}}</span>
     </div>
 </template>
 
@@ -42,24 +42,16 @@
             }
         },
         computed: {
+            //状态点 或者 上标的显示
             supShow() {
-                return this.showZero || parseFloat(this.count) !== 0;
+                return !!this.status || this.showZero || parseFloat(this.count) !== 0
             },
             supText() {
-                let text = '';
-                if (this.dot || this.status) {
-                    text = ''
-                } else if (this.text) {
-                    text = this.text
-                } else if (parseFloat(this.count) > this.overflowCount) {
-                    text = this.overflowCount + '+'
-                } else {
-                    text = parseFloat(this.count)
-                }
+                let text = this.count !== undefined && this.count;
+                if (this.dot || this.status) text = ''
+                else if (this.text) text = this.text
+                else if (parseFloat(this.count) > this.overflowCount) text = this.overflowCount + '+'
                 return text;
-            },
-            statusText() {
-                return this.text
             },
             isColor() {
                 if (this.status) return false;
@@ -91,11 +83,5 @@
                 return this.title || this.text || parseFloat(this.count)
             }
         },
-        components: {},
-        created() {
-        },
-        mounted() {
-        },
-        methods: {}
     }
 </script>

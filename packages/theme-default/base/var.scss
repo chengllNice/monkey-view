@@ -221,6 +221,7 @@ $--upload-picture-height: 84px !default;
 
 /*-----badge-----*/
 $--badge-sup-height: 20px !default;
+$--badge-sup-font-size: $--font-size-small !default;
 
 /*-----card-----*/
 $--card-padding-vertical: 12px !default;
@@ -231,7 +232,7 @@ $--card-padding-horizontal: 18px !default;
 $--alter-padding-vertical: 8px !default;
 $--alter-padding-horizontal: 16px !default;
 $--alter-padding-with-icon-horizontal: 38px !default;
-$--alter-padding-with-description-horizontal: 69px !default;
+$--alter-padding-with-icon-description-horizontal: 69px !default;
 
 /*-----modal-----*/
 $--modal-cover-background-color: rgba(0,0,0,0.4) !default;

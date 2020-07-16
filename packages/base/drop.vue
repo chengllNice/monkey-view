@@ -12,6 +12,7 @@
     const Popper = isServer ? function () {
     } : require('popper.js/dist/umd/popper.js');
 
+
     export default {
         name: "Drop",
         props: {
@@ -57,6 +58,7 @@
                 classPrefix: Config.classPrefix + '-drop',
                 visible: false,
                 width: '',
+                boundariesElement: null,
             }
         },
         watch: {
@@ -74,17 +76,6 @@
             }
         },
         computed: {
-            selectParentEl() {
-                let parent = this.$parent;
-                while (parent) {
-                    if (parent.componentName !== 'Select') {
-                        parent = parent.$parent;
-                    } else {
-                        return parent
-                    }
-                }
-                return false
-            },
             expandStyle() {
                 return {
                     width: this.dropdownMatchSelectWidth ? this.width : 'auto',
@@ -100,6 +91,7 @@
             this.$nextTick(() => {
                 this.setWidth();
                 this.renderToHtml();
+
             });
         },
         methods: {
@@ -109,6 +101,8 @@
             },
             createPopper() {
                 if (isServer) return;
+                // this.boundariesElement = document.getElementsByClassName('views-main-content')[0];
+                // console.log(this.boundariesElement,'this.boundariesElement')
 
                 if (!/^(top|bottom|left|right)(-start|-end)?$/g.test(this.placement)) {
                     return;
@@ -124,6 +118,8 @@
                 if (this.popperJS && this.popperJS.hasOwnProperty('destroy')) {
                     this.popperJS.destroy();
                 }
+
+                // options.modifiers.preventOverflow.boundariesElement = this.boundariesElement || 'window';
 
                 options.placement = this.placement;
                 !options.modifiers.offset && (options.modifiers.offset = {});

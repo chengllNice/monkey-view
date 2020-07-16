@@ -88,6 +88,13 @@
 | target | String | 滚动监听的对象，HTML元素的类名。如果不设置则为window | - |
 | top | String, Number | 固钉距离滚动监听对象顶部的距离，默认以top定位 | 0 |
 | bottom | String, Number | 如果设置bottom则top不起作用，设置固定距离滚动监听对象底部的距离 | - |
+| fix | Boolean | 是否固定在指定位置，不随滚动而滚动 | - |
+
+### Affix event
+
+| 事件名 | 说明 | 返回值 |
+| ---- | ---- | ---- |
+| change | 图钉状态发生变化是触发 | true \ false |
 
 ### Affix slot
 

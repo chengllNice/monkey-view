@@ -71,7 +71,6 @@ export const scrollTop = (el, from = 0, to, duration = 500) => {
         if(start > end){
             dis = (start - step < end) ? end : start - step;
         }
-        console.log(el, dis,'dis',step)
 
         if(el === window){
             window.scrollTo(dis, dis);

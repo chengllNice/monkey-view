@@ -306,9 +306,15 @@ export default {
 
                 let targetPaddingTop = 5;
                 let targetPaddingBottom = 5;
-                if (scrollOuter && window.getComputedStyle) {
-                    targetPaddingTop = window.getComputedStyle(scrollOuter, null)['paddingTop'];
-                    targetPaddingBottom = window.getComputedStyle(scrollOuter, null)['paddingBottom'];
+                if (scrollOuter) {
+                    if(window.getComputedStyle){
+                        targetPaddingTop = window.getComputedStyle(scrollOuter, null)['paddingTop'];
+                        targetPaddingBottom = window.getComputedStyle(scrollOuter, null)['paddingBottom'];
+                    }
+                    else if(scrollOuter.currentStyle) {
+                        targetPaddingTop = scrollOuter.currentStyle['paddingTop'];
+                        targetPaddingBottom = scrollOuter.currentStyle['paddingBottom'];
+                    }
                 }
                 if (scrollInner) {
                     let scrollInnerHeight = scrollInner.offsetHeight;

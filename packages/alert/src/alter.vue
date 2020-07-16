@@ -13,8 +13,8 @@
                     <Icon :type="iconType"></Icon>
                 </slot>
             </span>
-            <span :class="[`${classPrefix}__message`]"><slot></slot></span>
-            <span :class="[`${classPrefix}__description`]"><slot name="description"></slot></span>
+            <div :class="[`${classPrefix}__message`]"><slot></slot></div>
+            <div :class="[`${classPrefix}__description`]"><slot name="description"></slot></div>
             <span :class="[`${classPrefix}__close`]" v-if="closable" @click="handlerClose">
                 <slot name="close">
                     <Icon type="close"></Icon>
@@ -84,14 +84,10 @@
         components: {
             Icon
         },
-        created() {
-        },
-        mounted() {
-        },
         methods: {
-            handlerClose() {
+            handlerClose(event) {
                 this.closed = true;
-                this.$emit('close')
+                this.$emit('close', event);
             }
         }
     }

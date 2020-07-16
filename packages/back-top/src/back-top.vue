@@ -18,10 +18,12 @@
     export default {
         name: "BackTop",
         props: {
+            //设置需要监听滚动的元素的类名，此类名需要唯一
             target: {
               type: String,
               default: ''
-            },//设置需要监听滚动的元素的类名，此类名需要唯一
+            },
+            //设置触发显示的高度
             height: {
                 type: [String, Number],
                 default: 400
@@ -86,27 +88,6 @@
                     scrollTopForm = this.targetElement.scrollTop;
                 }
                 scrollTop(this.targetElement, scrollTopForm, 0, this.duration);
-
-                // clearInterval(time);
-                //
-                //
-                // let allDuration = this.duration;
-                // let step = Math.ceil(scrollTop / allDuration);
-                // let duration = Math.ceil(allDuration / scrollTop);
-                // if(duration < 10){
-                //     let dis = 10 / duration;
-                //     step = step * dis;
-                //     duration = 10;
-                // }
-                // let time = setInterval(()=>{
-                //     if(scrollTop > 0){
-                //         scrollTop = scrollTop - step;
-                //         this.targetElement.scrollTop = scrollTop;
-                //     }else{
-                //         clearInterval(time);
-                //     }
-                // }, duration);
-
                 this.$emit('click');
             }
         }

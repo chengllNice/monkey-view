@@ -89,8 +89,11 @@
 
 设置 `closable` 属性可显示关闭按钮，点击可关闭警告提示，也可以通过 `name='close'` 的 `slot` 自定义关闭按钮。
 
+设置`transition`设置关闭时动画的方式，如果设置为空则没有动画。
+
 ```html
 <template>
+    <h4>默认有关闭动画</h4>
     <cl-alter closable>An info prompt</cl-alter>
     <cl-alter type="success" closable show-icon>An info prompt</cl-alter>
     <cl-alter type="warning" closable show-icon>
@@ -102,6 +105,14 @@
         <div slot="description">Content of prompt. Content of prompt. Content of prompt. Content of prompt.</div>
     </cl-alter>
     <cl-alter type="success" show-icon closable>
+        An info prompt
+        <div slot="description">Content of prompt. Content of prompt. Content of prompt. Content of prompt.</div>
+        <span slot="close">close</span>
+    </cl-alter>
+
+    <h4>不适用关闭动画</h4>
+    <cl-alter closable transition>An info prompt</cl-alter>
+    <cl-alter type="success" show-icon closable transition>
         An info prompt
         <div slot="description">Content of prompt. Content of prompt. Content of prompt. Content of prompt.</div>
         <span slot="close">close</span>
@@ -161,6 +172,7 @@
 
 | 名称 | 说明 |
 | ---- | ---- |
+| - | 自定义警告框的提示信息 |
 | icon | 自定义警告框的icon图标 |
 | description | 定义辅助性描述信息 |
 | close | 自定义关闭按钮 |

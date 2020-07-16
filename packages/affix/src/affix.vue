@@ -15,15 +15,17 @@
     export default {
         name: "Affix",
         props: {
+            //监听滚动元素的类名，需要给当前指定元素添加定位
             target: {
                 type: String
-            },//监听滚动元素的类名，需要给当前指定元素添加定位
+            },
             top: {
                 type: [String, Number],
                 default: 0
             },
             bottom: String, Number,
-            fix: Boolean,//是否固定在指定位置，不随滚动改变
+            //是否固定在指定位置，不随滚动改变
+            fix: Boolean,
         },
         data() {
             return {
@@ -51,9 +53,6 @@
                 return this.bottom !== undefined ? 'bottom' : 'top'
             },
         },
-        components: {},
-        created() {
-        },
         mounted() {
             this.$nextTick(() => {
                 let target = window;
@@ -75,6 +74,7 @@
             !this.fix && this.targetElement && off(this.targetElement, 'size', this.scrollHandler);
         },
         methods: {
+            //设置target元素的定位属性
             setTargetElementPostion() {
                 if (this.target) {
                     let targetElement = this.targetElement;
@@ -83,11 +83,12 @@
                     if (!['relative', 'absolute'].includes(targetPosition)) targetElement.style.position = 'relative';
                 }
             },
+            //获取图钉的宽高
             getSlotStyle() {
                 this.defaultSlotStyle.width = this.$refs.affixSlot.clientWidth;
                 this.defaultSlotStyle.height = this.$refs.affixSlot.clientHeight;
             },
-
+            //滚动事件
             scrollHandler() {
                 let scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
                 let innerHeight = window.innerHeight;
@@ -163,6 +164,11 @@
                     bottom: disBottom
                 }
             },
+        },
+        watch: {
+            showSeat(newVal){
+                this.$emit('change', newVal);
+            }
         }
     }
 </script>

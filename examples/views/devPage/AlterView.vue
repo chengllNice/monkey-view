@@ -1,5 +1,7 @@
 <template>
     <div class="AlterView">
+        <i class="iconfont icon-kpc-wenjiancunchukpfs"></i>
+        <i class="iconfont icon-zidingyi"></i>
         <ClAlter>alter</ClAlter>
         <ClAlter type="success">success</ClAlter>
         <ClAlter type="error">error</ClAlter>
