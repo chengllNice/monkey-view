@@ -13,7 +13,7 @@
                           :class="[`${classPrefix}__expand-icon`]"
                           @click.stop="handleExpandClick(item)">
                         <Icon :type="treeRoot.loadingIconClass"
-                              :class="[treeRoot.loadingIconClass, `${prefix}-rotate`]"
+                              :class="[treeRoot.loadingIconClass, `animation-rotate`]"
                               v-if="item.__loading"></Icon>
                         <Icon :type="treeRoot.expandIconClass"
                               :class="treeRoot.expandIconClass"
@@ -63,7 +63,6 @@
         },
         data() {
             return {
-                prefix: Config.classPrefix,
                 classPrefix: Config.classPrefix + '-tree-node',
                 parentComponent: findComponent(this, 'Tree'),
             }

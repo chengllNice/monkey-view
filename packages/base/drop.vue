@@ -16,7 +16,9 @@
     export default {
         name: "Drop",
         props: {
+            //是否和选择器同宽
             dropdownMatchSelectWidth: Boolean,
+            //选择器宽度是否为下拉框的最小宽
             isMinWidth: {
                 type: Boolean,
                 default: true
@@ -46,6 +48,7 @@
                     }
                 }
             },
+            //false渲染到当前位置 true渲染到body中 html类型渲染到指定位置
             renderHtml: {
                 type: [HTMLElement, Boolean],
                 default: function () {
@@ -91,7 +94,6 @@
             this.$nextTick(() => {
                 this.setWidth();
                 this.renderToHtml();
-
             });
         },
         methods: {

@@ -1,6 +1,5 @@
 @import "./base/var";
 @import "./config/mixins/index.scss";
-@import "./config/mixins/buttonMixins";
 
 @include c(button-group){
   display: inline-block;
@@ -30,20 +29,21 @@
     &:not(:last-child){
       margin-right: -1px;
     }
-  }
-  @include m(primary, false){
-    border-left-color: mix($--color-black, $--button-border-color-primary, $--button-active-percent);
-  }
-  @include m(success, false){
-    border-left-color: mix($--color-black, $--button-border-color-success, $--button-active-percent);
-  }
-  @include m(info, false){
-    border-left-color: mix($--color-black, $--button-border-color-info, $--button-active-percent);
-  }
-  @include m(danger, false){
-    border-left-color: mix($--color-black, $--button-border-color-danger, $--button-active-percent);
-  }
-  @include m(warning, false){
-    border-left-color: mix($--color-black, $--button-border-color-warning, $--button-active-percent);
+
+    @include m(type-primary, false, true){
+      border-left-color: mix($--color-black, $--button-border-color-primary, $--button-active-percent);
+    }
+    @include m(type-success, false, true){
+      border-left-color: mix($--color-black, $--button-border-color-success, $--button-active-percent);
+    }
+    @include m(type-info, false, true){
+      border-left-color: mix($--color-black, $--button-border-color-info, $--button-active-percent);
+    }
+    @include m(type-danger, false, true){
+      border-left-color: mix($--color-black, $--button-border-color-danger, $--button-active-percent);
+    }
+    @include m(type-warning, false, true){
+      border-left-color: mix($--color-black, $--button-border-color-warning, $--button-active-percent);
+    }
   }
 }

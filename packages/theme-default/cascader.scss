@@ -2,6 +2,13 @@
 @import "./config/mixins/index.scss";
 
 @include c(cascader){
+  @include e(reference-input){
+    cursor: pointer;
+    input{
+      cursor: pointer;
+    }
+  }
+
   @include e(drop-down-inner){
     position: relative;
     border: $--border-default;

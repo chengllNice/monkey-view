@@ -5,7 +5,7 @@
             type === 'textarea' && `${classPrefixTextArea}`,
             inputSize && type !== 'textarea' && `${classPrefix}--${inputSize}`,
             inputSize && type === 'textarea' && `${classPrefixTextArea}--${inputSize}`,
-            isDisabled && 'is-disabled'
+            isDisabled && 'is-disabled',
         ]"
          @mouseenter="hovering = true"
          @mouseleave="hovering = false">

@@ -3,6 +3,7 @@
         <div :class="[`${classPrefix}__reference`]" ref="reference">
             <slot>
                 <sn-input v-model="inputValue"
+                          :class="[`${classPrefix}__reference-input`]"
                           :disabled="disabled"
                           :size="size"
                           :readonly="readonly"
@@ -14,8 +15,9 @@
                           @change="handleInputChange"
                           @click.native="handleInputClick">
                     <template slot="suffix">
-                        <Icon v-if="showClear" type="error-fill" :class="[`${classPrefix}__suffix-icon`]" @click.stop="handleInputClear"></Icon>
-                        <Icon v-else
+                        <Icon v-show="showClear" type="error-fill"
+                              @click.stop="handleInputClear"></Icon>
+                        <Icon v-show="!showClear"
                               type="down"
                               :class="[
                                   `${classPrefix}__suffix-icon`,
@@ -28,16 +30,16 @@
 
         <transition :name="transition">
             <Drop v-show="visible && !disabled"
-                      ref="dropDown"
-                      :reference="this.$refs.reference"
-                      :isMinWidth="false"
-                      :dropdownMatchSelectWidth="false"
-                      :render-html="renderHtml"
-                      v-model="visible">
+                  ref="dropDown"
+                  :reference="this.$refs.reference"
+                  :isMinWidth="false"
+                  :dropdownMatchSelectWidth="false"
+                  :render-html="renderHtml"
+                  v-model="visible">
                 <div :class="[`${classPrefix}__drop-down-inner`]">
                     <div v-if="loading" :class="[`${classPrefix}__loading`]">
                         {{computedLoadingText}}
-                        <Icon v-if="!loadingText" type="loading" :class="[`${prefix}-rotate`]"></Icon>
+                        <Icon v-if="!loadingText" type="loading" class="animation-rotate"></Icon>
                     </div>
                     <div v-else-if="showEmpty" :class="[`${classPrefix}__empty`]">{{computedEmptyText}}</div>
                     <cascader-panel v-else :data="currentData"></cascader-panel>
@@ -102,7 +104,6 @@
         },
         data() {
             return {
-                prefix: Config.classPrefix,
                 classPrefix: Config.classPrefix + '-cascader',
                 componentName: 'Cascader',
                 inputValue: '',
@@ -113,30 +114,30 @@
             }
         },
         computed: {
-            computedPlaceholder(){
+            computedPlaceholder() {
                 return this.placeholder ? this.placeholder : this.t('cl.cascader.placeholder');
             },
-            computedEmptyText(){
+            computedEmptyText() {
                 return this.emptyText ? this.emptyText : this.t('cl.cascader.emptyData');
             },
-            computedLoadingText(){
+            computedLoadingText() {
                 return this.loadingText ? this.loadingText : this.t('cl.cascader.loading');
             },
-            readonly(){
-                if(this.disabled) return true;
-                if(this.filterable) return false;
+            readonly() {
+                if (this.disabled) return true;
+                if (this.filterable) return false;
                 return true;
             },
-            showFilterablePanel(){
+            showFilterablePanel() {
                 return this.filterable && this.openFilterable
             },
-            showEmpty(){
-                if(this.showFilterablePanel){
+            showEmpty() {
+                if (this.showFilterablePanel) {
                     return !this.currentFilterableData.length;
                 }
                 return !this.currentData.length;
             },
-            showClear(){
+            showClear() {
                 return this.clearable && this.inputValue && this.isHover
             }
         },
@@ -150,24 +151,24 @@
 
         },
         methods: {
-            setInputValue(){
-                if(this.format){
+            setInputValue() {
+                if (this.format) {
                     let result = this.format(this.currentLabel, this.currentSelectedData);
-                    if(typeof result === 'string'){
+                    if (typeof result === 'string') {
                         this.inputValue = result;
                     }
-                }else{
+                } else {
                     this.inputValue = this.currentLabel.join(' / ');
                 }
             },
-            handleInputFocus(){
-                if(this.disabled || !this.filterable) return;
+            handleInputFocus() {
+                if (this.disabled || !this.filterable) return;
                 this.dropDownVisible(true);
             },
-            handleInputBlur(){
+            handleInputBlur() {
                 // this.handleValueChange(this.currentData, this.currentValue);
             },
-            handleInputClear(){
+            handleInputClear() {
                 this.inputValue = '';
                 this.currentValue = [];
                 this.currentLabel = [];
@@ -176,16 +177,16 @@
                 this.$emit('change', [], []);
                 this.$emit('clear');
             },
-            handleInputChange(value){
+            handleInputChange(value) {
                 this.openFilterable = !!value;
                 this.currentFilterableData = [];
-                if(this.filterable){
+                if (this.filterable) {
                     //用户搜索改变
                     this.currentFilterableData = this.searchFilter(value);
                 }
             },
             handleInputClick() {
-                if(this.disabled || this.filterable) return;
+                if (this.disabled || this.filterable) return;
                 this.dropDownVisible(!this.visible);
             },
             dropDownVisible(visible) {
@@ -202,16 +203,16 @@
                     }
                 }
                 //如果是可搜索 在失去焦点时重置label数据
-                if(this.filterable){
+                if (this.filterable) {
                     this.handleValueChange(this.currentData, this.currentValue);
                 }
-                this.$emit('click-outside',event);
+                this.$emit('click-outside', event);
                 this.dropDownVisible(false);
             },
         },
         watch: {
             data: {
-                handler(){
+                handler() {
                     this.initCurrentData();
                 },
                 deep: true,

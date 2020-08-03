@@ -1,5 +1,5 @@
 <template>
-    <button @click="clickHandler"
+    <button @click="handleClick"
             :disabled="disabled"
             :class="[
                 `${classPrefix}`,
@@ -13,7 +13,7 @@
                     'is-loading': loading
                 }
             ]">
-        <Icon v-if="loading" type="loading" :class="`${prefix}-rotate`"></Icon>
+        <Icon v-if="loading" type="loading" class="animation-rotate"></Icon>
         <Icon v-else-if="icon" :type="icon"></Icon>
         <span v-if="$slots.default"><slot></slot></span>
     </button>
@@ -48,7 +48,6 @@
         },
         data() {
             return {
-                prefix: Config.classPrefix,
                 classPrefix: Config.classPrefix + '-button',
                 onlyIconCircle: true,//是否只是icon的circle
             }
@@ -75,7 +74,7 @@
                     })
                 }
             },
-            clickHandler(event) {
+            handleClick(event) {
                 if (this.disabled || this.loading) return;
                 this.$emit('click', event);
             }

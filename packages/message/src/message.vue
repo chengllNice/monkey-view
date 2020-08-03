@@ -13,7 +13,7 @@
                   :type="iconType"
                   :class="[
                       `${classPrefix}__icon`,
-                      type === 'loading' && `${prefix}-rotate`,
+                      type === 'loading' && `animation-rotate`,
                   ]">
             </Icon>
             <span :class="[`${classPrefix}__content`]" v-html="content"></span>
@@ -29,7 +29,6 @@
         name: "Message",
         data() {
             return {
-                prefix: Config.classPrefix,
                 classPrefix: Config.classPrefix + '-message',
                 visible: false,
                 type: 'info',

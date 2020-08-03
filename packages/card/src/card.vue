@@ -48,11 +48,5 @@
                 return {'padding': parseFloat(this.bodyPadding) + 'px'}
             }
         },
-        components: {},
-        created() {
-        },
-        mounted() {
-        },
-        methods: {}
     }
 </script>
