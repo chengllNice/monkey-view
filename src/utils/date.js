@@ -197,7 +197,6 @@ export const dateOnMonth = (forYear, forMonth) => {
                 isNowMonth: false,
                 key: dateFormat(firstDateCopy),
                 originDate: dateFormat(firstDateCopy),
-                week: getWeekNumber(firstDateCopy),
             });
         }
         result.reverse();
@@ -211,7 +210,6 @@ export const dateOnMonth = (forYear, forMonth) => {
         isNowMonth: true,
         key: dateFormat(firstDate),
         originDate: dateFormat(firstDate),
-        week: getWeekNumber(firstDate),
     });
     for (let i = 1; i < currentTotalDay; i++) {
         firstDate.setDate(firstDate.getDate() + 1);
@@ -223,7 +221,6 @@ export const dateOnMonth = (forYear, forMonth) => {
             isNowMonth: true,
             key: dateFormat(firstDate),
             originDate: dateFormat(firstDate),
-            week: getWeekNumber(firstDate),
         });
     }
 
@@ -241,7 +238,6 @@ export const dateOnMonth = (forYear, forMonth) => {
                 isNowMonth: false,
                 key: dateFormat(endDateCopy),
                 originDate: dateFormat(endDateCopy),
-                week: getWeekNumber(endDateCopy),
             });
         }
     }
@@ -309,10 +305,13 @@ export const getWeekNumber = (date) => {
     let nowDay = nowDate.getDay();
     if(nowDay >= 4){
         nowDate.setDate(_nowDate - (nowDate.getDay() - 4));
-        return computedWeekNumber(nowDate)
     }else {
         nowDate.setDate(_nowDate + (4 - nowDate.getDay()));
-        return computedWeekNumber(nowDate)
+    }
+    return {
+        year: nowDate.getFullYear(),
+        month: nowDate.getMonth() + 1,
+        week: computedWeekNumber(nowDate),
     }
 };
 
@@ -327,28 +326,39 @@ export const getWeekNumberInfo = (weekNumberInfo, format) => {
     let formatMatch = format.match(/(\S*)YYYY(\S*)WW(\S*)/);
     let yearReg = new RegExp(`${formatMatch[1]}(\\d*)${formatMatch[2]}`);
     let weekReg = new RegExp(`${formatMatch[2]}(\\d*)${formatMatch[3]}`);
-    let year = weekNumberInfo.match(yearReg) ? weekNumberInfo.match(yearReg)[1] : new Date(weekNumberInfo).getFullYear();
-    let week = weekNumberInfo.match(yearReg) ? weekNumberInfo.match(weekReg)[1] : getWeekNumber(weekNumberInfo);
+
+    let regResult = weekNumberInfo.match(yearReg);
+    let year;
+    let month;
+    let week;
+    if(regResult){
+        year = weekNumberInfo.match(yearReg)[1];
+        week = weekNumberInfo.match(weekReg)[1];
 
 
-    let date = new Date(`${year}-01-01`);
-    let startDay = date.getDay();
-    // 获取本年中第一个周六所在的日期
-    while (startDay !== 6){
-        date.setDate(date.getDate() + 1);
-        startDay = date.getDay();
-    }
-    // 获取每一个周六得日期并获取周数
-    let month = 1;
-    let _week = 1;
-    while (month < 12 && parseInt(_week) !== parseInt(week)){
-        _week = getWeekNumber(date.setDate(date.getDate() + 7));
-        month = date.getMonth() + 1;
+        //根据周数反推月数
+
+        let m = week * 7 * 24 * 60 * 60 * 1000;
+
+        let startDate = new Date(`${year}-01-01`);
+        let date = new Date(`${year}-01-01`);
+        let startDay = date.getDay();
+        if(startDay <= 4){
+            startDate.setDate(1 - startDay);
+        }else {
+            startDate.setDate(7 - startDay);
+        }
+        let currentDate = new Date(startDate.getTime() + m);
+        month = currentDate.getMonth() + 1;
+    }else {
+        year = getWeekNumber(weekNumberInfo).year;
+        month = getWeekNumber(weekNumberInfo).month;
+        week = getWeekNumber(weekNumberInfo).week;
     }
     return {
         year: year,
         month: zero(month),
-        weekNumber: week
+        weekNumber: zero(week)
     };
 };
 

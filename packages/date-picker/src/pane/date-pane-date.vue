@@ -82,7 +82,7 @@
         computed: {
             isWeekSelect(){
                 return function (date) {
-                    if(getWeekNumber(date.originDate) === this.selectWeekNumber.weekNumber && date.year === this.selectWeekNumber.year){
+                    if(getWeekNumber(date.originDate).week === this.selectWeekNumber.weekNumber && date.year === this.selectWeekNumber.year){
                         return true;
                     }
                     return false;
@@ -111,7 +111,7 @@
                 this.dateList.forEach(row => {
                     //以周六为基准算当前是第几周
                     weekNumbers.push({
-                        week: getWeekNumber(row[6].originDate),
+                        week: getWeekNumber(row[6].originDate).week,
                         year: row[6].year,
                         month: row[6].month
                     });
