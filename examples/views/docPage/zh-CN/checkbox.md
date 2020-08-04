@@ -1,5 +1,5 @@
 # Checkbox 复选框
-s
+
 复选框。一组可选项中进行多选。也可单独使用，表示某种状态的切换。
 
 ## 代码示例
@@ -12,7 +12,7 @@ s
 ```html
 <template>
     <div>
-        <cl-checkbox v-model="single">Checkbox</cl-checkbox>
+        <Checkbox v-model="single">Checkbox</Checkbox>
         <p>{{single}}</p>
     </div>
 </template>
@@ -35,7 +35,7 @@ s
 
 ```html
 <template>
-    <cl-checkbox v-model="singleCustom" true-value="1" false-value="0">自定义选中和取消选中的值</cl-checkbox>
+    <Checkbox v-model="singleCustom" true-value="1" false-value="0">自定义选中和取消选中的值</Checkbox>
     <p>{{singleCustom}}</p>
 </template>
 <script>
@@ -57,21 +57,21 @@ s
 
 ```html
 <template>
-    <cl-row>
-        <cl-col>
-            <cl-checkbox-group v-model="group">
-                <cl-checkbox label="apple">Apple</cl-checkbox>
-                <cl-checkbox label="orange">Orange</cl-checkbox>
-                <cl-checkbox label="banana">Banana</cl-checkbox>
-                <cl-checkbox label="melon">Melon</cl-checkbox>
-            </cl-checkbox-group>
+    <Row>
+        <Col>
+            <CheckboxGroup v-model="group">
+                <Checkbox label="apple">Apple</Checkbox>
+                <Checkbox label="orange">Orange</Checkbox>
+                <Checkbox label="banana">Banana</Checkbox>
+                <Checkbox label="melon">Melon</Checkbox>
+            </CheckboxGroup>
             <p>{{group}}</p>
-        </cl-col>
-        <cl-col>
-            <cl-checkbox-group v-model="group1" :options="groupOptions"></cl-checkbox-group>
+        </Col>
+        <Col>
+            <CheckboxGroup v-model="group1" :options="groupOptions"></CheckboxGroup>
             <p>{{group1}}</p>
-        </cl-col>
-    </cl-row>
+        </Col>
+    </Row>
 </template>
 <script>
     export default {
@@ -113,24 +113,24 @@ s
 ```html
 <template>
     <h4>单独使用禁用</h4>
-    <cl-checkbox disabled  v-model="disabledSingle">DisabledCheckbox</cl-checkbox>
+    <Checkbox disabled  v-model="disabledSingle">DisabledCheckbox</Checkbox>
     <p>{{disabledSingle}}</p>
 
     <h4>组合使用禁用</h4>
-    <cl-checkbox-group disabled v-model="disabledGroup" :options="disabledGroupOptions"></cl-checkbox-group>
+    <Checkbox-group disabled v-model="disabledGroup" :options="disabledGroupOptions"></Checkbox-group>
     <p>{{disabledGroup}}</p>
 
     <h4>组合使用禁用指定项</h4>
-    <cl-checkbox-group v-model="disabledGroup1" :options="disabledGroupOptions"></cl-checkbox-group>
+    <Checkbox-group v-model="disabledGroup1" :options="disabledGroupOptions"></Checkbox-group>
     <p>{{disabledGroup1}}</p>
 
     <h4>组合使用禁用指定项</h4>
-    <cl-checkbox-group v-model="disabledGroup2">
-        <cl-checkbox label="apple">Apple</cl-checkbox>
-        <cl-checkbox label="orange">Orange</cl-checkbox>
-        <cl-checkbox label="banana" disabled>Banana</cl-checkbox>
-        <cl-checkbox label="melon">Melon</cl-checkbox>
-    </cl-checkbox-group>
+    <Checkbox-group v-model="disabledGroup2">
+        <Checkbox label="apple">Apple</Checkbox>
+        <Checkbox label="orange">Orange</Checkbox>
+        <Checkbox label="banana" disabled>Banana</Checkbox>
+        <Checkbox label="melon">Melon</Checkbox>
+    </Checkbox-group>
     <p>{{disabledGroup2}}</p>
 </template>
 <script>
@@ -175,17 +175,17 @@ s
 
 ```html
 <template>
-    <cl-checkbox v-model="controlChecked" :disabled="controlDisabled">Checkbox</cl-checkbox>
+    <Checkbox v-model="controlChecked" :disabled="controlDisabled">Checkbox</Checkbox>
     <p>controlChecked: {{controlChecked}}</p>
     <p>controlDisabled: {{controlDisabled}}</p>
-    <cl-switch width="90" v-model="controlChecked">
+    <Switch width="90" v-model="controlChecked">
         <template slot="open">Checked</template>
         <template slot="close">UnChecked</template>
-    </cl-switch>
-    <cl-switch width="90" v-model="controlDisabled">
+    </Switch>
+    <Switch width="90" v-model="controlDisabled">
         <template slot="open">Disabled</template>
         <template slot="close">UnDisabled</template>
-    </cl-switch>
+    </Switch>
 </template>
 <script>
     export default {
@@ -208,9 +208,9 @@ s
 
 ```html
 <template>
-    <cl-checkbox v-model="checkboxAll" :indeterminate="indeterminateAll" @change="checkboxAllChange">全选</cl-checkbox>
+    <Checkbox v-model="checkboxAll" :indeterminate="indeterminateAll" @change="checkboxAllChange">全选</Checkbox>
     <br>
-    <cl-checkbox-group v-model="checkboxGroupAll" :options="checkboxGroupAllOption" @change="checkboxGroupAllChange"></cl-checkbox-group>
+    <Checkbox-group v-model="checkboxGroupAll" :options="checkboxGroupAllOption" @change="checkboxGroupAllChange"></Checkbox-group>
 </template>
 <script>
     export default {
@@ -275,10 +275,10 @@ s
 
 ```html
 <template>
-    <cl-checkbox v-model="singleMini" size="mini">Mini</cl-checkbox>
-    <cl-checkbox v-model="singleSmall" size="small">Small</cl-checkbox>
-    <cl-checkbox v-model="singleDefault">Default</cl-checkbox>
-    <cl-checkbox v-model="singleLarge" size="large">Large</cl-checkbox>
+    <Checkbox v-model="singleMini" size="mini">Mini</Checkbox>
+    <Checkbox v-model="singleSmall" size="small">Small</Checkbox>
+    <Checkbox v-model="singleDefault">Default</Checkbox>
+    <Checkbox v-model="singleLarge" size="large">Large</Checkbox>
 </template>
 <script>
     export default {

@@ -101,7 +101,7 @@
             clearable: Boolean,
             suffix: {
                 type: String,
-                default: 'icon-time'
+                default: 'time'
             },
             transition: {
                 type: String,

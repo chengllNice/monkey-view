@@ -11,14 +11,14 @@
 
 ```html
 <template>
-    <cl-row :gutter="10">
-        <cl-col>
-            <cl-cascader v-model="valueBase" :data="data"></cl-cascader>
-        </cl-col>
-        <cl-col>
-            <cl-cascader v-model="valueBase"></cl-cascader>
-        </cl-col>
-    </cl-row>
+    <Row :gutter="10">
+        <Col>
+            <Cascader v-model="valueBase" :data="data"></Cascader>
+        </Col>
+        <Col>
+            <Cascader v-model="valueBase"></Cascader>
+        </Col>
+    </Row>
 </template>
 <script>
     export default {
@@ -88,20 +88,20 @@
 
 ```html
 <template>
-    <cl-row :gutter="10">
-        <cl-col>
-            <cl-cascader v-model="valueSizeMini" :data="data" size="mini"></cl-cascader>
-        </cl-col>
-        <cl-col>
-            <cl-cascader v-model="valueSizeSmall" :data="data" size="small"></cl-cascader>
-        </cl-col>
-        <cl-col>
-            <cl-cascader v-model="valueSizeDefault" :data="data"></cl-cascader>
-        </cl-col>
-        <cl-col>
-            <cl-cascader v-model="valueSizeLarge" :data="data" size="large"></cl-cascader>
-        </cl-col>
-    </cl-row>
+    <Row :gutter="10">
+        <Col>
+            <Cascader v-model="valueSizeMini" :data="data" size="mini"></Cascader>
+        </Col>
+        <Col>
+            <Cascader v-model="valueSizeSmall" :data="data" size="small"></Cascader>
+        </Col>
+        <Col>
+            <Cascader v-model="valueSizeDefault" :data="data"></Cascader>
+        </Col>
+        <Col>
+            <Cascader v-model="valueSizeLarge" :data="data" size="large"></Cascader>
+        </Col>
+    </Row>
 </template>
 <script>
     export default {
@@ -174,16 +174,16 @@
 
 ```html
 <template>
-    <cl-row :gutter="10">
-        <cl-col>
+    <Row :gutter="10">
+        <Col>
             value: {{valueDisabled}}
-            <cl-cascader v-model="valueDisabled" :data="data" disabled></cl-cascader>
-        </cl-col>
-        <cl-col>
+            <Cascader v-model="valueDisabled" :data="data" disabled></Cascader>
+        </Col>
+        <Col>
             value: {{valueDisabled1}}
-            <cl-cascader v-model="valueDisabled1" :data="data"></cl-cascader>
-        </cl-col>
-    </cl-row>
+            <Cascader v-model="valueDisabled1" :data="data"></Cascader>
+        </Col>
+    </Row>
 </template>
 <script>
     export default {
@@ -256,7 +256,7 @@
 ```html
 <template>
     value: {{value}}
-    <cl-cascader v-model="value" :data="data" clearable></cl-cascader>
+    <Cascader v-model="value" :data="data" clearable></Cascader>
 </template>
 <script>
     export default {
@@ -327,7 +327,7 @@
 ```html
 <template>
     value: {{value}}
-    <cl-cascader v-model="value" :data="data"></cl-cascader>
+    <Cascader v-model="value" :data="data"></Cascader>
 </template>
 <script>
     export default {
@@ -397,7 +397,7 @@
 ```html
 <template>
     value: {{value}}
-    <cl-cascader v-model="value" :data="data" trigger="hover"></cl-cascader>
+    <Cascader v-model="value" :data="data" trigger="hover"></Cascader>
 </template>
 <script>
     export default {
@@ -467,7 +467,7 @@
 ```html
 <template>
     value: {{value}}
-    <cl-cascader v-model="value" :data="data" change-on-select></cl-cascader>
+    <Cascader v-model="value" :data="data" change-on-select></Cascader>
 </template>
 <script>
     export default {
@@ -536,7 +536,7 @@
 
 ```html
 <template>
-    <cl-cascader v-model="valueSearch" :data="data" :load-data="handleLoadData"></cl-cascader>
+    <Cascader v-model="valueSearch" :data="data" :load-data="handleLoadData"></Cascader>
 </template>
 <script>
     export default {
@@ -626,7 +626,7 @@
 
 ```html
 <template>
-    <cl-cascader v-model="value" :data="data" :format-label="handleFormatLabel"></cl-cascader>
+    <Cascader v-model="value" :data="data" :format-label="handleFormatLabel"></Cascader>
 </template>
 <script>
     export default {
@@ -705,7 +705,7 @@
 
 ```html
 <template>
-    <cl-cascader v-model="valueSearch" :data="data" :format="handleFormat"></cl-cascader>
+    <Cascader v-model="valueSearch" :data="data" :format="handleFormat"></Cascader>
 </template>
 <script>
     export default {
@@ -780,9 +780,9 @@
 
 ```html
 <template>
-    <cl-button @click="handleLoading" type="primary">开启数据加载</cl-button>
+    <Button @click="handleLoading" type="primary">开启数据加载</Button>
     <div style="height: 10px;"></div>
-    <cl-cascader v-model="value" :data="data" :loading="loading"></cl-cascader>
+    <Cascader v-model="value" :data="data" :loading="loading"></Cascader>
 </template>
 <script>
     export default {
@@ -828,7 +828,7 @@
 ```html
 <template>
     value: {{value}}
-    <cl-cascader v-model="value" filterable :data="data"></cl-cascader>
+    <Cascader v-model="value" filterable :data="data"></Cascader>
 </template>
 <script>
     export default {
@@ -899,7 +899,7 @@
 <template>
     value: {{value}}
     <br>
-    <cl-cascader-panel v-model="value" :data="data"></cl-cascader-panel>
+    <CascaderPanel v-model="value" :data="data"></CascaderPanel>
 </template>
 <script>
     export default {
@@ -962,6 +962,85 @@
 :::
 
 
+:::demo 自定义触发元素
+
+通过`slot`可以自定义触发元素。
+
+```html
+<template>
+    <p>value: {{value}}</p>
+    <p>label: {{label}}</p>
+    <Cascader v-model="value" :data="data" @change="handleChange">
+        <Button type="text">选择</Button>
+    </Cascader>
+</template>
+<script>
+    export default {
+        data(){
+            return {
+                value: [],
+                label: '未选择',
+                data:  [
+                    {
+                        value: 'beijing',
+                        label: '北京',
+                        children: [
+                           {
+                               value: 'haidian',
+                               label: '海淀区',
+                           },
+                           {
+                               value: 'chaoyang',
+                               label: '朝阳区',
+                           },
+                           {
+                               value: 'changping',
+                               label: '昌平区',
+                           }
+                        ]
+                    },
+                    {
+                        value: 'henan',
+                        label: '河南',
+                        children: [
+                            {
+                                value: 'xuchang',
+                                label: '许昌市',
+                                children: [
+                                    {
+                                        value: 'xiangchengxian',
+                                        label: '襄城县',
+                                    },
+                                    {
+                                         value: 'xuchangxian',
+                                         label: '许昌县',
+                                    },
+                                    {
+                                        value: 'linyingxian',
+                                        label: '临颍县',
+                                    }
+                                ]
+                            },
+                            {
+                                value: 'pingdingshan',
+                                label: '平顶山市',
+                            },
+                        ]
+                    },
+                ]
+            }
+        },
+        methods: {
+            handleChange(value, selectedData){
+                this.label = selectedData.map( i => i.label ).join(' / ');
+            }
+        }
+    }
+</script>
+```
+:::
+
+
 
 
 ## API
@@ -1002,7 +1081,7 @@
 | 属性 | 类型 | 说明 | 默认值 |
 | ---- | ---- | ---- | ---- |
 | value | Array | 绑定的值，可以使用v-model进行双向绑定。数组类型。值的顺序为父级-子级的关系。 | - |
-| data | Array| 数据。属性`value` `label` `disabled` `last`(当前是否为叶子节点，在动态加载数据时判断是否可加载子项) | - |
+| data | Array| 数据，属性`value` `label` `disabled` `last`(当前是否为叶子节点，在动态加载数据时判断是否可加载子项) | - |
 | format-label | Function | 定义如何显示label,参数为当前项数据,返回类型为字符串 | - |
 | trigger | String | 定义如何触发子项的展开，可选值 `click` `hover` | click |
 | changeOnSelect | Boolean | 定义改变即选择，可以选择任意节点的数据，不必须是叶子节点的数据 | - |

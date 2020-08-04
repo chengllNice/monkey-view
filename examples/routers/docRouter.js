@@ -8,6 +8,7 @@ const routerTypes = [
     'install',
     'quick-start',
     'button',
+    'icon',
     'layout',
     'menu',
     'badge',

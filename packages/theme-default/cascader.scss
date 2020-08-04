@@ -62,7 +62,7 @@
     padding-right: 30px;
     cursor: pointer;
     position: relative;
-    &:not(&-diabled):hover{
+    &:not(&-disabled):hover{
       background-color: $--background-color-hover;
     }
   }

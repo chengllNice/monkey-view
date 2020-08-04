@@ -11,10 +11,10 @@
 
 ```html
 <template>
-    <cl-alter>Info Text</cl-alter>
-    <cl-alter type="success">Success Text</cl-alter>
-    <cl-alter type="error">Error Text</cl-alter>
-    <cl-alter type="warning">Warning Text</cl-alter>
+    <Alter>Info Text</Alter>
+    <Alter type="success">Success Text</Alter>
+    <Alter type="error">Error Text</Alter>
+    <Alter type="warning">Warning Text</Alter>
 </template>
 ```
 :::
@@ -26,22 +26,22 @@
 
 ```html
 <template>
-    <cl-alter>
+    <Alter>
         alter
         <div slot="description">Content of prompt. Content of prompt. Content of prompt. Content of prompt.</div>
-    </cl-alter>
-    <cl-alter type="success">
+    </Alter>
+    <Alter type="success">
         success
         <div slot="description">Content of prompt. Content of prompt. Content of prompt. Content of prompt.</div>
-    </cl-alter>
-    <cl-alter type="error">
+    </Alter>
+    <Alter type="error">
         error
         <div slot="description">Content of prompt. Content of prompt. Content of prompt. Content of prompt.</div>
-    </cl-alter>
-    <cl-alter type="warning">
+    </Alter>
+    <Alter type="warning">
         warning
         <div slot="description">Content of prompt. Content of prompt. Content of prompt. Content of prompt.</div>
-    </cl-alter>
+    </Alter>
 </template>
 ```
 :::
@@ -54,31 +54,31 @@
 
 ```html
 <template>
-    <cl-alter type="info" show-icon>An info prompt</cl-alter>
-    <cl-alter type="success" show-icon>An info prompt</cl-alter>
-    <cl-alter type="error" show-icon>An info prompt</cl-alter>
-    <cl-alter type="warning" show-icon>An info prompt</cl-alter>
-    <cl-alter type="info" show-icon>
+    <Alter type="info" show-icon>An info prompt</Alter>
+    <Alter type="success" show-icon>An info prompt</Alter>
+    <Alter type="error" show-icon>An info prompt</Alter>
+    <Alter type="warning" show-icon>An info prompt</Alter>
+    <Alter type="info" show-icon>
         An info prompt
         <div slot="description">Content of prompt. Content of prompt. Content of prompt. Content of prompt.</div>
-    </cl-alter>
-    <cl-alter type="success" show-icon>
+    </Alter>
+    <Alter type="success" show-icon>
         An info prompt
         <div slot="description">Content of prompt. Content of prompt. Content of prompt. Content of prompt.</div>
-    </cl-alter>
-    <cl-alter type="error" show-icon>
+    </Alter>
+    <Alter type="error" show-icon>
         An info prompt
         <div slot="description">Content of prompt. Content of prompt. Content of prompt. Content of prompt.</div>
-    </cl-alter>
-    <cl-alter type="warning" show-icon>
+    </Alter>
+    <Alter type="warning" show-icon>
         An info prompt
         <div slot="description">Content of prompt. Content of prompt. Content of prompt. Content of prompt.</div>
-    </cl-alter>
-    <cl-alter type="warning" show-icon>
+    </Alter>
+    <Alter type="warning" show-icon>
         <Icon slot="icon" type="sound"></Icon>
         custom icon
         <div slot="description">Content of prompt. Content of prompt. Content of prompt. Content of prompt.</div>
-    </cl-alter>
+    </Alter>
 </template>
 ```
 :::
@@ -94,29 +94,29 @@
 ```html
 <template>
     <h4>默认有关闭动画</h4>
-    <cl-alter closable>An info prompt</cl-alter>
-    <cl-alter type="success" closable show-icon>An info prompt</cl-alter>
-    <cl-alter type="warning" closable show-icon>
+    <Alter closable>An info prompt</Alter>
+    <Alter type="success" closable show-icon>An info prompt</Alter>
+    <Alter type="warning" closable show-icon>
         An info prompt
         <span slot="close">close</span>
-    </cl-alter>
-    <cl-alter type="info" show-icon closable>
+    </Alter>
+    <Alter type="info" show-icon closable>
         An info prompt
         <div slot="description">Content of prompt. Content of prompt. Content of prompt. Content of prompt.</div>
-    </cl-alter>
-    <cl-alter type="success" show-icon closable>
+    </Alter>
+    <Alter type="success" show-icon closable>
         An info prompt
         <div slot="description">Content of prompt. Content of prompt. Content of prompt. Content of prompt.</div>
         <span slot="close">close</span>
-    </cl-alter>
+    </Alter>
 
     <h4>不适用关闭动画</h4>
-    <cl-alter closable transition>An info prompt</cl-alter>
-    <cl-alter type="success" show-icon closable transition>
+    <Alter closable transition>An info prompt</Alter>
+    <Alter type="success" show-icon closable transition>
         An info prompt
         <div slot="description">Content of prompt. Content of prompt. Content of prompt. Content of prompt.</div>
         <span slot="close">close</span>
-    </cl-alter>
+    </Alter>
 </template>
 ```
 :::
@@ -129,19 +129,19 @@
 
 ```html
 <template>
-    <cl-alter theme="dark">An info prompt</cl-alter>
-    <cl-alter type="success" theme="dark">An info prompt</cl-alter>
-    <cl-alter type="error" theme="dark">An info prompt</cl-alter>
-    <cl-alter type="warning" theme="dark">An info prompt</cl-alter>
-    <cl-alter show-icon closable theme="dark">
+    <Alter theme="dark">An info prompt</Alter>
+    <Alter type="success" theme="dark">An info prompt</Alter>
+    <Alter type="error" theme="dark">An info prompt</Alter>
+    <Alter type="warning" theme="dark">An info prompt</Alter>
+    <Alter show-icon closable theme="dark">
         An info prompt
         <span slot="close">close</span>
-    </cl-alter>
-    <cl-alter closable show-icon theme="dark">
+    </Alter>
+    <Alter closable show-icon theme="dark">
         An info prompt
         <span slot="close">close</span>
         <div slot="description">Content of prompt. Content of prompt. Content of prompt. Content of prompt.</div>
-    </cl-alter>
+    </Alter>
 </template>
 ```
 :::

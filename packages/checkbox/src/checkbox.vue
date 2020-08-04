@@ -54,7 +54,7 @@
             size: {
                 type: String,
                 default: 'default',
-                validator(value){
+                validator(value) {
                     return ['mini', 'small', 'default', 'large'].includes(value)
                 }
             },
@@ -82,9 +82,6 @@
             isDisabled() {
                 return this.parentGroup ? (this.parentGroup.disabled ? this.parentGroup.disabled : this.disabled) : this.disabled
             },
-        },
-        components: {},
-        created() {
         },
         mounted() {
             this.$nextTick(this.updateModel());

@@ -2,7 +2,7 @@
 
 使用固钉可以把元素定位到指定位置不随滚动而滚动。
 
-<cl-alter type="warning"><b>注意：</b> 如果是多层可滚动元素嵌套定位固钉，可能出现不可预知的问题。</cl-alter>
+<Alter type="warning"><b>注意：</b> 如果是多层可滚动元素嵌套定位固钉，可能出现不可预知的问题。</Alter>
 
 ## 代码示例
 
@@ -13,9 +13,9 @@
 
 ```html
 <template>
-    <cl-affix>
-        <cl-button type="primary">距离窗口顶部0时固定</cl-button>
-    </cl-affix>
+    <Affix>
+        <Button type="primary">距离窗口顶部0时固定</Button>
+    </Affix>
 </template>
 ```
 :::
@@ -27,9 +27,9 @@
 
 ```html
 <template>
-    <cl-affix target="views-main-content">
-        <cl-button type="primary">距离滚动元素顶部0px时固定</cl-button>
-    </cl-affix>
+    <Affix target="views-main-content">
+        <Button type="primary">距离滚动元素顶部0px时固定</Button>
+    </Affix>
 </template>
 ```
 :::
@@ -42,9 +42,9 @@
 
 ```html
 <template>
-    <cl-affix target="views-main-content" top="50px">
-        <cl-button type="primary">距离滚动元素顶部50px时固定</cl-button>
-    </cl-affix>
+    <Affix target="views-main-content" top="50px">
+        <Button type="primary">距离滚动元素顶部50px时固定</Button>
+    </Affix>
 </template>
 ```
 :::
@@ -56,9 +56,9 @@
 
 ```html
 <template>
-    <cl-affix target="views-main-content" bottom="50px">
-        <cl-button type="primary">距离滚动元素底部50px时固定</cl-button>
-    </cl-affix>
+    <Affix target="views-main-content" bottom="50px">
+        <Button type="primary">距离滚动元素底部50px时固定</Button>
+    </Affix>
 </template>
 ```
 :::
@@ -70,9 +70,9 @@
 
 ```html
 <template>
-    <cl-affix target="views-main-content" fix bottom="10px">
-        <cl-button type="primary">距离滚动元素底部50px时固定，不随滚动改变位置</cl-button>
-    </cl-affix>
+    <Affix target="views-main-content" fix bottom="10px">
+        <Button type="primary">距离滚动元素底部50px时固定，不随滚动改变位置</Button>
+    </Affix>
 </template>
 ```
 :::

@@ -84,7 +84,7 @@
             clearable: Boolean,
             suffix: {
                 type: String,
-                default: 'icon-date'
+                default: 'date'
             },
             transition: {
                 type: String,

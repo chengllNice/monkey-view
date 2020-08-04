@@ -40,10 +40,6 @@
                 currentOpenedKey: []
             }
         },
-        computed: {},
-        components: {},
-        created() {
-        },
         mounted() {
             this.initOpenedKey();
             this.$on('on-update-opened-key', (key) => {

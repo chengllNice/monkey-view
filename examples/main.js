@@ -7,7 +7,9 @@ import ClUi from 'main/index.js'
 import './assets/common.scss'
 
 import CodeWrap from './components/code-wrap.vue'
+import IconList from './components/icon-list.vue'
 Vue.component('code-wrap', CodeWrap);
+Vue.component('icon-list', IconList);
 
 
 // 导入代码高亮插件

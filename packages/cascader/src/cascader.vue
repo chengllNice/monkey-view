@@ -1,6 +1,6 @@
 <template>
     <div :class="[`${classPrefix}`]" v-click-outside.capture="handleClickOutside">
-        <div :class="[`${classPrefix}__reference`]" ref="reference">
+        <div :class="[`${classPrefix}__reference`]" ref="reference" @click.stop="handleInputClick">
             <slot>
                 <sn-input v-model="inputValue"
                           :class="[`${classPrefix}__reference-input`]"
@@ -11,9 +11,7 @@
                           @mouseenter.native="isHover = true"
                           @mouseleave.native="isHover = false"
                           @focus="handleInputFocus"
-                          @blur="handleInputBlur"
-                          @change="handleInputChange"
-                          @click.native="handleInputClick">
+                          @change="handleInputChange">
                     <template slot="suffix">
                         <Icon v-show="showClear" type="error-fill"
                               @click.stop="handleInputClear"></Icon>
@@ -164,9 +162,6 @@
             handleInputFocus() {
                 if (this.disabled || !this.filterable) return;
                 this.dropDownVisible(true);
-            },
-            handleInputBlur() {
-                // this.handleValueChange(this.currentData, this.currentValue);
             },
             handleInputClear() {
                 this.inputValue = '';

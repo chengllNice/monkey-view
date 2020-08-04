@@ -11,7 +11,7 @@
 
 ```html
 <template>
-    <cl-back-top />
+    <BackTop />
     
     <div>此页面window对象没有滚动，所以不能回到顶部</div>
 </template>
@@ -25,7 +25,7 @@
 
 ```html
 <template>
-    <cl-back-top target="views-main-content" />
+    <BackTop target="views-main-content" />
         
     <div>监听class为views-main-content的元素的滚动。向下滚动页面，灰色的按钮为默认效果</div>
 </template>
@@ -40,9 +40,9 @@
 
 ```html
 <template>
-    <cl-back-top target="views-main-content" bottom="100">
+    <BackTop target="views-main-content" bottom="100">
         <div class="doc-back-top-button">UP</div>
-    </cl-back-top>
+    </BackTop>
             
     <div>监听class为views-main-content的元素的滚动。向下滚动页面，UP为自定义按钮</div>
 </template>

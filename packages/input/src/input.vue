@@ -43,7 +43,7 @@
                    @input="handlerInput"
                    @change="handlerChange"/>
             <div v-if="showSuffix" :class="[`${classPrefix}__suffix`]">
-                <i v-if="suffixIconClass.length" :class="suffixIconClass" @click.stop="handleSuffixClick"></i>
+                <i v-if="suffixIconClass.length" :class="suffixIconClass" @click="handleSuffixClick"></i>
                 <div :class="[`${classPrefix}__suffix-slot`]" v-else-if="$slots.suffix">
                     <slot name="suffix"></slot>
                 </div>

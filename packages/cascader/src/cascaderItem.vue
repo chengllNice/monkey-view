@@ -77,8 +77,6 @@
             Scroll,
             Icon
         },
-        mounted() {
-        },
         methods: {
             handleClick(item) {
                 if(this.parentComponent.disabled || item.disabled || item.loading) return;
@@ -99,24 +97,25 @@
             handleMouseover(item){
                 if(this.parentComponent.disabled || item.disabled) return;
                 if(this.parentComponent.trigger === 'hover'){
-                    if(this.parentComponent.changeOnSelect && item.__more){
-                        this.parentComponent.setCurrentData('__visible', item, true);
-                        this.parentComponent.setCurrentData('__selected', item, true);
-                    }else{
-                        this.parentComponent.setCurrentData('__visible', item, true);
-                    }
+                    this.parentComponent.setCurrentData('__visible', item, true);
+                    this.parentComponent.setCurrentData('__selected', item, true);
+                    // if(this.parentComponent.changeOnSelect && item.__more){
+                    //     this.parentComponent.setCurrentData('__visible', item, true);
+                    //     this.parentComponent.setCurrentData('__selected', item, true);
+                    // }else{
+                    //     this.parentComponent.setCurrentData('__visible', item, true);
+                    //     this.parentComponent.setCurrentData('__selected', item, true);
+                    // }
                 }
             },
             handleTrigger(item){
+                // if(item.__visible) return;
                 this.parentComponent.setCurrentData('__visible', item, true);
                 this.parentComponent.setCurrentData('__selected', item, true);
-                if(!item.__more || this.changeOnSelect){
+                if(!item.__more || this.parentComponent.changeOnSelect){
                     this.parentComponent.filterSelectedValue(item);
                 }
             }
-        },
-        watch: {
-
         }
     }
 </script>

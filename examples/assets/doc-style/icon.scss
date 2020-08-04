@@ -1,0 +1,18 @@
+
+.doc-icon-list{
+  min-height: 1000px;
+}
+
+.doc-icon-search{
+  margin: 20px 0 50px 0;
+}
+
+.doc-icon-col{
+  height: 120px;
+  text-align: center;
+  transition: all 0.2s;
+  cursor: pointer;
+  &:hover{
+    color: #2d8cf0;
+  }
+}

@@ -17,12 +17,6 @@
     export default {
         name: "CascaderPanel",
         mixins: [Mixin],
-        props: {
-
-        },
-        computed: {
-
-        },
         data() {
             let cascader = findComponent(this, 'Cascader');
             return {
@@ -34,12 +28,6 @@
         },
         components: {
             CascaderItem
-        },
-        mounted() {
-
-        },
-        methods: {
-
         },
         watch: {
             data: {

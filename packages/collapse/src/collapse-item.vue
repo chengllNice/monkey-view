@@ -27,7 +27,7 @@
     import Config from 'main/config/config'
     import Emitter from 'main/mixins/emitter'
     import {findComponent} from "main/utils/tool";
-    import SlideTransition from '../../base/slide-transition.vue'
+    import SlideTransition from 'packages/base/slide-transition.vue'
     import Icon from 'packages/icon'
 
     export default {
@@ -50,14 +50,9 @@
                 collapseComponent: findComponent(this, 'Collapse')
             }
         },
-        computed: {},
         components: {
             SlideTransition,
             Icon
-        },
-        created() {
-        },
-        mounted() {
         },
         methods: {
             handlerClick() {

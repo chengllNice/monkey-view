@@ -35,13 +35,8 @@
                 componentName: 'CheckboxGroup',
             }
         },
-        computed: {},
         components: {
             Checkbox
-        },
-        created() {
-        },
-        mounted() {
         },
         methods: {
             dispatch(type, label, value) {
@@ -51,11 +46,6 @@
                 type === 'input' && this.$emit('input', this.value);
                 type === 'change' && this.$emit('change', this.value);
             }
-        },
-        // watch: {
-        //   value: function (newVal) {
-        //
-        //   }
-        // }
+        }
     }
 </script>

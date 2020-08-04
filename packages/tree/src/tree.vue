@@ -47,12 +47,12 @@
             //自定义展开收起图标
             expandIconClass: {
                 type: String,
-                default: 'icon-right'
+                default: 'right'
             },
             //自定义加载中的图标
             loadingIconClass: {
                 type: String,
-                default: 'icon-loading'
+                default: 'loading'
             },
             //异步加载数据的方法，参数为当前选择项，返回Promise
             loadData: {

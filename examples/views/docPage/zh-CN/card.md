@@ -11,19 +11,19 @@
 
 ```html
 <template>
-    <cl-row :gutter="10">
-        <cl-col>
-            <cl-card title="Default Card">
+    <Row :gutter="10">
+        <Col>
+            <Card title="Default Card">
                 <template slot="extra">
                     extra
                 </template>
                 <div>Card Content</div>
                 <div>Card Content</div>
                 <div>Card Content</div>
-            </cl-card>
-        </cl-col>
-        <cl-col>
-            <cl-card>
+            </Card>
+        </Col>
+        <Col>
+            <Card>
                 <template slot="header">
                     <div class="doc-card-header">
                         <span>Slot Header Card</span>
@@ -33,9 +33,9 @@
                 <div>Card Content</div>
                 <div>Card Content</div>
                 <div>Card Content</div>
-            </cl-card>
-        </cl-col>
-    </cl-row>
+            </Card>
+        </Col>
+    </Row>
 </template>
 ```
 
@@ -50,14 +50,14 @@
 ```html
 <template>
     <div style="background-color: #eeeeee; padding: 20px;">
-        <cl-card title="Default Card" no-border>
+        <Card title="Default Card" no-border>
             <template slot="extra">
                 extra
             </template>
             <div>Card Content</div>
             <div>Card Content</div>
             <div>Card Content</div>
-        </cl-card>
+        </Card>
     </div>
 </template>
 ```
@@ -72,28 +72,28 @@
 
 ```html
 <template>
-    <cl-row :gutter="10">
-        <cl-col>
-            <cl-card title="Default Card">
+    <Row :gutter="10">
+        <Col>
+            <Card title="Default Card">
                 <template slot="extra">
                     extra
                 </template>
                 <div>Card Content</div>
                 <div>Card Content</div>
                 <div>Card Content</div>
-            </cl-card>
-        </cl-col>
-        <cl-col>
-            <cl-card title="Default Card" no-hover>
+            </Card>
+        </Col>
+        <Col>
+            <Card title="Default Card" no-hover>
                 <template slot="extra">
                     extra
                 </template>
                 <div>Card Content</div>
                 <div>Card Content</div>
                 <div>Card Content</div>
-            </cl-card>
-        </cl-col>
-    </cl-row>
+            </Card>
+        </Col>
+    </Row>
 </template>
 ```
 
@@ -107,22 +107,22 @@
 
 ```html
 <template>
-    <cl-row :gutter="10">
-        <cl-col>
-            <cl-card>
+    <Row :gutter="10">
+        <Col>
+            <Card>
                 <div>Card Content</div>
                 <div>Card Content</div>
                 <div>Card Content</div>
-            </cl-card>
-        </cl-col>
-        <cl-col body-padding="10px">
-            <cl-card>
+            </Card>
+        </Col>
+        <Col body-padding="10px">
+            <Card>
                 <div>Card Content</div>
                 <div>Card Content</div>
                 <div>Card Content</div>
-            </cl-card>
-        </cl-col>
-    </cl-row>
+            </Card>
+        </Col>
+    </Row>
 </template>
 ```
 
@@ -136,7 +136,7 @@
 
 ```html
 <template>
-    <cl-card body-padding="0" style="max-width: 400px">
+    <Card body-padding="0" style="max-width: 400px">
         <img class="doc-card-avatar" src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3623139363,2281616215&fm=26&gp=0.jpg" alt="">
         <div class="doc-card-content">
             <h3>动漫</h3>
@@ -148,7 +148,7 @@
             <Icon type="video"></Icon>
             <Icon type="setting"></Icon>
         </div>
-    </cl-card>
+    </Card>
 </template>
 ```
 

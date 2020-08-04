@@ -16,7 +16,7 @@
     border-color: mix($--color-white, $--border-color-default, 20%);
   }
 
-  @include m(noHover){
+  @include m(no-hover){
     &:hover,
     &:focus,
     &:active{
@@ -25,7 +25,7 @@
     }
   }
 
-  @include m(noBorder){
+  @include m(no-border){
     border: none;
   }
 

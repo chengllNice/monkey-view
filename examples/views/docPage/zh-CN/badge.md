@@ -11,18 +11,18 @@
 
 ```html
 <template>
-    <cl-row>
-        <cl-col span="6">
-            <cl-badge :count="10">
+    <Row>
+        <Col span="6">
+            <Badge :count="10">
                 <a href="#" class="doc-badge-base"></a>
-            </cl-badge>
-        </cl-col>
-        <cl-col span="6">
-            <cl-badge :count="10">
-                <cl-button>评论</cl-button>
-            </cl-badge>
-        </cl-col>
-    </cl-row>
+            </Badge>
+        </Col>
+        <Col span="6">
+            <Badge :count="10">
+                <Button>评论</Button>
+            </Badge>
+        </Col>
+    </Row>
 </template>
 ```
 
@@ -35,23 +35,23 @@
 
 ```html
 <template>
-    <cl-row>
-        <cl-col span="6">
-            <cl-badge :count="10" dot>
+    <Row>
+        <Col span="6">
+            <Badge :count="10" dot>
                 <a href="#" class="doc-badge-base"></a>
-            </cl-badge>
-        </cl-col>
-        <cl-col span="6">
-            <cl-badge :count="10" dot>
-                <cl-button>评论</cl-button>
-            </cl-badge>
-        </cl-col>
-        <cl-col span="6">
-            <cl-badge :count="10" dot>
+            </Badge>
+        </Col>
+        <Col span="6">
+            <Badge :count="10" dot>
+                <Button>评论</Button>
+            </Badge>
+        </Col>
+        <Col span="6">
+            <Badge :count="10" dot>
                 <Icon type="notification" class="doc-badge-icon"></Icon>
-            </cl-badge>
-        </cl-col>
-    </cl-row>
+            </Badge>
+        </Col>
+    </Row>
 </template>
 ```
 
@@ -65,28 +65,28 @@
 
 ```html
 <template>
-    <cl-row>
-        <cl-col span="6">
-            <cl-badge :count="99">
+    <Row>
+        <Col span="6">
+            <Badge :count="99">
                 <a href="#" class="doc-badge-base"></a>
-            </cl-badge>
-        </cl-col>
-        <cl-col span="6">
-            <cl-badge :count="120">
+            </Badge>
+        </Col>
+        <Col span="6">
+            <Badge :count="120">
                 <a href="#" class="doc-badge-base"></a>
-            </cl-badge>
-        </cl-col>
-        <cl-col span="6">
-            <cl-badge :count="20" :overflow-count="10">
-                <cl-button>评论</cl-button>
-            </cl-badge>
-        </cl-col>
-        <cl-col span="6">
-            <cl-badge :count="1000" :overflow-count="999">
-                <cl-button>评论</cl-button>
-            </cl-badge>
-        </cl-col>
-    </cl-row>
+            </Badge>
+        </Col>
+        <Col span="6">
+            <Badge :count="20" :overflow-count="10">
+                <Button>评论</Button>
+            </Badge>
+        </Col>
+        <Col span="6">
+            <Badge :count="1000" :overflow-count="999">
+                <Button>评论</Button>
+            </Badge>
+        </Col>
+    </Row>
 </template>
 ```
 
@@ -100,17 +100,17 @@
 
 ```html
 <template>
-    <cl-row>
-        <cl-col span="6">
-            <cl-badge :count="10"></cl-badge>
-        </cl-col>
-        <cl-col span="6">
-            <cl-badge :count="20"></cl-badge>
-        </cl-col>
-        <cl-col span="6">
-            <cl-badge :count="30" color="primary"></cl-badge>
-        </cl-col>
-    </cl-row>
+    <Row>
+        <Col span="6">
+            <Badge :count="10"></Badge>
+        </Col>
+        <Col span="6">
+            <Badge :count="20"></Badge>
+        </Col>
+        <Col span="6">
+            <Badge :count="30" color="primary"></Badge>
+        </Col>
+    </Row>
 </template>
 ```
 
@@ -124,18 +124,18 @@
 
 ```html
 <template>
-    <cl-row>
-        <cl-col span="6">
-            <cl-badge :count="10" text="new">
+    <Row>
+        <Col span="6">
+            <Badge :count="10" text="new">
                 <a href="#" class="doc-badge-base"></a>
-            </cl-badge>
-        </cl-col>
-        <cl-col span="6">
-            <cl-badge :count="20" text="hot">
+            </Badge>
+        </Col>
+        <Col span="6">
+            <Badge :count="20" text="hot">
                 <a href="#" class="doc-badge-base"></a>
-            </cl-badge>
-        </cl-col>
-    </cl-row>
+            </Badge>
+        </Col>
+    </Row>
 </template>
 ```
 
@@ -149,15 +149,15 @@
 
 ```html
 <template>
-    <cl-badge status="success" text="success"></cl-badge>
+    <Badge status="success" text="success"></Badge>
     <br>
-    <cl-badge status="warning" text="warning"></cl-badge>
+    <Badge status="warning" text="warning"></Badge>
     <br>
-    <cl-badge status="error" text="error"></cl-badge>
+    <Badge status="error" text="error"></Badge>
     <br>
-    <cl-badge status="default" text="default"></cl-badge>
+    <Badge status="default" text="default"></Badge>
     <br>
-    <cl-badge status="processing" text="processing"></cl-badge>
+    <Badge status="processing" text="processing"></Badge>
 </template>
 ```
 
@@ -172,62 +172,62 @@
 ```html
 <template>
     <h4>Presets</h4>
-    <cl-row>
-        <cl-col>
-            <cl-badge :count="10" color="primary">
+    <Row>
+        <Col>
+            <Badge :count="10" color="primary">
                 <a href="#" class="doc-badge-base"></a>
-            </cl-badge>
-        </cl-col>
-        <cl-col>
-            <cl-badge :count="10" color="error">
+            </Badge>
+        </Col>
+        <Col>
+            <Badge :count="10" color="error">
                 <a href="#" class="doc-badge-base"></a>
-            </cl-badge>
-        </cl-col>
-        <cl-col>
-            <cl-badge :count="10" color="success">
+            </Badge>
+        </Col>
+        <Col>
+            <Badge :count="10" color="success">
                 <a href="#" class="doc-badge-base"></a>
-            </cl-badge>
-        </cl-col>
-        <cl-col>
-            <cl-badge :count="10" color="warning">
+            </Badge>
+        </Col>
+        <Col>
+            <Badge :count="10" color="warning">
                 <a href="#" class="doc-badge-base"></a>
-            </cl-badge>
-        </cl-col>
-        <cl-col>
-            <cl-badge :count="10" color="info">
+            </Badge>
+        </Col>
+        <Col>
+            <Badge :count="10" color="info">
                 <a href="#" class="doc-badge-base"></a>
-            </cl-badge>
-        </cl-col>
-    </cl-row>
+            </Badge>
+        </Col>
+    </Row>
 
     <h4>Custom</h4>
-    <cl-row>
-        <cl-col>
-            <cl-badge :count="10" color="#c8c8c8">
+    <Row>
+        <Col>
+            <Badge :count="10" color="#c8c8c8">
                 <a href="#" class="doc-badge-base"></a>
-            </cl-badge>
-        </cl-col>
-        <cl-col>
-            <cl-badge :count="10" color="#ffa2d3">
+            </Badge>
+        </Col>
+        <Col>
+            <Badge :count="10" color="#ffa2d3">
                 <a href="#" class="doc-badge-base"></a>
-            </cl-badge>
-        </cl-col>
-        <cl-col>
-            <cl-badge :count="10" color="#87d068">
+            </Badge>
+        </Col>
+        <Col>
+            <Badge :count="10" color="#87d068">
                 <a href="#" class="doc-badge-base"></a>
-            </cl-badge>
-        </cl-col>
-        <cl-col>
-            <cl-badge :count="10" color="#f50">
+            </Badge>
+        </Col>
+        <Col>
+            <Badge :count="10" color="#f50">
                 <a href="#" class="doc-badge-base"></a>
-            </cl-badge>
-        </cl-col>
-        <cl-col>
-            <cl-badge :count="10" color="#722ed1">
+            </Badge>
+        </Col>
+        <Col>
+            <Badge :count="10" color="#722ed1">
                 <a href="#" class="doc-badge-base"></a>
-            </cl-badge>
-        </cl-col>
-    </cl-row>
+            </Badge>
+        </Col>
+    </Row>
 </template>
 ```
 

@@ -1,8 +1,8 @@
 <template>
     <div :class="[
                 `${classPrefix}`,
-                noHover && `${classPrefix}--noHover`,
-                noBorder && `${classPrefix}--noBorder`
+                noHover && `${classPrefix}--no-hover`,
+                noBorder && `${classPrefix}--no-border`
             ]">
         <div :class="[`${classPrefix}__header`]" v-if="showHeader">
             <slot name="header">

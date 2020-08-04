@@ -1,5 +1,6 @@
 
 @import "../../base/var";
+@import "../../base/config";
 @import "../../config/mixins/index.scss";
 
 $year-and-month-margin: #{$--date-picker-pane-margin * 2};
@@ -41,65 +42,173 @@ $year-and-month-margin: #{$--date-picker-pane-margin * 2};
   @return $return-value;
 }
 
+
+//@mixin date-pane-size($size){
+//  @include ci(date-pane-date){
+//    min-width: size-common($size, 'pane-min-width');
+//  }
+//  @include ci(date-pane-year){
+//    min-width: size-common($size, 'pane-min-width');
+//  }
+//  @include ci(date-pane-month){
+//    min-width: size-common($size, 'pane-min-width');
+//  }
+//
+//  .cl-date-pane-date--show-week-number{
+//    min-width: size-common($size, 'show-week-number-pane-min-width');
+//  }
+//  .cl-date-pane-single__header{
+//    font-size: #{size-common($size, 'font-size') + 2px};
+//    height: size-common($size, 'date-width');
+//    line-height: size-common($size, 'date-width');
+//    i{
+//      font-size: #{size-common($size, 'font-size') / 1.2};
+//    }
+//  }
+//}
+
 @mixin date-pane-size($size){
-  .cl-date-pane-date, .cl-date-pane-year, .cl-date-pane-month{
+  @include ci(date-pane-date){
+    min-width: size-common($size, 'pane-min-width');
+
+    &--show-week-number{
+      min-width: size-common($size, 'show-week-number-pane-min-width');
+    }
+  }
+  @include ci(date-pane-year){
     min-width: size-common($size, 'pane-min-width');
   }
-  .cl-date-pane-date--show-week-number{
-    min-width: size-common($size, 'show-week-number-pane-min-width');
+  @include ci(date-pane-month){
+    min-width: size-common($size, 'pane-min-width');
   }
-  .cl-date-pane-single__header{
-    font-size: #{size-common($size, 'font-size') + 2px};
-    height: size-common($size, 'date-width');
-    line-height: size-common($size, 'date-width');
-    i{
-      font-size: #{size-common($size, 'font-size') / 1.2};
+  @include ci(date-pane-single){
+    &__header{
+      font-size: #{size-common($size, 'font-size') + 2px};
+      height: size-common($size, 'date-width');
+      line-height: size-common($size, 'date-width');
+      i{
+        font-size: #{size-common($size, 'font-size') / 1.2};
+      }
     }
   }
 }
 
+//@mixin date-pane-date-size($size){
+//  $date-width: size-common($size, 'date-width');
+//  .cl-date-pane-item__col,.cl-date-pane-item__week, .cl-date-pane-item__week-number{
+//    margin: $--date-picker-pane-margin 0;
+//    padding: 0 $--date-picker-pane-margin;
+//    em{
+//      width: $date-width;
+//      height: $date-width;
+//      line-height: $date-width;
+//    }
+//  }
+//}
+
 @mixin date-pane-date-size($size){
   $date-width: size-common($size, 'date-width');
-  .cl-date-pane-item__col,.cl-date-pane-item__week, .cl-date-pane-item__week-number{
-    margin: $--date-picker-pane-margin 0;
-    padding: 0 $--date-picker-pane-margin;
-    em{
-      width: $date-width;
-      height: $date-width;
-      line-height: $date-width;
+
+  @include ci(date-pane-item){
+    &__col, &__week, &__week-number{
+      margin: $--date-picker-pane-margin 0;
+      padding: 0 $--date-picker-pane-margin;
+      em{
+        width: $date-width;
+        height: $date-width;
+        line-height: $date-width;
+      }
     }
   }
 }
+
+
+//@mixin date-pane-date-year-size($size){
+//  $year-width: size-common($size, 'year-width');
+//  $year-height: size-common($size, 'date-width');
+//  .cl-date-pane-item__col{
+//    margin: $year-and-month-margin 0;
+//    padding: 0 $year-and-month-margin;
+//    em{
+//      width: $year-width;
+//      height: $year-height;
+//      line-height: $year-height;
+//    }
+//  }
+//}
 
 
 @mixin date-pane-date-year-size($size){
   $year-width: size-common($size, 'year-width');
   $year-height: size-common($size, 'date-width');
-  .cl-date-pane-item__col{
-    margin: $year-and-month-margin 0;
-    padding: 0 $year-and-month-margin;
-    em{
-      width: $year-width;
-      height: $year-height;
-      line-height: $year-height;
+
+  @include ci(date-pane-item){
+    &__col{
+      margin: $year-and-month-margin 0;
+      padding: 0 $year-and-month-margin;
+      em{
+        width: $year-width;
+        height: $year-height;
+        line-height: $year-height;
+      }
     }
   }
 }
+
+
+//@mixin date-pane-date-month-size($size){
+//  $month-width: size-common($size, 'month-width');
+//  $month-height: size-common($size, 'date-width');
+//  .cl-date-pane-item__col {
+//    margin: $year-and-month-margin 0;
+//    padding: 0 $year-and-month-margin;
+//    em{
+//      width: $month-width;
+//      height: $month-height;
+//      line-height: $month-height;
+//    }
+//  }
+//}
 
 
 @mixin date-pane-date-month-size($size){
   $month-width: size-common($size, 'month-width');
   $month-height: size-common($size, 'date-width');
-  .cl-date-pane-item__col {
-    margin: $year-and-month-margin 0;
-    padding: 0 $year-and-month-margin;
-    em{
-      width: $month-width;
-      height: $month-height;
-      line-height: $month-height;
+
+  @include ci(date-pane-item){
+    &__col{
+      margin: $year-and-month-margin 0;
+      padding: 0 $year-and-month-margin;
+      em{
+        width: $month-width;
+        height: $month-height;
+        line-height: $month-height;
+      }
     }
   }
 }
+
+//@mixin date-pane-date-time-size($size, $col){
+//  $time-width: size-common($size, 'time-width');
+//  $time-height: size-common($size, 'date-width');
+//  @if($col == 2){
+//    $time-width: size-common($size, 'time-width');
+//  }
+//  .cl-date-pane-time__hh, .cl-date-pane-time__mm, .cl-date-pane-time__ss{
+//    height: #{($time-height / 1.2) * 8};
+//  }
+//
+//  .cl-date-pane-item__col {
+//    display: block;
+//    //margin: $year-and-month-margin 0;
+//    padding: 0 $year-and-month-margin;
+//    em{
+//      width: $time-width;
+//      height: #{$time-height / 1.2};
+//      line-height: #{$time-height / 1.2};
+//    }
+//  }
+//}
 
 @mixin date-pane-date-time-size($size, $col){
   $time-width: size-common($size, 'time-width');
@@ -107,30 +216,127 @@ $year-and-month-margin: #{$--date-picker-pane-margin * 2};
   @if($col == 2){
     $time-width: size-common($size, 'time-width');
   }
-  .cl-date-pane-time__hh, .cl-date-pane-time__mm, .cl-date-pane-time__ss{
-    height: #{($time-height / 1.2) * 8};
+
+  @include ci(date-pane-time){
+    &__hh, &__mm, &__ss{
+      height: #{($time-height / 1.2) * 8};
+    }
   }
 
-  .cl-date-pane-item__col {
-    display: block;
-    //margin: $year-and-month-margin 0;
-    padding: 0 $year-and-month-margin;
-    em{
-      width: $time-width;
-      height: #{$time-height / 1.2};
-      line-height: #{$time-height / 1.2};
+  @include ci(date-pane-item){
+    &__col{
+      display: block;
+      //margin: $year-and-month-margin 0;
+      padding: 0 $year-and-month-margin;
+      em{
+        width: $time-width;
+        height: #{$time-height / 1.2};
+        line-height: #{$time-height / 1.2};
+      }
     }
   }
 }
 
+//@mixin date-pane-item-common{
+//  .cl-date-pane-date__date-row-week:not(.cl-date-pane-date__date-row-week-selected):hover{
+//    .cl-date-pane-item__col:not(.cl-date-pane-item__week-number){
+//      background-color: mix($--color-primary, $--color-white, 20%);
+//    }
+//  }
+//  .cl-date-pane-date__date-row-week-selected{
+//    .cl-date-pane-item__col:not(.cl-date-pane-item__week-number){
+//      background-color: mix($--color-primary, $--color-white, 20%);
+//      &:nth-last-of-type(7) em, &:nth-last-of-type(1) em{
+//        border: 1px solid $--color-primary;
+//        background-color: $--color-primary;
+//        color: $--color-white;
+//      }
+//    }
+//  }
+//  .cl-date-pane-item__col{
+//    color: $--color-text-default;
+//    cursor: pointer;
+//    transition: all $--animation-time;
+//    display: inline-block;
+//    text-align: center;
+//    em{
+//      border: 1px solid transparent;
+//      display: block;
+//      font-style: normal;
+//      transition: all $--animation-time;
+//      border-radius: $--border-radius-default;
+//    }
+//
+//    &.cl-date-pane-item__hover em:hover{
+//      background-color: mix($--color-primary, $--color-white, 20%);
+//    }
+//  }
+//  .cl-date-pane-item__week, .cl-date-pane-item__week-number{
+//    cursor: default;
+//    em{
+//      cursor: default;
+//    }
+//  }
+//  .cl-date-pane-item__week-number em{
+//    color: $--date-picker-no-now-month-color;
+//  }
+//
+//  .cl-date-pane-item__now em{
+//    color: $--color-primary;
+//  }
+//
+//  .cl-date-pane-item__between{
+//    background-color: mix($--color-primary, $--color-white, 20%);
+//  }
+//
+//  .cl-date-pane-item__selected{
+//    em{
+//      border: 1px solid $--color-primary;
+//      background-color: $--color-primary;
+//      color: $--color-white;
+//    }
+//    &.cl-date-pane-item__no-now-month{
+//      background-color: $--color-white;
+//      color: $--date-picker-no-now-month-color;
+//    }
+//  }
+//
+//  .cl-date-pane-item__disabled{
+//    em{
+//      background-color: $--background-color-disabled;
+//      color: $--color-text-disabled;
+//      cursor: not-allowed;
+//      border-color: transparent;
+//    }
+//  }
+//
+//  .cl-date-pane-item__no-now-month{
+//    color: $--date-picker-no-now-month-color;
+//  }
+//}
+
+
 @mixin date-pane-item-common{
-  .cl-date-pane-date__date-row-week:not(.cl-date-pane-date__date-row-week-selected):hover{
-    .cl-date-pane-item__col:not(.cl-date-pane-item__week-number){
-      background-color: mix($--color-primary, $--color-white, 20%);
+  $date-pane-item-col-selector: $namespace + '-date-pane-item__col';
+  $date-pane-item-now-selector: $namespace + '-date-pane-item__now';
+  $date-pane-item-between-selector: $namespace + '-date-pane-item__between';
+  $date-pane-item-selected-selector: $namespace + '-date-pane-item__selected';
+  $date-pane-item-no-now-month-selector: $namespace + '-date-pane-item__no-now-month';
+  $date-pane-item-week-selector: $namespace + '-date-pane-item__week';
+  $date-pane-item-week-number-selector: $namespace + '-date-pane-item__week-number';
+  $date-pane-item-hover-selector: $namespace + '-date-pane-item__hover';
+  $date-pane-item-disabled-selector: $namespace + '-date-pane-item__disabled';
+
+  @include ci(date-pane-date){
+    &__date-row-week:not(.#{$namespace + '-date-pane-date__date-row-week-selected'}):hover {
+      .#{$date-pane-item-col-selector}:not(.#{$date-pane-item-week-number-selector}){
+        background-color: mix($--color-primary, $--color-white, 20%);
+      }
     }
   }
-  .cl-date-pane-date__date-row-week-selected{
-    .cl-date-pane-item__col:not(.cl-date-pane-item__week-number){
+
+  @include ci(date-pane-date__date-row-week-selected){
+    .#{$date-pane-item-col-selector}:not(.#{$date-pane-item-week-number-selector}){
       background-color: mix($--color-primary, $--color-white, 20%);
       &:nth-last-of-type(7) em, &:nth-last-of-type(1) em{
         border: 1px solid $--color-primary;
@@ -139,7 +345,8 @@ $year-and-month-margin: #{$--date-picker-pane-margin * 2};
       }
     }
   }
-  .cl-date-pane-item__col{
+
+  .#{$date-pane-item-col-selector}{
     color: $--color-text-default;
     cursor: pointer;
     transition: all $--animation-time;
@@ -153,50 +360,50 @@ $year-and-month-margin: #{$--date-picker-pane-margin * 2};
       border-radius: $--border-radius-default;
     }
 
-    &.cl-date-pane-item__hover em:hover{
+    &.#{$date-pane-item-hover-selector} em:hover{
       background-color: mix($--color-primary, $--color-white, 20%);
     }
   }
-  .cl-date-pane-item__week, .cl-date-pane-item__week-number{
+
+  .#{$date-pane-item-week-selector}, .#{$date-pane-item-week-number-selector}{
     cursor: default;
     em{
       cursor: default;
     }
   }
-  .cl-date-pane-item__week-number em{
+
+  .#{$date-pane-item-week-number-selector} em{
     color: $--date-picker-no-now-month-color;
   }
 
-  .cl-date-pane-item__now em{
+  .#{$date-pane-item-now-selector} em{
     color: $--color-primary;
   }
 
-  .cl-date-pane-item__between{
+  .#{$date-pane-item-between-selector}{
     background-color: mix($--color-primary, $--color-white, 20%);
   }
 
-  .cl-date-pane-item__selected{
+  .#{$date-pane-item-selected-selector}{
     em{
       border: 1px solid $--color-primary;
       background-color: $--color-primary;
       color: $--color-white;
     }
-    &.cl-date-pane-item__no-now-month{
+    &.#{$date-pane-item-no-now-month-selector}{
       background-color: $--color-white;
       color: $--date-picker-no-now-month-color;
     }
   }
 
-  .cl-date-pane-item__disabled{
-    em{
-      background-color: $--background-color-disabled;
-      color: $--color-text-disabled;
-      cursor: not-allowed;
-      border-color: transparent;
-    }
+  .#{$date-pane-item-disabled-selector} em{
+    background-color: $--background-color-disabled;
+    color: $--color-text-disabled;
+    cursor: not-allowed;
+    border-color: transparent;
   }
 
-  .cl-date-pane-item__no-now-month{
+  .#{$date-pane-item-no-now-month-selector}{
     color: $--date-picker-no-now-month-color;
   }
 }

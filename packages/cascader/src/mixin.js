@@ -133,6 +133,7 @@ export default {
                 value = this.deepCloneData(value, item);
             }
             let has = false;//是否有满足的
+            let isSelected = this.currentValue.includes(item.value);//点击的项是否是选中的项
             let fn = (data) => {
                 data.forEach(_item => {
                     if (['__visible', '__selected'].includes(prop)) {
@@ -142,6 +143,8 @@ export default {
                         has = true;
                         _item[prop] = value;
                     }
+                    //如果在当前选中项的层级上点击 该路径下的为__selected属性设置为true
+                    if(isSelected && this.currentValue.includes(_item.value)) _item.__selected = true;
                     if (_item.children && _item.children.length) {
                         fn(_item.children);
                     }
@@ -205,6 +208,7 @@ export default {
         //设置currentValue
         setCurrentValue(data){
             if(!this.changeOnSelect && data.__more) return;
+            this.openFilterable = false;
             this.currentValue = this.getPropFromCurrentDataByPath(data, 'value');
             this.$emit('change', this.currentValue, this.currentSelectedData);
             if(!data.__more){

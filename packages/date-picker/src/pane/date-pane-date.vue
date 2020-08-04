@@ -29,15 +29,7 @@
                 <template>
                     <span v-for="dateItem in row"
                           :key="dateItem.originDate"
-                          :class="[
-                                `${classPrefixItem}__col`,
-                                type === 'date' && !dateItem.isDisabled && dateItem.isNowMonth && !selectDate.includes(dateItem.key) && `${classPrefixItem}__hover`,
-                                dateItem.isNowDate && `${classPrefixItem}__now`,
-                                !dateItem.isNowMonth && `${classPrefixItem}__no-now-month`,
-                                selectDate.includes(dateItem.key) && dateItem.isNowMonth && `${classPrefixItem}__selected`,
-                                !selectDate.includes(dateItem.key) && dateItem.isBetween && `${classPrefixItem}__between`,
-                                dateItem.isDisabled && `${classPrefixItem}__disabled`,
-                          ]"
+                          :class="dateItemColClass(dateItem)"
                           @mouseenter="mouseEnter(dateItem)"
                           @mouseleave="mouseLeave(dateItem)"
                           @click="handleSelectDate(dateItem)">
@@ -95,6 +87,19 @@
                     }
                     return false;
                 }
+            },
+            dateItemColClass(){
+                return function (dateItem) {
+                    return [
+                        `${this.classPrefixItem}__col`,
+                        this.type === 'date' && !dateItem.isDisabled && dateItem.isNowMonth && !this.selectDate.includes(dateItem.key) && `${this.classPrefixItem}__hover`,
+                        dateItem.isNowDate && `${this.classPrefixItem}__now`,
+                        !dateItem.isNowMonth && `${this.classPrefixItem}__no-now-month`,
+                        this.type !== 'week' && this.selectDate.includes(dateItem.key) && dateItem.isNowMonth && `${this.classPrefixItem}__selected`,
+                        !this.selectDate.includes(dateItem.key) && dateItem.isBetween && `${this.classPrefixItem}__between`,
+                        dateItem.isDisabled && `${this.classPrefixItem}__disabled`,
+                    ]
+                }
             }
         },
         mounted() {
@@ -117,6 +122,7 @@
             setDateList() {
                 if (!this.year || !this.month) return;
                 let dateList = dateOnMonth(this.year, this.month);
+
                 let newDateList = [];
                 let row = [];
                 let format = this.format;
@@ -128,6 +134,7 @@
                         item.isDisabled = this.picker.disabledDate(item.key);
                     }
                     item.key = dateFormat(item.key, format);
+
                     if (this.isRange && this.selectDate.length === 2 && item.key > this.selectDate[0] && item.key < this.selectDate[1]) {
                         item.isBetween = true;
                     }
@@ -137,6 +144,8 @@
                     }
                     row.push(item);
                 });
+
+                console.log(newDateList,'newDateListnewDateList')
                 this.dateList = newDateList;
                 (this.picker.showWeekNumber || this.type === 'week') && this.setWeekNumbers();
                 this.clearHover(true);

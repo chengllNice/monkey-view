@@ -1,11 +1,11 @@
 <template>
     <div class="left-nav">
-        <ClMenu :activeKey="activeMenu" width="auto">
-            <ClMenuGroup v-for="(groupItem, groupIndex) in siderData"
+        <Menu :activeKey="activeMenu" width="auto">
+            <MenuGroup v-for="(groupItem, groupIndex) in siderData"
                          :key="groupIndex"
                          :name="groupItem.name">
                 <template v-if="groupItem.childrens">
-                    <ClMenuItem v-for="menuItem in groupItem.childrens"
+                    <MenuItem v-for="menuItem in groupItem.childrens"
                                 :key="menuItem.item"
                                 :c-key="menuItem.key"
                                 :disabled="menuItem.disabled"
@@ -17,10 +17,10 @@
                         <!--</router-link>-->
                         <!--<Icon :class="menuItem.icon"></Icon>-->
                         <!--<span>{{menuItem.name}}</span>-->
-                    </ClMenuItem>
+                    </MenuItem>
                 </template>
-            </ClMenuGroup>
-        </ClMenu>
+            </MenuGroup>
+        </Menu>
     </div>
 </template>
 
@@ -71,6 +71,13 @@
                                 name: 'Button按钮',
                                 icon: 'button',
                                 link: '/button',
+                                query: {},
+                            },
+                            {
+                                key: 'icon',
+                                name: 'Icon图标',
+                                icon: 'heart',
+                                link: '/icon',
                                 query: {},
                             },
                         ]
