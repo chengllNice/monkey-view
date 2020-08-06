@@ -10,7 +10,7 @@
             <div :class="[`${classPrefix}__content`]">
                 <date-pane-single ref="leftPane"
                                   :class="[`${classPrefix}__left`]"
-                                  :index="datePane0.id"
+                                  :index="datePane0.index"
                                   :year="datePane0.year"
                                   :month="datePane0.month"
                                   :date="selectedDateValue"
@@ -26,7 +26,7 @@
                 <date-pane-single ref="rightPane"
                                   v-if="isRange"
                                   :class="[`${classPrefix}__right`]"
-                                  :index="datePane1.id"
+                                  :index="datePane1.index"
                                   :year="datePane1.year"
                                   :month="datePane1.month"
                                   :date="selectedDateValue"
@@ -65,7 +65,7 @@
     import Config from 'main/config/config'
     import DatePaneSingle from './date-pane-single'
     import Button from 'packages/button'
-    import {zero, dateFormat, getWeekNumberInfo} from "main/utils/date";
+    import {dateFormat, getWeekNumber, getWeekNumberInfo} from "main/utils/date";
     import Locale from "main/mixins/locale";
 
     export default {
@@ -88,23 +88,24 @@
             pickerType: String,
         },
         data(){
+            let nowDate = new Date();
             return {
                 classPrefix: Config.classPrefix + '-date-pane',
                 datePane0: {
-                    id: '0',
-                    year: '',
-                    month: '',
+                    index: 0,
+                    year: null,
+                    month: null,
                     value: []
                 },
                 datePane1: {
-                    id: '1',
-                    year: '',
-                    month: '',
+                    index: 1,
+                    year: null,
+                    month: null,
                     value: []
                 },
-                nowDate: new Date(),
+                nowDate: nowDate,
                 selectedDateValue: [],
-                hoverDate: '',//当前hover的日期
+                hoverDate: null,//当前hover的日期
                 isTime: false,
             }
         },
@@ -131,25 +132,21 @@
         },
         methods: {
             dealValue(){
-                this.selectedDateValue = this.value;
-                if(!this.selectedDateValue || !this.selectedDateValue.length){
+                this.selectedDateValue = Array.isArray(this.value) ? this.value : [];
+                if(!this.selectedDateValue.length){
                     this.initYearAndMonth(this.nowDate, null);
-                }else if(this.type === 'week'){
-                    let weekNumberInfo = getWeekNumberInfo(this.value[0], this.format);
-                    this.datePane0.year = weekNumberInfo.year;
-                    this.datePane0.month = weekNumberInfo.month;
-                    this.datePane0.value = this.selectedDateValue;
                 }else{
                     if(this.isRange){
-                        let startDate = new Date(this.selectedDateValue[0]);
-                        let endDate = new Date(this.selectedDateValue[1]);
-                        if(startDate.getMonth() === endDate.getMonth()){
+                        let startDate = this.selectedDateValue[0];
+                        let endDate = this.selectedDateValue[1];
+                        if(endDate && startDate.getMonth() === endDate.getMonth()){
                             this.datePane0.value = this.selectedDateValue;
+                            this.datePane1.value = [];
                         }else{
-                            this.datePane0.value = this.selectedDateValue[0];
-                            this.datePane1.value = this.selectedDateValue[1];
+                            this.datePane0.value = [this.selectedDateValue[0]];
+                            this.datePane1.value = [this.selectedDateValue[1]];
                         }
-                        this.initYearAndMonth(this.selectedDateValue[0], this.selectedDateValue[1]);
+                        this.initYearAndMonth(startDate, endDate);
                     }else{
                         this.datePane0.value = this.selectedDateValue;
                         this.initYearAndMonth(this.selectedDateValue[0], null);
@@ -157,85 +154,51 @@
                 }
             },
             initYearAndMonth(startDate, endDate){
-                startDate = dateFormat(startDate);
-                endDate = dateFormat(endDate);
-                let nowDate1 = new Date(startDate);
-                let nowDate2;
-                if(endDate){
-                    nowDate2 = new Date(endDate);
-                    if(nowDate2.getMonth() === nowDate1.getMonth()){
-                        nowDate2.setMonth(nowDate1.getMonth() + 1);
-                    }
-                }else{
-                    nowDate2 = new Date(new Date(startDate).setMonth(nowDate1.getMonth() + 1));
-                }
-                this.datePane0.year = dateFormat(nowDate1, 'YYYY');
-                this.datePane0.month = dateFormat(nowDate1, 'MM');
-                this.datePane1.year = dateFormat(nowDate2, 'YYYY');
-                this.datePane1.month = dateFormat(nowDate2, 'MM');
+                let paneYear0 = startDate.getFullYear();
+                let paneMonth0 = startDate.getMonth() + 1;
+                let paneYear1 = null;
+                let paneMonth2 = null;
+                let rightPaneDate = new Date(startDate);
+                if(endDate) rightPaneDate = new Date(endDate);
+                if(rightPaneDate.getMonth() === startDate.getMonth()) rightPaneDate.setMonth(startDate.getMonth() + 1)
+                paneYear1 = rightPaneDate.getFullYear();
+                paneMonth2 = rightPaneDate.getMonth() + 1;
+
+                this.datePane0.year = paneYear0;
+                this.datePane0.month = paneMonth0;
+                this.datePane1.year = paneYear1;
+                this.datePane1.month = paneMonth2;
             },
             handleHoverDate(index, hoverDate){
                 if(this.isRange){
                     this.hoverDate = hoverDate;
                 }
             },
-            // 更新年/月/日
+            // 更新pane的日期 一个pane时更新当前pane的日期 两个pane时更新两个pane的日期
             updatePane(obj){
-                let {type, year, month, jumpStep, index, isUpdateOtherDate} = obj;//type为更新年/月/日类型
+                // let {type, year, month, jumpStep, index, isUpdateOtherDate} = obj;//type为更新年/月/日类型
+                let index = obj.index;
+                //更新当前pane的日期
                 this.updateDateCommon(obj);
 
-                if(this.isRange && isUpdateOtherDate){
-                    // 更新另一个date-picker的数据
-                    let updateFlag = type.includes('year') ? 'year' : 'month';
-                    let isUpdateRange = false;//是否需要更新的状态标志
-                    if(updateFlag === 'month'){
-                        let datePane0Time = new Date(this.datePane0.year, this.datePane0.month);
-                        let datePane1Time = new Date(this.datePane1.year, this.datePane1.month);
-                        if(datePane1Time <= datePane0Time){
-                            isUpdateRange = true;
-                        }
-                    }else if(updateFlag === 'year'){
-                        //更新年时需要比较年和月
-                        if(this.datePane1[updateFlag] <= this.datePane0[updateFlag] || this.datePane1.month <= this.datePane0.month){
-                            isUpdateRange = true;
-                        }
-                    }
+                //如果是range类型 更新另一个pane的日期
+                if(this.isRange){
+                    //先判断第一个pane的当前年月是否小于第二个pane当前的年月 如果第一个pane的日期大于等于第二个pane的日期则更新另一个pane的日期
+                    let paneDate0 = new Date(`${this.datePane0.year}-${this.datePane0.month}`);
+                    let paneDate1 = new Date(`${this.datePane1.year}-${this.datePane1.month}`);
+                    if(paneDate0 >= paneDate1){
+                        //如果是第一个pane更新了 需要去更新第二个pane的，否则相反
+                        if(index === 0){
+                            paneDate0.setMonth(paneDate0.getMonth() + 1);
 
-                    let otherYear = parseInt(year);
-                    let otherMonth = parseInt(month);
-                    switch (type) {
-                        case 'pre-month':
-                            otherMonth = otherMonth - 1;
-                            if(otherMonth < 1){
-                                otherMonth = 12;
-                            }
-                            break;
-                        case 'next-month':
-                            otherMonth = otherMonth + 1;
-                            if(otherMonth > 12){
-                                otherMonth = 1;
-                            }
-                            break;
-                    }
+                            this.datePane1.year = paneDate0.getFullYear();
+                            this.datePane1.month = paneDate0.getMonth() + 1;
+                        }else if(index === 1){
+                            paneDate1.setMonth(paneDate1.getMonth() - 1);
 
-                    let otherObj = {
-                        type: type,
-                        year: otherYear,
-                        month: otherMonth,
-                        jumpStep: jumpStep,
-                        index: index === '1' ? '0' : '1',
-                    };
-                    isUpdateRange && this.updateDateCommon(otherObj);
-                    if(this.datePane1.month <= this.datePane0.month){
-                        // 判断第一个月是否大于第二个月
-                        let otherObj = {
-                            type: index === '1' ? 'pre-month' : 'next-month',
-                            year: otherYear,
-                            month: otherMonth,
-                            jumpStep: jumpStep,
-                            index: index === '1' ? '0' : '1',
-                        };
-                        isUpdateRange && this.updateDateCommon(otherObj);
+                            this.datePane0.year = paneDate1.getFullYear();
+                            this.datePane0.month = paneDate1.getMonth() + 1;
+                        }
                     }
                 }
             },
@@ -243,40 +206,44 @@
                 let {type, year, month, jumpStep, index} = obj;
                 switch (type) {
                     case 'pre-year':
-                        this[`datePane${index}`].year = zero(parseInt(year) - jumpStep);
+                        this[`datePane${index}`].year = year - jumpStep;
                         break;
                     case 'pre-month':
-                        month = parseInt(month) - 1;
+                        month = month - 1;
                         if(month < 1){
                             month = 12;
-                            this[`datePane${index}`].year = zero(parseInt(year) - 1);
+                            this[`datePane${index}`].year = year - 1;
                         }
-                        this[`datePane${index}`].month = zero(month);
+                        this[`datePane${index}`].month = month;
                         break;
                     case 'next-month':
-                        month = parseInt(month) + 1;
+                        month = month + 1;
                         if(month > 12){
                             month = 1;
-                            this[`datePane${index}`].year = zero(parseInt(year) + 1);
+                            this[`datePane${index}`].year = year + 1;
                         }
-                        this[`datePane${index}`].month = zero(month);
+                        this[`datePane${index}`].month = month;
                         break;
                     case 'next-year':
-                        this[`datePane${index}`].year = zero(parseInt(year) + jumpStep);
+                        this[`datePane${index}`].year = year + jumpStep;
                         break;
                     case 'update-year':
-                        this[`datePane${index}`].year = zero(parseInt(year));
+                        this[`datePane${index}`].year = year;
                         break;
                     case 'update-month':
-                        this[`datePane${index}`].month = zero(parseInt(month));
+                        this[`datePane${index}`].month = month;
                         break;
                 }
             },
+
             updateValue(index, date, updateType){
-                index = parseInt(index);
                 if(this.pickerType === 'date'){
                     if(this.multiple && this.type === 'date'){
-                        this.selectedDateValue.push(...date);
+                        let currentDate = dateFormat(date[0]);
+                        let selectedDateValue = this.selectedDateValue.map(item => dateFormat(item));
+                        let index = selectedDateValue.findIndex(item => item === currentDate);
+                        if(index > 0) this.selectedDateValue.splice(index, 1);
+                        else this.selectedDateValue.push(...date);
                     }else{
                         if(!this.isRange){
                             this.selectedDateValue = date;
@@ -285,17 +252,10 @@
                                 if(updateType === 'time'){
                                     //日期选择时间时第二个日期时间不能小于第一个日期时间
                                     this.selectedDateValue.splice(index, 1, ...date);
-                                    let date0 = dateFormat(this.selectedDateValue[0], 'hh:mm:ss');
-                                    let date1 = dateFormat(this.selectedDateValue[1], 'hh:mm:ss');
-                                    let nowDate = dateFormat(new Date(), 'YYYY/MM/DD');
-                                    let newDate0 = new Date(nowDate + ' ' + date0);
-                                    let newDate1 = new Date(nowDate + ' ' + date1);
-                                    let time0 = newDate0.getTime();
-                                    let time1 = newDate1.getTime();
-                                    if(time0 > time1){
-                                        let selectValue1 = dateFormat(this.selectedDateValue[1], 'YYYY/MM/DD');
-                                        let compareDate = dateFormat(new Date(selectValue1 + ' ' + date0), this.format);
-                                        this.selectedDateValue.splice(1, 1, compareDate);
+                                    let leftDate = this.selectedDateValue[0];
+                                    let rightDate = this.selectedDateValue[1];
+                                    if(leftDate.getTime() > rightDate.getTime()){
+                                        this.selectedDateValue.splice(1, 1, this.selectedDateValue[0]);
                                     }
                                 }else{
                                     this.selectedDateValue = [...date];
@@ -360,6 +320,7 @@
                 this.closeDropDown(true);
             },
             handleClean(){
+                this.isTime && this.changeTimeAndDate();
                 this.picker && this.picker.handleClear();
                 this.closeDropDown(true);
             },

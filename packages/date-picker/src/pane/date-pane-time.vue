@@ -12,11 +12,10 @@
                              :class="[
                                  `${classPrefixItem}__col`,
                                  !(hhItem.id === selectedHours) && !(picker.disabledHours && picker.disabledHours.includes(parseInt(hhItem.id))) && `${classPrefixItem}__hover`,
-                                 !hhItem.visibility && `${classPrefixItem}__hide`,
+                                 !hhItem.visibility && `${classPrefix}__hide`,
                                  hhItem.id === selectedHours && `${classPrefixItem}__selected`,
                                  picker.disabledHours && picker.disabledHours.includes(parseInt(hhItem.id)) && `${classPrefixItem}__disabled`,
                              ]"
-
                              :key="hhItem.id"
                              @click="selectHours(hhItem)"><em>{{hhItem.name}}</em></div>
                     </template>
@@ -31,7 +30,7 @@
                              :class="[
                                  `${classPrefixItem}__col`,
                                  !(mmItem.id === selectedMinutes) && !(picker.disabledMinutes && picker.disabledMinutes.includes(parseInt(mmItem.id))) && `${classPrefixItem}__hover`,
-                                 !mmItem.visibility && `${classPrefixItem}__hide`,
+                                 !mmItem.visibility && `${classPrefix}__hide`,
                                  mmItem.id === selectedMinutes && `${classPrefixItem}__selected`,
                                  picker.disabledMinutes && picker.disabledMinutes.includes(parseInt(mmItem.id)) && `${classPrefixItem}__disabled`,
                              ]"
@@ -49,7 +48,7 @@
                              :class="[
                                  `${classPrefixItem}__col`,
                                  !(ssItem.id === selectedSecond) && !(picker.disabledSeconds && picker.disabledSeconds.includes(parseInt(ssItem.id))) && `${classPrefixItem}__hover`,
-                                 !ssItem.visibility && `${classPrefixItem}__hide`,
+                                 !ssItem.visibility && `${classPrefix}__hide`,
                                  ssItem.id === selectedSecond && `${classPrefixItem}__selected`,
                                  picker.disabledSeconds && picker.disabledSeconds.includes(parseInt(ssItem.id)) && `${classPrefixItem}__disabled`,
                              ]"
@@ -74,8 +73,8 @@
             size: String,
             type: String,
             format: String,
-            year: String,
-            month: String,
+            year: Number,
+            month: Number,
             date: {
                 type: Array,
                 default() {
@@ -84,8 +83,8 @@
             },
             currentDate: Object,
             isRange: Boolean,
-            hoverDate: String,
-            index: String,
+            hoverDate: Date,
+            index: Number,
         },
         data(){
             let nowDate = new Date();
@@ -98,13 +97,13 @@
                 hhData: [],
                 mmData: [],
                 ssData: [],
-                selectedHours: '',
-                selectedMinutes: '',
-                selectedSecond: '',
-                hideNum: 8,
-                defaultHours: '',
-                defaultMinutes: '',
-                defaultSecond: '',
+                selectedHours: null,
+                selectedMinutes: null,
+                selectedSecond: null,
+                hideNum: 7,
+                defaultHours: null,
+                defaultMinutes: null,
+                defaultSecond: null,
                 nowDate: nowDate
             }
         },
@@ -127,86 +126,89 @@
                 this.hhData = [];
                 this.mmData = [];
                 this.ssData = [];
-                this.defaultHours = '';
-                this.defaultMinutes = '';
-                this.defaultSecond = '';
+                this.defaultHours = null;
+                this.defaultMinutes = null;
+                this.defaultSecond = null;
                 for (let i = 0; i < 24 + this.hideNum; i++){
                     if(this.picker && this.picker.disabledHours && !this.picker.disabledHours.includes(i) && !this.defaultHours){
-                        this.defaultHours = zero(i.toString());
+                        this.defaultHours = i;
                     }
                     this.hhData.push({
-                        id: zero(i.toString()),
+                        id: i,
                         name: zero(i.toString()),
-                        visibility: i <= 24,
+                        visibility: i < 24,
                     });
                 }
                 for (let i = 0; i < 60  + this.hideNum; i++){
                     if(this.picker && this.picker.disabledMinutes && !this.picker.disabledMinutes.includes(i) && !this.defaultMinutes){
-                        this.defaultMinutes = zero(i.toString());
+                        this.defaultMinutes = i;
                     }
                     if(this.picker && this.picker.disabledSeconds && !this.picker.disabledSeconds.includes(i) && !this.defaultSecond){
-                        this.defaultSecond = zero(i.toString());
+                        this.defaultSecond = i;
                     }
                     this.mmData.push({
-                        id: zero(i.toString()),
+                        id: i,
                         name: zero(i.toString()),
-                        visibility: i <= 60,
+                        visibility: i < 60,
                     });
                     this.ssData.push({
-                        id: zero(i.toString()),
+                        id: i,
                         name: zero(i.toString()),
-                        visibility: i <= 60,
+                        visibility: i < 60,
                     });
                 }
-                this.nowDate.setHours(parseInt(this.defaultHours || 0));
-                this.nowDate.setMinutes(parseInt(this.defaultMinutes || 0));
-                this.nowDate.setSeconds(parseInt(this.defaultSecond || 0));
+                this.nowDate.setHours(this.defaultHours || 0);
+                this.nowDate.setMinutes(this.defaultMinutes || 0);
+                this.nowDate.setSeconds(this.defaultSecond || 0);
             },
             getSelected(){
-                this.selectedHours = '';
-                this.selectedMinutes = '';
-                this.selectedSecond = '';
+                this.selectedHours = null;
+                this.selectedMinutes = null;
+                this.selectedSecond = null;
                 let date = this.nowDate;
                 if(this.date[this.index]){
-                    date = new Date(this.date[this.index]);
-                    this.selectedHours = dateFormat(date, 'hh');
-                    this.selectedMinutes = dateFormat(date, 'mm');
-                    this.selectedSecond = dateFormat(date, 'ss');
+                    date = this.date[this.index];
+                    this.selectedHours = date.getHours();
+                    this.selectedMinutes = date.getMinutes();
+                    this.selectedSecond = date.getSeconds();
                 }
                 this.scrollToHours();
                 this.scrollToMinutes();
                 this.scrollToSecond();
             },
             selectHours(hhItem){
-                if(this.picker.disabledHours && this.picker.disabledHours.includes(parseInt(hhItem.id))) return;
+                let disabledHours = this.picker.disabledHours;
+                disabledHours = disabledHours ? disabledHours.map(item => parseInt(item)) : null;
+                if(disabledHours && disabledHours.includes(hhItem.id)) return;
                 this.selectedHours = hhItem.id;
                 this.emitUpdateTime();
             },
             selectMinutes(mmItem){
-                if(this.picker.disabledMinutes && this.picker.disabledMinutes.includes(parseInt(mmItem.id))) return;
+                let disabledMinutes = this.picker.disabledMinutes;
+                disabledMinutes = disabledMinutes ? disabledMinutes.map(item => parseInt(item)) : null;
+                if(disabledMinutes && disabledMinutes.includes(mmItem.id)) return;
                 this.selectedMinutes = mmItem.id;
                 this.emitUpdateTime();
             },
             selectSecond(ssItem){
-                if(this.picker.disabledSeconds && this.picker.disabledSeconds.includes(parseInt(ssItem.id))) return;
+                let disabledSeconds = this.picker.disabledSeconds;
+                disabledSeconds = disabledSeconds ? disabledSeconds.map(item => parseInt(item)) : null;
+                if(disabledSeconds && disabledSeconds.includes(ssItem.id)) return;
                 this.selectedSecond = ssItem.id;
                 this.emitUpdateTime();
             },
             emitUpdateTime(){
                 let date = this.nowDate;
-                if(this.date[this.index]){
-                    date = new Date(this.date[this.index]);
-                }
+                if(this.date[this.index]) date = this.date[this.index];
 
                 date.setHours(this.selectedHours || this.defaultHours);
                 date.setMinutes(this.selectedMinutes || this.defaultMinutes);
                 date.setSeconds(this.selectedSecond || this.defaultSecond);
-                date = dateFormat(date, this.format);
                 this.$emit('update-time', [date]);
             },
             scrollToHours(){
                 let y = 0;
-                if(this.selectedHours) y = this.selectedHours / 24 * 100 + '%';
+                if(this.selectedHours) y = this.selectedHours / 23 * 100 + '%';
                 this.$nextTick(()=>{
                     this.$refs.hhScroll && this.$refs.hhScroll.scrollTo({
                         x: 0,
@@ -216,7 +218,7 @@
             },
             scrollToMinutes(){
                 let y = 0;
-                if(this.selectedMinutes) y = this.selectedMinutes / 60 * 100 + '%';
+                if(this.selectedMinutes) y = this.selectedMinutes / 59 * 100 + '%';
                 this.$nextTick(()=>{
                     this.$refs.mmScroll && this.$refs.mmScroll.scrollTo({
                         x: 0,
@@ -226,7 +228,7 @@
             },
             scrollToSecond(){
                 let y = 0;
-                if(this.selectedSecond) y = this.selectedSecond / 60 * 100 + '%';
+                if(this.selectedSecond) y = this.selectedSecond / 59 * 100 + '%';
                 this.$nextTick(()=>{
                     this.$refs.ssScroll && this.$refs.ssScroll.scrollTo({
                         x: 0,

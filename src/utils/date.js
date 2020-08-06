@@ -3,104 +3,172 @@ import {t} from '../locale'
 export const dateObj = {
     month: [
         {
-            id: '01',
-            key: 'month1',
+            id: 1,
             name: t('cl.datePicker.months.m1')
         },
         {
-            id: '02',
-            key: 'month2',
+            id: 2,
             name: t('cl.datePicker.months.m2')
         },
         {
-            id: '03',
-            key: 'month3',
+            id: 3,
             name: t('cl.datePicker.months.m3')
         },
         {
-            id: '04',
-            key: 'month4',
+            id: 4,
             name: t('cl.datePicker.months.m4')
         },
         {
-            id: '05',
-            key: 'month5',
+            id: 5,
             name: t('cl.datePicker.months.m5')
         },
         {
-            id: '06',
-            key: 'month6',
+            id: 6,
             name: t('cl.datePicker.months.m6')
         },
         {
-            id: '07',
-            key: 'month7',
+            id: 7,
             name: t('cl.datePicker.months.m7')
         },
         {
-            id: '08',
-            key: 'month8',
+            id: 8,
             name: t('cl.datePicker.months.m8')
         },
         {
-            id: '09',
-            key: 'month9',
+            id: 9,
             name: t('cl.datePicker.months.m9')
         },
         {
-            id: '10',
-            key: 'month10',
+            id: 10,
             name: t('cl.datePicker.months.m10')
         },
         {
-            id: '11',
-            key: 'month11',
+            id: 11,
             name: t('cl.datePicker.months.m11')
         },
         {
-            id: '12',
-            key: 'month12',
+            id: 12,
             name: t('cl.datePicker.months.m12')
         }
     ],
     week: [
         {
-            id: '0',
-            key: 'week0',
+            id: 0,
             name: t('cl.datePicker.weeks.sun')
         },
         {
-            id: '1',
-            key: 'week1',
+            id: 1,
             name: t('cl.datePicker.weeks.mon')
         },
         {
-            id: '2',
-            key: 'week2',
+            id: 2,
             name: t('cl.datePicker.weeks.tue')
         },
         {
-            id: '3',
-            key: 'week3',
+            id: 3,
             name: t('cl.datePicker.weeks.wed')
         },
         {
-            id: '4',
-            key: 'week4',
+            id: 4,
             name: t('cl.datePicker.weeks.thu')
         },
         {
-            id: '5',
-            key: 'week5',
+            id: 5,
             name: t('cl.datePicker.weeks.fri')
         },
         {
-            id: '6',
-            key: 'week6',
+            id: 6,
             name: t('cl.datePicker.weeks.sat')
         }
     ],
+    reg: /d{1,4}|M{1,4}|yy(?:yy)?|([HhMsWm])\1?|[aA]|"[^"]*"|'[^']*'/g,
+    yyyy: /yyyy/g,
+    yy: /yy/g,
+    MM: /MM/g,
+    M: /M/g,
+    dd: /dd/g,
+    d: /d/g,
+    hh: /hh/g,
+    h: /h/g,
+    HH: /HH/g,
+    H: /H/g,
+    mm: /mm/g,
+    m: /m/g,
+    ss: /ss/g,
+    s: /s/g,
+    A: /A/g,
+    a: /a/g,
+    WW: /WW/g,
+    W: /W/g,
+    fourNumberReg: /\d{4}/,
+    twoNumberReg: /\d\d?/,
+    // eslint-disable-next-line no-useless-escape
+    word: /[0-9]*['a-z\u00A0-\u05FF\u0700-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+|[\u0600-\u06FF\/]+(\s*?[\u0600-\u06FF]+){1,2}/i,
 };
+
+
+export const parseDateObj = (o, f, r) => {
+    r = parseInt(r);
+    switch (f) {
+        case 'yyyy':
+            o.year = r;
+            break;
+        case 'yy':
+            var nowDate = new Date();
+            var fullYear = nowDate.getFullYear();
+            fullYear = fullYear.toString().substring(0,2);
+            o.year = fullYear + r;
+            break;
+        case 'MM':
+            o.month = r - 1;
+            break;
+        case 'M':
+            o.month = r - 1;
+            break;
+        case 'dd':
+            o.date = r;
+            break;
+        case 'd':
+            o.date = r;
+            break;
+        case 'hh':
+            o.hour = r;
+            break;
+        case 'h':
+            o.hour = r;
+            break;
+        case 'HH':
+            o.hour = r >= 12 ? r + 12 : r;
+            break;
+        case 'H':
+            o.hour = r >= 12 ? r + 12 : r;
+            break;
+        case 'mm':
+            o.minute = r;
+            break;
+        case 'm':
+            o.minute = r;
+            break;
+        case 'ss':
+            o.second = r;
+            break;
+        case 's':
+            o.second = r;
+            break;
+        case 'A':
+            o.apm = r;
+            break;
+        case 'a':
+            o.apm = r;
+            break;
+        case 'WW':
+            o.week = r;
+            break;
+        case 'W':
+            o.week = r;
+            break;
+    }
+}
 
 
 export const zero = (value) => {
@@ -119,41 +187,114 @@ export const zero = (value) => {
  */
 export const dateFormat = (forDate, format) => {
     if (!forDate) return forDate;
-    format = format || 'YYYY-MM-DD';
-    if(format && format.indexOf('WW') !== -1){
-        // forDate
-        let weekInfo = getWeekNumberInfo(forDate, format);
-        return format.replace('YYYY', weekInfo.year).replace('WW', weekInfo.weekNumber);
-    }
+    format = format || 'yyyy-MM-dd';
     if(typeof forDate === 'string'){
         let dateArr = forDate.match(/(\d{1,})/g);
         let dateSeparator = '-';
         let timeSeparator = ':';
-        let forYY = dateArr[0] ? zero(dateArr[0].length !== 4 ? dateArr[0].substring(0,4) : dateArr[0]) : '';
-        let forMM = dateArr[1] ? dateSeparator + zero(dateArr[1].length > 2 ? dateArr[1].substring(0,2) : dateArr[1]) : '';
-        let forDD = dateArr[2] ? dateSeparator + zero(dateArr[2].length > 2 ? dateArr[2].substring(0,2) : dateArr[2]) : '';
-        let forhh = dateArr[3] ? ' ' + zero(dateArr[3].length > 2 ? dateArr[3].substring(0,2) : dateArr[3]) : '';
-        let formm = dateArr[4] ? timeSeparator + zero(dateArr[4].length > 2 ? dateArr[4].substring(0,2) : dateArr[4]) : '';
-        let forss = dateArr[5] ? timeSeparator + zero(dateArr[5].length > 2 ? dateArr[5].substring(0,2) : dateArr[5]) : '';
-        if(forYY && forYY.length !== 4) forYY = new Date().getFullYear().toString();
+        let foryy = dateArr[0] ? (dateArr[0].length !== 4 ? dateArr[0].substring(0,4) : dateArr[0]) : '';
+        let forMM = dateArr[1] ? dateSeparator + (dateArr[1].length > 2 ? dateArr[1].substring(0,2) : dateArr[1]) : '';
+        let fordd = dateArr[2] ? dateSeparator + (dateArr[2].length > 2 ? dateArr[2].substring(0,2) : dateArr[2]) : '';
+        let forhh = dateArr[3] ? ' ' + (dateArr[3].length > 2 ? dateArr[3].substring(0,2) : dateArr[3]) : '';
+        let formm = dateArr[4] ? timeSeparator + (dateArr[4].length > 2 ? dateArr[4].substring(0,2) : dateArr[4]) : '';
+        let forss = dateArr[5] ? timeSeparator + (dateArr[5].length > 2 ? dateArr[5].substring(0,2) : dateArr[5]) : '';
+        if(foryy && foryy.length !== 4) foryy = new Date().getFullYear().toString();
         if(forMM && Math.abs(forMM) > 12) forMM = '12';
-        if(forDD && Math.abs(forDD) > 31) forDD = '31';
+        if(fordd && Math.abs(fordd) > 31) fordd = '31';
         if(forhh && Math.abs(forhh) > 59) forhh = '59';
         if(formm && Math.abs(formm) > 59) formm = '59';
         if(forss && Math.abs(forss) > 59) forss = '59';
-        forDate = new Date(`${forYY}${forMM}${forDD}${forhh}${formm}${forss}`);
+        forDate = new Date(`${foryy}${forMM}${fordd}${forhh}${formm}${forss}`);
     }else{
         forDate = new Date(forDate);
     }
-    let year = forDate.getFullYear();
-    let month = zero(forDate.getMonth() + 1);
-    let date = zero(forDate.getDate());
-    let hours = zero(forDate.getHours());
-    let minutes = zero(forDate.getMinutes());
-    let second = zero(forDate.getSeconds());
+    let fullYear = forDate.getFullYear();
+    let year = fullYear.toString().substring(2);
+    let month = forDate.getMonth() + 1;
+    let date = forDate.getDate();
+    let hours = forDate.getHours();
+    let minutes = forDate.getMinutes();
+    let second = forDate.getSeconds();
+    let apm = hours >= 12 ? 'pm' : 'am';
+    let week = getWeekNumber(forDate).week;
 
-    return format.replace('YYYY', year).replace('MM', month).replace('DD', date).replace('hh', hours).replace('mm', minutes).replace('ss', second);
+    //12小时制
+    let upperHours = hours >= 12 ? hours - 12 : hours;
+
+    if(format === 'timestamp'){
+        return forDate.getTime();
+    }
+
+    return format.replace(dateObj.yyyy, fullYear)
+        .replace(dateObj.yy, year)
+        .replace(dateObj.MM, zero(month))
+        .replace(dateObj.M, month)
+        .replace(dateObj.dd, zero(date))
+        .replace(dateObj.d, date)
+        .replace(dateObj.hh, zero(hours))
+        .replace(dateObj.h, hours)
+        .replace(dateObj.HH, zero(upperHours))
+        .replace(dateObj.H, upperHours)
+        .replace(dateObj.mm, zero(minutes))
+        .replace(dateObj.m, minutes)
+        .replace(dateObj.ss, zero(second))
+        .replace(dateObj.s, second)
+        .replace(dateObj.A, apm.toUpperCase())
+        .replace(dateObj.a, apm.toLowerCase())
+        .replace(dateObj.WW, zero(week))
+        .replace(dateObj.W, week)
 };
+
+/**
+ * 转换格式化的日期为标准日期格式
+ * @param formatDate 格式化的日期
+ * @param format 日期格式
+ */
+export const formatToDate = (formatDate, format) => {
+    if(!format || typeof format !== 'string') {
+        throw new Error('Invalid format faild');
+    }
+
+    if(!formatDate) return;
+
+    if(typeof formatDate !== 'string') formatDate = dateFormat(formatDate, format);
+
+
+    let isValid = true;
+    let dateInfo = {};
+    format.replace(dateObj.reg, function ($0) {
+
+        let len = $0.length;
+        let reg = len === 4 ? dateObj.fourNumberReg : dateObj.twoNumberReg;
+        if($0 === 'a' || $0 === 'A') reg = dateObj.word;
+        let index = formatDate.search(reg);
+
+        if(index < 0) isValid = false;
+
+        formatDate.replace(reg, function (result) {
+            parseDateObj(dateInfo, $0, result);
+            formatDate = formatDate.substring(index + result.length)
+            return result;
+        })
+    })
+
+
+    console.log(dateInfo,'dateInfo')
+
+    if(!isValid) return;
+
+    if(dateInfo.week){
+        let computedDate = convertWeekToDate(dateInfo.year, dateInfo.week);
+        dateInfo.month = computedDate.month - 1;
+        dateInfo.date = computedDate.date;
+    }
+
+    let today = new Date();
+
+    let date = new Date(dateInfo.year || today.getFullYear(), dateInfo.month || 0, dateInfo.date || 1, dateInfo.hour || 0, dateInfo.minute || 0, dateInfo.second || 0)
+
+    return date;
+}
 
 /**
  * 指定日期下的所有月份或者所有日期
@@ -189,39 +330,33 @@ export const dateOnMonth = (forYear, forMonth) => {
         let firstDateCopy = new Date(year, month, 1);
         for (let i = 0; i < firstDay; i++) {
             firstDateCopy.setDate(firstDateCopy.getDate() - 1);
+            let key = new Date(firstDateCopy);
             result.push({
-                year: firstDateCopy.getFullYear().toString(),
-                month: zero(firstDateCopy.getMonth() + 1),
-                date: zero(firstDateCopy.getDate()),
+                year: firstDateCopy.getFullYear(),
+                month: firstDateCopy.getMonth() + 1,
+                date: firstDateCopy.getDate(),
                 isNowDate: false,
                 isNowMonth: false,
-                key: dateFormat(firstDateCopy),
-                originDate: dateFormat(firstDateCopy),
+                key: key,
+                format: dateFormat(firstDateCopy),
+                week: getWeekNumber(key).week
             });
         }
         result.reverse();
     }
-
-    result.push({
-        year: firstDate.getFullYear().toString(),
-        month: zero(firstDate.getMonth() + 1),
-        date: zero(firstDate.getDate()),
-        isNowDate: nowDate === dateFormat(firstDate),
-        isNowMonth: true,
-        key: dateFormat(firstDate),
-        originDate: dateFormat(firstDate),
-    });
-    for (let i = 1; i < currentTotalDay; i++) {
-        firstDate.setDate(firstDate.getDate() + 1);
+    for (let i = 0; i < currentTotalDay; i++) {
+        let key = new Date(firstDate);
         result.push({
-            year: firstDate.getFullYear().toString(),
-            month: zero(firstDate.getMonth() + 1),
-            date: zero(firstDate.getDate()),
+            year: firstDate.getFullYear(),
+            month: firstDate.getMonth() + 1,
+            date: firstDate.getDate(),
             isNowDate: nowDate === dateFormat(firstDate),
             isNowMonth: true,
-            key: dateFormat(firstDate),
-            originDate: dateFormat(firstDate),
+            key: key,
+            format: dateFormat(firstDate),
+            week: getWeekNumber(key).week
         });
+        firstDate.setDate(firstDate.getDate() + 1);
     }
 
 
@@ -230,14 +365,16 @@ export const dateOnMonth = (forYear, forMonth) => {
         let num = Math.max(6 - endDay, 42 - result.length);
         for (let i = 0; i < num; i++) {
             endDateCopy.setDate(endDateCopy.getDate() + 1);
+            let key = new Date(endDateCopy);
             result.push({
-                year: endDateCopy.getFullYear().toString(),
-                month: zero(endDateCopy.getMonth() + 1),
-                date: zero(endDateCopy.getDate()),
+                year: endDateCopy.getFullYear(),
+                month: endDateCopy.getMonth() + 1,
+                date: endDateCopy.getDate(),
                 isNowDate: false,
                 isNowMonth: false,
-                key: dateFormat(endDateCopy),
-                originDate: dateFormat(endDateCopy),
+                key: key,
+                format: dateFormat(endDateCopy),
+                week: getWeekNumber(key).week
             });
         }
     }
@@ -251,7 +388,8 @@ export const dateOnMonth = (forYear, forMonth) => {
  * @returns {[]|Array}
  */
 export const yearListInit = (forYear) => {
-    if(!forYear || forYear.length !== 4) return [];
+    if(!forYear) return [];
+    forYear = forYear.toString();
     let result = [];
     let yearSplitArr = forYear.split('');
     let startYear = [];//四位的年份字符串
@@ -264,7 +402,7 @@ export const yearListInit = (forYear) => {
 
     for (let i = 0; i <= 9; i++){
         result.push({
-            id: startYear.toString(),
+            id: startYear,
             key: `year${startYear}`,
             name: startYear.toString(),
         });
@@ -297,7 +435,7 @@ export const getWeekNumber = (date) => {
             startDate.setDate(1 + 7 - startDay);
         }
         let dis = nowDate.getTime() - startDate.getTime();
-        return zero(Math.ceil(dis / (24 * 60 * 60 * 1000) / 7));
+        return Math.ceil(dis / (24 * 60 * 60 * 1000) / 7);
     }
 
     let nowDate = new Date(date);
@@ -316,6 +454,34 @@ export const getWeekNumber = (date) => {
 };
 
 /**
+ * 根据年、周反推日期
+ * @param year
+ * @param week
+ * @returns {Date}
+ */
+export const convertWeekToDate = (year, week) => {
+    //根据周数反推月数
+
+    //计算周四的时间戳 所以减去3
+    let m = (week * 7 - 3) * 24 * 60 * 60 * 1000;
+
+    let startDate = new Date(`${year}-01-01`);
+    startDate.setHours(0)
+    let startDay = startDate.getDay();
+    if(startDay <= 4){
+        startDate.setDate(1 - startDay);
+    }else {
+        startDate.setDate(7 - startDay);
+    }
+    let currentDate = new Date(startDate.getTime() + m);
+
+    return {
+        month: currentDate.getMonth() + 1,
+        date: currentDate.getDate()
+    };
+}
+
+/**
  * 获取指定年指定周数的信息
  * @param weekNumberInfo
  * @param format
@@ -323,7 +489,7 @@ export const getWeekNumber = (date) => {
  */
 export const getWeekNumberInfo = (weekNumberInfo, format) => {
     if(!weekNumberInfo || !format) return weekNumberInfo;
-    let formatMatch = format.match(/(\S*)YYYY(\S*)WW(\S*)/);
+    let formatMatch = format.match(/(\S*)yyyy(\S*)WW(\S*)/);
     let yearReg = new RegExp(`${formatMatch[1]}(\\d*)${formatMatch[2]}`);
     let weekReg = new RegExp(`${formatMatch[2]}(\\d*)${formatMatch[3]}`);
 
@@ -338,11 +504,12 @@ export const getWeekNumberInfo = (weekNumberInfo, format) => {
 
         //根据周数反推月数
 
-        let m = week * 7 * 24 * 60 * 60 * 1000;
+        //计算周四的时间戳 所以减去3
+        let m = (week * 7 - 3) * 24 * 60 * 60 * 1000;
 
         let startDate = new Date(`${year}-01-01`);
-        let date = new Date(`${year}-01-01`);
-        let startDay = date.getDay();
+        startDate.setHours(0)
+        let startDay = startDate.getDay();
         if(startDay <= 4){
             startDate.setDate(1 - startDay);
         }else {
@@ -357,8 +524,8 @@ export const getWeekNumberInfo = (weekNumberInfo, format) => {
     }
     return {
         year: year,
-        month: zero(month),
-        weekNumber: zero(week)
+        month: month,
+        weekNumber: week
     };
 };
 

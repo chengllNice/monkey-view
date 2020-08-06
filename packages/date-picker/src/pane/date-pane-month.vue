@@ -5,7 +5,7 @@
          ]">
         <div :class="[`${classPrefix}__row`]" v-for="(row, rowIndex) in monthList" :key="rowIndex">
             <span v-for="_month in row"
-                  :key="_month.key"
+                  :key="_month.id"
                   :class="[
                         `${classPrefixItem}__col`,
                         !(isSelectYear && _month.id === selectedMonth) && `${classPrefixItem}__hover`,
@@ -13,10 +13,9 @@
                         isSelectYear && _month.id === selectedMonth && `${classPrefixItem}__selected`
                   ]"
                   @click.stop="handleSelectMonth(_month)">
-            <em>{{_month.name}}</em>
-        </span>
+                <em>{{_month.name}}</em>
+            </span>
         </div>
-
     </div>
 </template>
 
@@ -30,8 +29,8 @@
             size: String,
             type: String,
             format: String,
-            year: String,
-            month: String,
+            year: Number,
+            month: Number,
             date: {
                 type: Array,
                 default(){
@@ -39,7 +38,7 @@
                 }
             },
             currentDate: Object,
-            index: String,
+            index: Number,
         },
         data(){
             return {
@@ -50,10 +49,11 @@
         },
         computed: {
             selectedMonth(){
-                return this.type === 'month' ? dateFormat(this.date[this.index], 'MM') : this.month;
+                let month = this.date[this.index] ? this.date[this.index].getMonth() + 1 : null;
+                return this.type === 'month' ? month : this.month;
             },
             isSelectYear(){
-                return dateFormat(this.date[this.index], 'YYYY') === this.year;
+                return this.date[this.index] ? this.date[this.index].getFullYear() === this.year : false;
             }
         },
         mounted() {

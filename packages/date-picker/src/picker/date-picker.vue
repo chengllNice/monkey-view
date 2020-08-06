@@ -32,7 +32,8 @@
                       :render-html="renderHtml"
                       v-model="visible">
                 <div :class="[`${classPrefix}__drop-down-inner`]">
-                    <date-pane picker-type='date'
+                    <date-pane ref="datePane"
+                               picker-type='date'
                                :size="size"
                                :multiple="multiple"
                                :format="formatType"
@@ -52,7 +53,7 @@
     import {directive as clickOutside} from 'v-click-outside-x';
     import Drop from 'packages/base/drop'
     import DatePane from '../pane/date-pane.vue'
-    import {dateFormat} from "main/utils/date";
+    import {dateFormat, formatToDate} from "main/utils/date";
 
     export default {
         name: "DatePicker",
@@ -63,7 +64,7 @@
             }
         },
         props: {
-            value: [String, Array],
+            value: [String, Array, Date],
             type: {
                 type: String,
                 default: 'date',
@@ -102,6 +103,10 @@
                 type: String,
                 default: '',
             },
+            valueFormat: {
+                type: String,
+                default: '',
+            },
             shortcuts: Array,
             disabledDate: Function,
             showWeekNumber: Boolean,
@@ -135,36 +140,39 @@
             readonlyInput() {
                 return this.readonly || !this.editable;
             },
-            formatType() {
-                if (this.format) return this.format;
+            defaultFormatType(){
                 let result;
                 switch (this.type) {
                     case 'date':
-                        result = 'YYYY-MM-DD';
+                        result = 'yyyy-MM-dd';
                         break;
                     case 'daterange':
-                        result = 'YYYY-MM-DD';
+                        result = 'yyyy-MM-dd';
                         break;
                     case 'datetime':
-                        result = 'YYYY-MM-DD hh:mm:ss';
+                        result = 'yyyy-MM-dd hh:mm:ss';
                         break;
                     case 'datetimerange':
-                        result = 'YYYY-MM-DD hh:mm:ss';
+                        result = 'yyyy-MM-dd hh:mm:ss';
                         break;
                     case 'year':
-                        result = 'YYYY';
+                        result = 'yyyy';
                         break;
                     case 'month':
-                        result = 'YYYY-MM';
+                        result = 'yyyy-MM';
                         break;
                     case 'week':
-                        result = 'YYYY-WW';
+                        result = 'yyyy-WW';
                         break;
                     default:
-                        result = 'YYYY-MM-DD';
+                        result = 'yyyy-MM-dd';
                         break;
                 }
                 return result;
+            },
+            formatType() {
+                if (this.format && this.format !== 'timestamp') return this.format;
+                return this.defaultFormatType;
             }
         },
         components: {
@@ -180,20 +188,21 @@
         methods: {
             initDateValue(val) {
                 let value = val || this.value;
+
+                if(value && Array.isArray(value)){
+                    value = value.map(item => new Date(item));
+                }else if(value){
+                    value = [new Date(value)]
+                }else {
+                    value = [];
+                }
                 if (this.multiple && this.type === 'date') {
-                    this.dateValue = value || [];
+                    this.dateValue = value;
                 } else {
                     if (this.isRange) {
-                        value = value && Array.isArray(value) && value.length ? value : [];
-                        if (value[0] && value[1]) {
-                            this.dateValue = [dateFormat(value[0], this.formatType), dateFormat(value[1], this.formatType)];
-                        }
-                    } else if (typeof value === 'string' || value instanceof Date) {
-                        if (this.type === 'week') {
-                            this.dateValue = value ? [value] : [];
-                        } else {
-                            this.dateValue = value ? [dateFormat(value, this.formatType)] : [];
-                        }
+                        this.dateValue = value.length >= 2 ? [value[0], value[1]] : [];
+                    } else {
+                        this.dateValue = value.length >= 1 ? [value[0]] : [];
                     }
                 }
             },
@@ -209,9 +218,11 @@
             handleBlur(value){
                 this.handleEnter(value);
             },
+            //转换输入的inputvalue为标准日期格式 todo
             handleEnter(value){
                 if(!value) return;
-                value = dateFormat(value, this.formatType);
+                console.log('=ddddd',value)
+                value = formatToDate(value, this.formatType)
                 if(this.isRange) value = [value];
                 this.initDateValue(value);
             },
@@ -230,27 +241,23 @@
             dropDownVisible(visible) {
                 if (this.readonly || this.open || this.disabled) return;
                 this.visible = visible;
+                visible && this.$refs.datePane.isTime && this.$refs.datePane.changeTimeAndDate();
             },
             handleClear() {
                 this.dateValue = [];
                 this.$emit('clear');
             },
             updateInputValue() {
+                let dateValue = this.dateValue.map(item => dateFormat(item, this.formatType))
                 if (this.multiple && this.type === 'date') {
-                    this.dateInputValue = this.dateValue.join(',');
+                    this.dateInputValue = dateValue.join(',');
                 } else {
                     if (this.isRange) {
-                        let date1 = this.dateValue[0];
-                        let date2 = this.dateValue[1];
-                        if (date1 && !date2) {
-                            this.dateInputValue = `${date1}`;
-                        } else if (date1 && date1) {
-                            this.dateInputValue = `${date1} ${this.separator} ${date2}`;
-                        } else {
-                            this.dateInputValue = '';
+                        if(dateValue.length === 2){
+                            this.dateInputValue = `${dateValue[0]} ${this.separator} ${dateValue[1]}`;
                         }
                     } else {
-                        this.dateInputValue = this.dateValue[0] || '';
+                        this.dateInputValue = dateValue[0] || '';
                     }
                 }
             },
@@ -268,12 +275,16 @@
             dateValue: {
                 handler(newVal) {
                     this.updateInputValue();
+                    let result = newVal.map(item => new Date(typeof item === 'number' ? item.toString() : item));
+                    if(this.valueFormat) result = result.map(item => dateFormat(item, this.valueFormat));
+
                     if (this.isRange || (this.multiple && this.type === 'date')) {
-                        this.$emit('input', newVal);
-                        this.$emit('change', newVal);
+                        this.$emit('input', result);
+                        this.$emit('change', result);
                     } else {
-                        this.$emit('input', newVal[0]);
-                        this.$emit('change', newVal[0]);
+                        let res = typeof result[0] === "number" ? result[0].toString() : result[0];
+                        this.$emit('input',  res);
+                        this.$emit('change', res);
                     }
                 },
                 deep: true

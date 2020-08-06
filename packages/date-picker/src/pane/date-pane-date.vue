@@ -5,7 +5,7 @@
             picker.showWeekNumber && `${classPrefix}--show-week-number`
          ]">
         <div :class="[`${classPrefix}__week`]">
-            <span :class="[`${classPrefixItem}__col`, `${classPrefixItem}__week`]" v-for="week in weekList" :key="week.key">
+            <span :class="[`${classPrefixItem}__col`, `${classPrefixItem}__week`]" v-for="week in weekList" :key="week.id">
                 <em>{{week.name}}</em>
             </span>
         </div>
@@ -13,22 +13,22 @@
             <div :class="[
                     `${classPrefix}__date-row`,
                     type === 'week' && `${classPrefix}__date-row-week`,
-                    type === 'week' && isWeekSelect(row[6]) && `${classPrefix}__date-row-week-selected`
+                    type === 'week' && isWeekSelect(row) && `${classPrefix}__date-row-week-selected`
                  ]"
                  v-for="(row, rowIndex) in dateList"
                  :key="rowIndex"
-                 @click.capture="handleSelectWeek(rowIndex)">
+                 @click.capture="handleSelectWeek(row[4])">
                 <template v-if="picker.showWeekNumber">
                     <span :class="[
                             `${classPrefixItem}__col`,
                             `${classPrefixItem}__week-number`,
                           ]">
-                        <em>{{weekNumbers[rowIndex].week}}</em>
+                        <em>{{row[4].week}}</em>
                     </span>
                 </template>
                 <template>
                     <span v-for="dateItem in row"
-                          :key="dateItem.originDate"
+                          :key="dateItem.format"
                           :class="dateItemColClass(dateItem)"
                           @mouseenter="mouseEnter(dateItem)"
                           @mouseleave="mouseLeave(dateItem)"
@@ -52,8 +52,8 @@
             size: String,
             type: String,
             format: String,
-            year: String,
-            month: String,
+            year: Number,
+            month: Number,
             date: {
                 type: Array,
                 default() {
@@ -62,41 +62,36 @@
             },
             currentDate: Object,
             isRange: Boolean,
-            hoverDate: String,
-            index: String,
+            hoverDate: Date,
+            index: Number,
         },
         data() {
             return {
                 classPrefix: Config.classPrefix + '-date-pane-date',
                 classPrefixItem: Config.classPrefix + '-date-pane-item',
                 dateList: [],
-                weekNumbers: [],
                 weekList: dateObj.week,
-                selectWeekNumber: {
-                    year: '',
-                    weekNumber: ''
-                },
                 selectDate: [],
             }
         },
         computed: {
             isWeekSelect(){
-                return function (date) {
-                    if(getWeekNumber(date.originDate).week === this.selectWeekNumber.weekNumber && date.year === this.selectWeekNumber.year){
-                        return true;
-                    }
-                    return false;
+                return function (rowDate) {
+                    rowDate = rowDate.map(item => item.format);
+                    let select = dateFormat(this.selectDate[this.index]);
+                    return rowDate.includes(select);
                 }
             },
             dateItemColClass(){
+                let selectDate = this.selectDate.map(item => dateFormat(item))
                 return function (dateItem) {
                     return [
                         `${this.classPrefixItem}__col`,
-                        this.type === 'date' && !dateItem.isDisabled && dateItem.isNowMonth && !this.selectDate.includes(dateItem.key) && `${this.classPrefixItem}__hover`,
+                        this.type === 'date' && !dateItem.isDisabled && dateItem.isNowMonth && !selectDate.includes(dateItem.format) && `${this.classPrefixItem}__hover`,
                         dateItem.isNowDate && `${this.classPrefixItem}__now`,
                         !dateItem.isNowMonth && `${this.classPrefixItem}__no-now-month`,
-                        this.type !== 'week' && this.selectDate.includes(dateItem.key) && dateItem.isNowMonth && `${this.classPrefixItem}__selected`,
-                        !this.selectDate.includes(dateItem.key) && dateItem.isBetween && `${this.classPrefixItem}__between`,
+                        this.type !== 'week' && selectDate.includes(dateItem.format) && dateItem.isNowMonth && `${this.classPrefixItem}__selected`,
+                        !selectDate.includes(dateItem.format) && dateItem.isBetween && `${this.classPrefixItem}__between`,
                         dateItem.isDisabled && `${this.classPrefixItem}__disabled`,
                     ]
                 }
@@ -106,18 +101,6 @@
             this.setDateList();
         },
         methods: {
-            setWeekNumbers() {
-                let weekNumbers = [];
-                this.dateList.forEach(row => {
-                    //以周六为基准算当前是第几周
-                    weekNumbers.push({
-                        week: getWeekNumber(row[6].originDate).week,
-                        year: row[6].year,
-                        month: row[6].month
-                    });
-                });
-                this.weekNumbers = weekNumbers;
-            },
             // 获取日期列表
             setDateList() {
                 if (!this.year || !this.month) return;
@@ -125,15 +108,14 @@
 
                 let newDateList = [];
                 let row = [];
-                let format = this.format;
-                format = format.replace('hh', '').replace('mm', '').replace('ss', '').replace(/:/g, '').trim();
+                // let format = this.format;
+                // format = format.replace('hh', '').replace('mm', '').replace('ss', '').replace(/:/g, '').trim();
                 dateList.forEach((item, index) => {
                     item.isBetween = false;
                     item.isDisabled = false;
                     if (typeof this.picker.disabledDate === 'function') {
                         item.isDisabled = this.picker.disabledDate(item.key);
                     }
-                    item.key = dateFormat(item.key, format);
 
                     if (this.isRange && this.selectDate.length === 2 && item.key > this.selectDate[0] && item.key < this.selectDate[1]) {
                         item.isBetween = true;
@@ -145,9 +127,7 @@
                     row.push(item);
                 });
 
-                console.log(newDateList,'newDateListnewDateList')
                 this.dateList = newDateList;
-                (this.picker.showWeekNumber || this.type === 'week') && this.setWeekNumbers();
                 this.clearHover(true);
             },
             handleSelectDate(date) {
@@ -155,18 +135,17 @@
                 if (this.selectDate.length === 2) {
                     this.clearHover();
                 }
-                let _date = new Date(date.key);
+                let _date = date.key;
                 _date.setHours(0);
                 _date.setMinutes(0);
                 _date.setSeconds(0);
 
                 this.$emit('updateDate', [_date]);
-                this.picker && this.picker.dateClick(dateFormat(_date, this.format));
+                this.picker && this.picker.dateClick(_date);
             },
-            handleSelectWeek(rowIndex){
+            handleSelectWeek(date){
                 if(this.type === 'date') return;
-                let emitValue = this.format.replace('YYYY', this.weekNumbers[rowIndex].year).replace('WW', zero(this.weekNumbers[rowIndex].week));
-                this.$emit('updateWeek', emitValue);
+                this.$emit('updateWeek', [date.key]);
             },
             mouseEnter(dateItem) {
                 if(this.type === 'week') return;
@@ -231,24 +210,9 @@
             },
             date(newVal) {
                 if(!newVal) return;
-                let format = this.format;
-                format = format.replace('hh', '').replace('mm', '').replace('ss', '').replace(/:/g, '').trim();
-                this.selectDate = [];
-                if(this.type !== 'week'){
-                    newVal.forEach(item=>{
-                        this.selectDate.push(dateFormat(item, format));
-                    });
-                }
-
+                this.selectDate = newVal || [];
                 if (newVal.length === 1 && this.isRange) {
                     this.clearHover();
-                }
-                this.selectWeekNumber.year = '';
-                this.selectWeekNumber.weekNumber = '';
-                if(this.type === 'week' && newVal && newVal.length){
-                    this.selectDate = newVal;
-                    this.selectWeekNumber.year = getWeekNumberInfo(newVal[0], this.format).year;
-                    this.selectWeekNumber.weekNumber = getWeekNumberInfo(newVal[0], this.format).weekNumber;
                 }
                 this.setDateList();
             },

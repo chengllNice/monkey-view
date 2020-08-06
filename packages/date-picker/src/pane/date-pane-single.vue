@@ -28,54 +28,54 @@
         <div :class="[`${classPrefix}__body`]">
             <template v-if="pickerType === 'date'">
                 <date-pane-date :size="size"
-                                   :type="currentType"
-                                   :year="year"
-                                   :month="month"
-                                   :date="date"
-                                   :index="index"
-                                   :hover-date="hoverDate"
-                                   :currentDate="currentDate"
-                                   :is-range="isRange"
-                                   :format="format"
-                                   @updateWeek="updateSelectWeek"
-                                   @updateDate="updateSelectDate"
-                                   @hover-date="handleHoverDate"
-                                   v-show="currentType === 'date' || currentType === 'week'"></date-pane-date>
+                                :type="currentType"
+                                :year="year"
+                                :month="month"
+                                :date="date"
+                                :index="index"
+                                :hover-date="hoverDate"
+                                :currentDate="currentDate"
+                                :is-range="isRange"
+                                :format="format"
+                                @updateWeek="updateSelectWeek"
+                                @updateDate="updateSelectDate"
+                                @hover-date="handleHoverDate"
+                                v-show="currentType === 'date' || currentType === 'week'"></date-pane-date>
                 <date-pane-year :size="size"
-                                   :type="currentType"
-                                   :year="year"
-                                   :month="month"
-                                   :date="date"
-                                   :index="index"
-                                   :currentDate="currentDate"
-                                   :is-range="isRange"
-                                   :format="format"
-                                   @update-year="updateSelectYear"
-                                   v-show="currentType === 'year'"></date-pane-year>
+                                :type="currentType"
+                                :year="year"
+                                :month="month"
+                                :date="date"
+                                :index="index"
+                                :currentDate="currentDate"
+                                :is-range="isRange"
+                                :format="format"
+                                @update-year="updateSelectYear"
+                                v-show="currentType === 'year'"></date-pane-year>
                 <date-pane-month :size="size"
-                                    :type="currentType"
-                                    :year="year"
-                                    :month="month"
-                                    :date="date"
-                                    :index="index"
-                                    :currentDate="currentDate"
-                                    :is-range="isRange"
-                                    :format="format"
-                                    @update-month="updateSelectMonth"
-                                    v-show="currentType === 'month'"></date-pane-month>
+                                 :type="currentType"
+                                 :year="year"
+                                 :month="month"
+                                 :date="date"
+                                 :index="index"
+                                 :currentDate="currentDate"
+                                 :is-range="isRange"
+                                 :format="format"
+                                 @update-month="updateSelectMonth"
+                                 v-show="currentType === 'month'"></date-pane-month>
             </template>
             <date-pane-time :size="size"
-                               :type="currentType"
-                               :year="year"
-                               :month="month"
-                               :date="date"
-                               :index="index"
-                               :hover-date="hoverDate"
-                               :currentDate="currentDate"
-                               :is-range="isRange"
-                               :format="format"
-                               @update-time="updateSelectTime"
-                               v-if="currentType === 'time' || currentType === 'timerange'"></date-pane-time>
+                            :type="currentType"
+                            :year="year"
+                            :month="month"
+                            :date="date"
+                            :index="index"
+                            :hover-date="hoverDate"
+                            :currentDate="currentDate"
+                            :is-range="isRange"
+                            :format="format"
+                            @update-time="updateSelectTime"
+                            v-if="currentType === 'time' || currentType === 'timerange'"></date-pane-time>
         </div>
     </div>
 </template>
@@ -100,44 +100,42 @@
             size: String,
             type: String,
             format: String,
-            index: String,
-            year: String,
-            month: String,
+            index: Number,
+            year: Number,
+            month: Number,
             date: Array,
-            hoverDate: String,
+            hoverDate: Date,
             isRange: Boolean,
             pickerType: String,
         },
-        data(){
+        data() {
             const currentType = ['date', 'daterange', 'datetime', 'datetimerange'].includes(this.type) ? 'date' : this.type;
+            let nowDate = new Date();
             return {
                 classPrefix: Config.classPrefix + '-date-pane-single',
                 currentType: currentType,
                 currentDate: {
-                    year: new Date().getFullYear().toString(),
-                    month: zero((new Date().getMonth() + 1)),
-                    date: zero(new Date().getDate())
+                    year: nowDate.getFullYear(),
+                    month: nowDate.getMonth() + 1,
+                    date: nowDate.getDate()
                 },
             }
         },
         computed: {
-            dateChangeIconShow(){
+            dateChangeIconShow() {
                 return ['date', 'daterange', 'week'].includes(this.currentType)
             },
-            headerMonthShow(){
+            headerMonthShow() {
                 return !['year', 'month'].includes(this.currentType)
             },
-            yearJumpStep(){
+            yearJumpStep() {
                 return ['year'].includes(this.currentType) ? 10 : 1;
             },
-            showDateHeader(){
+            showDateHeader() {
                 return !['time', 'timerange'].includes(this.currentType)
             },
-            showTimeHeader(){
+            showTimeHeader() {
                 return this.isRange && ['time', 'timerange'].includes(this.currentType)
-            },
-            selectDate(){
-                return dateFormat(this.date[this.index], 'DD');
             },
         },
         components: {
@@ -147,49 +145,46 @@
             DatePaneYear,
             DatePaneMonth
         },
-        mounted() {
-
-        },
         methods: {
-            jumpDate(type){
+            jumpDate(type) {
                 this.updateSingleDate(type, null, null);
             },
-            updateCurrentType(type){
+            updateCurrentType(type) {
                 this.currentType = type;
             },
-            handleHoverDate(date){
+            handleHoverDate(date) {
                 this.$emit('hover-date', this.index, date);
             },
-            updateSelectDate(date){
-                date = [dateFormat(date[0], this.format)];
+            updateSelectDate(date) {
+                date = [date[0]];
                 this.$emit('update-date', this.index, date);
             },
-            updateSelectTime(date){
+            updateSelectTime(date) {
                 this.$emit('update-date', this.index, date, 'time');
             },
-            updateSelectWeek(weekNum){
-                this.$emit('update-date', this.index, [weekNum]);
+            updateSelectWeek(date) {
+                this.$emit('update-date', this.index, date);
             },
-            updateSelectYear(year){
-                if (this.type === 'year'){
-                    this.updateSelectDate([year]);
-                }else{
+            updateSelectYear(year) {
+                if (this.type === 'year') {
+                    this.updateSelectDate([new Date(year.toString())]);
+                } else {
                     this.updateCurrentType('month');
                 }
                 this.updateSingleDate('update-year', year, null);
             },
-            updateSelectMonth(month){
-                if (['date', 'daterange', 'datetime', 'datetimerange'].includes(this.type)){
+            updateSelectMonth(month) {
+                if (['date', 'daterange', 'datetime', 'datetimerange'].includes(this.type)) {
                     this.currentType = 'date';
-                }else if(this.type === 'week'){
+                } else if (this.type === 'week') {
                     this.currentType = 'week';
-                }else{
-                    let date = dateFormat(new Date(this.year, parseInt(month) - 1), this.format);
+                } else {
+                    let date = new Date(this.year, month - 1);
                     this.updateSelectDate([date]);
                 }
                 this.updateSingleDate('update-month', null, month);
             },
-            updateSingleDate(type, year, month, flag = true){
+            updateSingleDate(type, year, month) {
                 year = year || this.year;
                 month = month || this.month;
                 this.$emit('update-pane', {
@@ -198,12 +193,8 @@
                     month: month,
                     jumpStep: this.yearJumpStep,
                     index: this.index,
-                    isUpdateOtherDate: flag,//range状态下是否要更新另一个日期框
                 });
             },
         },
-        watch: {
-
-        }
     }
 </script>

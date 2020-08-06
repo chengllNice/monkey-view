@@ -29,8 +29,8 @@
             size: String,
             type: String,
             format: String,
-            year: String,
-            month: String,
+            year: Number,
+            month: Number,
             date: {
                 type: Array,
                 default() {
@@ -38,7 +38,7 @@
                 }
             },
             currentDate: Object,
-            index: String,
+            index: Number,
         },
         data() {
             return {
@@ -49,7 +49,7 @@
         },
         computed: {
             selectYear() {
-                return dateFormat(this.date[this.index], 'YYYY');
+                return this.date[this.index] ? this.date[this.index].getFullYear() : null
             }
         },
         mounted() {

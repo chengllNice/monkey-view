@@ -194,7 +194,6 @@
                 }
             },
             copyIconCode(item) {
-                console.log(item,'===')
                 let self = this;
                 let codeText = `<Icon type="${item}" />`;
                 this.$copyText(codeText).then(function () {
