@@ -65,7 +65,7 @@
     import Config from 'main/config/config'
     import DatePaneSingle from './date-pane-single'
     import Button from 'packages/button'
-    import {dateFormat, getWeekNumber, getWeekNumberInfo} from "main/utils/date";
+    import {dateFormat} from "main/utils/date";
     import Locale from "main/mixins/locale";
 
     export default {
@@ -176,7 +176,6 @@
             },
             // 更新pane的日期 一个pane时更新当前pane的日期 两个pane时更新两个pane的日期
             updatePane(obj){
-                // let {type, year, month, jumpStep, index, isUpdateOtherDate} = obj;//type为更新年/月/日类型
                 let index = obj.index;
                 //更新当前pane的日期
                 this.updateDateCommon(obj);

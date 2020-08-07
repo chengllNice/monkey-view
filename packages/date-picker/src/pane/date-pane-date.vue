@@ -43,7 +43,7 @@
 
 <script>
     import Config from 'main/config/config'
-    import {dateOnMonth, dateObj, dateFormat, getWeekNumber, zero, getWeekNumberInfo} from "main/utils/date";
+    import {dateOnMonth, dateObj, dateFormat} from "main/utils/date";
 
     export default {
         name: "DatePaneDate",
@@ -108,8 +108,6 @@
 
                 let newDateList = [];
                 let row = [];
-                // let format = this.format;
-                // format = format.replace('hh', '').replace('mm', '').replace('ss', '').replace(/:/g, '').trim();
                 dateList.forEach((item, index) => {
                     item.isBetween = false;
                     item.isDisabled = false;

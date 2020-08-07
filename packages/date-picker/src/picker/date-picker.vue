@@ -17,7 +17,6 @@
                           :readonly="readonlyInput"
                           @enter="handleEnter"
                           @click.native="handleFocus"
-                          @blur="handleBlur"
                           @clear="handleClear"></sn-input>
             </slot>
         </div>
@@ -215,16 +214,24 @@
             handleFocus() {
                 this.dropDownVisible(true);
             },
-            handleBlur(value){
-                this.handleEnter(value);
-            },
-            //转换输入的inputvalue为标准日期格式 todo
+            //转换输入的inputvalue为标准日期格式
             handleEnter(value){
-                if(!value) return;
-                console.log('=ddddd',value)
-                value = formatToDate(value, this.formatType)
-                if(this.isRange) value = [value];
-                this.initDateValue(value);
+                if(!value) return this.updateInputValue();
+
+                let result = [];
+                if(this.isRange && value.includes(this.separator)) value = value.split(this.separator)
+                else if(this.multiple) value = value.split(',')
+                else value = [value];
+
+                let valid = true;
+                value.forEach(item=>{
+                    let v = formatToDate(item, this.formatType);
+                    valid = !v;
+                    result.push(v);
+                })
+
+                if(result.length && valid) this.initDateValue(result)
+                else this.updateInputValue()
             },
             handleClickOutside(event) {
                 if (this.visible) {
@@ -234,9 +241,11 @@
                             return;
                         }
                     }
+
+                    this.dropDownVisible(false);
+                    this.handleEnter(this.dateInputValue);
+                    this.$emit('click-outside',event);
                 }
-                this.$emit('click-outside',event);
-                this.dropDownVisible(false);
             },
             dropDownVisible(visible) {
                 if (this.readonly || this.open || this.disabled) return;

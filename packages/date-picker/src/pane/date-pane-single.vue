@@ -75,7 +75,7 @@
                             :is-range="isRange"
                             :format="format"
                             @update-time="updateSelectTime"
-                            v-if="currentType === 'time' || currentType === 'timerange'"></date-pane-time>
+                            v-show="currentType === 'time' || currentType === 'timerange'"></date-pane-time>
         </div>
     </div>
 </template>
@@ -87,7 +87,6 @@
     import DatePaneDate from './date-pane-date'
     import DatePaneYear from './date-pane-year'
     import DatePaneMonth from './date-pane-month'
-    import {dateFormat, zero} from "main/utils/date";
     import Locale from "main/mixins/locale";
 
 

@@ -278,9 +278,6 @@ export const formatToDate = (formatDate, format) => {
         })
     })
 
-
-    console.log(dateInfo,'dateInfo')
-
     if(!isValid) return;
 
     if(dateInfo.week){

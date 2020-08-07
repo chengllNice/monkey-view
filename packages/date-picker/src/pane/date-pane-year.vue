@@ -21,7 +21,7 @@
 
 <script>
     import Config from 'main/config/config'
-    import {dateFormat, yearListInit} from "main/utils/date";
+    import {yearListInit} from "main/utils/date";
 
     export default {
         name: "DatePaneYear",

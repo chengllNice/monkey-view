@@ -64,7 +64,7 @@
 <script>
     import Config from 'main/config/config'
     import Scroll from 'packages/scroll'
-    import {dateFormat, zero} from "main/utils/date";
+    import {zero} from "main/utils/date";
 
     export default {
         name: "DatePaneTime",
@@ -117,12 +117,14 @@
         },
         mounted(){
             this.initData();
+            this.setNowDate();
             this.$nextTick(()=>{
                 this.getSelected();
             })
         },
         methods: {
             initData(){
+                if(this.hhData.length && this.mmData.length && this.ssData.length) return;
                 this.hhData = [];
                 this.mmData = [];
                 this.ssData = [];
@@ -157,6 +159,8 @@
                         visibility: i < 60,
                     });
                 }
+            },
+            setNowDate(){
                 this.nowDate.setHours(this.defaultHours || 0);
                 this.nowDate.setMinutes(this.defaultMinutes || 0);
                 this.nowDate.setSeconds(this.defaultSecond || 0);
@@ -165,6 +169,7 @@
                 this.selectedHours = null;
                 this.selectedMinutes = null;
                 this.selectedSecond = null;
+                this.setNowDate();
                 let date = this.nowDate;
                 if(this.date[this.index]){
                     date = this.date[this.index];
@@ -172,6 +177,7 @@
                     this.selectedMinutes = date.getMinutes();
                     this.selectedSecond = date.getSeconds();
                 }
+
                 this.scrollToHours();
                 this.scrollToMinutes();
                 this.scrollToSecond();
@@ -209,6 +215,7 @@
             scrollToHours(){
                 let y = 0;
                 if(this.selectedHours) y = this.selectedHours / 23 * 100 + '%';
+                console.log(y, '====ddd',this.selectedHours)
                 this.$nextTick(()=>{
                     this.$refs.hhScroll && this.$refs.hhScroll.scrollTo({
                         x: 0,

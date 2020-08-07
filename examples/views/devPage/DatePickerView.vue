@@ -2,11 +2,10 @@
     <div class="DatePickerView">
 
         <h4>date</h4>
-        <DatePicker style="width: 200px"
+        <DatePicker style="width: 500px"
                     placeholder="请选择日期"
-                    type="week"
-                    v-model="date"
-                    format="yyyy年WW周"
+                    type="datetimerange"
+                    v-model="dateTimeRange"
                     @change="dateChange"
                     clearable
                     :render-html="true"></DatePicker>

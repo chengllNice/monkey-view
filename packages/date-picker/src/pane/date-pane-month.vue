@@ -21,7 +21,7 @@
 
 <script>
     import Config from 'main/config/config'
-    import { dateObj, dateFormat} from "main/utils/date";
+    import { dateObj} from "main/utils/date";
 
     export default {
         name: "DatePaneMonth",
