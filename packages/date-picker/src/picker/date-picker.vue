@@ -10,6 +10,7 @@
                 <sn-input v-model="dateInputValue"
                           ref="dateInput"
                           :suffix="suffix"
+                          :prefix="prefix"
                           :size="size"
                           :disabled="disabled"
                           :clearable="clearable"
@@ -39,7 +40,8 @@
                                v-model="dateValue"
                                :shortcuts="shortcuts"
                                :is-range="isRange"
-                               :type="type"/>
+                               :type="type"
+                               @change="handleDateValueChange"/>
                 </div>
             </Drop>
         </transition>
@@ -81,10 +83,17 @@
                     return ['mini', 'small', 'default', 'large'].includes(value);
                 }
             },
-            clearable: Boolean,
+            clearable: {
+                type: Boolean,
+                default: true
+            },
             suffix: {
                 type: String,
                 default: 'date'
+            },
+            prefix: {
+                type: String,
+                default: ''
             },
             transition: {
                 type: String,
@@ -187,14 +196,22 @@
         methods: {
             initDateValue(val) {
                 let value = val || this.value;
+                let valid = true;//验证日期格式是否正确
 
                 if(value && Array.isArray(value)){
-                    value = value.map(item => new Date(item));
+                    value = value.map(item => {
+                        let v = new Date(item);
+                        if(valid) valid = !isNaN(v.getTime());
+                        return v
+                    });
                 }else if(value){
-                    value = [new Date(value)]
+                    let v = new Date(value);
+                    if(valid) valid = !isNaN(v.getTime());
+                    value = [v]
                 }else {
                     value = [];
                 }
+                if(!valid) return;
                 if (this.multiple && this.type === 'date') {
                     this.dateValue = value;
                 } else {
@@ -210,6 +227,7 @@
                     value = new Date(value);
                 }
                 this.initDateValue(value);
+                this.handleDateValueChange();
             },
             handleFocus() {
                 this.dropDownVisible(true);
@@ -226,12 +244,17 @@
                 let valid = true;
                 value.forEach(item=>{
                     let v = formatToDate(item, this.formatType);
-                    valid = !v;
+                    if(valid) valid = !!v;
                     result.push(v);
                 })
 
-                if(result.length && valid) this.initDateValue(result)
-                else this.updateInputValue()
+                if(JSON.stringify(result) === JSON.stringify(this.dateValue)) return;
+                if(result.length && valid) {
+                    this.initDateValue(result);
+                    this.handleDateValueChange();
+                }else {
+                    this.updateInputValue()
+                }
             },
             handleClickOutside(event) {
                 if (this.visible) {
@@ -278,25 +301,28 @@
             },
             dateClick(selectValue){
                 this.$emit('date-click', selectValue);
+            },
+            handleDateValueChange(value){
+                this.updateInputValue();
+                value = value ? value : this.dateValue;
+                let result = value.map(item => new Date(typeof item === 'number' ? item.toString() : item));
+                if(this.valueFormat) result = result.map(item => dateFormat(item, this.valueFormat));
+
+                if (this.isRange || (this.multiple && this.type === 'date')) {
+                    this.$emit('input', result);
+                    this.$emit('change', result);
+                } else {
+                    let res = typeof result[0] === "number" ? result[0].toString() : result[0];
+                    this.$emit('input',  res);
+                    this.$emit('change', res);
+                }
             }
         },
         watch: {
-            dateValue: {
-                handler(newVal) {
-                    this.updateInputValue();
-                    let result = newVal.map(item => new Date(typeof item === 'number' ? item.toString() : item));
-                    if(this.valueFormat) result = result.map(item => dateFormat(item, this.valueFormat));
-
-                    if (this.isRange || (this.multiple && this.type === 'date')) {
-                        this.$emit('input', result);
-                        this.$emit('change', result);
-                    } else {
-                        let res = typeof result[0] === "number" ? result[0].toString() : result[0];
-                        this.$emit('input',  res);
-                        this.$emit('change', res);
-                    }
-                },
-                deep: true
+            value(newVal, oldVal){
+                if(JSON.stringify(newVal) === JSON.stringify(oldVal)) return;
+                this.initDateValue();
+                this.updateInputValue();
             },
             open(newVal){
                 this.visible = newVal;

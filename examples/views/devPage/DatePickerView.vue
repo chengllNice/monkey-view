@@ -2,21 +2,12 @@
     <div class="DatePickerView">
 
         <h4>date</h4>
-        <DatePicker style="width: 500px"
-                    placeholder="请选择日期"
-                    type="datetimerange"
-                    v-model="dateTimeRange"
-                    @change="dateChange"
-                    clearable
-                    :render-html="true"></DatePicker>
-
-<!--        <h4>date</h4>-->
-<!--        <DatePicker style="width: 200px"-->
-<!--                        placeholder="请选择日期"-->
-<!--                        v-model="date"-->
-<!--                        @change="dateChange"-->
-<!--                        clearable-->
-<!--                        :render-html="true"></DatePicker>-->
+        <DatePicker style="width: 200px"
+                        placeholder="请选择日期"
+                        v-model="date"
+                        @change="dateChange"
+                        clearable
+                        :render-html="true"></DatePicker>
 
 <!--        <h4>daterange</h4>-->
 <!--        <DatePicker type="daterange"-->
@@ -296,6 +287,11 @@
               ],
               open: false
           }
+        },
+        mounted() {
+            setTimeout(()=>{
+                this.date = '2020-01-01'
+            }, 3000)
         },
         methods: {
             dateChange(date){

@@ -367,7 +367,6 @@ export default {
         },
         handleKeydown(event) {
             const key = event.key || event.code;
-            console.log(key,'key')
             if (key === 'Backspace') {
                 return; // so we don't call preventDefault
             }

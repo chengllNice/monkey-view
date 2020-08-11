@@ -215,7 +215,6 @@
             scrollToHours(){
                 let y = 0;
                 if(this.selectedHours) y = this.selectedHours / 23 * 100 + '%';
-                console.log(y, '====ddd',this.selectedHours)
                 this.$nextTick(()=>{
                     this.$refs.hhScroll && this.$refs.hhScroll.scrollTo({
                         x: 0,

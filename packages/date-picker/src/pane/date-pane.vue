@@ -307,6 +307,7 @@
                 }
 
                 this.$emit('input', this.selectedDateValue);
+                this.$emit('change', this.selectedDateValue);
                 this.closeDropDown();
             },
             changeTimeAndDate(){

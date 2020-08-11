@@ -191,28 +191,28 @@
 
 设置`format`属性可以格式化日期。
 
-该值格式为`YYYY-MM-DD hh:mm:ss`。
+该值格式为`yyyy-MM-dd hh:mm:ss`。
 
 默认值如下：
 
-`type=date`和`type=daterange`: `YYYY-MM-DD`;
+`type=date`和`type=daterange`: `yyyy-MM-dd`;
 
-`type=year`: `YYYY`;
+`type=year`: `yyyy`;
 
-`type=month`: `YYYY-MM`;
+`type=month`: `yyyy-MM`;
 
-`type=week`: `YYYY-WW`;
+`type=week`: `yyyy-WW`;
 
-`type=datetime`和`type=datetimerange`: `YYYY-MM-DD hh:mm:ss`;
+`type=datetime`和`type=datetimerange`: `yyyy-MM-dd hh:mm:ss`;
 
 ```html
 <template>
     <cl-row :gutter="16">
         <cl-col>
-            <cl-date-picker type="date" placeholder="请选择日期" format="YYYY年MM月DD" clearable></cl-date-picker>
+            <cl-date-picker type="date" placeholder="请选择日期" format="yyyy年MM月dd日" clearable></cl-date-picker>
         </cl-col>
         <cl-col>
-            <cl-date-picker type="daterange" placeholder="请选择日期范围" format="YYYY/MM/DD" clearable></cl-date-picker>
+            <cl-date-picker type="daterange" placeholder="请选择日期范围" format="yyyy/MM/dd" clearable></cl-date-picker>
         </cl-col>
     </cl-row>
 </template>
@@ -221,6 +221,48 @@
         data(){
             return {
                 
+            }
+        },
+    }
+</script>
+```
+
+:::
+
+
+:::demo 格式化绑定日期值
+
+设置`value-format`属性可以格式化绑定日期值。使用方式类似于`format`。
+
+注意：`value-format`格式化后的值必须是可以被`new Date()`的日期格式，不能类似于`2020年01月01日`的格式。
+
+```html
+<template>
+    <cl-row :gutter="16">
+        <cl-col>
+            <p>默认为Date对象</p>
+            <p>value: {{date1}}</p>
+            <cl-date-picker v-model="date1" placeholder="请选择日期" clearable></cl-date-picker>
+        </cl-col>
+        <cl-col>
+            <p>使用value-format</p>
+            <p>value: {{date2}}</p>
+            <cl-date-picker v-model="date2" placeholder="请选择日期范围" value-format="yyyy年MM月dd日" clearable></cl-date-picker>
+        </cl-col>
+        <cl-col>
+            <p>时间戳</p>
+            <p>value: {{date3}}</p>
+            <cl-date-picker v-model="date3" placeholder="请选择日期" value-format="timestamp" clearable></cl-date-picker>
+        </cl-col>
+    </cl-row>
+</template>
+<script>
+    export default {
+        data(){
+            return {
+                date1: '',
+                date2: '',
+                date3: '',
             }
         },
     }
@@ -407,23 +449,25 @@
 | 属性 | 类型 | 说明 | 默认值 |
 | ---- | ---- | ---- | ---- |
 | type | String | 设置日期选择器的类型，可选值 `date` `daterange` `datetime` `datetimerange` `year` `month` `week` | date |
-| value | String, Array | 绑定的值，可以使用v-model进行双向绑定，`range`模式下为Array类型 | - |
+| value | Date, String, Array | 绑定的值，可以使用v-model进行双向绑定，`range`模式下为Array类型，数组类型是数组项值的类型为String\Date。String类型为日期格式，例如：2020-01-01、2020/01/01 | - |
 | disabled | Boolean | 禁用 | - |
 | readonly | Boolean | 只读属性，只读时不能打开日期下拉框 | - |
 | placeholder | String | 占位文本 | - |
 | size | String | 尺寸，可选值 `mini` `small` `large`或者不设置 | - |
-| clearable | Boolean | 显示清除图标 | false |
-| suffix | String | 输入框尾部图标。textarea时无效。type为search时默认显示搜索图标 | - |
+| clearable | Boolean | 显示清除图标 | true |
+| prefix | String | 输入框前置图标。 | - |
+| suffix | String | 输入框尾部图标。 | date |
 | transition | String | 自定义日期下拉框的动画效果 | fade |
 | editable | Boolean | 是否可以输入 | true |
 | placement | String | 和`tooltip`一样 | bottom-start |
-| format | String | 格式化日期，详细见示例 | - |
+| format | String | 格式化日期，详细见示例，具体格式见下面的日期格式说明 | - |
+| value-format | String | 格式化日期，详细见示例，具体格式见下面的日期格式说明 | - |
 | shortcuts | Array | 自定义快捷方式，类型如`[{text: 'one', onClick(picker){}}]`，详细见示例 | - |
 | disabledDate | Function | 禁用日期，详细见示例 | - |
 | showWeekNumber | Boolean | 是否显示周数 | - |
-| open | Boolean | 自定义控制打开关闭日期下拉框，此时选择器不会主动关闭。 | - |
+| open | Boolean | 自定义控制打开关闭日期下拉框，此时选择器不会主动关闭，结合`slot`使用。 | - |
 | multiple | Boolean | 是否多选日期，`type=date`时有效 | - |
-| separator | String | 两个日期之间的分隔符 | ～ |
+| separator | String | range类型时，两个日期之间的分隔符 | ～ |
 | className | String | 选择器的类名 | - |
 | dropdownClassName | String | 选择器下拉框的类名 | - |
 | renderHtml | HTMLElement, Boolean | 定义日期下拉框渲染的位置，如果为`true`则渲染到body中，可以指定渲染的元素 | false |
@@ -453,3 +497,34 @@
 | ---- | ---- | ---- |
 | focus | 主动使input获取焦点 | - |
 | blur | 主动使input失去焦点 | - |
+
+
+### 日期格式说明
+
+使用`format`指定日期格式；使用`value-format`指定绑定值得格式。
+
+默认组件返回Date对象格式的日期。以下示例以日期`2020-01-01 03:09:01`说明。
+
+<Alter type="warning">请注意大小写</Alter>
+
+| 格式 | 说明 | 示例 |
+| ---- | ---- | ---- |
+| yyyy | 年份（四位） | 2020 |
+| yy | 年份（两位） | 20 |
+| MM | 月份（单位数时补0） | 01 |
+| M | 月份 | 1 |
+| dd | 日期（单位数时补0） | 01 |
+| d | 日期 | 1 |
+| HH | 小时，24小时制（单位数时补0）） | 03 |
+| H | 小时，24小时制 | 3 |
+| hh | 小时，12小时制（单位数时补0）） | 03 |
+| h | 小时，12小时制 | 3 |
+| mm | 分钟（单位数时补0）） | 09 |
+| m | 分钟 | 9 |
+| ss | 秒钟（单位数时补0）） | 01 |
+| s | 秒钟 | 1 |
+| A | 上午与下午（大写） | AM/PM |
+| a | 上午与下午（小写） | am/pm |
+| WW | 周（单位数时补0） | 01 |
+| W | 周 | 1 |
+| timestamp | JS时间戳，仅`value-format`可用 | 1577819341000 |
