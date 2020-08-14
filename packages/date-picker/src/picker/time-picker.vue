@@ -1,7 +1,6 @@
 <template>
     <div :class="[
             `${classPrefix}`,
-            size && `${classPrefix}--${size}`,
             className,
          ]"
          v-click-outside.capture="handleClickOutside">
@@ -10,13 +9,14 @@
                 <sn-input v-model="dateInputValue"
                           ref="timeInput"
                           :suffix="suffix"
+                          :prefix="prefix"
                           :size="size"
                           :disabled="disabled"
                           :clearable="clearable"
                           :placeholder="placeholder"
                           :readonly="readonlyInput"
+                          @enter="handleEnter"
                           @click.native="handleFocus"
-                          @blur="updateInputValue"
                           @clear="handleClear"></sn-input>
             </slot>
         </div>
@@ -32,11 +32,10 @@
                       v-model="visible">
                 <div :class="[`${classPrefix}__drop-down-inner`]">
                     <date-pane picker-type='time'
-                               :size="size"
-                               :format="localeFormat"
                                v-model="dateValue"
                                :is-range="isRange"
-                               :type="type"/>
+                               :type="type"
+                               @change="handleDateValueChange"/>
                 </div>
             </Drop>
         </transition>
@@ -49,7 +48,7 @@
     import {directive as clickOutside} from 'v-click-outside-x';
     import Drop from 'packages/base/drop'
     import DatePane from '../pane/date-pane.vue'
-    import {dateFormat} from "main/utils/date";
+    import {dateFormat, formatToDate} from "main/utils/date";
 
     export default {
         name: "TimePicker",
@@ -60,7 +59,7 @@
             }
         },
         props: {
-            value: [String, Array],
+            value: [String, Date, Array, Number],
             type: {
                 type: String,
                 default: 'time',
@@ -98,10 +97,17 @@
                     return ['mini', 'small', 'default', 'large'].includes(value);
                 }
             },
-            clearable: Boolean,
+            clearable: {
+                type: Boolean,
+                default: true
+            },
             suffix: {
                 type: String,
                 default: 'time'
+            },
+            prefix: {
+                type: String,
+                default: ''
             },
             transition: {
                 type: String,
@@ -117,7 +123,11 @@
             },
             format: {
                 type: String,
-                default: 'hh:mm:ss',
+                default: 'HH:mm:ss',
+            },
+            valueFormat: {
+                type: String,
+                default: 'HH:mm:ss',
             },
             renderHtml: {
                 type: [HTMLElement, Boolean],
@@ -134,13 +144,11 @@
             dropdownClassName: String,//时间下拉框的类名
         },
         data() {
-            const localeFormat = 'YYYY/MM/DD ' + this.format;
             return {
                 classPrefix: Config.classPrefix + '-time-picker',
                 dateValue: [],
                 dateInputValue: '',
                 visible: false,
-                localeFormat: localeFormat,
                 nowDate: new Date()
             }
         },
@@ -164,30 +172,66 @@
         },
         methods: {
             initDateValue(val) {
-                let _value;
-                if(this.value && typeof this.value === 'string'){
-                    _value = dateFormat(this.nowDate) + ' ' + this.value;
-                }else if(Array.isArray(this.value)){
-                    _value = [];
-                    this.value[0] && _value.push(dateFormat(this.nowDate) + ' ' + this.value[0]);
-                    this.value[1] && _value.push(dateFormat(this.nowDate) + ' ' + this.value[1]);
+                let value = val || this.value;
+                if(value && Array.isArray(value)){
+                    value = value.map(item => this.formatTimeToDate(item));
+                }else if(value){
+                    value = [this.formatTimeToDate(value)]
+                }else {
+                    value = [];
                 }
-                let value = val || _value;
+
                 if (this.isRange) {
-                    value = value && Array.isArray(value) && value.length ? value : [];
-                    if (value[0] && value[1]) {
-                        this.dateValue = [dateFormat(value[0], this.localeFormat), dateFormat(value[1], this.localeFormat)];
-                    }
-                } else if (!value || typeof value === 'string' || value instanceof Date) {
-                    this.dateValue = value ? [dateFormat(value, this.localeFormat)] : [];
+                    this.dateValue = value.length >= 2 ? [value[0], value[1]] : [];
+                } else {
+                    this.dateValue = value.length >= 1 ? [value[0]] : [];
                 }
             },
+            formatTimeToDate(time){
+                let result = new Date();
+                if(time instanceof Date) result = time
+                else if(typeof time === 'string') {
+                    let t = new Date(time);
+                    if(!isNaN(t.getTime())) {
+                        result = t
+                    } else {
+                        t = formatToDate(time, this.valueFormat);
+                        if(t) result = t;
+                    }
+                }
+                return result;
+            },
             setValue(value) {
-                !Array.isArray(value) && (value = value.toString());
+                if(!Array.isArray(value)){
+                    value = new Date(value);
+                }
                 this.initDateValue(value);
+                this.handleDateValueChange();
             },
             handleFocus() {
                 this.dropDownVisible(!this.visible);
+            },
+            //转换输入的inputvalue为标准日期格式
+            handleEnter(value){
+                if(!value) return this.updateInputValue();
+
+                let result = [];
+                if(this.isRange && value.includes(this.separator)) value = value.split(this.separator)
+                else value = [value];
+
+                let valid = true;
+                value.forEach(item=>{
+                    let v = formatToDate(item, this.format);
+                    if(valid) valid = !!v;
+                    result.push(v);
+                })
+
+                if(result.length && valid && JSON.stringify(result) !== JSON.stringify(this.dateValue)) {
+                    this.initDateValue(result);
+                    this.handleDateValueChange();
+                }else {
+                    this.updateInputValue()
+                }
             },
             handleClickOutside(event) {
                 if (this.visible) {
@@ -197,9 +241,10 @@
                             return;
                         }
                     }
+                    this.$emit('click-outside',event);
+                    this.handleEnter(this.dateInputValue);
+                    this.dropDownVisible(false);
                 }
-                this.$emit('click-outside',event);
-                this.dropDownVisible(false);
             },
             dropDownVisible(visible) {
                 if (this.readonly || this.open || this.disabled) return;
@@ -207,21 +252,18 @@
             },
             handleClear() {
                 this.dateValue = [];
+                this.handleDateValueChange();
                 this.$emit('clear');
             },
             updateInputValue() {
+                let dateValue = this.dateValue.map(item => dateFormat(item, this.format))
                 if (this.isRange) {
-                    let date1 = dateFormat(this.dateValue[0], this.format);
-                    let date2 = dateFormat(this.dateValue[1], this.format);
-                    if (date1 && !date2) {
-                        this.dateInputValue = `${date1}`;
-                    } else if (date1 && date1) {
-                        this.dateInputValue = `${date1} ${this.separator} ${date2}`;
-                    } else {
-                        this.dateInputValue = '';
+                    if(dateValue.length === 2){
+                        this.dateInputValue = `${dateValue[0]} ${this.separator} ${dateValue[1]}`;
                     }
+                    if(dateValue.length === 0) this.dateInputValue = '';
                 } else {
-                    this.dateInputValue = dateFormat(this.dateValue[0], this.format) || '';
+                    this.dateInputValue = dateValue[0] || '';
                 }
             },
             focus(){
@@ -229,29 +271,31 @@
             },
             blur(){
                 this.$refs.timeInput && this.$refs.timeInput.blur();
+            },
+            handleDateValueChange(value){
+                this.updateInputValue();
+                value = value ? value : this.dateValue;
+                let result = value.map(item => new Date(item));
+                if(this.valueFormat) result = result.map(item => dateFormat(item, this.valueFormat));
+
+                if (this.isRange) {
+                    this.$emit('input', result);
+                    this.$emit('change', result);
+                } else {
+                    this.$emit('input',  result[0] || '');
+                    this.$emit('change', result[0] || '');
+                }
             }
         },
         watch: {
-            dateValue: {
-                handler(newVal) {
-                    this.updateInputValue();
-                    let emitValue = [];
-                    newVal.forEach(item=>{
-                        emitValue.push(dateFormat(item, this.format))
-                    });
-                    if (this.isRange) {
-                        this.$emit('input', emitValue);
-                        this.$emit('change', emitValue);
-                    } else {
-                        this.$emit('input', emitValue[0]);
-                        this.$emit('change', emitValue[0]);
-                    }
-                },
-                deep: true
+            value(newVal, oldVal){
+                if(JSON.stringify(newVal) === JSON.stringify(oldVal)) return;
+                this.initDateValue();
+                this.updateInputValue();
             },
             open(newVal){
                 this.visible = newVal;
-            }
+            },
         }
     }
 </script>

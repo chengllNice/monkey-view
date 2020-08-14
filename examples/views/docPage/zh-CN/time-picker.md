@@ -333,7 +333,7 @@
 | 属性 | 类型 | 说明 | 默认值 |
 | ---- | ---- | ---- | ---- |
 | type | String | 设置时间选择器的类型，可选值 `time` `timerange` | time |
-| value | String, Array | 绑定的值，可以使用v-model进行双向绑定，`range`模式下为Array类型 | - |
+| value | String, Array, Date, Number | 绑定的值，可以使用v-model进行双向绑定，`range`模式下为Array类型, `Number`类型为时间戳 | - |
 | disabled | Boolean | 禁用 | - |
 | disabledHours | Array | 禁用的小时 | [] |
 | disabledMinutes | Array | 禁用的分钟 | [] |
@@ -343,12 +343,14 @@
 | readonly | Boolean | 只读属性，只读时不能打开时间下拉框 | - |
 | placeholder | String | 占位文本 | - |
 | size | String | 尺寸，可选值 `mini` `small` `large`或者不设置 | - |
-| clearable | Boolean | 显示清除图标 | - |
+| clearable | Boolean | 显示清除图标 | true |
 | suffix | String | 输入框尾部图标 | time |
+| prefix | String | 输入框前置图标 | - |
 | transition | String | 自定义时间下拉框的动画效果 | slideUp |
 | editable | Boolean | 是否可以输入 | true |
 | placement | String | 和`tooltip`一样 | bottom-start |
-| format | String | 格式化时间 | hh:mm:ss |
+| format | String | 输入框展示时间的格式化，详细见`date-picker`组件的日期格式化说明 | HH:mm:ss |
+| value-format | String | `v-model`绑定值时间的格式化，详细见`date-picker`组件的日期格式化说明 | HH:mm:ss |
 | open | Boolean | 自定义控制打开关闭时间下拉框，此时选择器不会主动关闭。 | - |
 | separator | String | 两个时间之间的分隔符 | ～ |
 | className | String | 选择器的类名 | - |
@@ -361,7 +363,7 @@
 | 事件名 | 说明 | 返回值 |
 | ---- | ---- | ---- |
 | change | 数据改变时触发，返回已经格式化的时间 | time |
-| clear | 开始clearable时有用。点击清空按钮时触发 | - |
+| clear | 点击清空按钮和清除按钮时触发 | - |
 | click-outside | 点击外部关闭下拉框时触发 | event |
 
 

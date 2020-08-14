@@ -1,7 +1,6 @@
 <template>
     <div :class="[
             `${classPrefix}`,
-            size && `${classPrefix}--${size}`,
             !showSsCol && `${classPrefix}--no-show-ss`,
          ]">
         <div :class="[`${classPrefix}__hh`]">
@@ -70,9 +69,7 @@
         name: "DatePaneTime",
         inject: ['picker'],
         props: {
-            size: String,
             type: String,
-            format: String,
             year: Number,
             month: Number,
             date: {
@@ -109,7 +106,7 @@
         },
         computed: {
             showSsCol(){
-                return this.format.includes('ss')
+                return this.picker.valueFormat.includes('ss')
             }
         },
         components: {
@@ -117,7 +114,6 @@
         },
         mounted(){
             this.initData();
-            this.setNowDate();
             this.$nextTick(()=>{
                 this.getSelected();
             })
@@ -132,7 +128,7 @@
                 this.defaultMinutes = null;
                 this.defaultSecond = null;
                 for (let i = 0; i < 24 + this.hideNum; i++){
-                    if(this.picker && this.picker.disabledHours && !this.picker.disabledHours.includes(i) && !this.defaultHours){
+                    if(this.picker && this.picker.disabledHours && !this.picker.disabledHours.includes(i) && this.defaultHours === null){
                         this.defaultHours = i;
                     }
                     this.hhData.push({
@@ -142,10 +138,10 @@
                     });
                 }
                 for (let i = 0; i < 60  + this.hideNum; i++){
-                    if(this.picker && this.picker.disabledMinutes && !this.picker.disabledMinutes.includes(i) && !this.defaultMinutes){
+                    if(this.picker && this.picker.disabledMinutes && !this.picker.disabledMinutes.includes(i) && this.defaultMinutes === null){
                         this.defaultMinutes = i;
                     }
-                    if(this.picker && this.picker.disabledSeconds && !this.picker.disabledSeconds.includes(i) && !this.defaultSecond){
+                    if(this.picker && this.picker.disabledSeconds && !this.picker.disabledSeconds.includes(i) && !this.defaultSecond === null){
                         this.defaultSecond = i;
                     }
                     this.mmData.push({
@@ -173,11 +169,11 @@
                 let date = this.nowDate;
                 if(this.date[this.index]){
                     date = this.date[this.index];
+
                     this.selectedHours = date.getHours();
                     this.selectedMinutes = date.getMinutes();
                     this.selectedSecond = date.getSeconds();
                 }
-
                 this.scrollToHours();
                 this.scrollToMinutes();
                 this.scrollToSecond();
@@ -204,8 +200,8 @@
                 this.emitUpdateTime();
             },
             emitUpdateTime(){
-                let date = this.nowDate;
-                if(this.date[this.index]) date = this.date[this.index];
+                let date = new Date(this.nowDate);
+                if(this.date[this.index]) date = new Date(this.date[this.index]);
 
                 date.setHours(this.selectedHours || this.defaultHours);
                 date.setMinutes(this.selectedMinutes || this.defaultMinutes);
@@ -214,7 +210,14 @@
             },
             scrollToHours(){
                 let y = 0;
-                if(this.selectedHours) y = this.selectedHours / 23 * 100 + '%';
+                let scrollLen = this.selectedHours;
+                let totalLen = 23;
+                if(this.picker.disabledHours && this.picker.hideDisabledOptions){
+                    let filter = this.picker.disabledHours.filter(item => parseInt(item) < this.selectedHours)
+                    scrollLen = scrollLen - filter.length;
+                    totalLen = totalLen - this.picker.disabledHours.length;
+                }
+                if(this.selectedHours) y = scrollLen / totalLen * 100 + '%';
                 this.$nextTick(()=>{
                     this.$refs.hhScroll && this.$refs.hhScroll.scrollTo({
                         x: 0,
@@ -224,7 +227,14 @@
             },
             scrollToMinutes(){
                 let y = 0;
-                if(this.selectedMinutes) y = this.selectedMinutes / 59 * 100 + '%';
+                let scrollLen = this.selectedMinutes;
+                let totalLen = 59;
+                if(this.picker.disabledMinutes && this.picker.hideDisabledOptions){
+                    let filter = this.picker.disabledMinutes.filter(item => parseInt(item) < this.selectedMinutes)
+                    scrollLen = scrollLen - filter.length;
+                    totalLen = totalLen - this.picker.disabledMinutes.length;
+                }
+                if(this.selectedMinutes) y = scrollLen / totalLen * 100 + '%';
                 this.$nextTick(()=>{
                     this.$refs.mmScroll && this.$refs.mmScroll.scrollTo({
                         x: 0,
@@ -234,7 +244,14 @@
             },
             scrollToSecond(){
                 let y = 0;
-                if(this.selectedSecond) y = this.selectedSecond / 59 * 100 + '%';
+                let scrollLen = this.selectedSecond;
+                let totalLen = 59;
+                if(this.picker.disabledSeconds && this.picker.hideDisabledOptions){
+                    let filter = this.picker.disabledSeconds.filter(item => parseInt(item) < this.selectedSecond)
+                    scrollLen = scrollLen - filter.length;
+                    totalLen = totalLen - this.picker.disabledSeconds.length;
+                }
+                if(this.selectedSecond) y = scrollLen / totalLen * 100 + '%';
                 this.$nextTick(()=>{
                     this.$refs.ssScroll && this.$refs.ssScroll.scrollTo({
                         x: 0,
@@ -245,7 +262,7 @@
         },
         watch: {
             date() {
-                this.getSelected();
+                this.getSelected()
             },
             'picker.visible': function (newVal) {
                 if(newVal){

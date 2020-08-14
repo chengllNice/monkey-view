@@ -197,16 +197,6 @@
   @include e(hide){
     visibility: hidden;
   }
-  //@include clear-float;
-  //@include e(hh){
-  //  float: left;
-  //}
-  //@include e(mm){
-  //  float: left;
-  //}
-  //@include e(ss){
-  //  float: left;
-  //}
   @include m(mini){
     @include date-pane-date-time-size(mini, 3);
     @include m(no-show-ss){

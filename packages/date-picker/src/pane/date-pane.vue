@@ -16,8 +16,6 @@
                                   :date="selectedDateValue"
                                   :hover-date="hoverDate"
                                   :is-range="isRange"
-                                  :size="size"
-                                  :format="format"
                                   :type="type"
                                   :pickerType="pickerType"
                                   @hover-date="handleHoverDate"
@@ -32,8 +30,6 @@
                                   :date="selectedDateValue"
                                   :hover-date="hoverDate"
                                   :is-range="isRange"
-                                  :size="size"
-                                  :format="format"
                                   :type="type"
                                   :pickerType="pickerType"
                                   @hover-date="handleHoverDate"
@@ -44,17 +40,14 @@
                 <Button :class="[`${classPrefix}__footer-button`, `${classPrefix}__footer-time`]"
                         v-if="pickerType === 'date'"
                         type="text"
-                        :size="size"
                         :disabled="changeTimeDisabled"
                         @click="changeTimeAndDate">
                     {{isTime ? t('cl.datePicker.selectDate') : t('cl.datePicker.selectTime')}}
                 </Button>
                 <Button :class="[`${classPrefix}__footer-button`]"
-                        :size="size"
                         @click="handleClean">{{t('cl.datePicker.clean')}}</Button>
                 <Button :class="[`${classPrefix}__footer-button`]"
                         type="primary"
-                        :size="size"
                         @click="closeDropDown(true)">{{t('cl.datePicker.ok')}}</Button>
             </div>
         </div>
@@ -79,9 +72,7 @@
                     return []
                 }
             },
-            size: String,
             type: String,
-            format: String,
             isRange: Boolean,
             shortcuts: Array,
             multiple: Boolean,
@@ -95,13 +86,11 @@
                     index: 0,
                     year: null,
                     month: null,
-                    value: []
                 },
                 datePane1: {
                     index: 1,
                     year: null,
                     month: null,
-                    value: []
                 },
                 nowDate: nowDate,
                 selectedDateValue: [],
@@ -133,25 +122,17 @@
         methods: {
             dealValue(){
                 this.selectedDateValue = Array.isArray(this.value) ? this.value : [];
-                if(!this.selectedDateValue.length){
-                    this.initYearAndMonth(this.nowDate, null);
-                }else{
+                let startDate = this.nowDate;
+                let endDate = null;
+                if(this.selectedDateValue.length){
                     if(this.isRange){
-                        let startDate = this.selectedDateValue[0];
-                        let endDate = this.selectedDateValue[1];
-                        if(endDate && startDate.getMonth() === endDate.getMonth()){
-                            this.datePane0.value = this.selectedDateValue;
-                            this.datePane1.value = [];
-                        }else{
-                            this.datePane0.value = [this.selectedDateValue[0]];
-                            this.datePane1.value = [this.selectedDateValue[1]];
-                        }
-                        this.initYearAndMonth(startDate, endDate);
+                        startDate = this.selectedDateValue[0];
+                        endDate = this.selectedDateValue[1];
                     }else{
-                        this.datePane0.value = this.selectedDateValue;
-                        this.initYearAndMonth(this.selectedDateValue[0], null);
+                        startDate = this.selectedDateValue[0];
                     }
                 }
+                this.initYearAndMonth(startDate, endDate);
             },
             initYearAndMonth(startDate, endDate){
                 let paneYear0 = startDate.getFullYear();
@@ -274,17 +255,16 @@
                     }
                 }else if(this.pickerType === 'time'){
                     if(!this.isRange){
-                        this.selectedDateValue = date;
+                        this.selectedDateValue = [...date];
                     }else{
                         if(!this.selectedDateValue.length){
                             if(index === 0){
                                 this.selectedDateValue.push(...date, ...date);
                             }else if(index === 1){
-                                let date0 = new Date();
+                                let date0 = new Date(...date);
                                 date0.setHours(0);
                                 date0.setMinutes(0);
                                 date0.setSeconds(0);
-                                date0 = dateFormat(date0, this.format);
                                 this.selectedDateValue.push(date0, ...date);
                             }
                         }else if(this.selectedDateValue.length === 1){
@@ -357,7 +337,7 @@
         watch: {
             value(newVal, oldVal){
                 if(JSON.stringify(newVal) !== JSON.stringify(oldVal)) this.dealValue();
-            }
+            },
         }
     }
 </script>

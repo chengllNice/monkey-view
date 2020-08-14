@@ -1,7 +1,6 @@
 <template>
     <div :class="[
             `${classPrefix}`,
-            size && `${classPrefix}--${size}`
          ]">
         <div :class="[`${classPrefix}__header`]" v-if="showDateHeader">
             <span :class="[`${classPrefix}__header-pre`]">
@@ -22,13 +21,12 @@
         </div>
         <div :class="[`${classPrefix}__header`]" v-if="showTimeHeader">
             <span :class="[`${classPrefix}__header-date`]">
-                {{index === '0' ? t('cl.datePicker.startTime') : t('cl.datePicker.endTime')}}
+                {{index === 0 ? t('cl.datePicker.startTime') : t('cl.datePicker.endTime')}}
             </span>
         </div>
         <div :class="[`${classPrefix}__body`]">
             <template v-if="pickerType === 'date'">
-                <date-pane-date :size="size"
-                                :type="currentType"
+                <date-pane-date :type="currentType"
                                 :year="year"
                                 :month="month"
                                 :date="date"
@@ -36,36 +34,30 @@
                                 :hover-date="hoverDate"
                                 :currentDate="currentDate"
                                 :is-range="isRange"
-                                :format="format"
                                 @updateWeek="updateSelectWeek"
                                 @updateDate="updateSelectDate"
                                 @hover-date="handleHoverDate"
                                 v-show="currentType === 'date' || currentType === 'week'"></date-pane-date>
-                <date-pane-year :size="size"
-                                :type="currentType"
+                <date-pane-year :type="currentType"
                                 :year="year"
                                 :month="month"
                                 :date="date"
                                 :index="index"
                                 :currentDate="currentDate"
                                 :is-range="isRange"
-                                :format="format"
                                 @update-year="updateSelectYear"
                                 v-show="currentType === 'year'"></date-pane-year>
-                <date-pane-month :size="size"
-                                 :type="currentType"
+                <date-pane-month :type="currentType"
                                  :year="year"
                                  :month="month"
                                  :date="date"
                                  :index="index"
                                  :currentDate="currentDate"
                                  :is-range="isRange"
-                                 :format="format"
                                  @update-month="updateSelectMonth"
                                  v-show="currentType === 'month'"></date-pane-month>
             </template>
-            <date-pane-time :size="size"
-                            :type="currentType"
+            <date-pane-time :type="currentType"
                             :year="year"
                             :month="month"
                             :date="date"
@@ -73,7 +65,6 @@
                             :hover-date="hoverDate"
                             :currentDate="currentDate"
                             :is-range="isRange"
-                            :format="format"
                             @update-time="updateSelectTime"
                             v-show="currentType === 'time' || currentType === 'timerange'"></date-pane-time>
         </div>
@@ -95,10 +86,7 @@
         mixins: [Locale],
         inject: ['picker'],
         props: {
-            value: Array,
-            size: String,
             type: String,
-            format: String,
             index: Number,
             year: Number,
             month: Number,

@@ -6,6 +6,7 @@
                         placeholder="请选择日期"
                         v-model="date"
                         @change="dateChange"
+                        value-format="timestamp"
                         clearable
                         :render-html="true"></DatePicker>
 

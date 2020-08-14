@@ -1,7 +1,6 @@
 <template>
     <div :class="[
             `${classPrefix}`,
-            size && `${classPrefix}--${size}`,
             className,
          ]"
          v-click-outside.capture="handleClickOutside">
@@ -34,9 +33,7 @@
                 <div :class="[`${classPrefix}__drop-down-inner`]">
                     <date-pane ref="datePane"
                                picker-type='date'
-                               :size="size"
                                :multiple="multiple"
-                               :format="formatType"
                                v-model="dateValue"
                                :shortcuts="shortcuts"
                                :is-range="isRange"
@@ -65,7 +62,7 @@
             }
         },
         props: {
-            value: [String, Array, Date],
+            value: [String, Array, Date, Number],
             type: {
                 type: String,
                 default: 'date',
@@ -196,22 +193,15 @@
         methods: {
             initDateValue(val) {
                 let value = val || this.value;
-                let valid = true;//验证日期格式是否正确
 
                 if(value && Array.isArray(value)){
-                    value = value.map(item => {
-                        let v = new Date(item);
-                        if(valid) valid = !isNaN(v.getTime());
-                        return v
-                    });
+                    value = value.map(item => formatToDate(item, this.formatType));
                 }else if(value){
-                    let v = new Date(value);
-                    if(valid) valid = !isNaN(v.getTime());
-                    value = [v]
+                    value = [formatToDate(value, this.formatType)]
                 }else {
                     value = [];
                 }
-                if(!valid) return;
+
                 if (this.multiple && this.type === 'date') {
                     this.dateValue = value;
                 } else {
@@ -277,6 +267,7 @@
             },
             handleClear() {
                 this.dateValue = [];
+                this.handleDateValueChange();
                 this.$emit('clear');
             },
             updateInputValue() {
@@ -288,6 +279,7 @@
                         if(dateValue.length === 2){
                             this.dateInputValue = `${dateValue[0]} ${this.separator} ${dateValue[1]}`;
                         }
+                        if(dateValue.length === 0) this.dateInputValue = '';
                     } else {
                         this.dateInputValue = dateValue[0] || '';
                     }
@@ -305,16 +297,15 @@
             handleDateValueChange(value){
                 this.updateInputValue();
                 value = value ? value : this.dateValue;
-                let result = value.map(item => new Date(typeof item === 'number' ? item.toString() : item));
+                let result = value.map(item => new Date(item));
                 if(this.valueFormat) result = result.map(item => dateFormat(item, this.valueFormat));
 
                 if (this.isRange || (this.multiple && this.type === 'date')) {
                     this.$emit('input', result);
                     this.$emit('change', result);
                 } else {
-                    let res = typeof result[0] === "number" ? result[0].toString() : result[0];
-                    this.$emit('input',  res);
-                    this.$emit('change', res);
+                    this.$emit('input',  result[0] || '');
+                    this.$emit('change', result[0] || '');
                 }
             }
         },

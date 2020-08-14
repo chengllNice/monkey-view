@@ -1,7 +1,6 @@
 <template>
     <div :class="[
             `${classPrefix}`,
-            size && `${classPrefix}--${size}`,
             picker.showWeekNumber && `${classPrefix}--show-week-number`
          ]">
         <div :class="[`${classPrefix}__week`]">
@@ -49,9 +48,7 @@
         name: "DatePaneDate",
         inject: ['picker'],
         props: {
-            size: String,
             type: String,
-            format: String,
             year: Number,
             month: Number,
             date: {

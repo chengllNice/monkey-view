@@ -132,16 +132,16 @@ export const parseDateObj = (o, f, r) => {
             o.date = r;
             break;
         case 'hh':
-            o.hour = r;
+            o.hour = r >= 12 ? r - 12 : r;
             break;
         case 'h':
-            o.hour = r;
+            o.hour = r >= 12 ? r - 12 : r;
             break;
         case 'HH':
-            o.hour = r >= 12 ? r + 12 : r;
+            o.hour = r;
             break;
         case 'H':
-            o.hour = r >= 12 ? r + 12 : r;
+            o.hour = r;
             break;
         case 'mm':
             o.minute = r;
@@ -219,7 +219,7 @@ export const dateFormat = (forDate, format) => {
     let week = getWeekNumber(forDate).week;
 
     //12小时制
-    let upperHours = hours >= 12 ? hours - 12 : hours;
+    let lowerHours = hours >= 12 ? hours - 12 : hours;
 
     if(format === 'timestamp'){
         return forDate.getTime();
@@ -231,10 +231,10 @@ export const dateFormat = (forDate, format) => {
         .replace(dateObj.M, month)
         .replace(dateObj.dd, zero(date))
         .replace(dateObj.d, date)
-        .replace(dateObj.hh, zero(hours))
-        .replace(dateObj.h, hours)
-        .replace(dateObj.HH, zero(upperHours))
-        .replace(dateObj.H, upperHours)
+        .replace(dateObj.hh, zero(lowerHours))
+        .replace(dateObj.h, lowerHours)
+        .replace(dateObj.HH, zero(hours))
+        .replace(dateObj.H, hours)
         .replace(dateObj.mm, zero(minutes))
         .replace(dateObj.m, minutes)
         .replace(dateObj.ss, zero(second))
@@ -288,8 +288,9 @@ export const formatToDate = (formatDate, format) => {
 
     let today = new Date();
 
-    let date = new Date(dateInfo.year || today.getFullYear(), dateInfo.month || 0, dateInfo.date || 1, dateInfo.hour || 0, dateInfo.minute || 0, dateInfo.second || 0)
+    let date = new Date(dateInfo.year || today.getFullYear(), dateInfo.month || today.getMonth() || 0, dateInfo.date || today.getDate() || 1, dateInfo.hour || 0, dateInfo.minute || 0, dateInfo.second || 0)
 
+    if(isNaN(date.getTime())) return ;
     return date;
 }
 

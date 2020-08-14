@@ -449,7 +449,7 @@
 | 属性 | 类型 | 说明 | 默认值 |
 | ---- | ---- | ---- | ---- |
 | type | String | 设置日期选择器的类型，可选值 `date` `daterange` `datetime` `datetimerange` `year` `month` `week` | date |
-| value | Date, String, Array | 绑定的值，可以使用v-model进行双向绑定，`range`模式下为Array类型，数组类型是数组项值的类型为String\Date。String类型为日期格式，例如：2020-01-01、2020/01/01 | - |
+| value | Date, String, Array, Number | 绑定的值，可以使用v-model进行双向绑定，`range`模式下为Array类型，`Number`类型为时间戳，数组类型是数组项值的类型为String、Date、Number | - |
 | disabled | Boolean | 禁用 | - |
 | readonly | Boolean | 只读属性，只读时不能打开日期下拉框 | - |
 | placeholder | String | 占位文本 | - |
@@ -460,8 +460,8 @@
 | transition | String | 自定义日期下拉框的动画效果 | fade |
 | editable | Boolean | 是否可以输入 | true |
 | placement | String | 和`tooltip`一样 | bottom-start |
-| format | String | 格式化日期，详细见示例，具体格式见下面的日期格式说明 | - |
-| value-format | String | 格式化日期，详细见示例，具体格式见下面的日期格式说明 | - |
+| format | String | 输入框展示时间的格式化；详细见示例，具体格式见下面的日期格式说明 | - |
+| value-format | String | `v-model`绑定值时间的格式化；详细见示例，具体格式见下面的日期格式说明 | - |
 | shortcuts | Array | 自定义快捷方式，类型如`[{text: 'one', onClick(picker){}}]`，详细见示例 | - |
 | disabledDate | Function | 禁用日期，详细见示例 | - |
 | showWeekNumber | Boolean | 是否显示周数 | - |

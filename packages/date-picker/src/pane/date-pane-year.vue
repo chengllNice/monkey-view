@@ -1,7 +1,6 @@
 <template>
     <div :class="[
             `${classPrefix}`,
-            size && `${classPrefix}--${size}`
          ]">
         <div :class="[`${classPrefix}__row`]" v-for="(row, rowIndex) in yearList" :key="rowIndex">
             <span v-for="_year in row"
@@ -26,9 +25,7 @@
     export default {
         name: "DatePaneYear",
         props: {
-            size: String,
             type: String,
-            format: String,
             year: Number,
             month: Number,
             date: {
