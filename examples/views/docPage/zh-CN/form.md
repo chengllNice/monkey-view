@@ -16,15 +16,15 @@
 
 ```html
 <template>
-    <cl-form ref="form" layout="inline" :show-required-icon="false" label-width="0">
-        <cl-form-item name="username" required>
-            <cl-input placeholder="username" prefix="user" v-model="username"></cl-input>
-        </cl-form-item>
-        <cl-form-item name="password" required>
-            <cl-input placeholder="password" prefix="password" v-model="password"></cl-input>
-        </cl-form-item>
-    </cl-form>
-    <cl-button type="primary" @click="submit">SignIn</cl-button>
+    <Form ref="form" layout="inline" :show-required-icon="false" label-width="0">
+        <FormItem name="username" required>
+            <Input placeholder="username" prefix="user" v-model="username"></Input>
+        </FormItem>
+        <FormItem name="password" required>
+            <Input placeholder="password" prefix="password" v-model="password"></Input>
+        </FormItem>
+    </Form>
+    <Button type="primary" @click="submit">SignIn</Button>
 </template>
 <script>
     export default {
@@ -62,51 +62,51 @@
 
 ```html
 <template>
-    <cl-form ref="form" :rules="rules" label-width="80" show-label-colon>
-        <cl-form-item name="username" label="用户名">
-            <cl-input placeholder="username" v-model="username"></cl-input>
-        </cl-form-item>
-        <cl-form-item name="email" label="邮箱">
-            <cl-input placeholder="email" v-model="email"></cl-input>
-        </cl-form-item>
-        <cl-form-item name="region" label="地区">
-            <cl-select v-model="region">
-                <cl-option value="beijing">beijing</cl-option>
-                <cl-option value="shanghai">shanghai</cl-option>
-                <cl-option value="zhengzhou">zhengzhou</cl-option>
-            </cl-select>
-        </cl-form-item>
-        <cl-form-item name="date" label="日期">
-            <cl-date-picker v-model="date" placeholder="请选择日期"></cl-date-picker>
-        </cl-form-item>
-        <cl-form-item name="resource" label="来源">
-            <cl-radio-group v-model="resource">
-                <cl-radio label="network">网络</cl-radio>
-                <cl-radio label="book">书籍</cl-radio>
-                <cl-radio label="friend">朋友</cl-radio>
-            </cl-radio-group>
-        </cl-form-item>
-        <cl-form-item name="like" label="爱好">
-            <cl-checkbox-group v-model="like">
-                <cl-checkbox label="music">音乐</cl-checkbox>
-                <cl-checkbox label="snooker">斯诺克</cl-checkbox>
-                <cl-checkbox label="football">足球</cl-checkbox>
-            </cl-checkbox-group>
-        </cl-form-item>
-        <cl-form-item name="moveSend" label="实时推送">
+    <Form ref="form" :rules="rules" label-width="80" show-label-colon>
+        <FormItem name="username" label="用户名">
+            <Input placeholder="username" v-model="username"></Input>
+        </FormItem>
+        <FormItem name="email" label="邮箱">
+            <Input placeholder="email" v-model="email"></Input>
+        </FormItem>
+        <FormItem name="region" label="地区">
+            <Select v-model="region">
+                <Option value="beijing">beijing</Option>
+                <Option value="shanghai">shanghai</Option>
+                <Option value="zhengzhou">zhengzhou</Option>
+            </Select>
+        </FormItem>
+        <FormItem name="date" label="日期">
+            <DatePicker v-model="date" placeholder="请选择日期"></DatePicker>
+        </FormItem>
+        <FormItem name="resource" label="来源">
+            <RadioGroup v-model="resource">
+                <Radio label="network">网络</Radio>
+                <Radio label="book">书籍</Radio>
+                <Radio label="friend">朋友</Radio>
+            </RadioGroup>
+        </FormItem>
+        <FormItem name="like" label="爱好">
+            <CheckboxGroup v-model="like">
+                <Checkbox label="music">音乐</Checkbox>
+                <Checkbox label="snooker">斯诺克</Checkbox>
+                <Checkbox label="football">足球</Checkbox>
+            </CheckboxGroup>
+        </FormItem>
+        <FormItem name="moveSend" label="实时推送">
             <cl-switch v-model="moveSend" size="large">
                 <span slot="open">打开</span>
                 <span slot="close">关闭</span>
             </cl-switch>
-        </cl-form-item>
-        <cl-form-item name="time" label="时长">
+        </FormItem>
+        <FormItem name="time" label="时长">
             <div class="doc-form-item-wrap">
-                <cl-slider class="doc-form-item-slider" v-model="time" :max="24" :min="1"></cl-slider>
+                <Slider class="doc-form-item-slider" v-model="time" :max="24" :min="1"></Slider>
                 <span class="doc-form-unit">月</span>
             </div>
-        </cl-form-item>
-        <cl-form-item name="avatar" label="头像" :validator-value="avatarList">
-            <cl-upload action="//jsonplaceholder.typicode.com/posts/" 
+        </FormItem>
+        <FormItem name="avatar" label="头像" :validator-value="avatarList">
+            <Upload action="//jsonplaceholder.typicode.com/posts/" 
                         drag 
                         listType="picture-card" 
                         :file-list="avatarList" 
@@ -115,14 +115,14 @@
                         :onSuccess="handlerSuccess">
                 <Icon type="plus"></Icon>
                 <div>上传文件</div>
-            </cl-upload>
-        </cl-form-item>
-    </cl-form>
-    <cl-modal v-model="modalVisible" footer-hide>
+            </Upload>
+        </FormItem>
+    </Form>
+    <Modal v-model="modalVisible" footer-hide>
         <img :src="modalFile.url" width="100%" alt="" />
-    </cl-modal>
-    <cl-button type="primary" @click="submit">SignIn</cl-button>
-    <cl-button @click="reset">Reset</cl-button>
+    </Modal>
+    <Button type="primary" @click="submit">SignIn</Button>
+    <Button @click="reset">Reset</Button>
 </template>
 <script>
     export default {
@@ -212,20 +212,20 @@
 
 ```html
 <template>
-    <cl-form ref="form" :layout="layout">
-        <cl-form-item label="username">
-            <cl-input placeholder="username" v-model="username"></cl-input>
-        </cl-form-item>
-        <cl-form-item label="password">
-            <cl-input placeholder="password" v-model="password"></cl-input>
-        </cl-form-item>
-    </cl-form>
+    <Form ref="form" :layout="layout">
+        <FormItem label="username">
+            <Input placeholder="username" v-model="username"></Input>
+        </FormItem>
+        <FormItem label="password">
+            <Input placeholder="password" v-model="password"></Input>
+        </FormItem>
+    </Form>
     <h4>表单布局</h4>
-    <cl-select v-model="layout">
-        <cl-option value="horizontal">horizontal</cl-option>
-        <cl-option value="vertical">vertical</cl-option>
-        <cl-option value="inline">inline</cl-option>
-    </cl-select>
+    <Select v-model="layout">
+        <Option value="horizontal">horizontal</Option>
+        <Option value="vertical">vertical</Option>
+        <Option value="inline">inline</Option>
+    </Select>
 </template>
 <script>
     export default {
@@ -250,17 +250,17 @@
 
 ```html
 <template>
-    <cl-form ref="form">
-        <cl-form-item v-for="item in formList" :key="item.id" :name="item.id" :label="item.name" :rules="item.validate">
-            <cl-input v-if="item.type === 'input'" :placeholder="item.placeholder" v-model="item.value"></cl-input>
-            <cl-select v-if="item.type === 'select'" :placeholder="item.placeholder" v-model="item.value">
-                <cl-option v-for="optionItem in item.option" :value="optionItem.value">{{optionItem.label}}</cl-option>
-            </cl-select>
-        </cl-form-item>
-    </cl-form>
-    <cl-button type="primary" icon="plus" @click="addForm">添加域名</cl-button>
-    <cl-button type="primary" @click="submit">提交</cl-button>
-    <cl-button @click="reset">重置</cl-button>
+    <Form ref="form">
+        <FormItem v-for="item in formList" :key="item.id" :name="item.id" :label="item.name" :rules="item.validate">
+            <Input v-if="item.type === 'input'" :placeholder="item.placeholder" v-model="item.value"></Input>
+            <Select v-if="item.type === 'select'" :placeholder="item.placeholder" v-model="item.value">
+                <Option v-for="optionItem in item.option" :value="optionItem.value">{{optionItem.label}}</Option>
+            </Select>
+        </FormItem>
+    </Form>
+    <Button type="primary" icon="plus" @click="addForm">添加域名</Button>
+    <Button type="primary" @click="submit">提交</Button>
+    <Button @click="reset">重置</Button>
 </template>
 <script>
     export default {
@@ -343,6 +343,24 @@
 
 ## API
 
+### 内置的校验类型
+
+`form`组件使用 [vee-validate](https://logaretm.github.io/vee-validate/) 进行表单验证
+
+默认校验`form-item`组件下带有`v-model`属性的值，如果表单组件没有绑定`v-model`属性，可以使用`validator-value`绑定要校验的表单值。
+
+`trigger`可选值有 `change` `blur`。
+
+组件内扩展了部分常用验证类型：
+
+| 类型 | 说明 |
+| ---- | ---- |
+| required | 必填项 |
+| email | 邮箱验证 |
+| string | 字符串类型，支持参数指定字符串长度的范围 `min` `max` |
+| number | 数值类型，支持参数指定数值范围 `min` `max` |
+| array | 数组类型，支持参数指定数组长度范围 `min` `max` |
+
 ### Form props
 
 | 属性 | 类型 | 说明 | 默认值 |
@@ -383,4 +401,5 @@
 
 | 名称 | 说明 |
 | ---- | ---- |
+| - | 表单组件 |
 | label | 标签文本 |

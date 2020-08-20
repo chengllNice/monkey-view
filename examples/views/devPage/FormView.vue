@@ -1,9 +1,8 @@
 <template>
     <div>
-
         <Form ref="form" show-required-icon label-width="100">
             <FormItem name="name" label="name" :rules="rules.name">
-                <template slot="label">Name</template>
+<!--                <template slot="label">Name</template>-->
                 <Input v-model="name"></Input>
             </FormItem>
             <FormItem name="year" label="year" :rules="rules.year">
@@ -15,6 +14,10 @@
                 <Select v-model="selectMul" multiple filterable>
                     <Option v-for="item in selectMulList" :key="item.value" :value="item.value" :label="item.label">{{item.label}}</Option>
                 </Select>
+            </FormItem>
+            <FormItem name="date" label="date" :rules="rules.date">
+                <!--                <template slot="label">Name</template>-->
+                <DatePicker v-model="date"></DatePicker>
             </FormItem>
             <FormItem name="sex" label="性别" :rules="rules.sex">
                 <RadioGroup v-model="sex">
@@ -45,7 +48,7 @@
             <FormItem name="switch" label="switch" :rules="rules.switch">
                 <cl-switch v-model="switchValue"></cl-switch>
             </FormItem>
-            <FormItem name="upload" label="upload" :rules="rules.upload" :value="upload">
+            <FormItem name="upload" label="upload" :rules="rules.upload" :validator-value="upload">
                 <Upload action="//jsonplaceholder.typicode.com/posts/"  :maxSize="500" :limit="5" :onSuccess="uploadSuccess" :onRemove="uploadRemove">
                     <Button>upload</Button>
                     <div slot="tip" class="cl-upload__tip">只能上传jpg/png文件，大小不能超过500kb</div>
@@ -103,6 +106,7 @@
                 name: '',
                 password: '',
                 year: '',
+                date: '',
                 selectMul: '',
                 sex: '',
                 checkbox: [],
@@ -140,14 +144,17 @@
                 ],
                 rules: {
                     name: [
-                        {required: true, message: 'required', trigger: 'change'},
-                        {type: 'string', min: 4, message: 'min length 4', trigger: 'change'},
-                        {validator: validatorTest, trigger: 'change'},
+                        {required: true, message: 'required', trigger: 'blur'},
+                        {type: 'string', min: 4, message: 'min length 4', trigger: 'blur'},
+                        {validator: validatorTest, trigger: 'blur'},
                     ],
                     password: [
                         {required: true, message: 'required', trigger: 'change'},
                     ],
                     year: [
+                        {required: true, message: 'required', trigger: 'change'},
+                    ],
+                    date: [
                         {required: true, message: 'required', trigger: 'change'},
                     ],
                     selectMul: [

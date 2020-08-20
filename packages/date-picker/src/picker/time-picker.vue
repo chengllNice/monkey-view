@@ -149,7 +149,7 @@
                 dateValue: [],
                 dateInputValue: '',
                 visible: false,
-                nowDate: new Date()
+                nowDate: new Date(),
             }
         },
         computed: {

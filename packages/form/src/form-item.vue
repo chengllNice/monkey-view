@@ -154,6 +154,7 @@
                 }
                 this.trigger = trigger;
             },
+            //表单组件中会调用此方法 针对不同的trigger做出过滤
             triggerValidate(trigger) {
                 if (!trigger) return;
                 this.filterRules(trigger);
@@ -166,9 +167,6 @@
                 this.$refs.provider.applyResult(result);
                 return result;
             },
-            a(){
-                
-            }
         },
         watch: {
             validatorValue(){

@@ -53,6 +53,7 @@
     import DatePane from '../pane/date-pane.vue'
     import {dateFormat, formatToDate} from "main/utils/date";
 
+
     export default {
         name: "DatePicker",
         directives: {clickOutside},
