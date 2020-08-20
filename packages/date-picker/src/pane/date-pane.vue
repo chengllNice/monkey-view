@@ -40,14 +40,17 @@
                 <Button :class="[`${classPrefix}__footer-button`, `${classPrefix}__footer-time`]"
                         v-if="pickerType === 'date'"
                         type="text"
+                        size="small"
                         :disabled="changeTimeDisabled"
                         @click="changeTimeAndDate">
                     {{isTime ? t('cl.datePicker.selectDate') : t('cl.datePicker.selectTime')}}
                 </Button>
                 <Button :class="[`${classPrefix}__footer-button`]"
+                        size="small"
                         @click="handleClean">{{t('cl.datePicker.clean')}}</Button>
                 <Button :class="[`${classPrefix}__footer-button`]"
                         type="primary"
+                        size="small"
                         @click="closeDropDown(true)">{{t('cl.datePicker.ok')}}</Button>
             </div>
         </div>
@@ -128,7 +131,9 @@
                     if(this.isRange){
                         startDate = this.selectedDateValue[0];
                         endDate = this.selectedDateValue[1];
-                    }else{
+                    }else if(this.multiple && this.type === 'date'){
+                        startDate = this.selectedDateValue[this.selectedDateValue.length - 1];
+                    } else{
                         startDate = this.selectedDateValue[0];
                     }
                 }
@@ -222,7 +227,7 @@
                         let currentDate = dateFormat(date[0]);
                         let selectedDateValue = this.selectedDateValue.map(item => dateFormat(item));
                         let index = selectedDateValue.findIndex(item => item === currentDate);
-                        if(index > 0) this.selectedDateValue.splice(index, 1);
+                        if(index >= 0) this.selectedDateValue.splice(index, 1);
                         else this.selectedDateValue.push(...date);
                     }else{
                         if(!this.isRange){
@@ -288,6 +293,8 @@
 
                 this.$emit('input', this.selectedDateValue);
                 this.$emit('change', this.selectedDateValue);
+                // todo 多选时选择不是本月的日期不引起面板日期联动切换 所以需要手动改变
+                if(this.multiple && this.type === 'date') this.dealValue();
                 this.closeDropDown();
             },
             changeTimeAndDate(){

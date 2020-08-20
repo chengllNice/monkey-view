@@ -92,6 +92,7 @@
   @include e(content){
     position: relative;
     line-height: 32px;
+    font-size: $--font-size-default;
   }
 
   @include e(label){

@@ -108,7 +108,7 @@ export const dateObj = {
 
 
 export const parseDateObj = (o, f, r) => {
-    r = parseInt(r);
+    r = isNaN(parseInt(r)) ? r : parseInt(r);
     switch (f) {
         case 'yyyy':
             o.year = r;
@@ -288,7 +288,9 @@ export const formatToDate = (formatDate, format) => {
 
     let today = new Date();
 
-    let date = new Date(dateInfo.year || today.getFullYear(), dateInfo.month || today.getMonth() || 0, dateInfo.date || today.getDate() || 1, dateInfo.hour || 0, dateInfo.minute || 0, dateInfo.second || 0)
+    if(typeof dateInfo.hour === 'number' && dateInfo.hour < 12 && dateInfo.apm && dateInfo.apm.toLowerCase() === 'pm') dateInfo.hour = dateInfo.hour + 12;
+
+    let date = new Date(dateInfo.year || today.getFullYear(), dateInfo.month === 0 ? 0 : dateInfo.month || today.getMonth() || 0, dateInfo.date || today.getDate() || 1, dateInfo.hour || 0, dateInfo.minute || 0, dateInfo.second || 0)
 
     if(isNaN(date.getTime())) return ;
     return date;

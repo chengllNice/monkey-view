@@ -1,9 +1,13 @@
 <template>
     <div class="time-picker-view">
-        <TimePicker :disabledHours="[0,1,12]"
+        <TimePicker :disabledHours="[0,1,3,4,5,6,12]"
                     :disabledMinutes="[0,1,2]"
                     hideDisabledOptions
-                    placeholder="请选择时间"></TimePicker>
+                    format="hh:mm A"
+                    value-format="hh:mm A"
+                    :render-html="true"
+                    placeholder="请选择时间"
+                    @change="handleChange"></TimePicker>
 <!--        <TimePicker v-model="value1"-->
 <!--                    :render-html="true"-->
 <!--                    @change="handleChange"></TimePicker>-->

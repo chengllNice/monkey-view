@@ -1,24 +1,24 @@
 <template>
     <div>
         <transition name="fade">
-            <div :class="[`${classPrefix}__cover`]" v-if="coverShow" v-show="visible" @click="handlerCover"></div>
+            <div :class="[`${classPrefix}__cover`]" v-if="coverShow" v-show="visible" @click="handleCover"></div>
         </transition>
         <div :class="[
                  `${classPrefix}__wrap`,
                  !wrapShow && `${classPrefix}__hidden`
              ]"
              ref="drawerWrap"
-             @click="handlerWrapClick">
+             @click="handleWrapClick">
             <transition :name="drawerTransition">
                 <div v-show="visible"
                      ref="drawer"
                      :style="drawerStyle"
                      :class="[
                          `${classPrefix}`,
-                         placement && `cl-drawer__${placement}`
+                         placement && `${classPrefix}__${placement}`
                      ]">
                     <div :class="[`${classPrefix}__content`]">
-                        <div :class="[`${classPrefix}__close`]" v-if="closable" @click="handlerClose">
+                        <div :class="[`${classPrefix}__close`]" v-if="closable" @click="handleClose">
                             <slot name="close">
                                 <Icon type="close"></Icon>
                             </slot>
@@ -35,12 +35,12 @@
                         </div>
                         <div :class="[`${classPrefix}__footer`]" ref="drawerFooter" v-if="!footerHide">
                             <slot name="footer">
-                                <Button @click="handlerButtonCancel"
+                                <Button @click="handleButtonCancel"
                                         v-if="localCancelText">{{localCancelText}}
                                 </Button>
                                 <Button type="primary"
                                         :loading='okButtonLoading'
-                                        @click="handlerButtonOk"
+                                        @click="handleButtonOk"
                                         v-if="localOkText">{{localOkText}}
                                 </Button>
                             </slot>
@@ -101,7 +101,7 @@
             renderHtml: {
                 type: [HTMLElement, Boolean],
                 default: function () {
-                    return document.body
+                    return true
                 }
             }
         },
@@ -224,15 +224,15 @@
                     this.showHead = false;
                 }
             },
-            handlerClose() {
+            handleClose() {
                 this.visible = false;
                 this.$emit('input', false);
                 this.$emit('cancel');
             },
-            handlerButtonCancel() {
-                this.handlerClose();
+            handleButtonCancel() {
+                this.handleClose();
             },
-            handlerButtonOk() {
+            handleButtonOk() {
                 if (this.loading) {
                     this.okButtonLoading = true;
                 } else {
@@ -241,13 +241,13 @@
                 }
                 this.$emit('ok');
             },
-            handlerWrapClick(event) {
+            handleWrapClick(event) {
                 const className = event.target.getAttribute('class');
-                className && (className.indexOf(`${this.classPrefix}__wrap`) > -1) && (this.handlerCover());
+                className && (className.indexOf(`${this.classPrefix}__wrap`) > -1) && (this.handleCover());
             },
-            handlerCover() {
+            handleCover() {
                 if (this.coverClosable) {
-                    this.handlerClose();
+                    this.handleClose();
                 }
             },
         }

@@ -97,7 +97,7 @@
                 selectedHours: null,
                 selectedMinutes: null,
                 selectedSecond: null,
-                hideNum: 7,
+                hideNum: 8,
                 defaultHours: null,
                 defaultMinutes: null,
                 defaultSecond: null,
@@ -106,7 +106,7 @@
         },
         computed: {
             showSsCol(){
-                return this.picker.valueFormat.includes('ss')
+                return this.picker.formatType ? this.picker.formatType.includes('ss') : this.picker.valueFormat.includes('ss')
             }
         },
         components: {
@@ -263,6 +263,9 @@
         watch: {
             date() {
                 this.getSelected()
+            },
+            type(){
+                this.getSelected();
             },
             'picker.visible': function (newVal) {
                 if(newVal){

@@ -51,6 +51,7 @@
 @include c(select){
   display: inline-block;
   width: 100%;
+  line-height: $--line-height-default;
 
   @include e(reference){
     outline: none;

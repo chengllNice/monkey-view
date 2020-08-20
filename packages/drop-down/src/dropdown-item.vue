@@ -10,7 +10,7 @@
 
 <script>
     import Config from 'main/config/config'
-    import {findComponent} from "main/utils/tool";
+    import {findComponents} from "main/utils/tool";
 
     export default {
         name: "DropdownItem",
@@ -22,16 +22,17 @@
         data(){
             return {
                 classPrefix: Config.classPrefix + '-dropdown-item',
-                dropDown: findComponent(this, 'Dropdown')
+                dropDown: findComponents(this, 'Dropdown')
             }
-        },
-        mounted(){
-
         },
         methods: {
             handleClick(){
                 if(this.disabled) return;
-                this.dropDown && this.dropDown.itemClick(this.name);
+                if(this.dropDown && this.dropDown.length){
+                    this.dropDown.forEach(item => {
+                        item.itemClick && item.itemClick(this.name);
+                    })
+                }
             }
         }
     }

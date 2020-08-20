@@ -26,18 +26,17 @@
   line-height: normal;
   &:not(.is-disabled):hover{
     background-color: $--background-color-hover;
-    color: $--color-primary;
   }
 
   @include m(divided){
-    margin-top: $--dropdown-item-padding-vertical;
+    margin-top: 12px;
     &:before{
       content: '';
       display: block;
       position: absolute;
-      top: -#{$--dropdown-item-padding-vertical / 2};
+      top: -6px;
       left: 0;
-      height: #{$--dropdown-item-padding-vertical / 2};
+      height: 12px;
       width: 100%;
       border-top: $--border-default;
     }

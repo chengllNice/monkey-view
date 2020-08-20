@@ -57,7 +57,7 @@
             <cl-dropdown-item divided>菜单五</cl-dropdown-item>
         </cl-dropdown-menu>
     </cl-dropdown>
-    <cl-dropdown trigger="click">
+    <cl-dropdown trigger="click" :hide-on-click="false" :renderHtml="true">
         <cl-button type="text">点击触发 <Icon type="down"></Icon></cl-button>
         <cl-dropdown-menu slot="menu">
             <cl-dropdown-item>菜单一</cl-dropdown-item>
@@ -152,6 +152,7 @@
 | transition | String | 打开关闭的动画 | slideUp |
 | placement | String | 下拉菜单的位置 | bottom-start |
 | dropdownMatchSelectWidth | Boolean | 下拉框宽度是否和触发元素同宽 | true |
+| hide-on-click | Boolean | 点击item后是否关闭菜单 | true |
 | renderHtml | HTMLElement, Boolean | 下拉框渲染到的位置 | true |
 
 
@@ -159,8 +160,8 @@
 
 | 事件名 | 说明 | 返回值 |
 | ---- | ---- | ---- |
+| click | 点击菜单项触发,返回菜单项的name | name |
 | click-outside | 点击外部触发 | event |
-| click-item | 点击菜单项触发,返回菜单项的name | name |
 | visible-change | 可见状态变化时触发 | visible |
 
 

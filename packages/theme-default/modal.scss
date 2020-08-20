@@ -52,10 +52,11 @@
     top: $--modal-vertical-padding;
     right: $--modal-horizontal-padding;
     cursor: pointer;
-    font-size: $--modal-close-icon-font-size;
-    color: $--color-text-default;
+    color: $--color-text-icon;
+    line-height: 1;
+    font-size: 22px;
     &:hover{
-      color: $--color-text-title;
+      color: $--color-text-default;
     }
   }
 

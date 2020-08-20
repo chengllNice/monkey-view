@@ -119,15 +119,7 @@ $--dropdown-item-padding-vertical: 7px !default;
 $--dropdown-item-padding-horizontal: 16px !default;
 
 /*-----date-picker-----*/
-$--date-picker-pane-date-width-mini: 238px !default;
-$--date-picker-pane-date-width-small: 252px !default;
-$--date-picker-pane-date-width-default: 266px !default;
-$--date-picker-pane-date-width-large: 280px !default;
-
-$--date-picker-em-width-mini: 26px !default;
-$--date-picker-em-width-small: 28px !default;
 $--date-picker-em-width-default: 30px !default;
-$--date-picker-em-width-large: 32px !default;
 
 $--date-picker-pane-padding: 10px !default;
 $--date-picker-pane-margin: 2px !default;
@@ -238,7 +230,6 @@ $--alter-padding-with-icon-description-horizontal: 69px !default;
 $--modal-cover-background-color: rgba(0,0,0,0.4) !default;
 $--modal-vertical-padding: 12px !default;
 $--modal-horizontal-padding: 18px !default;
-$--modal-close-icon-font-size: 14px !default;
 $--modal-header-font-size: 14px !default;
 $--modal-confirm-icon-font-size: 40px !default;
 $--modal-confirm-title-font-size: $--font-size-title !default;

@@ -1,71 +1,71 @@
 <template>
     <div>
 
-        <cl-form ref="form" show-required-icon label-width="100">
-            <cl-form-item name="name" label="name" :rules="rules.name">
+        <Form ref="form" show-required-icon label-width="100">
+            <FormItem name="name" label="name" :rules="rules.name">
                 <template slot="label">Name</template>
-                <cl-input v-model="name"></cl-input>
-            </cl-form-item>
-            <cl-form-item name="year" label="year" :rules="rules.year">
-                <cl-select v-model="year" clearable>
-                    <cl-option v-for="item in yearList" :key="item.value" :value="item.value" :label="item.label">{{item.label}}</cl-option>
-                </cl-select>
-            </cl-form-item>
-            <cl-form-item name="selectMul" label="select多选" :rules="rules.year">
-                <cl-select v-model="selectMul" multiple filterable>
-                    <cl-option v-for="item in selectMulList" :key="item.value" :value="item.value" :label="item.label">{{item.label}}</cl-option>
-                </cl-select>
-            </cl-form-item>
-            <cl-form-item name="sex" label="性别" :rules="rules.sex">
-                <cl-radio-group v-model="sex">
-                    <cl-radio label="0">男</cl-radio>
-                    <cl-radio label="1">女</cl-radio>
-                </cl-radio-group>
-            </cl-form-item>
-            <cl-form-item name="checkbox" label="水果" :rules="rules.checkbox">
-                <cl-checkbox-group v-model="checkbox">
-                    <cl-checkbox label="apple">Apple</cl-checkbox>
-                    <cl-checkbox label="orange">Orange</cl-checkbox>
-                    <cl-checkbox label="banana">Banana</cl-checkbox>
-                    <cl-checkbox label="melon">Melon</cl-checkbox>
-                </cl-checkbox-group>
-            </cl-form-item>
-            <cl-form-item name="password" label="password" :rules="rules.password">
-                <cl-input placeholder="placeholder" v-model="password">
+                <Input v-model="name"></Input>
+            </FormItem>
+            <FormItem name="year" label="year" :rules="rules.year">
+                <Select v-model="year" clearable>
+                    <Option v-for="item in yearList" :key="item.value" :value="item.value" :label="item.label">{{item.label}}</Option>
+                </Select>
+            </FormItem>
+            <FormItem name="selectMul" label="select多选" :rules="rules.year">
+                <Select v-model="selectMul" multiple filterable>
+                    <Option v-for="item in selectMulList" :key="item.value" :value="item.value" :label="item.label">{{item.label}}</Option>
+                </Select>
+            </FormItem>
+            <FormItem name="sex" label="性别" :rules="rules.sex">
+                <RadioGroup v-model="sex">
+                    <Radio label="0">男</Radio>
+                    <Radio label="1">女</Radio>
+                </RadioGroup>
+            </FormItem>
+            <FormItem name="checkbox" label="水果" :rules="rules.checkbox">
+                <CheckboxGroup v-model="checkbox">
+                    <Checkbox label="apple">Apple</Checkbox>
+                    <Checkbox label="orange">Orange</Checkbox>
+                    <Checkbox label="banana">Banana</Checkbox>
+                    <Checkbox label="melon">Melon</Checkbox>
+                </CheckboxGroup>
+            </FormItem>
+            <FormItem name="password" label="password" :rules="rules.password">
+                <Input placeholder="placeholder" v-model="password">
                     <span slot="prepend">http://</span>
                     <span slot="append">.com</span>
-                </cl-input>
-            </cl-form-item>
-            <cl-form-item name="des" label="des" :rules="rules.des">
-                <cl-input placeholder="placeholder" type="textarea" v-model="des" />
-            </cl-form-item>
-            <cl-form-item name="slider" label="slider" :rules="rules.slider">
-                <cl-slider v-model="slider"></cl-slider>
-            </cl-form-item>
-            <cl-form-item name="switch" label="switch" :rules="rules.switch">
+                </Input>
+            </FormItem>
+            <FormItem name="des" label="des" :rules="rules.des">
+                <Input placeholder="placeholder" type="textarea" v-model="des" />
+            </FormItem>
+            <FormItem name="slider" label="slider" :rules="rules.slider">
+                <Slider v-model="slider"></Slider>
+            </FormItem>
+            <FormItem name="switch" label="switch" :rules="rules.switch">
                 <cl-switch v-model="switchValue"></cl-switch>
-            </cl-form-item>
-            <cl-form-item name="upload" label="upload" :rules="rules.upload" :value="upload">
-                <cl-upload action="//jsonplaceholder.typicode.com/posts/"  :maxSize="500" :limit="5" :onSuccess="uploadSuccess" :onRemove="uploadRemove">
-                    <cl-button>upload</cl-button>
+            </FormItem>
+            <FormItem name="upload" label="upload" :rules="rules.upload" :value="upload">
+                <Upload action="//jsonplaceholder.typicode.com/posts/"  :maxSize="500" :limit="5" :onSuccess="uploadSuccess" :onRemove="uploadRemove">
+                    <Button>upload</Button>
                     <div slot="tip" class="cl-upload__tip">只能上传jpg/png文件，大小不能超过500kb</div>
-                </cl-upload>
-            </cl-form-item>
-        </cl-form>
+                </Upload>
+            </FormItem>
+        </Form>
 
-        <cl-button type="primary" @click="submit">Submit</cl-button>
-        <cl-button type="primary" @click="validateField">validatorField</cl-button>
-        <cl-button @click="reset">Reset</cl-button>
+        <Button type="primary" @click="submit">Submit</Button>
+        <Button type="primary" @click="validateField">validatorField</Button>
+        <Button @click="reset">Reset</Button>
 
 
 
         <h4>FOR</h4>
-        <cl-form ref="formFor" label-algin="right" show-required-icon layout="inline">
-            <cl-form-item v-for="item in formList" :key="item.id" :name="item.id" :label="item.label" :rules="rules[item.id]">
-                <cl-input placeholder="placeholder" v-model="item.value" />
-            </cl-form-item>
-        </cl-form>
-        <cl-button type="primary" @click="submitFor">SubmitFor</cl-button>
+        <Form ref="formFor" label-algin="right" show-required-icon layout="inline">
+            <FormItem v-for="item in formList" :key="item.id" :name="item.id" :label="item.label" :rules="rules[item.id]">
+                <Input placeholder="placeholder" v-model="item.value" />
+            </FormItem>
+        </Form>
+        <Button type="primary" @click="submitFor">SubmitFor</Button>
     </div>
 
 

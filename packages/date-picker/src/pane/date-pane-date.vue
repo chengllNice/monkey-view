@@ -16,7 +16,7 @@
                  ]"
                  v-for="(row, rowIndex) in dateList"
                  :key="rowIndex"
-                 @click.capture="handleSelectWeek(row[4])">
+                 @click.capture="handleSelectWeek(row)">
                 <template v-if="picker.showWeekNumber">
                     <span :class="[
                             `${classPrefixItem}__col`,
@@ -138,8 +138,12 @@
                 this.$emit('updateDate', [_date]);
                 this.picker && this.picker.dateClick(_date);
             },
-            handleSelectWeek(date){
+            handleSelectWeek(row){
                 if(this.type === 'date') return;
+                let date = row[4];
+                //如果该周中存在禁用的项则不可选
+                let index = row.findIndex(item => item.isDisabled);
+                if(index >= 0) return;
                 this.$emit('updateWeek', [date.key]);
             },
             mouseEnter(dateItem) {

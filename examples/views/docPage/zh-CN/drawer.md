@@ -113,6 +113,45 @@
 
 
 
+:::demo 异步关闭
+
+异步关闭。添加 `loading`属性后点击确定按钮后模态框不会自动消失，确定按钮会显示一个`loading`加载中的效果，需要自己手动关闭模态框。
+
+```html
+<template>
+    <cl-button type="primary" @click="visible = true">Async Open</cl-button>
+    <cl-drawer v-model="visible" loading title="Async Drawer" @ok="asyncClick">
+        <p>Some contents...Some contents...Some contents...Some contents...Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+    </cl-drawer>
+</template>
+<script>
+    export default {
+        data(){
+            return {
+                visible: false,
+            }
+        },
+        methods: {
+            asyncClick(){
+                setTimeout(()=>{
+                    this.visible = false;
+                }, 3000)
+            }
+        }
+    }
+</script>
+
+```
+
+:::
+
+
+
 ## API
 
 ### Drawer props
@@ -132,7 +171,7 @@
 | loading | Boolean | 异步加载的抽屉，点击确定按钮时会显示loading效果，此时需要手动关闭抽屉 | - |
 | coverClosable | Boolean | 点击遮罩层是否允许关闭 | true |
 | coverShow | Boolean | 是否显示抽屉的遮罩层 | true |
-| renderHtml | HTMLElement, Boolean | 指定抽屉挂载的 HTML 节点，false为当前节点 | document.body |
+| renderHtml | HTMLElement, Boolean | 定义日期下拉框渲染的位置，如果为`true`则渲染到body中，可以指定渲染的元素 | true |
 
 
 ### Drawer event
@@ -140,7 +179,7 @@
 | 事件名 | 说明 | 返回值 |
 | ---- | ---- | ---- |
 | ok | 点击确定按钮时触发 | - |
-| cancel | 点击取消按钮时触发 | - |
+| cancel | 点击取消按钮、关闭按钮和点击遮罩层关闭时触发 | - |
 
 
 ### Drawer slot

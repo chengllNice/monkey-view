@@ -70,9 +70,6 @@
                 classPrefix: Config.classPrefix + '-form',
             }
         },
-
-        mounted() {
-        },
         methods: {
             validate(){
                 return this.$refs.form.validate();

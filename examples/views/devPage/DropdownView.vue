@@ -1,68 +1,68 @@
 <template>
     <div class="dropdown-view">
-        <cl-dropdown>
-            <cl-button type="text">下拉菜单 <Icon type="down"></Icon></cl-button>
-            <cl-dropdown-menu slot="menu">
-                <cl-dropdown-item>22</cl-dropdown-item>
-                <cl-dropdown-item>22</cl-dropdown-item>
-                <cl-dropdown-item>22</cl-dropdown-item>
-                <cl-dropdown-item>22</cl-dropdown-item>
-                <cl-dropdown-item divided>22</cl-dropdown-item>
-            </cl-dropdown-menu>
-        </cl-dropdown>
+        <Dropdown :hide-on-click="false" @click="handleClick" @click-outside="handleClickOutside" :renderHtml="false">
+            <Button type="text">下拉菜单 <Icon type="down"></Icon></Button>
+            <DropdownMenu slot="menu">
+                <DropdownItem name="name-1">name-1</DropdownItem>
+                <DropdownItem name="name-2">name-2</DropdownItem>
+                <DropdownItem name="name-3">name-3</DropdownItem>
+                <DropdownItem name="name-4">name-4</DropdownItem>
+                <DropdownItem name="name-5" divided>name-5</DropdownItem>
+            </DropdownMenu>
+        </Dropdown>
 
-        <cl-dropdown trigger="click">
-            <cl-button type="primary">下拉菜单 <Icon type="down"></Icon></cl-button>
-            <cl-dropdown-menu slot="menu">
-                <cl-dropdown-item>333</cl-dropdown-item>
-                <cl-dropdown-item>22</cl-dropdown-item>
-                <cl-dropdown-item>22</cl-dropdown-item>
-                <cl-dropdown-item>22</cl-dropdown-item>
-                <cl-dropdown-item divided>22</cl-dropdown-item>
-            </cl-dropdown-menu>
-        </cl-dropdown>
+        <Dropdown trigger="click">
+            <Button type="primary">下拉菜单 <Icon type="down"></Icon></Button>
+            <DropdownMenu slot="menu">
+                <DropdownItem>333</DropdownItem>
+                <DropdownItem>22</DropdownItem>
+                <DropdownItem>22</DropdownItem>
+                <DropdownItem>年</DropdownItem>
+                <DropdownItem divided>22</DropdownItem>
+            </DropdownMenu>
+        </Dropdown>
 
-        <cl-dropdown trigger="contextmenu">
-            <cl-button type="primary">下拉菜单 <Icon type="down"></Icon></cl-button>
-            <cl-dropdown-menu slot="menu">
-                <cl-dropdown-item>333</cl-dropdown-item>
-                <cl-dropdown-item>22</cl-dropdown-item>
-                <cl-dropdown-item>22</cl-dropdown-item>
-                <cl-dropdown-item>22</cl-dropdown-item>
-                <cl-dropdown-item divided>22</cl-dropdown-item>
-            </cl-dropdown-menu>
-        </cl-dropdown>
+        <Dropdown trigger="contextmenu">
+            <Button type="primary">下拉菜单 <Icon type="down"></Icon></Button>
+            <DropdownMenu slot="menu">
+                <DropdownItem>333</DropdownItem>
+                <DropdownItem>22</DropdownItem>
+                <DropdownItem>22</DropdownItem>
+                <DropdownItem>22</DropdownItem>
+                <DropdownItem divided>22</DropdownItem>
+            </DropdownMenu>
+        </Dropdown>
 
-        <cl-dropdown trigger="custom" :visible="visible">
-            <cl-button type="text" @click="visible = true">下拉菜单 <Icon type="down"></Icon></cl-button>
-            <cl-dropdown-menu slot="menu">
+        <Dropdown trigger="custom" :visible="visible">
+            <Button type="text" @click="visible = true">下拉菜单 <Icon type="down"></Icon></Button>
+            <DropdownMenu slot="menu">
                 <p>常用于各种自定义下拉内容的场景。</p>
                 <div style="text-align: right;">
-                    <cl-button type="primary" @click="visible = false">关闭</cl-button>
+                    <Button type="primary" @click="visible = false">关闭</Button>
                 </div>
-            </cl-dropdown-menu>
-        </cl-dropdown>
+            </DropdownMenu>
+        </Dropdown>
 
 
-        <cl-dropdown>
-            <cl-button type="primary">下拉菜单 <Icon type="down"></Icon></cl-button>
-            <cl-dropdown-menu slot="menu">
-                <cl-dropdown-item>333</cl-dropdown-item>
-                <cl-dropdown-item>22</cl-dropdown-item>
-                <cl-dropdown placement="right-start">
-                    <cl-dropdown-item>right <Icon type="right"></Icon></cl-dropdown-item>
-                    <cl-dropdown-menu slot="menu">
-                        <cl-dropdown-item>333</cl-dropdown-item>
-                        <cl-dropdown-item>22</cl-dropdown-item>
-                        <cl-dropdown-item>22</cl-dropdown-item>
-                        <cl-dropdown-item>22</cl-dropdown-item>
-                        <cl-dropdown-item divided>22</cl-dropdown-item>
-                    </cl-dropdown-menu>
-                </cl-dropdown>
-                <cl-dropdown-item>22</cl-dropdown-item>
-                <cl-dropdown-item divided>22</cl-dropdown-item>
-            </cl-dropdown-menu>
-        </cl-dropdown>
+        <Dropdown @click="handleClick">
+            <Button type="primary">下拉菜单 <Icon type="down"></Icon></Button>
+            <DropdownMenu slot="menu">
+                <DropdownItem name="name-1">name-1</DropdownItem>
+                <DropdownItem name="name-2">name-2</DropdownItem>
+                <Dropdown placement="right-start">
+                    <DropdownItem name="name-3">name-3 <Icon type="right"></Icon></DropdownItem>
+                    <DropdownMenu slot="menu">
+                        <DropdownItem name="name-3-1">name-3-1</DropdownItem>
+                        <DropdownItem name="name-3-2">name-3-1</DropdownItem>
+                        <DropdownItem name="name-3-3">name-3-3</DropdownItem>
+                        <DropdownItem name="name-3-4">name-3-4</DropdownItem>
+                        <DropdownItem name="name-3-5" divided>name-3-5</DropdownItem>
+                    </DropdownMenu>
+                </Dropdown>
+                <DropdownItem name="name-4">name-4</DropdownItem>
+                <DropdownItem name="name-5" divided>name-5</DropdownItem>
+            </DropdownMenu>
+        </Dropdown>
     </div>
 </template>
 
@@ -78,7 +78,12 @@
 
         },
         methods: {
-
+            handleClick(name){
+                console.log('click-', name)
+            },
+            handleClickOutside(){
+                console.log('handleClickOutside')
+            }
         }
     }
 </script>

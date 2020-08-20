@@ -194,13 +194,23 @@
             initDateValue(val) {
                 let value = val || this.value;
 
+                let valid = true;
                 if(value && Array.isArray(value)){
-                    value = value.map(item => formatToDate(item, this.formatType));
+
+                    value = value.map(item => {
+                        let v = formatToDate(item, this.formatType);
+                        if(!v || (v && isNaN(v.getTime()))) valid = false;
+                        return v;
+                    });
                 }else if(value){
-                    value = [formatToDate(value, this.formatType)]
+                    let v = formatToDate(value, this.formatType);
+                    if(!v || (v && isNaN(v.getTime()))) valid = false;
+                    value = [v]
                 }else {
                     value = [];
                 }
+
+                if(!valid) return;
 
                 if (this.multiple && this.type === 'date') {
                     this.dateValue = value;
@@ -300,10 +310,15 @@
                 let result = value.map(item => new Date(item));
                 if(this.valueFormat) result = result.map(item => dateFormat(item, this.valueFormat));
 
-                if (this.isRange || (this.multiple && this.type === 'date')) {
+                if (this.isRange) {
+                    if(result.length === 2 || !result.length){
+                        this.$emit('input', result);
+                        this.$emit('change', result);
+                    }
+                } else if (this.multiple && this.type === 'date') {
                     this.$emit('input', result);
                     this.$emit('change', result);
-                } else {
+                }else {
                     this.$emit('input',  result[0] || '');
                     this.$emit('change', result[0] || '');
                 }

@@ -165,6 +165,9 @@
                 let result = await this.$refs.provider.validateSilent();
                 this.$refs.provider.applyResult(result);
                 return result;
+            },
+            a(){
+                
             }
         },
         watch: {

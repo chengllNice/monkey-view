@@ -9,18 +9,10 @@
 
     export default {
         name: "DropdownMenu",
-
         data(){
             return {
                 classPrefix: Config.classPrefix + '-dropdown-menu',
             }
         },
-
-        mounted(){
-
-        },
-        methods: {
-
-        }
     }
 </script>

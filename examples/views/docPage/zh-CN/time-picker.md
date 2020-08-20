@@ -36,13 +36,13 @@
 <template>
     <cl-row :gutter="16">
         <cl-col>
-            <cl-time-picker v-model="time1" format="hh时mm分ss秒" placeholder="请选择时间"></cl-time-picker>
+            <cl-time-picker v-model="time1" format="HH时mm分ss秒" placeholder="请选择时间"></cl-time-picker>
         </cl-col>
         <cl-col>
-            <cl-time-picker v-model="time2" format="hh,mm,ss" placeholder="请选择时间"></cl-time-picker>
+            <cl-time-picker v-model="time2" format="HH,mm,ss" placeholder="请选择时间"></cl-time-picker>
         </cl-col>
         <cl-col>
-            <cl-time-picker v-model="time3" type="timerange" format="hh时mm分ss秒" placeholder="请选择时间范围"></cl-time-picker>
+            <cl-time-picker v-model="time3" type="timerange" format="HH时mm分ss秒" placeholder="请选择时间范围"></cl-time-picker>
         </cl-col>
     </cl-row>
 </template>
@@ -71,10 +71,10 @@
 <template>
     <cl-row :gutter="16">
         <cl-col>
-            <cl-time-picker format="hh:mm" placeholder="请选择时间"></cl-time-picker>
+            <cl-time-picker format="HH:mm" placeholder="请选择时间"></cl-time-picker>
         </cl-col>
         <cl-col>
-            <cl-time-picker format="hh:mm" type="timerange" placeholder="请选择时间范围"></cl-time-picker>
+            <cl-time-picker format="HH:mm" type="timerange" placeholder="请选择时间范围"></cl-time-picker>
         </cl-col>
     </cl-row>
 </template>
