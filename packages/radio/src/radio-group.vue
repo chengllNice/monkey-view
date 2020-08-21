@@ -35,13 +35,8 @@
                 componentName: 'RadioGroup',
             }
         },
-        computed: {},
         components: {
             Radio
-        },
-        created() {
-        },
-        mounted() {
         },
         methods: {
             dispatch(type, value) {

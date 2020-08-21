@@ -5,7 +5,7 @@
                 <sn-input v-model="inputValue"
                           :class="[`${classPrefix}__reference-input`]"
                           :disabled="disabled"
-                          :size="size"
+                          :size="computedSize"
                           :readonly="readonly"
                           :placeholder="computedPlaceholder"
                           @mouseenter.native="isHover = true"
@@ -55,6 +55,7 @@
     import Input from 'packages/input'
     import Icon from 'packages/icon'
     import Mixin from './mixin'
+    import {findComponent} from "main/utils/tool";
 
     import Locale from "main/mixins/locale";
 
@@ -108,10 +109,16 @@
                 visible: false,
                 openFilterable: false,//开启搜索
                 currentFilterableData: [],//搜索到的数据
-                isHover: false
+                isHover: false,
+                form: findComponent(this, 'Form')
             }
         },
         computed: {
+            computedSize(){
+                if(this.size !== 'default') return this.size;
+                if(this.form && this.form.size !== 'default') return this.form.size;
+                return this.size;
+            },
             computedPlaceholder() {
                 return this.placeholder ? this.placeholder : this.t('cl.cascader.placeholder');
             },

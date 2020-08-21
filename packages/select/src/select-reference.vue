@@ -5,20 +5,21 @@
          @mouseenter="isHover = true"
          @mouseleave="isHover = false">
         <n-input :class="[`${classPrefix}__input`]"
-                  v-if="!selectRoot.multiple"
-                  v-model="currentValue"
-                  type="input"
-                  :name="selectRoot.name"
-                  :size="selectRoot.size"
-                  :disabled="selectRoot.disabled"
-                  :placeholder="computedPlaceholder"
-                  :readonly="!selectRoot.filterable"
-                  @change="handleChange">
+                 v-if="!selectRoot.multiple"
+                 v-model="currentValue"
+                 type="input"
+                 :name="selectRoot.name"
+                 :size="selectRoot.computedSize"
+                 :disabled="selectRoot.disabled"
+                 :placeholder="computedPlaceholder"
+                 :readonly="!selectRoot.filterable"
+                 @change="handleChange">
             <template slot="suffix">
                 <Icon v-show="!clearableShow"
                       type="down"
                       :class="[`${classPrefix}__suffix-icon`,selectRoot.visible && `${classPrefix}__suffix-icon-rotate`]"></Icon>
-                <Icon v-show="clearableShow" type="error-fill" :class="[`${classPrefix}__suffix-clear-icon`]" @click.stop="handleClear"></Icon>
+                <Icon v-show="clearableShow" type="error-fill" :class="[`${classPrefix}__suffix-clear-icon`]"
+                      @click.stop="handleClear"></Icon>
             </template>
         </n-input>
 
@@ -27,12 +28,14 @@
                 <tag :class="[`${classPrefix}__multiple-tag`]"
                      v-for="item in selectRoot.localCurrentSelectedItems"
                      :key="item.value"
-                     :size="selectRoot.size"
+                     :size="selectRoot.computedSize"
                      closable
-                     @close="tagClose(item.value)">{{item.label}}</tag>
+                     @close="tagClose(item.value)">{{item.label}}
+                </tag>
                 <tag v-if="selectRoot.showMaxTagText"
                      :class="[`${classPrefix}__multiple-tag`]"
-                     :size="selectRoot.size">{{selectRoot.localMaxTagText}}</tag>
+                     :size="selectRoot.computedSize">{{selectRoot.localMaxTagText}}
+                </tag>
                 <input v-model="currentValue"
                        type="text"
                        ref="multipleInput"
@@ -46,14 +49,15 @@
                        :style="inputStyle"
                        @focus="isFocused = true"
                        @blur="isFocused = false"
-                       @input="handleMultipleInput" />
+                       @input="handleMultipleInput"/>
             </div>
 
             <span :class="[`${classPrefix}__suffix`]">
                 <Icon v-show="!clearableShow"
                       type="down"
                       :class="[`${classPrefix}__suffix-icon`, selectRoot.visible && `${classPrefix}__suffix-icon-rotate`]"></Icon>
-                <Icon v-show="clearableShow" type="error-fill" :class="[`${classPrefix}__suffix-clear-icon`]" @click.stop="handleClear"></Icon>
+                <Icon v-show="clearableShow" type="error-fill" :class="[`${classPrefix}__suffix-clear-icon`]"
+                      @click.stop="handleClear"></Icon>
             </span>
         </template>
     </div>
@@ -69,8 +73,7 @@
     export default {
         name: "SelectReference",
         mixins: [Locale],
-        props: {
-        },
+        props: {},
         data() {
             return {
                 classPrefix: Config.classPrefix + '-select-reference',
@@ -82,17 +85,17 @@
             }
         },
         computed: {
-            referenceClass(){
-              return [
-                  `${this.classPrefix}`,
-                  this.selectRoot.multiple && `${this.classPrefix}--multiple`,
-                  this.selectRoot.disabled && `${this.classPrefix}--disabled`,
-                  this.selectRoot.multiple && (this.selectRoot.visible || this.isFocused) && `${this.classPrefix}--focus`,
-                  this.selectRoot.multiple && this.isHover && `${this.classPrefix}--hover`,
-              ]
+            referenceClass() {
+                return [
+                    `${this.classPrefix}`,
+                    this.selectRoot.multiple && `${this.classPrefix}--multiple`,
+                    this.selectRoot.disabled && `${this.classPrefix}--disabled`,
+                    this.selectRoot.multiple && (this.selectRoot.visible || this.isFocused) && `${this.classPrefix}--focus`,
+                    this.selectRoot.multiple && this.isHover && `${this.classPrefix}--hover`,
+                ]
             },
             computedPlaceholder() {
-                if(this.selectRoot.currentSelectedItems.length) return '';
+                if (this.selectRoot.currentSelectedItems.length) return '';
                 return this.selectRoot.placeholder || this.t('cl.select.placeholder')
             },
             clearableShow() {
@@ -123,8 +126,8 @@
                 this.selectRoot.setDropDownVisible();
                 this.setMultipleInputFocusAndBlur();
             },
-            setMultipleInputFocusAndBlur(){
-                if(!this.selectRoot.multiple || !this.selectRoot.filterable || this.selectRoot.disabled) return;
+            setMultipleInputFocusAndBlur() {
+                if (!this.selectRoot.multiple || !this.selectRoot.filterable || this.selectRoot.disabled) return;
                 this.$refs.multipleInput.focus()
                 // if(this.selectRoot.visible){
                 //     this.$refs.multipleInput.focus()
@@ -133,14 +136,14 @@
                 // }
             },
             handleChange(value) {
-                if(!this.selectRoot.filterable || this.selectRoot.disabled) return;
+                if (!this.selectRoot.filterable || this.selectRoot.disabled) return;
                 this.selectRoot.setDropDownVisible(true);
-                if(!this.selectRoot.remote) this.selectRoot.handleFilterable(value);
-                if(this.selectRoot.remote) this.selectRoot.emitRemoteChange(value);
-                if(this.selectRoot.allowCreate) this.selectRoot.handleAllowCreate(value);
+                if (!this.selectRoot.remote) this.selectRoot.handleFilterable(value);
+                if (this.selectRoot.remote) this.selectRoot.emitRemoteChange(value);
+                if (this.selectRoot.allowCreate) this.selectRoot.handleAllowCreate(value);
             },
             handleMultipleInput(e) {
-                if(!this.selectRoot.multiple || !this.selectRoot.filterable || this.selectRoot.disabled) return;
+                if (!this.selectRoot.multiple || !this.selectRoot.filterable || this.selectRoot.disabled) return;
                 let value = e.target.value;
                 this.currentValue = value;
                 this.handleChange(value);
@@ -157,11 +160,11 @@
                 this.selectRoot.handleTagClose(value);
                 this.selectRoot.updateDropdownPosition();
             },
-            setCurrentValue(){
-                if(this.selectRoot.allowCreate && this.selectRoot.isFilter) return;
-                if(!this.selectRoot.multiple){
+            setCurrentValue() {
+                if (this.selectRoot.allowCreate && this.selectRoot.isFilter) return;
+                if (!this.selectRoot.multiple) {
                     this.currentValue = this.selectRoot.currentSelectedItems.length ? this.selectRoot.currentSelectedItems[0].label : '';
-                }else {
+                } else {
                     this.currentValue = '';
                     //多选筛选 选择之后需要重新计算高度
                     this.selectRoot.setScrollInnerHeight();
@@ -169,10 +172,10 @@
             }
         },
         watch: {
-            'selectRoot.currentValue': function(){
+            'selectRoot.currentValue': function () {
                 this.setCurrentValue();
             },
-            'selectRoot.visible': function(val){
+            'selectRoot.visible': function (val) {
                 !val && this.setCurrentValue();
             },
         }

@@ -10,7 +10,7 @@
                           ref="timeInput"
                           :suffix="suffix"
                           :prefix="prefix"
-                          :size="size"
+                          :size="computedSize"
                           :disabled="disabled"
                           :clearable="clearable"
                           :placeholder="placeholder"
@@ -49,6 +49,7 @@
     import Drop from 'packages/base/drop'
     import DatePane from '../pane/date-pane.vue'
     import {dateFormat, formatToDate} from "main/utils/date";
+    import { findComponent} from "main/utils/tool";
 
     export default {
         name: "TimePicker",
@@ -150,11 +151,17 @@
                 dateInputValue: '',
                 visible: false,
                 nowDate: new Date(),
+                form: findComponent(this, 'Form')
             }
         },
         computed: {
             isRange() {
                 return this.type.includes('range');
+            },
+            computedSize(){
+                if(this.size !== 'default') return this.size;
+                if(this.form && this.form.size !== 'default') return this.form.size;
+                return this.size;
             },
             readonlyInput() {
                 return this.readonly || !this.editable;

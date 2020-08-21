@@ -16,6 +16,13 @@
     export default {
         name: "Form",
         props: {
+            size: {
+                type: String,
+                default: 'default',
+                validator(value) {
+                    return ['mini', 'small', 'default', 'large'].includes(value);
+                }
+            },
             showRequiredIcon: {
                 type: Boolean,
                 default: true
@@ -68,6 +75,7 @@
         data() {
             return {
                 classPrefix: Config.classPrefix + '-form',
+                componentName: 'Form',
             }
         },
         methods: {

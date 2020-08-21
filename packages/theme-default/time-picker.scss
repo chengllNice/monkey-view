@@ -3,6 +3,8 @@
 
 @include c(time-picker){
   display: inline-block;
+  font-size: $--font-size-default;
+  vertical-align: middle;
   @include e(reference){
 
   }

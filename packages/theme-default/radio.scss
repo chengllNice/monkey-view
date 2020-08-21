@@ -15,11 +15,14 @@
     $font-size: $--font-size-large;
     $height: $--radio-input-height-large;
   }
-  font-size: $font-size;
+
 
   @include e(inner, false){
     width: $height;
     height: $height;
+  }
+  @include e(label, false){
+    font-size: $font-size;
   }
   &.is-checked{
     @include e(inner, false){
@@ -34,10 +37,10 @@
 @include c(radio){
   color: $--color-text-default;
   display: inline-block;
-  font-size: $--font-size-default;
   position: relative;
   transition: all 0.2s;
   margin-right: 20px;
+  vertical-align: middle;
 
   @include e(input){
     display: inline-block;
@@ -137,4 +140,10 @@
   @include m(large){
     @include radioSize(large);
   }
+}
+
+
+@include c(radio-group){
+  display: inline-block;
+  vertical-align: middle;
 }

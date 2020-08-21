@@ -6,22 +6,24 @@
     ]">
         <div v-if="isLoading" :class="[`${classPrefix}__loading`]">
             <slot name="loading">
-                <loading type="loading5" size="large" fix color="#ccc" :visible="isLoading" />
+                <loading type="loading5" size="large" fix color="#ccc" :visible="isLoading"/>
             </slot>
         </div>
         <div v-else-if="isError" :class="[`${classPrefix}__error`]">
             <slot name="error">{{t('cl.image.errorText')}}</slot>
         </div>
-        <img v-else :class="[
-            `${classPrefix}__inner`,
-            fit && `${classPrefix}__${fit}`
-            ]"
+        <img v-else
+             :class="[
+                 `${classPrefix}__inner`,
+                 fit && `${classPrefix}__${fit}`
+             ]"
              :style="imageStyle"
              :src="src"
              :alt="alt"
-             @click="handleImageClick">
+             @click="handleImageClick" />
         <template v-if="previewList.length">
-            <image-preview :list="previewList" v-if="previewVisible" @close="previewVisible = false" :style="previewStyle"></image-preview>
+            <image-preview :list="previewList" v-if="previewVisible" @close="previewVisible = false"
+                           :style="previewStyle"></image-preview>
         </template>
     </div>
 </template>
@@ -41,7 +43,7 @@
             fit: {
                 type: String,
                 default: 'none',
-                validator(value){
+                validator(value) {
                     return ['fill', 'none', 'contain', 'cover', 'scale-down'].includes(value)
                 }
             },
@@ -52,7 +54,7 @@
             alt: String,
             previewList: {
                 type: Array,
-                default(){
+                default() {
                     return []
                 }
             },
@@ -62,11 +64,11 @@
             }
         },
         computed: {
-            imageStyle(){
+            imageStyle() {
                 // return this.computedImageStyle();
                 return isObjectFit ? {} : this.computedImageStyle();
             },
-            previewStyle(){
+            previewStyle() {
                 return {
                     'z-index': this.zIndex
                 }
@@ -76,7 +78,7 @@
             ImagePreview,
             Loading
         },
-        data(){
+        data() {
             return {
                 classPrefix: Config.classPrefix + '-image',
                 isLoading: true,
@@ -94,28 +96,28 @@
             })
         },
         methods: {
-            initImage(){
+            initImage() {
                 let img = new Image();
                 img.onload = (e) => this.loadImage(e, img)
                 img.onerror = (e) => this.errorLoadImage(e)
                 img.src = this.src;
             },
-            loadImage(e, img){
+            loadImage(e, img) {
                 this.imageWidth = img.width;
                 this.imageHeight = img.height;
                 this.isLoading = false;
                 this.isError = false;
                 this.$emit('load', e)
             },
-            errorLoadImage(e){
+            errorLoadImage(e) {
                 this.isLoading = false;
                 this.isError = true;
                 this.$emit('error', e)
             },
-            computedClientWidth(){
-               this.clientWidth = this.$el && this.$el.clientWidth;
+            computedClientWidth() {
+                this.clientWidth = this.$el && this.$el.clientWidth;
             },
-            computedImageStyle(){
+            computedImageStyle() {
                 let style = {
                     position: 'absolute',
                     top: '50%',
@@ -127,7 +129,7 @@
                 let imageWidth = this.imageWidth;
                 let imageHeight = this.imageHeight;
 
-                if(!imageHeight || !clientHeight || !imageWidth || !clientWidth){
+                if (!imageHeight || !clientHeight || !imageWidth || !clientWidth) {
                     return style;
                 }
 
@@ -135,10 +137,10 @@
 
                 let fit = this.fit;
 
-                if(fit === 'scale-down'){
-                    if(imageHeight < clientHeight && imageWidth < clientWidth){
+                if (fit === 'scale-down') {
+                    if (imageHeight < clientHeight && imageWidth < clientWidth) {
                         fit = 'none'
-                    }else{
+                    } else {
                         fit = 'contain'
                     }
                 }
@@ -149,18 +151,18 @@
                         style = {...style, width: 'auto', height: 'auto'}
                         break;
                     case 'contain':
-                        c = scaleVertical ? { width: 'auto' } : { height: 'auto' };
+                        c = scaleVertical ? {width: 'auto'} : {height: 'auto'};
                         style = {...style, ...c}
                         break;
                     case 'cover':
-                        c = scaleVertical ? { height: 'auto' } : { width: 'auto' };
+                        c = scaleVertical ? {height: 'auto'} : {width: 'auto'};
                         style = {...style, ...c}
                         break;
                 }
                 return style;
             },
-            handleImageClick(){
-                if(!this.previewList.length) return;
+            handleImageClick() {
+                if (!this.previewList.length) return;
                 this.previewVisible = true;
             }
         }

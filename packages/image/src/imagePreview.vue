@@ -3,20 +3,20 @@
         <div v-if="visible"
              :class="[`${classPrefix}`]">
             <div :class="[`${classPrefix}__wrap`]">
-                <div :class="[`${classPrefix}__close`]" @click="handlerClose">
+                <div :class="[`${classPrefix}__close`]" @click="handleClose">
                     <Icon type="close"></Icon>
                 </div>
                 <Icon type="left" :class="[`${classPrefix}__left`]" @click="handleChange('left')"></Icon>
                 <Icon type="right" :class="[`${classPrefix}__right`]" @click="handleChange('right')"></Icon>
                 <div :class="[`${classPrefix}__body`]">
-                    <template v-for="(item, index) in list" >
+                    <template v-for="(item, index) in list">
                         <img :class="[`${classPrefix}__image`]"
                              v-if="index === selectedIndex"
                              :style="imageStyle"
                              :key="index"
                              :src="item"
                              @mousedown="handleImageMouseDown"
-                             alt="">
+                             alt="" />
                     </template>
                 </div>
                 <div :class="[`${classPrefix}__footer`]">
@@ -67,10 +67,10 @@
             }
         },
         computed: {
-            imageStyle(){
+            imageStyle() {
                 let {scale, rotate, translateX, translateY} = this.transform;
                 let style = {};
-                if(this.actionToggle === 'limit'){
+                if (this.actionToggle === 'limit') {
                     style = {
                         maxWidth: '100%',
                         maxHeight: '100%',
@@ -85,8 +85,6 @@
         components: {
             Icon
         },
-        created() {
-        },
         mounted() {
             this.$nextTick(() => {
                 this.visible = true;
@@ -98,18 +96,15 @@
             off(document, 'mousewheel', this.handleMouseWheel);
             off(document, 'DOMMouseScroll', this.handleMouseWheel);
         },
-        watch: {
-
-        },
         methods: {
             renderToHtml() {
                 document.body.appendChild(this.$el);
             },
-            listener(){
+            listener() {
                 on(document, 'mousewheel', this.handleMouseWheel);
                 on(document, 'DOMMouseScroll', this.handleMouseWheel);
             },
-            handleMouseWheel(e){
+            handleMouseWheel(e) {
                 const delta = e.wheelDelta ? e.wheelDelta : -e.detail;
                 if (delta > 0) {
                     this.handleAction('zoomIn');
@@ -117,12 +112,12 @@
                     this.handleAction('zoomOut');
                 }
             },
-            handlerClose() {
+            handleClose() {
                 this.visible = false;
                 this.$emit('input', false);
                 this.$emit('close');
             },
-            handleAction(action){
+            handleAction(action) {
                 let {scale, rotate} = this.transform;
                 switch (action) {
                     case 'zoomIn':
@@ -141,16 +136,16 @@
                         rotate = rotate - this.everyRotate;
                         break;
                 }
-                if(scale <= this.minScale){
+                if (scale <= this.minScale) {
                     scale = this.minScale;
                 }
-                if(scale >= this.maxScale){
+                if (scale >= this.maxScale) {
                     scale = this.maxScale;
                 }
                 this.transform.scale = scale;
                 this.transform.rotate = rotate;
             },
-            handleImageMouseDown(e){
+            handleImageMouseDown(e) {
                 e.preventDefault();
                 let {translateX, translateY} = this.transform;
                 let x = e.pageX;
@@ -164,16 +159,16 @@
                     off(document, 'mousemove', handleDrag);
                 });
             },
-            handleChange(type){
+            handleChange(type) {
                 let len = this.list.length;
-                if(type === 'left'){
+                if (type === 'left') {
                     this.selectedIndex--;
-                    if(this.selectedIndex < 0){
+                    if (this.selectedIndex < 0) {
                         this.selectedIndex = len - 1;
                     }
-                }else{
+                } else {
                     this.selectedIndex++;
-                    if(this.selectedIndex > len - 1){
+                    if (this.selectedIndex > len - 1) {
                         this.selectedIndex = 0;
                     }
                 }

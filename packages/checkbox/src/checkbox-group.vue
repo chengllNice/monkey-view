@@ -1,12 +1,14 @@
 <template>
     <div :class="[`${classPrefix}`]">
-        <template v-if="$slots.default"><slot></slot></template>
+        <template v-if="$slots.default">
+            <slot></slot>
+        </template>
         <Checkbox v-else-if="options && options.length"
-                    v-for="item in options"
-                    :key="item.value"
-                    :name="item.name"
-                    :disabled="item.disabled"
-                    :label="item.value">{{item.label}}
+                  v-for="item in options"
+                  :key="item.value"
+                  :name="item.name"
+                  :disabled="item.disabled"
+                  :label="item.value">{{item.label}}
         </Checkbox>
     </div>
 </template>

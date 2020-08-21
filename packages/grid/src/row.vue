@@ -69,9 +69,6 @@
                 return style;
             }
         },
-        components: {},
-        created() {
-        },
         mounted() {
             this.$on('on-update-span', () => {
                 this.initNoSetColChildrenSpan();//设置没有设置span的col

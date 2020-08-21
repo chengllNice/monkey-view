@@ -25,6 +25,7 @@
     $padding-input: $--input-padding-horizontal-large;
   }
 
+  font-size: $font-size;
   @include e(source, false){
     height: $height;
     font-size: $font-size;
@@ -106,7 +107,7 @@
   position: relative;
   //top: -1px;
   width: 100%;
-  vertical-align: middle;
+  //vertical-align: middle;
   border-collapse: separate;
 
   &:hover,
@@ -338,7 +339,7 @@
   line-height: normal;
   transition: all $--animation-time ease-in-out;
   position: relative;
-  vertical-align: middle;
+  //vertical-align: middle;
   border-collapse: separate;
 
   @include e(source, false){

@@ -1,7 +1,7 @@
 <template>
     <label :class="[
         `${classPrefix}`,
-        size && `${classPrefix}--${size}`,
+        computedSize && `${classPrefix}--${computedSize}`,
         {
             'is-checked': isChecked,
             'is-indeterminate': !isChecked && indeterminate,
@@ -31,6 +31,7 @@
 
 <script>
     import Config from 'main/config/config'
+    import {findComponent} from "main/utils/tool";
 
     export default {
         name: "Checkbox",
@@ -65,22 +66,19 @@
                 model: false,
                 isChecked: false,
                 showLabel: true,
+                checkboxGroup: findComponent(this, 'CheckboxGroup'),
+                form: findComponent(this, 'Form'),
             }
         },
         computed: {
-            parentGroup() {
-                let parent = this.$parent;
-                while (parent) {
-                    if (parent.componentName !== 'CheckboxGroup') {
-                        parent = parent.$parent;
-                    } else {
-                        return parent
-                    }
-                }
-                return false
+            computedSize(){
+                if(this.size !== 'default') return this.size;
+                if(this.checkboxGroup && this.checkboxGroup.size !== 'default') return this.checkboxGroup.size;
+                if(this.form && this.form.size !== 'default') return this.form.size;
+                return this.size;
             },
             isDisabled() {
-                return this.parentGroup ? (this.parentGroup.disabled ? this.parentGroup.disabled : this.disabled) : this.disabled
+                return this.checkboxGroup ? (this.checkboxGroup.disabled ? this.checkboxGroup.disabled : this.disabled) : this.disabled
             },
         },
         mounted() {
@@ -100,16 +98,16 @@
                         throw 'Value should be trueValue or falseValue';
                     }
                     this.updateIsChecked(value);
-                    this.parentGroup ? this.parentGroup.dispatch('input', this.label, value) : this.$emit('input', value);
-                    this.parentGroup ? this.parentGroup.dispatch('change', this.label, value) : this.$emit('change', value);
+                    this.checkboxGroup ? this.checkboxGroup.dispatch('input', this.label, value) : this.$emit('input', value);
+                    this.checkboxGroup ? this.checkboxGroup.dispatch('change', this.label, value) : this.$emit('change', value);
                 });
             },
             updateIsChecked(value) {
                 this.isChecked = value === this.trueValue ? true : false;
             },
             updateModel() {
-                if (this.parentGroup && Array.isArray(this.parentGroup.value)) {
-                    this.model = this.parentGroup.value.includes(this.label);
+                if (this.checkboxGroup && Array.isArray(this.checkboxGroup.value)) {
+                    this.model = this.checkboxGroup.value.includes(this.label);
                     this.updateIsChecked(this.model);
                 } else {
                     this.model = this.value;
@@ -127,7 +125,7 @@
                     throw 'Value should be trueValue or falseValue';
                 }
             },
-            'parentGroup.value': function () {
+            'checkboxGroup.value': function () {
                 this.updateModel();
             },
             model: function (newVal) {

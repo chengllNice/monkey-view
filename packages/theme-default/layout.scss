@@ -7,7 +7,7 @@
   flex: auto;
   background-color: $--background-color-base;
 
-  @include m(hasSider){
+  @include m(has-sider){
     flex-direction: row;
   }
 }

@@ -124,7 +124,7 @@
 | fit | String | 和[object-fit](https://developer.mozilla.org/zh-CN/docs/Web/CSS/object-fit)保持一致 | - |
 | src | String | 图片地址 | - |
 | alt | String | 原生alt | - |
-| previewList | Array | 开启图片预览功能，预览图片地址的数组 | [] |
+| preview-list | Array | 开启图片预览功能，预览图片地址的数组 | [] |
 | zIndex | Number | 预览图片蒙版的层级 | 2000 |
 
 ### Image event

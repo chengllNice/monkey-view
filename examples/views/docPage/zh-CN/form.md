@@ -275,7 +275,9 @@
                         type: 'input',
                         value: '',
                         isShow: true,
-                        validate: []
+                        validate: [
+                            {required: true}
+                        ]
                     },
                     {
                         id: 'email',
@@ -284,7 +286,9 @@
                         type: 'input',
                         value: '',
                         isShow: true,
-                        validate: []
+                        validate: [
+                            {required: true}
+                        ]
                     },
                     {
                         id: 'region',
@@ -326,7 +330,11 @@
             },
             submit(){
                 this.$refs.form.validate().then(valid=>{
-                    
+                    if(valid){
+                        this.$Message.success('验证成功')
+                    }else{
+                        this.$Message.error('验证失败')
+                    }
                 })
             },
             reset(){
@@ -367,12 +375,12 @@
 | ---- | ---- | ---- | ---- |
 | rules | Object | 表单验证的规则 | - |
 | layout | String | 表单布局，可选值`horizontal` `vertical` `inline` | horizontal |
-| labelAlgin | String | label水平方向的位置，可选值`left` `center` `right` | right |
-| labelWidth | Number, String | label的宽度 | 80 |
-| inlineMessage | Boolean | 是否以行内形式展示错误信息（暂时保留未用） | false |
-| showMessage | Boolean | 是否显示验证错误信息 | true |
-| showLabelColon | Boolean | 是否显示label后的冒号 | false |
-| showRequiredIcon | Boolean | 是否显示required时label前的星号 | true |
+| label-algin | String | label水平方向的位置，可选值`left` `center` `right` | right |
+| label-width | Number, String | label的宽度 | 80 |
+| inline-message | Boolean | 是否以行内形式展示错误信息（暂时保留未用） | false |
+| show-message | Boolean | 是否显示验证错误信息 | true |
+| show-label-colon | Boolean | 是否显示label后的冒号 | false |
+| show-required-icon | Boolean | 是否显示required时label前的星号 | true |
 
 
 ### Form methods
@@ -380,7 +388,7 @@
 | 名称 | 说明 | 参数 |
 | ---- | ---- | ---- |
 | validate | 表单验证的方法，返回promise | - |
-| validateField | 验证表单部分字段，参数为`form-item`的name值数组 | [] |
+| validate-field | 验证表单部分字段，参数为`form-item`的name值数组 | [] |
 | reset | 重置表单验证规则 | - |
 
 
@@ -389,12 +397,12 @@
 | 属性 | 类型 | 说明 | 默认值 |
 | ---- | ---- | ---- | ---- |
 | name | String | 表单`rules`时必须 | - |
-| labelWidth | Number, String | label的宽度 | - |
-| labelFor | String | 原生label的for属性（暂时保留未用） | - |
+| label-width | Number, String | label的宽度 | - |
+| label-for | String | 原生 label 的 for 属性（暂时保留未用） | - |
 | label | String | 标签文本 | - |
 | rules | Array | 表单验证规则 | [] |
 | required | Boolean | 是否必填 | - |
-| validatorValue | - | 当表单元素没有`v-model`属性绑定时需要验证的值 | - |
+| validator-value | - | 当表单元素没有`v-model`属性绑定时需要验证的值 | - |
 
 
 ### FormItem slot

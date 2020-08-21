@@ -14,12 +14,5 @@
                 classPrefix: Config.classPrefix + '-content',
             }
         },
-        computed: {},
-        components: {},
-        created() {
-        },
-        mounted() {
-        },
-        methods: {}
     }
 </script>

@@ -1,6 +1,5 @@
 @import "./base/var";
 @import "./config/mixins/index.scss";
-@import "./config/mixins/dateMixins.scss";
 
 $pane-col-width-3: #{($--date-picker-em-width-default + $--date-picker-pane-margin * 2) * 7 / 3 - $--date-picker-pane-margin * 2};
 $pane-col-width-2: #{($--date-picker-em-width-default + $--date-picker-pane-margin * 2) * 7 / 2 - $--date-picker-pane-margin * 2};
@@ -9,6 +8,8 @@ $pane-time-col-height: #{$--date-picker-em-width-default - 4};
 
 @include c(date-picker){
   display: inline-block;
+  font-size: $--font-size-default;
+  vertical-align: middle;
   @include e(reference){
 
   }

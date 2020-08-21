@@ -9,6 +9,7 @@ $slider-handle-height: #{$--slider-rail-height + 10px};
   cursor: pointer;
   width: 100%;
   height: auto;
+  font-size: $--font-size-default;
 
   @include e(rail){
     width: 100%;

@@ -3,7 +3,7 @@
         <Form ref="form" show-required-icon label-width="100">
             <FormItem name="name" label="name" :rules="rules.name">
 <!--                <template slot="label">Name</template>-->
-                <Input v-model="name"></Input>
+                <Input v-model="name" disabled></Input>
             </FormItem>
             <FormItem name="year" label="year" :rules="rules.year">
                 <Select v-model="year" clearable>
@@ -103,7 +103,7 @@
                         value: '',
                     }
                 ],
-                name: '',
+                name: '1',
                 password: '',
                 year: '',
                 date: '',

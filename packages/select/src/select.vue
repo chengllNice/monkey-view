@@ -1,7 +1,7 @@
 <template>
     <div :class="[
             `${classPrefix}`,
-            size && `${classPrefix}--${size}`,
+            computedSize && `${classPrefix}--${computedSize}`,
             disabled && `is-disabled`
          ]"
          v-click-outside.capture="hanldeOutsideClick">
@@ -71,6 +71,7 @@
     import Mixins from './mixins'
     import RenderOption from './render-option'
     import Option from './option'
+    import {findComponent} from "main/utils/tool";
 
     export default {
         name: "Select",
@@ -139,9 +140,15 @@
             return {
                 classPrefix: Config.classPrefix + '-select',
                 componentName: 'Select',
+                form: findComponent(this, 'Form'),
             }
         },
         computed: {
+            computedSize(){
+                if(this.size !== 'default') return this.size;
+                if(this.form && this.form.size !== 'default') return this.form.size;
+                return this.size;
+            },
             isEmpty() {
                 if (this.isFilter) {
                     if (this.allowCreate && this.allowCreateOption) return false;

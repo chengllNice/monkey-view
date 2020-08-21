@@ -3,8 +3,8 @@
             type !== 'textarea' && `${classPrefix}`,
             type === 'number' && `${classPrefix}--number`,
             type === 'textarea' && `${classPrefixTextArea}`,
-            inputSize && type !== 'textarea' && `${classPrefix}--${inputSize}`,
-            inputSize && type === 'textarea' && `${classPrefixTextArea}--${inputSize}`,
+            computedSize && type !== 'textarea' && `${classPrefix}--${computedSize}`,
+            computedSize && type === 'textarea' && `${classPrefixTextArea}--${computedSize}`,
             isDisabled && 'is-disabled',
         ]"
          @mouseenter="hovering = true"
@@ -64,7 +64,7 @@
                 <slot name="append">
                     <Button :class="[`${classPrefix}__append-button`]"
                             type="primary"
-                            :size="inputSize"
+                            :size="computedSize"
                             :disabled="isDisabled"
                             @click="handlerSearch">
                         <Icon type="search" v-if="suffixButton === true"></Icon>
@@ -128,12 +128,10 @@
             min: Number,
             max: Number,
             precision: Number,
-            minLength: Number,//暂时没用
             maxLength: Number,
             autosize: [Boolean, Object],
             rows: Number,
             cols: Number,
-            resize: Boolean,//暂时没用
             showLimitLabel: Boolean,//显示限制字数，input和textarea时有效
             showPasswordIcon: {
                 type: [Boolean, Object],
@@ -148,7 +146,6 @@
                 default: 1
             },//Number类型时有效，false不显示，true显示，number计数器步长
             stepType: String,//right
-            isSlice: Boolean,//是否根据限制截取value//暂时没用
             inputStyle: {
                 type: Object,
                 default: function () {
@@ -165,12 +162,15 @@
                 hovering: false,
                 showPasswordVisible: false,
                 composition: false,//中文输入
-                formItem: findComponent(this, 'FormItem')
+                form: findComponent(this, 'Form'),
+                formItem: findComponent(this, 'FormItem'),
             }
         },
         computed: {
-            inputSize() {
-                return this.size
+            computedSize(){
+                if(this.size !== 'default') return this.size;
+                if(this.form && this.form.size !== 'default') return this.form.size;
+                return this.size;
             },
             isDisabled() {
                 return this.disabled

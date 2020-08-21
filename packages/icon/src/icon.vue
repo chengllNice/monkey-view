@@ -4,6 +4,7 @@
 
 <script>
     import Config from 'main/config/config'
+
     export default {
         name: "Icon",
         props: {
@@ -12,13 +13,13 @@
             size: [String, Number],
             color: String
         },
-        data(){
+        data() {
             return {
                 classPrefix: `${Config.classPrefix}-icon`,
             }
         },
         computed: {
-            iconClass(){
+            iconClass() {
                 let isPrefix = this.type && this.type.indexOf(this.classPrefix) === 0;
                 return [
                     this.type && `${this.classPrefix}`,
@@ -27,7 +28,7 @@
                     this.type && !isPrefix && `${this.classPrefix}-${this.type}`,
                 ]
             },
-            iconStyle(){
+            iconStyle() {
                 return {
                     fontSize: parseFloat(this.size) + 'px',
                     color: this.color
@@ -35,7 +36,7 @@
             }
         },
         methods: {
-            handleClick(event){
+            handleClick(event) {
                 this.$emit('click', event)
             }
         }

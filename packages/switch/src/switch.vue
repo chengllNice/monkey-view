@@ -2,7 +2,7 @@
     <span tabindex="0"
           :class="[
               `${classPrefix}`,
-              size && `${classPrefix}--${size}`,
+              computedSize && `${classPrefix}--${computedSize}`,
               {
                  'is-checked': currentValue === trueValue,
                  'is-disabled': isDisabled,
@@ -21,6 +21,7 @@
 
 <script>
     import Config from 'main/config/config'
+    import {findComponent} from "main/utils/tool";
 
     export default {
         name: `${Config.componentPrefix}Switch`,
@@ -54,10 +55,16 @@
         data() {
             return {
                 classPrefix: Config.classPrefix + '-switch',
-                currentValue: false
+                currentValue: false,
+                form: findComponent(this, 'Form'),
             }
         },
         computed: {
+            computedSize(){
+                if(this.size !== 'default') return this.size;
+                if(this.form && this.form.size !== 'default') return this.form.size;
+                return this.size;
+            },
             isDisabled() {
                 return this.disabled;
             },

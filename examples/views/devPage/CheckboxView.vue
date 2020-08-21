@@ -2,53 +2,53 @@
     <div class="checkboxView">
         <div>
             <h4>基础</h4>
-            <ClCheckbox v-model="checkboxBase" @change="checkboxChange">基础</ClCheckbox>
+            <Checkbox v-model="checkboxBase" @change="checkboxChange">基础</Checkbox>
 
             <h4>disabled</h4>
-            <ClCheckbox v-model="checkboxDisabled" disabled @change="checkboxChange">disabled</ClCheckbox>
+            <Checkbox v-model="checkboxDisabled" disabled @change="checkboxChange">disabled</Checkbox>
 
             <h4>设置true-value和false-value</h4>
-            <ClCheckbox v-model="checkboxCustom" @change="checkboxChange" trueValue="1" falseValue="0">设置true-value和false-value</ClCheckbox>
+            <Checkbox v-model="checkboxCustom" @change="checkboxChange" trueValue="1" falseValue="0">设置true-value和false-value</Checkbox>
 
             <h4>size</h4>
-            <ClCheckbox v-model="checkboxSmall" @change="checkboxChange" size="small">small</ClCheckbox>
-            <ClCheckbox v-model="checkboxDefault" @change="checkboxChange">default</ClCheckbox>
-            <ClCheckbox v-model="checkboxLarge" @change="checkboxChange" size="large">large</ClCheckbox>
+            <Checkbox v-model="checkboxSmall" @change="checkboxChange" size="small">small</Checkbox>
+            <Checkbox v-model="checkboxDefault" @change="checkboxChange">default</Checkbox>
+            <Checkbox v-model="checkboxLarge" @change="checkboxChange" size="large">large</Checkbox>
 
             <h4>indeterminate状态</h4>
-            <ClCheckbox v-model="checkboxIndeterminate" indeterminate @change="checkboxChange">indeterminate</ClCheckbox>
+            <Checkbox v-model="checkboxIndeterminate" indeterminate @change="checkboxChange">indeterminate</Checkbox>
 
             <h4>复选框组--设置属性option</h4>
-            <ClCheckboxGroup v-model="checkboxGroupOptionValue" :options="checkboxGroupOption" @change="checkboxChange"></ClCheckboxGroup>
+            <CheckboxGroup v-model="checkboxGroupOptionValue" :options="checkboxGroupOption" @change="checkboxChange"></CheckboxGroup>
 
             <h4>复选框组--slot插槽</h4>
-            <ClCheckboxGroup v-model="checkboxGroupSlotValue" @change="checkboxChange">
-                <ClCheckbox label="checkbox1">测试Group1</ClCheckbox>
-                <ClCheckbox label="checkbox2">测试Group2</ClCheckbox>
-                <ClCheckbox label="checkbox3">测试Group3</ClCheckbox>
-                <ClCheckbox label="checkbox4">测试Group4</ClCheckbox>
-            </ClCheckboxGroup>
+            <CheckboxGroup size="mini" v-model="checkboxGroupSlotValue" @change="checkboxChange">
+                <Checkbox label="checkbox1">测试Group1</Checkbox>
+                <Checkbox label="checkbox2">测试Group2</Checkbox>
+                <Checkbox label="checkbox3">测试Group3</Checkbox>
+                <Checkbox label="checkbox4">测试Group4</Checkbox>
+            </CheckboxGroup>
 
             <h4>复选框组--disabled</h4>
-            <ClCheckboxGroup v-model="checkboxGroupDisabled" disabled @change="checkboxChange">
-                <ClCheckbox label="checkbox1">测试Group1</ClCheckbox>
-                <ClCheckbox label="checkbox2">测试Group2</ClCheckbox>
-                <ClCheckbox label="checkbox3">测试Group3</ClCheckbox>
-                <ClCheckbox label="checkbox4">测试Group4</ClCheckbox>
-            </ClCheckboxGroup>
+            <CheckboxGroup v-model="checkboxGroupDisabled" disabled @change="checkboxChange">
+                <Checkbox label="checkbox1">测试Group1</Checkbox>
+                <Checkbox label="checkbox2">测试Group2</Checkbox>
+                <Checkbox label="checkbox3">测试Group3</Checkbox>
+                <Checkbox label="checkbox4">测试Group4</Checkbox>
+            </CheckboxGroup>
 
             <h4>复选框组--单独设置某项disabled</h4>
-            <ClCheckboxGroup v-model="checkboxGroupSingleDisabled" @change="checkboxChange">
-                <ClCheckbox label="checkbox1">测试Group1</ClCheckbox>
-                <ClCheckbox label="checkbox2" disabled>测试Group2</ClCheckbox>
-                <ClCheckbox label="checkbox3">测试Group3</ClCheckbox>
-                <ClCheckbox label="checkbox4">测试Group4</ClCheckbox>
-            </ClCheckboxGroup>
+            <CheckboxGroup v-model="checkboxGroupSingleDisabled" @change="checkboxChange">
+                <Checkbox label="checkbox1">测试Group1</Checkbox>
+                <Checkbox label="checkbox2" disabled>测试Group2</Checkbox>
+                <Checkbox label="checkbox3">测试Group3</Checkbox>
+                <Checkbox label="checkbox4">测试Group4</Checkbox>
+            </CheckboxGroup>
 
             <h4>全选</h4>
-            <ClCheckbox v-model="checkboxAll" :indeterminate="indeterminateAll" @change="checkboxChangeAll">全选</ClCheckbox>
+            <Checkbox v-model="checkboxAll" :indeterminate="indeterminateAll" @change="checkboxChangeAll">全选</Checkbox>
             <br>
-            <ClCheckboxGroup v-model="checkboxGroupAll" :options="checkboxGroupOption" @change="checkboxChangeAllChildren"></ClCheckboxGroup>
+            <CheckboxGroup v-model="checkboxGroupAll" :options="checkboxGroupOption" @change="checkboxChangeAllChildren"></CheckboxGroup>
         </div>
 
         <div class="viewDes">

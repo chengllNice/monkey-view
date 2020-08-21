@@ -66,10 +66,9 @@
                 if (this.collapsed) {
                     width = parseFloat(this.collapsedWidth);
                 }
-                let style = {
+                return {
                     'width': width + 'px',
                 };
-                return style
             },
             showZeroTrigger() {
                 return parseFloat(this.collapsedWidth) === 0 && !this.hideTrigger && this.collapsed
@@ -78,8 +77,6 @@
         components: {
             Icon,
             Scroll
-        },
-        created() {
         },
         mounted() {
             this.observer = elementResizeDetectorMaker();

@@ -1,7 +1,7 @@
 <template>
     <label :class="[
         `${classPrefix}`,
-        radioSize && `${classPrefix}--${radioSize}`,
+        computedSize && `${classPrefix}--${computedSize}`,
         {
             'is-disabled': isDisabled,
             'is-checked': model === label,
@@ -28,6 +28,7 @@
 
 <script>
     import Config from 'main/config/config'
+    import {findComponent} from "main/utils/tool";
 
     export default {
         name: "Radio",
@@ -53,46 +54,34 @@
         data() {
             return {
                 classPrefix: Config.classPrefix + '-radio',
+                radioGroup: findComponent(this, 'RadioGroup'),
+                form: findComponent(this, 'Form'),
             }
         },
         computed: {
-            parentGroup() {
-                let parent = this.$parent;
-                while (parent) {
-                    if (parent.componentName !== 'RadioGroup') {
-                        parent = parent.$parent;
-                    } else {
-                        return parent
-                    }
-                }
-                return false
-            },
             model: {
                 get() {
-                    return this.parentGroup ? this.parentGroup.value : this.value;
+                    return this.radioGroup ? this.radioGroup.value : this.value;
                 },
                 set(value) {
-                    this.parentGroup ? this.parentGroup.dispatch('input', value) : this.$emit('input', value);
+                    this.radioGroup ? this.radioGroup.dispatch('input', value) : this.$emit('input', value);
                 }
             },
             isDisabled() {
-                return this.parentGroup ? this.parentGroup.disabled || this.disabled : this.disabled
+                return this.radioGroup ? this.radioGroup.disabled || this.disabled : this.disabled
             },
-            radioSize() {
-                return this.parentGroup ? this.parentGroup.size : this.size;
-            }
-        },
-        components: {},
-        created() {
-        },
-        mounted() {
-
+            computedSize(){
+                if(this.size !== 'default') return this.size;
+                if(this.radioGroup && this.radioGroup.size !== 'default') return this.radioGroup.size;
+                if(this.form && this.form.size !== 'default') return this.form.size;
+                return this.size;
+            },
         },
         methods: {
             handleChange() {
                 if (this.isDisabled) return;
                 this.$nextTick(() => {
-                    this.parentGroup ? this.parentGroup.dispatch('change', this.model) : this.$emit('change', this.model);
+                    this.radioGroup ? this.radioGroup.dispatch('change', this.model) : this.$emit('change', this.model);
                 });
             }
         },

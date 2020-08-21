@@ -1,7 +1,7 @@
 <template>
     <div :class="[
             `${classPrefix}`,
-            hasSider && `${classPrefix}--hasSider`
+            hasSider && `${classPrefix}--has-sider`
         ]">
         <slot></slot>
     </div>
@@ -17,10 +17,6 @@
                 classPrefix: Config.classPrefix + '-layout',
                 hasSider: false,
             }
-        },
-        computed: {},
-        components: {},
-        created() {
         },
         mounted() {
             this.hasSider = this.findSider();

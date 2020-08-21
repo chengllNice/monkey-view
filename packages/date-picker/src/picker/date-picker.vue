@@ -10,7 +10,7 @@
                           ref="dateInput"
                           :suffix="suffix"
                           :prefix="prefix"
-                          :size="size"
+                          :size="computedSize"
                           :disabled="disabled"
                           :clearable="clearable"
                           :placeholder="placeholder"
@@ -52,6 +52,7 @@
     import Drop from 'packages/base/drop'
     import DatePane from '../pane/date-pane.vue'
     import {dateFormat, formatToDate} from "main/utils/date";
+    import { findComponent} from "main/utils/tool";
 
 
     export default {
@@ -137,6 +138,7 @@
                 dateValue: [],
                 dateInputValue: '',
                 visible: false,
+                form: findComponent(this, 'Form')
             }
         },
         computed: {
@@ -145,6 +147,11 @@
             },
             readonlyInput() {
                 return this.readonly || !this.editable;
+            },
+            computedSize(){
+                if(this.size !== 'default') return this.size;
+                if(this.form && this.form.size !== 'default') return this.form.size;
+                return this.size;
             },
             defaultFormatType(){
                 let result;

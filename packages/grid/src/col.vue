@@ -10,6 +10,7 @@
     import Emitter from 'main/mixins/emitter'
 
     const responseSize = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'];
+
     export default {
         name: "Col",
         mixins: [Emitter],
@@ -71,9 +72,6 @@
                 }
                 return style;
             }
-        },
-        components: {},
-        created() {
         },
         mounted() {
             this.$nextTick(() => {
