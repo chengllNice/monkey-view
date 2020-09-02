@@ -372,8 +372,9 @@
 | value | Boolean | 控制展开收起，可以使用v-model双向绑定，true(收起),false(展开) | - |
 | width | String, Number | 展开时的宽度 | 200 |
 | height | String, Number | 设置滚动时的高度 | - |
-| collapsedWidth | String, Number | 收起时的宽度 | 60 |
-| hideTrigger | Boolean | 是否隐藏trigger | - |
+| collapsed-width | String, Number | 收起时的宽度 | 60 |
+| hide-trigger | Boolean | 是否隐藏trigger | - |
+| show-zero-trigger | Boolean | `collapsed-width`宽度为0时，是否显示特殊的trigger | true |
 
 
 ### Sider event

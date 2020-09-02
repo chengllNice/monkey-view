@@ -57,10 +57,12 @@
     right: -36px;
     width: 36px;
     height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: #344058;
     color: $--color-white;
     border-radius: $--border-radius-default;
-    line-height: 42px;
     cursor: pointer;
     transition: opacity $--animation-time;
     &:hover{

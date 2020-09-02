@@ -6,7 +6,7 @@
          ]"
          ref="sider"
          :style="sliderStyle">
-        <div :class="[`${classPrefix}__zero-trigger`]" v-if="showZeroTrigger" @click="triggerClick">
+        <div :class="[`${classPrefix}__zero-trigger`]" v-if="computedShowZeroTrigger" @click="triggerClick">
             <Icon type="arrow-right"></Icon>
         </div>
         <div :class="[`${classPrefix}__header`]" ref="header" v-if="$slots.header">
@@ -45,6 +45,10 @@
                 default: 60
             },
             hideTrigger: Boolean,
+            showZeroTrigger: {
+                type: Boolean,
+                default: true
+            },
         },
         data() {
             return {
@@ -70,8 +74,8 @@
                     'width': width + 'px',
                 };
             },
-            showZeroTrigger() {
-                return parseFloat(this.collapsedWidth) === 0 && !this.hideTrigger && this.collapsed
+            computedShowZeroTrigger() {
+                return this.showZeroTrigger && parseFloat(this.collapsedWidth) === 0 && this.collapsed
             }
         },
         components: {

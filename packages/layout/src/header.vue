@@ -24,12 +24,6 @@
                     'line-height': parseFloat(this.height) + 'px',
                 }
             }
-        },
-        components: {},
-        created() {
-        },
-        mounted() {
-        },
-        methods: {}
+        }
     }
 </script>
