@@ -1,7 +1,7 @@
 <template>
-    <div :class="[`${classPrefix}`]" :style="expandStyle">
+    <header :class="[`${classPrefix}`]" :style="expandStyle">
         <slot></slot>
-    </div>
+    </header>
 </template>
 
 <script>
@@ -10,7 +10,10 @@
     export default {
         name: "Header",
         props: {
-            height: [String, Number]
+            height: {
+                type: [String, Number],
+                default: 60
+            }
         },
         data() {
             return {

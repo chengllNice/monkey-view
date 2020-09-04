@@ -31,43 +31,43 @@
 <template>
  <div>
     <div class="doc-layout-single">
-        <cl-layout class="doc-layout-el">
-            <cl-header class="doc-layout-header">header</cl-header>
-            <cl-content class="doc-layout-content">content</cl-content>
-            <cl-footer class="doc-layout-footer">footer</cl-footer>
-        </cl-layout>
+        <Layout class="doc-layout-el">
+            <Header class="doc-layout-header">header</Header>
+            <Content class="doc-layout-content">content</Content>
+            <Footer class="doc-layout-footer">footer</Footer>
+        </Layout>
     </div>
     <div class="doc-layout-single">
-        <cl-layout class="doc-layout-el">
-            <cl-header class="doc-layout-header">header</cl-header>
-            <cl-layout>
-                <cl-sider class="doc-layout-sider" hide-trigger>sider</cl-sider>
-                <cl-content class="doc-layout-content">content</cl-content>
-            </cl-layout>
-            <cl-footer class="doc-layout-footer">footer</cl-footer>
-        </cl-layout>
+        <Layout class="doc-layout-el">
+            <Header class="doc-layout-header">header</Header>
+            <Layout>
+                <Sider class="doc-layout-sider" hide-trigger>sider</Sider>
+                <Content class="doc-layout-content">content</Content>
+            </Layout>
+            <Footer class="doc-layout-footer">footer</Footer>
+        </Layout>
     </div>
     <div class="doc-layout-single">
-        <cl-layout class="doc-layout-el">
-            <cl-sider class="doc-layout-sider" hide-trigger>sider</cl-sider>
-            <cl-layout>
-                <cl-header class="doc-layout-header">header</cl-header>
-                <cl-content class="doc-layout-content">content</cl-content>
-                <cl-footer class="doc-layout-footer">footer</cl-footer>
-            </cl-layout>
-        </cl-layout>
+        <Layout class="doc-layout-el">
+            <Sider class="doc-layout-sider" hide-trigger>sider</Sider>
+            <Layout>
+                <Header class="doc-layout-header">header</Header>
+                <Content class="doc-layout-content">content</Content>
+                <Footer class="doc-layout-footer">footer</Footer>
+            </Layout>
+        </Layout>
     </div>
     <div class="doc-layout-single">
-        <cl-layout class="doc-layout-el">
-            <cl-header class="doc-layout-header">header</cl-header>
-            <cl-layout>
-                <cl-sider class="doc-layout-sider" hide-trigger>sider</cl-sider>
-                <cl-layout>
-                    <cl-content class="doc-layout-content">content</cl-content>
-                    <cl-footer class="doc-layout-footer">footer</cl-footer>
-                </cl-layout>
-            </cl-layout>
-        </cl-layout>
+        <Layout class="doc-layout-el">
+            <Header class="doc-layout-header">header</Header>
+            <Layout>
+                <Sider class="doc-layout-sider" hide-trigger>sider</Sider>
+                <Layout>
+                    <Content class="doc-layout-content">content</Content>
+                    <Footer class="doc-layout-footer">footer</Footer>
+                </Layout>
+            </Layout>
+        </Layout>
     </div>
 </div>
 </template>
@@ -82,19 +82,19 @@
 通常这里可以设置LOGO
 ```html
 <template>
-    <cl-layout class="doc-layout-el">
-        <cl-sider class="doc-layout-sider" hide-trigger>
+    <Layout class="doc-layout-el">
+        <Sider class="doc-layout-sider" hide-trigger>
             <div slot="header" class="doc-layout-sider-header">
                 LOGO
             </div>
             sider
-        </cl-sider>
-        <cl-layout>
-            <cl-header class="doc-layout-header">header</cl-header>
-            <cl-content class="doc-layout-content">content</cl-content>
-            <cl-footer class="doc-layout-footer">footer</cl-footer>
-        </cl-layout>
-    </cl-layout>
+        </Sider>
+        <Layout>
+            <Header class="doc-layout-header">header</Header>
+            <Content class="doc-layout-content">content</Content>
+            <Footer class="doc-layout-footer">footer</Footer>
+        </Layout>
+    </Layout>
 </template>
 <style>
     .doc-layout-single{
@@ -138,39 +138,39 @@
 <template>
  <div>
      <div class="doc-layout-single">
-         <cl-layout class="doc-layout-el">
-             <cl-header class="doc-layout-header">header</cl-header>
-             <cl-layout>
-                 <cl-sider v-model="collapsed"
+         <Layout class="doc-layout-el">
+             <Header class="doc-layout-header">header</Header>
+             <Layout>
+                 <Sider v-model="collapsed"
                            class="doc-layout-sider doc-layout-sider-dark"
                           :class="{'doc-layout-sider-close': collapsed}"
                           :collapsed-width="collapsedWidth"
                           :hide-trigger="hideTrigger">
-                     <cl-menu width="auto" theme="dark">
-                         <cl-tooltip class="doc-layout-menu-tooltip" placement="right" :disabled="!collapsed" content="options1">
-                             <cl-menu-item c-key="options1">
+                     <Menu width="auto" theme="dark">
+                         <Tooltip class="doc-layout-menu-tooltip" placement="right" :disabled="!collapsed" content="options1">
+                             <MenuItem c-key="options1">
                                  <Icon type="home" class="doc-layout-menu-icon"></Icon>
                                  <span class="doc-layout-menu-name">options1</span>
-                             </cl-menu-item>
-                         </cl-tooltip>
-                         <cl-tooltip class="doc-layout-menu-tooltip" placement="right" :disabled="!collapsed" content="options2">
-                             <cl-menu-item c-key="options2">
+                             </MenuItem>
+                         </Tooltip>
+                         <Tooltip class="doc-layout-menu-tooltip" placement="right" :disabled="!collapsed" content="options2">
+                             <MenuItem c-key="options2">
                                  <Icon type="home" class="doc-layout-menu-icon"></Icon>
                                  <span class="doc-layout-menu-name">options2</span>
-                             </cl-menu-item>
-                         </cl-tooltip>
-                         <cl-tooltip class="doc-layout-menu-tooltip" placement="right" :disabled="!collapsed" content="options3">
-                             <cl-menu-item c-key="options3">
+                             </MenuItem>
+                         </Tooltip>
+                         <Tooltip class="doc-layout-menu-tooltip" placement="right" :disabled="!collapsed" content="options3">
+                             <MenuItem c-key="options3">
                                  <Icon type="home" class="doc-layout-menu-icon"></Icon>
                                  <span class="doc-layout-menu-name">options3</span>
-                             </cl-menu-item>
-                         </cl-tooltip>
-                     </cl-menu>
-                 </cl-sider>
-                 <cl-content class="doc-layout-content">content</cl-content>
-             </cl-layout>
-             <cl-footer class="doc-layout-footer">footer</cl-footer>
-         </cl-layout>
+                             </MenuItem>
+                         </Tooltip>
+                     </Menu>
+                 </Sider>
+                 <Content class="doc-layout-content">content</Content>
+             </Layout>
+             <Footer class="doc-layout-footer">footer</Footer>
+         </Layout>
      </div>
      <cl-switch width="90" v-model="hideTrigger">
          <span slot="open">显示trigger</span>
@@ -257,40 +257,40 @@
 <template>
   <div>
      <div class="doc-layout-single">
-         <cl-layout class="doc-layout-el">
-             <cl-sider v-model="collapsedCustom"
+         <Layout class="doc-layout-el">
+             <Sider v-model="collapsedCustom"
                        class="doc-layout-sider doc-layout-sider-dark"
                        :class="{'doc-layout-sider-close': collapsedCustom}"
                        hide-trigger>
-                 <cl-menu width="auto" theme="dark">
-                     <cl-tooltip class="doc-layout-menu-tooltip" placement="right" :disabled="!collapsedCustom" content="options1">
-                         <cl-menu-item c-key="options1">
+                 <Menu width="auto" theme="dark">
+                     <Tooltip class="doc-layout-menu-tooltip" placement="right" :disabled="!collapsedCustom" content="options1">
+                         <MenuItem c-key="options1">
                              <Icon type="home" class="doc-layout-menu-icon"></Icon>
                              <span class="doc-layout-menu-name">options1</span>
-                         </cl-menu-item>
-                     </cl-tooltip>
-                     <cl-tooltip class="doc-layout-menu-tooltip" placement="right" :disabled="!collapsedCustom" content="options2">
-                         <cl-menu-item c-key="options2">
+                         </MenuItem>
+                     </Tooltip>
+                     <Tooltip class="doc-layout-menu-tooltip" placement="right" :disabled="!collapsedCustom" content="options2">
+                         <MenuItem c-key="options2">
                              <Icon type="home" class="doc-layout-menu-icon"></Icon>
                              <span class="doc-layout-menu-name">options2</span>
-                         </cl-menu-item>
-                     </cl-tooltip>
-                     <cl-tooltip class="doc-layout-menu-tooltip" placement="right" :disabled="!collapsedCustom" content="options3">
-                         <cl-menu-item c-key="options3">
+                         </MenuItem>
+                     </Tooltip>
+                     <Tooltip class="doc-layout-menu-tooltip" placement="right" :disabled="!collapsedCustom" content="options3">
+                         <MenuItem c-key="options3">
                              <Icon type="home" class="doc-layout-menu-icon"></Icon>
                              <span class="doc-layout-menu-name">options3</span>
-                         </cl-menu-item>
-                     </cl-tooltip>
-                 </cl-menu>
-             </cl-sider>
-             <cl-layout>
-                 <cl-header class="doc-layout-header doc-layout-header-toggle">
+                         </MenuItem>
+                     </Tooltip>
+                 </Menu>
+             </Sider>
+             <Layout>
+                 <Header class="doc-layout-header doc-layout-header-toggle">
                      <Icon type="list" @click="triggerClick"></Icon>
-                 </cl-header>
-                 <cl-content class="doc-layout-content">content</cl-content>
-                 <cl-footer class="doc-layout-footer">footer</cl-footer>
-             </cl-layout>
-         </cl-layout>
+                 </Header>
+                 <Content class="doc-layout-content">content</Content>
+                 <Footer class="doc-layout-footer">footer</Footer>
+             </Layout>
+         </Layout>
      </div>
  </div>
 </template>

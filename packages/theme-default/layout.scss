@@ -78,19 +78,15 @@
 @include c(header){
   background-color: #344058;
   padding: 0 50px;
-  display: block;
-  box-sizing: border-box;
-  color: $--color-white;
+  color: $--color-default;
   flex: 0 0 auto;
-  height: 60px;
-  line-height: 60px;
+  font-size: $--font-size-default;
 }
 
 @include c(footer){
   background-color: #344058;
-  padding: 24px 50px;
-  display: block;
-  box-sizing: border-box;
-  color: $--color-white;
+  color: $--color-default;
   flex: 0 0 auto;
+  padding: 0 50px;
+  font-size: $--font-size-default;
 }

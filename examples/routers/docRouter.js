@@ -62,6 +62,7 @@ const renderRouter = () => {
         });
         langTypes.forEach(langItem => {
             const componentName = routerName + langItem.replace('-','');
+
             routers.push({
                 path: `${langItem}/doc/${routerItem}`,
                 name: componentName,

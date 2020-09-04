@@ -1,7 +1,7 @@
 <template>
-    <div :class="[`${classPrefix}`]">
+    <footer :class="[`${classPrefix}`]" :style="expandStyle">
         <slot></slot>
-    </div>
+    </footer>
 </template>
 
 <script>
@@ -9,17 +9,24 @@
 
     export default {
         name: "Footer",
+        props: {
+            height: {
+                type: [String, Number],
+                default: 60
+            }
+        },
         data() {
             return {
                 classPrefix: Config.classPrefix + '-footer',
             }
         },
-        computed: {},
-        components: {},
-        created() {
-        },
-        mounted() {
-        },
-        methods: {}
+        computed: {
+            expandStyle() {
+                return {
+                    'height': parseFloat(this.height) + 'px',
+                    'line-height': parseFloat(this.height) + 'px',
+                }
+            }
+        }
     }
 </script>
