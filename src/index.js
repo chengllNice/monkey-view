@@ -112,7 +112,7 @@ const components = {
     Icon
 };
 
-const ClComponents = {
+const prefixComponents = {
     [`${Config.componentPrefix}Switch`]: Switch,
     [`${Config.componentPrefix}Image`]: Image,
 };
@@ -127,8 +127,8 @@ const install = (Vue, opts = {}) => {
         Vue.component(key, components[key]);
         Vue.component(`${Config.componentPrefix}${key}`, components[key]);
     });
-    Object.keys(ClComponents).forEach(key => {
-        Vue.component(key, ClComponents[key]);
+    Object.keys(prefixComponents).forEach(key => {
+        Vue.component(key, prefixComponents[key]);
     });
 
     directive(Vue);
@@ -154,7 +154,7 @@ const API = {
     i18n: locale.i18n,
     install,
     ...components,
-    ...ClComponents,
+    ...prefixComponents,
 };
 
 export default API;
