@@ -1,6 +1,6 @@
 
 export default {
-    name: 'snail',
+    name: 'monkey',
     classPrefix: 'cl',
-    componentPrefix: 'Cl'
+    componentPrefix: 'M'
 }

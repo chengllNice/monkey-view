@@ -1,32 +1,32 @@
 <template>
-    <ClLayout class="views">
-        <ClHeader class="views-header">
+    <Layout class="views">
+        <Header class="views-header">
             <CHeader></CHeader>
-        </ClHeader>
-        <ClLayout class="views-layout">
-            <ClSider hide-trigger width="240">
+        </Header>
+        <Layout class="views-layout">
+            <Sider hide-trigger width="240">
                 <LeftNav></LeftNav>
-            </ClSider>
-            <ClContent class="views-main-content" ref="viewsMainContent">
+            </Sider>
+            <Content class="views-main-content" ref="viewsMainContent">
                 <div class="view-main-content-card">
-                    <cl-row :gutter="16">
-                        <cl-col style="padding: 16px;">
+                    <Row :gutter="16">
+                        <Col style="padding: 16px;">
 <!--                            <keep-alive>-->
 <!--                                -->
 <!--                            </keep-alive>-->
                             <router-view></router-view>
-                        </cl-col>
-                        <cl-col span="3">
+                        </Col>
+                        <Col span="3">
                             <anchors-link></anchors-link>
-                        </cl-col>
-                    </cl-row>
+                        </Col>
+                    </Row>
                 </div>
-                <ClFooter class="views-main-content-footer">
+                <Footer class="views-main-content-footer">
                     <CFooter></CFooter>
-                </ClFooter>
-            </ClContent>
-        </ClLayout>
-    </ClLayout>
+                </Footer>
+            </Content>
+        </Layout>
+    </Layout>
 </template>
 
 <script>

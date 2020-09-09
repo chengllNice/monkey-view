@@ -18,7 +18,7 @@
 
 - `Sider`组件实现了基本的侧导航功能，支持手风琴和全展开的样式，请根据业务相应的扩展。
 
-<cl-alter type="info" showIcon>注意：采用 flex 布局实现，注意 <a href="https://caniuse.com/#search=flex" target="_blank">浏览器兼容性</a> 的问题。</cl-alter>
+<m-alter type="info" showIcon>注意：采用 flex 布局实现，注意 <a href="https://caniuse.com/#search=flex" target="_blank">浏览器兼容性</a> 的问题。</m-alter>
 
 
 ## 代码示例
@@ -147,19 +147,19 @@
                           :collapsed-width="collapsedWidth"
                           :hide-trigger="hideTrigger">
                      <Menu width="auto" theme="dark">
-                         <Tooltip class="doc-layout-menu-tooltip" placement="right" :disabled="!collapsed" content="options1">
+                         <Tooltip class="doc-layout-menu-tooltip" placement="right" :disabled="!collapsed" content="options1" renderHtml>
                              <MenuItem c-key="options1">
                                  <Icon type="home" class="doc-layout-menu-icon"></Icon>
                                  <span class="doc-layout-menu-name">options1</span>
                              </MenuItem>
                          </Tooltip>
-                         <Tooltip class="doc-layout-menu-tooltip" placement="right" :disabled="!collapsed" content="options2">
+                         <Tooltip class="doc-layout-menu-tooltip" placement="right" :disabled="!collapsed" content="options2" renderHtml>
                              <MenuItem c-key="options2">
                                  <Icon type="home" class="doc-layout-menu-icon"></Icon>
                                  <span class="doc-layout-menu-name">options2</span>
                              </MenuItem>
                          </Tooltip>
-                         <Tooltip class="doc-layout-menu-tooltip" placement="right" :disabled="!collapsed" content="options3">
+                         <Tooltip class="doc-layout-menu-tooltip" placement="right" :disabled="!collapsed" content="options3" renderHtml>
                              <MenuItem c-key="options3">
                                  <Icon type="home" class="doc-layout-menu-icon"></Icon>
                                  <span class="doc-layout-menu-name">options3</span>
@@ -172,12 +172,12 @@
              <Footer class="doc-layout-footer">footer</Footer>
          </Layout>
      </div>
-     <cl-switch width="90" v-model="hideTrigger">
+     <m-switch width="90" v-model="hideTrigger">
          <span slot="open">显示trigger</span>
          <span slot="close">隐藏trigger</span>
-     </cl-switch>
+     </m-switch>
      <div>
-         定义收起的宽度： <cl-input type="number" v-model="collapsedWidth"></cl-input>
+         定义收起的宽度： <m-input type="number" v-model="collapsedWidth"></m-input>
      </div>
  </div>
 </template>
@@ -250,7 +250,127 @@
 
 
 
-:::demo 自定义trigger
+:::demo 设置高度
+
+默认情况下`sider`的高度是由内容撑开的
+```html
+<template>
+ <div>
+     <div class="doc-layout-single">
+         <Layout class="doc-layout-el">
+             <Header class="doc-layout-header">header</Header>
+             <Layout>
+                 <Sider v-model="collapsed"
+                        height="300px"
+                        class="doc-layout-sider doc-layout-sider-dark"
+                        :class="{'doc-layout-sider-close': collapsed}"
+                        :collapsed-width="collapsedWidth"
+                        :hide-trigger="hideTrigger">
+                     <Menu width="auto" theme="dark">
+                         <Tooltip class="doc-layout-menu-tooltip" placement="right" :disabled="!collapsed" content="options1" renderHtml>
+                             <MenuItem c-key="options1">
+                                 <Icon type="home" class="doc-layout-menu-icon"></Icon>
+                                 <span class="doc-layout-menu-name">options1</span>
+                             </MenuItem>
+                         </Tooltip>
+                         <Tooltip class="doc-layout-menu-tooltip" placement="right" :disabled="!collapsed" content="options2" renderHtml>
+                             <MenuItem c-key="options2">
+                                 <Icon type="home" class="doc-layout-menu-icon"></Icon>
+                                 <span class="doc-layout-menu-name">options2</span>
+                             </MenuItem>
+                         </Tooltip>
+                         <Tooltip class="doc-layout-menu-tooltip" placement="right" :disabled="!collapsed" content="options3" renderHtml>
+                             <MenuItem c-key="options3">
+                                 <Icon type="home" class="doc-layout-menu-icon"></Icon>
+                                 <span class="doc-layout-menu-name">options3</span>
+                             </MenuItem>
+                         </Tooltip>
+                     </Menu>
+                 </Sider>
+                 <Content class="doc-layout-content">content</Content>
+             </Layout>
+             <Footer class="doc-layout-footer">footer</Footer>
+         </Layout>
+     </div>
+     <m-switch width="90" v-model="hideTrigger">
+         <span slot="open">显示trigger</span>
+         <span slot="close">隐藏trigger</span>
+     </m-switch>
+     <div>
+         定义收起的宽度： <m-input type="number" v-model="collapsedWidth"></m-input>
+     </div>
+ </div>
+</template>
+<script>
+    export default {
+      data(){
+        return {
+          collapsed: true,
+          collapsedWidth: 60,
+          hideTrigger: false,
+        }
+      }
+    }
+</script>
+<style>
+    .doc-layout-single{
+        margin-bottom: 40px;
+    }
+    .doc-layout-el{
+        text-align: center;
+        color: #ffffff;
+        font-size: 16px;
+    }
+    .doc-layout-header, .doc-layout-footer{
+        background-color: #86d8af;
+    }
+    .doc-layout-content{
+        min-height: 120px;
+        line-height: 120px;
+        background-color: #19be6b;
+    }
+    .doc-layout-sider{
+        line-height: 120px;
+        background-color: #62c191;
+    }
+    .doc-layout-sider-dark{
+        background-color: #344058;
+        text-align: left;
+        line-height: normal;
+    }
+    .doc-layout-menu-tooltip{
+        display: block;
+        text-align: left;
+        line-height: normal;
+    }
+    .doc-layout-sider-close{
+        text-align: center;
+    }
+    .doc-layout-menu-name{
+      width: auto;
+      transition: all 0.2s ease-in-out;
+      margin: auto;
+      display: inline-block;
+    }
+    .doc-layout-menu-icon{
+      transition: all 0.2s ease-in-out;
+    }
+    .doc-layout-sider-close .doc-layout-menu-icon{
+        font-size: 18px;
+    }
+    .doc-layout-sider-close .doc-layout-menu-name{
+        width: 0;
+        display: none !important;
+    }
+</style>
+
+```
+
+:::
+
+
+
+:::demo 自定义触发器
 
 通过设置 `hide-trigger`属性隐藏默认的触发器。可自定义实现trigger触发器。
 ```html
@@ -263,19 +383,19 @@
                        :class="{'doc-layout-sider-close': collapsedCustom}"
                        hide-trigger>
                  <Menu width="auto" theme="dark">
-                     <Tooltip class="doc-layout-menu-tooltip" placement="right" :disabled="!collapsedCustom" content="options1">
+                     <Tooltip class="doc-layout-menu-tooltip" placement="right" :disabled="!collapsedCustom" content="options1" renderHtml>
                          <MenuItem c-key="options1">
                              <Icon type="home" class="doc-layout-menu-icon"></Icon>
                              <span class="doc-layout-menu-name">options1</span>
                          </MenuItem>
                      </Tooltip>
-                     <Tooltip class="doc-layout-menu-tooltip" placement="right" :disabled="!collapsedCustom" content="options2">
+                     <Tooltip class="doc-layout-menu-tooltip" placement="right" :disabled="!collapsedCustom" content="options2" renderHtml>
                          <MenuItem c-key="options2">
                              <Icon type="home" class="doc-layout-menu-icon"></Icon>
                              <span class="doc-layout-menu-name">options2</span>
                          </MenuItem>
                      </Tooltip>
-                     <Tooltip class="doc-layout-menu-tooltip" placement="right" :disabled="!collapsedCustom" content="options3">
+                     <Tooltip class="doc-layout-menu-tooltip" placement="right" :disabled="!collapsedCustom" content="options3" renderHtml>
                          <MenuItem c-key="options3">
                              <Icon type="home" class="doc-layout-menu-icon"></Icon>
                              <span class="doc-layout-menu-name">options3</span>

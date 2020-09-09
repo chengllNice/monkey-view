@@ -2,12 +2,12 @@
     <div class="header">
         <router-link class="logo" to="/">Cl-UI</router-link>
         <div class="header-right">
-            <cl-menu mode="horizontal" noHoverBackground @select="langChange" size="large" :activeKey="lang">
-                <cl-submenu c-key="lang" :name="langMap[lang]">
-                    <cl-menu-item c-key="zh-CN" name="中文"></cl-menu-item>
-                    <cl-menu-item c-key="en-US" name="English"></cl-menu-item>
-                </cl-submenu>
-            </cl-menu>
+            <Menu mode="horizontal" noHoverBackground @select="langChange" size="large" :activeKey="lang">
+                <Submenu c-key="lang" :name="langMap[lang]">
+                    <MenuItem c-key="zh-CN" name="中文"></MenuItem>
+                    <MenuItem c-key="en-US" name="English"></MenuItem>
+                </Submenu>
+            </Menu>
         </div>
     </div>
 </template>

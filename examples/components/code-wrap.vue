@@ -1,6 +1,6 @@
 <template>
     <div class="code-wrap">
-        <ClCard>
+        <Card>
             <div class="code-wrap-ui-content">
                 <slot name="source"></slot>
             </div>
@@ -11,19 +11,19 @@
                 <slot name="description"></slot>
             </div>
             <div class="code-wrap-code-button">
-                <ClTooltip placement="top" content="复制代码">
+                <Tooltip placement="top" content="复制代码">
                     <Icon type="file-copy" @click="copyCodeClick"></Icon>
-                </ClTooltip>
-                <ClTooltip placement="top" :content="openedCode ? '隐藏代码' : '显示代码'">
+                </Tooltip>
+                <Tooltip placement="top" :content="openedCode ? '隐藏代码' : '显示代码'">
                     <Icon :type="iconCodeClass" @click="openedCodeClick"></Icon>
-                </ClTooltip>
+                </Tooltip>
             </div>
             <SlideTransition>
                 <div v-show="openedCode" class="code-wrap-code-content" ref="codeContent" v-highlight>
                     <slot name="highlight"></slot>
                 </div>
             </SlideTransition>
-        </ClCard>
+        </Card>
     </div>
 </template>
 

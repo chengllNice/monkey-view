@@ -1,174 +1,174 @@
 <template>
     <div class="LayoutView">
         <h4>基础</h4>
-        <ClLayout>
-            <ClHeader class="center">header</ClHeader>
-            <ClContent class="center layout-content">content</ClContent>
-            <ClFooter class="center">footer</ClFooter>
-        </ClLayout>
+        <Layout>
+            <Header class="center">header</Header>
+            <Content class="center layout-content">content</Content>
+            <Footer class="center">footer</Footer>
+        </Layout>
 
         <h4>基础</h4>
-        <ClSwitch width="90" v-model="hideTrigger">
+        <m-switch width="90" v-model="hideTrigger">
             <span slot="open">显示trigger</span>
             <span slot="close">隐藏trigger</span>
-        </ClSwitch>
+        </m-switch>
         <div>
-            定义收起的宽度： <ClInput type="number" v-model="collapsedWidth"></ClInput>
+            定义收起的宽度： <m-input type="number" v-model="collapsedWidth"></m-input>
         </div>
-        <ClLayout>
-            <ClHeader class="center">header</ClHeader>
-            <ClLayout>
-                <ClSider v-model="collapsed"
+        <Layout>
+            <Header class="center">header</Header>
+            <Layout>
+                <Sider v-model="collapsed"
                          :class="{'sider-close': collapsed}"
                          :collapsedWidth="collapsedWidth"
                          :hide-trigger="hideTrigger">
-                    <ClMenu width="auto">
-                        <ClTooltip class="menu-tooltip" placement="right" :disabled="!collapsed" content="options1">
-                            <ClMenuItem c-key="options1">
+                    <Menu width="auto">
+                        <Tooltip class="menu-tooltip" placement="right" :disabled="!collapsed" content="options1">
+                            <MenuItem c-key="options1">
                                 <Icon type="home" class="menu-icon"></Icon>
                                 <span class="menu-name">options1</span>
-                            </ClMenuItem>
-                        </ClTooltip>
-                        <ClTooltip class="menu-tooltip" placement="right" :disabled="!collapsed" content="options2">
-                            <ClMenuItem c-key="options2">
+                            </MenuItem>
+                        </Tooltip>
+                        <Tooltip class="menu-tooltip" placement="right" :disabled="!collapsed" content="options2">
+                            <MenuItem c-key="options2">
                                 <Icon type="home" class="menu-icon"></Icon>
                                 <span class="menu-name">options2</span>
-                            </ClMenuItem>
-                        </ClTooltip>
-                        <ClTooltip class="menu-tooltip" placement="right" :disabled="!collapsed" content="options3">
-                            <ClMenuItem c-key="options3">
+                            </MenuItem>
+                        </Tooltip>
+                        <Tooltip class="menu-tooltip" placement="right" :disabled="!collapsed" content="options3">
+                            <MenuItem c-key="options3">
                                 <Icon type="home" class="menu-icon"></Icon>
                                 <span class="menu-name">options3</span>
-                            </ClMenuItem>
-                        </ClTooltip>
-                    </ClMenu>
-                </ClSider>
-                <ClContent class="center layout-content">content</ClContent>
-            </ClLayout>
-            <ClFooter class="center">footer</ClFooter>
-        </ClLayout>
+                            </MenuItem>
+                        </Tooltip>
+                    </Menu>
+                </Sider>
+                <Content class="center layout-content">content</Content>
+            </Layout>
+            <Footer class="center">footer</Footer>
+        </Layout>
 
         <h4>基础--固定高</h4>
-        <ClLayout class="fixed-layout">
-            <ClHeader class="center bg-white">header</ClHeader>
-            <ClLayout>
-                <ClSider height="300px" v-model="collapsedScroll">
-                    <ClMenu :class="{'sider-close': collapsedScroll}" :open-keys="openKeys" width="auto" theme="dark">
-                        <ClSubmenu class="fixed-layout-submenu" :forbidden="collapsedScroll" :hideDropIcon="collapsedScroll" name="submenu-option1" c-key="submenu-option1">
+        <Layout class="fixed-layout">
+            <Header class="center bg-white">header</Header>
+            <Layout>
+                <Sider height="300px" v-model="collapsedScroll">
+                    <Menu :class="{'sider-close': collapsedScroll}" :open-keys="openKeys" width="auto" theme="dark">
+                        <Submenu class="fixed-layout-submenu" :forbidden="collapsedScroll" :hideDropIcon="collapsedScroll" name="submenu-option1" c-key="submenu-option1">
                             <template slot="title">
                                 <Icon type="home" class="menu-icon"></Icon>
                                 <span class="menu-name">submenu-option1</span>
                             </template>
-                            <ClMenuItem c-key="menuItem-option1">
+                            <MenuItem c-key="menuItem-option1">
                                 <Icon type="home"></Icon>
                                 <span>menuItem-option1</span>
-                            </ClMenuItem>
-                            <ClMenuItem c-key="menuItem-option2">
+                            </MenuItem>
+                            <MenuItem c-key="menuItem-option2">
                                 <Icon type="home"></Icon>
                                 <span>menuItem-option2</span>
-                            </ClMenuItem>
-                            <ClMenuItem c-key="menuItem-option3">
+                            </MenuItem>
+                            <MenuItem c-key="menuItem-option3">
                                 <Icon type="home"></Icon>
                                 <span>menuItem-option3</span>
-                            </ClMenuItem>
-                            <ClMenuItem c-key="menuItem-option4">
+                            </MenuItem>
+                            <MenuItem c-key="menuItem-option4">
                                 <Icon type="home"></Icon>
                                 <span>menuItem-option4</span>
-                            </ClMenuItem>
-                            <ClMenuItem c-key="menuItem-option5">
+                            </MenuItem>
+                            <MenuItem c-key="menuItem-option5">
                                 <Icon type="home"></Icon>
                                 <span>menuItem-option5</span>
-                            </ClMenuItem>
-                        </ClSubmenu>
-                        <ClSubmenu class="fixed-layout-submenu" :forbidden="collapsedScroll" :hideDropIcon="collapsedScroll" name="submenu-option2" c-key="submenu-option2">
+                            </MenuItem>
+                        </Submenu>
+                        <Submenu class="fixed-layout-submenu" :forbidden="collapsedScroll" :hideDropIcon="collapsedScroll" name="submenu-option2" c-key="submenu-option2">
                             <template slot="title">
                                 <Icon type="home" class="menu-icon"></Icon>
                                 <span class="menu-name">submenu-option2</span>
                             </template>
-                            <ClMenuItem c-key="menuItem-option2-1">
+                            <MenuItem c-key="menuItem-option2-1">
                                 <Icon type="home"></Icon>
                                 <span>menuItem-option2-1</span>
-                            </ClMenuItem>
-                            <ClMenuItem c-key="menuItem-option2-2">
+                            </MenuItem>
+                            <MenuItem c-key="menuItem-option2-2">
                                 <Icon type="home"></Icon>
                                 <span>menuItem-option2-2</span>
-                            </ClMenuItem>
-                            <ClMenuItem c-key="menuItem-option2-3">
+                            </MenuItem>
+                            <MenuItem c-key="menuItem-option2-3">
                                 <Icon type="home"></Icon>
                                 <span>menuItem-option2-3</span>
-                            </ClMenuItem>
-                            <ClMenuItem c-key="menuItem-option2-4">
+                            </MenuItem>
+                            <MenuItem c-key="menuItem-option2-4">
                                 <Icon type="home"></Icon>
                                 <span>menuItem-option2-4</span>
-                            </ClMenuItem>
-                            <ClMenuItem c-key="menuItem-option2-5">
+                            </MenuItem>
+                            <MenuItem c-key="menuItem-option2-5">
                                 <Icon type="home"></Icon>
                                 <span>menuItem-option2-5</span>
-                            </ClMenuItem>
-                        </ClSubmenu>
-                        <ClSubmenu class="fixed-layout-submenu" :forbidden="collapsedScroll" :hideDropIcon="collapsedScroll" name="submenu-option3" c-key="submenu-option3">
+                            </MenuItem>
+                        </Submenu>
+                        <Submenu class="fixed-layout-submenu" :forbidden="collapsedScroll" :hideDropIcon="collapsedScroll" name="submenu-option3" c-key="submenu-option3">
                             <template slot="title">
                                 <Icon type="home" class="menu-icon"></Icon>
                                 <span class="menu-name">submenu-option3</span>
                             </template>
-                            <ClMenuItem c-key="menuItem-option3-1">
+                            <MenuItem c-key="menuItem-option3-1">
                                 <Icon type="home"></Icon>
                                 <span>menuItem-option3-1</span>
-                            </ClMenuItem>
-                            <ClMenuItem c-key="menuItem-option3-2">
+                            </MenuItem>
+                            <MenuItem c-key="menuItem-option3-2">
                                 <Icon type="home"></Icon>
                                 <span>menuItem-option3-2</span>
-                            </ClMenuItem>
-                            <ClMenuItem c-key="menuItem-option3-3">
+                            </MenuItem>
+                            <MenuItem c-key="menuItem-option3-3">
                                 <Icon type="home"></Icon>
                                 <span>menuItem-option3-3</span>
-                            </ClMenuItem>
-                            <ClMenuItem c-key="menuItem-option3-4">
+                            </MenuItem>
+                            <MenuItem c-key="menuItem-option3-4">
                                 <Icon type="home"></Icon>
                                 <span>menuItem-option3-4</span>
-                            </ClMenuItem>
-                            <ClMenuItem c-key="menuItem-option3-5">
+                            </MenuItem>
+                            <MenuItem c-key="menuItem-option3-5">
                                 <Icon type="home"></Icon>
                                 <span>menuItem-option3-5</span>
-                            </ClMenuItem>
-                        </ClSubmenu>
-                    </ClMenu>
-                </ClSider>
-                <ClLayout>
-                    <ClContent class="center layout-content">content</ClContent>
-                    <ClFooter class="center bg-white">footer</ClFooter>
-                </ClLayout>
-            </ClLayout>
-        </ClLayout>
+                            </MenuItem>
+                        </Submenu>
+                    </Menu>
+                </Sider>
+                <Layout>
+                    <Content class="center layout-content">content</Content>
+                    <Footer class="center bg-white">footer</Footer>
+                </Layout>
+            </Layout>
+        </Layout>
 
         <h4>基础</h4>
-        <ClLayout>
-            <ClHeader class="center">header</ClHeader>
-            <ClLayout>
-                <ClSider></ClSider>
-                <ClContent class="center layout-content">content</ClContent>
-            </ClLayout>
-            <ClFooter class="center"></ClFooter>
-        </ClLayout>
+        <Layout>
+            <Header class="center">header</Header>
+            <Layout>
+                <Sider></Sider>
+                <Content class="center layout-content">content</Content>
+            </Layout>
+            <Footer class="center"></Footer>
+        </Layout>
 
         <h4>基础--自定义触发器</h4>
-        <ClSwitch width="130" v-model="hideHeader">
+        <m-switch width="130" v-model="hideHeader">
             <span slot="open">显示sider-header</span>
             <span slot="close">隐藏sider-header</span>
-        </ClSwitch>
-        <ClLayout>
-            <ClSider v-model="collapsedCustom" :hide-header="hideHeader" hide-trigger>
+        </m-switch>
+        <Layout>
+            <Sider v-model="collapsedCustom" :hide-header="hideHeader" hide-trigger>
                 <div class="center" slot="header">LOGO</div>
-            </ClSider>
-            <ClLayout>
-                <ClHeader :style="{padding: 0}">
-                    <ClButton type="text" size='large' icon="square" @click="collapsedCustom = !collapsedCustom"></ClButton>
+            </Sider>
+            <Layout>
+                <Header :style="{padding: 0}">
+                    <Button type="text" size='large' icon="square" @click="collapsedCustom = !collapsedCustom"></Button>
                     <div class="center">header</div>
-                </ClHeader>
-                <ClContent class="center layout-content">content</ClContent>
-                <ClFooter class="center"></ClFooter>
-            </ClLayout>
-        </ClLayout>
+                </Header>
+                <Content class="center layout-content">content</Content>
+                <Footer class="center"></Footer>
+            </Layout>
+        </Layout>
 
 
         <div class="viewDes">
