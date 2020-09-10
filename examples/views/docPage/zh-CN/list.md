@@ -12,44 +12,30 @@
 
 ```html
 <template>
-    <h4>迷你型列表</h4>
-    <cl-list size="mini" header="列表头部" footer="列表底部">
-        <cl-list-item>这是一段文本1。</cl-list-item>
-        <cl-list-item>这是一段文本2。</cl-list-item>
-        <cl-list-item>这是一段文本3。</cl-list-item>
-    </cl-list>
-    <h4>小型列表</h4>
-    <cl-list size="small" header="列表头部" footer="列表底部">
-        <cl-list-item>这是一段文本1。</cl-list-item>
-        <cl-list-item>这是一段文本2。</cl-list-item>
-        <cl-list-item>这是一段文本3。</cl-list-item>
-    </cl-list>
     <h4>默认大小</h4>
-    <cl-list header="列表头部" footer="列表底部">
-        <cl-list-item>这是一段文本1。</cl-list-item>
-        <cl-list-item>这是一段文本2。</cl-list-item>
-        <cl-list-item>这是一段文本3。</cl-list-item>
-    </cl-list>
+    <List header="列表头部" footer="列表底部" border>
+        <ListItem>这是一段文本1。</ListItem>
+        <ListItem>这是一段文本2。</ListItem>
+        <ListItem>这是一段文本3。</ListItem>
+    </List>
+    <h4>迷你型列表</h4>
+    <List size="mini" header="列表头部" footer="列表底部" border>
+        <ListItem>这是一段文本1。</ListItem>
+        <ListItem>这是一段文本2。</ListItem>
+        <ListItem>这是一段文本3。</ListItem>
+    </List>
+    <h4>小型列表</h4>
+    <List size="small" header="列表头部" footer="列表底部" border>
+        <ListItem>这是一段文本1。</ListItem>
+        <ListItem>这是一段文本2。</ListItem>
+        <ListItem>这是一段文本3。</ListItem>
+    </List>
     <h4>大型列表</h4>
-    <cl-list size="large" header="列表头部" footer="列表底部">
-        <cl-list-item>这是一段文本1。</cl-list-item>
-        <cl-list-item>这是一段文本2。</cl-list-item>
-        <cl-list-item>这是一段文本3。</cl-list-item>
-    </cl-list>
-    <h4>添加border</h4>
-    <cl-list border header="列表头部" footer="列表底部">
-        <cl-list-item>这是一段文本1。</cl-list-item>
-        <cl-list-item>这是一段文本2。</cl-list-item>
-        <cl-list-item>这是一段文本3。</cl-list-item>
-    </cl-list>
-    <h4>slot模式定义header和footer</h4>
-    <cl-list size="large">
-        <div slot="header">slot列表头部</div>
-        <div slot="footer">slot列表底部</div>
-        <cl-list-item>这是一段文本1。</cl-list-item>
-        <cl-list-item>这是一段文本2。</cl-list-item>
-        <cl-list-item>这是一段文本3。</cl-list-item>
-    </cl-list>
+    <List size="large" header="列表头部" footer="列表底部" border>
+        <ListItem>这是一段文本1。</ListItem>
+        <ListItem>这是一段文本2。</ListItem>
+        <ListItem>这是一段文本3。</ListItem>
+    </List>
 </template>
 
 ```
@@ -63,8 +49,8 @@
 
 ```html
 <template>
-    <cl-list type="meta" border header="音乐列表">
-        <cl-list-item avatar="http://p1.music.126.net/-6osWky_WObfAydYYiTvpA==/3236962232773608.jpg?param=130y130"
+    <List type="meta" border header="音乐列表">
+        <ListItem avatar="http://p1.music.126.net/-6osWky_WObfAydYYiTvpA==/3236962232773608.jpg?param=130y130"
                       title="暗里着迷"
                       description="刘德华">
             可不可不要这么样徘徊在目光内
@@ -87,11 +73,11 @@
             
             无奈你我各有角色范围
             <div slot="extra">
-                <cl-button type="text" size="mini">编辑</cl-button>
-                <cl-button type="text" size="mini">删除</cl-button>
+                <Button type="text" size="mini">编辑</Button>
+                <Button type="text" size="mini">删除</Button>
             </div>
-        </cl-list-item>
-        <cl-list-item avatar="http://p1.music.126.net/YxKEZCPUWrvvZf6qeV2_xg==/78065325577755.jpg?param=130y130"
+        </ListItem>
+        <ListItem avatar="http://p1.music.126.net/YxKEZCPUWrvvZf6qeV2_xg==/78065325577755.jpg?param=130y130"
                       title="天龙八部之宿敌"
                       description="许嵩">
                     会在何处见到你
@@ -106,11 +92,11 @@
                     我怎么圈揽
                     看灯笼血红染
             <div slot="extra">
-                <cl-button type="text" size="mini">编辑</cl-button>
-                <cl-button type="text" size="mini">删除</cl-button>
+                <Button type="text" size="mini">编辑</Button>
+                <Button type="text" size="mini">删除</Button>
             </div>
-        </cl-list-item>
-        <cl-list-item>
+        </ListItem>
+        <ListItem>
             <div slot="avatar"><img src="http://p2.music.126.net/emWwYFceRZ2plNWgnGUDfg==/109951163333175426.jpg?param=130y130" alt=""></div>
             <div slot="title">浪子回头</div>
             <div slot="description">茄子蛋</div>
@@ -126,11 +112,11 @@
             亲爱的 可爱的 英俊的 朋友
             垃圾的 没品的 没出息的 朋友
             <div slot="extra">
-                <cl-button type="text" size="mini">编辑</cl-button>
-                <cl-button type="text" size="mini">删除</cl-button>
+                <Button type="text" size="mini">编辑</Button>
+                <Button type="text" size="mini">删除</Button>
             </div>
-        </cl-list-item>
-    </cl-list>
+        </ListItem>
+    </List>
 </template>
 
 ```
@@ -144,26 +130,26 @@
 
 ```html
 <template>
-    <cl-list type="meta" border :split="false" header="我的音乐列表">
-        <cl-list-item title="感谢你曾来过" description="周思涵/Ayo97">
+    <List type="meta" border :split="false" header="我的音乐列表">
+        <ListItem title="感谢你曾来过" description="周思涵/Ayo97">
             <div slot="extra">
-                <cl-button type="text" size="mini"><Icon type="heart"></Icon></cl-button>
-                <cl-button type="text" size="mini"><Icon type="plus"></Icon></cl-button>
+                <Button type="text"><Icon type="heart" size="20"></Icon></Button>
+                <Button type="text"><Icon type="plus" size="20"></Icon></Button>
             </div>
-        </cl-list-item>
-        <cl-list-item title="孤单心事" description="颜人中">
+        </ListItem>
+        <ListItem title="孤单心事" description="颜人中">
             <div slot="extra">
-                <cl-button type="text" size="mini"><Icon type="heart"></Icon></cl-button>
-                <cl-button type="text" size="mini"><Icon type="plus"></Icon></cl-button>
+                <Button type="text"><Icon type="heart" size="20"></Icon></Button>
+                <Button type="text"><Icon type="plus" size="20"></Icon></Button>
             </div>
-        </cl-list-item>
-        <cl-list-item title="云烟成雨" description="房东的猫">
+        </ListItem>
+        <ListItem title="云烟成雨" description="房东的猫">
             <div slot="extra">
-                <cl-button type="text" size="mini"><Icon type="heart"></Icon></cl-button>
-                <cl-button type="text" size="mini"><Icon type="plus"></Icon></cl-button>
+                <Button type="text"><Icon type="heart" size="20"></Icon></Button>
+                <Button type="text"><Icon type="plus" size="20"></Icon></Button>
             </div>
-        </cl-list-item>
-    </cl-list>
+        </ListItem>
+    </List>
 </template>
 
 ```
@@ -178,16 +164,16 @@
 
 ```html
 <template>
-    <cl-list size="large" header="详情列表">
-        <cl-list-row v-for="(itemRow, indexRow) in dataList" :key="indexRow">
-            <cl-list-item v-for="item in itemRow" :key="item.id" :label="item.label" :value="item.value"></cl-list-item>
-        </cl-list-row>
-    </cl-list>
-    <cl-list :split="false" :hover="false" header="详情列表">
-        <cl-list-row v-for="(itemRow, indexRow) in dataList" :key="indexRow">
-            <cl-list-item v-for="item in itemRow" :key="item.id" :label="item.label" :value="item.value"></cl-list-item>
-        </cl-list-row>
-    </cl-list>
+    <List size="large" header="详情列表">
+        <ListRow v-for="(itemRow, indexRow) in dataList" :key="indexRow">
+            <ListItem v-for="item in itemRow" :key="item.id" :label="item.label" :value="item.value"></ListItem>
+        </ListRow>
+    </List>
+    <List :split="false" :hover="false" header="详情列表">
+        <ListRow v-for="(itemRow, indexRow) in dataList" :key="indexRow">
+            <ListItem v-for="item in itemRow" :key="item.id" :label="item.label" :value="item.value"></ListItem>
+        </ListRow>
+    </List>
 </template>
 <script>
     export default {
@@ -233,14 +219,14 @@
 
 ```html
 <template>
-    <cl-list type="meta" border :split="false" :loading="loading" header="异步加载列表">
-        <cl-list-item v-for="item in dataList" :key="item.id" :title="item.title" :description="item.description">
+    <List type="meta" border :split="false" :loading="loading" header="异步加载列表">
+        <ListItem v-for="item in dataList" :key="item.id" :title="item.title" :description="item.description">
             <div slot="extra">
-                <cl-button type="text" size="mini"><Icon type="delete" @click="deleteData(item)"></Icon></cl-button>
+                <Button type="text" size="mini"><Icon type="delete" @click="deleteData(item)"></Icon></Button>
             </div>
-        </cl-list-item>
-    </cl-list>
-    <cl-button v-if="!noMore" block :disabled="loading" @click="loadData">加载更多</cl-button>
+        </ListItem>
+    </List>
+    <Button v-if="!noMore" block :disabled="loading" @click="loadData">加载更多</Button>
 </template>
 <script>
     export default {
@@ -308,6 +294,8 @@
 | type | String | 列表类型，可选值 `meta`。详情列表时无效 | - |
 | size | String | 列表尺寸，可选值 `mini` `small` `mini` `default` | default |
 | loading | Boolean | 数据加载中 | - |
+| gutter | String, Number | 详情类型的列表时列间距 | 10 |
+| label-width | String, Number | 详情类型的列表时定义`label`的宽度 | 100 |
 
 
 

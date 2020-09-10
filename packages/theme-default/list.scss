@@ -6,72 +6,50 @@
   $padding-vertical: $--list-item-padding-vertical-default;
   $padding-horizontal: $--list-item-padding-horizontal-default;
   $fontSize: $--font-size-default;
-  @if($size == 'mini') {
-    $padding-vertical: $--list-item-padding-vertical-mini;
-    $padding-horizontal: $--list-item-padding-horizontal-mini;
-    $fontSize: $--font-size-mini;
-
-  }@else if($size == 'small'){
-    $padding-vertical: $--list-item-padding-vertical-small;
-    $padding-horizontal: $--list-item-padding-horizontal-small;
-    $fontSize: $--font-size-small;
-
-  }@else if($size == 'large'){
-    $padding-vertical: $--list-item-padding-vertical-large;
-    $padding-horizontal: $--list-item-padding-horizontal-large;
-    $fontSize: $--font-size-large;
-  }
-  padding: $padding-vertical $padding-horizontal;
-  font-size: $fontSize;
-}
-
-@mixin list-item-size($size){
-  $padding-vertical: $--list-item-padding-vertical-default;
-  $padding-horizontal: $--list-item-padding-horizontal-default;
-  $fontSize: $--font-size-default;
   $avatarWidth: $--list-item-avatar-width-default;
+
   @if($size == 'mini') {
     $padding-vertical: $--list-item-padding-vertical-mini;
     $padding-horizontal: $--list-item-padding-horizontal-mini;
     $fontSize: $--font-size-mini;
     $avatarWidth: $--list-item-avatar-width-mini;
-
   }@else if($size == 'small'){
     $padding-vertical: $--list-item-padding-vertical-small;
     $padding-horizontal: $--list-item-padding-horizontal-small;
     $fontSize: $--font-size-small;
     $avatarWidth: $--list-item-avatar-width-small;
-
   }@else if($size == 'large'){
     $padding-vertical: $--list-item-padding-vertical-large;
     $padding-horizontal: $--list-item-padding-horizontal-large;
     $fontSize: $--font-size-large;
     $avatarWidth: $--list-item-avatar-width-large;
   }
-  padding: $padding-vertical $padding-horizontal;
-  font-size: $fontSize;
 
-  & > {
-    @include e(avatar, false){
+  @include e((header, footer), false){
+    padding: $padding-vertical $padding-horizontal;
+    font-size: $fontSize;
+  }
+
+  @include ci(list-item){
+    padding: $padding-vertical $padding-horizontal;
+    font-size: $fontSize;
+
+    &__avatar{
       width: $avatarWidth;
       height: $avatarWidth;
       line-height: $avatarWidth;
       margin-right: $padding-horizontal;
     }
 
-    @include e(extra, false){
+    &__extra{
       margin-left: $padding-horizontal;
     }
 
-    @include e(row, false){
-      & > {
-        @include e((label, value), false){
-          padding-top: $padding-vertical;
-          padding-bottom: $padding-vertical;
-          padding-left: #{$padding-horizontal / 2};
-          padding-right: #{$padding-horizontal / 2};
-        }
-      }
+    &__label, &__value{
+      padding-top: $padding-vertical;
+      padding-bottom: $padding-vertical;
+      padding-left: #{$padding-horizontal / 2};
+      padding-right: #{$padding-horizontal / 2};
     }
   }
 }
@@ -80,20 +58,9 @@
   background-color: $--color-white;
   position: relative;
 
-  @include m(split, false, true){
-    @include e(header, false){
-      border-bottom: $--border-default;
-    }
-    @include e(footer, false){
-      border-top: $--border-default;
-    }
-  }
-
   @include e(header){
-    font-weight: 600;
+    font-weight: 500;
     color: $--color-text-title;
-  }
-  @include e(content){
   }
   @include e(footer){
     margin-top: -1px;
@@ -104,38 +71,21 @@
   }
 
   @include m(mini){
-    &>{
-      @include e((header, footer), false){
-        @include list-size(mini)
-      }
-    }
+    @include list-size(mini)
   }
   @include m(small){
-    &>{
-      @include e((header, footer), false){
-        @include list-size(small)
-      }
-    }
+    @include list-size(small)
   }
   @include m(default){
-    &>{
-      @include e((header, footer), false){
-        @include list-size(default)
-      }
-    }
+    @include list-size(default)
   }
   @include m(large){
-    &>{
-      @include e((header, footer), false){
-        @include list-size(large)
-      }
-    }
+    @include list-size(large)
   }
 }
 
 @include c(list-row){
   @include clear-float;
-
   @include ci(list-item){
     float: left;
     padding: 0;
@@ -144,12 +94,58 @@
 }
 
 @include c(list-item){
+  margin-top: -1px;
+  &:first-child{
+    margin-top: 0;
+  }
 
-  &:not(&--row){
-    @include m(split, false, true){
-      border-bottom: $--border-default;
+  @include e(row){
+    display: flex;
+    margin-top: -1px;
+  }
+  @include e(label){
+    flex: none;
+    font-weight: 500;
+    text-align: right;
+    word-break: break-all;
+  }
+  @include e(value){
+    flex: 1;
+    margin-left: -1px;
+    word-break: break-all;
+  }
+
+  @include m(split){
+    border-bottom: $--border-default;
+    border-top: $--border-default;
+    @include m(row, false, true){
+      border-bottom: none;
+      border-top: none;
     }
-    @include m(hover, false, true){
+    @include e(row, false){
+      border-bottom: $--border-default;
+      border-top: $--border-default;
+    }
+    @include e((label, value), false){
+      border-left: $--border-default;
+      border-right: $--border-default;
+    }
+  }
+
+
+  @include m(hover){
+    transition: background-color $--animation-time;
+    &:hover{
+      background-color: $--background-color-hover;
+    }
+    @include m(row, false, true){
+      transition: none;
+      &:hover{
+        background-color: transparent;
+      }
+    }
+
+    @include e(row, false){
       transition: background-color $--animation-time;
       &:hover{
         background-color: $--background-color-hover;
@@ -157,53 +153,23 @@
     }
   }
 
-  @include m(meta){
+  @include m(first-no-border){
+    &:first-child{
+      border-top: none;
+    }
+  }
+  @include m(last-no-border){
+    &:last-child{
+      border-bottom: none;
+    }
+  }
+
+
+  @include m(meta, false, true){
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
   }
-
-  @include m(row, false, true){
-    @include e(row, false){
-      display: flex;
-      margin-top: -1px;
-    }
-
-    @include m(split, false, true){
-      @include e(row, false){
-        border: $--border-default;
-      }
-      @include e(label, false){
-        border-right: $--border-default;
-      }
-      @include e(value, false){
-        border-left: $--border-default;
-      }
-    }
-
-    @include m(hover, false, true){
-      @include e(row, false){
-        transition: background-color $--animation-time;
-        &:hover{
-          background-color: $--background-color-hover;
-        }
-      }
-    }
-  }
-
-  @include e(label){
-    flex: none;
-    font-weight: 600;
-    text-align: right;
-    word-break: break-all;
-  }
-
-  @include e(value){
-    flex: 1;
-    margin-left: -1px;
-    word-break: break-all;
-  }
-
   @include e(avatar){
     border-radius: $--border-radius-circle;
     overflow: hidden;
@@ -214,40 +180,23 @@
       height: 100%;
     }
   }
-
   @include e(content){
     flex: 1;
     overflow: hidden;
     word-wrap: break-word;
 
-    & > {
-      @include e(title, false){
-        color: $--color-text-title;
-        margin-bottom: 5px;
-        font-weight: 600;
-      }
+    @include e(title, false){
+      color: $--color-text-title;
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
 
-      @include e(description, false){
-        color: $--color-text-des;
-        margin-bottom: 5px;
-      }
+    @include e(description, false){
+      color: $--color-text-des;
+      margin-bottom: 5px;
     }
   }
-
   @include e(extra){
     flex: none;
-  }
-
-  @include m(mini){
-    @include list-item-size(mini)
-  }
-  @include m(small){
-    @include list-item-size(small)
-  }
-  @include m(default){
-    @include list-item-size(default)
-  }
-  @include m(large){
-    @include list-item-size(large)
   }
 }

@@ -260,31 +260,89 @@
          <Layout class="doc-layout-el">
              <Header class="doc-layout-header">header</Header>
              <Layout>
-                 <Sider v-model="collapsed"
-                        height="300px"
+                 <Sider height="300px" 
+                        v-model="collapsed"
                         class="doc-layout-sider doc-layout-sider-dark"
-                        :class="{'doc-layout-sider-close': collapsed}"
-                        :collapsed-width="collapsedWidth"
-                        :hide-trigger="hideTrigger">
-                     <Menu width="auto" theme="dark">
-                         <Tooltip class="doc-layout-menu-tooltip" placement="right" :disabled="!collapsed" content="options1" renderHtml>
-                             <MenuItem c-key="options1">
+                        :class="{'doc-layout-sider-close': collapsed}">
+                     <Menu :open-keys="openKeys" width="auto" theme="dark">
+                         <Submenu :forbidden="collapsed" :hideDropIcon="collapsed" name="submenu1" c-key="submenu1">
+                             <template slot="title">
                                  <Icon type="home" class="doc-layout-menu-icon"></Icon>
-                                 <span class="doc-layout-menu-name">options1</span>
+                                 <span class="doc-layout-menu-name">submenu1</span>
+                             </template>
+                             <MenuItem c-key="menuItem1">
+                                 <Icon type="home"></Icon>
+                                 <span>menuItem1</span>
                              </MenuItem>
-                         </Tooltip>
-                         <Tooltip class="doc-layout-menu-tooltip" placement="right" :disabled="!collapsed" content="options2" renderHtml>
-                             <MenuItem c-key="options2">
+                             <MenuItem c-key="menuItem2">
+                                 <Icon type="home"></Icon>
+                                 <span>menuItem2</span>
+                             </MenuItem>
+                             <MenuItem c-key="menuItem3">
+                                 <Icon type="home"></Icon>
+                                 <span>menuItem3</span>
+                             </MenuItem>
+                             <MenuItem c-key="menuItem4">
+                                 <Icon type="home"></Icon>
+                                 <span>menuItem4</span>
+                             </MenuItem>
+                             <MenuItem c-key="menuItem5">
+                                 <Icon type="home"></Icon>
+                                 <span>menuItem5</span>
+                             </MenuItem>
+                         </Submenu>
+                         <Submenu :forbidden="collapsed" :hideDropIcon="collapsed" name="submenu2" c-key="submenu2">
+                             <template slot="title">
                                  <Icon type="home" class="doc-layout-menu-icon"></Icon>
-                                 <span class="doc-layout-menu-name">options2</span>
+                                 <span class="doc-layout-menu-name">submenu2</span>
+                             </template>
+                             <MenuItem c-key="menuItem2-1">
+                                 <Icon type="home"></Icon>
+                                 <span>menuItem2-1</span>
                              </MenuItem>
-                         </Tooltip>
-                         <Tooltip class="doc-layout-menu-tooltip" placement="right" :disabled="!collapsed" content="options3" renderHtml>
-                             <MenuItem c-key="options3">
+                             <MenuItem c-key="menuItem2-2">
+                                 <Icon type="home"></Icon>
+                                 <span>menuItem2-2</span>
+                             </MenuItem>
+                             <MenuItem c-key="menuItem2-3">
+                                 <Icon type="home"></Icon>
+                                 <span>menuItem2-3</span>
+                             </MenuItem>
+                             <MenuItem c-key="menuItem2-4">
+                                 <Icon type="home"></Icon>
+                                 <span>menuItem2-4</span>
+                             </MenuItem>
+                             <MenuItem c-key="menuItem2-5">
+                                 <Icon type="home"></Icon>
+                                 <span>menuItem2-5</span>
+                             </MenuItem>
+                         </Submenu>
+                         <Submenu :forbidden="collapsed" :hideDropIcon="collapsed" name="submenu3" c-key="submenu3">
+                             <template slot="title">
                                  <Icon type="home" class="doc-layout-menu-icon"></Icon>
-                                 <span class="doc-layout-menu-name">options3</span>
+                                 <span class="doc-layout-menu-name">submenu3</span>
+                             </template>
+                             <MenuItem c-key="menuItem3-1">
+                                 <Icon type="home"></Icon>
+                                 <span>menuItem3-1</span>
                              </MenuItem>
-                         </Tooltip>
+                             <MenuItem c-key="menuItem3-2">
+                                 <Icon type="home"></Icon>
+                                 <span>menuItem3-2</span>
+                             </MenuItem>
+                             <MenuItem c-key="menuItem3-3">
+                                 <Icon type="home"></Icon>
+                                 <span>menuItem3-3</span>
+                             </MenuItem>
+                             <MenuItem c-key="menuItem3-4">
+                                 <Icon type="home"></Icon>
+                                 <span>menuItem3-4</span>
+                             </MenuItem>
+                             <MenuItem c-key="menuItem3-5">
+                                 <Icon type="home"></Icon>
+                                 <span>menuItem3-5</span>
+                             </MenuItem>
+                         </Submenu>
                      </Menu>
                  </Sider>
                  <Content class="doc-layout-content">content</Content>
@@ -292,22 +350,14 @@
              <Footer class="doc-layout-footer">footer</Footer>
          </Layout>
      </div>
-     <m-switch width="90" v-model="hideTrigger">
-         <span slot="open">显示trigger</span>
-         <span slot="close">隐藏trigger</span>
-     </m-switch>
-     <div>
-         定义收起的宽度： <m-input type="number" v-model="collapsedWidth"></m-input>
-     </div>
  </div>
 </template>
 <script>
     export default {
       data(){
         return {
-          collapsed: true,
-          collapsedWidth: 60,
-          hideTrigger: false,
+          collapsed: false,
+          openKeys: ['submenu1'],
         }
       }
     }

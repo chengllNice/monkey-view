@@ -1,13 +1,14 @@
 <template>
     <div :class="[
             `${classPrefix}`,
-            parentListComponent.size && `${classPrefix}--${parentListComponent.size}`,
             parentListComponent.split && `${classPrefix}--split`,
             parentListComponent.hover && `${classPrefix}--hover`,
             currentType === 'meta' && `${classPrefix}--meta`,
             parentListRowComponent && `${classPrefix}--row`,
+            isFirstItemNoBorder && `${classPrefix}--first-no-border`,
+            isLastItemNoBorder && `${classPrefix}--last-no-border`
         ]"
-         :style="itemStyle" @click="clickHandle">
+         :style="itemStyle" @click="handleClick">
         <div :class="[`${classPrefix}__row`]" v-if="parentListRowComponent">
             <div :class="[`${classPrefix}__label`]" :style="labelStyle">
                 <slot name="label">{{label}}</slot>
@@ -16,7 +17,7 @@
                 <slot name="value">{{value}}</slot>
             </div>
         </div>
-        <template v-if="currentType === 'meta'">
+        <template v-else-if="currentType === 'meta'">
             <div :class="[`${classPrefix}__avatar`]" v-if="avatar || $slots.avatar">
                 <slot name="avatar"><img :src="avatar" alt=""></slot>
             </div>
@@ -86,14 +87,16 @@
                 return style
             },
             labelStyle() {
-
                 return {
                     width: parseFloat(this.parentListComponent.labelWidth) + 'px'
                 }
             },
-        },
-        components: {},
-        created() {
+            isFirstItemNoBorder(){
+                return this.parentListComponent && this.parentListComponent.border && !(this.parentListComponent.header || this.parentListComponent.$slots.header)
+            },
+            isLastItemNoBorder(){
+                return this.parentListComponent && this.parentListComponent.border && !(this.parentListComponent.footer || this.parentListComponent.$slots.footer)
+            }
         },
         mounted() {
             this.$nextTick(() => {
@@ -103,8 +106,8 @@
             })
         },
         methods: {
-            clickHandle() {
-                this.$emit('click')
+            handleClick(event) {
+                this.$emit('click', event)
             }
         }
     }

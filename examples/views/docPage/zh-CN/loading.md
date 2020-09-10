@@ -15,17 +15,17 @@
 ```html
 <template>
     <h4>基础</h4>
-    <cl-row>
-        <cl-col><cl-loading size="mini" :visible="loading" /></cl-col>
-        <cl-col><cl-loading size="small" :visible="loading" /></cl-col>
-        <cl-col><cl-loading :visible="loading" /></cl-col>
-        <cl-col><cl-loading size="large" :visible="loading" /></cl-col>
-    </cl-row>
+    <Row>
+        <Col><Loading size="mini" :visible="loading" /></Col>
+        <Col><Loading size="small" :visible="loading" /></Col>
+        <Col><Loading :visible="loading" /></Col>
+        <Col><Loading size="large" :visible="loading" /></Col>
+    </Row>
     <h4>使用slot</h4>
-    <cl-loading size="mini" :visible="loading">
+    <Loading size="mini" :visible="loading">
         <Icon type="loading"></Icon>
         <span slot="text">loading...</span>
-    </cl-loading>
+    </Loading>
 </template>
 <script>
     export default {
@@ -49,14 +49,14 @@
 
 ```html
 <template>
-    <cl-row>
-        <cl-col><cl-loading size="mini" :visible="loading" /></cl-col>
-        <cl-col><cl-loading type="loading1" size="mini" :visible="loading" /></cl-col>
-        <cl-col><cl-loading type="loading2" size="small" :visible="loading" /></cl-col>
-        <cl-col><cl-loading type="loading3" :visible="loading" /></cl-col>
-        <cl-col><cl-loading type="loading4" size="large" :visible="loading" /></cl-col>
-        <cl-col><cl-loading type="loading5" size="large" :visible="loading" /></cl-col>
-    </cl-row>
+    <Row>
+        <Col><Loading size="mini" :visible="loading" /></Col>
+        <Col><Loading type="loading1" size="mini" :visible="loading" /></Col>
+        <Col><Loading type="loading2" size="small" :visible="loading" /></Col>
+        <Col><Loading type="loading3" :visible="loading" /></Col>
+        <Col><Loading type="loading4" size="large" :visible="loading" /></Col>
+        <Col><Loading type="loading5" size="large" :visible="loading" /></Col>
+    </Row>
 </template>
 <script>
     export default {
@@ -84,12 +84,12 @@
         <div>content</div>
         <div>content</div>
         <div>content</div>
-        <cl-loading fix :visible="loading" />
+        <Loading fix :visible="loading" />
     </div>
-    <cl-switch v-model="loading" width="50">
+    <m-switch v-model="loading" width="50">
         <span slot="open">开启</span>
         <span slot="close">关闭</span>
-    </cl-switch>
+    </m-switch>
 </template>
 <script>
     export default {
@@ -116,8 +116,8 @@
 
 ```html
 <template>
-    <cl-loading fullscreen :visible="loading" />
-    <cl-button @click="openLoading">开启全屏加载，3s后关闭</cl-button>
+    <Loading fullscreen :visible="loading" />
+    <Button @click="openLoading">开启全屏加载，3s后关闭</Button>
 </template>
 <script>
     export default {
@@ -152,8 +152,8 @@
 
 ```html
 <template>
-    <cl-button @click="openLoading">调用实例方法开启全屏加载，3s后关闭</cl-button>
-    <cl-button @click="openLoading('large', '加载中')">调用实例方法开启全屏加载，3s后关闭，添加配置项</cl-button>
+    <Button @click="openLoading">调用实例方法开启全屏加载，3s后关闭</Button>
+    <Button @click="openLoading('large', '加载中')">调用实例方法开启全屏加载，3s后关闭，添加配置项</Button>
 </template>
 <script>
     export default {
@@ -204,10 +204,10 @@
         <div>content</div>
         <div>content</div>
     </div>
-    <cl-switch v-model="loading" width="50">
+    <m-switch v-model="loading" width="50">
         <span slot="open">开启</span>
         <span slot="close">关闭</span>
-    </cl-switch>
+    </m-switch>
 
     <h4>添加配置参数使用</h4>
     <div class="doc-loading-fix-wrap" v-loading:loading2:large:加载中="loading1">
@@ -216,10 +216,10 @@
         <div>content</div>
         <div>content</div>
     </div>
-    <cl-switch v-model="loading1" width="50">
+    <m-switch v-model="loading1" width="50">
         <span slot="open">开启</span>
         <span slot="close">关闭</span>
-    </cl-switch>
+    </m-switch>
 </template>
 <script>
     export default {

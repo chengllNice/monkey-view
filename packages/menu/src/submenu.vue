@@ -177,6 +177,15 @@
                     return item.cKey === key
                 });
                 this.active = activeChildren.length ? true : false;
+            },
+            forbiddenUpdateOpenKeys(){
+                if(this.forbidden){
+                    this.opened = false;
+                    let openkeys = this.menuComponent && this.menuComponent.openedKeys;
+                    if(openkeys.includes(this.cKey)){
+                        this.parentEmit('Menu', 'on-update-opened-key', this.cKey)
+                    }
+                }
             }
         },
         watch: {
@@ -192,7 +201,7 @@
             forbidden(newVal) {
                 if (newVal) {
                     this.closeSubmenuChildren();
-                    this.opened = false;
+                    this.forbiddenUpdateOpenKeys();
                 }
             }
         }

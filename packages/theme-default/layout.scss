@@ -30,12 +30,19 @@ $layout-background-color: #344058;
   @include e(header){
     height: 60px;
     line-height: 60px;
+    width: 100%;
+    overflow: hidden;
+  }
+  @include e(content){
+    width: 100%;
+    overflow: hidden;
   }
   @include e(trigger){
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
+    overflow: hidden;
     text-align: center;
     color: $--color-white;
     height: 50px;

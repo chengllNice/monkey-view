@@ -23,31 +23,31 @@
 
 ```html
 <template>
-    <cl-menu mode="horizontal" :theme="menuTopTheme">
-        <cl-menu-item c-key="menu-item-1" icon="home" name="首页"></cl-menu-item>
-        <cl-submenu c-key="submenu-1" icon='button' name="云产品">
-            <cl-menu-item c-key="menu-item-2" icon="cloud-upload" name="服务器"></cl-menu-item>
-            <cl-menu-item c-key="menu-item-3" icon="email" name="短信服务"></cl-menu-item>
-        </cl-submenu>
-        <cl-submenu c-key="submenu-2" icon='echarts-pie' name="统计分析">
-            <cl-menu-group name="图表">
-                <cl-menu-item c-key="menu-item-4" icon="echarts-bar" name="柱状图"></cl-menu-item>
-                <cl-menu-item c-key="menu-item-5" icon="echarts-line" name="折线图"></cl-menu-item>
-            </cl-menu-group>
-            <cl-menu-group name="数据">
-                <cl-menu-item c-key="menu-item-6" icon="hot-fill" name="最火"></cl-menu-item>
-                <cl-menu-item c-key="menu-item-7" icon="table" name="表格"></cl-menu-item>
-            </cl-menu-group>
-        </cl-submenu>
-        <cl-menu-item c-key="menu-item-8" icon="square-plus" name="建站"></cl-menu-item>
-        <cl-menu-item c-key="menu-item-9" icon="question" name="解决方案"></cl-menu-item>
-    </cl-menu>
+    <Menu mode="horizontal" :theme="menuTopTheme">
+        <MenuItem c-key="menu-item-1" icon="home" name="首页"></MenuItem>
+        <Submenu c-key="submenu-1" icon='button' name="云产品">
+            <MenuItem c-key="menu-item-2" icon="cloud-upload" name="服务器"></MenuItem>
+            <MenuItem c-key="menu-item-3" icon="email" name="短信服务"></MenuItem>
+        </Submenu>
+        <Submenu c-key="submenu-2" icon='echarts-pie' name="统计分析">
+            <MenuGroup name="图表">
+                <MenuItem c-key="menu-item-4" icon="echarts-bar" name="柱状图"></MenuItem>
+                <MenuItem c-key="menu-item-5" icon="echarts-line" name="折线图"></MenuItem>
+            </MenuGroup>
+            <MenuGroup name="数据">
+                <MenuItem c-key="menu-item-6" icon="hot-fill" name="最火"></MenuItem>
+                <MenuItem c-key="menu-item-7" icon="table" name="表格"></MenuItem>
+            </MenuGroup>
+        </Submenu>
+        <MenuItem c-key="menu-item-8" icon="square-plus" name="建站"></MenuItem>
+        <MenuItem c-key="menu-item-9" icon="question" name="解决方案"></MenuItem>
+    </Menu>
     <h4>切换主题</h4>
-    <cl-radio-group v-model="menuTopTheme">
-        <cl-radio label="light"></cl-radio>
-        <cl-radio label="dark"></cl-radio>
-        <cl-radio label="green"></cl-radio>
-    </cl-radio-group>
+    <RadioGroup v-model="menuTopTheme">
+        <Radio label="light"></Radio>
+        <Radio label="dark"></Radio>
+        <Radio label="green"></Radio>
+    </RadioGroup>
 </template>
 <script>
     export default {
@@ -75,81 +75,81 @@
 
 ```html
 <template>
-    <cl-row :gutter="10">
-        <cl-col>
+    <Row :gutter="10">
+        <Col>
             <h4>默认</h4>
-            <cl-menu :theme="menuSiderTheme">
-                <cl-menu-item c-key="menu-item-1" icon="home" name="首页"></cl-menu-item>
-                <cl-submenu c-key="submenu-1" icon='button' name="云产品">
-                    <cl-menu-item c-key="menu-item-2" icon="cloud-upload" name="服务器"></cl-menu-item>
-                    <cl-menu-item c-key="menu-item-3" icon="email" name="短信服务"></cl-menu-item>
-                </cl-submenu>
-                <cl-submenu c-key="submenu-2" icon='echarts-pie' name="统计分析">
-                    <cl-menu-group name="图表">
-                        <cl-menu-item c-key="menu-item-4" icon="echarts-bar" name="柱状图"></cl-menu-item>
-                        <cl-menu-item c-key="menu-item-5" icon="echarts-line" name="折线图"></cl-menu-item>
-                    </cl-menu-group>
-                    <cl-menu-group name="数据">
-                        <cl-menu-item c-key="menu-item-6" icon="hot-fill" name="最火"></cl-menu-item>
-                        <cl-menu-item c-key="menu-item-7" icon="table" name="表格"></cl-menu-item>
-                    </cl-menu-group>
-                </cl-submenu>
-                <cl-menu-item c-key="menu-item-8" icon="square-plus" name="建站"></cl-menu-item>
-                <cl-menu-item c-key="menu-item-9" icon="question" name="解决方案"></cl-menu-item>
-            </cl-menu>
-        </cl-col>
-        <cl-col>
+            <Menu :theme="menuSiderTheme">
+                <MenuItem c-key="menu-item-1" icon="home" name="首页"></MenuItem>
+                <Submenu c-key="submenu-1" icon='button' name="云产品">
+                    <MenuItem c-key="menu-item-2" icon="cloud-upload" name="服务器"></MenuItem>
+                    <MenuItem c-key="menu-item-3" icon="email" name="短信服务"></MenuItem>
+                </Submenu>
+                <Submenu c-key="submenu-2" icon='echarts-pie' name="统计分析">
+                    <MenuGroup name="图表">
+                        <MenuItem c-key="menu-item-4" icon="echarts-bar" name="柱状图"></MenuItem>
+                        <MenuItem c-key="menu-item-5" icon="echarts-line" name="折线图"></MenuItem>
+                    </MenuGroup>
+                    <MenuGroup name="数据">
+                        <MenuItem c-key="menu-item-6" icon="hot-fill" name="最火"></MenuItem>
+                        <MenuItem c-key="menu-item-7" icon="table" name="表格"></MenuItem>
+                    </MenuGroup>
+                </Submenu>
+                <MenuItem c-key="menu-item-8" icon="square-plus" name="建站"></MenuItem>
+                <MenuItem c-key="menu-item-9" icon="question" name="解决方案"></MenuItem>
+            </Menu>
+        </Col>
+        <Col>
             <h4>设置选中项和打开项</h4>
-            <cl-menu :theme="menuSiderTheme" active-key="menu-item-2" :open-keys="['submenu-1']">
-                <cl-menu-item c-key="menu-item-1" icon="home" name="首页"></cl-menu-item>
-                <cl-submenu c-key="submenu-1" icon='button' name="云产品">
-                    <cl-menu-item c-key="menu-item-2" icon="cloud-upload" name="服务器"></cl-menu-item>
-                    <cl-menu-item c-key="menu-item-3" icon="email" name="短信服务"></cl-menu-item>
-                </cl-submenu>
-                <cl-submenu c-key="submenu-2" icon='echarts-pie' name="统计分析">
-                    <cl-menu-group name="图表">
-                        <cl-menu-item c-key="menu-item-4" icon="echarts-bar" name="柱状图"></cl-menu-item>
-                        <cl-menu-item c-key="menu-item-5" icon="echarts-line" name="折线图"></cl-menu-item>
-                    </cl-menu-group>
-                    <cl-menu-group name="数据">
-                        <cl-menu-item c-key="menu-item-6" icon="hot-fill" name="最火"></cl-menu-item>
-                        <cl-menu-item c-key="menu-item-7" icon="table" name="表格"></cl-menu-item>
-                    </cl-menu-group>
-                </cl-submenu>
-                <cl-menu-item c-key="menu-item-8" icon="square-plus" name="建站"></cl-menu-item>
-                <cl-menu-item c-key="menu-item-9" icon="question" name="解决方案"></cl-menu-item>
-            </cl-menu>
-        </cl-col>
-        <cl-col>
+            <Menu :theme="menuSiderTheme" active-key="menu-item-2" :open-keys="['submenu-1']">
+                <MenuItem c-key="menu-item-1" icon="home" name="首页"></MenuItem>
+                <Submenu c-key="submenu-1" icon='button' name="云产品">
+                    <MenuItem c-key="menu-item-2" icon="cloud-upload" name="服务器"></MenuItem>
+                    <MenuItem c-key="menu-item-3" icon="email" name="短信服务"></MenuItem>
+                </Submenu>
+                <Submenu c-key="submenu-2" icon='echarts-pie' name="统计分析">
+                    <MenuGroup name="图表">
+                        <MenuItem c-key="menu-item-4" icon="echarts-bar" name="柱状图"></MenuItem>
+                        <MenuItem c-key="menu-item-5" icon="echarts-line" name="折线图"></MenuItem>
+                    </MenuGroup>
+                    <MenuGroup name="数据">
+                        <MenuItem c-key="menu-item-6" icon="hot-fill" name="最火"></MenuItem>
+                        <MenuItem c-key="menu-item-7" icon="table" name="表格"></MenuItem>
+                    </MenuGroup>
+                </Submenu>
+                <MenuItem c-key="menu-item-8" icon="square-plus" name="建站"></MenuItem>
+                <MenuItem c-key="menu-item-9" icon="question" name="解决方案"></MenuItem>
+            </Menu>
+        </Col>
+        <Col>
             <h4>手风琴模式</h4>
-            <cl-menu :theme="menuSiderTheme" accordion>
-                <cl-menu-item c-key="menu-item-1" icon="home" name="首页"></cl-menu-item>
-                <cl-submenu c-key="submenu-1" icon='button' name="云产品">
-                    <cl-menu-item c-key="menu-item-2" icon="cloud-upload" name="服务器"></cl-menu-item>
-                    <cl-menu-item c-key="menu-item-3" icon="email" name="短信服务"></cl-menu-item>
-                </cl-submenu>
-                <cl-submenu c-key="submenu-2" icon='echarts-pie' name="统计分析">
-                    <cl-menu-group name="图表">
-                        <cl-menu-item c-key="menu-item-4" icon="echarts-bar" name="柱状图"></cl-menu-item>
-                        <cl-menu-item c-key="menu-item-5" icon="echarts-line" name="折线图"></cl-menu-item>
-                    </cl-menu-group>
-                    <cl-menu-group name="数据">
-                        <cl-menu-item c-key="menu-item-6" icon="hot-fill" name="最火"></cl-menu-item>
-                        <cl-menu-item c-key="menu-item-7" icon="table" name="表格"></cl-menu-item>
-                    </cl-menu-group>
-                </cl-submenu>
-                <cl-menu-item c-key="menu-item-8" icon="square-plus" name="建站"></cl-menu-item>
-                <cl-menu-item c-key="menu-item-9" icon="question" name="解决方案"></cl-menu-item>
-            </cl-menu>
-        </cl-col>
-    </cl-row>
+            <Menu :theme="menuSiderTheme" accordion>
+                <MenuItem c-key="menu-item-1" icon="home" name="首页"></MenuItem>
+                <Submenu c-key="submenu-1" icon='button' name="云产品">
+                    <MenuItem c-key="menu-item-2" icon="cloud-upload" name="服务器"></MenuItem>
+                    <MenuItem c-key="menu-item-3" icon="email" name="短信服务"></MenuItem>
+                </Submenu>
+                <Submenu c-key="submenu-2" icon='echarts-pie' name="统计分析">
+                    <MenuGroup name="图表">
+                        <MenuItem c-key="menu-item-4" icon="echarts-bar" name="柱状图"></MenuItem>
+                        <MenuItem c-key="menu-item-5" icon="echarts-line" name="折线图"></MenuItem>
+                    </MenuGroup>
+                    <MenuGroup name="数据">
+                        <MenuItem c-key="menu-item-6" icon="hot-fill" name="最火"></MenuItem>
+                        <MenuItem c-key="menu-item-7" icon="table" name="表格"></MenuItem>
+                    </MenuGroup>
+                </Submenu>
+                <MenuItem c-key="menu-item-8" icon="square-plus" name="建站"></MenuItem>
+                <MenuItem c-key="menu-item-9" icon="question" name="解决方案"></MenuItem>
+            </Menu>
+        </Col>
+    </Row>
 
     <h4>切换主题</h4>
-    <cl-radio-group v-model="menuSiderTheme">
-        <cl-radio label="light"></cl-radio>
-        <cl-radio label="dark"></cl-radio>
-        <cl-radio label="green"></cl-radio>
-    </cl-radio-group>
+    <RadioGroup v-model="menuSiderTheme">
+        <Radio label="light"></Radio>
+        <Radio label="dark"></Radio>
+        <Radio label="green"></Radio>
+    </RadioGroup>
 </template>
 <script>
     export default {
@@ -173,22 +173,22 @@
 
 ```html
 <template>
-    <cl-menu mode="horizontal" :size="menuSize">
-        <cl-menu-item c-key="menu-item-1" icon="home" name="首页"></cl-menu-item>
-        <cl-submenu c-key="submenu-1" icon='button' name="云产品">
-            <cl-menu-item c-key="menu-item-2" icon="cloud-upload" name="服务器"></cl-menu-item>
-            <cl-menu-item c-key="menu-item-3" icon="email" name="短信服务"></cl-menu-item>
-        </cl-submenu>
-        <cl-menu-item c-key="menu-item-4" icon="square-plus" name="建站"></cl-menu-item>
-        <cl-menu-item c-key="menu-item-5" icon="question" name="解决方案"></cl-menu-item>
-    </cl-menu>
+    <Menu mode="horizontal" :size="menuSize">
+        <MenuItem c-key="menu-item-1" icon="home" name="首页"></MenuItem>
+        <Submenu c-key="submenu-1" icon='button' name="云产品">
+            <MenuItem c-key="menu-item-2" icon="cloud-upload" name="服务器"></MenuItem>
+            <MenuItem c-key="menu-item-3" icon="email" name="短信服务"></MenuItem>
+        </Submenu>
+        <MenuItem c-key="menu-item-4" icon="square-plus" name="建站"></MenuItem>
+        <MenuItem c-key="menu-item-5" icon="question" name="解决方案"></MenuItem>
+    </Menu>
     <h4>切换尺寸</h4>
-    <cl-radio-group v-model="menuSize">
-        <cl-radio label="mini"></cl-radio>
-        <cl-radio label="small"></cl-radio>
-        <cl-radio label="default"></cl-radio>
-        <cl-radio label="large"></cl-radio>
-    </cl-radio-group>
+    <RadioGroup v-model="menuSize">
+        <Radio label="mini"></Radio>
+        <Radio label="small"></Radio>
+        <Radio label="default"></Radio>
+        <Radio label="large"></Radio>
+    </RadioGroup>
 </template>
 <script>
     export default {
@@ -213,49 +213,49 @@
 ```html
 <template>
     <h4>水平菜单</h4>
-    <cl-menu mode="horizontal">
-        <cl-menu-item c-key="menu-item-1" icon="home" name="首页"></cl-menu-item>
-        <cl-submenu c-key="submenu-1" icon='button' name="云产品">
-            <cl-menu-item c-key="menu-item-2" icon="cloud-upload" name="服务器"></cl-menu-item>
-            <cl-menu-item c-key="menu-item-3" icon="email" name="短信服务"></cl-menu-item>
-            <cl-submenu c-key="submenu-1-1" icon='list' name="数据库">
-                <cl-menu-item c-key="menu-item-1-1-1" name="RDS"></cl-menu-item>
-                <cl-menu-item c-key="menu-item-1-1-2" name="MongoDB"></cl-menu-item>
-            </cl-submenu>
-        </cl-submenu>
-        <cl-submenu c-key="submenu-2" icon='echarts-pie' name="统计分析">
-            <cl-menu-group name="图表">
-                <cl-menu-item c-key="menu-item-4" icon="echarts-bar" name="柱状图"></cl-menu-item>
-                <cl-menu-item c-key="menu-item-5" icon="echarts-line" name="折线图"></cl-menu-item>
-            </cl-menu-group>
-            <cl-menu-group name="数据">
-                <cl-menu-item c-key="menu-item-6" icon="hot-fill" name="最火"></cl-menu-item>
-                <cl-menu-item c-key="menu-item-7" icon="table" name="表格"></cl-menu-item>
-            </cl-menu-group>
-        </cl-submenu>
-    </cl-menu>
+    <Menu mode="horizontal">
+        <MenuItem c-key="menu-item-1" icon="home" name="首页"></MenuItem>
+        <Submenu c-key="submenu-1" icon='button' name="云产品">
+            <MenuItem c-key="menu-item-2" icon="cloud-upload" name="服务器"></MenuItem>
+            <MenuItem c-key="menu-item-3" icon="email" name="短信服务"></MenuItem>
+            <Submenu c-key="submenu-1-1" icon='list' name="数据库">
+                <MenuItem c-key="menu-item-1-1-1" name="RDS"></MenuItem>
+                <MenuItem c-key="menu-item-1-1-2" name="MongoDB"></MenuItem>
+            </Submenu>
+        </Submenu>
+        <Submenu c-key="submenu-2" icon='echarts-pie' name="统计分析">
+            <MenuGroup name="图表">
+                <MenuItem c-key="menu-item-4" icon="echarts-bar" name="柱状图"></MenuItem>
+                <MenuItem c-key="menu-item-5" icon="echarts-line" name="折线图"></MenuItem>
+            </MenuGroup>
+            <MenuGroup name="数据">
+                <MenuItem c-key="menu-item-6" icon="hot-fill" name="最火"></MenuItem>
+                <MenuItem c-key="menu-item-7" icon="table" name="表格"></MenuItem>
+            </MenuGroup>
+        </Submenu>
+    </Menu>
     <h4>垂直菜单</h4>
-    <cl-menu>
-        <cl-menu-item c-key="menu-item-1" icon="home" name="首页"></cl-menu-item>
-        <cl-submenu c-key="submenu-1" icon='button' name="云产品">
-            <cl-menu-item c-key="menu-item-2" icon="cloud-upload" name="服务器"></cl-menu-item>
-            <cl-menu-item c-key="menu-item-3" icon="email" name="短信服务"></cl-menu-item>
-            <cl-submenu c-key="submenu-1-1" icon='list' name="数据库">
-                <cl-menu-item c-key="menu-item-1-1-1" name="RDS"></cl-menu-item>
-                <cl-menu-item c-key="menu-item-1-1-2" name="MongoDB"></cl-menu-item>
-            </cl-submenu>
-        </cl-submenu>
-        <cl-submenu c-key="submenu-2" icon='echarts-pie' name="统计分析">
-            <cl-menu-group name="图表">
-                <cl-menu-item c-key="menu-item-4" icon="echarts-bar" name="柱状图"></cl-menu-item>
-                <cl-menu-item c-key="menu-item-5" icon="echarts-line" name="折线图"></cl-menu-item>
-            </cl-menu-group>
-            <cl-menu-group name="数据">
-                <cl-menu-item c-key="menu-item-6" icon="hot-fill" name="最火"></cl-menu-item>
-                <cl-menu-item c-key="menu-item-7" icon="table" name="表格"></cl-menu-item>
-            </cl-menu-group>
-        </cl-submenu>
-    </cl-menu>
+    <Menu>
+        <MenuItem c-key="menu-item-1" icon="home" name="首页"></MenuItem>
+        <Submenu c-key="submenu-1" icon='button' name="云产品">
+            <MenuItem c-key="menu-item-2" icon="cloud-upload" name="服务器"></MenuItem>
+            <MenuItem c-key="menu-item-3" icon="email" name="短信服务"></MenuItem>
+            <Submenu c-key="submenu-1-1" icon='list' name="数据库">
+                <MenuItem c-key="menu-item-1-1-1" name="RDS"></MenuItem>
+                <MenuItem c-key="menu-item-1-1-2" name="MongoDB"></MenuItem>
+            </Submenu>
+        </Submenu>
+        <Submenu c-key="submenu-2" icon='echarts-pie' name="统计分析">
+            <MenuGroup name="图表">
+                <MenuItem c-key="menu-item-4" icon="echarts-bar" name="柱状图"></MenuItem>
+                <MenuItem c-key="menu-item-5" icon="echarts-line" name="折线图"></MenuItem>
+            </MenuGroup>
+            <MenuGroup name="数据">
+                <MenuItem c-key="menu-item-6" icon="hot-fill" name="最火"></MenuItem>
+                <MenuItem c-key="menu-item-7" icon="table" name="表格"></MenuItem>
+            </MenuGroup>
+        </Submenu>
+    </Menu>
 </template>
 
 ```

@@ -17,7 +17,7 @@
                 classPrefix: Config.classPrefix + '-list-row',
                 componentName: 'ListRow',
                 parentListComponent: findComponent(this, 'List'),
-                itemLen: '',//list-item的数量
+                itemLen: 0,//list-item的数量
             }
         },
         computed: {
@@ -27,9 +27,6 @@
                     marginRight: -this.parentListComponent.gutter / 2 + 'px',
                 }
             }
-        },
-        components: {},
-        created() {
         },
         mounted() {
             this.$on('on-update-item-len', () => {

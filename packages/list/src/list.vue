@@ -14,7 +14,7 @@
         <div :class="[`${classPrefix}__footer`]" v-if="footer || $slots.footer">
             <slot name="footer">{{footer}}</slot>
         </div>
-        <loading fix :visible="loading"/>
+        <Loading fix :visible="loading"/>
     </div>
 </template>
 
@@ -39,8 +39,8 @@
             loading: Boolean,
             type: {
                 type: String,
-                default: '',//可选值meta
-            },
+                default: '',
+            },//可选值meta
             gutter: {
                 type: [String, Number],
                 default: 10
@@ -62,14 +62,11 @@
                 classPrefix: Config.classPrefix + '-list',
                 componentName: 'List',
                 everyRowItemLen: [],//每一个list-row下item的数量的数组
-                itemWidth: '0%'
+                itemWidth: '0%',
             }
         },
-        computed: {},
         components: {
             Loading
-        },
-        created() {
         },
         mounted() {
             this.$on('on-update-item-width', (len) => {
@@ -82,6 +79,5 @@
                 }
             })
         },
-        methods: {}
     }
 </script>

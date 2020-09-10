@@ -75,9 +75,6 @@
                 return style
             }
         },
-        components: {},
-        created() {
-        },
         mounted() {
             this.$nextTick(() => {
                 this.updateOpenedKey();

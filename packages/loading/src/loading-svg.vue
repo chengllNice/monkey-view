@@ -90,12 +90,6 @@
                 let cx3 = dis * 3 + this.svgR * 5;
                 return [cx1, cx2, cx3]
             }
-        },
-        components: {},
-        created() {
-        },
-        mounted() {
-        },
-        methods: {}
+        }
     }
 </script>

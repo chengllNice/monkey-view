@@ -102,6 +102,8 @@
   & [class*='cl-icon-'] {
     vertical-align: middle;
     & + span {
+      vertical-align: middle;
+      display: inline-block;
       @include utils-ellipsis();
     }
   }
