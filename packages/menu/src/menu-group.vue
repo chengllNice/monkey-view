@@ -20,20 +20,32 @@
             return {
                 classPrefix: Config.classPrefix + '-menu-group',
                 componentName: 'MenuGroup',
-                defaultPadding: 20,
-                smallPadding: 10,
-                largePadding: 30,
                 menuComponent: findComponent(this, 'Menu'),
                 parentSubMenuComponentNum: findComponents(this, 'Submenu').length,//父级元素有多少个subMenu组件
             }
         },
         computed: {
             groupStyle() {
-                if (this.menuComponent.mode === 'horizontal') return {};
-                if (!this.parentSubMenuComponentNum) return {};
-                const padding = this[`${this.menuComponent.size}Padding`];
+                let style = {};
+                const padding = this.menuComponent.defaultPadding;
+                if (this.menuComponent.mode === 'horizontal') {
+                    style = {
+                        'padding-left': padding + 'px'
+                    }
+                }else {
+                    let _p = (this.parentSubMenuComponentNum * padding + padding / 2);
+                    if(_p < padding) _p = padding;
+                    let itemHeight = parseInt(this.menuComponent.itemHeight);
+                    style = {
+                        'height': itemHeight + 'px',
+                        'line-height': itemHeight + 'px',
+                        'padding-left': _p + 'px'
+                    }
+                }
+
                 return {
-                    'padding-left': ((this.parentSubMenuComponentNum + 1) * padding - padding / 2) + 'px'
+                    ...style,
+                    'padding-right': padding + 'px'
                 }
             }
         },

@@ -2,23 +2,27 @@
     <router-link v-if="to"
                  :class="[
                     `${classPrefix}`,
+                    menuComponent.noHoverBackground && `is-no-hover-background`,
                     active && 'is-active',
                     disabled && 'is-disabled',
                  ]"
                  :style="itemStyle"
-                 @click.native="handlerClick"
+                 @click.native="handleClick"
                  :to="disabled ? $route.fullPath : to">
-        <Icon v-if="icon" :type="icon" :class="icon"></Icon>
-        <span>{{name}}</span>
+        <slot>
+            <Icon v-if="icon" :type="icon" :class="icon"></Icon>
+            <span>{{name}}</span>
+        </slot>
     </router-link>
     <div v-else
          :class="[
             `${classPrefix}`,
+            menuComponent.noHoverBackground && `is-no-hover-background`,
             active && 'is-active',
             disabled && 'is-disabled',
          ]"
          :style="itemStyle"
-         @click="handlerClick">
+         @click="handleClick">
         <slot>
             <Icon v-if="icon" :type="icon" :class="icon"></Icon>
             <span>{{name}}</span>
@@ -29,7 +33,7 @@
 <script>
     import Config from 'main/config/config'
     import Emitter from 'main/mixins/emitter'
-    import {findComponent, findComponents} from "main/utils/tool";
+    import {findComponent, findComponents, findComponentDirect} from "main/utils/tool";
     import Icon from 'packages/icon'
 
     export default {
@@ -52,30 +56,45 @@
             return {
                 classPrefix: Config.classPrefix + '-menu-item',
                 componentName: 'MenuItem',
-                defaultPadding: 20,
-                smallPadding: 10,
-                largePadding: 30,
                 active: false,
                 menuComponent: findComponent(this, 'Menu'),
+                menuDirectComponent: findComponentDirect(this, 'Menu'),
                 parentSubMenuComponentNum: findComponents(this, 'Submenu').length,//父级元素有多少个subMenu组件
             }
         },
         computed: {
             itemStyle() {
                 let style = {};
-                const padding = this[`${this.menuComponent.size}Padding`];
-                if (this.menuComponent.mode === 'horizontal') return {};
+                const padding = this.menuComponent.defaultPadding;
                 let parentElIsGroup = this.$parent.componentName === 'MenuGroup';
-                if (parentElIsGroup && !this.parentSubMenuComponentNum) {
-                    return {
-                        'padding-left': (padding + padding / 2) + 'px'
+
+                if (this.menuComponent.mode === 'horizontal') {
+                    if(parentElIsGroup) style = {'padding-left': (padding * 2) + 'px'}
+                    else style = {'padding-left': padding + 'px'}
+
+                    if(this.menuDirectComponent){
+                        style = {
+                            ...style,
+                            'height': parseInt(this.menuComponent.itemHeight) + 'px',
+                            'line-height': parseInt(this.menuComponent.itemHeight) + 'px',
+                        }
+                    }
+                }else {
+                    let _p = this.parentSubMenuComponentNum * padding;
+                    _p = _p + padding;
+                    if(parentElIsGroup && !this.parentSubMenuComponentNum) style = {'padding-left': (_p + (padding / 2)) + 'px'}
+                    else style = {'padding-left': _p + 'px'}
+
+                    style = {
+                        ...style,
+                        'height': parseInt(this.menuComponent.itemHeight) + 'px',
+                        'line-height': parseInt(this.menuComponent.itemHeight) + 'px',
                     }
                 }
-                if (!this.parentSubMenuComponentNum) return {};
-                style = {
-                    'padding-left': ((this.parentSubMenuComponentNum + 1) * padding) + 'px'
-                };
-                return style
+                return {
+                    ...style,
+                    'padding-right': padding + 'px'
+                }
             }
         },
         components: {
@@ -87,7 +106,7 @@
 
         },
         methods: {
-            handlerClick() {
+            handleClick() {
                 if (this.disabled) return;
                 this.parentEmit('Menu', 'on-update-active-key', this.cKey);
                 this.parentEmit('Submenu', 'on-close-dropdown');

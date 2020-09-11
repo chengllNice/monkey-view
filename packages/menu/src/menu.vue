@@ -2,9 +2,7 @@
     <div :class="[
             `${classPrefix}`,
             theme && `${classPrefix}--${theme}`,
-            size && `${classPrefix}--${size}`,
             mode && `${classPrefix}--${mode}`,
-            noHoverBackground && `${classPrefix}--nohover`,
          ]" :style="menuStyle">
         <slot></slot>
     </div>
@@ -33,13 +31,6 @@
                     return ['light', 'dark', 'green'].includes(value)
                 }
             },
-            size: {
-                type: String,
-                default: 'default',
-                validator(value) {
-                    return ['mini', 'small', 'default', 'large'].includes(value)
-                }
-            },
             activeKey: String,
             openKeys: {
                 type: Array,
@@ -54,6 +45,11 @@
                 validator(value) {
                     return ['vertical', 'horizontal'].includes(value)
                 }
+            },
+            //vertical模式下配置submenu\item\group的高度；horizontal模式下配置一级菜单的高度
+            itemHeight: {
+                type: [String, Number],
+                default: 50
             }
         },
         data() {
@@ -61,7 +57,8 @@
                 classPrefix: Config.classPrefix + '-menu',
                 componentName: 'Menu',
                 currentActiveKey: '',
-                openedKeys: []
+                openedKeys: [],
+                defaultPadding: 20,
             }
         },
         computed: {
