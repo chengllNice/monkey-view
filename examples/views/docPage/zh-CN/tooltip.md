@@ -11,13 +11,13 @@
 
 ```html
 <template>
-    <cl-tooltip content="这是提示文字">
-        <cl-button type="text" size="mini">鼠标经过时会有文字提示</cl-button>
-    </cl-tooltip>
+    <Tooltip content="这是提示文字">
+        <Button type="text" size="mini">鼠标经过时会有文字提示</Button>
+    </Tooltip>
     <br>
-    <cl-tooltip content="史蒂夫·乔布斯（Steve Jobs），1955年2月24日生于美国加利福尼亚州旧金山，美国发明家、企业家、美国苹果公司联合创办人。" maxWidth="150px">
-        <cl-button type="text" size="mini">最大宽度超出150px时会自动换行</cl-button>
-    </cl-tooltip>
+    <Tooltip content="史蒂夫·乔布斯（Steve Jobs），1955年2月24日生于美国加利福尼亚州旧金山，美国发明家、企业家、美国苹果公司联合创办人。" maxWidth="150px">
+        <Button type="text" size="mini">最大宽度超出150px时会自动换行</Button>
+    </Tooltip>
 </template>
 ```
 :::
@@ -30,50 +30,50 @@
 ```html
 <template>
     <div class="doc-margin-l10" style="text-align: center;width: 300px">
-        <cl-tooltip placement="top-start" content="content">
-            <cl-button>上左</cl-button>
-        </cl-tooltip>
-        <cl-tooltip placement="top" content="content">
-            <cl-button>上边</cl-button>
-        </cl-tooltip>
-        <cl-tooltip placement="top-end" content="content">
-            <cl-button>上右</cl-button>
-        </cl-tooltip>
+        <Tooltip placement="top-start" content="content">
+            <Button>上左</Button>
+        </Tooltip>
+        <Tooltip placement="top" content="content">
+            <Button>上边</Button>
+        </Tooltip>
+        <Tooltip placement="top-end" content="content">
+            <Button>上右</Button>
+        </Tooltip>
     </div>
     <div class="doc-margin-l10 doc-tooltip-placement">
-        <cl-tooltip placement="left-start" content="content">
-            <cl-button>左上</cl-button>
-        </cl-tooltip>
-        <cl-tooltip placement="right-start" content="content">
-            <cl-button>右上</cl-button>
-        </cl-tooltip>
+        <Tooltip placement="left-start" content="content">
+            <Button>左上</Button>
+        </Tooltip>
+        <Tooltip placement="right-start" content="content">
+            <Button>右上</Button>
+        </Tooltip>
     </div>
     <div class="doc-margin-l10 doc-tooltip-placement">
-        <cl-tooltip placement="left" content="content">
-            <cl-button>左边</cl-button>
-        </cl-tooltip>
-        <cl-tooltip placement="right" content="content">
-            <cl-button>右边</cl-button>
-        </cl-tooltip>
+        <Tooltip placement="left" content="content">
+            <Button>左边</Button>
+        </Tooltip>
+        <Tooltip placement="right" content="content">
+            <Button>右边</Button>
+        </Tooltip>
     </div>
     <div class="doc-margin-l10 doc-tooltip-placement">
-        <cl-tooltip placement="left-end" content="content">
-            <cl-button>左下</cl-button>
-        </cl-tooltip>
-        <cl-tooltip placement="right-end" content="content">
-            <cl-button>右下</cl-button>
-        </cl-tooltip>
+        <Tooltip placement="left-end" content="content">
+            <Button>左下</Button>
+        </Tooltip>
+        <Tooltip placement="right-end" content="content">
+            <Button>右下</Button>
+        </Tooltip>
     </div>
     <div class="doc-margin-l10" style="text-align: center;width: 300px">
-        <cl-tooltip placement="bottom-start" content="content">
-            <cl-button>下左</cl-button>
-        </cl-tooltip>
-        <cl-tooltip placement="bottom" content="content">
-            <cl-button>下边</cl-button>
-        </cl-tooltip>
-        <cl-tooltip placement="bottom-end" content="content">
-            <cl-button>下右</cl-button>
-        </cl-tooltip>
+        <Tooltip placement="bottom-start" content="content">
+            <Button>下左</Button>
+        </Tooltip>
+        <Tooltip placement="bottom" content="content">
+            <Button>下边</Button>
+        </Tooltip>
+        <Tooltip placement="bottom-end" content="content">
+            <Button>下右</Button>
+        </Tooltip>
     </div>
 </template>
 <style>
@@ -104,12 +104,12 @@
 
 ```html
 <template>
-    <cl-tooltip content="这是提示文字" background-color="#2d8cf0" text-color="rgba(255,255,255,0.75)">
-        <cl-button type="text" size="mini">鼠标经过时会有文字提示</cl-button>
-    </cl-tooltip>
-    <cl-tooltip content="这是提示文字" text-color="rgba(255,255,255,0.75)">
-        <cl-button type="text" size="mini">鼠标经过时会有文字提示</cl-button>
-    </cl-tooltip>
+    <Tooltip content="这是提示文字" background-color="#2d8cf0" text-color="rgba(255,255,255,0.75)">
+        <Button type="text" size="mini">鼠标经过时会有文字提示</Button>
+    </Tooltip>
+    <Tooltip content="这是提示文字" text-color="rgba(255,255,255,0.75)">
+        <Button type="text" size="mini">鼠标经过时会有文字提示</Button>
+    </Tooltip>
 </template>
 ```
 :::
@@ -120,9 +120,9 @@
 
 ```html
 <template>
-     <cl-tooltip content="content"  placement="left" :render-html="true">
-        <cl-button>渲染浮层元素到BODY中</cl-button>
-    </cl-tooltip>
+     <Tooltip content="content"  placement="left" :render-html="true">
+        <Button>渲染浮层元素到BODY中</Button>
+    </Tooltip>
 </template>
 <script>
     export default {

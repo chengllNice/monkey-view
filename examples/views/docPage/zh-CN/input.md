@@ -12,7 +12,7 @@
 
 ```html
 <template>
-    <cl-input placeholder="placeholder" v-model="valueBase" style="width: 300px"></cl-input>
+    <m-input placeholder="placeholder" v-model="valueBase" style="width: 300px"></m-input>
 </template>
 <script>
     export default {
@@ -38,19 +38,19 @@
     <Row :gutter="16">
         <Col>
             <h4>input</h4>
-            <cl-input disabled placeholder="placeholder" v-model="valueDisabled"></cl-input>
+            <m-input disabled placeholder="placeholder" v-model="valueDisabled"></m-input>
         </Col>
         <Col>
             <h4>number</h4>
-            <cl-input type="number" disabled placeholder="placeholder" v-model="valueDisabled"></cl-input>
+            <m-input type="number" disabled placeholder="placeholder" v-model="valueDisabled"></m-input>
         </Col>
         <Col>
             <h4>search</h4>
-            <cl-input type="search" disabled placeholder="placeholder" v-model="valueDisabled"></cl-input>
+            <m-input type="search" disabled placeholder="placeholder" v-model="valueDisabled"></m-input>
         </Col>
         <Col>
             <h4>password</h4>
-            <cl-input type="password" disabled placeholder="placeholder" v-model="valueDisabled"></cl-input>
+            <m-input type="password" disabled placeholder="placeholder" v-model="valueDisabled"></m-input>
         </Col>
     </Row>
 </template>
@@ -75,20 +75,20 @@
 
 ```html
 <template>
-    <cl-row :gutter="10">
-        <cl-col>
-            <cl-input size="mini" placeholder="mini placeholder" v-model="valueSizeMini"></cl-input>
-        </cl-col>
-        <cl-col>
-            <cl-input size="small" placeholder="small placeholder" v-model="valueSizeSmall"></cl-input>
-        </cl-col>
-        <cl-col>
-            <cl-input placeholder="default placeholder" v-model="valueSizeDefault"></cl-input>
-        </cl-col>
-        <cl-col>
-            <cl-input size="large" placeholder="large placeholder" v-model="valueSizeLarge"></cl-input>
-        </cl-col>
-    </cl-row>
+    <Row :gutter="10">
+        <Col>
+            <m-input size="mini" placeholder="mini placeholder" v-model="valueSizeMini"></m-input>
+        </Col>
+        <Col>
+            <m-input size="small" placeholder="small placeholder" v-model="valueSizeSmall"></m-input>
+        </Col>
+        <Col>
+            <m-input placeholder="default placeholder" v-model="valueSizeDefault"></m-input>
+        </Col>
+        <Col>
+            <m-input size="large" placeholder="large placeholder" v-model="valueSizeLarge"></m-input>
+        </Col>
+    </Row>
 </template>
 <script>
     export default {
@@ -114,7 +114,7 @@
 
 ```html
 <template>
-    <cl-input placeholder="placeholder" clearable v-model="valueClearable" style="width: 300px"></cl-input>
+    <m-input placeholder="placeholder" clearable v-model="valueClearable" style="width: 300px"></m-input>
 </template>
 <script>
     export default {
@@ -138,18 +138,18 @@
 ```html
 <template>
     <h4>属性方式</h4>
-    <cl-input placeholder="placeholder" v-model="valuePrefix" prefix="user-fill" style="width: 300px"></cl-input>
+    <m-input placeholder="placeholder" v-model="valuePrefix" prefix="user-fill" style="width: 300px"></m-input>
     <br>
-    <cl-input placeholder="placeholder" v-model="valueSuffix" suffix="search" style="width: 300px"></cl-input>
+    <m-input placeholder="placeholder" v-model="valueSuffix" suffix="search" style="width: 300px"></m-input>
 
     <h4>slot方式</h4>
-    <cl-input placeholder="placeholder" v-model="valuePrefixSlot" style="width: 300px">
+    <m-input placeholder="placeholder" v-model="valuePrefixSlot" style="width: 300px">
         <Icon slot="prefix" type="user-fill"></Icon>
-    </cl-input>
+    </m-input>
     <br>
-    <cl-input placeholder="placeholder" v-model="valueSuffixSlot" style="width: 300px">
+    <m-input placeholder="placeholder" v-model="valueSuffixSlot" style="width: 300px">
         <Icon slot="suffix" type="search"></Icon>
-    </cl-input>
+    </m-input>
 </template>
 <script>
     export default {
@@ -175,19 +175,19 @@
 
 ```html
 <template>
-    <cl-input placeholder="placeholder" v-model="valuePrepend">
+    <m-input placeholder="placeholder" v-model="valuePrepend">
         <span slot="prepend">http://</span>
         <span slot="append">.com</span>
-    </cl-input>
+    </m-input>
     <br>
-    <cl-input placeholder="placeholder" v-model="valueAppend">
-        <cl-select slot="prepend" style="width: 70px;" v-model="inputPrependSelect" :option="inputPrependSelectOptions" :dropdownMatchSelectWidth="false"></cl-select>
-        <cl-select slot="append" style="width: 70px;" v-model="inputAppendSelect" :option="inputAppendSelectOptions" :dropdownMatchSelectWidth="false"></cl-select>
-    </cl-input>
+    <m-input placeholder="placeholder" v-model="valueAppend">
+        <Select slot="prepend" style="width: 70px;" v-model="inputPrependSelect" :option="inputPrependSelectOptions" :dropdownMatchSelectWidth="false"></Select>
+        <Select slot="append" style="width: 70px;" v-model="inputAppendSelect" :option="inputAppendSelectOptions" :dropdownMatchSelectWidth="false"></Select>
+    </m-input>
     <br>
-    <cl-input placeholder="placeholder" v-model="valuePrepend">
+    <m-input placeholder="placeholder" v-model="valuePrepend">
         <Icon slot="append" type="setting"></Icon>
-    </cl-input>
+    </m-input>
 </template>
 <script>
     export default {
@@ -241,11 +241,11 @@
 
 ```html
 <template>
-    <cl-input type="search" placeholder="placeholder" v-model="valueSearch"></cl-input>
+    <m-input type="search" placeholder="placeholder" v-model="valueSearch"></m-input>
     <br>
-    <cl-input type="search" placeholder="placeholder" v-model="valueSearch1" suffixButton></cl-input>
+    <m-input type="search" placeholder="placeholder" v-model="valueSearch1" suffixButton></m-input>
     <br>
-    <cl-input type="search" placeholder="placeholder" v-model="valueSearch2" suffixButton="Search"></cl-input>
+    <m-input type="search" placeholder="placeholder" v-model="valueSearch2" suffixButton="Search"></m-input>
 </template>
 <script>
     export default {
@@ -270,13 +270,13 @@
 
 ```html
 <template>
-    <cl-input type="password" placeholder="placeholder" v-model="valuePassword"></cl-input>
+    <m-input type="password" placeholder="placeholder" v-model="valuePassword"></m-input>
     <br>
-    <cl-input type="password" placeholder="placeholder" v-model="valuePassword1" :showPasswordIcon="false"></cl-input>
+    <m-input type="password" placeholder="placeholder" v-model="valuePassword1" :showPasswordIcon="false"></m-input>
     <br>
-    <cl-input type="password" placeholder="placeholder" v-model="valuePassword2">
+    <m-input type="password" placeholder="placeholder" v-model="valuePassword2">
         <Icon slot="suffix" type="password"></Icon>
-    </cl-input>
+    </m-input>
 </template>
 <script>
     export default {
@@ -301,15 +301,15 @@
 
 ```html
 <template>
-    <cl-input type="number" placeholder="placeholder" v-model="valueNumber"></cl-input>
+    <m-input type="number" placeholder="placeholder" v-model="valueNumber"></m-input>
     <h4>step=2</h4>
-    <cl-input type="number" placeholder="placeholder" v-model="valueNumber1" :step="2"></cl-input>
+    <m-input type="number" placeholder="placeholder" v-model="valueNumber1" :step="2"></m-input>
     <h4>step=false</h4>
-    <cl-input type="number" placeholder="placeholder" v-model="valueNumber2" :step="false"></cl-input>
+    <m-input type="number" placeholder="placeholder" v-model="valueNumber2" :step="false"></m-input>
     <h4>stepType='right'</h4>
-    <cl-input type="number" placeholder="placeholder" v-model="valueNumber3" stepType="right"></cl-input>
+    <m-input type="number" placeholder="placeholder" v-model="valueNumber3" stepType="right"></m-input>
     <h4>限制最大最小值及小数位：min=0,max=100,precision=2</h4>
-    <cl-input type="number" placeholder="placeholder" v-model="valueNumber4" :min="0" :max="100" :precision="2"></cl-input>
+    <m-input type="number" placeholder="placeholder" v-model="valueNumber4" :min="0" :max="100" :precision="2"></m-input>
 </template>
 <script>
     export default {
@@ -336,14 +336,14 @@
 
 ```html
 <template>
-    <cl-input type="textarea" placeholder="placeholder" v-model="valueTextarea"></cl-input>
+    <m-input type="textarea" placeholder="placeholder" v-model="valueTextarea"></m-input>
     <h4>自适应高度</h4>
-    <cl-input type="textarea" placeholder="placeholder" v-model="valueTextarea1" autosize></cl-input>
-    <cl-input type="textarea" placeholder="placeholder" v-model="valueTextarea2" :autosize="{minRows: 3, maxRows: 6}"></cl-input>
+    <m-input type="textarea" placeholder="placeholder" v-model="valueTextarea1" autosize></m-input>
+    <m-input type="textarea" placeholder="placeholder" v-model="valueTextarea2" :autosize="{minRows: 3, maxRows: 6}"></m-input>
     <h4>设置文本域大小</h4>
-    <cl-input type="textarea" placeholder="placeholder" v-model="valueTextarea3" :rows="5"></cl-input>
+    <m-input type="textarea" placeholder="placeholder" v-model="valueTextarea3" :rows="5"></m-input>
     <h4>限制输入长度并显示输入长度：maxLength=20,showLimitLabel</h4>
-    <cl-input type="textarea" placeholder="placeholder" v-model="valueTextarea4" :maxLength="20" showLimitLabel></cl-input>
+    <m-input type="textarea" placeholder="placeholder" v-model="valueTextarea4" :maxLength="20" showLimitLabel></m-input>
 </template>
 <script>
     export default {

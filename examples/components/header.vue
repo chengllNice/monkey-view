@@ -1,8 +1,11 @@
 <template>
     <div class="header">
-        <router-link class="logo" to="/">Cl-UI</router-link>
+        <router-link class="logo" to="/">
+            <img src="https://chengllnice.github.io/static/images/cl-ui/monkey-ui.svg" alt="">
+            <span>Monkey-UI</span>
+        </router-link>
         <div class="header-right">
-            <Menu mode="horizontal" noHoverBackground @select="langChange" size="large" :activeKey="lang">
+            <Menu mode="horizontal" @select="langChange" size="large" :activeKey="lang">
                 <Submenu c-key="lang" :name="langMap[lang]">
                     <MenuItem c-key="zh-CN" name="中文"></MenuItem>
                     <MenuItem c-key="en-US" name="English"></MenuItem>
@@ -62,8 +65,18 @@
         height: 100%;
 
         .logo {
-            font-size: 20px;
-            color: #19be6b;
+            font-size: 14px;
+            color: #333333;
+
+            img{
+                width: 40px;
+                height: 40px;
+                vertical-align: middle;
+                margin-top: -5px;
+            }
+            span{
+                vertical-align: middle;
+            }
         }
 
         .header-right {

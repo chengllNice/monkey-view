@@ -1,1259 +1,639 @@
 <template>
     <div class="MenuView">
-        <h4>mode=vertical,theme=light,size=small</h4>
-        <Menu @open-change="handlerOpenChange" @select="handlerSelect" size="small" width="300px">
-            <MenuItem c-key="button-item-1" name="button-item" to="/buttonView">
-                <Icon type="list"></Icon>
-                <span>button-item</span>
+        <Menu :collapse="true" theme="dark">
+            <MenuItem c-key="options1">
+                <Icon type="home"></Icon>
+                <span>options1</span>
             </MenuItem>
-            <Submenu c-key="submenu-sub-1" name="submenu">
-                <MenuItem c-key="button-1" disabled name="button" to="/buttonView">
-                    <Icon type="list"></Icon>
-                    <span>button</span>
-                </MenuItem>
-                <MenuItem c-key="input-1" name="input" to="/inputView" icon="list">
-                    <Icon type="list"></Icon>
-                    <span>input</span>
-                </MenuItem>
-                <MenuItem c-key="badge-1" name="badge" to="/badgeView">
-                    <Icon type="list"></Icon>
-                    <span>badge</span>
-                </MenuItem>
-                <Submenu c-key="submenu-sub-1-2" name="submenu1-2">
-                    <MenuItem c-key="button-1-2" name="button" to="/buttonView">
-                        <Icon type="list"></Icon>
-                        <span>button</span>
-                    </MenuItem>
-                    <MenuGroup name="groupTitle1-2-1">
-                        <MenuItem c-key="button-1-2-1" name="button" to="/buttonView">
-                            <Icon type="list"></Icon>
-                            <span>button</span>
-                        </MenuItem>
-                        <MenuItem c-key="input-1-2-1" name="input" to="/inputView" icon="list">
-                            <Icon type="list"></Icon>
-                            <span>input</span>
-                        </MenuItem>
-                        <MenuItem c-key="badge-1-2-1" name="badge" to="/badgeView">
-                            <Icon type="list"></Icon>
-                            <span>badge</span>
-                        </MenuItem>
-                    </MenuGroup>
-
-                    <MenuItem c-key="input-1-2" name="input" to="/inputView" icon="list">
-                        <Icon type="list"></Icon>
-                        <span>input</span>
-                    </MenuItem>
-                    <MenuItem c-key="badge-1-2" name="badge" to="/badgeView">
-                        <Icon type="list"></Icon>
-                        <span>badge</span>
-                    </MenuItem>
-                </Submenu>
-            </Submenu>
-            <Submenu c-key="submenu-sub-2" disabled name="submenu2">
-                <MenuItem c-key="button-2" name="button2" to="/buttonView"></MenuItem>
-                <MenuItem c-key="input-2" name="input2" to="/inputView" icon="list"></MenuItem>
-                <MenuItem c-key="badge-2" name="badge2" to="/badgeView"></MenuItem>
-            </Submenu>
-            <Submenu c-key="submenu-sub-3" name="submenu3">
-                <MenuGroup name="groupTitle3">
-                    <MenuItem c-key="button-3-1" name="button3-1" to="/buttonView"></MenuItem>
-                    <MenuItem c-key="input-3-1" name="input3-1" to="/inputView" icon="list"></MenuItem>
-                    <MenuItem c-key="badge-3-1" name="badge3-1" to="/badgeView"></MenuItem>
-                </MenuGroup>
-                <MenuGroup name="groupTitle3-2">
-                    <MenuItem c-key="button-3-2" name="button3-2" to="/buttonView"></MenuItem>
-                    <MenuItem c-key="input-3-2" name="input3-2" to="/inputView" icon="list"></MenuItem>
-                    <MenuItem c-key="badge-3-2" name="badge3-2" to="/badgeView"></MenuItem>
-                </MenuGroup>
-            </Submenu>
-        </Menu>
-        <h4>mode=vertical,theme=light,size--default</h4>
-        <Menu @open-change="handlerOpenChange" @select="handlerSelect" size="default" width="300px">
-            <MenuItem c-key="button-item-1" name="button-item" to="/buttonView">
-                <Icon type="list"></Icon>
-                <span>button-item</span>
+            <MenuItem c-key="options2">
+                <Icon type="home"></Icon>
+                <span>options2</span>
             </MenuItem>
-            <Submenu c-key="submenu-sub-1" name="submenu">
-                <MenuItem c-key="button-1" name="button" to="/buttonView">
-                    <Icon type="list"></Icon>
-                    <span>button</span>
-                </MenuItem>
-                <MenuItem c-key="input-1" name="input" to="/inputView" icon="list">
-                    <Icon type="list"></Icon>
-                    <span>input</span>
-                </MenuItem>
-                <MenuItem c-key="badge-1" name="badge" to="/badgeView">
-                    <Icon type="list"></Icon>
-                    <span>badge</span>
-                </MenuItem>
-                <Submenu c-key="submenu-sub-1-2" name="submenu1-2">
-                    <MenuItem c-key="button-1-2" name="button" to="/buttonView">
-                        <Icon type="list"></Icon>
-                        <span>button</span>
-                    </MenuItem>
-                    <MenuGroup name="groupTitle1-2-1">
-                        <MenuItem c-key="button-1-2-1" name="button" to="/buttonView">
-                            <Icon type="list"></Icon>
-                            <span>button</span>
-                        </MenuItem>
-                        <MenuItem c-key="input-1-2-1" name="input" to="/inputView" icon="list">
-                            <Icon type="list"></Icon>
-                            <span>input</span>
-                        </MenuItem>
-                        <MenuItem c-key="badge-1-2-1" name="badge" to="/badgeView">
-                            <Icon type="list"></Icon>
-                            <span>badge</span>
-                        </MenuItem>
-                    </MenuGroup>
-
-                    <MenuItem c-key="input-1-2" name="input" to="/inputView" icon="list">
-                        <Icon type="list"></Icon>
-                        <span>input</span>
-                    </MenuItem>
-                    <MenuItem c-key="badge-1-2" name="badge" to="/badgeView">
-                        <Icon type="list"></Icon>
-                        <span>badge</span>
-                    </MenuItem>
-                </Submenu>
-            </Submenu>
-            <Submenu c-key="submenu-sub-2" name="submenu2">
-                <MenuItem c-key="button-2" name="button2" to="/buttonView"></MenuItem>
-                <MenuItem c-key="input-2" name="input2" to="/inputView" icon="list"></MenuItem>
-                <MenuItem c-key="badge-2" name="badge2" to="/badgeView"></MenuItem>
-            </Submenu>
-            <Submenu c-key="submenu-sub-3" name="submenu3">
-                <MenuGroup name="groupTitle3">
-                    <MenuItem c-key="button-3-1" name="button3-1" to="/buttonView"></MenuItem>
-                    <MenuItem c-key="input-3-1" name="input3-1" to="/inputView" icon="list"></MenuItem>
-                    <MenuItem c-key="badge-3-1" name="badge3-1" to="/badgeView"></MenuItem>
-                </MenuGroup>
-                <MenuGroup name="groupTitle3-2">
-                    <MenuItem c-key="button-3-2" name="button3-2" to="/buttonView"></MenuItem>
-                    <MenuItem c-key="input-3-2" name="input3-2" to="/inputView" icon="list"></MenuItem>
-                    <MenuItem c-key="badge-3-2" name="badge3-2" to="/badgeView"></MenuItem>
-                </MenuGroup>
-            </Submenu>
-        </Menu>
-        <h4>mode=vertical,theme=light,size--large</h4>
-        <Menu @open-change="handlerOpenChange" @select="handlerSelect" size="large" width="300px">
-            <MenuItem c-key="button-item-1" name="button-item" to="/buttonView">
-                <Icon type="list"></Icon>
-                <span>button-item</span>
-            </MenuItem>
-            <Submenu c-key="submenu-sub-1" name="submenu">
-                <MenuItem c-key="button-1" name="button" to="/buttonView">
-                    <Icon type="list"></Icon>
-                    <span>button</span>
-                </MenuItem>
-                <MenuItem c-key="input-1" name="input" to="/inputView" icon="list">
-                    <Icon type="list"></Icon>
-                    <span>input</span>
-                </MenuItem>
-                <MenuItem c-key="badge-1" name="badge" to="/badgeView">
-                    <Icon type="list"></Icon>
-                    <span>badge</span>
-                </MenuItem>
-                <Submenu c-key="submenu-sub-1-2" name="submenu1-2">
-                    <MenuItem c-key="button-1-2" name="button" to="/buttonView">
-                        <Icon type="list"></Icon>
-                        <span>button</span>
-                    </MenuItem>
-                    <MenuGroup name="groupTitle1-2-1">
-                        <MenuItem c-key="button-1-2-1" name="button" to="/buttonView">
-                            <Icon type="list"></Icon>
-                            <span>button</span>
-                        </MenuItem>
-                        <MenuItem c-key="input-1-2-1" name="input" to="/inputView" icon="list">
-                            <Icon type="list"></Icon>
-                            <span>input</span>
-                        </MenuItem>
-                        <MenuItem c-key="badge-1-2-1" name="badge" to="/badgeView">
-                            <Icon type="list"></Icon>
-                            <span>badge</span>
-                        </MenuItem>
-                    </MenuGroup>
-
-                    <MenuItem c-key="input-1-2" name="input" to="/inputView" icon="list">
-                        <Icon type="list"></Icon>
-                        <span>input</span>
-                    </MenuItem>
-                    <MenuItem c-key="badge-1-2" name="badge" to="/badgeView">
-                        <Icon type="list"></Icon>
-                        <span>badge</span>
-                    </MenuItem>
-                </Submenu>
-            </Submenu>
-            <Submenu c-key="submenu-sub-2" name="submenu2">
-                <MenuItem c-key="button-2" name="button2" to="/buttonView"></MenuItem>
-                <MenuItem c-key="input-2" name="input2" to="/inputView" icon="list"></MenuItem>
-                <MenuItem c-key="badge-2" name="badge2" to="/badgeView"></MenuItem>
-            </Submenu>
-            <Submenu c-key="submenu-sub-3" name="submenu3">
-                <MenuGroup name="groupTitle3">
-                    <MenuItem c-key="button-3-1" name="button3-1" to="/buttonView"></MenuItem>
-                    <MenuItem c-key="input-3-1" name="input3-1" to="/inputView" icon="list"></MenuItem>
-                    <MenuItem c-key="badge-3-1" name="badge3-1" to="/badgeView"></MenuItem>
-                </MenuGroup>
-                <MenuGroup name="groupTitle3-2">
-                    <MenuItem c-key="button-3-2" name="button3-2" to="/buttonView"></MenuItem>
-                    <MenuItem c-key="input-3-2" name="input3-2" to="/inputView" icon="list"></MenuItem>
-                    <MenuItem c-key="badge-3-2" name="badge3-2" to="/badgeView"></MenuItem>
-                </MenuGroup>
-            </Submenu>
-        </Menu>
-        <h4>mode=vertical,theme=light,size--default,accordion(手风琴模式)</h4>
-        <Menu @open-change="handlerOpenChange" @select="handlerSelect" accordion size="default" width="300px">
-            <MenuItem c-key="button-item-1" name="button-item" to="/buttonView">
-                <Icon type="list"></Icon>
-                <span>button-item</span>
-            </MenuItem>
-            <Submenu c-key="submenu-sub-1" name="submenu">
-                <MenuItem c-key="button-1" name="button" to="/buttonView">
-                    <Icon type="list"></Icon>
-                    <span>button</span>
-                </MenuItem>
-                <MenuItem c-key="input-1" name="input" to="/inputView" icon="list">
-                    <Icon type="list"></Icon>
-                    <span>input</span>
-                </MenuItem>
-                <MenuItem c-key="badge-1" name="badge" to="/badgeView">
-                    <Icon type="list"></Icon>
-                    <span>badge</span>
-                </MenuItem>
-                <Submenu c-key="submenu-sub-1-2" name="submenu1-2">
-                    <MenuItem c-key="button-1-2" name="button" to="/buttonView">
-                        <Icon type="list"></Icon>
-                        <span>button</span>
-                    </MenuItem>
-                    <MenuGroup name="groupTitle1-2-1">
-                        <MenuItem c-key="button-1-2-1" name="button" to="/buttonView">
-                            <Icon type="list"></Icon>
-                            <span>button</span>
-                        </MenuItem>
-                        <MenuItem c-key="input-1-2-1" name="input" to="/inputView" icon="list">
-                            <Icon type="list"></Icon>
-                            <span>input</span>
-                        </MenuItem>
-                        <MenuItem c-key="badge-1-2-1" name="badge" to="/badgeView">
-                            <Icon type="list"></Icon>
-                            <span>badge</span>
-                        </MenuItem>
-                    </MenuGroup>
-
-                    <MenuItem c-key="input-1-2" name="input" to="/inputView" icon="list">
-                        <Icon type="list"></Icon>
-                        <span>input</span>
-                    </MenuItem>
-                    <MenuItem c-key="badge-1-2" name="badge" to="/badgeView">
-                        <Icon type="list"></Icon>
-                        <span>badge</span>
-                    </MenuItem>
-                </Submenu>
-            </Submenu>
-            <Submenu c-key="submenu-sub-2" name="submenu2">
-                <MenuItem c-key="button-2" name="button2" to="/buttonView"></MenuItem>
-                <MenuItem c-key="input-2" name="input2" to="/inputView" icon="list"></MenuItem>
-                <MenuItem c-key="badge-2" name="badge2" to="/badgeView"></MenuItem>
-            </Submenu>
-            <Submenu c-key="submenu-sub-3" name="submenu3">
-                <MenuGroup name="groupTitle3">
-                    <MenuItem c-key="button-3-1" name="button3-1" to="/buttonView"></MenuItem>
-                    <MenuItem c-key="input-3-1" name="input3-1" to="/inputView" icon="list"></MenuItem>
-                    <MenuItem c-key="badge-3-1" name="badge3-1" to="/badgeView"></MenuItem>
-                </MenuGroup>
-                <MenuGroup name="groupTitle3-2">
-                    <MenuItem c-key="button-3-2" name="button3-2" to="/buttonView"></MenuItem>
-                    <MenuItem c-key="input-3-2" name="input3-2" to="/inputView" icon="list"></MenuItem>
-                    <MenuItem c-key="badge-3-2" name="badge3-2" to="/badgeView"></MenuItem>
-                </MenuGroup>
-            </Submenu>
-        </Menu>
-
-        <h4>mode=vertical,theme=dark,size=small</h4>
-        <Menu @open-change="handlerOpenChange" @select="handlerSelect" size="small" theme="dark" width="300px">
-            <MenuItem c-key="button-item-1" name="button-item" to="/buttonView">
-                <Icon type="list"></Icon>
-                <span>button-item</span>
-            </MenuItem>
-            <Submenu c-key="submenu-sub-1" name="submenu">
-                <MenuItem c-key="button-1" name="button" to="/buttonView">
-                    <Icon type="list"></Icon>
-                    <span>button</span>
-                </MenuItem>
-                <MenuItem c-key="input-1" disabled name="input" to="/inputView" icon="list">
-                    <Icon type="list"></Icon>
-                    <span>input</span>
-                </MenuItem>
-                <MenuItem c-key="badge-1" name="badge" to="/badgeView">
-                    <Icon type="list"></Icon>
-                    <span>badge</span>
-                </MenuItem>
-                <Submenu c-key="submenu-sub-1-2" name="submenu1-2">
-                    <MenuItem c-key="button-1-2" name="button" to="/buttonView">
-                        <Icon type="list"></Icon>
-                        <span>button</span>
-                    </MenuItem>
-                    <MenuGroup name="groupTitle1-2-1">
-                        <MenuItem c-key="button-1-2-1" name="button" to="/buttonView">
-                            <Icon type="list"></Icon>
-                            <span>button</span>
-                        </MenuItem>
-                        <MenuItem c-key="input-1-2-1" name="input" to="/inputView" icon="list">
-                            <Icon type="list"></Icon>
-                            <span>input</span>
-                        </MenuItem>
-                        <MenuItem c-key="badge-1-2-1" name="badge" to="/badgeView">
-                            <Icon type="list"></Icon>
-                            <span>badge</span>
-                        </MenuItem>
-                    </MenuGroup>
-
-                    <MenuItem c-key="input-1-2" name="input" to="/inputView" icon="list">
-                        <Icon type="list"></Icon>
-                        <span>input</span>
-                    </MenuItem>
-                    <MenuItem c-key="badge-1-2" name="badge" to="/badgeView">
-                        <Icon type="list"></Icon>
-                        <span>badge</span>
-                    </MenuItem>
-                </Submenu>
-            </Submenu>
-            <Submenu c-key="submenu-sub-2" disabled name="submenu2">
-                <MenuItem c-key="button-2" name="button2" to="/buttonView"></MenuItem>
-                <MenuItem c-key="input-2" name="input2" to="/inputView" icon="list"></MenuItem>
-                <MenuItem c-key="badge-2" name="badge2" to="/badgeView"></MenuItem>
-            </Submenu>
-            <Submenu c-key="submenu-sub-3" name="submenu3">
-                <MenuGroup name="groupTitle3">
-                    <MenuItem c-key="button-3-1" name="button3-1" to="/buttonView"></MenuItem>
-                    <MenuItem c-key="input-3-1" name="input3-1" to="/inputView" icon="list"></MenuItem>
-                    <MenuItem c-key="badge-3-1" name="badge3-1" to="/badgeView"></MenuItem>
-                </MenuGroup>
-                <MenuGroup name="groupTitle3-2">
-                    <MenuItem c-key="button-3-2" name="button3-2" to="/buttonView"></MenuItem>
-                    <MenuItem c-key="input-3-2" name="input3-2" to="/inputView" icon="list"></MenuItem>
-                    <MenuItem c-key="badge-3-2" name="badge3-2" to="/badgeView"></MenuItem>
-                </MenuGroup>
-            </Submenu>
-        </Menu>
-        <h4>mode=vertical,theme=dark,size--default</h4>
-        <Menu @open-change="handlerOpenChange" @select="handlerSelect" size="default" theme="dark" width="300px">
-            <MenuItem c-key="button-item-1" name="button-item" to="/buttonView">
-                <Icon type="list"></Icon>
-                <span>button-item</span>
-            </MenuItem>
-            <Submenu c-key="submenu-sub-1" name="submenu">
-                <MenuItem c-key="button-1" name="button" to="/buttonView">
-                    <Icon type="list"></Icon>
-                    <span>button</span>
-                </MenuItem>
-                <MenuItem c-key="input-1" name="input" to="/inputView" icon="list">
-                    <Icon type="list"></Icon>
-                    <span>input</span>
-                </MenuItem>
-                <MenuItem c-key="badge-1" name="badge" to="/badgeView">
-                    <Icon type="list"></Icon>
-                    <span>badge</span>
-                </MenuItem>
-                <Submenu c-key="submenu-sub-1-2" name="submenu1-2">
-                    <MenuItem c-key="button-1-2" name="button" to="/buttonView">
-                        <Icon type="list"></Icon>
-                        <span>button</span>
-                    </MenuItem>
-                    <MenuGroup name="groupTitle1-2-1">
-                        <MenuItem c-key="button-1-2-1" name="button" to="/buttonView">
-                            <Icon type="list"></Icon>
-                            <span>button</span>
-                        </MenuItem>
-                        <MenuItem c-key="input-1-2-1" name="input" to="/inputView" icon="list">
-                            <Icon type="list"></Icon>
-                            <span>input</span>
-                        </MenuItem>
-                        <MenuItem c-key="badge-1-2-1" name="badge" to="/badgeView">
-                            <Icon type="list"></Icon>
-                            <span>badge</span>
-                        </MenuItem>
-                    </MenuGroup>
-
-                    <MenuItem c-key="input-1-2" name="input" to="/inputView" icon="list">
-                        <Icon type="list"></Icon>
-                        <span>input</span>
-                    </MenuItem>
-                    <MenuItem c-key="badge-1-2" name="badge" to="/badgeView">
-                        <Icon type="list"></Icon>
-                        <span>badge</span>
-                    </MenuItem>
-                </Submenu>
-            </Submenu>
-            <Submenu c-key="submenu-sub-2" name="submenu2">
-                <MenuItem c-key="button-2" name="button2" to="/buttonView"></MenuItem>
-                <MenuItem c-key="input-2" name="input2" to="/inputView" icon="list"></MenuItem>
-                <MenuItem c-key="badge-2" name="badge2" to="/badgeView"></MenuItem>
-            </Submenu>
-            <Submenu c-key="submenu-sub-3" name="submenu3">
-                <MenuGroup name="groupTitle3">
-                    <MenuItem c-key="button-3-1" name="button3-1" to="/buttonView"></MenuItem>
-                    <MenuItem c-key="input-3-1" name="input3-1" to="/inputView" icon="list"></MenuItem>
-                    <MenuItem c-key="badge-3-1" name="badge3-1" to="/badgeView"></MenuItem>
-                </MenuGroup>
-                <MenuGroup name="groupTitle3-2">
-                    <MenuItem c-key="button-3-2" name="button3-2" to="/buttonView"></MenuItem>
-                    <MenuItem c-key="input-3-2" name="input3-2" to="/inputView" icon="list"></MenuItem>
-                    <MenuItem c-key="badge-3-2" name="badge3-2" to="/badgeView"></MenuItem>
-                </MenuGroup>
-            </Submenu>
-        </Menu>
-        <h4>mode=vertical,theme=dark,size--large</h4>
-        <Menu @open-change="handlerOpenChange" @select="handlerSelect" size="large" theme="dark" width="300px">
-            <MenuItem c-key="button-item-1" name="button-item" to="/buttonView">
-                <Icon type="list"></Icon>
-                <span>button-item</span>
-            </MenuItem>
-            <Submenu c-key="submenu-sub-1" name="submenu">
-                <MenuItem c-key="button-1" name="button" to="/buttonView">
-                    <Icon type="list"></Icon>
-                    <span>button</span>
-                </MenuItem>
-                <MenuItem c-key="input-1" name="input" to="/inputView" icon="list">
-                    <Icon type="list"></Icon>
-                    <span>input</span>
-                </MenuItem>
-                <MenuItem c-key="badge-1" name="badge" to="/badgeView">
-                    <Icon type="list"></Icon>
-                    <span>badge</span>
-                </MenuItem>
-                <Submenu c-key="submenu-sub-1-2" name="submenu1-2">
-                    <MenuItem c-key="button-1-2" name="button" to="/buttonView">
-                        <Icon type="list"></Icon>
-                        <span>button</span>
-                    </MenuItem>
-                    <MenuGroup name="groupTitle1-2-1">
-                        <MenuItem c-key="button-1-2-1" name="button" to="/buttonView">
-                            <Icon type="list"></Icon>
-                            <span>button</span>
-                        </MenuItem>
-                        <MenuItem c-key="input-1-2-1" name="input" to="/inputView" icon="list">
-                            <Icon type="list"></Icon>
-                            <span>input</span>
-                        </MenuItem>
-                        <MenuItem c-key="badge-1-2-1" name="badge" to="/badgeView">
-                            <Icon type="list"></Icon>
-                            <span>badge</span>
-                        </MenuItem>
-                    </MenuGroup>
-
-                    <MenuItem c-key="input-1-2" name="input" to="/inputView" icon="list">
-                        <Icon type="list"></Icon>
-                        <span>input</span>
-                    </MenuItem>
-                    <MenuItem c-key="badge-1-2" name="badge" to="/badgeView">
-                        <Icon type="list"></Icon>
-                        <span>badge</span>
-                    </MenuItem>
-                </Submenu>
-            </Submenu>
-            <Submenu c-key="submenu-sub-2" name="submenu2">
-                <MenuItem c-key="button-2" name="button2" to="/buttonView"></MenuItem>
-                <MenuItem c-key="input-2" name="input2" to="/inputView" icon="list"></MenuItem>
-                <MenuItem c-key="badge-2" name="badge2" to="/badgeView"></MenuItem>
-            </Submenu>
-            <Submenu c-key="submenu-sub-3" name="submenu3">
-                <MenuGroup name="groupTitle3">
-                    <MenuItem c-key="button-3-1" name="button3-1" to="/buttonView"></MenuItem>
-                    <MenuItem c-key="input-3-1" name="input3-1" to="/inputView" icon="list"></MenuItem>
-                    <MenuItem c-key="badge-3-1" name="badge3-1" to="/badgeView"></MenuItem>
-                </MenuGroup>
-                <MenuGroup name="groupTitle3-2">
-                    <MenuItem c-key="button-3-2" name="button3-2" to="/buttonView"></MenuItem>
-                    <MenuItem c-key="input-3-2" name="input3-2" to="/inputView" icon="list"></MenuItem>
-                    <MenuItem c-key="badge-3-2" name="badge3-2" to="/badgeView"></MenuItem>
-                </MenuGroup>
-            </Submenu>
-        </Menu>
-        <h4>mode=vertical,theme=dark,size--default,accordion(手风琴模式)</h4>
-        <Menu @open-change="handlerOpenChange" @select="handlerSelect" accordion theme="dark" size="default" width="300px">
-            <MenuItem c-key="button-item-1" name="button-item" to="/buttonView">
-                <Icon type="list"></Icon>
-                <span>button-item</span>
-            </MenuItem>
-            <Submenu c-key="submenu-sub-1" name="submenu">
-                <MenuItem c-key="button-1" name="button" to="/buttonView">
-                    <Icon type="list"></Icon>
-                    <span>button</span>
-                </MenuItem>
-                <MenuItem c-key="input-1" name="input" to="/inputView" icon="list">
-                    <Icon type="list"></Icon>
-                    <span>input</span>
-                </MenuItem>
-                <MenuItem c-key="badge-1" name="badge" to="/badgeView">
-                    <Icon type="list"></Icon>
-                    <span>badge</span>
-                </MenuItem>
-                <Submenu c-key="submenu-sub-1-2" name="submenu1-2">
-                    <MenuItem c-key="button-1-2" name="button" to="/buttonView">
-                        <Icon type="list"></Icon>
-                        <span>button</span>
-                    </MenuItem>
-                    <MenuGroup name="groupTitle1-2-1">
-                        <MenuItem c-key="button-1-2-1" name="button" to="/buttonView">
-                            <Icon type="list"></Icon>
-                            <span>button</span>
-                        </MenuItem>
-                        <MenuItem c-key="input-1-2-1" name="input" to="/inputView" icon="list">
-                            <Icon type="list"></Icon>
-                            <span>input</span>
-                        </MenuItem>
-                        <MenuItem c-key="badge-1-2-1" name="badge" to="/badgeView">
-                            <Icon type="list"></Icon>
-                            <span>badge</span>
-                        </MenuItem>
-                    </MenuGroup>
-
-                    <MenuItem c-key="input-1-2" name="input" to="/inputView" icon="list">
-                        <Icon type="list"></Icon>
-                        <span>input</span>
-                    </MenuItem>
-                    <MenuItem c-key="badge-1-2" name="badge" to="/badgeView">
-                        <Icon type="list"></Icon>
-                        <span>badge</span>
-                    </MenuItem>
-                </Submenu>
-            </Submenu>
-            <Submenu c-key="submenu-sub-2" name="submenu2">
-                <MenuItem c-key="button-2" name="button2" to="/buttonView"></MenuItem>
-                <MenuItem c-key="input-2" name="input2" to="/inputView" icon="list"></MenuItem>
-                <MenuItem c-key="badge-2" name="badge2" to="/badgeView"></MenuItem>
-            </Submenu>
-            <Submenu c-key="submenu-sub-3" name="submenu3">
-                <MenuGroup name="groupTitle3">
-                    <MenuItem c-key="button-3-1" name="button3-1" to="/buttonView"></MenuItem>
-                    <MenuItem c-key="input-3-1" name="input3-1" to="/inputView" icon="list"></MenuItem>
-                    <MenuItem c-key="badge-3-1" name="badge3-1" to="/badgeView"></MenuItem>
-                </MenuGroup>
-                <MenuGroup name="groupTitle3-2">
-                    <MenuItem c-key="button-3-2" name="button3-2" to="/buttonView"></MenuItem>
-                    <MenuItem c-key="input-3-2" name="input3-2" to="/inputView" icon="list"></MenuItem>
-                    <MenuItem c-key="badge-3-2" name="badge3-2" to="/badgeView"></MenuItem>
-                </MenuGroup>
-            </Submenu>
-        </Menu>
-
-        <h4>mode=vertical,theme=green,size=small</h4>
-        <Menu @open-change="handlerOpenChange" @select="handlerSelect" size="small" theme="green" width="300px">
-            <MenuItem c-key="button-item-1" name="button-item" to="/buttonView">
-                <Icon type="list"></Icon>
-                <span>button-item</span>
-            </MenuItem>
-            <Submenu c-key="submenu-sub-1" name="submenu">
-                <MenuItem c-key="button-1" name="button" to="/buttonView">
-                    <Icon type="list"></Icon>
-                    <span>button</span>
-                </MenuItem>
-                <MenuItem c-key="input-1" disabled name="input" to="/inputView" icon="list">
-                    <Icon type="list"></Icon>
-                    <span>input</span>
-                </MenuItem>
-                <MenuItem c-key="badge-1" name="badge" to="/badgeView">
-                    <Icon type="list"></Icon>
-                    <span>badge</span>
-                </MenuItem>
-                <Submenu c-key="submenu-sub-1-2" name="submenu1-2">
-                    <MenuItem c-key="button-1-2" name="button" to="/buttonView">
-                        <Icon type="list"></Icon>
-                        <span>button</span>
-                    </MenuItem>
-                    <MenuGroup name="groupTitle1-2-1">
-                        <MenuItem c-key="button-1-2-1" name="button" to="/buttonView">
-                            <Icon type="list"></Icon>
-                            <span>button</span>
-                        </MenuItem>
-                        <MenuItem c-key="input-1-2-1" name="input" to="/inputView" icon="list">
-                            <Icon type="list"></Icon>
-                            <span>input</span>
-                        </MenuItem>
-                        <MenuItem c-key="badge-1-2-1" name="badge" to="/badgeView">
-                            <Icon type="list"></Icon>
-                            <span>badge</span>
-                        </MenuItem>
-                    </MenuGroup>
-
-                    <MenuItem c-key="input-1-2" name="input" to="/inputView" icon="list">
-                        <Icon type="list"></Icon>
-                        <span>input</span>
-                    </MenuItem>
-                    <MenuItem c-key="badge-1-2" name="badge" to="/badgeView">
-                        <Icon type="list"></Icon>
-                        <span>badge</span>
-                    </MenuItem>
-                </Submenu>
-            </Submenu>
-            <Submenu c-key="submenu-sub-2" disabled name="submenu2">
-                <MenuItem c-key="button-2" name="button2" to="/buttonView"></MenuItem>
-                <MenuItem c-key="input-2" name="input2" to="/inputView" icon="list"></MenuItem>
-                <MenuItem c-key="badge-2" name="badge2" to="/badgeView"></MenuItem>
-            </Submenu>
-            <Submenu c-key="submenu-sub-3" name="submenu3">
-                <MenuGroup name="groupTitle3">
-                    <MenuItem c-key="button-3-1" name="button3-1" to="/buttonView"></MenuItem>
-                    <MenuItem c-key="input-3-1" name="input3-1" to="/inputView" icon="list"></MenuItem>
-                    <MenuItem c-key="badge-3-1" name="badge3-1" to="/badgeView"></MenuItem>
-                </MenuGroup>
-                <MenuGroup name="groupTitle3-2">
-                    <MenuItem c-key="button-3-2" name="button3-2" to="/buttonView"></MenuItem>
-                    <MenuItem c-key="input-3-2" name="input3-2" to="/inputView" icon="list"></MenuItem>
-                    <MenuItem c-key="badge-3-2" name="badge3-2" to="/badgeView"></MenuItem>
-                </MenuGroup>
-            </Submenu>
-        </Menu>
-        <h4>mode=vertical,theme=dark,size--default</h4>
-        <Menu @open-change="handlerOpenChange" @select="handlerSelect" size="default" theme="green" width="300px">
-            <MenuItem c-key="button-item-1" name="button-item" to="/buttonView">
-                <Icon type="list"></Icon>
-                <span>button-item</span>
-            </MenuItem>
-            <Submenu c-key="submenu-sub-1" name="submenu">
-                <MenuItem c-key="button-1" name="button" to="/buttonView">
-                    <Icon type="list"></Icon>
-                    <span>button</span>
-                </MenuItem>
-                <MenuItem c-key="input-1" name="input" to="/inputView" icon="list">
-                    <Icon type="list"></Icon>
-                    <span>input</span>
-                </MenuItem>
-                <MenuItem c-key="badge-1" name="badge" to="/badgeView">
-                    <Icon type="list"></Icon>
-                    <span>badge</span>
-                </MenuItem>
-                <Submenu c-key="submenu-sub-1-2" name="submenu1-2">
-                    <MenuItem c-key="button-1-2" name="button" to="/buttonView">
-                        <Icon type="list"></Icon>
-                        <span>button</span>
-                    </MenuItem>
-                    <MenuGroup name="groupTitle1-2-1">
-                        <MenuItem c-key="button-1-2-1" name="button" to="/buttonView">
-                            <Icon type="list"></Icon>
-                            <span>button</span>
-                        </MenuItem>
-                        <MenuItem c-key="input-1-2-1" name="input" to="/inputView" icon="list">
-                            <Icon type="list"></Icon>
-                            <span>input</span>
-                        </MenuItem>
-                        <MenuItem c-key="badge-1-2-1" name="badge" to="/badgeView">
-                            <Icon type="list"></Icon>
-                            <span>badge</span>
-                        </MenuItem>
-                    </MenuGroup>
-
-                    <MenuItem c-key="input-1-2" name="input" to="/inputView" icon="list">
-                        <Icon type="list"></Icon>
-                        <span>input</span>
-                    </MenuItem>
-                    <MenuItem c-key="badge-1-2" name="badge" to="/badgeView">
-                        <Icon type="list"></Icon>
-                        <span>badge</span>
-                    </MenuItem>
-                </Submenu>
-            </Submenu>
-            <Submenu c-key="submenu-sub-2" name="submenu2">
-                <MenuItem c-key="button-2" name="button2" to="/buttonView"></MenuItem>
-                <MenuItem c-key="input-2" name="input2" to="/inputView" icon="list"></MenuItem>
-                <MenuItem c-key="badge-2" name="badge2" to="/badgeView"></MenuItem>
-            </Submenu>
-            <Submenu c-key="submenu-sub-3" name="submenu3">
-                <MenuGroup name="groupTitle3">
-                    <MenuItem c-key="button-3-1" name="button3-1" to="/buttonView"></MenuItem>
-                    <MenuItem c-key="input-3-1" name="input3-1" to="/inputView" icon="list"></MenuItem>
-                    <MenuItem c-key="badge-3-1" name="badge3-1" to="/badgeView"></MenuItem>
-                </MenuGroup>
-                <MenuGroup name="groupTitle3-2">
-                    <MenuItem c-key="button-3-2" name="button3-2" to="/buttonView"></MenuItem>
-                    <MenuItem c-key="input-3-2" name="input3-2" to="/inputView" icon="list"></MenuItem>
-                    <MenuItem c-key="badge-3-2" name="badge3-2" to="/badgeView"></MenuItem>
-                </MenuGroup>
-            </Submenu>
-        </Menu>
-        <h4>mode=vertical,theme=dark,size--large</h4>
-        <Menu @open-change="handlerOpenChange" @select="handlerSelect" size="large" theme="green" width="300px">
-            <MenuItem c-key="button-item-1" name="button-item" to="/buttonView">
-                <Icon type="list"></Icon>
-                <span>button-item</span>
-            </MenuItem>
-            <Submenu c-key="submenu-sub-1" name="submenu">
-                <MenuItem c-key="button-1" name="button" to="/buttonView">
-                    <Icon type="list"></Icon>
-                    <span>button</span>
-                </MenuItem>
-                <MenuItem c-key="input-1" name="input" to="/inputView" icon="list">
-                    <Icon type="list"></Icon>
-                    <span>input</span>
-                </MenuItem>
-                <MenuItem c-key="badge-1" name="badge" to="/badgeView">
-                    <Icon type="list"></Icon>
-                    <span>badge</span>
-                </MenuItem>
-                <Submenu c-key="submenu-sub-1-2" name="submenu1-2">
-                    <MenuItem c-key="button-1-2" name="button" to="/buttonView">
-                        <Icon type="list"></Icon>
-                        <span>button</span>
-                    </MenuItem>
-                    <MenuGroup name="groupTitle1-2-1">
-                        <MenuItem c-key="button-1-2-1" name="button" to="/buttonView">
-                            <Icon type="list"></Icon>
-                            <span>button</span>
-                        </MenuItem>
-                        <MenuItem c-key="input-1-2-1" name="input" to="/inputView" icon="list">
-                            <Icon type="list"></Icon>
-                            <span>input</span>
-                        </MenuItem>
-                        <MenuItem c-key="badge-1-2-1" name="badge" to="/badgeView">
-                            <Icon type="list"></Icon>
-                            <span>badge</span>
-                        </MenuItem>
-                    </MenuGroup>
-
-                    <MenuItem c-key="input-1-2" name="input" to="/inputView" icon="list">
-                        <Icon type="list"></Icon>
-                        <span>input</span>
-                    </MenuItem>
-                    <MenuItem c-key="badge-1-2" name="badge" to="/badgeView">
-                        <Icon type="list"></Icon>
-                        <span>badge</span>
-                    </MenuItem>
-                </Submenu>
-            </Submenu>
-            <Submenu c-key="submenu-sub-2" name="submenu2">
-                <MenuItem c-key="button-2" name="button2" to="/buttonView"></MenuItem>
-                <MenuItem c-key="input-2" name="input2" to="/inputView" icon="list"></MenuItem>
-                <MenuItem c-key="badge-2" name="badge2" to="/badgeView"></MenuItem>
-            </Submenu>
-            <Submenu c-key="submenu-sub-3" name="submenu3">
-                <MenuGroup name="groupTitle3">
-                    <MenuItem c-key="button-3-1" name="button3-1" to="/buttonView"></MenuItem>
-                    <MenuItem c-key="input-3-1" name="input3-1" to="/inputView" icon="list"></MenuItem>
-                    <MenuItem c-key="badge-3-1" name="badge3-1" to="/badgeView"></MenuItem>
-                </MenuGroup>
-                <MenuGroup name="groupTitle3-2">
-                    <MenuItem c-key="button-3-2" name="button3-2" to="/buttonView"></MenuItem>
-                    <MenuItem c-key="input-3-2" name="input3-2" to="/inputView" icon="list"></MenuItem>
-                    <MenuItem c-key="badge-3-2" name="badge3-2" to="/badgeView"></MenuItem>
-                </MenuGroup>
-            </Submenu>
-        </Menu>
-        <h4>mode=vertical,theme=dark,size--default,accordion(手风琴模式)</h4>
-        <Menu @open-change="handlerOpenChange" @select="handlerSelect" accordion theme="green" size="default" width="300px">
-            <MenuItem c-key="button-item-1" name="button-item" to="/buttonView">
-                <Icon type="list"></Icon>
-                <span>button-item</span>
-            </MenuItem>
-            <Submenu c-key="submenu-sub-1" name="submenu">
-                <MenuItem c-key="button-1" name="button" to="/buttonView">
-                    <Icon type="list"></Icon>
-                    <span>button</span>
-                </MenuItem>
-                <MenuItem c-key="input-1" name="input" to="/inputView" icon="list">
-                    <Icon type="list"></Icon>
-                    <span>input</span>
-                </MenuItem>
-                <MenuItem c-key="badge-1" name="badge" to="/badgeView">
-                    <Icon type="list"></Icon>
-                    <span>badge</span>
-                </MenuItem>
-                <Submenu c-key="submenu-sub-1-2" name="submenu1-2">
-                    <MenuItem c-key="button-1-2" name="button" to="/buttonView">
-                        <Icon type="list"></Icon>
-                        <span>button</span>
-                    </MenuItem>
-                    <MenuGroup name="groupTitle1-2-1">
-                        <MenuItem c-key="button-1-2-1" name="button" to="/buttonView">
-                            <Icon type="list"></Icon>
-                            <span>button</span>
-                        </MenuItem>
-                        <MenuItem c-key="input-1-2-1" name="input" to="/inputView" icon="list">
-                            <Icon type="list"></Icon>
-                            <span>input</span>
-                        </MenuItem>
-                        <MenuItem c-key="badge-1-2-1" name="badge" to="/badgeView">
-                            <Icon type="list"></Icon>
-                            <span>badge</span>
-                        </MenuItem>
-                    </MenuGroup>
-
-                    <MenuItem c-key="input-1-2" name="input" to="/inputView" icon="list">
-                        <Icon type="list"></Icon>
-                        <span>input</span>
-                    </MenuItem>
-                    <MenuItem c-key="badge-1-2" name="badge" to="/badgeView">
-                        <Icon type="list"></Icon>
-                        <span>badge</span>
-                    </MenuItem>
-                </Submenu>
-            </Submenu>
-            <Submenu c-key="submenu-sub-2" name="submenu2">
-                <MenuItem c-key="button-2" name="button2" to="/buttonView"></MenuItem>
-                <MenuItem c-key="input-2" name="input2" to="/inputView" icon="list"></MenuItem>
-                <MenuItem c-key="badge-2" name="badge2" to="/badgeView"></MenuItem>
-            </Submenu>
-            <Submenu c-key="submenu-sub-3" name="submenu3">
-                <MenuGroup name="groupTitle3">
-                    <MenuItem c-key="button-3-1" name="button3-1" to="/buttonView"></MenuItem>
-                    <MenuItem c-key="input-3-1" name="input3-1" to="/inputView" icon="list"></MenuItem>
-                    <MenuItem c-key="badge-3-1" name="badge3-1" to="/badgeView"></MenuItem>
-                </MenuGroup>
-                <MenuGroup name="groupTitle3-2">
-                    <MenuItem c-key="button-3-2" name="button3-2" to="/buttonView"></MenuItem>
-                    <MenuItem c-key="input-3-2" name="input3-2" to="/inputView" icon="list"></MenuItem>
-                    <MenuItem c-key="badge-3-2" name="badge3-2" to="/badgeView"></MenuItem>
-                </MenuGroup>
-            </Submenu>
-        </Menu>
-
-        <h4>mode=horizontal,theme=light,size=small</h4>
-        <Menu @open-change="handlerOpenChange" @select="handlerSelect" size="small" mode="horizontal">
-            <Submenu c-key="submenu-1" name="submenusubmenu-1">
-                <MenuItem c-key="button-1" name="button" to="/buttonView">
-                    <Icon type="list"></Icon>
-                    buttonbuttonbuttonbuttonbuttonbuttonbuttonbutton
-                </MenuItem>
-                <MenuItem c-key="input-1" name="input" to="/inputView" icon="list">
-                    <Icon type="list"></Icon>
-                    input
-                </MenuItem>
-            </Submenu>
-            <Submenu c-key="submenu-2" name="submenusubmenu-2">
-                <MenuGroup name="group1">
-                    <MenuItem c-key="group1-badge-1" name="group1-badge" to="/badgeView">
-                        <Icon type="list"></Icon>
-                        group1-badge
-                    </MenuItem>
-                </MenuGroup>
-                <MenuGroup name="group2">
-                    <MenuItem c-key="group2-badge-1" name="group2-badge" to="/badgeView">
-                        <Icon type="list"></Icon>
-                        group2-badge
-                    </MenuItem>
-                </MenuGroup>
-            </Submenu>
-            <MenuItem c-key="badge-1" name="badge" to="/badgeView">
-                <Icon type="list"></Icon>
-                badge
-            </MenuItem>
-            <MenuItem c-key="list-1" name="list" to="/badgeView">
-                <Icon type="list"></Icon>
-                list
-            </MenuItem>
-            <MenuItem c-key="test-1" name="test" to="/badgeView">
-                <Icon type="list"></Icon>
-                test
-            </MenuItem>
-            <MenuItem c-key="checkbox-1" name="checkbox" to="/badgeView">
-                <Icon type="list"></Icon>
-                checkbox
-            </MenuItem>
-            <MenuItem c-key="radio-1" name="radio" to="/badgeView">
-                <Icon type="list"></Icon>
-                radio
-            </MenuItem>
-        </Menu>
-        <h4>mode=horizontal,theme=light,size=small</h4>
-        <Menu @open-change="handlerOpenChange" @select="handlerSelect" size="default" mode="horizontal">
-            <Submenu c-key="submenu-1" name="submenusubmenu-1">
-                <MenuItem c-key="button-1" name="button" to="/buttonView">
-                    <Icon type="list"></Icon>
-                    buttonbuttonbuttonbuttonbuttonbuttonbuttonbutton
-                </MenuItem>
-                <MenuItem c-key="input-1" name="input" to="/inputView" icon="list">
-                    <Icon type="list"></Icon>
-                    input
-                </MenuItem>
-            </Submenu>
-            <Submenu c-key="submenu-2" name="submenusubmenu-2">
-                <MenuGroup name="group1">
-                    <MenuItem c-key="group1-badge-1" name="group1-badge" to="/badgeView">
-                        <Icon type="list"></Icon>
-                        group1-badge
-                    </MenuItem>
-                </MenuGroup>
-                <MenuGroup name="group2">
-                    <MenuItem c-key="group2-badge-1" name="group2-badge" to="/badgeView">
-                        <Icon type="list"></Icon>
-                        group2-badge
-                    </MenuItem>
-                </MenuGroup>
-            </Submenu>
-            <MenuItem c-key="badge-1" name="badge" to="/badgeView">
-                <Icon type="list"></Icon>
-                badge
-            </MenuItem>
-            <MenuItem c-key="list-1" name="list" to="/badgeView">
-                <Icon type="list"></Icon>
-                list
-            </MenuItem>
-            <MenuItem c-key="test-1" name="test" to="/badgeView">
-                <Icon type="list"></Icon>
-                test
-            </MenuItem>
-            <MenuItem c-key="checkbox-1" name="checkbox" to="/badgeView">
-                <Icon type="list"></Icon>
-                checkbox
-            </MenuItem>
-            <MenuItem c-key="radio-1" name="radio" to="/badgeView">
-                <Icon type="list"></Icon>
-                radio
-            </MenuItem>
-        </Menu>
-        <h4>mode=horizontal,theme=light,size=small</h4>
-        <Menu @open-change="handlerOpenChange" @select="handlerSelect" size="large" mode="horizontal">
-            <Submenu c-key="submenu-1" name="submenusubmenu-1">
-                <MenuItem c-key="button-1" name="button" to="/buttonView">
-                    <Icon type="list"></Icon>
-                    buttonbuttonbuttonbuttonbuttonbuttonbuttonbutton
-                </MenuItem>
-                <MenuItem c-key="input-1" name="input" to="/inputView" icon="list">
-                    <Icon type="list"></Icon>
-                    input
-                </MenuItem>
-            </Submenu>
-            <Submenu c-key="submenu-2" name="submenusubmenu-2">
-                <MenuGroup name="group1">
-                    <MenuItem c-key="group1-badge-1" name="group1-badge" to="/badgeView">
-                        <Icon type="list"></Icon>
-                        group1-badge
-                    </MenuItem>
-                </MenuGroup>
-                <MenuGroup name="group2">
-                    <MenuItem c-key="group2-badge-1" name="group2-badge" to="/badgeView">
-                        <Icon type="list"></Icon>
-                        group2-badge
-                    </MenuItem>
-                </MenuGroup>
-            </Submenu>
-            <MenuItem c-key="badge-1" name="badge" to="/badgeView">
-                <Icon type="list"></Icon>
-                badge
-            </MenuItem>
-            <MenuItem c-key="list-1" name="list" to="/badgeView">
-                <Icon type="list"></Icon>
-                list
-            </MenuItem>
-            <MenuItem c-key="test-1" name="test" to="/badgeView">
-                <Icon type="list"></Icon>
-                test
-            </MenuItem>
-            <MenuItem c-key="checkbox-1" name="checkbox" to="/badgeView">
-                <Icon type="list"></Icon>
-                checkbox
-            </MenuItem>
-            <MenuItem c-key="radio-1" name="radio" to="/badgeView">
-                <Icon type="list"></Icon>
-                radio
+            <MenuItem c-key="options3">
+                <Icon type="home"></Icon>
+                <span>options3</span>
             </MenuItem>
         </Menu>
 
+<!--        <h4>mode=vertical,theme=light</h4>-->
+<!--        <Menu @open-change="handlerOpenChange" @select="handlerSelect" width="300px" collapse>-->
+<!--            <MenuItem c-key="button-item-1" name="button-item" disabled to="/buttonView">-->
+<!--                <Icon type="list"></Icon>-->
+<!--                <span>button-item</span>-->
+<!--            </MenuItem>-->
+<!--            <Submenu c-key="submenu-sub-1" icon="home" name="submenu">-->
+<!--                <MenuItem c-key="button-1" disabled name="button" to="/buttonView">-->
+<!--                    <Icon type="list"></Icon>-->
+<!--                    <span>button</span>-->
+<!--                </MenuItem>-->
+<!--                <MenuItem c-key="input-1" name="input" to="/inputView" icon="list">-->
+<!--                    <Icon type="list"></Icon>-->
+<!--                    <span>input</span>-->
+<!--                </MenuItem>-->
+<!--                <MenuItem c-key="badge-1" name="badge" to="/badgeView">-->
+<!--                    <Icon type="list"></Icon>-->
+<!--                    <span>badge</span>-->
+<!--                </MenuItem>-->
+<!--                <Submenu c-key="submenu-sub-1-2" name="submenu1-2">-->
+<!--                    <MenuItem c-key="button-1-2" name="button" to="/buttonView">-->
+<!--                        <Icon type="list"></Icon>-->
+<!--                        <span>button</span>-->
+<!--                    </MenuItem>-->
+<!--                    <MenuGroup name="groupTitle1-2-1">-->
+<!--                        <MenuItem c-key="button-1-2-1" name="button" to="/buttonView">-->
+<!--                            <Icon type="list"></Icon>-->
+<!--                            <span>button</span>-->
+<!--                        </MenuItem>-->
+<!--                        <MenuItem c-key="input-1-2-1" name="input" to="/inputView" icon="list">-->
+<!--                            <Icon type="list"></Icon>-->
+<!--                            <span>input</span>-->
+<!--                        </MenuItem>-->
+<!--                        <MenuItem c-key="badge-1-2-1" name="badge" to="/badgeView">-->
+<!--                            <Icon type="list"></Icon>-->
+<!--                            <span>badge</span>-->
+<!--                        </MenuItem>-->
+<!--                    </MenuGroup>-->
 
-        <h4>mode=horizontal,theme=dark,size=small</h4>
-        <Menu @open-change="handlerOpenChange" @select="handlerSelect" size="small" theme="dark" mode="horizontal">
-            <Submenu c-key="submenu-1" name="submenusubmenu-1">
-                <MenuItem c-key="button-1" name="button" to="/buttonView">
-                    <Icon type="list"></Icon>
-                    buttonbuttonbuttonbuttonbuttonbuttonbuttonbutton
-                </MenuItem>
-                <MenuItem c-key="input-1" name="input" to="/inputView" icon="list">
-                    <Icon type="list"></Icon>
-                    input
-                </MenuItem>
-            </Submenu>
-            <Submenu c-key="submenu-2" name="submenusubmenu-2">
-                <MenuGroup name="group1">
-                    <MenuItem c-key="group1-badge-1" name="group1-badge" to="/badgeView">
-                        <Icon type="list"></Icon>
-                        group1-badge
-                    </MenuItem>
-                </MenuGroup>
-                <MenuGroup name="group2">
-                    <MenuItem c-key="group2-badge-1" name="group2-badge" to="/badgeView">
-                        <Icon type="list"></Icon>
-                        group2-badge
-                    </MenuItem>
-                </MenuGroup>
-            </Submenu>
-            <MenuItem c-key="badge-1" name="badge" to="/badgeView">
-                <Icon type="list"></Icon>
-                badge
-            </MenuItem>
-            <MenuItem c-key="list-1" name="list" to="/badgeView">
-                <Icon type="list"></Icon>
-                list
-            </MenuItem>
-            <MenuItem c-key="test-1" name="test" to="/badgeView">
-                <Icon type="list"></Icon>
-                test
-            </MenuItem>
-            <MenuItem c-key="checkbox-1" name="checkbox" to="/badgeView">
-                <Icon type="list"></Icon>
-                checkbox
-            </MenuItem>
-            <MenuItem c-key="radio-1" name="radio" to="/badgeView">
-                <Icon type="list"></Icon>
-                radio
-            </MenuItem>
-        </Menu>
-        <h4>horizontal--dark,size--default</h4>
-        <Menu @open-change="handlerOpenChange" @select="handlerSelect" size="default" theme="dark" mode="horizontal">
-            <Submenu c-key="submenu-1" name="submenu-1">
-                <MenuItem c-key="button-1" name="button" to="/buttonView">
-                    <Icon type="list"></Icon>
-                    buttonbuttonbuttonbuttonbuttonbuttonbuttonbutton
-                </MenuItem>
-                <MenuItem c-key="input-1" name="input" to="/inputView" icon="list">
-                    <Icon type="list"></Icon>
-                    input
-                </MenuItem>
-                <Submenu c-key="submenu-submenu-1" name="submenusubmenu-1">
-                    <MenuItem c-key="button-submenu-1" name="submenu-button" to="/buttonView">
-                        <Icon type="list"></Icon>
-                        submenu-button
-                    </MenuItem>
-                    <MenuItem c-key="input-submenu-1" name="submenu-input" to="/inputView" icon="list">
-                        <Icon type="list"></Icon>
-                        submenu-input
-                    </MenuItem>
-                </Submenu>
-            </Submenu>
-            <Submenu c-key="submenu-2" name="submenusubmenu-2">
-                <MenuGroup name="group1">
-                    <MenuItem c-key="group1-badge-1" name="group1-badge" to="/badgeView">
-                        <Icon type="list"></Icon>
-                        group1-badge
-                    </MenuItem>
-                </MenuGroup>
-                <MenuGroup name="group2">
-                    <MenuItem c-key="group2-badge-1" name="group2-badge" to="/badgeView">
-                        <Icon type="list"></Icon>
-                        group2-badge
-                    </MenuItem>
-                </MenuGroup>
-            </Submenu>
-            <MenuItem c-key="badge-1" name="badge" to="/badgeView">
-                <Icon type="list"></Icon>
-                badge
-            </MenuItem>
-            <MenuItem c-key="list-1" name="list" to="/badgeView">
-                <Icon type="list"></Icon>
-                list
-            </MenuItem>
-            <MenuItem c-key="test-1" name="test" to="/badgeView">
-                <Icon type="list"></Icon>
-                test
-            </MenuItem>
-            <MenuItem c-key="checkbox-1" name="checkbox" to="/badgeView">
-                <Icon type="list"></Icon>
-                checkbox
-            </MenuItem>
-            <MenuItem c-key="radio-1" name="radio" to="/badgeView">
-                <Icon type="list"></Icon>
-                radio
-            </MenuItem>
-        </Menu>
-        <h4>horizontal--dark,size--large</h4>
-        <Menu @open-change="handlerOpenChange" @select="handlerSelect" size="large" theme="dark" mode="horizontal">
-            <Submenu c-key="submenu-1" name="submenusubmenu-1">
-                <MenuItem c-key="button-1" name="button" to="/buttonView">
-                    <Icon type="list"></Icon>
-                    buttonbuttonbuttonbuttonbuttonbuttonbuttonbutton
-                </MenuItem>
-                <MenuItem c-key="input-1" name="input" to="/inputView" icon="list">
-                    <Icon type="list"></Icon>
-                    input
-                </MenuItem>
-            </Submenu>
-            <Submenu c-key="submenu-2" name="submenusubmenu-2">
-                <MenuGroup name="group1">
-                    <MenuItem c-key="group1-badge-1" name="group1-badge" to="/badgeView">
-                        <Icon type="list"></Icon>
-                        group1-badge
-                    </MenuItem>
-                </MenuGroup>
-                <MenuGroup name="group2">
-                    <MenuItem c-key="group2-badge-1" name="group2-badge" to="/badgeView">
-                        <Icon type="list"></Icon>
-                        group2-badge
-                    </MenuItem>
-                </MenuGroup>
-            </Submenu>
-            <MenuItem c-key="badge-1" name="badge" to="/badgeView">
-                <Icon type="list"></Icon>
-                badge
-            </MenuItem>
-            <MenuItem c-key="list-1" name="list" to="/badgeView">
-                <Icon type="list"></Icon>
-                list
-            </MenuItem>
-            <MenuItem c-key="test-1" name="test" to="/badgeView">
-                <Icon type="list"></Icon>
-                test
-            </MenuItem>
-            <MenuItem c-key="checkbox-1" name="checkbox" to="/badgeView">
-                <Icon type="list"></Icon>
-                checkbox
-            </MenuItem>
-            <MenuItem c-key="radio-1" name="radio" to="/badgeView">
-                <Icon type="list"></Icon>
-                radio
-            </MenuItem>
-        </Menu>
+<!--                    <MenuItem c-key="input-1-2" name="input" to="/inputView" icon="list">-->
+<!--                        <Icon type="list"></Icon>-->
+<!--                        <span>input</span>-->
+<!--                    </MenuItem>-->
+<!--                    <MenuItem c-key="badge-1-2" name="badge" to="/badgeView">-->
+<!--                        <Icon type="list"></Icon>-->
+<!--                        <span>badge</span>-->
+<!--                    </MenuItem>-->
+<!--                </Submenu>-->
+<!--            </Submenu>-->
+<!--            <Submenu c-key="submenu-sub-2" icon="home" disabled name="submenu2">-->
+<!--                <MenuItem c-key="button-2" name="button2" to="/buttonView"></MenuItem>-->
+<!--                <MenuItem c-key="input-2" name="input2" to="/inputView" icon="list"></MenuItem>-->
+<!--                <MenuItem c-key="badge-2" name="badge2" to="/badgeView"></MenuItem>-->
+<!--            </Submenu>-->
+<!--            <Submenu c-key="submenu-sub-3" icon="home" name="submenu3">-->
+<!--                <MenuGroup name="groupTitle3">-->
+<!--                    <MenuItem c-key="button-3-1" name="button3-1" to="/buttonView"></MenuItem>-->
+<!--                    <MenuItem c-key="input-3-1" name="input3-1" to="/inputView" icon="list"></MenuItem>-->
+<!--                    <MenuItem c-key="badge-3-1" name="badge3-1" to="/badgeView"></MenuItem>-->
+<!--                </MenuGroup>-->
+<!--                <MenuGroup name="groupTitle3-2">-->
+<!--                    <MenuItem c-key="button-3-2" name="button3-2" to="/buttonView"></MenuItem>-->
+<!--                    <MenuItem c-key="input-3-2" name="input3-2" to="/inputView" icon="list"></MenuItem>-->
+<!--                    <MenuItem c-key="badge-3-2" name="badge3-2" to="/badgeView"></MenuItem>-->
+<!--                </MenuGroup>-->
+<!--            </Submenu>-->
+<!--        </Menu>-->
+
+<!--        <h4>mode=vertical,theme=light</h4>-->
+<!--        <Menu @open-change="handlerOpenChange" @select="handlerSelect" width="300px">-->
+<!--            <MenuItem c-key="button-item-1" name="button-item" to="/buttonView">-->
+<!--                <Icon type="list"></Icon>-->
+<!--                <span>button-item</span>-->
+<!--            </MenuItem>-->
+<!--            <Submenu c-key="submenu-sub-1" icon="home" name="submenu">-->
+<!--                <MenuItem c-key="button-1" disabled name="button" to="/buttonView">-->
+<!--                    <Icon type="list"></Icon>-->
+<!--                    <span>button</span>-->
+<!--                </MenuItem>-->
+<!--                <MenuItem c-key="input-1" name="input" to="/inputView" icon="list">-->
+<!--                    <Icon type="list"></Icon>-->
+<!--                    <span>input</span>-->
+<!--                </MenuItem>-->
+<!--                <MenuItem c-key="badge-1" name="badge" to="/badgeView">-->
+<!--                    <Icon type="list"></Icon>-->
+<!--                    <span>badge</span>-->
+<!--                </MenuItem>-->
+<!--                <Submenu c-key="submenu-sub-1-2" name="submenu1-2">-->
+<!--                    <MenuItem c-key="button-1-2" name="button" to="/buttonView">-->
+<!--                        <Icon type="list"></Icon>-->
+<!--                        <span>button</span>-->
+<!--                    </MenuItem>-->
+<!--                    <MenuGroup name="groupTitle1-2-1">-->
+<!--                        <MenuItem c-key="button-1-2-1" name="button" to="/buttonView">-->
+<!--                            <Icon type="list"></Icon>-->
+<!--                            <span>button</span>-->
+<!--                        </MenuItem>-->
+<!--                        <MenuItem c-key="input-1-2-1" name="input" to="/inputView" icon="list">-->
+<!--                            <Icon type="list"></Icon>-->
+<!--                            <span>input</span>-->
+<!--                        </MenuItem>-->
+<!--                        <MenuItem c-key="badge-1-2-1" name="badge" to="/badgeView">-->
+<!--                            <Icon type="list"></Icon>-->
+<!--                            <span>badge</span>-->
+<!--                        </MenuItem>-->
+<!--                    </MenuGroup>-->
+
+<!--                    <MenuItem c-key="input-1-2" name="input" to="/inputView" icon="list">-->
+<!--                        <Icon type="list"></Icon>-->
+<!--                        <span>input</span>-->
+<!--                    </MenuItem>-->
+<!--                    <MenuItem c-key="badge-1-2" name="badge" to="/badgeView">-->
+<!--                        <Icon type="list"></Icon>-->
+<!--                        <span>badge</span>-->
+<!--                    </MenuItem>-->
+<!--                </Submenu>-->
+<!--            </Submenu>-->
+<!--            <Submenu c-key="submenu-sub-2" icon="home" disabled name="submenu2">-->
+<!--                <MenuItem c-key="button-2" name="button2" to="/buttonView"></MenuItem>-->
+<!--                <MenuItem c-key="input-2" name="input2" to="/inputView" icon="list"></MenuItem>-->
+<!--                <MenuItem c-key="badge-2" name="badge2" to="/badgeView"></MenuItem>-->
+<!--            </Submenu>-->
+<!--            <Submenu c-key="submenu-sub-3" icon="home" name="submenu3">-->
+<!--                <MenuGroup name="groupTitle3">-->
+<!--                    <MenuItem c-key="button-3-1" name="button3-1" to="/buttonView"></MenuItem>-->
+<!--                    <MenuItem c-key="input-3-1" name="input3-1" to="/inputView" icon="list"></MenuItem>-->
+<!--                    <MenuItem c-key="badge-3-1" name="badge3-1" to="/badgeView"></MenuItem>-->
+<!--                </MenuGroup>-->
+<!--                <MenuGroup name="groupTitle3-2">-->
+<!--                    <MenuItem c-key="button-3-2" name="button3-2" to="/buttonView"></MenuItem>-->
+<!--                    <MenuItem c-key="input-3-2" name="input3-2" to="/inputView" icon="list"></MenuItem>-->
+<!--                    <MenuItem c-key="badge-3-2" name="badge3-2" to="/badgeView"></MenuItem>-->
+<!--                </MenuGroup>-->
+<!--            </Submenu>-->
+<!--        </Menu>-->
+
+<!--        <h4>mode=vertical,theme=light,accordion(手风琴模式)</h4>-->
+<!--        <Menu @open-change="handlerOpenChange" @select="handlerSelect" accordion width="300px">-->
+<!--            <MenuItem c-key="button-item-1" name="button-item" to="/buttonView">-->
+<!--                <Icon type="list"></Icon>-->
+<!--                <span>button-item</span>-->
+<!--            </MenuItem>-->
+<!--            <Submenu c-key="submenu-sub-1" name="submenu">-->
+<!--                <MenuItem c-key="button-1" name="button" to="/buttonView">-->
+<!--                    <Icon type="list"></Icon>-->
+<!--                    <span>button</span>-->
+<!--                </MenuItem>-->
+<!--                <MenuItem c-key="input-1" name="input" to="/inputView" icon="list">-->
+<!--                    <Icon type="list"></Icon>-->
+<!--                    <span>input</span>-->
+<!--                </MenuItem>-->
+<!--                <MenuItem c-key="badge-1" name="badge" to="/badgeView">-->
+<!--                    <Icon type="list"></Icon>-->
+<!--                    <span>badge</span>-->
+<!--                </MenuItem>-->
+<!--                <Submenu c-key="submenu-sub-1-2" name="submenu1-2">-->
+<!--                    <MenuItem c-key="button-1-2" name="button" to="/buttonView">-->
+<!--                        <Icon type="list"></Icon>-->
+<!--                        <span>button</span>-->
+<!--                    </MenuItem>-->
+<!--                    <MenuGroup name="groupTitle1-2-1">-->
+<!--                        <MenuItem c-key="button-1-2-1" name="button" to="/buttonView">-->
+<!--                            <Icon type="list"></Icon>-->
+<!--                            <span>button</span>-->
+<!--                        </MenuItem>-->
+<!--                        <MenuItem c-key="input-1-2-1" name="input" to="/inputView" icon="list">-->
+<!--                            <Icon type="list"></Icon>-->
+<!--                            <span>input</span>-->
+<!--                        </MenuItem>-->
+<!--                        <MenuItem c-key="badge-1-2-1" name="badge" to="/badgeView">-->
+<!--                            <Icon type="list"></Icon>-->
+<!--                            <span>badge</span>-->
+<!--                        </MenuItem>-->
+<!--                    </MenuGroup>-->
+
+<!--                    <MenuItem c-key="input-1-2" name="input" to="/inputView" icon="list">-->
+<!--                        <Icon type="list"></Icon>-->
+<!--                        <span>input</span>-->
+<!--                    </MenuItem>-->
+<!--                    <MenuItem c-key="badge-1-2" name="badge" to="/badgeView">-->
+<!--                        <Icon type="list"></Icon>-->
+<!--                        <span>badge</span>-->
+<!--                    </MenuItem>-->
+<!--                </Submenu>-->
+<!--            </Submenu>-->
+<!--            <Submenu c-key="submenu-sub-2" name="submenu2">-->
+<!--                <MenuItem c-key="button-2" name="button2" to="/buttonView"></MenuItem>-->
+<!--                <MenuItem c-key="input-2" name="input2" to="/inputView" icon="list"></MenuItem>-->
+<!--                <MenuItem c-key="badge-2" name="badge2" to="/badgeView"></MenuItem>-->
+<!--            </Submenu>-->
+<!--            <Submenu c-key="submenu-sub-3" name="submenu3">-->
+<!--                <MenuGroup name="groupTitle3">-->
+<!--                    <MenuItem c-key="button-3-1" name="button3-1" to="/buttonView"></MenuItem>-->
+<!--                    <MenuItem c-key="input-3-1" name="input3-1" to="/inputView" icon="list"></MenuItem>-->
+<!--                    <MenuItem c-key="badge-3-1" name="badge3-1" to="/badgeView"></MenuItem>-->
+<!--                </MenuGroup>-->
+<!--                <MenuGroup name="groupTitle3-2">-->
+<!--                    <MenuItem c-key="button-3-2" name="button3-2" to="/buttonView"></MenuItem>-->
+<!--                    <MenuItem c-key="input-3-2" name="input3-2" to="/inputView" icon="list"></MenuItem>-->
+<!--                    <MenuItem c-key="badge-3-2" name="badge3-2" to="/badgeView"></MenuItem>-->
+<!--                </MenuGroup>-->
+<!--            </Submenu>-->
+<!--        </Menu>-->
+
+<!--        <h4>mode=vertical,theme=dark</h4>-->
+<!--        <Menu @open-change="handlerOpenChange" @select="handlerSelect" theme="dark" width="300px">-->
+<!--            <MenuItem c-key="button-item-1" name="button-item" to="/buttonView">-->
+<!--                <Icon type="list"></Icon>-->
+<!--                <span>button-item</span>-->
+<!--            </MenuItem>-->
+<!--            <Submenu c-key="submenu-sub-1" name="submenu">-->
+<!--                <MenuItem c-key="button-1" name="button" to="/buttonView">-->
+<!--                    <Icon type="list"></Icon>-->
+<!--                    <span>button</span>-->
+<!--                </MenuItem>-->
+<!--                <MenuItem c-key="input-1" name="input" to="/inputView" icon="list">-->
+<!--                    <Icon type="list"></Icon>-->
+<!--                    <span>input</span>-->
+<!--                </MenuItem>-->
+<!--                <MenuItem c-key="badge-1" name="badge" to="/badgeView">-->
+<!--                    <Icon type="list"></Icon>-->
+<!--                    <span>badge</span>-->
+<!--                </MenuItem>-->
+<!--                <Submenu c-key="submenu-sub-1-2" name="submenu1-2">-->
+<!--                    <MenuItem c-key="button-1-2" name="button" to="/buttonView">-->
+<!--                        <Icon type="list"></Icon>-->
+<!--                        <span>button</span>-->
+<!--                    </MenuItem>-->
+<!--                    <MenuGroup name="groupTitle1-2-1">-->
+<!--                        <MenuItem c-key="button-1-2-1" name="button" to="/buttonView">-->
+<!--                            <Icon type="list"></Icon>-->
+<!--                            <span>button</span>-->
+<!--                        </MenuItem>-->
+<!--                        <MenuItem c-key="input-1-2-1" name="input" to="/inputView" icon="list">-->
+<!--                            <Icon type="list"></Icon>-->
+<!--                            <span>input</span>-->
+<!--                        </MenuItem>-->
+<!--                        <MenuItem c-key="badge-1-2-1" name="badge" to="/badgeView">-->
+<!--                            <Icon type="list"></Icon>-->
+<!--                            <span>badge</span>-->
+<!--                        </MenuItem>-->
+<!--                    </MenuGroup>-->
+
+<!--                    <MenuItem c-key="input-1-2" name="input" to="/inputView" icon="list">-->
+<!--                        <Icon type="list"></Icon>-->
+<!--                        <span>input</span>-->
+<!--                    </MenuItem>-->
+<!--                    <MenuItem c-key="badge-1-2" name="badge" to="/badgeView">-->
+<!--                        <Icon type="list"></Icon>-->
+<!--                        <span>badge</span>-->
+<!--                    </MenuItem>-->
+<!--                </Submenu>-->
+<!--            </Submenu>-->
+<!--            <Submenu c-key="submenu-sub-2" name="submenu2">-->
+<!--                <MenuItem c-key="button-2" name="button2" to="/buttonView"></MenuItem>-->
+<!--                <MenuItem c-key="input-2" name="input2" to="/inputView" icon="list"></MenuItem>-->
+<!--                <MenuItem c-key="badge-2" name="badge2" to="/badgeView"></MenuItem>-->
+<!--            </Submenu>-->
+<!--            <Submenu c-key="submenu-sub-3" name="submenu3">-->
+<!--                <MenuGroup name="groupTitle3">-->
+<!--                    <MenuItem c-key="button-3-1" name="button3-1" to="/buttonView"></MenuItem>-->
+<!--                    <MenuItem c-key="input-3-1" name="input3-1" to="/inputView" icon="list"></MenuItem>-->
+<!--                    <MenuItem c-key="badge-3-1" name="badge3-1" to="/badgeView"></MenuItem>-->
+<!--                </MenuGroup>-->
+<!--                <MenuGroup name="groupTitle3-2">-->
+<!--                    <MenuItem c-key="button-3-2" name="button3-2" to="/buttonView"></MenuItem>-->
+<!--                    <MenuItem c-key="input-3-2" name="input3-2" to="/inputView" icon="list"></MenuItem>-->
+<!--                    <MenuItem c-key="badge-3-2" name="badge3-2" to="/badgeView"></MenuItem>-->
+<!--                </MenuGroup>-->
+<!--            </Submenu>-->
+<!--        </Menu>-->
+<!--        <h4>mode=vertical,theme=dark,accordion(手风琴模式)</h4>-->
+<!--        <Menu @open-change="handlerOpenChange" @select="handlerSelect" accordion theme="dark" width="300px">-->
+<!--            <MenuItem c-key="button-item-1" name="button-item" to="/buttonView">-->
+<!--                <Icon type="list"></Icon>-->
+<!--                <span>button-item</span>-->
+<!--            </MenuItem>-->
+<!--            <Submenu c-key="submenu-sub-1" name="submenu">-->
+<!--                <MenuItem c-key="button-1" name="button" to="/buttonView">-->
+<!--                    <Icon type="list"></Icon>-->
+<!--                    <span>button</span>-->
+<!--                </MenuItem>-->
+<!--                <MenuItem c-key="input-1" name="input" to="/inputView" icon="list">-->
+<!--                    <Icon type="list"></Icon>-->
+<!--                    <span>input</span>-->
+<!--                </MenuItem>-->
+<!--                <MenuItem c-key="badge-1" name="badge" to="/badgeView">-->
+<!--                    <Icon type="list"></Icon>-->
+<!--                    <span>badge</span>-->
+<!--                </MenuItem>-->
+<!--                <Submenu c-key="submenu-sub-1-2" name="submenu1-2">-->
+<!--                    <MenuItem c-key="button-1-2" name="button" to="/buttonView">-->
+<!--                        <Icon type="list"></Icon>-->
+<!--                        <span>button</span>-->
+<!--                    </MenuItem>-->
+<!--                    <MenuGroup name="groupTitle1-2-1">-->
+<!--                        <MenuItem c-key="button-1-2-1" name="button" to="/buttonView">-->
+<!--                            <Icon type="list"></Icon>-->
+<!--                            <span>button</span>-->
+<!--                        </MenuItem>-->
+<!--                        <MenuItem c-key="input-1-2-1" name="input" to="/inputView" icon="list">-->
+<!--                            <Icon type="list"></Icon>-->
+<!--                            <span>input</span>-->
+<!--                        </MenuItem>-->
+<!--                        <MenuItem c-key="badge-1-2-1" name="badge" to="/badgeView">-->
+<!--                            <Icon type="list"></Icon>-->
+<!--                            <span>badge</span>-->
+<!--                        </MenuItem>-->
+<!--                    </MenuGroup>-->
+
+<!--                    <MenuItem c-key="input-1-2" name="input" to="/inputView" icon="list">-->
+<!--                        <Icon type="list"></Icon>-->
+<!--                        <span>input</span>-->
+<!--                    </MenuItem>-->
+<!--                    <MenuItem c-key="badge-1-2" name="badge" to="/badgeView">-->
+<!--                        <Icon type="list"></Icon>-->
+<!--                        <span>badge</span>-->
+<!--                    </MenuItem>-->
+<!--                </Submenu>-->
+<!--            </Submenu>-->
+<!--            <Submenu c-key="submenu-sub-2" name="submenu2">-->
+<!--                <MenuItem c-key="button-2" name="button2" to="/buttonView"></MenuItem>-->
+<!--                <MenuItem c-key="input-2" name="input2" to="/inputView" icon="list"></MenuItem>-->
+<!--                <MenuItem c-key="badge-2" name="badge2" to="/badgeView"></MenuItem>-->
+<!--            </Submenu>-->
+<!--            <Submenu c-key="submenu-sub-3" name="submenu3">-->
+<!--                <MenuGroup name="groupTitle3">-->
+<!--                    <MenuItem c-key="button-3-1" name="button3-1" to="/buttonView"></MenuItem>-->
+<!--                    <MenuItem c-key="input-3-1" name="input3-1" to="/inputView" icon="list"></MenuItem>-->
+<!--                    <MenuItem c-key="badge-3-1" name="badge3-1" to="/badgeView"></MenuItem>-->
+<!--                </MenuGroup>-->
+<!--                <MenuGroup name="groupTitle3-2">-->
+<!--                    <MenuItem c-key="button-3-2" name="button3-2" to="/buttonView"></MenuItem>-->
+<!--                    <MenuItem c-key="input-3-2" name="input3-2" to="/inputView" icon="list"></MenuItem>-->
+<!--                    <MenuItem c-key="badge-3-2" name="badge3-2" to="/badgeView"></MenuItem>-->
+<!--                </MenuGroup>-->
+<!--            </Submenu>-->
+<!--        </Menu>-->
+
+<!--        <h4>mode=vertical,theme=green</h4>-->
+<!--        <Menu @open-change="handlerOpenChange" @select="handlerSelect" theme="green" width="300px">-->
+<!--            <MenuItem c-key="button-item-1" name="button-item" to="/buttonView">-->
+<!--                <Icon type="list"></Icon>-->
+<!--                <span>button-item</span>-->
+<!--            </MenuItem>-->
+<!--            <Submenu c-key="submenu-sub-1" name="submenu">-->
+<!--                <MenuItem c-key="button-1" name="button" to="/buttonView">-->
+<!--                    <Icon type="list"></Icon>-->
+<!--                    <span>button</span>-->
+<!--                </MenuItem>-->
+<!--                <MenuItem c-key="input-1" name="input" to="/inputView" icon="list">-->
+<!--                    <Icon type="list"></Icon>-->
+<!--                    <span>input</span>-->
+<!--                </MenuItem>-->
+<!--                <MenuItem c-key="badge-1" name="badge" to="/badgeView">-->
+<!--                    <Icon type="list"></Icon>-->
+<!--                    <span>badge</span>-->
+<!--                </MenuItem>-->
+<!--                <Submenu c-key="submenu-sub-1-2" name="submenu1-2">-->
+<!--                    <MenuItem c-key="button-1-2" name="button" to="/buttonView">-->
+<!--                        <Icon type="list"></Icon>-->
+<!--                        <span>button</span>-->
+<!--                    </MenuItem>-->
+<!--                    <MenuGroup name="groupTitle1-2-1">-->
+<!--                        <MenuItem c-key="button-1-2-1" name="button" to="/buttonView">-->
+<!--                            <Icon type="list"></Icon>-->
+<!--                            <span>button</span>-->
+<!--                        </MenuItem>-->
+<!--                        <MenuItem c-key="input-1-2-1" name="input" to="/inputView" icon="list">-->
+<!--                            <Icon type="list"></Icon>-->
+<!--                            <span>input</span>-->
+<!--                        </MenuItem>-->
+<!--                        <MenuItem c-key="badge-1-2-1" name="badge" to="/badgeView">-->
+<!--                            <Icon type="list"></Icon>-->
+<!--                            <span>badge</span>-->
+<!--                        </MenuItem>-->
+<!--                    </MenuGroup>-->
+
+<!--                    <MenuItem c-key="input-1-2" name="input" to="/inputView" icon="list">-->
+<!--                        <Icon type="list"></Icon>-->
+<!--                        <span>input</span>-->
+<!--                    </MenuItem>-->
+<!--                    <MenuItem c-key="badge-1-2" name="badge" to="/badgeView">-->
+<!--                        <Icon type="list"></Icon>-->
+<!--                        <span>badge</span>-->
+<!--                    </MenuItem>-->
+<!--                </Submenu>-->
+<!--            </Submenu>-->
+<!--            <Submenu c-key="submenu-sub-2" name="submenu2">-->
+<!--                <MenuItem c-key="button-2" name="button2" to="/buttonView"></MenuItem>-->
+<!--                <MenuItem c-key="input-2" name="input2" to="/inputView" icon="list"></MenuItem>-->
+<!--                <MenuItem c-key="badge-2" name="badge2" to="/badgeView"></MenuItem>-->
+<!--            </Submenu>-->
+<!--            <Submenu c-key="submenu-sub-3" name="submenu3">-->
+<!--                <MenuGroup name="groupTitle3">-->
+<!--                    <MenuItem c-key="button-3-1" name="button3-1" to="/buttonView"></MenuItem>-->
+<!--                    <MenuItem c-key="input-3-1" name="input3-1" to="/inputView" icon="list"></MenuItem>-->
+<!--                    <MenuItem c-key="badge-3-1" name="badge3-1" to="/badgeView"></MenuItem>-->
+<!--                </MenuGroup>-->
+<!--                <MenuGroup name="groupTitle3-2">-->
+<!--                    <MenuItem c-key="button-3-2" name="button3-2" to="/buttonView"></MenuItem>-->
+<!--                    <MenuItem c-key="input-3-2" name="input3-2" to="/inputView" icon="list"></MenuItem>-->
+<!--                    <MenuItem c-key="badge-3-2" name="badge3-2" to="/badgeView"></MenuItem>-->
+<!--                </MenuGroup>-->
+<!--            </Submenu>-->
+<!--        </Menu>-->
+<!--        <h4>mode=vertical,theme=green,accordion(手风琴模式)</h4>-->
+<!--        <Menu @open-change="handlerOpenChange" @select="handlerSelect" accordion theme="green" width="300px">-->
+<!--            <MenuItem c-key="button-item-1" name="button-item" to="/buttonView">-->
+<!--                <Icon type="list"></Icon>-->
+<!--                <span>button-item</span>-->
+<!--            </MenuItem>-->
+<!--            <Submenu c-key="submenu-sub-1" name="submenu">-->
+<!--                <MenuItem c-key="button-1" name="button" to="/buttonView">-->
+<!--                    <Icon type="list"></Icon>-->
+<!--                    <span>button</span>-->
+<!--                </MenuItem>-->
+<!--                <MenuItem c-key="input-1" name="input" to="/inputView" icon="list">-->
+<!--                    <Icon type="list"></Icon>-->
+<!--                    <span>input</span>-->
+<!--                </MenuItem>-->
+<!--                <MenuItem c-key="badge-1" name="badge" to="/badgeView">-->
+<!--                    <Icon type="list"></Icon>-->
+<!--                    <span>badge</span>-->
+<!--                </MenuItem>-->
+<!--                <Submenu c-key="submenu-sub-1-2" name="submenu1-2">-->
+<!--                    <MenuItem c-key="button-1-2" name="button" to="/buttonView">-->
+<!--                        <Icon type="list"></Icon>-->
+<!--                        <span>button</span>-->
+<!--                    </MenuItem>-->
+<!--                    <MenuGroup name="groupTitle1-2-1">-->
+<!--                        <MenuItem c-key="button-1-2-1" name="button" to="/buttonView">-->
+<!--                            <Icon type="list"></Icon>-->
+<!--                            <span>button</span>-->
+<!--                        </MenuItem>-->
+<!--                        <MenuItem c-key="input-1-2-1" name="input" to="/inputView" icon="list">-->
+<!--                            <Icon type="list"></Icon>-->
+<!--                            <span>input</span>-->
+<!--                        </MenuItem>-->
+<!--                        <MenuItem c-key="badge-1-2-1" name="badge" to="/badgeView">-->
+<!--                            <Icon type="list"></Icon>-->
+<!--                            <span>badge</span>-->
+<!--                        </MenuItem>-->
+<!--                    </MenuGroup>-->
+
+<!--                    <MenuItem c-key="input-1-2" name="input" to="/inputView" icon="list">-->
+<!--                        <Icon type="list"></Icon>-->
+<!--                        <span>input</span>-->
+<!--                    </MenuItem>-->
+<!--                    <MenuItem c-key="badge-1-2" name="badge" to="/badgeView">-->
+<!--                        <Icon type="list"></Icon>-->
+<!--                        <span>badge</span>-->
+<!--                    </MenuItem>-->
+<!--                </Submenu>-->
+<!--            </Submenu>-->
+<!--            <Submenu c-key="submenu-sub-2" name="submenu2">-->
+<!--                <MenuItem c-key="button-2" name="button2" to="/buttonView"></MenuItem>-->
+<!--                <MenuItem c-key="input-2" name="input2" to="/inputView" icon="list"></MenuItem>-->
+<!--                <MenuItem c-key="badge-2" name="badge2" to="/badgeView"></MenuItem>-->
+<!--            </Submenu>-->
+<!--            <Submenu c-key="submenu-sub-3" name="submenu3">-->
+<!--                <MenuGroup name="groupTitle3">-->
+<!--                    <MenuItem c-key="button-3-1" name="button3-1" to="/buttonView"></MenuItem>-->
+<!--                    <MenuItem c-key="input-3-1" name="input3-1" to="/inputView" icon="list"></MenuItem>-->
+<!--                    <MenuItem c-key="badge-3-1" name="badge3-1" to="/badgeView"></MenuItem>-->
+<!--                </MenuGroup>-->
+<!--                <MenuGroup name="groupTitle3-2">-->
+<!--                    <MenuItem c-key="button-3-2" name="button3-2" to="/buttonView"></MenuItem>-->
+<!--                    <MenuItem c-key="input-3-2" name="input3-2" to="/inputView" icon="list"></MenuItem>-->
+<!--                    <MenuItem c-key="badge-3-2" name="badge3-2" to="/badgeView"></MenuItem>-->
+<!--                </MenuGroup>-->
+<!--            </Submenu>-->
+<!--        </Menu>-->
+
+<!--        <h4>mode=horizontal,theme=light</h4>-->
+<!--        <Menu @open-change="handlerOpenChange" @select="handlerSelect" mode="horizontal">-->
+<!--            <Submenu c-key="submenu-1" name="submenusubmenu-1">-->
+<!--                <MenuItem c-key="button-1" name="button" to="/buttonView">-->
+<!--                    <Icon type="list"></Icon>-->
+<!--                    buttonbuttonbuttonbuttonbuttonbuttonbuttonbutton-->
+<!--                </MenuItem>-->
+<!--                <MenuItem c-key="input-1" name="input" to="/inputView" icon="list">-->
+<!--                    <Icon type="list"></Icon>-->
+<!--                    input-->
+<!--                </MenuItem>-->
+<!--            </Submenu>-->
+<!--            <Submenu c-key="submenu-2" name="submenusubmenu-2">-->
+<!--                <MenuGroup name="group1">-->
+<!--                    <MenuItem c-key="group1-badge-1" name="group1-badge" to="/badgeView">-->
+<!--                        <Icon type="list"></Icon>-->
+<!--                        group1-badge-->
+<!--                    </MenuItem>-->
+<!--                </MenuGroup>-->
+<!--                <MenuGroup name="group2">-->
+<!--                    <MenuItem c-key="group2-badge-1" name="group2-badge" to="/badgeView">-->
+<!--                        <Icon type="list"></Icon>-->
+<!--                        group2-badge-->
+<!--                    </MenuItem>-->
+<!--                </MenuGroup>-->
+<!--            </Submenu>-->
+<!--            <MenuItem c-key="badge-1" name="badge" to="/badgeView">-->
+<!--                <Icon type="list"></Icon>-->
+<!--                badge-->
+<!--            </MenuItem>-->
+<!--            <MenuItem c-key="list-1" name="list" to="/badgeView">-->
+<!--                <Icon type="list"></Icon>-->
+<!--                list-->
+<!--            </MenuItem>-->
+<!--            <MenuItem c-key="test-1" name="test" to="/badgeView">-->
+<!--                <Icon type="list"></Icon>-->
+<!--                test-->
+<!--            </MenuItem>-->
+<!--            <MenuItem c-key="checkbox-1" name="checkbox" to="/badgeView">-->
+<!--                <Icon type="list"></Icon>-->
+<!--                checkbox-->
+<!--            </MenuItem>-->
+<!--            <MenuItem c-key="radio-1" name="radio" to="/badgeView">-->
+<!--                <Icon type="list"></Icon>-->
+<!--                radio-->
+<!--            </MenuItem>-->
+<!--        </Menu>-->
 
 
-        <h4>mode=horizontal,theme=green,size=small</h4>
-        <Menu @open-change="handlerOpenChange" @select="handlerSelect" size="small" theme="green" mode="horizontal">
-            <Submenu c-key="submenu-1" name="submenusubmenu-1">
-                <MenuItem c-key="button-1" name="button" to="/buttonView">
-                    <Icon type="list"></Icon>
-                    buttonbuttonbuttonbuttonbuttonbuttonbuttonbutton
-                </MenuItem>
-                <MenuItem c-key="input-1" name="input" to="/inputView" icon="list">
-                    <Icon type="list"></Icon>
-                    input
-                </MenuItem>
-            </Submenu>
-            <Submenu c-key="submenu-2" name="submenusubmenu-2">
-                <MenuGroup name="group1">
-                    <MenuItem c-key="group1-badge-1" name="group1-badge" to="/badgeView">
-                        <Icon type="list"></Icon>
-                        group1-badge
-                    </MenuItem>
-                </MenuGroup>
-                <MenuGroup name="group2">
-                    <MenuItem c-key="group2-badge-1" name="group2-badge" to="/badgeView">
-                        <Icon type="list"></Icon>
-                        group2-badge
-                    </MenuItem>
-                </MenuGroup>
-            </Submenu>
-            <MenuItem c-key="badge-1" name="badge" to="/badgeView">
-                <Icon type="list"></Icon>
-                badge
-            </MenuItem>
-            <MenuItem c-key="list-1" name="list" to="/badgeView">
-                <Icon type="list"></Icon>
-                list
-            </MenuItem>
-            <MenuItem c-key="test-1" name="test" to="/badgeView">
-                <Icon type="list"></Icon>
-                test
-            </MenuItem>
-            <MenuItem c-key="checkbox-1" name="checkbox" to="/badgeView">
-                <Icon type="list"></Icon>
-                checkbox
-            </MenuItem>
-            <MenuItem c-key="radio-1" name="radio" to="/badgeView">
-                <Icon type="list"></Icon>
-                radio
-            </MenuItem>
-        </Menu>
-        <h4>horizontal--dark,size--default</h4>
-        <Menu @open-change="handlerOpenChange" @select="handlerSelect" size="default" theme="green" mode="horizontal">
-            <Submenu c-key="submenu-1" name="submenu-1">
-                <MenuItem c-key="button-1" name="button" to="/buttonView">
-                    <Icon type="list"></Icon>
-                    buttonbuttonbuttonbuttonbuttonbuttonbuttonbutton
-                </MenuItem>
-                <MenuItem c-key="input-1" name="input" to="/inputView" icon="list">
-                    <Icon type="list"></Icon>
-                    input
-                </MenuItem>
-                <Submenu c-key="submenu-submenu-1" name="submenusubmenu-1">
-                    <MenuItem c-key="button-submenu-1" name="submenu-button" to="/buttonView">
-                        <Icon type="list"></Icon>
-                        submenu-button
-                    </MenuItem>
-                    <MenuItem c-key="input-submenu-1" name="submenu-input" to="/inputView" icon="list">
-                        <Icon type="list"></Icon>
-                        submenu-input
-                    </MenuItem>
-                </Submenu>
-            </Submenu>
-            <Submenu c-key="submenu-2" name="submenusubmenu-2">
-                <MenuGroup name="group1">
-                    <MenuItem c-key="group1-badge-1" name="group1-badge" to="/badgeView">
-                        <Icon type="list"></Icon>
-                        group1-badge
-                    </MenuItem>
-                </MenuGroup>
-                <MenuGroup name="group2">
-                    <MenuItem c-key="group2-badge-1" name="group2-badge" to="/badgeView">
-                        <Icon type="list"></Icon>
-                        group2-badge
-                    </MenuItem>
-                </MenuGroup>
-            </Submenu>
-            <MenuItem c-key="badge-1" name="badge" to="/badgeView">
-                <Icon type="list"></Icon>
-                badge
-            </MenuItem>
-            <MenuItem c-key="list-1" name="list" to="/badgeView">
-                <Icon type="list"></Icon>
-                list
-            </MenuItem>
-            <MenuItem c-key="test-1" name="test" to="/badgeView">
-                <Icon type="list"></Icon>
-                test
-            </MenuItem>
-            <MenuItem c-key="checkbox-1" name="checkbox" to="/badgeView">
-                <Icon type="list"></Icon>
-                checkbox
-            </MenuItem>
-            <MenuItem c-key="radio-1" name="radio" to="/badgeView">
-                <Icon type="list"></Icon>
-                radio
-            </MenuItem>
-        </Menu>
-        <h4>horizontal--dark,size--large</h4>
-        <Menu @open-change="handlerOpenChange" @select="handlerSelect" size="large" theme="green" mode="horizontal">
-            <Submenu c-key="submenu-1" name="submenusubmenu-1">
-                <MenuItem c-key="button-1" name="button" to="/buttonView">
-                    <Icon type="list"></Icon>
-                    buttonbuttonbuttonbuttonbuttonbuttonbuttonbutton
-                </MenuItem>
-                <MenuItem c-key="input-1" name="input" to="/inputView" icon="list">
-                    <Icon type="list"></Icon>
-                    input
-                </MenuItem>
-            </Submenu>
-            <Submenu c-key="submenu-2" name="submenusubmenu-2">
-                <MenuGroup name="group1">
-                    <MenuItem c-key="group1-badge-1" name="group1-badge" to="/badgeView">
-                        <Icon type="list"></Icon>
-                        group1-badge
-                    </MenuItem>
-                </MenuGroup>
-                <MenuGroup name="group2">
-                    <MenuItem c-key="group2-badge-1" name="group2-badge" to="/badgeView">
-                        <Icon type="list"></Icon>
-                        group2-badge
-                    </MenuItem>
-                </MenuGroup>
-            </Submenu>
-            <MenuItem c-key="badge-1" name="badge" to="/badgeView">
-                <Icon type="list"></Icon>
-                badge
-            </MenuItem>
-            <MenuItem c-key="list-1" name="list" to="/badgeView">
-                <Icon type="list"></Icon>
-                list
-            </MenuItem>
-            <MenuItem c-key="test-1" name="test" to="/badgeView">
-                <Icon type="list"></Icon>
-                test
-            </MenuItem>
-            <MenuItem c-key="checkbox-1" name="checkbox" to="/badgeView">
-                <Icon type="list"></Icon>
-                checkbox
-            </MenuItem>
-            <MenuItem c-key="radio-1" name="radio" to="/badgeView">
-                <Icon type="list"></Icon>
-                radio
-            </MenuItem>
-        </Menu>
+<!--        <h4>mode=horizontal,theme=dark</h4>-->
+<!--        <Menu @open-change="handlerOpenChange" @select="handlerSelect" theme="dark" mode="horizontal">-->
+<!--            <Submenu c-key="submenu-1" name="submenusubmenu-1">-->
+<!--                <MenuItem c-key="button-1" name="button" to="/buttonView">-->
+<!--                    <Icon type="list"></Icon>-->
+<!--                    buttonbuttonbuttonbuttonbuttonbuttonbuttonbutton-->
+<!--                </MenuItem>-->
+<!--                <MenuItem c-key="input-1" name="input" to="/inputView" icon="list">-->
+<!--                    <Icon type="list"></Icon>-->
+<!--                    input-->
+<!--                </MenuItem>-->
+<!--            </Submenu>-->
+<!--            <Submenu c-key="submenu-2" name="submenusubmenu-2">-->
+<!--                <MenuGroup name="group1">-->
+<!--                    <MenuItem c-key="group1-badge-1" name="group1-badge" to="/badgeView">-->
+<!--                        <Icon type="list"></Icon>-->
+<!--                        group1-badge-->
+<!--                    </MenuItem>-->
+<!--                </MenuGroup>-->
+<!--                <MenuGroup name="group2">-->
+<!--                    <MenuItem c-key="group2-badge-1" name="group2-badge" to="/badgeView">-->
+<!--                        <Icon type="list"></Icon>-->
+<!--                        group2-badge-->
+<!--                    </MenuItem>-->
+<!--                </MenuGroup>-->
+<!--            </Submenu>-->
+<!--            <MenuItem c-key="badge-1" name="badge" to="/badgeView">-->
+<!--                <Icon type="list"></Icon>-->
+<!--                badge-->
+<!--            </MenuItem>-->
+<!--            <MenuItem c-key="list-1" name="list" to="/badgeView">-->
+<!--                <Icon type="list"></Icon>-->
+<!--                list-->
+<!--            </MenuItem>-->
+<!--            <MenuItem c-key="test-1" name="test" to="/badgeView">-->
+<!--                <Icon type="list"></Icon>-->
+<!--                test-->
+<!--            </MenuItem>-->
+<!--            <MenuItem c-key="checkbox-1" name="checkbox" to="/badgeView">-->
+<!--                <Icon type="list"></Icon>-->
+<!--                checkbox-->
+<!--            </MenuItem>-->
+<!--            <MenuItem c-key="radio-1" name="radio" to="/badgeView">-->
+<!--                <Icon type="list"></Icon>-->
+<!--                radio-->
+<!--            </MenuItem>-->
+<!--        </Menu>-->
+
+
+<!--        <h4>mode=horizontal,theme=green</h4>-->
+<!--        <Menu @open-change="handlerOpenChange" @select="handlerSelect" theme="green" mode="horizontal">-->
+<!--            <Submenu c-key="submenu-1" name="submenusubmenu-1">-->
+<!--                <MenuItem c-key="button-1" name="button" to="/buttonView">-->
+<!--                    <Icon type="list"></Icon>-->
+<!--                    buttonbuttonbuttonbuttonbuttonbuttonbuttonbutton-->
+<!--                </MenuItem>-->
+<!--                <MenuItem c-key="input-1" name="input" to="/inputView" icon="list">-->
+<!--                    <Icon type="list"></Icon>-->
+<!--                    input-->
+<!--                </MenuItem>-->
+<!--            </Submenu>-->
+<!--            <Submenu c-key="submenu-2" name="submenusubmenu-2">-->
+<!--                <MenuGroup name="group1">-->
+<!--                    <MenuItem c-key="group1-badge-1" name="group1-badge" to="/badgeView">-->
+<!--                        <Icon type="list"></Icon>-->
+<!--                        group1-badge-->
+<!--                    </MenuItem>-->
+<!--                </MenuGroup>-->
+<!--                <MenuGroup name="group2">-->
+<!--                    <MenuItem c-key="group2-badge-1" name="group2-badge" to="/badgeView">-->
+<!--                        <Icon type="list"></Icon>-->
+<!--                        group2-badge-->
+<!--                    </MenuItem>-->
+<!--                </MenuGroup>-->
+<!--            </Submenu>-->
+<!--            <MenuItem c-key="badge-1" name="badge" to="/badgeView">-->
+<!--                <Icon type="list"></Icon>-->
+<!--                badge-->
+<!--            </MenuItem>-->
+<!--            <MenuItem c-key="list-1" name="list" to="/badgeView">-->
+<!--                <Icon type="list"></Icon>-->
+<!--                list-->
+<!--            </MenuItem>-->
+<!--            <MenuItem c-key="test-1" name="test" to="/badgeView">-->
+<!--                <Icon type="list"></Icon>-->
+<!--                test-->
+<!--            </MenuItem>-->
+<!--            <MenuItem c-key="checkbox-1" name="checkbox" to="/badgeView">-->
+<!--                <Icon type="list"></Icon>-->
+<!--                checkbox-->
+<!--            </MenuItem>-->
+<!--            <MenuItem c-key="radio-1" name="radio" to="/badgeView">-->
+<!--                <Icon type="list"></Icon>-->
+<!--                radio-->
+<!--            </MenuItem>-->
+<!--        </Menu>-->
 
 
         <div class="viewDes">

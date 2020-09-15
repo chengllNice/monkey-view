@@ -22,14 +22,14 @@
         </div>
         <transition :name="transition">
             <Drop v-show="visible && !disabled"
-                      ref="dropDown"
-                      :class="dropdownClassName"
-                      :reference="this.$refs.reference"
-                      :placement="placement"
-                      :isMinWidth="false"
-                      :dropdownMatchSelectWidth="false"
-                      :render-html="renderHtml"
-                      v-model="visible">
+                  ref="dropDown"
+                  :class="dropdownClassName"
+                  :reference="this.$refs.reference"
+                  :placement="placement"
+                  :min-width="false"
+                  :dropdownMatchSelectWidth="false"
+                  :render-html="renderHtml"
+                  v-model="visible">
                 <div :class="[`${classPrefix}__drop-down-inner`]">
                     <date-pane ref="datePane"
                                picker-type='date'

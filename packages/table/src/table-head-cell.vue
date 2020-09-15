@@ -41,13 +41,13 @@
                       ref="reference"
                       @click.stop="filterShow"></Icon>
                 <Drop v-show="visible"
-                          ref="dropDown"
-                          :reference="this.$refs.reference"
-                          :dropdownMatchSelectWidth="false"
-                          :placement="column.placement || 'bottom'"
-                          :render-html="renderHtml"
-                          :isMinWidth="false"
-                          v-model="visible">
+                      ref="dropDown"
+                      :reference="this.$refs.reference"
+                      :dropdownMatchSelectWidth="false"
+                      :placement="column.placement || 'bottom'"
+                      :render-html="renderHtml"
+                      :min-width="false"
+                      v-model="visible">
 
                     <template v-if="column.filterSlot">
                         <table-slot-head :column="column" :slot-name="column.filterSlot"></table-slot-head>

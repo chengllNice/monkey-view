@@ -5,18 +5,18 @@
 @mixin theme($type, $mode){
   $background-color: $--menu-theme-light-background-color;
   $font-color: $--menu-theme-light-font-color;
-  $background-color-hover: $--background-color-hover;
+  $background-color-hover: $--menu-theme-light-active-background-color;
   $font-color-hover: $--color-primary;
   $group-font-color: $--menu-theme-light-group-title-font-color;
   $border-color: $--menu-theme-light-horizontal-border-color;
-  @if($type == 'dark'){
+  @if($type == dark){
     $background-color: $--menu-theme-dark-background-color;
     $font-color: $--menu-theme-dark-font-color;
     $background-color-hover: $--menu-theme-dark-active-background-color;
     $font-color-hover: $--color-white;
     $group-font-color: $--menu-theme-dark-group-title-font-color;
     $border-color: $--menu-theme-dark-horizontal-border-color;
-  }@else if($type == 'green'){
+  }@else if($type == green){
     $background-color: $--menu-theme-green-background-color;
     $font-color: $--menu-theme-green-font-color;
     $background-color-hover: $--menu-theme-green-active-background-color;
@@ -25,8 +25,11 @@
     $border-color: $--menu-theme-green-horizontal-border-color;
   }
 
-  @if($mode == 'vertical'){
+
+  @if($mode == vertical){
     $border-color: transparent;
+  }@else if($mode == horizontal and $type == light){
+    $background-color-hover: transparent;
   }
 
   background-color: $background-color;
@@ -45,23 +48,12 @@
     &, a{
       color: $font-color;
     }
-    &.is-active{
+    &:not(.is-disabled):hover, &.is-active{
       background-color: $background-color-hover;
       border-bottom-color: $border-color;
       &, a{
         color: $font-color-hover;
       }
-    }
-    &:not(.is-disabled):hover{
-      background-color: $background-color-hover;
-      border-bottom-color: $border-color;
-      &, a{
-        color: $font-color-hover;
-      }
-    }
-    &.is-no-hover-background:hover{
-      background-color: transparent;
-      border-bottom-color: transparent;
     }
   }
 
@@ -70,26 +62,47 @@
       &, a{
         color: $font-color;
       }
-      &:hover{
-        background-color: $background-color-hover;
-        border-bottom-color: $border-color;
-        &, a{
-          color: $font-color-hover;
+    }
+    @if($mode == vertical){
+      &:not(.is-disabled){
+        @include ci(submenu__title){
+          &:hover{
+            background-color: $background-color-hover;
+            border-bottom-color: $border-color;
+            &, a{
+              color: $font-color-hover;
+            }
+          }
+        }
+      }
+    }@else if($mode == horizontal){
+      &:not(.is-disabled):hover{
+        & > {
+          @include ci(submenu__title){
+            background-color: $background-color-hover;
+            border-bottom-color: $border-color;
+            &, a{
+              color: $font-color-hover;
+            }
+          }
         }
       }
     }
+
     &.is-active{
-      background-color: $background-color-hover;
-      border-bottom-color: $border-color;
-      &, a{
-        color: $font-color-hover;
+      & > {
+        @include ci(submenu__title){
+          background-color: $background-color-hover;
+          border-bottom-color: $border-color;
+          &, a{
+            color: $font-color-hover;
+          }
+        }
       }
     }
-    &.is-no-hover-background, &.is-disabled{
-      &__title:hover{
-        background-color: transparent;
-        border-bottom-color: transparent;
-      }
+
+    &__drop-inner{
+      background-color: $background-color;
     }
   }
 }
@@ -99,20 +112,19 @@
   box-sizing: border-box;
   width: 100%;
   font-size: $--font-size-default;
+  transition: width $--animation-time ease-in-out;
   @include m(light){
     border-right: 1px solid #dcdee2;
     border-bottom: none;
     @include theme(light, vertical);
-    //@include theme($--menu-theme-light-background-color, $--menu-theme-light-font-color, $--background-color-hover, $--color-primary, $--menu-theme-light-group-title-font-color)
   }
   @include m(dark){
     @include theme(dark, vertical);
-    //@include theme($--menu-theme-dark-background-color, $--menu-theme-dark-font-color, $--menu-theme-dark-active-background-color, $--color-white, $--menu-theme-dark-group-title-font-color)
   }
   @include m(green){
     @include theme(green, vertical);
-    //@include theme($--menu-theme-green-background-color, $--menu-theme-green-font-color, $--menu-theme-green-active-background-color, $--color-white, $--menu-theme-green-group-title-font-color)
   }
+
 
   @include m(vertical){
     @include ci(submenu){
@@ -131,6 +143,35 @@
     }
   }
 
+  @include m(collapse){
+    @include ci(submenu--direct){
+      & > {
+        @include ci(submenu__title){
+          text-align: center;
+          & > span{
+            display: none !important;
+          }
+          i{
+            margin-right: 0;
+            font-size: 20px;
+          }
+          @include ci(submenu__title-slide-icon){
+            display: none !important;
+          }
+        }
+      }
+    }
+    @include ci(menu-item--direct){
+      text-align: center;
+      span{
+        display: none !important;
+      }
+      i{
+        margin-right: 0;
+        font-size: 20px;
+      }
+    }
+  }
 
   @include m(horizontal){
     &::after{
@@ -157,8 +198,9 @@
     @include ci(submenu){
       float: left;
       width: auto;
-      //border-bottom: 2px solid transparent;
-      border: none;
+      &__title{
+        border-bottom: 2px solid transparent;
+      }
 
       @include ci(menu-item){
         float: none;
@@ -168,51 +210,54 @@
       @include ci(submenu){
         float: none;
         border: none;
-      }
-    }
-    @include ci(submenu--opened){
-      & > * > {
+        @include ci(submenu__title){
+          border-bottom: none;
+        }
         @include ci(submenu__title-slide-icon){
-          transform: rotate(180deg);
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+        &--opened{
+          & > * > {
+            @include ci(submenu__title-slide-icon){
+              transform: translateY(-50%) rotate(180deg);
+            }
+          }
         }
       }
-    }
-
-    @include e(title, false){
-      border-bottom: 2px solid transparent;
+      &--opened{
+        & > * > {
+          @include ci(submenu__title-slide-icon){
+            transform: rotate(180deg);
+          }
+        }
+      }
     }
 
     @include m(light, false, true){
       border-bottom: 1px solid #dcdee2;
       border-right: none;
-      background-color: $--menu-theme-light-background-color;
       @include theme(light, horizontal);
-      //@include theme-horizontal($--menu-theme-light-background-color, $--menu-theme-light-font-color, $--background-color-hover,$--menu-theme-light-horizontal-border-color, $--menu-theme-light-group-title-font-color,$--color-primary)
     }
 
     @include m(dark, false, true){
-      @include ci(submenu__drop-inner){
-        border-color: $--menu-theme-dark-background-color;
-        background-color: $--menu-theme-dark-background-color;
-      }
       @include theme(dark, horizontal);
-      //@include theme-horizontal($--menu-theme-dark-background-color, $--menu-theme-dark-font-color, $--menu-theme-dark-active-background-color, $--menu-theme-dark-horizontal-border-color, $--menu-theme-dark-group-title-font-color, $--color-white)
     }
 
     @include m(green, false, true){
-      @include ci(submenu__drop-inner){
-        border-color: $--menu-theme-green-background-color;
-        background-color: $--menu-theme-green-background-color;
-      }
       @include theme(green, horizontal);
-      //@include theme-horizontal($--menu-theme-green-background-color, $--menu-theme-green-font-color, $--menu-theme-green-active-background-color, $--menu-theme-green-horizontal-border-color, $--menu-theme-green-group-title-font-color, $--color-white)
     }
   }
 }
 
 @include c(submenu){
-  & [class*='cl-icon-'] {
+  position: relative;
+
+  [class*='cl-icon'] {
     vertical-align: middle;
+    margin-right: 10px;
+    font-size: 16px;
     & + span {
       vertical-align: middle;
       display: inline-block;
@@ -227,30 +272,22 @@
     cursor: pointer;
     height: 35px;
     line-height: 35px;
-    & > i{
-      margin-right: 6px;
+
+    @include e(title-slide-icon, false){
+      font-size: $--font-size-small;
+      margin-left: 10px;
+      margin-right: 0;
+      transition: transform $--animation-time ease-in-out;
     }
   }
-  @include e(title-slide-icon){
-    margin-left: 6px;
-    transition: transform $--animation-time ease-in-out;
-  }
-
-  //@include m(opened){
-  //  & > * > {
-  //    @include e(title-slide-icon, false){
-  //      transform: translateY(-50%) rotate(180deg);
-  //    }
-  //  }
-  //}
 
   @include e(drop-inner){
     box-shadow: $--box-shadow-default;
     border-radius: $--border-radius-default;
-    border: $--border-default;
     background-color: $--color-white;
     width: 100%;
     position: relative;
+    padding: 5px 0;
   }
 
   @include when(disabled){
@@ -264,31 +301,35 @@
 
 
 @include c(menu-item){
+  position: relative;
   display: block;
   box-sizing: border-box;
   width: 100%;
   height: 35px;
   line-height: 35px;
-  //border-left: 2px solid transparent;
   cursor: pointer;
   transition: all $--animation-time ease-in-out;
   @include utils-ellipsis();
-
-  & > i{
-    margin-right: 6px;
-  }
 
   a{
     transition: all $--animation-time ease-in-out;
   }
 
-  & [class*='cl-icon-'] {
+  & [class*='cl-icon'] {
     vertical-align: middle;
+    margin-right: 10px;
+    font-size: 16px;
     & + span {
       vertical-align: middle;
       display: inline-block;
       @include utils-ellipsis();
     }
+  }
+
+  @include e(tooltip){
+    width: 100%;
+    position: absolute;
+    left: 0;
   }
 
   @include when(disabled){
@@ -306,8 +347,9 @@
   @include e(title){
     height: 35px;
     line-height: 35px;
+    font-size: $--font-size-small;
     & > i{
-      margin-right: 6px;
+      margin-right: 10px;
     }
   }
 }

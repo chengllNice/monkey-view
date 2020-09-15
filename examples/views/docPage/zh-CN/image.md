@@ -10,11 +10,11 @@
 
 ```html
 <template>
-    <cl-image class="doc-base-image" fit="none" :src="src"></cl-image>
-    <cl-image class="doc-base-image" fit="fill" :src="src"></cl-image>
-    <cl-image class="doc-base-image" fit="contain" :src="src"></cl-image>
-    <cl-image class="doc-base-image" fit="cover" :src="src"></cl-image>
-    <cl-image class="doc-base-image" fit="scale-down" :src="src"></cl-image>
+    <m-image class="doc-base-image" fit="none" :src="src"></m-image>
+    <m-image class="doc-base-image" fit="fill" :src="src"></m-image>
+    <m-image class="doc-base-image" fit="contain" :src="src"></m-image>
+    <m-image class="doc-base-image" fit="cover" :src="src"></m-image>
+    <m-image class="doc-base-image" fit="scale-down" :src="src"></m-image>
 </template>
 <script>
     export default {
@@ -41,22 +41,22 @@
 
 ```html
 <template>
-    <cl-row>
-        <cl-col>
+    <Row>
+        <Col>
             <h4>加载中</h4>
-            <cl-image class="doc-status-image" fit="none" :src="src1"></cl-image>
-        </cl-col>
-        <cl-col>
+            <m-image class="doc-status-image" fit="none" :src="src1"></m-image>
+        </Col>
+        <Col>
             <h4>加载失败</h4>
-            <cl-image class="doc-status-image" fit="fill" :src="src2"></cl-image>
-        </cl-col>
-        <cl-col>
+            <m-image class="doc-status-image" fit="fill" :src="src2"></m-image>
+        </Col>
+        <Col>
             <h4>自定义加载失败</h4>
-            <cl-image class="doc-status-image" fit="fill" :src="src2">
+            <m-image class="doc-status-image" fit="fill" :src="src2">
                 <Icon slot="error" type="picture" class="doc-status-image-icon"></Icon>
-            </cl-image>
-        </cl-col>
-    </cl-row>
+            </m-image>
+        </Col>
+    </Row>
 </template>
 <script>
     export default {
@@ -87,7 +87,7 @@
 
 ```html
 <template>
-    <cl-image class="doc-base-image" fit="none" :src="src" :preview-list="list"></cl-image>
+    <m-image class="doc-base-image" fit="none" :src="src" :preview-list="list"></m-image>
 </template>
 <script>
     export default {

@@ -18,9 +18,9 @@
         props: {
             //是否和选择器同宽
             dropdownMatchSelectWidth: Boolean,
-            //选择器宽度是否为下拉框的最小宽
-            isMinWidth: {
-                type: Boolean,
+            //最小宽为选择器的宽度
+            minWidth: {
+                type: [Boolean, Number],
                 default: true
             },
             placement: {
@@ -82,7 +82,7 @@
             expandStyle() {
                 return {
                     width: this.dropdownMatchSelectWidth ? this.width : 'auto',
-                    minWidth: this.isMinWidth ? this.width : '',
+                    minWidth: this.minWidth === true ? this.width : (this.minWidth ? (parseInt(this.minWidth) + 'px') : ''),
                 }
             },
         },

@@ -29,36 +29,36 @@
 ```html
 <template>
     <div class="doc-grid-row-wrap">
-        <ClRow class="doc-grid-row">
-            <ClCol class='doc-grid-row-col'><div class="doc-grid-col">24: 100%</div></ClCol>
-        </ClRow>
+        <Row class="doc-grid-row">
+            <Col class='doc-grid-row-col'><div class="doc-grid-col">24: 100%</div></Col>
+        </Row>
     </div>
     <div class="doc-grid-row-wrap">
-        <ClRow class="doc-grid-row">
-            <ClCol class='doc-grid-row-col'><div class="doc-grid-col">12: 50%</div></ClCol>
-            <ClCol class='doc-grid-row-col'><div class="doc-grid-col">12: 50%</div></ClCol>
-        </ClRow>
+        <Row class="doc-grid-row">
+            <Col class='doc-grid-row-col'><div class="doc-grid-col">12: 50%</div></Col>
+            <Col class='doc-grid-row-col'><div class="doc-grid-col">12: 50%</div></Col>
+        </Row>
     </div>
     <div class="doc-grid-row-wrap">
-        <ClRow class="doc-grid-row">
-            <ClCol class='doc-grid-row-col'><div class="doc-grid-col">8: 33.33%</div></ClCol>
-            <ClCol class='doc-grid-row-col'><div class="doc-grid-col">8: 33.33%</div></ClCol>
-            <ClCol class='doc-grid-row-col'><div class="doc-grid-col">8: 33.33%</div></ClCol>
-        </ClRow>
+        <Row class="doc-grid-row">
+            <Col class='doc-grid-row-col'><div class="doc-grid-col">8: 33.33%</div></Col>
+            <Col class='doc-grid-row-col'><div class="doc-grid-col">8: 33.33%</div></Col>
+            <Col class='doc-grid-row-col'><div class="doc-grid-col">8: 33.33%</div></Col>
+        </Row>
     </div>
     <div class="doc-grid-row-wrap">
-        <ClRow class="doc-grid-row">
-            <ClCol class='doc-grid-row-col'><div class="doc-grid-col">6: 25%</div></ClCol>
-            <ClCol class='doc-grid-row-col'><div class="doc-grid-col">6: 25%</div></ClCol>
-            <ClCol class='doc-grid-row-col'><div class="doc-grid-col">6: 25%</div></ClCol>
-            <ClCol class='doc-grid-row-col'><div class="doc-grid-col">6: 25%</div></ClCol>
-        </ClRow>
+        <Row class="doc-grid-row">
+            <Col class='doc-grid-row-col'><div class="doc-grid-col">6: 25%</div></Col>
+            <Col class='doc-grid-row-col'><div class="doc-grid-col">6: 25%</div></Col>
+            <Col class='doc-grid-row-col'><div class="doc-grid-col">6: 25%</div></Col>
+            <Col class='doc-grid-row-col'><div class="doc-grid-col">6: 25%</div></Col>
+        </Row>
     </div>
     <div class="doc-grid-row-wrap">
-        <ClRow class="doc-grid-row">
-            <ClCol class='doc-grid-row-col' span="16"><div class="doc-grid-col">16: 66.66%</div></ClCol>
-            <ClCol class='doc-grid-row-col' span="8"><div class="doc-grid-col">8: 33.33%</div></ClCol>
-        </ClRow>
+        <Row class="doc-grid-row">
+            <Col class='doc-grid-row-col' span="16"><div class="doc-grid-col">16: 66.66%</div></Col>
+            <Col class='doc-grid-row-col' span="8"><div class="doc-grid-col">8: 33.33%</div></Col>
+        </Row>
     </div>
 </template>
 
@@ -73,12 +73,12 @@
 
 ```html
 <template>
-    <cl-row class="doc-grid-row" :gutter="16">
-        <cl-col class='doc-grid-row-col'><div class="doc-grid-col">col-6</div></cl-col>
-        <cl-col class='doc-grid-row-col'><div class="doc-grid-col">col-6</div></cl-col>
-        <cl-col class='doc-grid-row-col'><div class="doc-grid-col">col-6</div></cl-col>
-        <cl-col class='doc-grid-row-col'><div class="doc-grid-col">col-6</div></cl-col>
-    </cl-row>
+    <Row class="doc-grid-row" :gutter="16">
+        <Col class='doc-grid-row-col'><div class="doc-grid-col">col-6</div></Col>
+        <Col class='doc-grid-row-col'><div class="doc-grid-col">col-6</div></Col>
+        <Col class='doc-grid-row-col'><div class="doc-grid-col">col-6</div></Col>
+        <Col class='doc-grid-row-col'><div class="doc-grid-col">col-6</div></Col>
+    </Row>
 </template>
 <style>
     .doc-grid-row{
@@ -107,19 +107,19 @@
 
 ```html
 <template>
-    <cl-row class="doc-grid-row">
-        <cl-col class='doc-grid-row-col' span="8"><div class="doc-grid-col">col-8</div></cl-col>
-        <cl-col class='doc-grid-row-col' span="8" offset="8"><div class="doc-grid-col">col-8 | offset-8</div></cl-col>
-    </cl-row>
+    <Row class="doc-grid-row">
+        <Col class='doc-grid-row-col' span="8"><div class="doc-grid-col">col-8</div></Col>
+        <Col class='doc-grid-row-col' span="8" offset="8"><div class="doc-grid-col">col-8 | offset-8</div></Col>
+    </Row>
 
-    <cl-row class="doc-grid-row">
-        <cl-col class='doc-grid-row-col' span="6" offset="8"><div class="doc-grid-col">col-6</div></cl-col>
-        <cl-col class='doc-grid-row-col' span="6" offset="4"><div class="doc-grid-col">col-6</div></cl-col>
-    </cl-row>
+    <Row class="doc-grid-row">
+        <Col class='doc-grid-row-col' span="6" offset="8"><div class="doc-grid-col">col-6</div></Col>
+        <Col class='doc-grid-row-col' span="6" offset="4"><div class="doc-grid-col">col-6</div></Col>
+    </Row>
 
-    <cl-row class="doc-grid-row">
-        <cl-col class='doc-grid-row-col' span="12" offset="8"><div class="doc-grid-col">col-6</div></cl-col>
-    </cl-row>
+    <Row class="doc-grid-row">
+        <Col class='doc-grid-row-col' span="12" offset="8"><div class="doc-grid-col">col-6</div></Col>
+    </Row>
 </template>
 <style>
     .doc-grid-row{
@@ -148,10 +148,10 @@
 
 ```html
 <template>
-    <cl-row class="doc-grid-row">
-        <cl-col class='doc-grid-row-col' span="18" push="6"><div class="doc-grid-col">col-18 | push-6</div></cl-col>
-        <cl-col class='doc-grid-row-col' span="6" pull="18"><div class="doc-grid-col">col-6 | push-18</div></cl-col>
-    </cl-row>
+    <Row class="doc-grid-row">
+        <Col class='doc-grid-row-col' span="18" push="6"><div class="doc-grid-col">col-18 | push-6</div></Col>
+        <Col class='doc-grid-row-col' span="6" pull="18"><div class="doc-grid-col">col-6 | push-18</div></Col>
+    </Row>
 </template>
 <style>
     .doc-grid-row{
@@ -180,12 +180,12 @@
 
 ```html
 <template>
-    <cl-row class="doc-grid-row">
-        <cl-col class='doc-grid-row-col' span="6" order="4"><div class="doc-grid-col">col-6 | order-4</div></cl-col>
-        <cl-col class='doc-grid-row-col' span="6" order="3"><div class="doc-grid-col">col-6 | order-3</div></cl-col>
-        <cl-col class='doc-grid-row-col' span="6" order="2"><div class="doc-grid-col">col-6 | order-2</div></cl-col>
-        <cl-col class='doc-grid-row-col' span="6" order="1"><div class="doc-grid-col">col-6 | order-1</div></cl-col>
-    </cl-row>
+    <Row class="doc-grid-row">
+        <Col class='doc-grid-row-col' span="6" order="4"><div class="doc-grid-col">col-6 | order-4</div></Col>
+        <Col class='doc-grid-row-col' span="6" order="3"><div class="doc-grid-col">col-6 | order-3</div></Col>
+        <Col class='doc-grid-row-col' span="6" order="2"><div class="doc-grid-col">col-6 | order-2</div></Col>
+        <Col class='doc-grid-row-col' span="6" order="1"><div class="doc-grid-col">col-6 | order-1</div></Col>
+    </Row>
 </template>
 <style>
     .doc-grid-row{
@@ -215,16 +215,16 @@
 ```html
 <template>
     <div class="doc-grid-row-wrap-align">
-        <cl-row class="doc-grid-row" type="flex" :align="alignModel" :justify="justifyModel">
-            <cl-col class='doc-grid-row-col' span="4"><div class="doc-grid-col">col-4</div></cl-col>
-            <cl-col class='doc-grid-row-col' span="4"><div class="doc-grid-col">col-4</div></cl-col>
-            <cl-col class='doc-grid-row-col' span="4"><div class="doc-grid-col">col-4</div></cl-col>
-            <cl-col class='doc-grid-row-col' span="4"><div class="doc-grid-col">col-4</div></cl-col>
-        </cl-row>
+        <Row class="doc-grid-row" type="flex" :align="alignModel" :justify="justifyModel">
+            <Col class='doc-grid-row-col' span="4"><div class="doc-grid-col">col-4</div></Col>
+            <Col class='doc-grid-row-col' span="4"><div class="doc-grid-col">col-4</div></Col>
+            <Col class='doc-grid-row-col' span="4"><div class="doc-grid-col">col-4</div></Col>
+            <Col class='doc-grid-row-col' span="4"><div class="doc-grid-col">col-4</div></Col>
+        </Row>
     </div>
 
-    设置align：<cl-select v-model="alignModel" :option="alignOption" class="doc-grid-flex-select"></cl-select>
-    设置justify：<cl-select v-model="justifyModel" :option="justifyOption" class="doc-grid-flex-select"></cl-select>
+    设置align：<Select v-model="alignModel" :option="alignOption" class="doc-grid-flex-select"></Select>
+    设置justify：<Select v-model="justifyModel" :option="justifyOption" class="doc-grid-flex-select"></Select>
 </template>
 <script>
     export default {
@@ -311,12 +311,12 @@
 
 ```html
 <template>
-    <cl-row class="doc-grid-row">
-        <cl-col class='doc-grid-row-col' :xs="2" :sm="8" :md="4" :lg="6"><div class="doc-grid-col">col</div></cl-col>
-        <cl-col class='doc-grid-row-col' :xs="12" :sm="4" :md="8" :lg="6"><div class="doc-grid-col">col</div></cl-col>
-        <cl-col class='doc-grid-row-col' :xs="8" :sm="4" :md="8" :lg="6"><div class="doc-grid-col">col</div></cl-col>
-        <cl-col class='doc-grid-row-col' :xs="2" :sm="8" :md="4" :lg="6"><div class="doc-grid-col">col</div></cl-col>
-    </cl-row>
+    <Row class="doc-grid-row">
+        <Col class='doc-grid-row-col' :xs="2" :sm="8" :md="4" :lg="6"><div class="doc-grid-col">col</div></Col>
+        <Col class='doc-grid-row-col' :xs="12" :sm="4" :md="8" :lg="6"><div class="doc-grid-col">col</div></Col>
+        <Col class='doc-grid-row-col' :xs="8" :sm="4" :md="8" :lg="6"><div class="doc-grid-col">col</div></Col>
+        <Col class='doc-grid-row-col' :xs="2" :sm="8" :md="4" :lg="6"><div class="doc-grid-col">col</div></Col>
+    </Row>
 </template>
 <style>
     .doc-grid-row{
@@ -345,28 +345,28 @@
 
 ```html
 <template>
-    <cl-row class="doc-grid-row">
-        <cl-col class='doc-grid-row-col'
+    <Row class="doc-grid-row">
+        <Col class='doc-grid-row-col'
                 :xs="{span: 2, offset: 1}"
                 :sm="{span: 6, offset: 1}"
                 :md="{span: 3, offset: 2}"
-                :lg="{span: 4, offset: 2}"><div class="doc-grid-col">col</div></cl-col>
-        <cl-col class='doc-grid-row-col'
+                :lg="{span: 4, offset: 2}"><div class="doc-grid-col">col</div></Col>
+        <Col class='doc-grid-row-col'
                 :xs="{span: 10, offset: 1}"
                 :sm="{span: 4, offset: 1}"
                 :md="{span: 5, offset: 2}"
-                :lg="{span: 4, offset: 2}"><div class="doc-grid-col">col</div></cl-col>
-        <cl-col class='doc-grid-row-col'
+                :lg="{span: 4, offset: 2}"><div class="doc-grid-col">col</div></Col>
+        <Col class='doc-grid-row-col'
                 :xs="{span: 6, offset: 1}"
                 :sm="{span: 4, offset: 1}"
                 :md="{span: 5, offset: 2}"
-                :lg="{span: 4, offset: 2}"><div class="doc-grid-col">col</div></cl-col>
-        <cl-col class='doc-grid-row-col'
+                :lg="{span: 4, offset: 2}"><div class="doc-grid-col">col</div></Col>
+        <Col class='doc-grid-row-col'
                 :xs="{span: 2, offset: 1}"
                 :sm="{span: 6, offset: 1}"
                 :md="{span: 3, offset: 2}"
-                :lg="{span: 4, offset: 2}"><div class="doc-grid-col">col</div></cl-col>
-    </cl-row>
+                :lg="{span: 4, offset: 2}"><div class="doc-grid-col">col</div></Col>
+    </Row>
 </template>
 <style>
     .doc-grid-row{

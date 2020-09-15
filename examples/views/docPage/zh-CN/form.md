@@ -94,10 +94,10 @@
             </CheckboxGroup>
         </FormItem>
         <FormItem name="moveSend" label="实时推送">
-            <cl-switch v-model="moveSend" size="large">
+            <m-switch v-model="moveSend" size="large">
                 <span slot="open">打开</span>
                 <span slot="close">关闭</span>
-            </cl-switch>
+            </m-switch>
         </FormItem>
         <FormItem name="time" label="时长">
             <div class="doc-form-item-wrap">

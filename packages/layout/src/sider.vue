@@ -37,12 +37,12 @@
             value: Boolean,//展开收起
             width: {
                 type: [Number, String],
-                default: 200
+                default: 240
             },
             height: [Number, String],
             collapsedWidth: {
                 type: [Number, String],
-                default: 60
+                default: 80
             },
             hideTrigger: Boolean,
             showZeroTrigger: {

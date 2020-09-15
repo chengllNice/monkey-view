@@ -425,55 +425,42 @@
 通过设置 `hide-trigger`属性隐藏默认的触发器。可自定义实现trigger触发器。
 ```html
 <template>
-  <div>
-     <div class="doc-layout-single">
-         <Layout class="doc-layout-el">
-             <Sider v-model="collapsedCustom"
-                       class="doc-layout-sider doc-layout-sider-dark"
-                       :class="{'doc-layout-sider-close': collapsedCustom}"
-                       hide-trigger>
-                 <Menu width="auto" theme="dark">
-                     <Tooltip class="doc-layout-menu-tooltip" placement="right" :disabled="!collapsedCustom" content="options1" renderHtml>
-                         <MenuItem c-key="options1">
-                             <Icon type="home" class="doc-layout-menu-icon"></Icon>
-                             <span class="doc-layout-menu-name">options1</span>
-                         </MenuItem>
-                     </Tooltip>
-                     <Tooltip class="doc-layout-menu-tooltip" placement="right" :disabled="!collapsedCustom" content="options2" renderHtml>
-                         <MenuItem c-key="options2">
-                             <Icon type="home" class="doc-layout-menu-icon"></Icon>
-                             <span class="doc-layout-menu-name">options2</span>
-                         </MenuItem>
-                     </Tooltip>
-                     <Tooltip class="doc-layout-menu-tooltip" placement="right" :disabled="!collapsedCustom" content="options3" renderHtml>
-                         <MenuItem c-key="options3">
-                             <Icon type="home" class="doc-layout-menu-icon"></Icon>
-                             <span class="doc-layout-menu-name">options3</span>
-                         </MenuItem>
-                     </Tooltip>
-                 </Menu>
-             </Sider>
-             <Layout>
-                 <Header class="doc-layout-header doc-layout-header-toggle">
-                     <Icon type="list" @click="triggerClick"></Icon>
-                 </Header>
-                 <Content class="doc-layout-content">content</Content>
-                 <Footer class="doc-layout-footer">footer</Footer>
-             </Layout>
+    <Layout>
+         <Sider v-model="collapse" hide-trigger>
+             <Menu :collapse="collapse" theme="dark">
+                 <MenuItem c-key="options1">
+                      <Icon type="home"></Icon>
+                      <span>options1</span>
+                 </MenuItem>
+                 <MenuItem c-key="options2">
+                      <Icon type="home"></Icon>
+                      <span>options2</span>
+                 </MenuItem>
+                 <MenuItem c-key="options3">
+                      <Icon type="home"></Icon>
+                      <span>options3</span>
+                 </MenuItem>
+             </Menu>
+         </Sider>
+         <Layout>
+             <Header>
+                 <Icon type="list" @click="triggerClick"></Icon>
+             </Header>
+             <Content>content</Content>
+             <Footer>footer</Footer>
          </Layout>
-     </div>
- </div>
+     </Layout>
 </template>
 <script>
     export default {
       data(){
         return {
-          collapsedCustom: false,
+          collapse: false,
         }
       },
       methods: {
         triggerClick(){
-          this.collapsedCustom = !this.collapsedCustom;
+          this.collapse = !this.collapse;
         }
       }
     }

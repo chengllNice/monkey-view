@@ -5,6 +5,7 @@
         <transition :name="transition">
             <div :class="[`${classPrefix}__popper`]"
                  ref="popper"
+                 :style="popperStyle"
                  @mouseenter="handlerPopperMouseenter"
                  @mouseleave="handlerPopperMouseleave"
                  v-show="!disabled && (visible || always)">
@@ -46,6 +47,11 @@
             disabled: Boolean,
             maxWidth: [String, Number],
             always: Boolean,
+            //popper距离target的偏移
+            offset: {
+                type: Number,
+                default: 10
+            },
             renderHtml: {
                 type: [HTMLElement, Boolean],
                 default: function () {
@@ -72,6 +78,21 @@
                     return {'max-width': maxWidth, ...style}
                 }
                 return style
+            },
+            popperStyle(){
+                if(this.placement.includes('bottom') || this.placement.includes('top')){
+                    return {
+                        'padding-top': this.offset + 'px',
+                        'padding-bottom': this.offset + 'px',
+                    }
+                }
+                if(this.placement.includes('left') || this.placement.includes('right')){
+                    return {
+                        'padding-left': this.offset + 'px',
+                        'padding-right': this.offset + 'px',
+                    }
+                }
+                return {}
             }
         },
         components: {},

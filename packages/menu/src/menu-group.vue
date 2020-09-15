@@ -27,8 +27,9 @@
         computed: {
             groupStyle() {
                 let style = {};
-                const padding = this.menuComponent.defaultPadding;
+                let padding = this.menuComponent.defaultPadding;
                 if (this.menuComponent.mode === 'horizontal') {
+                    padding = 10;
                     style = {
                         'padding-left': padding + 'px'
                     }
@@ -36,6 +37,8 @@
                     let _p = (this.parentSubMenuComponentNum * padding + padding / 2);
                     if(_p < padding) _p = padding;
                     let itemHeight = parseInt(this.menuComponent.itemHeight);
+
+                    if(this.menuComponent.collapse) _p = padding - padding / 2;
                     style = {
                         'height': itemHeight + 'px',
                         'line-height': itemHeight + 'px',
@@ -49,11 +52,5 @@
                 }
             }
         },
-        components: {},
-        created() {
-        },
-        mounted() {
-        },
-        methods: {}
     }
 </script>

@@ -2,12 +2,12 @@
     <div :class="[
              `${classPrefix}`,
              opened && `${classPrefix}--opened`,
+             !!menuDirectComponent && `${classPrefix}--direct`,
              disabled && 'is-disabled',
              active && 'is-active',
-             menuComponent.noHoverBackground && `is-no-hover-background`,
          ]"
-         @mouseenter="hanldeMouseenter"
-         @mouseleave="hanldeMouseleave">
+         @mouseenter="handleMouseenter"
+         @mouseleave="handleMouseleave">
         <div :class="[`${classPrefix}__title`]" ref="reference" :style="titleStyle" @click.stop="handleClick">
             <slot name="title">
                 <Icon v-if="icon" :type="icon" :class="icon"></Icon>
@@ -15,7 +15,7 @@
             </slot>
             <Icon v-if="!hideDropIcon" :type="openedIcon" :style="dropIconStyle" :class="[`${classPrefix}__title-slide-icon`]"></Icon>
         </div>
-        <SlideTransition v-if="menuComponent.mode==='vertical'">
+        <SlideTransition v-if="menuComponent.mode==='vertical' && !menuComponent.collapse">
             <div v-show="opened"
                  :class="[`${classPrefix}__content`]">
                 <slot></slot>
@@ -24,10 +24,11 @@
 
         <transition v-else name="slideUp">
             <Drop v-show="opened && !disabled"
-                      ref="dropDown"
-                      :reference="this.$refs.reference"
-                      :placement="placement"
-                      v-model="opened">
+                  :min-width="200"
+                  ref="dropDown"
+                  :reference="this.$refs.reference"
+                  :placement="placement"
+                  v-model="opened">
                 <div :class="[`${classPrefix}__drop-inner`]">
                     <slot></slot>
                 </div>
@@ -75,14 +76,16 @@
         computed: {
             titleStyle() {
                 let style = {};
-                const padding = this.menuComponent.defaultPadding;
+                let padding = this.menuComponent.defaultPadding;
                 if (this.menuComponent.mode === 'horizontal') {
+                    if(!this.menuDirectComponent) padding = 10;
                     style = {
-                        'padding-left': padding + 'px'
+                        'padding-left': padding + 'px',
                     }
                     if(this.menuDirectComponent){
                         style = {
                             ...style,
+                            'padding-left': padding + 'px',
                             'height': parseInt(this.menuComponent.itemHeight) + 'px',
                             'line-height': parseInt(this.menuComponent.itemHeight) + 'px',
                         }
@@ -92,6 +95,12 @@
                         'height': parseInt(this.menuComponent.itemHeight) + 'px',
                         'line-height': parseInt(this.menuComponent.itemHeight) + 'px',
                         'padding-left': ((this.parentSubMenuComponentNum + 1) * padding) + 'px'
+                    }
+                    if(this.menuComponent.collapse){
+                        style = {
+                            ...style,
+                            'padding-left': padding + 'px'
+                        }
                     }
                 }
                 return {
@@ -106,29 +115,28 @@
                 });
                 return keys;
             },
-            childrenMenuItemComponentsKeys() {
-                let keys = [];
-                this.childrenMenuItemComponents.forEach(item => {
-                    keys.push(item.cKey)
-                });
-                return keys;
-            },
             openedIcon() {
                 if (this.parentSubMenuComponentNum && this.menuComponent.mode === 'horizontal') {
+                    return 'left'
+                }
+                if (this.menuComponent.collapse && this.menuComponent.mode === 'vertical') {
                     return 'left'
                 }
                 return 'down'
             },
             placement() {
-                if (this.parentSubMenuComponentNum) {
+                if (this.parentSubMenuComponentNum || this.menuComponent.collapse) {
                     return 'right-start'
                 }
                 return 'bottom-start'
             },
             dropIconStyle(){
-                const padding = this.menuComponent.defaultPadding;
+                let padding = this.menuComponent.defaultPadding;
+                if (this.menuComponent.mode === 'horizontal' && !this.menuDirectComponent) {
+                    padding = 10;
+                }
                 return {
-                    'right': (padding + 14) + 'px'
+                    'right': padding + 'px'
                 }
             }
         },
@@ -136,8 +144,6 @@
             SlideTransition,
             Drop,
             Icon
-        },
-        created() {
         },
         mounted() {
             this.$on('on-close-dropdown', () => {
@@ -147,9 +153,9 @@
             })
         },
         methods: {
-            hanldeMouseenter() {
+            handleMouseenter() {
                 if (this.disabled || this.forbidden) return;
-                if (this.menuComponent.mode === 'vertical') return;
+                if (this.menuComponent.mode === 'vertical' && !this.menuComponent.collapse) return;
 
                 clearTimeout(this.timer);
                 this.timer = setTimeout(() => {
@@ -157,9 +163,9 @@
                 }, 200);
                 this.parentEmit('Menu', 'on-update-opened-key', this.cKey)
             },
-            hanldeMouseleave() {
+            handleMouseleave() {
                 if (this.disabled || this.forbidden) return;
-                if (this.menuComponent.mode === 'vertical') return;
+                if (this.menuComponent.mode === 'vertical' && !this.menuComponent.collapse) return;
 
                 clearTimeout(this.timer);
                 this.timer = setTimeout(() => {
@@ -170,6 +176,7 @@
             handleClick() {
                 if (this.disabled || this.forbidden) return;
                 if (this.menuComponent.mode === 'horizontal') return;
+                if (this.menuComponent.mode === 'vertical' && this.menuComponent.collapse) return;
                 this.closeSubmenuChildren();
                 this.opened = !this.opened;
                 if (this.menuComponent.accordion) {
@@ -199,7 +206,7 @@
                 let activeChildren = findComponentChildrens(this, 'MenuItem').filter(item => {
                     return item.cKey === key
                 });
-                this.active = activeChildren.length ? true : false;
+                this.active = !!activeChildren.length;
             },
             forbiddenUpdateOpenKeys(){
                 if(this.forbidden){

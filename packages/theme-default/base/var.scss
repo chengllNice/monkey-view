@@ -71,6 +71,7 @@ $--border-default: $--border-width-default $--border-style-default $--border-col
 
 
 /*-----box-shadow-----*/
+//$--box-shadow-default: 0 2px 12px 0 rgba(0, 0, 0, .1) !default;
 $--box-shadow-default: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04) !default;
 //card
 $--box-shadow-content: 0 1px 6px rgba(0, 0, 0, 0.2) !default;
@@ -179,7 +180,7 @@ $--menu-theme-dark-group-title-font-color: #909399 !default;
 $--menu-theme-green-background-color: #009688 !default;
 $--menu-theme-green-active-background-color: #02b7a5 !default;
 $--menu-theme-green-active-border-color: #2bf8e5 !default;
-$--menu-theme-green-font-color: $--color-white !default;
+$--menu-theme-green-font-color: rgba(255,255,255,0.8) !default;
 $--menu-theme-green-horizontal-border-color: #2bf8e5 !default;
 $--menu-theme-green-group-title-font-color: #c1cecd !default;
 

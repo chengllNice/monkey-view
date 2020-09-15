@@ -27,12 +27,12 @@
       position: relative;
     }
 
-    &[x-placement^="top"], &[x-placement^="bottom"] {
-      padding: 10px 0;
-    }
-    &[x-placement^="left"], &[x-placement^="right"] {
-      padding: 0 10px;
-    }
+    //&[x-placement^="top"], &[x-placement^="bottom"] {
+    //  padding: 10px 0;
+    //}
+    //&[x-placement^="left"], &[x-placement^="right"] {
+    //  padding: 0 10px;
+    //}
 
     &[x-placement^="top"] {
       @include e(arrow, false){

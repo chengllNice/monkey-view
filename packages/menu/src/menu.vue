@@ -3,6 +3,7 @@
             `${classPrefix}`,
             theme && `${classPrefix}--${theme}`,
             mode && `${classPrefix}--${mode}`,
+            collapse && mode === 'vertical' && `${classPrefix}--collapse`,
          ]" :style="menuStyle">
         <slot></slot>
     </div>
@@ -20,10 +21,6 @@
                 type: [String, Number],
                 default: 240,
             },
-            noHoverBackground: {
-                type: Boolean,
-                default: false
-            },//是否需要hover的背景
             theme: {
                 type: String,
                 default: 'light',
@@ -50,6 +47,16 @@
             itemHeight: {
                 type: [String, Number],
                 default: 50
+            },
+            //展开 false;收起 true
+            collapse: {
+                type: Boolean,
+                default: false
+            },
+            //收起的宽度
+            collapsedWidth: {
+                type: [String, Number],
+                default: 80
             }
         },
         data() {
@@ -65,8 +72,9 @@
             menuStyle() {
                 let style = {};
                 if (this.mode === 'vertical') {
+                    let width = this.collapse ? parseInt(this.collapsedWidth): parseFloat(this.width);
                     style = {
-                        'width': parseFloat(this.width) + 'px',
+                        'width': width + 'px',
                     }
                 }
                 return style
@@ -115,6 +123,9 @@
                     this.updateOpenedKey();
                 },
                 deep: true
+            },
+            collapse(){
+                this.openedKeys = []
             }
         }
     }

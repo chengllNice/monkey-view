@@ -30,7 +30,7 @@
             <Drop v-show="visible && !disabled"
                   ref="dropDown"
                   :reference="this.$refs.reference"
-                  :isMinWidth="false"
+                  :min-width="false"
                   :dropdownMatchSelectWidth="false"
                   :render-html="renderHtml"
                   v-model="visible">

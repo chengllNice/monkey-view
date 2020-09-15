@@ -2,31 +2,63 @@
     <router-link v-if="to"
                  :class="[
                     `${classPrefix}`,
-                    menuComponent.noHoverBackground && `is-no-hover-background`,
+                    !!menuDirectComponent && `${classPrefix}--direct`,
                     active && 'is-active',
                     disabled && 'is-disabled',
                  ]"
+                 ref="menuItem"
                  :style="itemStyle"
                  @click.native="handleClick"
                  :to="disabled ? $route.fullPath : to">
-        <slot>
-            <Icon v-if="icon" :type="icon" :class="icon"></Icon>
-            <span>{{name}}</span>
-        </slot>
+        <Tooltip v-if="!!menuDirectComponent && menuComponent.mode === 'vertical'"
+                 :class="[`${classPrefix}__tooltip`]"
+                 placement="right"
+                 :content="tooltipContent"
+                 :disabled="tooltipDisabled"
+                 :offset="tooltipOffset"
+                 :style="itemStyle"
+                 render-html>
+            <slot>
+                <Icon v-if="icon" :type="icon" :class="icon"></Icon>
+                <span>{{name}}</span>
+            </slot>
+        </Tooltip>
+        <template v-else>
+            <slot>
+                <Icon v-if="icon" :type="icon" :class="icon"></Icon>
+                <span>{{name}}</span>
+            </slot>
+        </template>
     </router-link>
     <div v-else
          :class="[
             `${classPrefix}`,
-            menuComponent.noHoverBackground && `is-no-hover-background`,
+            !!menuDirectComponent && `${classPrefix}--direct`,
             active && 'is-active',
             disabled && 'is-disabled',
          ]"
+         ref="menuItem"
          :style="itemStyle"
          @click="handleClick">
-        <slot>
-            <Icon v-if="icon" :type="icon" :class="icon"></Icon>
-            <span>{{name}}</span>
-        </slot>
+        <Tooltip v-if="!!menuDirectComponent && menuComponent.mode === 'vertical'"
+                 :class="[`${classPrefix}__tooltip`]"
+                 placement="right"
+                 :content="tooltipContent"
+                 :disabled="tooltipDisabled"
+                 :offset="tooltipOffset"
+                 :style="itemStyle"
+                 render-html>
+            <slot>
+                <Icon v-if="icon" :type="icon" :class="icon"></Icon>
+                <span>{{name}}</span>
+            </slot>
+        </Tooltip>
+        <template v-else>
+            <slot>
+                <Icon v-if="icon" :type="icon" :class="icon"></Icon>
+                <span>{{name}}</span>
+            </slot>
+        </template>
     </div>
 </template>
 
@@ -35,6 +67,7 @@
     import Emitter from 'main/mixins/emitter'
     import {findComponent, findComponents, findComponentDirect} from "main/utils/tool";
     import Icon from 'packages/icon'
+    import Tooltip from 'packages/tooltip'
 
     export default {
         name: "MenuItem",
@@ -60,15 +93,17 @@
                 menuComponent: findComponent(this, 'Menu'),
                 menuDirectComponent: findComponentDirect(this, 'Menu'),
                 parentSubMenuComponentNum: findComponents(this, 'Submenu').length,//父级元素有多少个subMenu组件
+                tooltipContent: this.name,
             }
         },
         computed: {
             itemStyle() {
                 let style = {};
-                const padding = this.menuComponent.defaultPadding;
+                let padding = this.menuComponent.defaultPadding;
                 let parentElIsGroup = this.$parent.componentName === 'MenuGroup';
 
                 if (this.menuComponent.mode === 'horizontal') {
+                    padding = 10;
                     if(parentElIsGroup) style = {'padding-left': (padding * 2) + 'px'}
                     else style = {'padding-left': padding + 'px'}
 
@@ -85,6 +120,12 @@
                     if(parentElIsGroup && !this.parentSubMenuComponentNum) style = {'padding-left': (_p + (padding / 2)) + 'px'}
                     else style = {'padding-left': _p + 'px'}
 
+                    if(this.menuComponent.collapse){
+                        style = {
+                            'padding-left': padding + 'px'
+                        }
+                    }
+
                     style = {
                         ...style,
                         'height': parseInt(this.menuComponent.itemHeight) + 'px',
@@ -95,15 +136,18 @@
                     ...style,
                     'padding-right': padding + 'px'
                 }
-            }
+            },
+            tooltipOffset(){
+                let padding = this.menuComponent.defaultPadding;
+                return padding + 10
+            },
+            tooltipDisabled(){
+                return this.disabled || !this.menuComponent.collapse
+            },
         },
         components: {
-            Icon
-        },
-        created() {
-        },
-        mounted() {
-
+            Icon,
+            Tooltip
         },
         methods: {
             handleClick() {
@@ -111,6 +155,18 @@
                 this.parentEmit('Menu', 'on-update-active-key', this.cKey);
                 this.parentEmit('Submenu', 'on-close-dropdown');
             },
+            getTooltipContent(){
+                let menuItem = this.$refs.menuItem;
+                let text = menuItem.innerText
+                console.log(menuItem,'menuItem',text)
+                if(this.name) text = this.name;
+                this.tooltipContent = text;
+            }
+        },
+        mounted() {
+            this.$nextTick(()=>{
+                this.getTooltipContent();
+            })
         },
         watch: {
             'menuComponent.currentActiveKey': function (newVal) {

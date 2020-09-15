@@ -12,16 +12,16 @@
 
 ```html
 <template>
-    <cl-dropdown>
-        <cl-button type="text">下拉菜单 <Icon type="down"></Icon></cl-button>
-        <cl-dropdown-menu slot="menu">
-            <cl-dropdown-item>菜单一</cl-dropdown-item>
-            <cl-dropdown-item>菜单二</cl-dropdown-item>
-            <cl-dropdown-item disabled>菜单三</cl-dropdown-item>
-            <cl-dropdown-item>菜单四</cl-dropdown-item>
-            <cl-dropdown-item divided>菜单五</cl-dropdown-item>
-        </cl-dropdown-menu>
-    </cl-dropdown>
+    <Dropdown>
+        <Button type="text">下拉菜单 <Icon type="down"></Icon></Button>
+        <DropdownMenu slot="menu">
+            <Dropdown-item>菜单一</Dropdown-item>
+            <Dropdown-item>菜单二</Dropdown-item>
+            <Dropdown-item disabled>菜单三</Dropdown-item>
+            <Dropdown-item>菜单四</Dropdown-item>
+            <Dropdown-item divided>菜单五</Dropdown-item>
+        </DropdownMenu>
+    </Dropdown>
 </template>
 <script>
     export default {
@@ -47,45 +47,45 @@
 
 ```html
 <template>
-    <cl-dropdown>
-        <cl-button type="text">Hover触发 <Icon type="down"></Icon></cl-button>
-        <cl-dropdown-menu slot="menu">
-            <cl-dropdown-item>菜单一</cl-dropdown-item>
-            <cl-dropdown-item>菜单二</cl-dropdown-item>
-            <cl-dropdown-item disabled>菜单三</cl-dropdown-item>
-            <cl-dropdown-item>菜单四</cl-dropdown-item>
-            <cl-dropdown-item divided>菜单五</cl-dropdown-item>
-        </cl-dropdown-menu>
-    </cl-dropdown>
-    <cl-dropdown trigger="click" :hide-on-click="false" :renderHtml="true">
-        <cl-button type="text">点击触发 <Icon type="down"></Icon></cl-button>
-        <cl-dropdown-menu slot="menu">
-            <cl-dropdown-item>菜单一</cl-dropdown-item>
-            <cl-dropdown-item>菜单二</cl-dropdown-item>
-            <cl-dropdown-item disabled>菜单三</cl-dropdown-item>
-            <cl-dropdown-item>菜单四</cl-dropdown-item>
-            <cl-dropdown-item divided>菜单五</cl-dropdown-item>
-        </cl-dropdown-menu>
-    </cl-dropdown>
-    <cl-dropdown trigger="contextmenu">
-        <cl-button type="text">右键触发 <Icon type="down"></Icon></cl-button>
-        <cl-dropdown-menu slot="menu">
-            <cl-dropdown-item>菜单一</cl-dropdown-item>
-            <cl-dropdown-item>菜单二</cl-dropdown-item>
-            <cl-dropdown-item disabled>菜单三</cl-dropdown-item>
-            <cl-dropdown-item>菜单四</cl-dropdown-item>
-            <cl-dropdown-item divided>菜单五</cl-dropdown-item>
-        </cl-dropdown-menu>
-    </cl-dropdown>
-    <cl-dropdown :visible="visible" trigger="custom" :dropdownMatchSelectWidth="false">
-        <cl-button type="text" @click="visible = true">自定义触发 <Icon type="down"></Icon></cl-button>
-        <cl-dropdown-menu slot="menu">
+    <Dropdown>
+        <Button type="text">Hover触发 <Icon type="down"></Icon></Button>
+        <DropdownMenu slot="menu">
+            <Dropdown-item>菜单一</Dropdown-item>
+            <Dropdown-item>菜单二</Dropdown-item>
+            <Dropdown-item disabled>菜单三</Dropdown-item>
+            <Dropdown-item>菜单四</Dropdown-item>
+            <Dropdown-item divided>菜单五</Dropdown-item>
+        </DropdownMenu>
+    </Dropdown>
+    <Dropdown trigger="click" :hide-on-click="false" :renderHtml="true">
+        <Button type="text">点击触发 <Icon type="down"></Icon></Button>
+        <DropdownMenu slot="menu">
+            <Dropdown-item>菜单一</Dropdown-item>
+            <Dropdown-item>菜单二</Dropdown-item>
+            <Dropdown-item disabled>菜单三</Dropdown-item>
+            <Dropdown-item>菜单四</Dropdown-item>
+            <Dropdown-item divided>菜单五</Dropdown-item>
+        </DropdownMenu>
+    </Dropdown>
+    <Dropdown trigger="contextmenu">
+        <Button type="text">右键触发 <Icon type="down"></Icon></Button>
+        <DropdownMenu slot="menu">
+            <Dropdown-item>菜单一</Dropdown-item>
+            <Dropdown-item>菜单二</Dropdown-item>
+            <Dropdown-item disabled>菜单三</Dropdown-item>
+            <Dropdown-item>菜单四</Dropdown-item>
+            <Dropdown-item divided>菜单五</Dropdown-item>
+        </DropdownMenu>
+    </Dropdown>
+    <Dropdown :visible="visible" trigger="custom" :dropdownMatchSelectWidth="false">
+        <Button type="text" @click="visible = true">自定义触发 <Icon type="down"></Icon></Button>
+        <DropdownMenu slot="menu">
             <p style="padding: 5px;">可以自定义需要的内容;自定义实现打开和关闭。</p>
             <div style="padding: 5px;text-align: right">
-                <cl-button type="primary" @click="visible = false">关闭</cl-button>
+                <Button type="primary" @click="visible = false">关闭</Button>
 </div>
-        </cl-dropdown-menu>
-    </cl-dropdown>
+        </DropdownMenu>
+    </Dropdown>
     
 </template>
 <script>
@@ -109,22 +109,22 @@
 
 ```html
 <template>
-    <cl-dropdown>
-        <cl-button type="text">嵌套菜单 <Icon type="down"></Icon></cl-button>
-        <cl-dropdown-menu slot="menu">
-            <cl-dropdown-item>菜单一</cl-dropdown-item>
-            <cl-dropdown-item>菜单二</cl-dropdown-item>
-            <cl-dropdown placement="right-start">
-                <cl-dropdown-item>菜单三 <Icon type="right"></Icon></cl-dropdown-item>
-                <cl-dropdown-menu slot="menu">
-                    <cl-dropdown-item>二级菜单一</cl-dropdown-item>
-                    <cl-dropdown-item>二级菜单二</cl-dropdown-item>
-                </cl-dropdown-menu>
-            </cl-dropdown>
-            <cl-dropdown-item>菜单四</cl-dropdown-item>
-            <cl-dropdown-item divided>菜单五</cl-dropdown-item>
-        </cl-dropdown-menu>
-    </cl-dropdown>
+    <Dropdown>
+        <Button type="text">嵌套菜单 <Icon type="down"></Icon></Button>
+        <DropdownMenu slot="menu">
+            <Dropdown-item>菜单一</Dropdown-item>
+            <Dropdown-item>菜单二</Dropdown-item>
+            <Dropdown placement="right-start">
+                <Dropdown-item>菜单三 <Icon type="right"></Icon></Dropdown-item>
+                <DropdownMenu slot="menu">
+                    <Dropdown-item>二级菜单一</Dropdown-item>
+                    <Dropdown-item>二级菜单二</Dropdown-item>
+                </DropdownMenu>
+            </Dropdown>
+            <Dropdown-item>菜单四</Dropdown-item>
+            <Dropdown-item divided>菜单五</Dropdown-item>
+        </DropdownMenu>
+    </Dropdown>
 </template>
 <script>
     export default {

@@ -11,15 +11,15 @@
 
 ```html
 <template>
-    <cl-button type="primary" @click="drawerBase = true">Open</cl-button>
-    <cl-drawer v-model="drawerBase" title="Base Drawer">
+    <Button type="primary" @click="drawerBase = true">Open</Button>
+    <Drawer v-model="drawerBase" title="Base Drawer">
         <p>Some contents...Some contents...Some contents...Some contents...Some contents...</p>
         <p>Some contents...</p>
         <p>Some contents...</p>
         <p>Some contents...</p>
         <p>Some contents...</p>
         <p>Some contents...</p>
-    </cl-drawer>
+    </Drawer>
 </template>
 <script>
     export default {
@@ -42,18 +42,18 @@
 
 ```html
 <template>
-    <cl-button type="primary" @click="openDrawer('left')">Left Open</cl-button>
-    <cl-button type="primary" @click="openDrawer('right')">Right Open</cl-button>
-    <cl-button type="primary" @click="openDrawer('top')">Top Open</cl-button>
-    <cl-button type="primary" @click="openDrawer('bottom')">Bottom Open</cl-button>
-    <cl-drawer v-model="drawerPosition" title="Position Drawer" :placement="placement">
+    <Button type="primary" @click="openDrawer('left')">Left Open</Button>
+    <Button type="primary" @click="openDrawer('right')">Right Open</Button>
+    <Button type="primary" @click="openDrawer('top')">Top Open</Button>
+    <Button type="primary" @click="openDrawer('bottom')">Bottom Open</Button>
+    <Drawer v-model="drawerPosition" title="Position Drawer" :placement="placement">
         <p>Some contents...Some contents...Some contents...Some contents...Some contents...</p>
         <p>Some contents...</p>
         <p>Some contents...</p>
         <p>Some contents...</p>
         <p>Some contents...</p>
         <p>Some contents...</p>
-    </cl-drawer>
+    </Drawer>
 </template>
 <script>
     export default {
@@ -83,18 +83,18 @@
 
 ```html
 <template>
-    <cl-button type="primary" @click="drawerMore = true">Open</cl-button>
-    <cl-drawer width="500" v-model="drawerMore" title="One-Level Drawer">
-        <cl-button type="primary" @click="drawerMoreTwo = true">Open TwoDrawer</cl-button>
-    </cl-drawer>
-    <cl-drawer v-model="drawerMoreTwo" title="Two-Level Drawer">
+    <Button type="primary" @click="drawerMore = true">Open</Button>
+    <Drawer width="500" v-model="drawerMore" title="One-Level Drawer">
+        <Button type="primary" @click="drawerMoreTwo = true">Open TwoDrawer</Button>
+    </Drawer>
+    <Drawer v-model="drawerMoreTwo" title="Two-Level Drawer">
         <p>Some contents...Some contents...Some contents...Some contents...Some contents...</p>
         <p>Some contents...</p>
         <p>Some contents...</p>
         <p>Some contents...</p>
         <p>Some contents...</p>
         <p>Some contents...</p>
-    </cl-drawer>
+    </Drawer>
 </template>
 <script>
     export default {
@@ -119,15 +119,15 @@
 
 ```html
 <template>
-    <cl-button type="primary" @click="visible = true">Async Open</cl-button>
-    <cl-drawer v-model="visible" loading title="Async Drawer" @ok="asyncClick">
+    <Button type="primary" @click="visible = true">Async Open</Button>
+    <Drawer v-model="visible" loading title="Async Drawer" @ok="asyncClick">
         <p>Some contents...Some contents...Some contents...Some contents...Some contents...</p>
         <p>Some contents...</p>
         <p>Some contents...</p>
         <p>Some contents...</p>
         <p>Some contents...</p>
         <p>Some contents...</p>
-    </cl-drawer>
+    </Drawer>
 </template>
 <script>
     export default {

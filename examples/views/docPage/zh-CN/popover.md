@@ -13,21 +13,21 @@
 
 ```html
 <template>
-    <cl-popover title="提示" trigger="hover" content="content">
-        <cl-button>hover激活</cl-button>
-    </cl-popover>
-    <cl-popover title="提示" trigger="click" content="content">
-        <cl-button>click激活</cl-button>
-    </cl-popover>
-    <cl-popover title="提示" trigger="focus" content="content">
-        <cl-button>foucs激活</cl-button>
-    </cl-popover>
-    <cl-popover title="提示" trigger="focus" content="content">
-        <cl-input placeholder="input focus" />
-    </cl-popover>
-    <cl-popover title="提示" width="150px" wordWrap content="contentcontentcontentcontentcontentcontent">
-        <cl-button>换行显示</cl-button>
-    </cl-popover>
+    <Popover title="提示" trigger="hover" content="content">
+        <Button>hover激活</Button>
+    </Popover>
+    <Popover title="提示" trigger="click" content="content">
+        <Button>click激活</Button>
+    </Popover>
+    <Popover title="提示" trigger="focus" content="content">
+        <Button>foucs激活</Button>
+    </Popover>
+    <Popover title="提示" trigger="focus" content="content">
+        <m-input placeholder="input focus" />
+    </Popover>
+    <Popover title="提示" width="150px" wordWrap content="contentcontentcontentcontentcontentcontent">
+        <Button>换行显示</Button>
+    </Popover>
 </template>
 
 ```
@@ -42,50 +42,50 @@
 ```html
 <template>
     <div class="doc-margin-l10" style="text-align: center;width: 300px">
-        <cl-popover title="提示" placement="top-start" content="content">
-            <cl-button>上左</cl-button>
-        </cl-popover>
-        <cl-popover title="提示" placement="top" content="content">
-            <cl-button>上边</cl-button>
-        </cl-popover>
-        <cl-popover title="提示" placement="top-end" content="content">
-            <cl-button>上右</cl-button>
-        </cl-popover>
+        <Popover title="提示" placement="top-start" content="content">
+            <Button>上左</Button>
+        </Popover>
+        <Popover title="提示" placement="top" content="content">
+            <Button>上边</Button>
+        </Popover>
+        <Popover title="提示" placement="top-end" content="content">
+            <Button>上右</Button>
+        </Popover>
     </div>
     <div class="doc-margin-l10 doc-popover-placement">
-        <cl-popover title="提示" placement="left-start" content="content">
-            <cl-button>左上</cl-button>
-        </cl-popover>
-        <cl-popover title="提示" placement="right-start" content="content">
-            <cl-button>右上</cl-button>
-        </cl-popover>
+        <Popover title="提示" placement="left-start" content="content">
+            <Button>左上</Button>
+        </Popover>
+        <Popover title="提示" placement="right-start" content="content">
+            <Button>右上</Button>
+        </Popover>
     </div>
     <div class="doc-margin-l10 doc-popover-placement">
-        <cl-popover title="提示" placement="left" content="content">
-            <cl-button>左边</cl-button>
-        </cl-popover>
-        <cl-popover title="提示" placement="right" content="content">
-            <cl-button>右边</cl-button>
-        </cl-popover>
+        <Popover title="提示" placement="left" content="content">
+            <Button>左边</Button>
+        </Popover>
+        <Popover title="提示" placement="right" content="content">
+            <Button>右边</Button>
+        </Popover>
     </div>
     <div class="doc-margin-l10 doc-popover-placement">
-        <cl-popover title="提示" placement="left-end" content="content">
-            <cl-button>左下</cl-button>
-        </cl-popover>
-        <cl-popover title="提示" placement="right-end" content="content">
-            <cl-button>右下</cl-button>
-        </cl-popover>
+        <Popover title="提示" placement="left-end" content="content">
+            <Button>左下</Button>
+        </Popover>
+        <Popover title="提示" placement="right-end" content="content">
+            <Button>右下</Button>
+        </Popover>
     </div>
     <div class="doc-margin-l10" style="text-align: center;width: 300px">
-        <cl-popover title="提示" placement="bottom-start" content="content">
-            <cl-button>下左</cl-button>
-        </cl-popover>
-        <cl-popover title="提示" placement="bottom" content="content">
-            <cl-button>下边</cl-button>
-        </cl-popover>
-        <cl-popover title="提示" placement="bottom-end" content="content">
-            <cl-button>下右</cl-button>
-        </cl-popover>
+        <Popover title="提示" placement="bottom-start" content="content">
+            <Button>下左</Button>
+        </Popover>
+        <Popover title="提示" placement="bottom" content="content">
+            <Button>下边</Button>
+        </Popover>
+        <Popover title="提示" placement="bottom-end" content="content">
+            <Button>下右</Button>
+        </Popover>
     </div>
 </template>
 <style>
@@ -116,12 +116,12 @@
 
 ```html
 <template>
-     <cl-popover v-model="visibleClose" title="提示" content="content">
+     <Popover v-model="visibleClose" title="提示" content="content">
         <div slot="content">
-            <cl-button type="text" @click="visibleClose = false">close</cl-button>
+            <Button type="text" @click="visibleClose = false">close</Button>
         </div>
-        <cl-button>点击close关闭</cl-button>
-    </cl-popover>
+        <Button>点击close关闭</Button>
+    </Popover>
 </template>
 <script>
     export default {
@@ -144,9 +144,9 @@
 
 ```html
 <template>
-    <cl-popover confirm title="您确定要删除这条内容么？">
-        <cl-button>删除</cl-button>
-    </cl-popover>
+    <Popover confirm title="您确定要删除这条内容么？">
+        <Button>删除</Button>
+    </Popover>
 </template>
 <script>
     export default {
@@ -177,9 +177,9 @@
 
 ```html
 <template>
-     <cl-popover title="提示" content="content" :render-html="true">
-        <cl-button>渲染浮层元素到BODY中</cl-button>
-    </cl-popover>
+     <Popover title="提示" content="content" :render-html="true">
+        <Button>渲染浮层元素到BODY中</Button>
+    </Popover>
 </template>
 <script>
     export default {
