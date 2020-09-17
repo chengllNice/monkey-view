@@ -153,7 +153,7 @@
 | placement | String | 下拉菜单的位置 | bottom-start |
 | dropdownMatchSelectWidth | Boolean | 下拉框宽度是否和触发元素同宽 | true |
 | hide-on-click | Boolean | 点击item后是否关闭菜单 | true |
-| renderHtml | HTMLElement, Boolean | 下拉框渲染到的位置 | true |
+| renderHtml | HTMLElement, Boolean | 下拉框渲染到的位置 | false |
 
 
 ### Dropdown event

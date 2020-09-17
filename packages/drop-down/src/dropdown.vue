@@ -60,7 +60,7 @@
             },
             renderHtml: {
                 type: [HTMLElement, Boolean],
-                default: false,
+                default: true,
             }
         },
         data() {

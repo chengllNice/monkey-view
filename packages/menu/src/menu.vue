@@ -86,17 +86,20 @@
                 this.updateActiveKey();
             });
             this.$on('on-update-opened-key', (key) => {
-                if (this.accordion) {
-                    this.openedKeys = key || [];
-                } else {
-                    if (this.openedKeys.includes(key)) {
-                        let index = this.openedKeys.indexOf(key);
-                        this.openedKeys.splice(index, 1)
+                console.log(key)
+                if(this.mode === 'vertical' && !this.collapse){
+                    if (this.accordion) {
+                        this.openedKeys = key || [];
                     } else {
-                        this.openedKeys.push(key);
+                        if (this.openedKeys.includes(key)) {
+                            let index = this.openedKeys.indexOf(key);
+                            this.openedKeys.splice(index, 1)
+                        } else {
+                            this.openedKeys.push(key);
+                        }
                     }
+                    this.$emit('open-change', key, this.openedKeys);
                 }
-                this.$emit('open-change', key, this.openedKeys);
             });
             this.$on('on-update-active-key', (key) => {
                 if (this.currentActiveKey !== key) {
@@ -110,7 +113,7 @@
                 this.currentActiveKey = this.activeKey;
             },
             updateOpenedKey() {
-                this.openedKeys = [...this.openKeys];
+                if(this.mode === 'vertical' && !this.collapse) this.openedKeys = [...this.openKeys];
             }
         },
         watch: {

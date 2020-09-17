@@ -11,11 +11,15 @@
 }
 .doc-layout-header, .doc-layout-footer{
   color: #ffffff;
+  text-align: center;
   background-color: mix(#ffffff, #2d8cf0, 30%);
 }
 .doc-layout-content{
   min-height: 120px;
   line-height: 120px;
+  color: #ffffff;
+  text-align: center;
+  font-size: 16px;
   background-color: mix(#ffffff, #2d8cf0, 10%);
 }
 .doc-layout-sider{

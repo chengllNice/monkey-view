@@ -77,7 +77,7 @@
 
 可以设置 `open-keys`属性设置打开的 `submenu`菜单项，此c-key值只针对 `submenu`组件。
 
-设置 `accordion`开启手风琴模式。
+设置 `accordion`开启手风琴模式，每次最多展开一个`submenu`。
 
 ```html
 <template>
@@ -114,8 +114,8 @@
             </Menu>
         </Col>
         <Col>
-            <h4>设置选中项和打开项</h4>
-            <Menu :theme="menuTheme">
+            <h4>手风琴模式</h4>
+            <Menu accordion :theme="menuTheme">
                 <MenuItem c-key="home" icon="home" name="首页"></MenuItem>
                 <Submenu c-key="cloud-product" icon='cloud-upload' name="云产品">
                     <MenuItem c-key="file" icon="file" name="对象存储"></MenuItem>
@@ -145,63 +145,6 @@
             </Menu>
         </Col>
     </Row>
-
-    <h4>切换主题</h4>
-    <RadioGroup v-model="menuTheme">
-        <Radio label="light"></Radio>
-        <Radio label="dark"></Radio>
-        <Radio label="green"></Radio>
-    </RadioGroup>
-</template>
-<script>
-    export default {
-      data(){
-        return {
-          menuTheme: 'light',
-        }
-      }
-    }
-</script>
-
-```
-
-:::
-
-
-:::demo 手风琴模式
-
-设置 `accordion`开启手风琴模式，每次最多展开一个`submenu`。
-
-```html
-<template>
-    <Menu accordion :theme="menuTheme">
-        <MenuItem c-key="home" icon="home" name="首页"></MenuItem>
-        <Submenu c-key="cloud-product" icon='cloud-upload' name="云产品">
-            <MenuItem c-key="file" icon="file" name="对象存储"></MenuItem>
-            <MenuItem c-key="email" icon="email" name="短信服务"></MenuItem>
-        </Submenu>
-        <Submenu c-key="echarts" icon='echarts-pie' name="统计分析">
-            <MenuGroup name="图表">
-                <MenuItem c-key="echarts-bar" icon="echarts-bar" name="柱状图"></MenuItem>
-                <MenuItem c-key="echarts-line" icon="echarts-line" name="折线图"></MenuItem>
-            </MenuGroup>
-            <MenuGroup name="数据">
-                <MenuItem c-key="heart" icon="heart" name="最受欢迎"></MenuItem>
-                <MenuItem c-key="table" icon="table" name="表格"></MenuItem>
-            </MenuGroup>
-        </Submenu>
-        <Submenu c-key="user-manage" icon='user' name="用户管理">
-            <MenuItem c-key="user-role-manage" name="用户角色管理"></MenuItem>
-            <MenuItem c-key="user-vip-manage" name="专属用户管理"></MenuItem>
-            <Submenu c-key="user-bill-manage" name="用户账单管理">
-                <MenuItem c-key="one-month" name="近一个月消费"></MenuItem>
-                <MenuItem c-key="three-month" name="近三个月消费"></MenuItem>
-                <MenuItem c-key="one-year" name="近一年消费"></MenuItem>
-            </Submenu>
-        </Submenu>
-        <MenuItem c-key="square-plus" icon="square-plus" name="建站"></MenuItem>
-        <MenuItem c-key="question" icon="question" name="解决方案"></MenuItem>
-    </Menu>
 
     <h4>切换主题</h4>
     <RadioGroup v-model="menuTheme">
@@ -285,25 +228,7 @@
             <MenuItem c-key="file" icon="file" name="对象存储"></MenuItem>
             <MenuItem c-key="email" icon="email" name="短信服务"></MenuItem>
         </Submenu>
-        <Submenu c-key="echarts" icon='echarts-pie' name="统计分析">
-            <MenuGroup name="图表">
-                <MenuItem c-key="echarts-bar" icon="echarts-bar" name="柱状图"></MenuItem>
-                <MenuItem c-key="echarts-line" icon="echarts-line" name="折线图"></MenuItem>
-            </MenuGroup>
-            <MenuGroup name="数据">
-                <MenuItem c-key="heart" icon="heart" name="最受欢迎"></MenuItem>
-                <MenuItem c-key="table" icon="table" name="表格"></MenuItem>
-            </MenuGroup>
-        </Submenu>
-        <Submenu c-key="user-manage" icon='user' name="用户管理">
-            <MenuItem c-key="user-role-manage" name="用户角色管理"></MenuItem>
-            <MenuItem c-key="user-vip-manage" name="专属用户管理"></MenuItem>
-            <Submenu c-key="user-bill-manage" name="用户账单管理">
-                <MenuItem c-key="one-month" name="近一个月消费"></MenuItem>
-                <MenuItem c-key="three-month" name="近三个月消费"></MenuItem>
-                <MenuItem c-key="one-year" name="近一年消费"></MenuItem>
-            </Submenu>
-        </Submenu>
+        
         <MenuItem c-key="square-plus" icon="square-plus" name="建站"></MenuItem>
         <MenuItem c-key="question" icon="question" name="解决方案"></MenuItem>
     </Menu>
@@ -336,7 +261,7 @@
 | accordion | Boolean | 是否开始手风琴模式，开启后每次最多展开一个`submenu`，`mode=vertical`时有效 | - |
 | mode | String | 菜单类型，可选值`vertical`(垂直) `horizontal`(水平) | vertical |
 | active-key | String | 当前激活菜单的`c-key`值，只对`menuItem`组件的c-key值有效 | - |
-| open-keys | Array | 展开的`submenu`的`c-key`值集合 | [] |
+| open-keys | Array | 展开的`submenu`的`c-key`值集合，`mode=vertical`时有效 | [] |
 | item-height | String, Number | `vertical`模式下配置`submenu`、`menu-item`、`menu-group`的高度；`horizontal`模式下配置一级菜单的高度 | 50 |
 
 

@@ -3,10 +3,11 @@
                  :class="[
                     `${classPrefix}`,
                     !!menuDirectComponent && `${classPrefix}--direct`,
+                    menuComponent.theme && `${classPrefix}--${menuComponent.theme}`,
+                    menuComponent.mode && `${classPrefix}--${menuComponent.mode}`,
                     active && 'is-active',
                     disabled && 'is-disabled',
                  ]"
-                 ref="menuItem"
                  :style="itemStyle"
                  @click.native="handleClick"
                  :to="disabled ? $route.fullPath : to">
@@ -34,10 +35,11 @@
          :class="[
             `${classPrefix}`,
             !!menuDirectComponent && `${classPrefix}--direct`,
+            menuComponent.theme && `${classPrefix}--${menuComponent.theme}`,
+            menuComponent.mode && `${classPrefix}--${menuComponent.mode}`,
             active && 'is-active',
             disabled && 'is-disabled',
          ]"
-         ref="menuItem"
          :style="itemStyle"
          @click="handleClick">
         <Tooltip v-if="!!menuDirectComponent && menuComponent.mode === 'vertical'"
@@ -103,7 +105,7 @@
                 let parentElIsGroup = this.$parent.componentName === 'MenuGroup';
 
                 if (this.menuComponent.mode === 'horizontal') {
-                    padding = 10;
+                    if(!this.menuDirectComponent) padding = 10;
                     if(parentElIsGroup) style = {'padding-left': (padding * 2) + 'px'}
                     else style = {'padding-left': padding + 'px'}
 
@@ -156,9 +158,8 @@
                 this.parentEmit('Submenu', 'on-close-dropdown');
             },
             getTooltipContent(){
-                let menuItem = this.$refs.menuItem;
-                let text = menuItem.innerText
-                console.log(menuItem,'menuItem',text)
+                let menuItem = this.$el;
+                let text = menuItem.textContent;
                 if(this.name) text = this.name;
                 this.tooltipContent = text;
             }

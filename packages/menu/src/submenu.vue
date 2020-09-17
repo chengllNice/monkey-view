@@ -2,6 +2,8 @@
     <div :class="[
              `${classPrefix}`,
              opened && `${classPrefix}--opened`,
+             menuComponent.theme && `${classPrefix}--${menuComponent.theme}`,
+             menuComponent.mode && `${classPrefix}--${menuComponent.mode}`,
              !!menuDirectComponent && `${classPrefix}--direct`,
              disabled && 'is-disabled',
              active && 'is-active',
@@ -28,8 +30,14 @@
                   ref="dropDown"
                   :reference="this.$refs.reference"
                   :placement="placement"
-                  v-model="opened">
-                <div :class="[`${classPrefix}__drop-inner`]">
+                  v-model="opened"
+                  :render-html="dropRenderHtml"
+                  @mouseenter.native="handleMouseenter"
+                  @mouseleave.native="handleMouseleave">
+                <div :class="[
+                    `${classPrefix}__drop-inner`,
+                    menuComponent.theme && `${classPrefix}__drop-inner-${menuComponent.theme}`,
+                    ]">
                     <slot></slot>
                 </div>
             </Drop>
@@ -138,6 +146,12 @@
                 return {
                     'right': padding + 'px'
                 }
+            },
+            dropRenderHtml(){
+                let isParentSubmenu = this.$parent.$parent.componentName === 'Submenu';
+                if(this.menuComponent.mode === 'horizontal' && isParentSubmenu) return false;
+                if(this.menuComponent.mode === 'vertical' && this.menuComponent.collapse && isParentSubmenu) return false;
+                return true;
             }
         },
         components: {
@@ -147,7 +161,7 @@
         },
         mounted() {
             this.$on('on-close-dropdown', () => {
-                if (this.menuComponent.mode !== 'vertical') {
+                if (this.menuComponent.mode === 'horizontal' || (this.menuComponent.mode === 'vertical' && this.menuComponent.collapse)) {
                     this.opened = false;
                 }
             })
@@ -224,7 +238,7 @@
                 this.opened = newVal.includes(this.cKey);
             },
             'menuComponent.currentActiveKey': function (newVal) {
-                if (this.menuComponent.mode === 'horizontal') {
+                if (this.menuComponent.mode === 'horizontal' || (this.menuComponent.mode === 'vertical' && this.menuComponent.collapse)) {
                     this.menuItemChildrenActive(newVal);
                 }
             },

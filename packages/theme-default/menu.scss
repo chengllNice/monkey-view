@@ -2,7 +2,7 @@
 @import "./config/mixins/index.scss";
 
 
-@mixin theme($type, $mode){
+@function theme-fun($type, $mode, $return){
   $background-color: $--menu-theme-light-background-color;
   $font-color: $--menu-theme-light-font-color;
   $background-color-hover: $--menu-theme-light-active-background-color;
@@ -32,77 +32,195 @@
     $background-color-hover: transparent;
   }
 
-  background-color: $background-color;
-  color: $font-color;
-
-  a{
-    color: $font-color;
+  $returnValue: '';
+  @if($return == 'background-color'){
+    $returnValue: $background-color;
   }
-  @include ci(menu-group__title){
+  @if($return == 'font-color'){
+    $returnValue: $font-color;
+  }
+  @if($return == 'background-color-hover'){
+    $returnValue: $background-color-hover;
+  }
+  @if($return == 'font-color-hover'){
+    $returnValue: $font-color-hover;
+  }
+  @if($return == 'group-font-color'){
+    $returnValue: $group-font-color;
+  }
+  @if($return == 'border-color'){
+    $returnValue: $border-color;
+  }
+  @return $returnValue;
+}
+
+
+@mixin menu-item-theme($type, $mode){
+
+  &, a{
+    color: theme-fun($type, $mode, font-color);
+  }
+  &:not(.is-disabled):hover, &.is-active{
+    background-color: theme-fun($type, $mode, background-color-hover);
+    border-bottom-color: theme-fun($type, $mode, border-color);
     &, a{
-      color: $group-font-color;
+      color: theme-fun($type, $mode, font-color-hover);
     }
   }
+}
 
-  @include ci(menu-item){
+
+@mixin menu-group-theme($type, $mode){
+
+  @include e(title, false){
     &, a{
-      color: $font-color;
+      color: theme-fun($type, $mode, group-font-color);
     }
-    &:not(.is-disabled):hover, &.is-active{
-      background-color: $background-color-hover;
-      border-bottom-color: $border-color;
-      &, a{
-        color: $font-color-hover;
+  }
+}
+
+
+@mixin submenu-theme($type, $mode){
+
+  @include e(title, false){
+    &, a{
+      color: theme-fun($type, $mode, font-color);
+    }
+  }
+  //@if($mode == vertical){
+  //  &:not(.is-disabled){
+  //    @include e(title, false){
+  //      &:hover{
+  //        background-color: theme-fun($type, $mode, background-color-hover);
+  //        border-bottom-color: theme-fun($type, $mode, border-color);
+  //        &, a{
+  //          color: theme-fun($type, $mode, font-color-hover);
+  //        }
+  //      }
+  //    }
+  //  }
+  //}@else if($mode == horizontal){
+  //  &:not(.is-disabled):hover{
+  //    & > {
+  //      @include e(title, false){
+  //        background-color: theme-fun($type, $mode, background-color-hover);
+  //        border-bottom-color: theme-fun($type, $mode, border-color);
+  //        &, a{
+  //          color: theme-fun($type, $mode, font-color-hover);
+  //        }
+  //      }
+  //    }
+  //  }
+  //}
+
+  &:not(.is-disabled){
+    @include e(title, false){
+      &:hover{
+        background-color: theme-fun($type, $mode, background-color-hover);
+        border-bottom-color: theme-fun($type, $mode, border-color);
+        &, a{
+          color: theme-fun($type, $mode, font-color-hover);
+        }
       }
     }
   }
 
-  @include ci(submenu){
-    &__title{
-      &, a{
-        color: $font-color;
-      }
-    }
-    @if($mode == vertical){
-      &:not(.is-disabled){
-        @include ci(submenu__title){
-          &:hover{
-            background-color: $background-color-hover;
-            border-bottom-color: $border-color;
-            &, a{
-              color: $font-color-hover;
-            }
-          }
-        }
-      }
-    }@else if($mode == horizontal){
-      &:not(.is-disabled):hover{
-        & > {
-          @include ci(submenu__title){
-            background-color: $background-color-hover;
-            border-bottom-color: $border-color;
-            &, a{
-              color: $font-color-hover;
-            }
-          }
+  &.is-active{
+    & > {
+      @include e(title, false){
+        background-color: theme-fun($type, $mode, background-color-hover);
+        border-bottom-color: theme-fun($type, $mode, border-color);
+        &, a{
+          color: theme-fun($type, $mode, font-color-hover);
         }
       }
     }
+  }
 
-    &.is-active{
-      & > {
-        @include ci(submenu__title){
-          background-color: $background-color-hover;
-          border-bottom-color: $border-color;
-          &, a{
-            color: $font-color-hover;
-          }
-        }
+  $drop-inner-classname: 'drop-inner-' + $type;
+
+  @include e($drop-inner-classname){
+    background-color: theme-fun($type, $mode, background-color);
+  }
+}
+
+
+@mixin menu-theme($type){
+ background-color: theme-fun($type, '', background-color);
+ color: theme-fun($type, '', font-color);
+}
+
+@mixin theme($type){
+  @include m(light){
+    @include m(vertical, false, true){
+      @if($type == 'menu-item'){
+        @include menu-item-theme(light, vertical);
+      }
+      @if($type == 'menu-group'){
+        @include menu-group-theme(light, vertical);
+      }
+      @if($type == 'submenu'){
+        @include submenu-theme(light, vertical);
       }
     }
-
-    &__drop-inner{
-      background-color: $background-color;
+    @include m(horizontal, false, true){
+      @if($type == 'menu-item'){
+        @include menu-item-theme(light, horizontal);
+      }
+      @if($type == 'menu-group'){
+        @include menu-group-theme(light, horizontal);
+      }
+      @if($type == 'submenu'){
+        @include submenu-theme(light, horizontal);
+      }
+    }
+  }
+  @include m(dark){
+    @include m(vertical, false, true){
+      @if($type == 'menu-item'){
+        @include menu-item-theme(dark, vertical);
+      }
+      @if($type == 'menu-group'){
+        @include menu-group-theme(dark, vertical);
+      }
+      @if($type == 'submenu'){
+        @include submenu-theme(dark, vertical);
+      }
+    }
+    @include m(horizontal, false, true){
+      @if($type == 'menu-item'){
+        @include menu-item-theme(dark, horizontal);
+      }
+      @if($type == 'menu-group'){
+        @include menu-group-theme(dark, horizontal);
+      }
+      @if($type == 'submenu'){
+        @include submenu-theme(dark, horizontal);
+      }
+    }
+  }
+  @include m(green){
+    @include m(vertical, false, true){
+      @if($type == 'menu-item'){
+        @include menu-item-theme(green, vertical);
+      }
+      @if($type == 'menu-group'){
+        @include menu-group-theme(green, vertical);
+      }
+      @if($type == 'submenu'){
+        @include submenu-theme(green, vertical);
+      }
+    }
+    @include m(horizontal, false, true){
+      @if($type == 'menu-item'){
+        @include menu-item-theme(green, horizontal);
+      }
+      @if($type == 'menu-group'){
+        @include menu-group-theme(green, horizontal);
+      }
+      @if($type == 'submenu'){
+        @include submenu-theme(green, horizontal);
+      }
     }
   }
 }
@@ -114,34 +232,21 @@
   font-size: $--font-size-default;
   transition: width $--animation-time ease-in-out;
   @include m(light){
-    border-right: 1px solid #dcdee2;
-    border-bottom: none;
-    @include theme(light, vertical);
+    @include menu-theme(light);
+    @include m(vertical, false, true){
+      border-right: 1px solid #dcdee2;
+    }
+    @include m(horizontal, false, true){
+      border-bottom: 1px solid #dcdee2;
+    }
   }
   @include m(dark){
-    @include theme(dark, vertical);
+    @include menu-theme(dark);
   }
   @include m(green){
-    @include theme(green, vertical);
+    @include menu-theme(green);
   }
 
-
-  @include m(vertical){
-    @include ci(submenu){
-      &__title-slide-icon{
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-      }
-    }
-    @include ci(submenu--opened){
-      & > * > {
-        @include ci(submenu__title-slide-icon){
-          transform: translateY(-50%) rotate(180deg);
-        }
-      }
-    }
-  }
 
   @include m(collapse){
     @include ci(submenu--direct){
@@ -179,75 +284,6 @@
       display: block;
       clear: both;
     }
-
-    @include ci(menu-item){
-      float: left;
-      width: auto;
-      border-bottom: 2px solid transparent;
-
-      @include ci(menu-item){
-        float: none;
-        border: none;
-      }
-
-      @include ci(submenu){
-        float: none;
-        border: none;
-      }
-    }
-    @include ci(submenu){
-      float: left;
-      width: auto;
-      &__title{
-        border-bottom: 2px solid transparent;
-      }
-
-      @include ci(menu-item){
-        float: none;
-        border: none;
-      }
-
-      @include ci(submenu){
-        float: none;
-        border: none;
-        @include ci(submenu__title){
-          border-bottom: none;
-        }
-        @include ci(submenu__title-slide-icon){
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-        }
-        &--opened{
-          & > * > {
-            @include ci(submenu__title-slide-icon){
-              transform: translateY(-50%) rotate(180deg);
-            }
-          }
-        }
-      }
-      &--opened{
-        & > * > {
-          @include ci(submenu__title-slide-icon){
-            transform: rotate(180deg);
-          }
-        }
-      }
-    }
-
-    @include m(light, false, true){
-      border-bottom: 1px solid #dcdee2;
-      border-right: none;
-      @include theme(light, horizontal);
-    }
-
-    @include m(dark, false, true){
-      @include theme(dark, horizontal);
-    }
-
-    @include m(green, false, true){
-      @include theme(green, horizontal);
-    }
   }
 }
 
@@ -281,13 +317,71 @@
     }
   }
 
+  @include theme(submenu);
+
+  @include m(vertical){
+    @include e(title-slide-icon, false){
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    @include m(opened, false, true){
+      & > * > {
+        @include e(title-slide-icon, false){
+          transform: translateY(-50%) rotate(180deg);
+        }
+      }
+    }
+  }
+
+  @include m(horizontal){
+    float: left;
+    width: auto;
+    @include e(title, false){
+      border-bottom: 2px solid transparent;
+    }
+
+    @include m(opened, false, true){
+      & > * > {
+        @include ci(submenu__title-slide-icon){
+          transform: rotate(180deg);
+        }
+      }
+    }
+  }
+
   @include e(drop-inner){
     box-shadow: $--box-shadow-default;
     border-radius: $--border-radius-default;
-    background-color: $--color-white;
     width: 100%;
     position: relative;
     padding: 5px 0;
+
+    @include ci(menu-item){
+      float: none;
+      border: none;
+    }
+
+    @include ci(submenu){
+      float: none;
+      border: none;
+      @include e(title, false){
+        border-bottom: none;
+      }
+      @include e(title-slide-icon, false){
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      &--opened{
+        & > * > {
+          @include e(title-slide-icon, false){
+            transform: translateY(-50%) rotate(180deg);
+          }
+        }
+      }
+    }
   }
 
   @include when(disabled){
@@ -332,6 +426,24 @@
     left: 0;
   }
 
+  @include theme(menu-item);
+
+  @include m(horizontal){
+    float: left;
+    width: auto;
+    border-bottom: 2px solid transparent;
+
+    @include ci(menu-item){
+      float: none;
+      border: none;
+    }
+
+    @include ci(submenu){
+      float: none;
+      border: none;
+    }
+  }
+
   @include when(disabled){
     opacity: $--opacity-disabled;
     cursor: not-allowed;
@@ -352,4 +464,6 @@
       margin-right: 10px;
     }
   }
+
+  @include theme(menu-group);
 }

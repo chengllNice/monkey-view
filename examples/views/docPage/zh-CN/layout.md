@@ -256,19 +256,16 @@
 ```html
 <template>
  <div>
-     <div class="doc-layout-single">
-         <Layout class="doc-layout-el">
+     <div>
+         <Layout>
              <Header class="doc-layout-header">header</Header>
              <Layout>
-                 <Sider height="300px" 
-                        v-model="collapsed"
-                        class="doc-layout-sider doc-layout-sider-dark"
-                        :class="{'doc-layout-sider-close': collapsed}">
-                     <Menu :open-keys="openKeys" width="auto" theme="dark">
-                         <Submenu :forbidden="collapsed" :hideDropIcon="collapsed" name="submenu1" c-key="submenu1">
+                 <Sider height="300px" v-model="collapse">
+                     <Menu :collapse="collapse" :open-keys="openKeys" theme="dark">
+                         <Submenu c-key="submenu1">
                              <template slot="title">
-                                 <Icon type="home" class="doc-layout-menu-icon"></Icon>
-                                 <span class="doc-layout-menu-name">submenu1</span>
+                                 <Icon type="home"></Icon>
+                                 <span>submenu1</span>
                              </template>
                              <MenuItem c-key="menuItem1">
                                  <Icon type="home"></Icon>
@@ -291,10 +288,10 @@
                                  <span>menuItem5</span>
                              </MenuItem>
                          </Submenu>
-                         <Submenu :forbidden="collapsed" :hideDropIcon="collapsed" name="submenu2" c-key="submenu2">
+                         <Submenu c-key="submenu2">
                              <template slot="title">
-                                 <Icon type="home" class="doc-layout-menu-icon"></Icon>
-                                 <span class="doc-layout-menu-name">submenu2</span>
+                                 <Icon type="home"></Icon>
+                                 <span>submenu2</span>
                              </template>
                              <MenuItem c-key="menuItem2-1">
                                  <Icon type="home"></Icon>
@@ -317,10 +314,10 @@
                                  <span>menuItem2-5</span>
                              </MenuItem>
                          </Submenu>
-                         <Submenu :forbidden="collapsed" :hideDropIcon="collapsed" name="submenu3" c-key="submenu3">
+                         <Submenu c-key="submenu3">
                              <template slot="title">
-                                 <Icon type="home" class="doc-layout-menu-icon"></Icon>
-                                 <span class="doc-layout-menu-name">submenu3</span>
+                                 <Icon type="home"></Icon>
+                                 <span>submenu3</span>
                              </template>
                              <MenuItem c-key="menuItem3-1">
                                  <Icon type="home"></Icon>
@@ -356,61 +353,22 @@
     export default {
       data(){
         return {
-          collapsed: false,
-          openKeys: ['submenu1'],
+          collapse: false,
+          openKeys: [],
         }
       }
     }
 </script>
 <style>
-    .doc-layout-single{
-        margin-bottom: 40px;
-    }
-    .doc-layout-el{
-        text-align: center;
-        color: #ffffff;
-        font-size: 16px;
-    }
     .doc-layout-header, .doc-layout-footer{
+        color: #ffffff;
+        text-align: center;
         background-color: #86d8af;
     }
     .doc-layout-content{
         min-height: 120px;
         line-height: 120px;
         background-color: #19be6b;
-    }
-    .doc-layout-sider{
-        line-height: 120px;
-        background-color: #62c191;
-    }
-    .doc-layout-sider-dark{
-        background-color: #344058;
-        text-align: left;
-        line-height: normal;
-    }
-    .doc-layout-menu-tooltip{
-        display: block;
-        text-align: left;
-        line-height: normal;
-    }
-    .doc-layout-sider-close{
-        text-align: center;
-    }
-    .doc-layout-menu-name{
-      width: auto;
-      transition: all 0.2s ease-in-out;
-      margin: auto;
-      display: inline-block;
-    }
-    .doc-layout-menu-icon{
-      transition: all 0.2s ease-in-out;
-    }
-    .doc-layout-sider-close .doc-layout-menu-icon{
-        font-size: 18px;
-    }
-    .doc-layout-sider-close .doc-layout-menu-name{
-        width: 0;
-        display: none !important;
     }
 </style>
 
@@ -443,11 +401,11 @@
              </Menu>
          </Sider>
          <Layout>
-             <Header>
-                 <Icon type="list" @click="triggerClick"></Icon>
+             <Header class="doc-layout-header">
+                 <Icon type="list" size="20" @click="triggerClick"></Icon>
              </Header>
-             <Content>content</Content>
-             <Footer>footer</Footer>
+             <Content class="doc-layout-content">content</Content>
+             <Footer class="doc-layout-footer">footer</Footer>
          </Layout>
      </Layout>
 </template>
@@ -466,51 +424,18 @@
     }
 </script>
 <style>
-    .doc-layout-single{
-        margin-bottom: 40px;
-    }
-    .doc-layout-el{
-        text-align: center;
-        color: #ffffff;
-        font-size: 16px;
-    }
     .doc-layout-header, .doc-layout-footer{
+        color: #ffffff;
+        text-align: center;
         background-color: #86d8af;
     }
     .doc-layout-content{
         min-height: 120px;
         line-height: 120px;
-        background-color: #19be6b;
-    }
-    .doc-layout-sider{
-        line-height: 120px;
-        background-color: #62c191;
-    }
-    .doc-layout-menu-tooltip{
-        display: block;
-    }
-    .doc-layout-sider-close{
+        color: #ffffff;
         text-align: center;
-    }
-    .doc-layout-menu-icon{
-        transition: all 0.2s ease-in-out;
-        font-size: 18px;
-    }
-    .doc-layout-menu-name{
-        width: 0;
-        transition: all 0.1s;
-        margin: auto;
-    }
-    .doc-layout-sider-dark{
-        background-color: #344058;
-        text-align: left;
-        line-height: normal;
-    }
-    .doc-layout-header-toggle{
-        text-align: left;
-    }
-    .doc-layout-header-toggle i{
-        cursor: pointer;
+        font-size: 16px;
+        background-color: #19be6b;
     }
 </style>
 

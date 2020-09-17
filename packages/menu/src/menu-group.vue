@@ -1,5 +1,9 @@
 <template>
-    <div :class="[`${classPrefix}`]">
+    <div :class="[
+        `${classPrefix}`,
+        menuComponent.theme && `${classPrefix}--${menuComponent.theme}`,
+        menuComponent.mode && `${classPrefix}--${menuComponent.mode}`,
+        ]">
         <div :class="[`${classPrefix}__title`]" :style="groupStyle">
             <slot name="title">{{name}}</slot>
         </div>
