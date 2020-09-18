@@ -1,14 +1,5 @@
 
 
-
-.doc-layout-single{
-  margin-bottom: 40px;
-}
-.doc-layout-el{
-  text-align: center;
-  color: #ffffff;
-  font-size: 16px;
-}
 .doc-layout-header, .doc-layout-footer{
   color: #ffffff;
   text-align: center;
@@ -23,42 +14,17 @@
   background-color: mix(#ffffff, #2d8cf0, 10%);
 }
 .doc-layout-sider{
+  color: #ffffff;
+  text-align: center;
   line-height: 120px;
   background-color: mix(#ffffff, #2d8cf0, 40%);
 }
 .doc-layout-sider-header{
   background-color: mix(#ffffff, #2d8cf0, 20%);
 }
-.doc-layout-sider-dark{
-  background-color: #344058;
-  text-align: left;
-  line-height: normal;
-}
 .doc-layout-header-toggle{
   text-align: left;
   i{
     cursor: pointer;
-  }
-}
-.doc-layout-menu-tooltip{
-  display: block;
-}
-.doc-layout-menu-name{
-  width: auto;
-  transition: all 0.2s ease-in-out;
-  margin: auto;
-  display: inline-block;
-}
-.doc-layout-menu-icon{
-  transition: all 0.2s ease-in-out;
-}
-.doc-layout-sider-close{
-  text-align: center;
-  .doc-layout-menu-icon{
-    font-size: 18px;
-  }
-  .doc-layout-menu-name{
-    width: 0;
-    display: none !important;
   }
 }

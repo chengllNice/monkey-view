@@ -162,7 +162,8 @@
                 let text = menuItem.textContent;
                 if(this.name) text = this.name;
                 this.tooltipContent = text;
-            }
+            },
+
         },
         mounted() {
             this.$nextTick(()=>{
@@ -171,7 +172,8 @@
         },
         watch: {
             'menuComponent.currentActiveKey': function (newVal) {
-                this.active = this.cKey === newVal
+                if(this.disabled) return;
+                this.active = this.cKey === newVal;
             }
         }
     }

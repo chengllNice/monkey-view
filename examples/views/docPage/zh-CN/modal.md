@@ -17,14 +17,14 @@
 
 ```html
 <template>
-    <cl-button type="primary" @click="modalBase = true">基础modal</cl-button>
-    <cl-modal v-model="modalBase" title="Common Modal Title">
+    <Button type="primary" @click="modalBase = true">基础modal</Button>
+    <Modal v-model="modalBase" title="Common Modal Title">
         <p>Content of dialog</p>
         <p>Content of dialog</p>
         <p>Content of dialog</p>
         <p>Content of dialog</p>
         <p>Content of dialog</p>
-    </cl-modal>
+    </Modal>
 </template>
 <script>
     export default {
@@ -47,37 +47,37 @@
 
 ```html
 <template>
-    <cl-button type="primary" @click="modalWidth = true">自定义宽度</cl-button>
-    <cl-button type="primary" @click="modalTop = true">自定义距离顶部的距离</cl-button>
-    <cl-button type="primary" @click="modalHeaderOrFooter = true">自定义页头和页脚</cl-button>
-    <cl-modal v-model="modalWidth" title="Custom Modal Width" width="600px">
+    <Button type="primary" @click="modalWidth = true">自定义宽度</Button>
+    <Button type="primary" @click="modalTop = true">自定义距离顶部的距离</Button>
+    <Button type="primary" @click="modalHeaderOrFooter = true">自定义页头和页脚</Button>
+    <Modal v-model="modalWidth" title="Custom Modal Width" width="600px">
         <p>Content of dialog</p>
         <p>Content of dialog</p>
         <p>Content of dialog</p>
         <p>Content of dialog</p>
         <p>Content of dialog</p>
-    </cl-modal>
-    <cl-modal v-model="modalTop" title="Custom Modal Top" modalTop="30px">
+    </Modal>
+    <Modal v-model="modalTop" title="Custom Modal Top" modalTop="30px">
         <p>Content of dialog</p>
         <p>Content of dialog</p>
         <p>Content of dialog</p>
         <p>Content of dialog</p>
         <p>Content of dialog</p>
-    </cl-modal>
-    <cl-modal v-model="modalHeaderOrFooter">
+    </Modal>
+    <Modal v-model="modalHeaderOrFooter">
         <div slot="header" :style="{textAlign: 'center'}">
             Custom Modal HeaderOrFooter
         </div>
         <div slot="footer" :style="{textAlign: 'right'}">
-            <ClButton>cancel</ClButton>
-            <ClButton type="primary">ok</ClButton>
+            <Button>cancel</Button>
+            <Button type="primary">ok</Button>
         </div>
         <p>Content of dialog</p>
         <p>Content of dialog</p>
         <p>Content of dialog</p>
         <p>Content of dialog</p>
         <p>Content of dialog</p>
-    </cl-modal>
+    </Modal>
 </template>
 <script>
     export default {
@@ -102,10 +102,10 @@
 
 ```html
 <template>
-    <cl-button type="primary" @click="modalAsync = true">异步关闭</cl-button>
-    <cl-modal v-model="modalAsync" :loading="loading" title="Async Modal Title" @ok="asyncClick">
+    <Button type="primary" @click="modalAsync = true">异步关闭</Button>
+    <Modal v-model="modalAsync" :loading="loading" title="Async Modal Title" @ok="asyncClick">
         点击确定按钮，3秒后模态框关闭。
-    </cl-modal>
+    </Modal>
 </template>
 <script>
     export default {
@@ -136,22 +136,22 @@
 
 ```html
 <template>
-    <cl-button type="primary" @click="modalCloseable = true">禁用右上角关闭按钮</cl-button>
-    <cl-button type="primary" @click="modalCoverClosable = true">禁用遮罩层关闭</cl-button>
-    <cl-modal v-model="modalCloseable" :closable="false" title="Closeable Modal Title">
+    <Button type="primary" @click="modalCloseable = true">禁用右上角关闭按钮</Button>
+    <Button type="primary" @click="modalCoverClosable = true">禁用遮罩层关闭</Button>
+    <Modal v-model="modalCloseable" :closable="false" title="Closeable Modal Title">
         <p>Content of dialog</p>
         <p>Content of dialog</p>
         <p>Content of dialog</p>
         <p>Content of dialog</p>
         <p>Content of dialog</p>
-    </cl-modal>
-    <cl-modal v-model="modalCoverClosable" :coverClosable="false" title="CoverClosable Modal Title">
+    </Modal>
+    <Modal v-model="modalCoverClosable" :coverClosable="false" title="CoverClosable Modal Title">
         <p>Content of dialog</p>
         <p>Content of dialog</p>
         <p>Content of dialog</p>
         <p>Content of dialog</p>
         <p>Content of dialog</p>
-    </cl-modal>
+    </Modal>
 </template>
 <script>
     export default {
@@ -175,14 +175,14 @@
 
 ```html
 <template>
-    <cl-button type="primary" @click="modalCoverShow = true">不显示遮罩层</cl-button>
-    <cl-modal v-model="modalCoverShow" :coverShow="false" title="CoverShow Modal Title">
+    <Button type="primary" @click="modalCoverShow = true">不显示遮罩层</Button>
+    <Modal v-model="modalCoverShow" :coverShow="false" title="CoverShow Modal Title">
         <p>Content of dialog</p>
         <p>Content of dialog</p>
         <p>Content of dialog</p>
         <p>Content of dialog</p>
         <p>Content of dialog</p>
-    </cl-modal>
+    </Modal>
 </template>
 <script>
     export default {
@@ -205,14 +205,14 @@
 
 ```html
 <template>
-    <cl-button type="primary" @click="modalBase = true">全屏显示</cl-button>
-    <cl-modal v-model="modalBase" title="Common Modal Title" fullscreen>
+    <Button type="primary" @click="modalBase = true">全屏显示</Button>
+    <Modal v-model="modalBase" title="Common Modal Title" fullscreen>
         <p>Content of dialog</p>
         <p>Content of dialog</p>
         <p>Content of dialog</p>
         <p>Content of dialog</p>
         <p>Content of dialog</p>
-    </cl-modal>
+    </Modal>
 </template>
 <script>
     export default {
@@ -235,10 +235,10 @@
 
 ```html
 <template>
-    <cl-button type="primary" @click="modalScroll1 = true">默认滚动方式</cl-button>
-    <cl-button type="primary" @click="modalScroll2 = true">超出滚动</cl-button>
-    <cl-button type="primary" @click="modalScroll3 = true">设置height时超出滚动</cl-button>
-    <cl-modal v-model="modalScroll1" title="Modal Title">
+    <Button type="primary" @click="modalScroll1 = true">默认滚动方式</Button>
+    <Button type="primary" @click="modalScroll2 = true">超出滚动</Button>
+    <Button type="primary" @click="modalScroll3 = true">设置height时超出滚动</Button>
+    <Modal v-model="modalScroll1" title="Modal Title">
         <p>Content of dialog</p>
         <p>Content of dialog</p>
         <p>Content of dialog</p>
@@ -279,8 +279,8 @@
         <p>Content of dialog</p>
         <p>Content of dialog</p>
         <p>Content of dialog</p>
-    </cl-modal>
-    <cl-modal v-model="modalScroll2" :bodyScroll="true" title="BodyScroll Modal Title">
+    </Modal>
+    <Modal v-model="modalScroll2" :bodyScroll="true" title="BodyScroll Modal Title">
         <p>Content of dialog</p>
         <p>Content of dialog</p>
         <p>Content of dialog</p>
@@ -321,8 +321,8 @@
         <p>Content of dialog</p>
         <p>Content of dialog</p>
         <p>Content of dialog</p>
-    </cl-modal>
-    <cl-modal v-model="modalScroll3" height="200px" :bodyScroll="true" title="Set Height BodyScroll Modal Title">
+    </Modal>
+    <Modal v-model="modalScroll3" height="200px" :bodyScroll="true" title="Set Height BodyScroll Modal Title">
         <p>Content of dialog</p>
         <p>Content of dialog</p>
         <p>Content of dialog</p>
@@ -363,7 +363,7 @@
         <p>Content of dialog</p>
         <p>Content of dialog</p>
         <p>Content of dialog</p>
-    </cl-modal>
+    </Modal>
 </template>
 <script>
     export default {
@@ -393,15 +393,15 @@
 
 ```html
 <template>
-     <cl-button type="primary" @click="instance('info')">Info</cl-button>
-    <cl-button type="primary" @click="instance('success')">Success</cl-button>
-    <cl-button type="primary" @click="instance('warning')">Warning</cl-button>
-    <cl-button type="primary" @click="instance('error')">Error</cl-button>
+     <Button type="primary" @click="instance('info')">Info</Button>
+    <Button type="primary" @click="instance('success')">Success</Button>
+    <Button type="primary" @click="instance('warning')">Warning</Button>
+    <Button type="primary" @click="instance('error')">Error</Button>
     <p>切换布局方式</p>
-    <cl-switch width="60" v-model="instanceType" true-value="left" false-value="default">
+    <m-switch width="60" v-model="instanceType" true-value="left" false-value="default">
         <span slot="open">left</span>
         <span slot="close">default</span>
-    </cl-switch>
+    </m-switch>
 </template>
 <script>
     export default {
@@ -433,8 +433,8 @@
 
 ```html
 <template>
-     <cl-button type="primary" @click="confirm">确定模态框</cl-button>
-     <cl-button type="primary" @click="confirmAsync">异步关闭</cl-button>
+     <Button type="primary" @click="confirm">确定模态框</Button>
+     <Button type="primary" @click="confirmAsync">异步关闭</Button>
 </template>
 <script>
     export default {
@@ -481,7 +481,7 @@
 
 | 属性 | 类型 | 说明 | 默认值 |
 | ---- | ---- | ---- | ---- |
-| transition | Array | 自定义modal进入和离开的动画，第一个值为遮罩层的动画，第二个为modal的动画 | ['fade', 'fade'] |
+| transition | Array | 自定义modal进入和离开的动画，第一个值为modal的动画，第二个为遮罩层的动画 | ['scale', 'fade'] |
 | width | String, Number | 对话框宽度，可设置百分比 | 520 |
 | height | String, Number | 对话框内容的高度，不可设置百分比 | - |
 | value | Boolean | 对话框是否显示，可以使用v-model双向绑定 | - |
@@ -497,7 +497,7 @@
 | coverShow | Boolean | 是否显示遮罩层 | true |
 | bodyScroll | Boolean | 开启时在modal-body内容高度超出时滚动，modal的高度不会超出视口的高度。如果不开启此项，内容高度自动，超出时会出现浏览器的滚动条 | - |
 | modalTop | String, Number | 对话框距离视口顶部的距离 | 100 |
-| renderHtml | HTMLElement, Boolean | 指定对话框渲染到的HTML元素，默认渲染到body中 | document.body |
+| renderHtml | HTMLElement, Boolean | 指定对话框渲染到的HTML元素，`true`渲染到body中，`false`渲染到当前所在dom中 | true |
 
 
 ### Modal event

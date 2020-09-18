@@ -1,34 +1,50 @@
 <template>
     <div class="MenuView">
 
-<!--        <Menu mode="horizontal">-->
-<!--            <MenuItem c-key="home" icon="home" name="首页"></MenuItem>-->
-<!--            <Submenu c-key="cloud-product" icon='cloud-upload' name="云产品">-->
-<!--                <MenuItem c-key="file" icon="file" name="对象存储"></MenuItem>-->
-<!--                <MenuItem c-key="email" icon="email" name="短信服务"></MenuItem>-->
-<!--            </Submenu>-->
-<!--            <Submenu c-key="echarts" icon='echarts-pie' name="统计分析">-->
-<!--                <MenuGroup name="图表">-->
-<!--                    <MenuItem c-key="echarts-bar" icon="echarts-bar" name="柱状图"></MenuItem>-->
-<!--                    <MenuItem c-key="echarts-line" icon="echarts-line" name="折线图"></MenuItem>-->
-<!--                </MenuGroup>-->
-<!--                <MenuGroup name="数据">-->
-<!--                    <MenuItem c-key="heart" icon="heart" name="最受欢迎"></MenuItem>-->
-<!--                    <MenuItem c-key="table" icon="table" name="表格"></MenuItem>-->
-<!--                </MenuGroup>-->
-<!--            </Submenu>-->
-<!--            <Submenu c-key="user-manage" icon='user' name="用户管理">-->
-<!--                <MenuItem c-key="user-role-manage" name="用户角色管理"></MenuItem>-->
-<!--                <MenuItem c-key="user-vip-manage" name="专属用户管理"></MenuItem>-->
-<!--                <Submenu c-key="user-bill-manage" name="用户账单管理">-->
-<!--                    <MenuItem c-key="one-month" name="近一个月消费"></MenuItem>-->
-<!--                    <MenuItem c-key="three-month" name="近三个月消费"></MenuItem>-->
-<!--                    <MenuItem c-key="one-year" name="近一年消费"></MenuItem>-->
-<!--                </Submenu>-->
-<!--            </Submenu>-->
-<!--            <MenuItem c-key="square-plus" icon="square-plus" name="建站"></MenuItem>-->
-<!--            <MenuItem c-key="question" icon="question" name="解决方案"></MenuItem>-->
-<!--        </Menu>-->
+        <m-switch v-model="collapse">
+            <span slot="open">展开</span>
+            <span slot="close">收起</span>
+        </m-switch>
+
+        <Menu :collapse="collapse">
+            <MenuItem c-key="home" icon="home" name="首页"></MenuItem>
+            <Submenu c-key="cloud-product" icon='cloud-upload' name="云产品">
+                <MenuItem c-key="file" icon="file" name="对象存储"></MenuItem>
+                <MenuItem c-key="email" icon="email" name="短信服务"></MenuItem>
+            </Submenu>
+
+            <MenuItem c-key="square-plus" icon="square-plus" name="建站"></MenuItem>
+            <MenuItem c-key="question" icon="question" name="解决方案"></MenuItem>
+        </Menu>
+
+        <Menu mode="horizontal">
+            <MenuItem c-key="home" icon="home" name="首页"></MenuItem>
+            <Submenu c-key="cloud-product" icon='cloud-upload' name="云产品">
+                <MenuItem c-key="file" icon="file" name="对象存储"></MenuItem>
+                <MenuItem c-key="email" icon="email" name="短信服务"></MenuItem>
+            </Submenu>
+            <Submenu c-key="echarts" icon='echarts-pie' name="统计分析">
+                <MenuGroup name="图表">
+                    <MenuItem c-key="echarts-bar" icon="echarts-bar" name="柱状图"></MenuItem>
+                    <MenuItem c-key="echarts-line" icon="echarts-line" name="折线图"></MenuItem>
+                </MenuGroup>
+                <MenuGroup name="数据">
+                    <MenuItem c-key="heart" icon="heart" name="最受欢迎"></MenuItem>
+                    <MenuItem c-key="table" icon="table" name="表格"></MenuItem>
+                </MenuGroup>
+            </Submenu>
+            <Submenu c-key="user-manage" icon='user' name="用户管理">
+                <MenuItem c-key="user-role-manage" name="用户角色管理"></MenuItem>
+                <MenuItem c-key="user-vip-manage" name="专属用户管理"></MenuItem>
+                <Submenu c-key="user-bill-manage" name="用户账单管理">
+                    <MenuItem c-key="one-month" name="近一个月消费"></MenuItem>
+                    <MenuItem c-key="three-month" name="近三个月消费"></MenuItem>
+                    <MenuItem c-key="one-year" name="近一年消费"></MenuItem>
+                </Submenu>
+            </Submenu>
+            <MenuItem c-key="square-plus" icon="square-plus" name="建站"></MenuItem>
+            <MenuItem c-key="question" icon="question" name="解决方案"></MenuItem>
+        </Menu>
 
         <h4>mode=vertical,theme=light</h4>
         <Menu @open-change="handlerOpenChange" @select="handlerSelect" width="300px" :collapse="true">
@@ -830,7 +846,9 @@
   export default {
     name: "MenuView",
     data() {
-      return {}
+      return {
+          collapse: false
+      }
     },
     computed: {},
     components: {},

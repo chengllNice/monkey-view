@@ -1,16 +1,16 @@
 <template>
     <div>
-        <transition :name="transition[0]">
-            <div :class="[`${classPrefix}__cover`]" v-if="coverShow" v-show="visible" @click="handlerCover"></div>
+        <transition :name="transition[1]">
+            <div :class="[`${classPrefix}__cover`]" v-if="coverShow" v-show="visible" @click="handleCover"></div>
         </transition>
         <div :class="[
                  `${classPrefix}__wrap`,
-                 !visible && `${classPrefix}__hidden`,
+                 wrapHidden && `${classPrefix}__hidden`,
                  (bodyScroll || fullscreen) && `${classPrefix}__overhidden`
              ]"
              ref="modalWrap"
-             @click="handlerWrapClick">
-            <transition :name="transition[1]">
+             @click="handleWrapClick">
+            <transition :name="transition[0]" @after-leave="handleAfterLeave">
                 <div v-show="visible"
                      ref="modal"
                      :style="modalStyle"
@@ -19,7 +19,7 @@
                          fullscreen && `${classPrefix}__fullscreen`
                      ]">
                     <div :class="[`${classPrefix}__content`]">
-                        <div :class="[`${classPrefix}__close`]" v-if="closable" @click="handlerClose">
+                        <div :class="[`${classPrefix}__close`]" v-if="closable" @click="handleClose">
                             <slot name="close"><Icon type="close"></Icon></slot>
                         </div>
                         <div :class="[`${classPrefix}__header`]" ref="modalHeader" v-if="showHead">
@@ -34,10 +34,10 @@
                         </div>
                         <div :class="[`${classPrefix}__footer`]" ref="modalFooter" v-if="!footerHide">
                             <slot name="footer">
-                                <Button @click="handlerButtonCancel" v-if="localCancelText">{{localCancelText}}</Button>
+                                <Button @click="handleButtonCancel" v-if="localCancelText">{{localCancelText}}</Button>
                                 <Button type="primary"
                                         :loading='okButtonLoading'
-                                        @click="handlerButtonOk"
+                                        @click="handleButtonOk"
                                         v-if="localOkText">
                                     {{localOkText}}
                                 </Button>
@@ -65,7 +65,7 @@
             transition: {
                 type: Array,
                 default: function () {
-                    return ['fade', 'slideUp']
+                    return ['scale', 'fade']
                 }
             },
             width: {
@@ -103,7 +103,7 @@
             renderHtml: {
                 type: [HTMLElement, Boolean],
                 default: function () {
-                    return document.body
+                    return true
                 }
             }
         },
@@ -111,6 +111,7 @@
             return {
                 classPrefix: Config.classPrefix + '-modal',
                 visible: this.value,
+                wrapHidden: !this.value,
                 showHead: true,
                 okButtonLoading: false,
                 observer: null,
@@ -142,8 +143,6 @@
             Scroll,
             Icon
         },
-        created() {
-        },
         mounted() {
             this.$nextTick(() => {
                 this.renderToHtml();
@@ -159,6 +158,7 @@
         },
         watch: {
             value(newVal) {
+                if(newVal) this.wrapHidden = !newVal;
                 this.visible = newVal;
             }
         },
@@ -206,15 +206,15 @@
                     this.showHead = false;
                 }
             },
-            handlerClose() {
+            handleClose() {
                 this.visible = false;
                 this.$emit('input', false);
                 this.$emit('cancel');
             },
-            handlerButtonCancel() {
-                this.handlerClose();
+            handleButtonCancel() {
+                this.handleClose();
             },
-            handlerButtonOk() {
+            handleButtonOk() {
                 if (this.loading) {
                     this.okButtonLoading = true;
                 } else {
@@ -223,15 +223,18 @@
                 }
                 this.$emit('ok');
             },
-            handlerWrapClick(event) {
+            handleWrapClick(event) {
                 const className = event.target.getAttribute('class');
-                className && (className.indexOf(`${this.classPrefix}__wrap`) > -1) && (this.handlerCover());
+                className && (className.indexOf(`${this.classPrefix}__wrap`) > -1) && (this.handleCover());
             },
-            handlerCover() {
+            handleCover() {
                 if (this.coverClosable) {
-                    this.handlerClose();
+                    this.handleClose();
                 }
             },
+            handleAfterLeave(){
+                this.wrapHidden = true;
+            }
         }
     }
 </script>

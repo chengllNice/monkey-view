@@ -101,7 +101,6 @@
             createPopper() {
                 if (isServer) return;
                 // this.boundariesElement = document.getElementsByClassName('views-main-content')[0];
-                // console.log(this.boundariesElement,'this.boundariesElement')
 
                 if (!/^(top|bottom|left|right)(-start|-end)?$/g.test(this.placement)) {
                     return;
@@ -123,7 +122,7 @@
                 options.placement = this.placement;
                 !options.modifiers.offset && (options.modifiers.offset = {});
                 options.onCreate = () => {
-                    this.$nextTick(this.updatePopper);
+                    this.$nextTick(() => this.updatePopper());
                 };
 
                 this.popperJS = new Popper(reference, clPopper, options);
@@ -152,8 +151,8 @@
             if (this.popperJS && this.popperJS.hasOwnProperty('destroy')) {
                 this.popperJS.destroy();
             }
-            this.renderHtml && typeof this.renderHtml !== 'boolean' && this.$el.parentNode && this.renderHtml.removeChild(this.$el);
-            this.renderHtml && typeof this.renderHtml === 'boolean' && this.$el.parentNode && document.body.removeChild(this.$el);
+            // this.renderHtml && typeof this.renderHtml !== 'boolean' && this.$el.parentNode && this.renderHtml.removeChild(this.$el);
+            // this.renderHtml && typeof this.renderHtml === 'boolean' && this.$el.parentNode && document.body.removeChild(this.$el);
         }
     }
 </script>

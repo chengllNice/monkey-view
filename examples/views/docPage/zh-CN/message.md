@@ -11,10 +11,10 @@
 
 ```html
 <template>
-    <cl-button type="info" @click="openMessage('info')">info</cl-button>
-    <cl-button type="success" @click="openMessage('success')">success</cl-button>
-    <cl-button type="warning" @click="openMessage('warning')">warning</cl-button>
-    <cl-button type="danger" @click="openMessage('error')">error</cl-button>
+    <Button type="info" @click="openMessage('info')">info</Button>
+    <Button type="success" @click="openMessage('success')">success</Button>
+    <Button type="warning" @click="openMessage('warning')">warning</Button>
+    <Button type="danger" @click="openMessage('error')">error</Button>
 </template>
 <script>
     export default {
@@ -42,7 +42,7 @@ loading状态。异步在某个合适的时机移除。
 
 ```html
 <template>
-    <cl-button @click="loading">loading</cl-button>
+    <Button @click="loading">loading</Button>
 </template>
 <script>
     export default {
@@ -76,10 +76,10 @@ loading状态。异步在某个合适的时机移除。
 
 ```html
 <template>
-    <cl-button type="info" @click="openMessage('info')">info</cl-button>
-    <cl-button type="success" @click="openMessage('success')">success</cl-button>
-    <cl-button type="warning" @click="openMessage('warning')">warning</cl-button>
-    <cl-button type="danger" @click="openMessage('error')">error</cl-button>
+    <Button type="info" @click="openMessage('info')">info</Button>
+    <Button type="success" @click="openMessage('success')">success</Button>
+    <Button type="warning" @click="openMessage('warning')">warning</Button>
+    <Button type="danger" @click="openMessage('error')">error</Button>
 </template>
 <script>
     export default {
@@ -104,33 +104,28 @@ loading状态。异步在某个合适的时机移除。
 :::
 
 
-:::demo 自定义配置
+:::demo HTML片段
 
-自定义配置。详细说明见API。
+`content`属性支持配置HTML片段。
 
 ```html
 <template>
-    <cl-button @click="configMessage">自定义配置</cl-button>
+    <Button @click="configMessage">自定义配置</Button>
 </template>
 <script>
     export default {
-      data(){
-        return {
-          
+        methods: {
+            configMessage(){
+                this.$Message.info({
+                    duration: 3000,
+                    content: '<b>this is a config message</b>',
+                    // 触发关闭时的回调
+                    onClose(){
+                        console.log('message close');
+                    }
+                });
+            }
         }
-      },
-      methods: {
-        configMessage(){
-            this.$Message.info({
-              duration: 3000,
-              content: '<span>this is a config message</span>',
-              // 触发关闭时的回调
-              onClose(){
-                console.log('message close');
-              }
-            });
-        }
-      }
     }
 </script>
 
@@ -163,6 +158,7 @@ loading状态。异步在某个合适的时机移除。
 | content | String | 提示内容，支持html字符串 | - |
 | duration | Number | 自动关闭的延时，单位秒，值为0时不关闭 | 3000 |
 | background | Boolean | 是否显示背景色 | false |
+| closable | Boolean | 是否显示关闭按钮 | false |
 | onClose | Function | 关闭时的回调 | - |
 
 
@@ -174,6 +170,5 @@ loading状态。异步在某个合适的时机移除。
 
 | 属性 | 类型 | 说明 | 默认值 |
 | ---- | ---- | ---- | ---- |
-| top | Number | 第一个message提示信息距离顶部的距离，单位px | 20 |
-| duration | Number | 自动关闭的延时，单位秒，值为0时不关闭 | 3000 |
-| messageItemDis | Number | 每个message提示信息之间的距离 | 10 |
+| top | Number | 提示组件距离顶部的距离，单位px | 20 |
+| duration | Number | 自动关闭的延时，单位毫秒，值为0时不关闭 | 3000 |

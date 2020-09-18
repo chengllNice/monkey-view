@@ -21,15 +21,6 @@
                 default: 'slide-transition'
             },
         },
-        data() {
-            return {}
-        },
-        computed: {},
-        components: {},
-        created() {
-        },
-        mounted() {
-        },
         methods: {
             // --------
             // 进入中

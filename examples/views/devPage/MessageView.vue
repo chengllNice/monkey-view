@@ -1,11 +1,11 @@
 <template>
     <div class="MessageView">
-        <ClButton type="primary" @click="openMessage('info', 0)">不关闭，手动5s后关闭</ClButton>
-        <ClButton type="info" @click="openMessage('info')">info</ClButton>
-        <ClButton type="success" @click="openMessage('success')">success</ClButton>
-        <ClButton type="warning" @click="openMessage('warning')">warning</ClButton>
-        <ClButton type="danger" @click="openMessage('error')">error</ClButton>
-        <ClButton @click="openMessage('loading')">loading</ClButton>
+        <Button type="primary" @click="openMessage('info', 0)">不关闭，手动5s后关闭</Button>
+        <Button type="info" @click="openMessage('info')">info</Button>
+        <Button type="success" @click="openMessage('success')">success</Button>
+        <Button type="warning" @click="openMessage('warning')">warning</Button>
+        <Button type="danger" @click="openMessage('error')">error</Button>
+        <Button @click="openMessage('loading')">loading</Button>
 
 
         <div class="viewDes">
@@ -78,11 +78,11 @@
                         console.log('close--')
                     }
                 });
-                if (duration === 0) {
-                    setTimeout(() => {
-                        a.close();
-                    }, 5000)
-                }
+                // if (duration === 0) {
+                //     setTimeout(() => {
+                //         a.close();
+                //     }, 5000)
+                // }
             }
         }
     }

@@ -1,5 +1,5 @@
 <template>
-    <transition name="MessageFade" @after-leave="handleAfterLeave">
+    <transition name="MessageFade" 1>
         <div :class="[
                  `${classPrefix}`,
                  type && `${classPrefix}--${type}`,
@@ -17,6 +17,10 @@
                   ]">
             </Icon>
             <span :class="[`${classPrefix}__content`]" v-html="content"></span>
+            <Icon v-if="closable"
+                  type="close"
+                  :class="[`${classPrefix}__icon-closable`]" @click="close">
+            </Icon>
         </div>
     </transition>
 </template>
@@ -39,6 +43,7 @@
                 timer: null,
                 closed: false,
                 background: false,
+                closable: false,
             }
         },
         computed: {
@@ -73,10 +78,6 @@
         components: {
             Icon
         },
-        created() {
-        },
-        mounted() {
-        },
         methods: {
             show() {
                 this.visible = true;
@@ -88,10 +89,8 @@
                 this.onCloseComputed();
                 this.onClose();
             },
-            onClose() {
-            },
-            onCloseComputed() {
-            },
+            onClose() {},
+            onCloseComputed() {},
             startTimer() {
                 if (this.duration > 0) {
                     this.timer = setTimeout(() => {

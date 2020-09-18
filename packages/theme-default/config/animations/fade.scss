@@ -1,6 +1,6 @@
 @import "./base";
 
-@keyframes fadeIn-keyframe {
+@keyframes fadeIn {
   from{
     opacity: 0;
   }
@@ -9,7 +9,7 @@
   }
 }
 
-@keyframes fadeOut-keyframe {
+@keyframes fadeOut {
   from{
     opacity: 1;
   }
@@ -18,7 +18,7 @@
   }
 }
 
-@keyframes slideUpIn-keyframe {
+@keyframes slideUpIn {
   0% {
     opacity: 0;
     transform-origin: 0 0;
@@ -31,7 +31,7 @@
   }
 }
 
-@keyframes slideUpOut-keyframe {
+@keyframes slideUpOut {
   0% {
     opacity: 1;
     transform-origin: 0% 0%;
@@ -44,7 +44,7 @@
   }
 }
 
-@keyframes MessageFadeIn-keyframe {
+@keyframes MessageFadeIn {
   from{
     opacity: 0;
     transform: translate(-50%, -100%);
@@ -55,7 +55,7 @@
   }
 }
 
-@keyframes MessageFadeOut-keyframe {
+@keyframes MessageFadeOut {
   from{
     opacity: 1;
     transform: translate(-50%, 0);
@@ -67,7 +67,7 @@
 }
 
 
-@keyframes AlterFadeIn-keyframe {
+@keyframes AlterFadeIn {
   from{
     opacity: 0;
     height: 0;
@@ -81,7 +81,7 @@
     transform: scaleY(1);
   }
 }
-@keyframes AlterFadeOut-keyframe {
+@keyframes AlterFadeOut {
   from{
     opacity: 1;
     height: 100%;
@@ -97,7 +97,7 @@
 }
 
 
-@keyframes DrawerMoveRightIn-keyframe {
+@keyframes DrawerMoveRightIn {
   from{
     opacity: 0;
     transform-origin: 0 0;
@@ -109,7 +109,7 @@
     transform: translateX(0);
   }
 }
-@keyframes DrawerMoveRightOut-keyframe {
+@keyframes DrawerMoveRightOut {
   from{
     opacity: 1;
     transform-origin: 0 0;
@@ -122,7 +122,7 @@
   }
 }
 
-@keyframes DrawerMoveLeftIn-keyframe {
+@keyframes DrawerMoveLeftIn {
   from{
     opacity: 0;
     transform-origin: 0 0;
@@ -134,7 +134,7 @@
     transform: translateX(0);
   }
 }
-@keyframes DrawerMoveLeftOut-keyframe {
+@keyframes DrawerMoveLeftOut {
   from{
     opacity: 1;
     transform-origin: 0 0;
@@ -147,7 +147,7 @@
   }
 }
 
-@keyframes DrawerMoveTopIn-keyframe {
+@keyframes DrawerMoveTopIn {
   from{
     opacity: 0;
     transform-origin: 0 0;
@@ -159,7 +159,7 @@
     transform: translateY(0);
   }
 }
-@keyframes DrawerMoveTopOut-keyframe {
+@keyframes DrawerMoveTopOut {
   from{
     opacity: 1;
     transform-origin: 0 0;
@@ -172,7 +172,7 @@
   }
 }
 
-@keyframes DrawerMoveBottomIn-keyframe {
+@keyframes DrawerMoveBottomIn {
   from{
     opacity: 0;
     transform-origin: 0 0;
@@ -184,7 +184,7 @@
     transform: translateY(0);
   }
 }
-@keyframes DrawerMoveBottomOut-keyframe {
+@keyframes DrawerMoveBottomOut {
   from{
     opacity: 1;
     transform-origin: 0 0;

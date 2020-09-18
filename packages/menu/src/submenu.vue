@@ -17,15 +17,16 @@
             </slot>
             <Icon v-if="!hideDropIcon" :type="openedIcon" :style="dropIconStyle" :class="[`${classPrefix}__title-slide-icon`]"></Icon>
         </div>
-        <SlideTransition v-if="menuComponent.mode==='vertical' && !menuComponent.collapse">
-            <div v-show="opened"
+
+        <slide-transition>
+            <div v-show="verticalTransitionShow"
                  :class="[`${classPrefix}__content`]">
                 <slot></slot>
             </div>
-        </SlideTransition>
+        </slide-transition>
 
-        <transition v-else name="slideUp">
-            <Drop v-show="opened && !disabled"
+        <transition name="slideUp">
+            <Drop v-show="dropTransitionShow"
                   :min-width="200"
                   ref="dropDown"
                   :reference="this.$refs.reference"
@@ -133,7 +134,7 @@
                 return 'down'
             },
             placement() {
-                if (this.parentSubMenuComponentNum || this.menuComponent.collapse) {
+                if (this.parentSubMenuComponentNum || this.menuComponent.mode === 'vertical') {
                     return 'right-start'
                 }
                 return 'bottom-start'
@@ -152,6 +153,13 @@
                 if(this.menuComponent.mode === 'horizontal' && isParentSubmenu) return false;
                 if(this.menuComponent.mode === 'vertical' && this.menuComponent.collapse && isParentSubmenu) return false;
                 return true;
+            },
+            verticalTransitionShow(){
+                return this.menuComponent.mode === 'vertical' && !this.menuComponent.collapse && this.opened && !this.disabled;
+            },
+            dropTransitionShow(){
+                let mode = this.menuComponent.mode === 'horizontal' || (this.menuComponent.mode === 'vertical' && this.menuComponent.collapse);
+                return mode && this.opened && !this.disabled;
             }
         },
         components: {
@@ -215,10 +223,10 @@
                     }
                 })
             },
-            menuItemChildrenActive(key) {
+            menuItemChildrenActive() {
                 if (this.disabled || this.forbidden) return;
                 let activeChildren = findComponentChildrens(this, 'MenuItem').filter(item => {
-                    return item.cKey === key
+                    return item.cKey === this.menuComponent.currentActiveKey
                 });
                 this.active = !!activeChildren.length;
             },
@@ -237,9 +245,9 @@
                 if (this.disabled || this.forbidden) return;
                 this.opened = newVal.includes(this.cKey);
             },
-            'menuComponent.currentActiveKey': function (newVal) {
+            'menuComponent.currentActiveKey': function () {
                 if (this.menuComponent.mode === 'horizontal' || (this.menuComponent.mode === 'vertical' && this.menuComponent.collapse)) {
-                    this.menuItemChildrenActive(newVal);
+                    this.menuItemChildrenActive();
                 }
             },
             forbidden(newVal) {

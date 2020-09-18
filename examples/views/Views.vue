@@ -52,7 +52,9 @@
         mounted() {
 
         },
-        methods: {},
+        methods: {
+
+        },
         watch: {
             '$route': function () {
                 this.$nextTick(()=>{

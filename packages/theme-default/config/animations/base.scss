@@ -6,8 +6,8 @@
 @mixin animation-base($className, $keyframeName){
   $enter-active: #{$className + '-enter-active'};
   $leave-active: #{$className + '-leave-active'};
-  $animation-enter: #{$keyframeName + 'In-keyframe'};
-  $animation-leave: #{$keyframeName + 'Out-keyframe'};
+  $animation-enter: #{$keyframeName + 'In'};
+  $animation-leave: #{$keyframeName + 'Out'};
 
   @at-root {
     .#{$enter-active}{

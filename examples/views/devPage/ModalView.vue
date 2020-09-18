@@ -1,48 +1,48 @@
 <template>
     <div class="ModalView">
 
-        <ClButton type="primary" @click="openModal('Base')">基础modal</ClButton>
+        <Button type="primary" @click="openModal('Base')">基础modal</Button>
 
-        <ClButton type="primary" @click="openModal('Width')">自定义width</ClButton>
+        <Button type="primary" @click="openModal('Width')">自定义width</Button>
 
-        <ClButton type="primary" @click="openModal('Top')">自定义Top</ClButton>
+        <Button type="primary" @click="openModal('Top')">自定义Top</Button>
 
-        <ClButton type="primary" @click="openModal('RenderHtml')">自定义挂载的dom节点</ClButton>
+        <Button type="primary" @click="openModal('RenderHtml')">自定义挂载的dom节点</Button>
 
-        <ClButton type="primary" @click="openModal('Loading')">异步关闭</ClButton>
+        <Button type="primary" @click="openModal('Loading')">异步关闭</Button>
 
-        <ClButton type="primary" @click="openModal('Transition')">自定义transition</ClButton>
+        <Button type="primary" @click="openModal('Transition')">自定义transition</Button>
 
-        <ClButton type="primary" @click="openModal('BodyScroll')">内容区域滚动bodyScroll</ClButton>
+        <Button type="primary" @click="openModal('BodyScroll')">内容区域滚动bodyScroll</Button>
 
-        <ClButton type="primary" @click="openModal('Fullscreen')">fullscreen</ClButton>
+        <Button type="primary" @click="openModal('Fullscreen')">fullscreen</Button>
 
-        <ClButton type="primary" @click="openModal('SlotsHeaderOrFooter')">自定义页头和页脚</ClButton>
+        <Button type="primary" @click="openModal('SlotsHeaderOrFooter')">自定义页头和页脚</Button>
 
-        <ClButton type="primary" @click="openModal('FooterHide')">隐藏页脚footerHide</ClButton>
+        <Button type="primary" @click="openModal('FooterHide')">隐藏页脚footerHide</Button>
 
-        <ClButton type="primary" @click="openModal('Header')">隐藏头部header</ClButton>
+        <Button type="primary" @click="openModal('Header')">隐藏头部header</Button>
 
-        <ClButton type="primary" @click="openModal('Close')">隐藏关闭按钮</ClButton>
+        <Button type="primary" @click="openModal('Close')">隐藏关闭按钮</Button>
 
-        <ClButton type="primary" @click="openModal('ButtonText')">自定义确定和取消按钮文字</ClButton>
+        <Button type="primary" @click="openModal('ButtonText')">自定义确定和取消按钮文字</Button>
 
-        <ClButton type="primary" @click="openModal('Cover')">禁止点击浮层关闭</ClButton>
+        <Button type="primary" @click="openModal('Cover')">禁止点击浮层关闭</Button>
 
-        <ClButton type="primary" @click="openModal('NoCover')">不展示浮层</ClButton>
+        <Button type="primary" @click="openModal('NoCover')">不展示浮层</Button>
 
-        <ClButton type="primary" @click="installModal('info')">实例方法info</ClButton>
+        <Button type="primary" @click="installModal('info')">实例方法info</Button>
 
-        <ClButton type="primary" @click="installModal('success')">实例方法success</ClButton>
+        <Button type="primary" @click="installModal('success')">实例方法success</Button>
 
-        <ClButton type="primary" @click="installModal('warning')">实例方法warning</ClButton>
+        <Button type="primary" @click="installModal('warning')">实例方法warning</Button>
 
-        <ClButton type="primary" @click="installModal('error')">实例方法error</ClButton>
+        <Button type="primary" @click="installModal('error')">实例方法error</Button>
 
-        <ClButton type="primary" @click="installModal('confirm')">实例方法confirm</ClButton>
+        <Button type="primary" @click="installModal('confirm')">实例方法confirm</Button>
 
 
-        <ClModal v-model="modalValueBase" title="modalValueBase">
+        <Modal v-model="modalValueBase" title="modalValueBase">
             <p>Content of dialogContent of dialogContent of dialogContent of dialog</p>
             <p>Content of dialog</p>
             <p>Content of dialog</p>
@@ -53,9 +53,9 @@
             <p>Content of dialog</p>
             <p>Content of dialog</p>
             <p>Content of dialog</p>
-        </ClModal>
+        </Modal>
 
-        <ClModal v-model="modalValueWidth" width="600px" title="modalValueWidth">
+        <Modal v-model="modalValueWidth" width="600px" title="modalValueWidth">
             <p>Content of dialogContent of dialogContent of dialogContent of dialog</p>
             <p>Content of dialog</p>
             <p>Content of dialog</p>
@@ -66,9 +66,9 @@
             <p>Content of dialog</p>
             <p>Content of dialog</p>
             <p>Content of dialog</p>
-        </ClModal>
+        </Modal>
 
-        <ClModal v-model="modalValueTop" modalTop="30px" title="modalValueTop">
+        <Modal v-model="modalValueTop" modalTop="30px" title="modalValueTop">
             <p>Content of dialogContent of dialogContent of dialogContent of dialog</p>
             <p>Content of dialog</p>
             <p>Content of dialog</p>
@@ -79,9 +79,9 @@
             <p>Content of dialog</p>
             <p>Content of dialog</p>
             <p>Content of dialog</p>
-        </ClModal>
+        </Modal>
 
-        <ClModal v-model="modalValueRenderHtml" modalTop="30px" title="自定义挂载的dom节点" :renderHtml="false">
+        <Modal v-model="modalValueRenderHtml" modalTop="30px" title="自定义挂载的dom节点" :renderHtml="false">
             <p>Content of dialogContent of dialogContent of dialogContent of dialog</p>
             <p>Content of dialog</p>
             <p>Content of dialog</p>
@@ -92,13 +92,13 @@
             <p>Content of dialog</p>
             <p>Content of dialog</p>
             <p>Content of dialog</p>
-        </ClModal>
+        </Modal>
 
-        <ClModal v-model="modalValueLoading" :loading="loading" title="异步关闭" @ok="handlerOk('Loading')">
+        <Modal v-model="modalValueLoading" :loading="loading" title="异步关闭" @ok="handlerOk('Loading')">
             <p>点击确定之后，modal将在2s之后自动关闭...</p>
-        </ClModal>
+        </Modal>
 
-        <ClModal v-model="modalValueTransition" :transition="['fade', 'scale']" title="modalValueTransition">
+        <Modal v-model="modalValueTransition" :transition="['fade', 'fade']" title="modalValueTransition">
             <p>Content of dialogContent of dialogContent of dialogContent of dialog</p>
             <p>Content of dialog</p>
             <p>Content of dialog</p>
@@ -109,9 +109,9 @@
             <p>Content of dialog</p>
             <p>Content of dialog</p>
             <p>Content of dialog</p>
-        </ClModal>
+        </Modal>
 
-        <ClModal v-model="modalValueBodyScroll" title="modalValueBodyScroll" bodyScroll>
+        <Modal v-model="modalValueBodyScroll" title="modalValueBodyScroll" bodyScroll>
             <p>Content of dialog</p>
             <p>Content of dialog</p>
             <p>Content of dialog</p>
@@ -145,9 +145,9 @@
             <p>Content of dialog</p>
             <p>Content of dialog</p>
             <p>Content of dialog</p>
-        </ClModal>
+        </Modal>
 
-        <ClModal v-model="modalValueFullscreen" title="modalValueFullscreen" fullscreen>
+        <Modal v-model="modalValueFullscreen" title="modalValueFullscreen" fullscreen>
             <p>Content of dialogContent of dialogContent of dialogContent of dialog</p>
             <p>Content of dialog</p>
             <p>Content of dialog</p>
@@ -158,15 +158,15 @@
             <p>Content of dialog</p>
             <p>Content of dialog</p>
             <p>Content of dialog</p>
-        </ClModal>
+        </Modal>
 
-        <ClModal v-model="modalValueSlotsHeaderOrFooter" title="自定义页头和页脚">
+        <Modal v-model="modalValueSlotsHeaderOrFooter" title="自定义页头和页脚">
             <div slot="header" :style="{textAlign: 'center'}">
                 自定义页头和页脚
             </div>
             <div slot="footer" :style="{textAlign: 'center'}">
-                <ClButton>自定义取消</ClButton>
-                <ClButton type="danger">自定义确定</ClButton>
+                <Button>自定义取消</Button>
+                <Button type="danger">自定义确定</Button>
             </div>
             <p>Content of dialogContent of dialogContent of dialogContent of dialog</p>
             <p>Content of dialog</p>
@@ -178,9 +178,9 @@
             <p>Content of dialog</p>
             <p>Content of dialog</p>
             <p>Content of dialog</p>
-        </ClModal>
+        </Modal>
 
-        <ClModal v-model="modalValueFooterHide" title="modalValueFooterHide" footerHide>
+        <Modal v-model="modalValueFooterHide" title="modalValueFooterHide" footerHide>
             <p>Content of dialogContent of dialogContent of dialogContent of dialog</p>
             <p>Content of dialog</p>
             <p>Content of dialog</p>
@@ -190,9 +190,9 @@
             <p>Content of dialog</p>
             <p>Content of dialog</p>
             <p>Content of dialog</p>
-        </ClModal>
+        </Modal>
 
-        <ClModal v-model="modalValueHeader">
+        <Modal v-model="modalValueHeader">
             <p>Content of dialogContent of dialogContent of dialogContent of dialog</p>
             <p>Content of dialog</p>
             <p>Content of dialog</p>
@@ -202,9 +202,9 @@
             <p>Content of dialog</p>
             <p>Content of dialog</p>
             <p>Content of dialog</p>
-        </ClModal>
+        </Modal>
 
-        <ClModal v-model="modalValueClose" :closable="false">
+        <Modal v-model="modalValueClose" :closable="false">
             <p>Content of dialogContent of dialogContent of dialogContent of dialog</p>
             <p>Content of dialog</p>
             <p>Content of dialog</p>
@@ -214,9 +214,9 @@
             <p>Content of dialog</p>
             <p>Content of dialog</p>
             <p>Content of dialog</p>
-        </ClModal>
+        </Modal>
 
-        <ClModal v-model="modalValueButtonText" title='modalValueButtonText' cancelText="cancel" okText="ok">
+        <Modal v-model="modalValueButtonText" title='modalValueButtonText' cancelText="cancel" okText="ok">
             <p>Content of dialogContent of dialogContent of dialogContent of dialog</p>
             <p>Content of dialog</p>
             <p>Content of dialog</p>
@@ -226,9 +226,9 @@
             <p>Content of dialog</p>
             <p>Content of dialog</p>
             <p>Content of dialog</p>
-        </ClModal>
+        </Modal>
 
-        <ClModal v-model="modalValueCover" :coverClosable="false" title='modalValueCover'>
+        <Modal v-model="modalValueCover" :coverClosable="false" title='modalValueCover'>
             <p>Content of dialogContent of dialogContent of dialogContent of dialog</p>
             <p>Content of dialog</p>
             <p>Content of dialog</p>
@@ -238,9 +238,9 @@
             <p>Content of dialog</p>
             <p>Content of dialog</p>
             <p>Content of dialog</p>
-        </ClModal>
+        </Modal>
 
-        <ClModal v-model="modalValueNoCover" :coverShow="false" title='modalValueNoCover'>
+        <Modal v-model="modalValueNoCover" :coverShow="false" title='modalValueNoCover'>
             <p>Content of dialogContent of dialogContent of dialogContent of dialog</p>
             <p>Content of dialog</p>
             <p>Content of dialog</p>
@@ -250,7 +250,7 @@
             <p>Content of dialog</p>
             <p>Content of dialog</p>
             <p>Content of dialog</p>
-        </ClModal>
+        </Modal>
 
 
         <div class="viewDes">
