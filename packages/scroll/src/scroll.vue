@@ -78,10 +78,6 @@
         components: {
             vuescroll
         },
-        created() {
-        },
-        mounted() {
-        },
         methods: {
             scrollTo(position, speed = 500) {
                 this.$refs.vuescroll.scrollTo(position, speed)

@@ -1,13 +1,13 @@
 <template>
     <div :class="[`${classPrefix}`]"
-         @mouseenter="handlerMouseenter"
-         @mouseleave="handlerMouseleave"
+         @mouseenter="handleMouseenter"
+         @mouseleave="handleMouseleave"
          v-click-outside="handleClose">
         <transition :name="transition">
             <div :class="[`${classPrefix}__popper`]"
                  ref="popper"
-                 @mouseenter="handlerMouseenter"
-                 @mouseleave="handlerMouseleave"
+                 @mouseenter="handleMouseenter"
+                 @mouseleave="handleMouseleave"
                  v-show="visible">
                 <div :class="[`${classPrefix}__content`]" :style="expandStyle">
                     <div :class="[`${classPrefix}__arrow`]"></div>
@@ -36,7 +36,7 @@
             </div>
         </transition>
         <div :class="[`${classPrefix}__target`]"
-             @click="handlerClick"
+             @click="handleClick"
              ref="reference">
             <slot></slot>
         </div>
@@ -137,11 +137,11 @@
                     const $children = this.getReferenceInputChildren();
                     if ($children) {
                         this.isInput = true;
-                        on($children, 'focus', this.handlerFocus);
-                        on($children, 'blur', this.handlerBlur);
+                        on($children, 'focus', this.handleFocus);
+                        on($children, 'blur', this.handleBlur);
                     } else {
-                        on(this.$refs.reference, 'mousedown', () => this.handlerFocus(false));
-                        on(document, 'mouseup', () => this.handlerBlur(false));
+                        on(this.$refs.reference, 'mousedown', () => this.handleFocus(false));
+                        on(document, 'mouseup', () => this.handleBlur(false));
                     }
                 });
             }
@@ -151,16 +151,16 @@
             if (this.hoverTimer) clearTimeout(this.hoverTimer);
             const $children = this.getReferenceInputChildren();
             if ($children) {
-                off($children, 'focus', this.handlerFocus);
-                off($children, 'blur', this.handlerBlur);
+                off($children, 'focus', this.handleFocus);
+                off($children, 'blur', this.handleBlur);
             } else {
-                off(this.$refs.reference, 'mousedown', () => this.handlerFocus(false));
-                off(document, 'mouseup', () => this.handlerBlur(false));
+                off(this.$refs.reference, 'mousedown', () => this.handleFocus(false));
+                off(document, 'mouseup', () => this.handleBlur(false));
             }
             this.renderHtml && typeof this.renderHtml !== 'boolean' && this.renderHtml.removeChild(this.$refs.popper);
         },
         methods: {
-            handlerClick() {
+            handleClick() {
                 if (this.disabled) return;
                 if (this.trigger !== 'click') {
                     return false;
@@ -168,7 +168,7 @@
                 this.visible = !this.visible;
             },
 
-            handlerMouseenter() {
+            handleMouseenter() {
                 if (this.disabled) return;
                 this.popperHover = true;
                 if (this.trigger !== 'hover') {
@@ -180,7 +180,7 @@
                 }, 100);
             },
 
-            handlerMouseleave() {
+            handleMouseleave() {
                 if (this.disabled) return;
                 this.popperHover = false;
                 if (this.trigger !== 'hover') {
@@ -228,7 +228,7 @@
                 return $children;
             },
 
-            handlerFocus(isInput = true) {
+            handleFocus(isInput = true) {
                 if (this.disabled) return;
                 if (this.trigger !== 'focus' || (this.isInput && !isInput)) {
                     return false;
@@ -236,7 +236,7 @@
                 this.visible = true;
             },
 
-            handlerBlur(isInput = true) {
+            handleBlur(isInput = true) {
                 if (this.trigger !== 'focus' || (this.isInput && !isInput)) {
                     return false;
                 }

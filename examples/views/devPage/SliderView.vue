@@ -1,19 +1,19 @@
 <template>
     <div class="SliderView">
-        normal:<ClSlider v-model="sliderValue" @change="handlerChange"></ClSlider>
-        railColor:<ClSlider v-model="sliderValue" railColor="#ccc" disabled  @change="handlerChange"></ClSlider>
-        barColor:<ClSlider v-model="sliderValue" barColor="red" disabled  @change="handlerChange"></ClSlider>
-        always:<ClSlider v-model="sliderValueAlways" tooltipVisible="always"  @change="handlerChange"></ClSlider>
-        never:<ClSlider v-model="sliderValueNever" tooltipVisible="never"  @change="handlerChange"></ClSlider>
-        disabled:<ClSlider v-model="sliderValueDis" disabled  @change="handlerChange"></ClSlider>
-        step=0.1:<ClSlider v-model="sliderValueStep" :step="0.1"  @change="handlerChange"></ClSlider>
-        min:10,max:80:<ClSlider v-model="sliderValue1" :min="10" :max="80"  @change="handlerChange"></ClSlider>
-        tipFormat:<ClSlider v-model="sliderValueFormat" :tipFormat="tipFormat"  @change="handlerChange"></ClSlider>
+        normal:<Slider v-model="sliderValue" @change="handlerChange"></Slider>
+        railColor:<Slider v-model="sliderValue" railColor="#ccc" disabled  @change="handlerChange"></Slider>
+        barColor:<Slider v-model="sliderValue" barColor="red" disabled  @change="handlerChange"></Slider>
+        always:<Slider v-model="sliderValueAlways" tooltipVisible="always"  @change="handlerChange"></Slider>
+        never:<Slider v-model="sliderValueNever" tooltipVisible="never"  @change="handlerChange"></Slider>
+        disabled:<Slider v-model="sliderValueDis" disabled  @change="handlerChange"></Slider>
+        step=0.1:<Slider v-model="sliderValueStep" :step="0.1"  @change="handlerChange"></Slider>
+        min:10,max:80:<Slider v-model="sliderValue1" :min="10" :max="80"  @change="handlerChange"></Slider>
+        tipFormat:<Slider v-model="sliderValueFormat" :tipFormat="tipFormat"  @change="handlerChange"></Slider>
 
         <p>vertical</p>
         <div class="vertical">
-            <ClSlider v-model="sliderValueVer" vertical  @change="handlerChange"></ClSlider>
-            step=10:<ClSlider v-model="sliderValueVerStep" vertical :step="10"  @change="handlerChange"></ClSlider>
+            <Slider v-model="sliderValueVer" vertical  @change="handlerChange"></Slider>
+            step=10:<Slider v-model="sliderValueVerStep" vertical :step="10"  @change="handlerChange"></Slider>
         </div>
 
 

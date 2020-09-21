@@ -326,7 +326,7 @@ export default {
             })
         },
         //outside点击
-        hanldeOutsideClick(event) {
+        handleOutsideClick(event) {
             if (this.visible) {
                 if (this.renderHtml !== false) {
                     const {$el} = this.$refs.dropDown;
@@ -341,12 +341,21 @@ export default {
         //设置scroll的位置
         setScrollToPosition(){
             let dropDown = this.$refs.dropDown;
-            let focusOption = dropDown && dropDown.$el.getElementsByClassName(`${this.prefix}-option__focus`)[0];
+            let focusOption = dropDown && dropDown.$el.getElementsByClassName(`${this.optionPrefix}__focus`)[0];
             if(focusOption){
                 let top = focusOption.offsetTop;
                 let height = focusOption.offsetHeight;
+
+                let parentOptionGroup = focusOption.parentNode.parentNode;
+                let parentOptionGroupWrap = focusOption.parentNode;
+                let parentOptionGroupClass = `${this.optionPrefix}-group`;
+                if(parentOptionGroup.getAttribute('class') === parentOptionGroupClass){
+                    top = top + parentOptionGroupWrap.offsetTop + parentOptionGroup.offsetTop;
+                }
+
                 let bottomTop = parseInt(top + height);
                 let maxHeight = parseInt(this.maxHeight);
+
                 if(bottomTop > maxHeight){
                     let y = bottomTop - maxHeight;
                     let position = {

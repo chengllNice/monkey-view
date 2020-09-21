@@ -1,42 +1,42 @@
 <template>
     <div class="SwitchView">
         <p>基础</p>
-        <ClSwitch size="small" @change="handlerChange"></ClSwitch>
-        <ClSwitch v-model="defaultValue" @change="handlerChange"></ClSwitch>
-        <ClSwitch size="large" @change="handlerChange"></ClSwitch>
+        <m-switch size="small" @change="handlerChange"></m-switch>
+        <m-switch v-model="defaultValue" @change="handlerChange"></m-switch>
+        <m-switch size="large" @change="handlerChange"></m-switch>
 
         <p>disabled</p>
-        <ClSwitch disabled @change="handlerChange"></ClSwitch>
-        <ClSwitch disabled v-model="disabledValue" @change="handlerChange"></ClSwitch>
+        <m-switch disabled @change="handlerChange"></m-switch>
+        <m-switch disabled v-model="disabledValue" @change="handlerChange"></m-switch>
 
         <p>slot</p>
-        <ClSwitch size="small" @change="handlerChange">
+        <m-switch size="small" @change="handlerChange">
             <span slot="open">开</span>
             <span slot="close">关</span>
-        </ClSwitch>
-        <ClSwitch @change="handlerChange">
+        </m-switch>
+        <m-switch @change="handlerChange">
             <span slot="open">开</span>
             <span slot="close">关</span>
-        </ClSwitch>
-        <ClSwitch size="large" @change="handlerChange">
+        </m-switch>
+        <m-switch size="large" @change="handlerChange">
             <span slot="open">开启</span>
             <span slot="close">关闭</span>
-        </ClSwitch>
+        </m-switch>
 
         <p>自定义背景色</p>
-        <ClSwitch v-model="defaultValue" checkedColor="red" @change="handlerChange"></ClSwitch>
+        <m-switch v-model="defaultValue" checkedColor="red" @change="handlerChange"></m-switch>
 
         <p>自定义宽度</p>
-        <ClSwitch v-model="defaultValue" width="80px" @change="handlerChange">
+        <m-switch v-model="defaultValue" width="80px" @change="handlerChange">
             <span slot="open">已经开启</span>
             <span slot="close">已经关闭</span>
-        </ClSwitch>
+        </m-switch>
 
         <p>loading状态</p>
-        <ClSwitch v-model="defaultValue" :loading="true" @change="handlerChange"></ClSwitch>
+        <m-switch v-model="defaultValue" :loading="true" @change="handlerChange"></m-switch>
 
         <p>定义trueValue和falseValue</p>
-        <ClSwitch v-model="value" trueValue="1" falseValue="0" @change="handlerChange"></ClSwitch>
+        <m-switch v-model="value" trueValue="1" falseValue="0" @change="handlerChange"></m-switch>
 
 
         <div class="viewDes">

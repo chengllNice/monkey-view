@@ -99,13 +99,13 @@
              ]"
              :style="{order: orderList('pageSize')}"
              v-if="orderList('pageSize') > -1">
-            <sn-select :class="[`${classPrefix}__page-size-select`]" v-model="currentPageSize" :size="size"
+            <Select :class="[`${classPrefix}__page-size-select`]" v-model="currentPageSize" :size="size"
                        @change="pageSizeChange">
-                <sn-option v-for="item in currentPageSizeOption"
+                <Option v-for="item in currentPageSizeOption"
                            :key="item.value"
                            :value="item.value"
-                           :label="item.label"></sn-option>
-            </sn-select>
+                           :label="item.label"></Option>
+            </Select>
         </div>
 
         <div :class="[
@@ -115,7 +115,7 @@
              :style="{order: orderList('jump')}"
              v-if="orderList('jump') > -1">
                 {{t('cl.page.goto')}}
-                <sn-input :class="[`${classPrefix}__jump-to-input`]"
+                <Input :class="[`${classPrefix}__jump-to-input`]"
                           type="number"
                           v-model="jumpToPage"
                           :step="false"
@@ -250,17 +250,15 @@
             }
         },
         components: {
-            'sn-input': Input,
-            'sn-select': Select,
-            'sn-option': Option,
+            Input,
+            Select,
+            Option,
             Icon
-        },
-        created() {
-        },
-        mounted() {
         },
         methods: {
             changePage(page) {
+                this.jumpPreIcon = 'more';
+                this.jumpNextIcon = 'more';
                 page = parseInt(page);
                 if (page <= 1) {
                     page = 1
@@ -288,7 +286,7 @@
                 }
             },
             jumpToPageChange(value) {
-                this.changePage(value);
+                parseInt(value) >= 1 && this.changePage(value);
             },
             jumpMouseEnter(type) {
                 if (type === 'pre') {

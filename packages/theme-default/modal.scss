@@ -14,6 +14,7 @@
     left: 0;
     bottom: 0;
     right: 0;
+    z-index: $--modal-z-index;
     overflow: hidden;
     width: 100%;
     height: 100%;
@@ -26,6 +27,7 @@
     left: 0;
     bottom: 0;
     right: 0;
+    z-index: $--modal-z-index;
     overflow: auto;
   }
 
@@ -170,20 +172,15 @@
   @include m(left){
     @include e(header, false){
       text-align: left;
-      &::after{
-        content: '';
-        display: block;
-        clear: both;
-      }
     }
     @include e(icon, false){
+      display: inline-block;
       text-align: left;
-      float: left;
       vertical-align: middle;
     }
     @include e(title, false){
+      display: inline-block;
       text-align: left;
-      float: left;
       vertical-align: middle;
       line-height: 60px;
       margin: 0 0 0 10px;
@@ -193,5 +190,4 @@
       padding-left: 50px;
     }
   }
-
 }

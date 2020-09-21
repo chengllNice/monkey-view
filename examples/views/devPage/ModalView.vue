@@ -451,68 +451,68 @@
 
 <script>
 
-  export default {
-    name: "ModalView",
-    data() {
-      return {
-        modalValueBase: false,
-        modalValueWidth: false,
-        modalValueTop: false,
-        modalValueRenderHtml: false,
-        modalValueLoading: false,
-        modalValueTransition: false,
-        modalValueBodyScroll: false,
-        modalValueFullscreen: false,
-        modalValueSlotsHeaderOrFooter: false,
-        modalValueFooterHide: false,
-        modalValueHeader: false,
-        modalValueClose: false,
-        modalValueButtonText: false,
-        modalValueCover: false,
-        modalValueNoCover: false,
+    export default {
+        name: "ModalView",
+        data() {
+            return {
+                modalValueBase: false,
+                modalValueWidth: false,
+                modalValueTop: false,
+                modalValueRenderHtml: false,
+                modalValueLoading: false,
+                modalValueTransition: false,
+                modalValueBodyScroll: false,
+                modalValueFullscreen: false,
+                modalValueSlotsHeaderOrFooter: false,
+                modalValueFooterHide: false,
+                modalValueHeader: false,
+                modalValueClose: false,
+                modalValueButtonText: false,
+                modalValueCover: false,
+                modalValueNoCover: false,
 
-        loading: true
-      }
-    },
-    computed: {},
-    components: {
-    },
-    created() {
-    },
-    mounted() {
-
-    },
-    methods: {
-      openModal(type){
-        this[`modalValue${type}`] = true;
-      },
-      handlerOk(type){
-        if(type === 'Loading'){
-          setTimeout(()=>{
-            this[`modalValue${type}`] = false;
-          },2000);
-        }else{
-          this[`modalValue${type}`] = false;
-        }
-      },
-      installModal(type){
-        this.$Modal[type]({
-          title: `对话框的标题${type}`,
-          content: ['一些对话框内容','一些对话框内容','一些对话框内容'],
-          loading: type === 'confirm',
-          onOk(){
-            if(type === 'confirm'){
-              setTimeout(()=>{
-                this.$Modal.remove();
-              },2000);
+                loading: true
             }
-            console.log('====ok')
-          },
-          onCancel(){
+        },
+        computed: {},
+        components: {},
+        created() {
+        },
+        mounted() {
 
-          }
-        })
-      }
+        },
+        methods: {
+            openModal(type) {
+                this[`modalValue${type}`] = true;
+            },
+            handlerOk(type) {
+                if (type === 'Loading') {
+                    setTimeout(() => {
+                        this[`modalValue${type}`] = false;
+                    }, 2000);
+                } else {
+                    this[`modalValue${type}`] = false;
+                }
+            },
+            installModal(type) {
+                let vue = this;
+                this.$Modal[type]({
+                    title: `对话框的标题${type}`,
+                    content: `<p>一些对话框内容</p><b>一些对话框内容</b>`,
+                    loading: type === 'confirm',
+                    onOk() {
+                        if (type === 'confirm') {
+                            setTimeout(() => {
+                                vue.$Modal.remove();
+                            }, 2000);
+                        }
+                        console.log('====ok')
+                    },
+                    onCancel() {
+
+                    }
+                })
+            }
+        }
     }
-  }
 </script>

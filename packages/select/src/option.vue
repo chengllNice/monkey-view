@@ -77,8 +77,6 @@
         components: {
             Icon
         },
-        created() {
-        },
         mounted() {
             this.$nextTick(this.optionGroupRoot && this.optionGroupRoot.setShow());
             this.$nextTick(this.selectRoot.initOption());
@@ -110,9 +108,6 @@
                 if (this.localDisabled) return false;
                 this.selectRoot && this.selectRoot.handleOptionHover(this.value, false);
             }
-        },
-        watch: {
-
         }
     }
 </script>

@@ -2,47 +2,47 @@
     <div class="radioView">
         <div>
             <h4>基础--没有设置label--单独使用</h4>
-            <ClRadio v-model="radioBase" @change="changHandler">基础</ClRadio>
+            <Radio v-model="radioBase" @change="changHandler">基础</Radio>
 
             <h4>基础--设置label--单独使用</h4>
-            <ClRadio v-model="radioBaseLable" label="1" @change="changHandler">基础Label</ClRadio>
+            <Radio v-model="radioBaseLable" label="1" @change="changHandler">基础Label</Radio>
 
             <h4>disabled--单独使用</h4>
-            <ClRadio v-model="radioDisabled" disabled @change="changHandler">基础</ClRadio>
+            <Radio v-model="radioDisabled" disabled @change="changHandler">基础</Radio>
 
             <h4>size--单独使用</h4>
-            <ClRadio v-model="radioSize" label="small" size="small" @change="changHandler">small</ClRadio>
-            <ClRadio v-model="radioSize" label="default" @change="changHandler">default</ClRadio>
-            <ClRadio v-model="radioSize" label="large" size="large" @change="changHandler">large</ClRadio>
+            <Radio v-model="radioSize" label="small" size="small" @change="changHandler">small</Radio>
+            <Radio v-model="radioSize" label="default" @change="changHandler">default</Radio>
+            <Radio v-model="radioSize" label="large" size="large" @change="changHandler">large</Radio>
 
             <h4>组合使用--使用属性options</h4>
-            <ClRadioGroup v-model="radioGroupOptionValue" :options="radioOptions" @change="changHandler"></ClRadioGroup>
+            <RadioGroup v-model="radioGroupOptionValue" :options="radioOptions" @change="changHandler"></RadioGroup>
 
             <h4>组合使用--使用slot</h4>
-            <ClRadioGroup v-model="radioGroupSlotValue" @change="changHandler">
-                <ClRadio label="0">radio0</ClRadio>
-                <ClRadio label="1">radio1</ClRadio>
-                <ClRadio label="2">radio2</ClRadio>
-                <ClRadio label="3">radio3</ClRadio>
-                <ClRadio label="4">radio4</ClRadio>
-            </ClRadioGroup>
+            <RadioGroup v-model="radioGroupSlotValue" @change="changHandler">
+                <Radio label="0">radio0</Radio>
+                <Radio label="1">radio1</Radio>
+                <Radio label="2">radio2</Radio>
+                <Radio label="3">radio3</Radio>
+                <Radio label="4">radio4</Radio>
+            </RadioGroup>
 
             <h4>组合使用--size</h4>
-            <ClRadioGroup v-model="radioGroupOptionValueSizeSmall" size="small" :options="radioOptions" @change="changHandler"></ClRadioGroup>
-            <ClRadioGroup v-model="radioGroupOptionValueSizeDefault" :options="radioOptions" @change="changHandler"></ClRadioGroup>
-            <ClRadioGroup v-model="radioGroupOptionValueSizeLarge" size="large" :options="radioOptions" @change="changHandler"></ClRadioGroup>
+            <RadioGroup v-model="radioGroupOptionValueSizeSmall" size="small" :options="radioOptions" @change="changHandler"></RadioGroup>
+            <RadioGroup v-model="radioGroupOptionValueSizeDefault" :options="radioOptions" @change="changHandler"></RadioGroup>
+            <RadioGroup v-model="radioGroupOptionValueSizeLarge" size="large" :options="radioOptions" @change="changHandler"></RadioGroup>
 
             <h4>组合使用--disabled</h4>
-            <ClRadioGroup v-model="radioGroupOptionValueDisabled" disabled :options="radioOptions" @change="changHandler"></ClRadioGroup>
+            <RadioGroup v-model="radioGroupOptionValueDisabled" disabled :options="radioOptions" @change="changHandler"></RadioGroup>
 
             <h4>组合使用--单独设置某项disabled</h4>
-            <ClRadioGroup v-model="radioGroupSlotValueSingleDisabled" @change="changHandler">
-                <ClRadio label="0" disabled>radio0--disabled</ClRadio>
-                <ClRadio label="1">radio1</ClRadio>
-                <ClRadio label="2">radio2</ClRadio>
-                <ClRadio label="3">radio3</ClRadio>
-                <ClRadio label="4">radio4</ClRadio>
-            </ClRadioGroup>
+            <RadioGroup v-model="radioGroupSlotValueSingleDisabled" @change="changHandler">
+                <Radio label="0" disabled>radio0--disabled</Radio>
+                <Radio label="1">radio1</Radio>
+                <Radio label="2">radio2</Radio>
+                <Radio label="3">radio3</Radio>
+                <Radio label="4">radio4</Radio>
+            </RadioGroup>
         </div>
 
         <div class="viewDes">

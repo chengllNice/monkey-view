@@ -20,7 +20,10 @@
                          :always="tooltipVisible === 'always'"
                          placement="top">
                     <span slot="content">{{tipFormat(emitValue[0])}}</span>
-                    <div :class="[`${classPrefix}__handle-rel`]" :style="{'border-color': this.barColor}"></div>
+                    <div :class="[`${classPrefix}__handle-rel`]"
+                         @mouseenter="isHover = true"
+                         @mouseleave="isHover = false"
+                         :style="handleRelStyle"></div>
                 </tooltip>
             </div>
         </div>
@@ -32,6 +35,7 @@
     import Tooltip from 'packages/tooltip'
     import {on, off} from "main/utils/dom";
     import elementResizeDetectorMaker from 'element-resize-detector';
+    import { colorToRgba} from "main/utils/global";
 
     export default {
         name: "Slider",
@@ -82,6 +86,7 @@
                 moveType: '',
                 sliderLength: 0,
                 observer: null,
+                isHover: false,
             }
         },
         computed: {
@@ -138,11 +143,18 @@
                 }
                 return this.currentValue.map(i => Number(i.toFixed(fixedLength)))
             },
+            handleRelStyle(){
+                let style = {};
+                if(this.barColor) {
+                    let color = colorToRgba(this.barColor, 0.2);
+                    style = {'border-color': this.barColor};
+                    if(this.isHover) style = {...style, 'box-shadow': `0 0 0 4px ${color}`}
+                }
+                return style;
+            }
         },
         components: {
             Tooltip
-        },
-        created() {
         },
         mounted() {
             this.observer = elementResizeDetectorMaker();

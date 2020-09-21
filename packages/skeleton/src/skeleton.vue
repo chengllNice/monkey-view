@@ -63,9 +63,6 @@
                     'height': parseFloat(this.strokeWidth) + 'px',
                 }
             },
-        },
-        mounted() {
-        },
-        methods: {}
+        }
     }
 </script>

@@ -1,23 +1,23 @@
 <template>
     <div class="NoticeView">
-        <cl-button @click="openNotice('open')">open notice</cl-button>
-        <cl-button @click="openNotice('open', true, 0)">open notice 0ms</cl-button>
-        <cl-button type="success" @click="openNotice('success', true)">success</cl-button>
-        <cl-button type="danger" @click="openNotice('error', true)">error</cl-button>
-        <cl-button type="warning" @click="openNotice('warning', true)">warning</cl-button>
-        <cl-button type="info" @click="openNotice('info', true)">info</cl-button>
+        <Button @click="openNotice('open')">open notice</Button>
+        <Button @click="openNotice('open', true, 0)">open notice 0ms</Button>
+        <Button type="success" @click="openNotice('success', true)">success</Button>
+        <Button type="danger" @click="openNotice('error', true)">error</Button>
+        <Button type="warning" @click="openNotice('warning', true)">warning</Button>
+        <Button type="info" @click="openNotice('info', true)">info</Button>
 
-        <cl-button @click="openNotice('open')">only title</cl-button>
-        <cl-button type="success" @click="openNotice('success')">success only title</cl-button>
-        <cl-button type="danger" @click="openNotice('error')">error only title</cl-button>
-        <cl-button type="warning" @click="openNotice('warning')">warning only title</cl-button>
-        <cl-button type="info" @click="openNotice('info')">info only title</cl-button>
+        <Button @click="openNotice('open')">only title</Button>
+        <Button type="success" @click="openNotice('success')">success only title</Button>
+        <Button type="danger" @click="openNotice('error')">error only title</Button>
+        <Button type="warning" @click="openNotice('warning')">warning only title</Button>
+        <Button type="info" @click="openNotice('info')">info only title</Button>
 
 
-        <cl-button type="success" @click="openNotice('success', true, 5000, true)">success background</cl-button>
-        <cl-button type="danger" @click="openNotice('error', true, 5000, true)">error background</cl-button>
-        <cl-button type="warning" @click="openNotice('warning', true, 5000, true)">warning background</cl-button>
-        <cl-button type="info" @click="openNotice('info', true, 5000, true)">info background</cl-button>
+        <Button type="success" @click="openNotice('success', true, 5000, true)">success background</Button>
+        <Button type="danger" @click="openNotice('error', true, 5000, true)">error background</Button>
+        <Button type="warning" @click="openNotice('warning', true, 5000, true)">warning background</Button>
+        <Button type="info" @click="openNotice('info', true, 5000, true)">info background</Button>
     </div>
 </template>
 

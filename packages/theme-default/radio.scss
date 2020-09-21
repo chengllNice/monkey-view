@@ -38,7 +38,7 @@
   color: $--color-text-default;
   display: inline-block;
   position: relative;
-  transition: all 0.2s;
+  transition: all $--animation-time ease-in-out;
   margin-right: 20px;
   vertical-align: middle;
 
@@ -64,6 +64,7 @@
     position: relative;
     cursor: pointer;
     vertical-align: middle;
+    transition: border-color $--animation-time ease-in-out;
 
     &:hover{
       border-color: $--radio-border-color-hover;

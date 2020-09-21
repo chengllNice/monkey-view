@@ -42,48 +42,48 @@
 ```html
 <template>
     <div class="doc-margin-l10" style="text-align: center;width: 300px">
-        <Popover title="提示" placement="top-start" content="content">
+        <Popover title="提示" placement="top-start" content="content" render-html>
             <Button>上左</Button>
         </Popover>
-        <Popover title="提示" placement="top" content="content">
+        <Popover title="提示" placement="top" content="content" render-html>
             <Button>上边</Button>
         </Popover>
-        <Popover title="提示" placement="top-end" content="content">
+        <Popover title="提示" placement="top-end" content="content" render-html>
             <Button>上右</Button>
         </Popover>
     </div>
     <div class="doc-margin-l10 doc-popover-placement">
-        <Popover title="提示" placement="left-start" content="content">
+        <Popover title="提示" placement="left-start" content="content" render-html>
             <Button>左上</Button>
         </Popover>
-        <Popover title="提示" placement="right-start" content="content">
+        <Popover title="提示" placement="right-start" content="content" render-html>
             <Button>右上</Button>
         </Popover>
     </div>
     <div class="doc-margin-l10 doc-popover-placement">
-        <Popover title="提示" placement="left" content="content">
+        <Popover title="提示" placement="left" content="content" render-html>
             <Button>左边</Button>
         </Popover>
-        <Popover title="提示" placement="right" content="content">
+        <Popover title="提示" placement="right" content="content" render-html>
             <Button>右边</Button>
         </Popover>
     </div>
     <div class="doc-margin-l10 doc-popover-placement">
-        <Popover title="提示" placement="left-end" content="content">
+        <Popover title="提示" placement="left-end" content="content" render-html>
             <Button>左下</Button>
         </Popover>
-        <Popover title="提示" placement="right-end" content="content">
+        <Popover title="提示" placement="right-end" content="content" render-html>
             <Button>右下</Button>
         </Popover>
     </div>
     <div class="doc-margin-l10" style="text-align: center;width: 300px">
-        <Popover title="提示" placement="bottom-start" content="content">
+        <Popover title="提示" placement="bottom-start" content="content" render-html>
             <Button>下左</Button>
         </Popover>
-        <Popover title="提示" placement="bottom" content="content">
+        <Popover title="提示" placement="bottom" content="content" render-html>
             <Button>下边</Button>
         </Popover>
-        <Popover title="提示" placement="bottom-end" content="content">
+        <Popover title="提示" placement="bottom-end" content="content" render-html>
             <Button>下右</Button>
         </Popover>
     </div>
@@ -144,7 +144,7 @@
 
 ```html
 <template>
-    <Popover confirm title="您确定要删除这条内容么？">
+    <Popover confirm title="您确定要删除这条内容么？" render-html @ok="confirmOk" @cancel="confirmCancel">
         <Button>删除</Button>
     </Popover>
 </template>

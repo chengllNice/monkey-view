@@ -46,11 +46,6 @@
         components: {
             Option,
             OptionGroup
-        },
-        mounted() {
-        },
-        methods: {
-
         }
     }
 </script>

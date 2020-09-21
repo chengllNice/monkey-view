@@ -7,23 +7,20 @@
            v-model="visible"
            :width="width"
            footer-hide
+           :cover-closable="false"
+           close-remove-dom
            :closable="false"
-           @cancel="handlerButtonCancel">
+           @cancel="handleButtonCancel">
         <div :class="[`${classPrefix}__header`]" v-if="title">
             <div :class="[`${classPrefix}__icon`]"><Icon :type="iconClass"></Icon></div>
             <div :class="[`${classPrefix}__title`]">{{title}}</div>
         </div>
-        <div :class="[`${classPrefix}__content`]">
-            <div :class="[`${classPrefix}_item`]"
-                 v-for="(content, index) in contentText"
-                 :key="index"
-                 v-html="content"></div>
-        </div>
+        <div :class="[`${classPrefix}__content`]" v-html="content"></div>
         <div :class="[`${classPrefix}__footer`]">
-            <Button @click="handlerButtonCancel" v-if="icon === 'confirm' && localCancelText">
+            <Button @click="handleButtonCancel" v-if="icon === 'confirm' && localCancelText">
                 {{localCancelText}}
             </Button>
-            <Button type="primary" :loading='okButtonLoading' @click="handlerButtonOk" v-if="localOkText">
+            <Button type="primary" :loading='okButtonLoading' @click="handleButtonOk" v-if="localOkText">
                 {{localOkText}}
             </Button>
         </div>
@@ -35,16 +32,18 @@
     import Modal from './modal.vue'
     import Button from 'packages/button'
     import Icon from 'packages/icon'
+    import Locale from 'main/mixins/locale'
 
     export default {
         name: "ModalConfirm",
+        mixins: [Locale],
         data() {
             return {
                 classPrefix: Config.classPrefix + '-modal-confirm',
                 visible: false,
                 width: 350,
                 title: '',
-                content: [],
+                content: '',
                 okText: '',
                 cancelText: '',
                 okButtonLoading: false,
@@ -55,10 +54,10 @@
         },
         computed: {
             localOkText() {
-                return this.okText === null ? null : (this.okText ? this.okText : '确定');
+                return this.okText === null ? null : (this.okText ? this.okText : this.t('cl.modal.okText'));
             },
             localCancelText() {
-                return this.cancelText === null ? null : (this.cancelText ? this.cancelText : '取消');
+                return this.cancelText === null ? null : (this.cancelText ? this.cancelText : this.t('cl.modal.cancelText'));
             },
             iconClass() {
                 let result;
@@ -73,7 +72,7 @@
                         result = 'warning-fill';
                         break;
                     case 'error':
-                        result = 'remove-fill';
+                        result = 'error-fill';
                         break;
                     case 'confirm':
                         result = 'question-fill';
@@ -84,35 +83,22 @@
                 }
                 return result;
             },
-            contentText() {
-                let content = [];
-                if (typeof this.content === 'string') {
-                    content = [this.content];
-                } else if (Array.isArray(this.content)) {
-                    content = this.content;
-                }
-                return content;
-            }
         },
         components: {
             Modal,
             Button,
             Icon
         },
-        created() {
-        },
-        mounted() {
-        },
         methods: {
             show(value) {
                 this.visible = value;
             },
-            handlerButtonCancel() {
+            handleButtonCancel() {
                 this.visible = false;
                 this.okButtonLoading = false;
                 this.onCancel();
             },
-            handlerButtonOk() {
+            handleButtonOk() {
                 if (this.loading) {
                     this.okButtonLoading = true;
                 } else {

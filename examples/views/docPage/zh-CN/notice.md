@@ -12,8 +12,8 @@
 
 ```html
 <template>
-    <cl-button type="primary" @click="openNotice(true)">默认</cl-button>
-    <cl-button @click="openNotice(false)">仅标题</cl-button>
+    <Button type="primary" @click="openNotice(true)">默认</Button>
+    <Button @click="openNotice(false)">仅标题</Button>
 </template>
 <script>
     export default {
@@ -46,16 +46,16 @@
 ```html
 <template>
     <h4>带内容</h4>
-    <cl-button @click="openNotice('info', true)">info</cl-button>
-    <cl-button @click="openNotice('success', true)">success</cl-button>
-    <cl-button @click="openNotice('warning', true)">warning</cl-button>
-    <cl-button @click="openNotice('error', true)">error</cl-button>
+    <Button @click="openNotice('info', true)">info</Button>
+    <Button @click="openNotice('success', true)">success</Button>
+    <Button @click="openNotice('warning', true)">warning</Button>
+    <Button @click="openNotice('error', true)">error</Button>
     
     <h4>仅标题</h4>
-    <cl-button @click="openNotice('info', false)">info</cl-button>
-    <cl-button @click="openNotice('success', false)">success</cl-button>
-    <cl-button @click="openNotice('warning', false)">warning</cl-button>
-    <cl-button @click="openNotice('error', false)">error</cl-button>
+    <Button @click="openNotice('info', false)">info</Button>
+    <Button @click="openNotice('success', false)">success</Button>
+    <Button @click="openNotice('warning', false)">warning</Button>
+    <Button @click="openNotice('error', false)">error</Button>
 </template>
 <script>
     export default {
@@ -87,10 +87,10 @@
 
 ```html
 <template>
-    <cl-button type="info" @click="openNotice('info')">info</cl-button>
-    <cl-button type="success" @click="openNotice('success')">success</cl-button>
-    <cl-button type="warning" @click="openNotice('warning')">warning</cl-button>
-    <cl-button type="danger" @click="openNotice('error')">error</cl-button>
+    <Button type="info" @click="openNotice('info')">info</Button>
+    <Button type="success" @click="openNotice('success')">success</Button>
+    <Button type="warning" @click="openNotice('warning')">warning</Button>
+    <Button type="danger" @click="openNotice('error')">error</Button>
 </template>
 <script>
     export default {
@@ -122,19 +122,19 @@
 
 ```html
 <template>
-    <cl-row :gutter="16">
-        <cl-col>
-            <cl-select v-model="placement" @change="placementChange">
-                <cl-option value="topLeft">topLeft</cl-option>
-                <cl-option value="topRight">topRight</cl-option>
-                <cl-option value="bottomLeft">bottomLeft</cl-option>
-                <cl-option value="bottomRight">bottomRight</cl-option>
-            </cl-select>
-        </cl-col>
-        <cl-col>
-            <cl-button type="primary" @click="openNotice">placement</cl-button>
-        </cl-col>
-    </cl-row>
+    <Row :gutter="16">
+        <Col>
+            <Select v-model="placement" @change="placementChange">
+                <Option value="topLeft">topLeft</Option>
+                <Option value="topRight">topRight</Option>
+                <Option value="bottomLeft">bottomLeft</Option>
+                <Option value="bottomRight">bottomRight</Option>
+            </Select>
+        </Col>
+        <Col>
+            <Button type="primary" @click="openNotice">placement</Button>
+        </Col>
+    </Row>
 </template>
 <script>
     export default {
@@ -204,5 +204,4 @@
 | ---- | ---- | ---- | ---- |
 | position | Number | 第一个notice提示信息距离顶部或者底部的距离，单位px | 85 |
 | duration | Number | 自动关闭的延时，单位ms，值为0时不关闭 | 4500 |
-| noticeItemDis | Number | 每个notice提示信息之间的距离 | 10 |
 | placement | String | 出现的位置，可选值 `topLeft` `topRight` `bottomLeft` `BottomRight` | topRight |

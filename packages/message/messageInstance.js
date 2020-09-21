@@ -25,7 +25,7 @@ const defaultOptions = {
     content: '',
     duration: 3000,
     background: false,//是否有背景色
-    closable: true,
+    closable: false,
     onClose: function () {
     },//关闭的回调
 };

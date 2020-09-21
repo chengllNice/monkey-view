@@ -13,11 +13,11 @@
 ```html
 <template>
     <h4>不同数据总量</h4>
-    <cl-page :total="50"/>
-    <cl-page :total="100"/>
+    <Page :total="50"/>
+    <Page :total="100"/>
 
     <h4>设置当前页page</h4>
-    <cl-page :total="100" :page="page" @change="pageChange"/>
+    <Page :total="100" :page="page" @change="pageChange"/>
 </template>
 <script>
     export default {
@@ -48,15 +48,15 @@
 ```html
 <template>
     <h4>只展示总数据量和分页</h4>
-    <cl-page :total="100" order="total, page"/>
+    <Page :total="100" order="total, page"/>
     <h4>只展示每页条数和分页</h4>
-    <cl-page :total="100" order="page, pageSize"/>
+    <Page :total="100" order="page, pageSize"/>
     <h4>全部展示四项</h4>
-    <cl-page :total="100" order="total, page, pageSize, jump"/>
+    <Page :total="100" order="total, page, pageSize, jump"/>
     <h4>全部展示四项--不同的排序</h4>
-    <cl-page :total="100" order="page, pageSize, jump, total"/>
+    <Page :total="100" order="page, pageSize, jump, total"/>
     <h4>totalText和pageSize</h4>
-    <cl-page :total="100" order="total, page, pageSize, jump" totalText="总共 {total} 条数据" pageSizeText="每页 {pageSize} 条" />
+    <Page :total="100" order="total, page, pageSize, jump" totalText="总共 {total} 条数据" pageSizeText="每页 {pageSize} 条" />
 </template>
 
 ```
@@ -72,9 +72,9 @@
 ```html
 <template>
     <h4>显示边框</h4>
-    <cl-page :total="100" border />
+    <Page :total="100" border />
     <h4>显示背景</h4>
-    <cl-page :total="100" background />
+    <Page :total="100" background />
 </template>
 
 ```
@@ -88,8 +88,8 @@
 
 ```html
 <template>
-    <cl-page size="mini" :total="100" />
-    <cl-page size="mini" :total="100" background />
+    <Page size="mini" :total="100" />
+    <Page size="mini" :total="100" background />
 </template>
 
 ```
@@ -100,11 +100,11 @@
 
 :::demo 替换上一页下一页图标
 
-设置属性`size="mini"`可以实现迷你类型的分页。
+自定义实现上一页下一页图标。
 
 ```html
 <template>
-    <cl-page :total="100" preText="上一页" nextText="下一页" />
+    <Page :total="100" preText="上一页" nextText="下一页" />
 </template>
 
 ```

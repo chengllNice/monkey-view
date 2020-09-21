@@ -164,7 +164,7 @@
                         className = 'success-fill';
                         break;
                     case 'error':
-                        className = 'remove-fill';
+                        className = 'error-fill';
                         break;
                     case 'warning':
                         className = 'warning-fill';
@@ -251,10 +251,5 @@
         components: {
             Icon
         },
-        created() {
-        },
-        mounted() {
-        },
-        methods: {}
     }
 </script>

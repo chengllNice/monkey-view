@@ -95,6 +95,10 @@
                 type: Boolean,
                 default: true
             },
+            closeRemoveDom: {
+                type: Boolean,
+                default: false
+            },//是否关闭之后移除dom
             bodyScroll: Boolean,//body内容自动滚动,
             modalTop: {
                 type: [String, Number],
@@ -129,8 +133,10 @@
                 let style = {};
                 const widthPar = parseFloat(this.width);
                 const modalTop = parseFloat(this.modalTop);
-                const width = this.width.toString().includes('%') ? `${widthPar}%` : `${widthPar}px`;
-                const top = this.modalTop.toString().includes('%') ? `${modalTop}%` : `${modalTop}px`;
+                const isWidthPer = this.width.toString().includes('%');
+                const isModalTopPer = this.modalTop.toString().includes('%');
+                let width = isWidthPer ? `${widthPar}%` : `${widthPar}px`;
+                let top = isModalTopPer ? `${modalTop}%` : `${modalTop}px`;
 
                 const styles = this.styles ? this.styles : {};
 
@@ -234,6 +240,12 @@
             },
             handleAfterLeave(){
                 this.wrapHidden = true;
+                if(this.closeRemoveDom){
+                    this.handleRemoveDom();
+                }
+            },
+            handleRemoveDom(){
+                this.$el.parentNode && this.$el.parentNode.removeChild(this.$el);
             }
         }
     }

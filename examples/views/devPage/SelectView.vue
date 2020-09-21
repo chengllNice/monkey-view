@@ -2,18 +2,18 @@
     <div class="SelectView">
         <div class="view">
             <h2>不同size</h2>
-            <ClSelect size="mini" v-model="selectValueBaseSize1" :option="optionBaseEmpty" @change="handlerChange"></ClSelect>
-            <ClSelect size="small" v-model="selectValueBaseSize2" :option="optionBaseEmpty" @change="handlerChange"></ClSelect>
-            <ClSelect v-model="selectValueBaseSize3" :option="optionBaseEmpty" @change="handlerChange"></ClSelect>
-            <ClSelect size="large" v-model="selectValueBaseSize4" :option="optionBaseEmpty" @change="handlerChange"></ClSelect>
-            <ClSelect size="mini" v-model="selectValueMultipleSize1" multiple valueLable :option="optionMultiple"
-                      @change="handlerChange"></ClSelect>
-            <ClSelect size="small" v-model="selectValueMultipleSize2" multiple valueLable :option="optionMultiple"
-                      @change="handlerChange"></ClSelect>
-            <ClSelect v-model="selectValueMultipleSize3" multiple valueLable :option="optionMultiple"
-                      @change="handlerChange"></ClSelect>
-            <ClSelect size="large" v-model="selectValueMultipleSize4" multiple valueLable :option="optionMultiple"
-                      @change="handlerChange"></ClSelect>
+            <Select size="mini" v-model="selectValueBaseSize1" :option="optionBaseEmpty" @change="handlerChange"></Select>
+            <Select size="small" v-model="selectValueBaseSize2" :option="optionBaseEmpty" @change="handlerChange"></Select>
+            <Select v-model="selectValueBaseSize3" :option="optionBaseEmpty" @change="handlerChange"></Select>
+            <Select size="large" v-model="selectValueBaseSize4" :option="optionBaseEmpty" @change="handlerChange"></Select>
+            <Select size="mini" v-model="selectValueMultipleSize1" multiple valueLable :option="optionMultiple"
+                      @change="handlerChange"></Select>
+            <Select size="small" v-model="selectValueMultipleSize2" multiple valueLable :option="optionMultiple"
+                      @change="handlerChange"></Select>
+            <Select v-model="selectValueMultipleSize3" multiple valueLable :option="optionMultiple"
+                      @change="handlerChange"></Select>
+            <Select size="large" v-model="selectValueMultipleSize4" multiple valueLable :option="optionMultiple"
+                      @change="handlerChange"></Select>
         </div>
 
         <div class="view">
@@ -42,235 +42,235 @@
             </Select>
         </div>
 
-<!--        <div class="view">-->
-<!--            <h2>基础</h2>-->
+        <div class="view">
+            <h2>基础</h2>
 
-<!--            <p>dropdownMatchSelectWidth:下拉框是否与选择器同宽</p>-->
-<!--            <ClSelect v-model="selectValueBaseHave" :option="optionBaseHave" :dropdownMatchSelectWidth="true"-->
-<!--                      @change="handlerChange"></ClSelect>-->
+            <p>dropdownMatchSelectWidth:下拉框是否与选择器同宽</p>
+            <Select v-model="selectValueBaseHave" :option="optionBaseHave" :dropdownMatchSelectWidth="true"
+                      @change="handlerChange"></Select>
 
-<!--            <p>长数据时超出滚动</p>-->
-<!--            <ClSelect v-model="selectValueBaseLarge" :option="optionBaseLarge" @change="handlerChange"></ClSelect>-->
+            <p>长数据时超出滚动</p>
+            <Select v-model="selectValueBaseLarge" :option="optionBaseLarge" @change="handlerChange"></Select>
 
-<!--            <p>长数据时定义下拉框的最大高度，超出滚动</p>-->
-<!--            <ClSelect v-model="selectValueBaseLarge" :option="optionBaseLarge" @change="handlerChange"-->
-<!--                      maxHeight="300px"></ClSelect>-->
+            <p>长数据时定义下拉框的最大高度，超出滚动</p>
+            <Select v-model="selectValueBaseLarge" :option="optionBaseLarge" @change="handlerChange"
+                      maxHeight="300px"></Select>
 
-<!--            <p>props:option</p>-->
-<!--            <ClSelect v-model="selectValueBase0" :option="optionBase" @change="handlerChange"></ClSelect>-->
-<!--            <ClSelect v-model="selectValueBase1" :option="optionBase" @change="handlerChange"></ClSelect>-->
+            <p>props:option</p>
+            <Select v-model="selectValueBase0" :option="optionBase" @change="handlerChange"></Select>
+            <Select v-model="selectValueBase1" :option="optionBase" @change="handlerChange"></Select>
 
-<!--            <p>slots:option</p>-->
-<!--            <ClSelect v-model="selectValueBase2" @change="handlerChange">-->
-<!--                <Option v-for="item in optionBase" :key="item.value" :value="item.value" :label="item.label"></Option>-->
-<!--            </ClSelect>-->
+            <p>slots:option</p>
+            <Select v-model="selectValueBase2" @change="handlerChange">
+                <Option v-for="item in optionBase" :key="item.value" :value="item.value" :label="item.label"></Option>
+            </Select>
 
-<!--            <p>返回值valueLabel格式props:option</p>-->
-<!--            <ClSelect v-model="selectValueBase3" valueLable :option="optionBase" @change="handlerChange"></ClSelect>-->
+            <p>返回值valueLabel格式props:option</p>
+            <Select v-model="selectValueBase3" valueLable :option="optionBase" @change="handlerChange"></Select>
 
-<!--            <p>空数据</p>-->
-<!--            <ClSelect v-model="selectValueBase4" :option="optionBaseEmpty" @change="handlerChange"></ClSelect>-->
+            <p>空数据</p>
+            <Select v-model="selectValueBase4" :option="optionBaseEmpty" @change="handlerChange"></Select>
 
-<!--        </div>-->
+        </div>
 
-<!--        <div class="view">-->
-<!--            <h2>禁用</h2>-->
-<!--            <ClSelect v-model="selectValueDisabled1" :option="optionDisabled" disabled-->
-<!--                      @change="handlerChange"></ClSelect>-->
-<!--            <ClSelect v-model="selectValueDisabled2" :option="optionDisabled" @change="handlerChange"></ClSelect>-->
-<!--            <ClSelect v-model="selectValueDisabled3" :option="optionDisabled" disabled multiple-->
-<!--                      @change="handlerChange"></ClSelect>-->
-<!--            <ClSelect v-model="selectValueDisabled4" :option="optionDisabled" multiple-->
-<!--                      @change="handlerChange"></ClSelect>-->
-<!--        </div>-->
-
-
-<!--        <div class="view">-->
-<!--            <h2>size</h2>-->
-<!--            <p>mini: </p>-->
-<!--            <ClSelect v-model="selectValueSizeMini" size="mini">-->
-<!--                <ClOption v-for="item in optionSizeMini" :key="item.value" :value="item.value" :selected="item.selected"-->
-<!--                          :disabled="item.disabled">-->
-<!--                    {{item.label}}-->
-<!--                </ClOption>-->
-<!--            </ClSelect>-->
-<!--            <p>small: </p>-->
-<!--            <ClSelect v-model="selectValueSizeSmall" size="small">-->
-<!--                <ClOption v-for="item in optionSizeSmall" :key="item.value" :value="item.value"-->
-<!--                          :selected="item.selected" :disabled="item.disabled">-->
-<!--                    {{item.label}}-->
-<!--                </ClOption>-->
-<!--            </ClSelect>-->
-<!--            <p>default: </p>-->
-<!--            <ClSelect v-model="selectValueSizeDefault">-->
-<!--                <ClOption v-for="item in optionSizeDefault" :key="item.value" :value="item.value"-->
-<!--                          :selected="item.selected" :disabled="item.disabled">-->
-<!--                    {{item.label}}-->
-<!--                </ClOption>-->
-<!--            </ClSelect>-->
-<!--            <p>large: </p>-->
-<!--            <ClSelect v-model="selectValueSizeLarge" size="large">-->
-<!--                <ClOption v-for="item in optionSizeLarge" :key="item.value" :value="item.value"-->
-<!--                          :selected="item.selected" :disabled="item.disabled">-->
-<!--                    {{item.label}}-->
-<!--                </ClOption>-->
-<!--            </ClSelect>-->
-<!--        </div>-->
+        <div class="view">
+            <h2>禁用</h2>
+            <Select v-model="selectValueDisabled1" :option="optionDisabled" disabled
+                      @change="handlerChange"></Select>
+            <Select v-model="selectValueDisabled2" :option="optionDisabled" @change="handlerChange"></Select>
+            <Select v-model="selectValueDisabled3" :option="optionDisabled" disabled multiple
+                      @change="handlerChange"></Select>
+            <Select v-model="selectValueDisabled4" :option="optionDisabled" multiple
+                      @change="handlerChange"></Select>
+        </div>
 
 
-<!--        <div class="view">-->
-<!--            <h2>可清空</h2>-->
+        <div class="view">
+            <h2>size</h2>
+            <p>mini: </p>
+            <Select v-model="selectValueSizeMini" size="mini">
+                <Option v-for="item in optionSizeMini" :key="item.value" :value="item.value" :selected="item.selected"
+                          :disabled="item.disabled">
+                    {{item.label}}
+                </Option>
+            </Select>
+            <p>small: </p>
+            <Select v-model="selectValueSizeSmall" size="small">
+                <Option v-for="item in optionSizeSmall" :key="item.value" :value="item.value"
+                          :selected="item.selected" :disabled="item.disabled">
+                    {{item.label}}
+                </Option>
+            </Select>
+            <p>default: </p>
+            <Select v-model="selectValueSizeDefault">
+                <Option v-for="item in optionSizeDefault" :key="item.value" :value="item.value"
+                          :selected="item.selected" :disabled="item.disabled">
+                    {{item.label}}
+                </Option>
+            </Select>
+            <p>large: </p>
+            <Select v-model="selectValueSizeLarge" size="large">
+                <Option v-for="item in optionSizeLarge" :key="item.value" :value="item.value"
+                          :selected="item.selected" :disabled="item.disabled">
+                    {{item.label}}
+                </Option>
+            </Select>
+        </div>
 
-<!--            <p>可清空：props:option</p>-->
-<!--            <ClSelect v-model="selectValueClearable" :option="optionClearable" clearable-->
-<!--                      @change="handlerChange"></ClSelect>-->
-<!--        </div>-->
+
+        <div class="view">
+            <h2>可清空</h2>
+
+            <p>可清空：props:option</p>
+            <Select v-model="selectValueClearable" :option="optionClearable" clearable
+                      @change="handlerChange"></Select>
+        </div>
 
 
-<!--        <div class="view">-->
-<!--            <h2>分组</h2>-->
+        <div class="view">
+            <h2>分组</h2>
 
-<!--            <p>分组：props:option</p>-->
-<!--            <ClSelect v-model="selectValueGroup" :option="optionGroup" clearable @change="handlerChange"></ClSelect>-->
+            <p>分组：props:option</p>
+            <Select v-model="selectValueGroup" :option="optionGroup" clearable @change="handlerChange"></Select>
 
-<!--            <p>分组：slots:option</p>-->
-<!--            <ClSelect v-model="selectValueGroup1" @change="handlerChange">-->
-<!--                <ClOptionGroup label="ceshi">-->
-<!--                    <ClOption v-for="item in optionGroup0" :key="item.value" :value="item.value"-->
-<!--                              :selected="item.selected" :disabled="item.disabled">-->
-<!--                        {{item.label}}-->
-<!--                    </ClOption>-->
-<!--                </ClOptionGroup>-->
-<!--                <ClOptionGroup label="ceshi2">-->
-<!--                    <ClOption v-for="item in optionGroup1" :key="item.value" :value="item.value"-->
-<!--                              :selected="item.selected" :disabled="item.disabled">-->
-<!--                        {{item.label}}-->
-<!--                    </ClOption>-->
-<!--                </ClOptionGroup>-->
-<!--            </ClSelect>-->
-<!--        </div>-->
+            <p>分组：slots:option</p>
+            <Select v-model="selectValueGroup1" @change="handlerChange">
+                <OptionGroup label="ceshi">
+                    <Option v-for="item in optionGroup0" :key="item.value" :value="item.value"
+                              :selected="item.selected" :disabled="item.disabled">
+                        {{item.label}}
+                    </Option>
+                </OptionGroup>
+                <OptionGroup label="ceshi2">
+                    <Option v-for="item in optionGroup1" :key="item.value" :value="item.value"
+                              :selected="item.selected" :disabled="item.disabled">
+                        {{item.label}}
+                    </Option>
+                </OptionGroup>
+            </Select>
+        </div>
 
 
-<!--        <div class="view">-->
-<!--            <h2>自定义模板</h2>-->
+        <div class="view">
+            <h2>自定义模板</h2>
 
-<!--            <p>自定义模板：slots:option</p>-->
-<!--            <ClSelect v-model="selectValueCustomModel1" @change="handlerChange">-->
-<!--                <Option v-for="item in optionCustomModel" :key="item.value" :value="item.value" :label="item.label"-->
-<!--                        :disabled="item.disabled">-->
-<!--                    <Icon :type="item.icon" style="margin-right: 10px;"></Icon> {{item.label}}-->
-<!--                </Option>-->
-<!--            </ClSelect>-->
+            <p>自定义模板：slots:option</p>
+            <Select v-model="selectValueCustomModel1" @change="handlerChange">
+                <Option v-for="item in optionCustomModel" :key="item.value" :value="item.value" :label="item.label"
+                        :disabled="item.disabled">
+                    <Icon :type="item.icon" style="margin-right: 10px;"></Icon> {{item.label}}
+                </Option>
+            </Select>
 
-<!--            <p>自定义模板：props:option</p>-->
-<!--            <ClSelect v-model="selectValueCustomModel2" :option="optionCustomModel" @change="handlerChange"></ClSelect>-->
-<!--        </div>-->
+            <p>自定义模板：props:option</p>
+            <Select v-model="selectValueCustomModel2" :option="optionCustomModel" @change="handlerChange"></Select>
+        </div>
 
         <div class="view">
             <h2>多选</h2>
 
             <p>多选：slots:option</p>
-            <ClSelect v-model="selectValueMultiple1" multiple @change="handlerChange">
-                <ClOption v-for="item in optionMultiple" :key="item.value" :value="item.value" :label="item.label"
+            <Select v-model="selectValueMultiple1" multiple @change="handlerChange">
+                <Option v-for="item in optionMultiple" :key="item.value" :value="item.value" :label="item.label"
                           :disabled="item.disabled">
                     {{item.label}}
-                </ClOption>
-            </ClSelect>
+                </Option>
+            </Select>
 
             <p>多选返回值valueLabel格式：props:option</p>
-            <ClSelect v-model="selectValueMultiple2" multiple valueLable :option="optionMultiple"
-                      @change="handlerChange"></ClSelect>
+            <Select v-model="selectValueMultiple2" multiple valueLable :option="optionMultiple"
+                      @change="handlerChange"></Select>
 
             <h2>限制多选数量 multipleLimit</h2>
             <p>多选：slots:option</p>
-            <ClSelect v-model="selectValueMultiple1" multiple :multipleLimit="2" @change="handlerChange">
-                <ClOption v-for="item in optionMultiple" :key="item.value" :value="item.value" :label="item.label"
+            <Select v-model="selectValueMultiple1" multiple :multipleLimit="2" @change="handlerChange">
+                <Option v-for="item in optionMultiple" :key="item.value" :value="item.value" :label="item.label"
                           :disabled="item.disabled">
                     {{item.label}}
-                </ClOption>
-            </ClSelect>
+                </Option>
+            </Select>
 
             <p>多选返回值valueLabel格式：props:option</p>
-            <ClSelect v-model="selectValueMultiple2" multiple :multipleLimit="2" valueLable :option="optionMultiple"
-                      @change="handlerChange"></ClSelect>
+            <Select v-model="selectValueMultiple2" multiple :multipleLimit="2" valueLable :option="optionMultiple"
+                      @change="handlerChange"></Select>
         </div>
 
 
         <div class="view">
             <h2>可搜索</h2>
-            <ClSelect size="mini" v-model="selectValueSearch2" :option="optionSearch" filterable clearable
-                      @change="handlerChange"></ClSelect>
-            <ClSelect size="small" v-model="selectValueSearch2" :option="optionSearch" filterable clearable
-                      @change="handlerChange"></ClSelect>
-            <ClSelect v-model="selectValueSearch2" :option="optionSearch" filterable clearable
-                      @change="handlerChange"></ClSelect>
-            <ClSelect size="large" v-model="selectValueSearch2" :option="optionSearch" filterable clearable
-                      @change="handlerChange"></ClSelect>
+            <Select size="mini" v-model="selectValueSearch2" :option="optionSearch" filterable clearable
+                      @change="handlerChange"></Select>
+            <Select size="small" v-model="selectValueSearch2" :option="optionSearch" filterable clearable
+                      @change="handlerChange"></Select>
+            <Select v-model="selectValueSearch2" :option="optionSearch" filterable clearable
+                      @change="handlerChange"></Select>
+            <Select size="large" v-model="selectValueSearch2" :option="optionSearch" filterable clearable
+                      @change="handlerChange"></Select>
 
             <p>可搜索单选可清空slots:option</p>
-            <ClSelect v-model="selectValueSearch1" filterable clearable @change="handlerChange">
-                <ClOption v-for="item in optionSearch" :key="item.value" :value="item.value" :label="item.label"
+            <Select v-model="selectValueSearch1" filterable clearable @change="handlerChange">
+                <Option v-for="item in optionSearch" :key="item.value" :value="item.value" :label="item.label"
                           :disabled="item.disabled">
                     <Icon :type="item.icon" style="margin-right: 10px;"></Icon>{{item.label}}
-                </ClOption>
-            </ClSelect>
+                </Option>
+            </Select>
 
             <p>可搜索单选可清空slots:optionGroup</p>
-            <ClSelect v-model="selectValueSearch1" filterable clearable @change="handlerChange">
-                <ClOptionGroup label="search1">
-                    <ClOption v-for="item in optionSearchGroup0" :key="item.value" :value="item.value"
+            <Select v-model="selectValueSearch1" filterable clearable @change="handlerChange">
+                <OptionGroup label="search1">
+                    <Option v-for="item in optionSearchGroup0" :key="item.value" :value="item.value"
                               :selected="item.selected" :disabled="item.disabled">
                         {{item.label}}
-                    </ClOption>
-                </ClOptionGroup>
-                <ClOptionGroup label="search2">
-                    <ClOption v-for="item in optionSearchGroup1" :key="item.value" :value="item.value"
+                    </Option>
+                </OptionGroup>
+                <OptionGroup label="search2">
+                    <Option v-for="item in optionSearchGroup1" :key="item.value" :value="item.value"
                               :selected="item.selected" :disabled="item.disabled">
                         {{item.label}}
-                    </ClOption>
-                </ClOptionGroup>
-            </ClSelect>
+                    </Option>
+                </OptionGroup>
+            </Select>
 
             <p>可搜索单选可清空props:option</p>
-            <ClSelect v-model="selectValueSearch2" :option="optionSearch" filterable clearable
-                      @change="handlerChange"></ClSelect>
+            <Select v-model="selectValueSearch2" :option="optionSearch" filterable clearable
+                      @change="handlerChange"></Select>
             <p>可搜索多选可清空props:option</p>
-            <ClSelect v-model="selectValueSearch3" :option="optionSearch" multiple filterable clearable :multipleLimit="2"
-                      @change="handlerChange"></ClSelect>
+            <Select v-model="selectValueSearch3" :option="optionSearch" multiple filterable clearable :multipleLimit="2"
+                      @change="handlerChange"></Select>
 
             <p>可搜索单选可清空props:optionGroup</p>
-            <ClSelect v-model="selectValueSearchGroup2" :option="optionSearchGroup" filterable clearable
-                      @change="handlerChange"></ClSelect>
+            <Select v-model="selectValueSearchGroup2" :option="optionSearchGroup" filterable clearable
+                      @change="handlerChange"></Select>
 
             <p>可搜索多选可清空props:optionGroup</p>
-            <ClSelect v-model="selectValueSearchGroup3" :option="optionSearchGroup" multiple filterable clearable :multipleLimit="2"
-                      @change="handlerChange"></ClSelect>
+            <Select v-model="selectValueSearchGroup3" :option="optionSearchGroup" multiple filterable clearable :multipleLimit="2"
+                      @change="handlerChange"></Select>
 
         </div>
 
 
-<!--        <div class="view">-->
-<!--            <h2>远程搜索</h2>-->
-<!--            <p>远程搜索单选可清空slot:option</p>-->
-<!--            <ClSelect v-model="selectValueRemote1" filterable remote clearable :loading="remoteLoading"-->
-<!--                      @change="handlerChange" @remote-change="handlerChangeRemote">-->
-<!--                <ClOption v-for="item in optionRemote" :key="item.value" :value="item.value" :label="item.label"-->
-<!--                          :disabled="item.disabled">-->
-<!--                    <Icon :class="item.icon" style="margin-right: 10px;"></Icon>{{item.label}}-->
-<!--                </ClOption>-->
-<!--            </ClSelect>-->
-<!--            <p>远程搜索多选可清空slot:option</p>-->
-<!--            <ClSelect v-model="selectValueRemote3" multiple filterable remote clearable :loading="remoteLoading"-->
-<!--                      @change="handlerChange" @remote-change="handlerChangeRemote">-->
-<!--                <ClOption v-for="item in optionRemote" :key="item.value" :value="item.value" :label="item.label"-->
-<!--                          :disabled="item.disabled">-->
-<!--                    <Icon :class="item.icon" style="margin-right: 10px;"></Icon>{{item.label}}-->
-<!--                </ClOption>-->
-<!--            </ClSelect>-->
-<!--            <p>远程搜索多选可清空props:option</p>-->
-<!--            <ClSelect v-model="selectValueRemote2" :option="optionRemote" filterable remote clearable-->
-<!--                      :loading="remoteLoading" @change="handlerChange" @remote-change="handlerChangeRemote"></ClSelect>-->
-<!--        </div>-->
+        <div class="view">
+            <h2>远程搜索</h2>
+            <p>远程搜索单选可清空slot:option</p>
+            <Select v-model="selectValueRemote1" filterable remote clearable :loading="remoteLoading"
+                      @change="handlerChange" @remote-change="handlerChangeRemote">
+                <Option v-for="item in optionRemote" :key="item.value" :value="item.value" :label="item.label"
+                          :disabled="item.disabled">
+                    <Icon :class="item.icon" style="margin-right: 10px;"></Icon>{{item.label}}
+                </Option>
+            </Select>
+            <p>远程搜索多选可清空slot:option</p>
+            <Select v-model="selectValueRemote3" multiple filterable remote clearable :loading="remoteLoading"
+                      @change="handlerChange" @remote-change="handlerChangeRemote">
+                <Option v-for="item in optionRemote" :key="item.value" :value="item.value" :label="item.label"
+                          :disabled="item.disabled">
+                    <Icon :class="item.icon" style="margin-right: 10px;"></Icon>{{item.label}}
+                </Option>
+            </Select>
+            <p>远程搜索多选可清空props:option</p>
+            <Select v-model="selectValueRemote2" :option="optionRemote" filterable remote clearable
+                      :loading="remoteLoading" @change="handlerChange" @remote-change="handlerChangeRemote"></Select>
+        </div>
 
 
         <div class="viewDes">

@@ -15,15 +15,15 @@
 
 ```html
 <template>
-    <cl-progress :percent="25"></cl-progress>
-    <cl-progress :percent="30" status="active"></cl-progress>
-    <cl-progress :percent="30" status="success"></cl-progress>
-    <cl-progress :percent="30" status="error"></cl-progress>
-    <cl-progress :percent="30" status="warning"></cl-progress>
-    <cl-progress :percent="30">
+    <Progress :percent="25"></Progress>
+    <Progress :percent="30" status="active"></Progress>
+    <Progress :percent="30" status="success"></Progress>
+    <Progress :percent="30" status="error"></Progress>
+    <Progress :percent="30" status="warning"></Progress>
+    <Progress :percent="30">
         <span>30</span>
-    </cl-progress>
-    <cl-progress :percent="30" status="warning" :show-info="false"></cl-progress>
+    </Progress>
+    <Progress :percent="30" status="warning" :show-info="false"></Progress>
 </template>
 
 ```
@@ -39,8 +39,8 @@
 
 ```html
 <template>
-    <cl-progress stroke-width="25px" :percent="25"></cl-progress>
-    <cl-progress stroke-width="25px" infoInside :percent="25"></cl-progress>
+    <Progress stroke-width="25px" :percent="25"></Progress>
+    <Progress stroke-width="25px" infoInside :percent="25"></Progress>
 </template>
 
 ```
@@ -54,7 +54,7 @@
 
 ```html
 <template>
-    <cl-progress :percent="25" :valueFormat="valueFormat"></cl-progress>
+    <Progress :percent="25" :valueFormat="valueFormat"></Progress>
 </template>
 <script>
     export default {
@@ -86,8 +86,8 @@
 
 ```html
 <template>
-    <cl-progress bar-color="#909399" rail-color="#e8e8e8" :percent="25"></cl-progress>
-    <cl-progress bar-color="linear-gradient(to left, #ffffff, pink)" rail-color="#e8e8e8" :percent="25"></cl-progress>
+    <Progress bar-color="#909399" rail-color="#e8e8e8" :percent="25"></Progress>
+    <Progress bar-color="linear-gradient(to left, #ffffff, pink)" rail-color="#e8e8e8" :percent="25"></Progress>
 </template>
 
 ```
@@ -105,19 +105,19 @@
 
 ```html
 <template>
-    <cl-progress :percent="percent" type="circle"></cl-progress>
-    <cl-button-group>
-        <cl-button icon="plus" @click="percentChange('plus')"></cl-button>
-        <cl-button icon="minus" @click="percentChange('minus')"></cl-button>
-    </cl-button-group>
+    <Progress :percent="percent" type="circle"></Progress>
+    <ButtonGroup>
+        <Button icon="plus" @click="percentChange('plus')"></Button>
+        <Button icon="minus" @click="percentChange('minus')"></Button>
+    </ButtonGroup>
     <br>
-    <cl-progress :percent="25" type="circle"></cl-progress>
-    <cl-progress :percent="25" type="circle" width="100"></cl-progress>
-    <cl-progress :percent="25" type="circle" width="100" strokeWidth="5"></cl-progress>
+    <Progress :percent="25" type="circle"></Progress>
+    <Progress :percent="25" type="circle" width="100"></Progress>
+    <Progress :percent="25" type="circle" width="100" strokeWidth="5"></Progress>
     <br>
-    <cl-progress :percent="25" type="circle" status="success"></cl-progress>
-    <cl-progress :percent="25" type="circle" status="error"></cl-progress>
-    <cl-progress :percent="25" type="circle" status="warning"></cl-progress>
+    <Progress :percent="25" type="circle" status="success"></Progress>
+    <Progress :percent="25" type="circle" status="error"></Progress>
+    <Progress :percent="25" type="circle" status="warning"></Progress>
 </template>
 <script>
     export default {
@@ -149,9 +149,9 @@
 
 ```html
 <template>
-    <cl-progress :percent="80" type="dashboard"></cl-progress>
-    <cl-progress :percent="25" type="dashboard" width="100"></cl-progress>
-    <cl-progress :percent="25" type="dashboard" width="100" strokeWidth="5"></cl-progress>
+    <Progress :percent="80" type="dashboard"></Progress>
+    <Progress :percent="25" type="dashboard" width="100"></Progress>
+    <Progress :percent="25" type="dashboard" width="100" strokeWidth="5"></Progress>
 </template>
 
 ```

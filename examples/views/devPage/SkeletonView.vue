@@ -1,7 +1,7 @@
 <template>
     <div class="skeleton-view">
-        <cl-skeleton animation></cl-skeleton>
-        <cl-skeleton type="avatar" animation></cl-skeleton>
+        <Skeleton animation></Skeleton>
+        <Skeleton type="avatar" animation></Skeleton>
     </div>
 </template>
 

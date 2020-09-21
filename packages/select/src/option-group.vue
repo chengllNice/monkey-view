@@ -34,9 +34,6 @@
                 ]
             },
         },
-        components: {},
-        created() {
-        },
         mounted() {
             this.$nextTick(this.setShow());
         },
@@ -59,9 +56,6 @@
                 }
                 this.show = result;
             }
-        },
-        updated() {
-
         }
     }
 </script>

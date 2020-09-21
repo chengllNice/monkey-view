@@ -11,7 +11,7 @@
 
 ```html
 <template>
-    <cl-switch v-model="valueBase"></cl-switch>
+    <m-switch v-model="valueBase"></m-switch>
 </template>
 <script>
     export default {
@@ -34,10 +34,10 @@
 
 ```html
 <template>
-    <cl-switch v-model="valueMini" size="mini"></cl-switch>
-    <cl-switch v-model="valueSmall" size="small"></cl-switch>
-    <cl-switch v-model="valueDefault"></cl-switch>
-    <cl-switch v-model="valueLarge" size="large"></cl-switch>
+    <m-switch v-model="valueMini" size="mini"></m-switch>
+    <m-switch v-model="valueSmall" size="small"></m-switch>
+    <m-switch v-model="valueDefault"></m-switch>
+    <m-switch v-model="valueLarge" size="large"></m-switch>
 </template>
 <script>
     export default {
@@ -63,7 +63,7 @@
 
 ```html
 <template>
-    <cl-switch v-model="valueDisabled" disabled></cl-switch>
+    <m-switch v-model="valueDisabled" disabled></m-switch>
 </template>
 <script>
     export default {
@@ -86,22 +86,22 @@
 
 ```html
 <template>
-    <cl-switch>
+    <m-switch>
         <span slot="open"><Icon type="check"></Icon></span>
         <span slot="close"><Icon type="close"></Icon></span>
-    </cl-switch>
-    <cl-switch>
+    </m-switch>
+    <m-switch>
         <span slot="open">开</span>
         <span slot="close">关</span>
-    </cl-switch>
-    <cl-switch size="large">
+    </m-switch>
+    <m-switch size="large">
         <span slot="open">打开</span>
         <span slot="close">关闭</span>
-    </cl-switch>
-    <cl-switch width="80px">
+    </m-switch>
+    <m-switch width="80px">
         <span slot="open">已经开启</span>
         <span slot="close">已经关闭</span>
-    </cl-switch>
+    </m-switch>
 </template>
 
 ```
@@ -115,7 +115,7 @@
 
 ```html
 <template>
-    <cl-switch checkedColor="red"></cl-switch>
+    <m-switch checkedColor="red"></m-switch>
 </template>
 
 ```
@@ -129,7 +129,7 @@
 
 ```html
 <template>
-    <cl-switch loading></cl-switch>
+    <m-switch loading></m-switch>
 </template>
 
 ```
@@ -143,7 +143,7 @@
 
 ```html
 <template>
-    <cl-switch v-model="value" trueValue="1" falseValue="0" @change="handlerChange"></cl-switch>
+    <m-switch v-model="value" trueValue="1" falseValue="0" @change="handlerChange"></m-switch>
 </template>
 <script>
     export default {

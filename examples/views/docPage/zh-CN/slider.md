@@ -12,12 +12,12 @@
 
 ```html
 <template>
-    <cl-slider v-model="valueBase"></cl-slider>
-    <cl-slider v-model="valueBase1" :disabled="disabledBase"></cl-slider>
-    <cl-switch v-model="disabledBase" width="50">
+    <Slider v-model="valueBase"></Slider>
+    <Slider v-model="valueBase1" :disabled="disabledBase"></Slider>
+    <m-switch v-model="disabledBase" width="50">
         <span slot="open">禁用</span>
         <span slot="close">启用</span>
-    </cl-switch>
+    </m-switch>
 </template>
 <script>
     export default {
@@ -41,7 +41,7 @@
 
 ```html
 <template>
-    <cl-slider v-model="valueStep" :step="10"></cl-slider>
+    <Slider v-model="valueStep" :step="10"></Slider>
 </template>
 <script>
     export default {
@@ -64,7 +64,7 @@
 
 ```html
 <template>
-    <cl-slider v-model="valueLimit" :min="20" :max="80"></cl-slider>
+    <Slider v-model="valueLimit" :min="20" :max="80"></Slider>
 </template>
 <script>
     export default {
@@ -86,8 +86,8 @@
 
 ```html
 <template>
-    <cl-slider class="doc-slider-vertical" v-model="valueVertical" vertical></cl-slider>
-    <cl-slider class="doc-slider-vertical" v-model="valueVerticalStep" vertical :step="10"></cl-slider>
+    <Slider class="doc-slider-vertical" v-model="valueVertical" vertical></Slider>
+    <Slider class="doc-slider-vertical" v-model="valueVerticalStep" vertical :step="10"></Slider>
 </template>
 <script>
     export default {
@@ -110,7 +110,7 @@
 
 ```html
 <template>
-    <cl-slider v-model="valueFormat" :tipFormat="tipFormat"></cl-slider>
+    <Slider v-model="valueFormat" :tipFormat="tipFormat"></Slider>
 </template>
 <script>
     export default {
@@ -138,7 +138,7 @@
 
 ```html
 <template>
-    <cl-slider v-model="valueColor" railColor="#ccc" barColor="red"></cl-slider>
+    <Slider v-model="valueColor" railColor="#ccc" barColor="#ff0000"></Slider>
 </template>
 <script>
     export default {
@@ -162,9 +162,9 @@
 
 ```html
 <template>
-    <cl-slider v-model="valueTip1"></cl-slider>
-    <cl-slider v-model="valueTip2" tooltipVisible="always"></cl-slider>
-    <cl-slider v-model="valueTip3" tooltipVisible="never"></cl-slider>
+    <Slider v-model="valueTip1"></Slider>
+    <Slider v-model="valueTip2" tooltipVisible="always"></Slider>
+    <Slider v-model="valueTip3" tooltipVisible="never"></Slider>
 </template>
 <script>
     export default {

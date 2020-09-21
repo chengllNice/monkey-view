@@ -61,7 +61,7 @@
   color: $--color-text-default;
   display: inline-block;
   position: relative;
-  transition: all 0.2s;
+  transition: all $--animation-time ease-in-out;
   margin-right: 20px;
 
   @include e(input){

@@ -11,7 +11,7 @@
 
 ```html
 <template>
-    <cl-radio v-model="single">Radio</cl-radio>
+    <Radio v-model="single">Radio</Radio>
     <p>{{single}}</p>
 </template>
 <script>
@@ -35,21 +35,21 @@
 
 ```html
 <template>
-    <cl-row>
-        <cl-col>
-            <cl-radio-group v-model="group">
-                <cl-radio label="apple">Apple</cl-radio>
-                <cl-radio label="orange">Orange</cl-radio>
-                <cl-radio label="banana">Banana</cl-radio>
-                <cl-radio label="melon">Melon</cl-radio>
-            </cl-radio-group>
+    <Row>
+        <Col>
+            <RadioGroup v-model="group">
+                <Radio label="apple">Apple</Radio>
+                <Radio label="orange">Orange</Radio>
+                <Radio label="banana">Banana</Radio>
+                <Radio label="melon">Melon</Radio>
+            </RadioGroup>
             <p>{{group}}</p>
-        </cl-col>
-        <cl-col>
-            <cl-radio-group v-model="group1" :options="groupOptions"></cl-radio-group>
+        </Col>
+        <Col>
+            <RadioGroup v-model="group1" :options="groupOptions"></RadioGroup>
             <p>{{group1}}</p>
-        </cl-col>
-    </cl-row>
+        </Col>
+    </Row>
 </template>
 <script>
     export default {
@@ -92,24 +92,24 @@
 ```html
 <template>
     <h4>单独使用禁用</h4>
-    <cl-radio disabled  v-model="disabledSingle">DisabledRadio</cl-radio>
+    <Radio disabled  v-model="disabledSingle">DisabledRadio</Radio>
     <p>{{disabledSingle}}</p>
 
     <h4>组合使用禁用</h4>
-    <cl-radio-group disabled v-model="disabledGroup" :options="disabledGroupOptions"></cl-radio-group>
+    <RadioGroup disabled v-model="disabledGroup" :options="disabledGroupOptions"></RadioGroup>
     <p>{{disabledGroup}}</p>
 
     <h4>组合使用禁用指定项</h4>
-    <cl-radio-group v-model="disabledGroup1" :options="disabledGroupOptions"></cl-radio-group>
+    <RadioGroup v-model="disabledGroup1" :options="disabledGroupOptions"></RadioGroup>
     <p>{{disabledGroup1}}</p>
 
     <h4>组合使用禁用指定项</h4>
-    <cl-radio-group v-model="disabledGroup2">
-        <cl-radio label="apple">Apple</cl-radio>
-        <cl-radio label="orange">Orange</cl-radio>
-        <cl-radio label="banana" disabled>Banana</cl-radio>
-        <cl-radio label="melon">Melon</cl-radio>
-    </cl-radio-group>
+    <RadioGroup v-model="disabledGroup2">
+        <Radio label="apple">Apple</Radio>
+        <Radio label="orange">Orange</Radio>
+        <Radio label="banana" disabled>Banana</Radio>
+        <Radio label="melon">Melon</Radio>
+    </RadioGroup>
     <p>{{disabledGroup2}}</p>
 </template>
 <script>
@@ -155,10 +155,10 @@
 
 ```html
 <template>
-    <cl-radio v-model="singleMini" size="mini">Mini</cl-radio>
-    <cl-radio v-model="singleSmall" size="small">Small</cl-radio>
-    <cl-radio v-model="singleDefault">Default</cl-radio>
-    <cl-radio v-model="singleLarge" size="large">Large</cl-radio>
+    <Radio v-model="singleMini" size="mini">Mini</Radio>
+    <Radio v-model="singleSmall" size="small">Small</Radio>
+    <Radio v-model="singleDefault">Default</Radio>
+    <Radio v-model="singleLarge" size="large">Large</Radio>
 </template>
 <script>
     export default {

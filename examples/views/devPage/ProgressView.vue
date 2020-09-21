@@ -2,69 +2,69 @@
     <div class="ProgressView">
         <h2>type=line时</h2>
         <p>percent：定义百分比</p>
-        <ClProgress :percent="percentBase"></ClProgress>
+        <Progress :percent="percentBase"></Progress>
 
         <p>status：定义状态（active）</p>
-        <ClProgress :percent="percentBase" status="active"></ClProgress>
+        <Progress :percent="percentBase" status="active"></Progress>
 
         <p>status：定义状态（success）</p>
-        <ClProgress :percent="percentBase" status="success"></ClProgress>
+        <Progress :percent="percentBase" status="success"></Progress>
 
         <p>status：定义状态（error）</p>
-        <ClProgress :percent="percentBase" status="error"></ClProgress>
+        <Progress :percent="percentBase" status="error"></Progress>
 
         <p>status：定义状态（warning）</p>
-        <ClProgress :percent="percentBase" status="warning"></ClProgress>
+        <Progress :percent="percentBase" status="warning"></Progress>
 
         <p>stroke-width：定义宽度</p>
-        <ClProgress :percent="percentBase" stroke-width="30px"></ClProgress>
+        <Progress :percent="percentBase" stroke-width="30px"></Progress>
 
         <p>infoInside：info信息显示内置</p>
-        <ClProgress :percent="percentBase" infoInside stroke-width="30px"></ClProgress>
+        <Progress :percent="percentBase" infoInside stroke-width="30px"></Progress>
 
         <p>show-info：是否显示info信息</p>
-        <ClProgress :percent="percentBase" :show-info="false"></ClProgress>
+        <Progress :percent="percentBase" :show-info="false"></Progress>
 
         <p>barColor：自定义bar颜色</p>
-        <ClProgress :percent="percentBase" bar-color="#909399"></ClProgress>
+        <Progress :percent="percentBase" bar-color="#909399"></Progress>
 
         <p>railColor：自定义rail颜色</p>
-        <ClProgress :percent="percentBase" rail-color="#e8e8e8"></ClProgress>
+        <Progress :percent="percentBase" rail-color="#e8e8e8"></Progress>
 
         <p>valueFormat：格式化info信息</p>
-        <ClProgress :percent="percentBase" :valueFormat="valueFormat"></ClProgress>
+        <Progress :percent="percentBase" :valueFormat="valueFormat"></Progress>
 
         <p>slot定义info信息</p>
-        <ClProgress :percent="percentBase">
+        <Progress :percent="percentBase">
             <span>slot</span>
-        </ClProgress>
+        </Progress>
 
         <h2>type=circle时</h2>
         <p>基础</p>
-        <ClProgress :percent="percentBase" type="circle"></ClProgress>
+        <Progress :percent="percentBase" type="circle"></Progress>
 
         <p>定义width</p>
-        <ClProgress :percent="percentBase" type="circle" width="100"></ClProgress>
+        <Progress :percent="percentBase" type="circle" width="100"></Progress>
 
         <p>定义strokeWidth</p>
-        <ClProgress :percent="percentBase" type="circle" strokeWidth="5"></ClProgress>
+        <Progress :percent="percentBase" type="circle" strokeWidth="5"></Progress>
 
         <p>定义success状态</p>
-        <ClProgress :percent="percentBase" type="circle" status="success"></ClProgress>
+        <Progress :percent="percentBase" type="circle" status="success"></Progress>
 
         <p>定义error状态</p>
-        <ClProgress :percent="percentBase" type="circle" status="error"></ClProgress>
+        <Progress :percent="percentBase" type="circle" status="error"></Progress>
 
         <p>定义warning状态</p>
-        <ClProgress :percent="percentBase" type="circle" status="warning"></ClProgress>
+        <Progress :percent="percentBase" type="circle" status="warning"></Progress>
 
         <p>定义bar-color</p>
-        <ClProgress :percent="percentBase" type="circle" bar-color="#909399"></ClProgress>
+        <Progress :percent="percentBase" type="circle" bar-color="#909399"></Progress>
 
         <p>定义show-info</p>
-        <ClProgress :percent="percentBase" type="circle" bar-color="#909399" :show-info="false"></ClProgress>
-        <ClButton @click="percentHandler('add')">add</ClButton>
-        <ClButton @click="percentHandler('reduce')">reduce</ClButton>
+        <Progress :percent="percentBase" type="circle" bar-color="#909399" :show-info="false"></Progress>
+        <Button @click="percentHandler('add')">add</Button>
+        <Button @click="percentHandler('reduce')">reduce</Button>
     </div>
 </template>
 

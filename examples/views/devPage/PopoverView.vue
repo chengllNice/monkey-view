@@ -1,99 +1,99 @@
 <template>
     <div class="popoverView">
-        <ClPopover v-model="visible" title="提示" trigger="click" content="内容区域。。。。。。。" placement="bottom">
+        <Popover v-model="visible" title="提示" trigger="click" content="内容区域。。。。。。。" placement="bottom">
             <div slot="content">
-                <ClButton type="text" @click="close">trigger-click-close</ClButton>
+                <Button type="text" @click="close">trigger-click-close</Button>
             </div>
-            <ClButton type="primary">trigger-click</ClButton>
-        </ClPopover>
+            <Button type="primary">trigger-click</Button>
+        </Popover>
 
-        <ClPopover title="提示" trigger="hover" content="内容区域。。。。。。。" placement="bottom">
-            <ClButton type="primary">trigger-hover</ClButton>
-        </ClPopover>
+        <Popover title="提示" trigger="hover" content="内容区域。。。。。。。" placement="bottom">
+            <Button type="primary">trigger-hover</Button>
+        </Popover>
 
-        <ClPopover title="提示" trigger="focus" content="内容区域。。。。。。。" placement="bottom">
-            <ClButton type="primary">trigger-focus</ClButton>
-        </ClPopover>
+        <Popover title="提示" trigger="focus" content="内容区域。。。。。。。" placement="bottom">
+            <Button type="primary">trigger-focus</Button>
+        </Popover>
 
-        <ClPopover trigger="focus" content="内容区域。。。。。。。" placement="bottom-start">
-            <ClInput></ClInput>
-        </ClPopover>
+        <Popover trigger="focus" content="内容区域。。。。。。。" placement="bottom-start">
+            <Input></Input>
+        </Popover>
 
         <div class="home-inner">
             <div class="bottom">
-                <ClPopover title="提示" content="内容区域。。。。。。。" placement="bottom">
-                    <ClButton type="primary">bottom</ClButton>
-                </ClPopover>
+                <Popover title="提示" content="内容区域。。。。。。。" placement="bottom">
+                    <Button type="primary">bottom</Button>
+                </Popover>
             </div>
             <div class="bottom-start">
-                <ClPopover title="提示" content="内容区域。。。。。。。" placement="bottom-start">
-                    <ClButton type="primary">bottom-start</ClButton>
-                </ClPopover>
+                <Popover title="提示" content="内容区域。。。。。。。" placement="bottom-start">
+                    <Button type="primary">bottom-start</Button>
+                </Popover>
             </div>
 
             <div class="bottom-end">
-                <ClPopover title="提示" content="内容区域。。。。。。。" placement="bottom-end">
-                    <ClButton type="primary">bottom-end</ClButton>
-                </ClPopover>
+                <Popover title="提示" content="内容区域。。。。。。。" placement="bottom-end">
+                    <Button type="primary">bottom-end</Button>
+                </Popover>
             </div>
 
             <div class="center"></div>
 
             <div class="top">
-                <!--<ClPopover title="提示" wordWrap content="内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域内。。。。。。。" placement="top">-->
-                <!--<ClButton type="primary">top</ClButton>-->
-                <!--</ClPopover>-->
-                <ClPopover width="210px" wordWrap placement="top">
+                <!--<Popover title="提示" wordWrap content="内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域内。。。。。。。" placement="top">-->
+                <!--<Button type="primary">top</Button>-->
+                <!--</Popover>-->
+                <Popover width="210px" wordWrap placement="top">
                     <div slot="title">title</div>
                     <div slot="content">
                         内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域内。。。。。。。11
                     </div>
-                    <ClButton type="primary">top</ClButton>
-                </ClPopover>
+                    <Button type="primary">top</Button>
+                </Popover>
             </div>
             <div class="top-start">
-                <ClPopover title="提示" content="内容区域。。。。。。。" placement="top-start">
-                    <ClButton type="primary">top-start</ClButton>
-                </ClPopover>
+                <Popover title="提示" content="内容区域。。。。。。。" placement="top-start">
+                    <Button type="primary">top-start</Button>
+                </Popover>
             </div>
             <div class="top-end">
-                <ClPopover title="提示" content="内容区域。。。。。。。" placement="top-end">
-                    <ClButton type="primary">top-end</ClButton>
-                </ClPopover>
+                <Popover title="提示" content="内容区域。。。。。。。" placement="top-end">
+                    <Button type="primary">top-end</Button>
+                </Popover>
             </div>
 
 
             <div class="left">
-                <ClPopover title="提示" content="内容区域。。。。。。。" placement="left">
-                    <ClButton type="primary">left</ClButton>
-                </ClPopover>
+                <Popover title="提示" content="内容区域。。。。。。。" placement="left">
+                    <Button type="primary">left</Button>
+                </Popover>
             </div>
             <div class="left-start">
-                <ClPopover title="提示" content="内容区域。。。。。。。" placement="left-start">
-                    <ClButton type="primary">left-start</ClButton>
-                </ClPopover>
+                <Popover title="提示" content="内容区域。。。。。。。" placement="left-start">
+                    <Button type="primary">left-start</Button>
+                </Popover>
             </div>
             <div class="left-end">
-                <ClPopover title="提示" content="内容区域。。。。。。。" placement="left-end">
-                    <ClButton type="primary">left-end</ClButton>
-                </ClPopover>
+                <Popover title="提示" content="内容区域。。。。。。。" placement="left-end">
+                    <Button type="primary">left-end</Button>
+                </Popover>
             </div>
 
 
             <div class="right">
-                <ClPopover title="提示" content="内容区域。。。。。。。" placement="right">
-                    <ClButton type="primary">right</ClButton>
-                </ClPopover>
+                <Popover title="提示" content="内容区域。。。。。。。" placement="right">
+                    <Button type="primary">right</Button>
+                </Popover>
             </div>
             <div class="right-start">
-                <ClPopover title="提示" content="内容区域。。。。。。。" placement="right-start">
-                    <ClButton type="primary">right-start</ClButton>
-                </ClPopover>
+                <Popover title="提示" content="内容区域。。。。。。。" placement="right-start">
+                    <Button type="primary">right-start</Button>
+                </Popover>
             </div>
             <div class="right-end">
-                <ClPopover title="提示" content="内容区域。。。。。。。" placement="right-end">
-                    <ClButton type="primary">right-end</ClButton>
-                </ClPopover>
+                <Popover title="提示" content="内容区域。。。。。。。" placement="right-end">
+                    <Button type="primary">right-end</Button>
+                </Popover>
             </div>
         </div>
 

@@ -109,7 +109,7 @@ const components = {
     SkeletonItem: Skeleton.Item,
     Cascader,
     CascaderPanel: Cascader.panel,
-    Icon
+    Icon,
 };
 
 const prefixComponents = {

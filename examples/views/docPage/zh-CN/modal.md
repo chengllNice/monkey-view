@@ -393,10 +393,10 @@
 
 ```html
 <template>
-     <Button type="primary" @click="instance('info')">Info</Button>
-    <Button type="primary" @click="instance('success')">Success</Button>
-    <Button type="primary" @click="instance('warning')">Warning</Button>
-    <Button type="primary" @click="instance('error')">Error</Button>
+    <Button type="info" @click="instance('info')">Info</Button>
+    <Button type="success" @click="instance('success')">Success</Button>
+    <Button type="warning" @click="instance('warning')">Warning</Button>
+    <Button type="danger" @click="instance('error')">Error</Button>
     <p>切换布局方式</p>
     <m-switch width="60" v-model="instanceType" true-value="left" false-value="default">
         <span slot="open">left</span>
@@ -414,7 +414,7 @@
         instance(type){
           this.$Modal[type]({
             title: `对话框的标题${type}`,
-            content: ['一些对话框内容','一些对话框内容','一些对话框内容'],
+            content: `<p>一些对话框内容</p><b>一些对话框内容</b>`,
             type: this.instanceType,//布局方式
           })
         }
@@ -447,13 +447,13 @@
         confirm(){
           this.$Modal.confirm({
             title: '确定模态框',
-            content: ['一些对话框内容','一些对话框内容','一些对话框内容'],
+            content: `<p>一些对话框内容</p><b>一些对话框内容</b>`,
           })
         },
         confirmAsync(){
           this.$Modal.confirm({
             title: '异步关闭的确定模态框',
-            content: ['一些对话框内容','一些对话框内容','一些对话框内容'],
+            content: `<p>一些对话框内容</p><b>一些对话框内容</b>`,
             loading: true,
             onOk(){
               setTimeout(()=>{
@@ -539,8 +539,8 @@
 | ---- | ---- | ---- | ---- |
 | width | String, Number | 宽度 | 350 |
 | title | String | 标题 | - |
-| content | String, Array | 内容。当类型为Array时，分行显示 | - |
-| okText | String | 确定按钮的文本。confirm类型时有效 | - |
-| cancelText | String | 取消按钮的文本 | - |
+| content | String | 内容。可以为html字符串片段 | - |
+| okText | String | 确定按钮的文本。confirm类型时有效 | 确定 |
+| cancelText | String | 取消按钮的文本 | 取消 |
 | loading | Boolean | 异步关闭时确定按钮的loading状态 | - |
 | type | String | 布局类型，可选值`left` `default` | - |

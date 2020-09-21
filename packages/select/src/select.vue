@@ -4,7 +4,7 @@
             computedSize && `${classPrefix}--${computedSize}`,
             disabled && `is-disabled`
          ]"
-         v-click-outside.capture="hanldeOutsideClick">
+         v-click-outside.capture="handleOutsideClick">
         <div ref="reference"
              :class="[`${classPrefix}__reference`]"
              :tabindex="referenceTabIndex"
@@ -138,6 +138,7 @@
         },
         data() {
             return {
+                optionPrefix: Config.classPrefix + '-option',
                 classPrefix: Config.classPrefix + '-select',
                 componentName: 'Select',
                 form: findComponent(this, 'Form'),
@@ -202,8 +203,5 @@
             RenderOption,
             Option
         },
-        mounted() {
-        },
-        methods: {}
     }
 </script>

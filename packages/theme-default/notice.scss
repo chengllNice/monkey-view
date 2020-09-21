@@ -3,7 +3,7 @@
 
 @include c(notice){
   position: fixed;
-  z-index: $--dialog-z-index;
+  z-index: $--modal-z-index;
   line-height: 1;
   transition: all $--animation-time;
   border-radius: $--border-radius-default;

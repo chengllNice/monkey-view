@@ -17,7 +17,7 @@
                 {{title}}
             </div>
             <div :class="[`${classPrefix}__content`]" v-if="content" v-html="content"></div>
-            <div :class="[`${classPrefix}__close`]" v-if="closable" @click="handlerClose">
+            <div :class="[`${classPrefix}__close`]" v-if="closable" @click="handleClose">
                 <slot name="close">
                     <Icon type="close"></Icon>
                 </slot>
@@ -49,10 +49,8 @@
                 visible: false,
                 closed: false,
                 timer: null,
-                onCloseComputed: function () {
-                },
-                onClose: function () {
-                },
+                onCloseComputed: function () {},
+                onClose: function () {},
             }
         },
         computed: {
@@ -103,7 +101,7 @@
                         icon = !this.isOnlyTitle ? 'success' : 'success-fill';
                         break;
                     case 'error':
-                        icon = !this.isOnlyTitle ? 'remove' : 'remove-fill';
+                        icon = !this.isOnlyTitle ? 'error' : 'error-fill';
                         break;
                     case 'warning':
                         icon = !this.isOnlyTitle ? 'warning' : 'warning-fill';
@@ -118,15 +116,8 @@
         components: {
             Icon
         },
-        created() {
-        },
-        mounted() {
-            // this.$nextTick(()=>{
-            //     this.show();
-            // });
-        },
         methods: {
-            handlerClose() {
+            handleClose() {
                 this.close();
             },
             show() {

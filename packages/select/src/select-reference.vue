@@ -4,7 +4,7 @@
          @click="handleClick"
          @mouseenter="isHover = true"
          @mouseleave="isHover = false">
-        <n-input :class="[`${classPrefix}__input`]"
+        <m-input :class="[`${classPrefix}__input`]"
                  v-if="!selectRoot.multiple"
                  v-model="currentValue"
                  type="input"
@@ -21,7 +21,7 @@
                 <Icon v-show="clearableShow" type="error-fill" :class="[`${classPrefix}__suffix-clear-icon`]"
                       @click.stop="handleClear"></Icon>
             </template>
-        </n-input>
+        </m-input>
 
         <template v-if="selectRoot.multiple">
             <div class="">
@@ -73,7 +73,6 @@
     export default {
         name: "SelectReference",
         mixins: [Locale],
-        props: {},
         data() {
             return {
                 classPrefix: Config.classPrefix + '-select-reference',
@@ -112,13 +111,9 @@
             },
         },
         components: {
-            'n-input': Input,
+            'm-input': Input,
             Icon,
             Tag
-        },
-        created() {
-        },
-        mounted() {
         },
         methods: {
             handleClick() {
@@ -128,12 +123,7 @@
             },
             setMultipleInputFocusAndBlur() {
                 if (!this.selectRoot.multiple || !this.selectRoot.filterable || this.selectRoot.disabled) return;
-                this.$refs.multipleInput.focus()
-                // if(this.selectRoot.visible){
-                //     this.$refs.multipleInput.focus()
-                // } else {
-                //     this.$refs.multipleInput.blur()
-                // }
+                this.$refs.multipleInput.focus();
             },
             handleChange(value) {
                 if (!this.selectRoot.filterable || this.selectRoot.disabled) return;
@@ -172,7 +162,8 @@
             }
         },
         watch: {
-            'selectRoot.currentValue': function () {
+            'selectRoot.currentValue': function (newVal, oldVal) {
+                if(JSON.stringify(newVal) ===  JSON.stringify(oldVal)) return;
                 this.setCurrentValue();
             },
             'selectRoot.visible': function (val) {

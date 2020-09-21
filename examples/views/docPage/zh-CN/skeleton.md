@@ -11,9 +11,9 @@
 ```html
 <template>
     <h4>没有动画</h4>
-    <cl-skeleton></cl-skeleton>
+    <Skeleton></Skeleton>
     <h4>开启动画</h4>
-    <cl-skeleton animation></cl-skeleton>
+    <Skeleton animation></Skeleton>
 </template>
 <script>
     export default {
@@ -36,9 +36,9 @@ type类型可取值`list` `avatar`
 ```html
 <template>
     <h4>list类型</h4>
-    <cl-skeleton type="list" animation></cl-skeleton>
+    <Skeleton type="list" animation></Skeleton>
     <h4>avatar类型</h4>
-    <cl-skeleton type="avatar" animation></cl-skeleton>
+    <Skeleton type="avatar" animation></Skeleton>
 </template>
 <script>
     export default {
@@ -55,26 +55,26 @@ type类型可取值`list` `avatar`
 
 :::demo 自定义展示
 
-可以直接使用`cl-skeleton-item`组件自定义骨架屏的结构
+可以直接使用`SkeletonItem`组件自定义骨架屏的结构
 
 ```html
 <template>
     <h4>自定义一</h4>
-    <cl-skeleton-item animation style="width: 60%"></cl-skeleton-item>
-    <cl-skeleton-item animation></cl-skeleton-item>
+    <SkeletonItem animation style="width: 60%"></SkeletonItem>
+    <SkeletonItem animation></SkeletonItem>
 
     <h4>自定义二</h4>
     <div class="doc-skeleton-custom">
         <div class="doc-skeleton-custom-header">
-            <cl-skeleton-item animation type="circle" style="width: 50px; height: 50px"></cl-skeleton-item>
+            <SkeletonItem animation type="circle" style="width: 50px; height: 50px"></SkeletonItem>
             <div class="doc-skeleton-custom-header-title">
-                <cl-skeleton-item animation style="width: 30%"></cl-skeleton-item>
-                <cl-skeleton-item animation style="width: 60%"></cl-skeleton-item>
+                <SkeletonItem animation style="width: 30%"></SkeletonItem>
+                <SkeletonItem animation style=""></SkeletonItem>
             </div>
         </div>
-        <cl-skeleton-item animation></cl-skeleton-item>
-        <cl-skeleton-item animation></cl-skeleton-item>
-        <cl-skeleton-item animation style="80%"></cl-skeleton-item>
+        <SkeletonItem animation></SkeletonItem>
+        <SkeletonItem animation></SkeletonItem>
+        <SkeletonItem animation style="width: 80%"></SkeletonItem>
     </div>
    
 </template>

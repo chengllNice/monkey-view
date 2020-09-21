@@ -24,7 +24,7 @@
     import {findComponent} from "main/utils/tool";
 
     export default {
-        name: `${Config.componentPrefix}Switch`,
+        name: `MSwitch`,
         props: {
             value: {
                 type: [String, Number, Boolean],
@@ -75,9 +75,6 @@
                 }
                 return {'background-color': this.uncheckedColor, 'width': width}
             }
-        },
-        components: {},
-        created() {
         },
         mounted() {
             this.$nextTick(() => {

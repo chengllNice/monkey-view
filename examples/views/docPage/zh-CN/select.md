@@ -11,18 +11,18 @@
 
 ```html
 <template>
-    <cl-row :gutter="10">
-        <cl-col>
+    <Row :gutter="10">
+        <Col>
             <h4>slot模式</h4>
-            <cl-select v-model="valueBase">
-                <cl-option v-for="item in valueBaseOption" :key="item.value" :value="item.value" :label="item.label">{{item.label}}</cl-option>
-            </cl-select>
-        </cl-col>
-        <cl-col>
+            <Select v-model="valueBase">
+                <Option v-for="item in valueBaseOption" :key="item.value" :value="item.value" :label="item.label">{{item.label}}</Option>
+            </Select>
+        </Col>
+        <Col>
             <h4>option模式</h4>
-            <cl-select v-model="valueBase1" :option="valueBaseOption"></cl-select>
-        </cl-col>
-    </cl-row>
+            <Select v-model="valueBase1" :option="valueBaseOption"></Select>
+        </Col>
+    </Row>
 </template>
 <script>
     export default {
@@ -70,17 +70,17 @@
 
 ```html
 <template>
-    <cl-row :gutter="10">
-        <cl-col>
-            <cl-select v-model="valueSizeSmall" :option="valueBaseOption" size="small"></cl-select>
-        </cl-col>
-        <cl-col>
-            <cl-select v-model="valueSizeDefault" :option="valueBaseOption"></cl-select>
-        </cl-col>
-        <cl-col>
-            <cl-select v-model="valueSizeLarge" :option="valueBaseOption" size="large"></cl-select>
-        </cl-col>
-    </cl-row>
+    <Row :gutter="10">
+        <Col>
+            <Select v-model="valueSizeSmall" :option="valueBaseOption" size="small"></Select>
+        </Col>
+        <Col>
+            <Select v-model="valueSizeDefault" :option="valueBaseOption"></Select>
+        </Col>
+        <Col>
+            <Select v-model="valueSizeLarge" :option="valueBaseOption" size="large"></Select>
+        </Col>
+    </Row>
 </template>
 <script>
     export default {
@@ -130,14 +130,14 @@
 
 ```html
 <template>
-    <cl-row :gutter="10">
-        <cl-col>
-            <cl-select v-model="valueDisabled" :option="valueBaseOption" disabled></cl-select>
-        </cl-col>
-        <cl-col>
-            <cl-select v-model="valueDisabled1" :option="valueBaseOption"></cl-select>
-        </cl-col>
-    </cl-row>
+    <Row :gutter="10">
+        <Col>
+            <Select v-model="valueDisabled" :option="valueBaseOption" disabled></Select>
+        </Col>
+        <Col>
+            <Select v-model="valueDisabled1" :option="valueBaseOption"></Select>
+        </Col>
+    </Row>
 </template>
 <script>
     export default {
@@ -186,7 +186,7 @@
 
 ```html
 <template>
-    <cl-select v-model="valueClearable" :option="valueBaseOption" clearable></cl-select>
+    <Select v-model="valueClearable" :option="valueBaseOption" clearable></Select>
 </template>
 <script>
     export default {
@@ -231,24 +231,24 @@
 
 :::demo 分组
 
-使用 `option-group`组件可使用分组模式。同时接受 `option`数据格式为 `[{label: 'group-label', option: [{label: 'option-label', value: 'option-value', disabled: true}]}]`的数据实现分组。
+使用 `OptionGroup`组件可使用分组模式。同时接受 `option`数据格式为 `[{label: 'group-label', option: [{label: 'option-label', value: 'option-value', disabled: true}]}]`的数据实现分组。
 
 ```html
 <template>
-    <cl-row :gutter="10">
-        <cl-col>
+    <Row :gutter="10">
+        <Col>
             <h4>slot模式</h4>
-            <cl-select v-model="valueGroup1">
-                <cl-option-group v-for="(groupItem, groupIndex) in GroupOption" :key="groupIndex" :label="groupItem.label">
-                    <cl-option v-for="item in groupItem.option" :key="item.value" :value="item.value" :label="item.label" :disabled="item.disabled"></cl-option>
-                </cl-option-group>
-            </cl-select>
-        </cl-col>
-        <cl-col>
+            <Select v-model="valueGroup1">
+                <OptionGroup v-for="(groupItem, groupIndex) in GroupOption" :key="groupIndex" :label="groupItem.label">
+                    <Option v-for="item in groupItem.option" :key="item.value" :value="item.value" :label="item.label" :disabled="item.disabled"></Option>
+                </OptionGroup>
+            </Select>
+        </Col>
+        <Col>
             <h4>option模式</h4>
-            <cl-select v-model="valueGroup2" :option="GroupOption"></cl-select>
-        </cl-col>
-    </cl-row>
+            <Select v-model="valueGroup2" :option="GroupOption"></Select>
+        </Col>
+    </Row>
 </template>
 <script>
     export default {
@@ -308,12 +308,12 @@
 
 ```html
 <template>
-    <cl-select v-model="valueModel">
-        <cl-option v-for="item in valueModelOption" :key="item.value" :value="item.value" :label="item.label" :disabled="item.disabled">
+    <Select v-model="valueModel">
+        <Option v-for="item in valueModelOption" :key="item.value" :value="item.value" :label="item.label" :disabled="item.disabled">
             <Icon :type="item.icon" style="margin-right: 10px;"></Icon>
             <span>{{item.label}}</span>
-        </cl-option>
-    </cl-select>
+        </Option>
+    </Select>
 </template>
 <script>
     export default {
@@ -375,30 +375,30 @@
         <Col>
             <h4>基础多选</h4>
             <p>{{valueMultiple1}}</p>
-            <cl-select v-model="valueMultiple1" multiple>
-                <cl-option v-for="item in valueBaseOption" :key="item.value" :value="item.value" :label="item.label" :disabled="item.disabled"></cl-option>
-            </cl-select>
+            <Select v-model="valueMultiple1" multiple>
+                <Option v-for="item in valueBaseOption" :key="item.value" :value="item.value" :label="item.label" :disabled="item.disabled"></Option>
+            </Select>
         </Col>
         <Col>
             <h4>超出折叠</h4>
             <p>{{valueMultiple2}}</p>
-            <cl-select v-model="valueMultiple2" multiple :max-tag-count="2">
-                <cl-option v-for="item in valueBaseOption" :key="item.value" :value="item.value" :label="item.label" :disabled="item.disabled"></cl-option>
-            </cl-select>
+            <Select v-model="valueMultiple2" multiple :max-tag-count="2">
+                <Option v-for="item in valueBaseOption" :key="item.value" :value="item.value" :label="item.label" :disabled="item.disabled"></Option>
+            </Select>
         </Col>
         <Col>
             <h4>自定义折叠内容</h4>
             <p>{{valueMultiple3}}</p>
-            <cl-select v-model="valueMultiple3" multiple :max-tag-count="2" :max-tag-text="handleMaxTagText">
-                <cl-option v-for="item in valueBaseOption" :key="item.value" :value="item.value" :label="item.label" :disabled="item.disabled"></cl-option>
-            </cl-select>
+            <Select v-model="valueMultiple3" multiple :max-tag-count="2" :max-tag-text="handleMaxTagText">
+                <Option v-for="item in valueBaseOption" :key="item.value" :value="item.value" :label="item.label" :disabled="item.disabled"></Option>
+            </Select>
         </Col>
         <Col>
             <h4>限制多选数量</h4>
             <p>{{valueMultiple4}}</p>
-            <cl-select v-model="valueMultiple4" multiple :multiple-limit="3">
-                <cl-option v-for="item in valueBaseOption" :key="item.value" :value="item.value" :label="item.label" :disabled="item.disabled"></cl-option>
-            </cl-select>
+            <Select v-model="valueMultiple4" multiple :multiple-limit="3">
+                <Option v-for="item in valueBaseOption" :key="item.value" :value="item.value" :label="item.label" :disabled="item.disabled"></Option>
+            </Select>
         </Col>
     </Row>
 </template>
@@ -455,20 +455,20 @@
 
 ```html
 <template>
-    <cl-row :gutter="10">
-        <cl-col>
+    <Row :gutter="10">
+        <Col>
             <h4>单选搜索</h4>
-            <cl-select v-model="valueSearch" filterable>
-                <cl-option v-for="item in valueBaseOption" :key="item.value" :value="item.value" :label="item.label" :disabled="item.disabled"></cl-option>
-            </cl-select>
-        </cl-col>
-        <cl-col>
+            <Select v-model="valueSearch" filterable>
+                <Option v-for="item in valueBaseOption" :key="item.value" :value="item.value" :label="item.label" :disabled="item.disabled"></Option>
+            </Select>
+        </Col>
+        <Col>
             <h4>多选搜索</h4>
-            <cl-select v-model="valueSearchMultiple" multiple filterable>
-                <cl-option v-for="item in valueBaseOption" :key="item.value" :value="item.value" :label="item.label" :disabled="item.disabled"></cl-option>
-            </cl-select>
-        </cl-col>
-    </cl-row>
+            <Select v-model="valueSearchMultiple" multiple filterable>
+                <Option v-for="item in valueBaseOption" :key="item.value" :value="item.value" :label="item.label" :disabled="item.disabled"></Option>
+            </Select>
+        </Col>
+    </Row>
 </template>
 <script>
     export default {
@@ -516,9 +516,9 @@
 
 ```html
 <template>
-    <cl-select v-model="valueRemoteSearch" filterable remote :loading="remoteLoading" @remote-change="handlerChangeRemote">
-        <cl-option v-for="item in valueRemoteOption" :key="item.value" :value="item.value" :label="item.label" :disabled="item.disabled"></cl-option>
-    </cl-select>
+    <Select v-model="valueRemoteSearch" filterable remote :loading="remoteLoading" @remote-change="handlerChangeRemote">
+        <Option v-for="item in valueRemoteOption" :key="item.value" :value="item.value" :label="item.label" :disabled="item.disabled"></Option>
+    </Select>
 </template>
 <script>
     export default {
@@ -580,9 +580,9 @@
 
 ```html
 <template>
-    <cl-select v-model="valueLabel" value-lable @change="handlerValueLabelChange">
-        <cl-option v-for="item in valueBaseOption" :key="item.value" :value="item.value" :label="item.label" :disabled="item.disabled"></cl-option>
-    </cl-select>
+    <Select v-model="valueLabel" value-lable @change="handlerValueLabelChange">
+        <Option v-for="item in valueBaseOption" :key="item.value" :value="item.value" :label="item.label" :disabled="item.disabled"></Option>
+    </Select>
     <p>{{valueLabel}}</p>
 </template>
 <script>
@@ -638,13 +638,13 @@
     <Row :gutter="16">
         <Col>
             <h4>props模式</h4>
-            <cl-select v-model="value1" allow-create filterable :option="valueBaseOption"></cl-select>
+            <Select v-model="value1" allow-create filterable :option="valueBaseOption"></Select>
         </Col>
         <Col>
             <h4>slot模式</h4>
-            <cl-select v-model="value2" allow-create filterable>
-                <cl-option v-for="item in valueBaseOption" :key="item.value" :value="item.value" :label="item.label" :disabled="item.disabled"></cl-option>
-            </cl-select>
+            <Select v-model="value2" allow-create filterable>
+                <Option v-for="item in valueBaseOption" :key="item.value" :value="item.value" :label="item.label" :disabled="item.disabled"></Option>
+            </Select>
         </Col>
     </Row>
 </template>

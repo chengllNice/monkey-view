@@ -54,7 +54,7 @@
         },
         computed: {
             iconType() {
-                return this.isHover ? 'remove-fill' : 'close'
+                return this.isHover ? 'error-fill' : 'close'
             },
             noCustomColor() {
                 return ['primary', 'success', 'danger', 'warning', 'info', 'default', 'primary-o', 'success-o', 'danger-o', 'warning-o', 'info-o', 'default-o'].includes(this.color)
