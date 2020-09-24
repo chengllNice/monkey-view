@@ -87,31 +87,6 @@
       color: theme-fun($type, $mode, font-color);
     }
   }
-  //@if($mode == vertical){
-  //  &:not(.is-disabled){
-  //    @include e(title, false){
-  //      &:hover{
-  //        background-color: theme-fun($type, $mode, background-color-hover);
-  //        border-bottom-color: theme-fun($type, $mode, border-color);
-  //        &, a{
-  //          color: theme-fun($type, $mode, font-color-hover);
-  //        }
-  //      }
-  //    }
-  //  }
-  //}@else if($mode == horizontal){
-  //  &:not(.is-disabled):hover{
-  //    & > {
-  //      @include e(title, false){
-  //        background-color: theme-fun($type, $mode, background-color-hover);
-  //        border-bottom-color: theme-fun($type, $mode, border-color);
-  //        &, a{
-  //          color: theme-fun($type, $mode, font-color-hover);
-  //        }
-  //      }
-  //    }
-  //  }
-  //}
 
   &:not(.is-disabled){
     @include e(title, false){
@@ -228,7 +203,6 @@
 @include c(menu){
   display: block;
   box-sizing: border-box;
-  width: 100%;
   font-size: $--font-size-default;
   transition: width $--animation-time ease-in-out;
   @include m(light){
@@ -279,11 +253,7 @@
   }
 
   @include m(horizontal){
-    &::after{
-      content: '';
-      display: block;
-      clear: both;
-    }
+    @include clear-float;
   }
 }
 
@@ -368,6 +338,9 @@
       border: none;
       @include e(title, false){
         border-bottom: none;
+        span{
+          margin-right: 20px;
+        }
       }
       @include e(title-slide-icon, false){
         position: absolute;

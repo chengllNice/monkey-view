@@ -245,7 +245,7 @@
 | fileList | Array | 自己控制上传文件列表。设置fileList的格式为`[{name: 'name', url: ''}]` | [] |
 | drag | Boolean | 开启拖拽上传 | - |
 | multiple | Boolean | 多选 | - |
-| accept | String | 原生属性，指定选择文件格式，详见[文件类型](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-accept) | - |
+| accept | String | 原生属性，指定选择文件格式，详见 <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-accept" target="_blank">文件类型</a> | - |
 | format | Array | 支持的文件格式，与accept不同的是，accept是原生属性，会在选择文件时过滤，但是不会强制限制文件格式。此选项可以和accept配合使用，也可以单独使用，限制上传文件的格式。值类型如：`['jpg','png']`,此时上传别的格式文件时不会执行接口请求 | []] |
 | showUploadList | Boolean | 是否显示文件列表 | true |
 | limit | Number | 限制上传数量 | - |

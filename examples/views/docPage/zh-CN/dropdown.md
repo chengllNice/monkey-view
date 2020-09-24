@@ -15,11 +15,11 @@
     <Dropdown>
         <Button type="text">下拉菜单 <Icon type="down"></Icon></Button>
         <DropdownMenu slot="menu">
-            <Dropdown-item>菜单一</Dropdown-item>
-            <Dropdown-item>菜单二</Dropdown-item>
-            <Dropdown-item disabled>菜单三</Dropdown-item>
-            <Dropdown-item>菜单四</Dropdown-item>
-            <Dropdown-item divided>菜单五</Dropdown-item>
+            <DropdownItem>菜单一</DropdownItem>
+            <DropdownItem>菜单二</DropdownItem>
+            <DropdownItem disabled>菜单三</DropdownItem>
+            <DropdownItem>菜单四</DropdownItem>
+            <DropdownItem divided>菜单五</DropdownItem>
         </DropdownMenu>
     </Dropdown>
 </template>
@@ -50,31 +50,31 @@
     <Dropdown>
         <Button type="text">Hover触发 <Icon type="down"></Icon></Button>
         <DropdownMenu slot="menu">
-            <Dropdown-item>菜单一</Dropdown-item>
-            <Dropdown-item>菜单二</Dropdown-item>
-            <Dropdown-item disabled>菜单三</Dropdown-item>
-            <Dropdown-item>菜单四</Dropdown-item>
-            <Dropdown-item divided>菜单五</Dropdown-item>
+            <DropdownItem>菜单一</DropdownItem>
+            <DropdownItem>菜单二</DropdownItem>
+            <DropdownItem disabled>菜单三</DropdownItem>
+            <DropdownItem>菜单四</DropdownItem>
+            <DropdownItem divided>菜单五</DropdownItem>
         </DropdownMenu>
     </Dropdown>
     <Dropdown trigger="click" :hide-on-click="false" :renderHtml="true">
         <Button type="text">点击触发 <Icon type="down"></Icon></Button>
         <DropdownMenu slot="menu">
-            <Dropdown-item>菜单一</Dropdown-item>
-            <Dropdown-item>菜单二</Dropdown-item>
-            <Dropdown-item disabled>菜单三</Dropdown-item>
-            <Dropdown-item>菜单四</Dropdown-item>
-            <Dropdown-item divided>菜单五</Dropdown-item>
+            <DropdownItem>菜单一</DropdownItem>
+            <DropdownItem>菜单二</DropdownItem>
+            <DropdownItem disabled>菜单三</DropdownItem>
+            <DropdownItem>菜单四</DropdownItem>
+            <DropdownItem divided>菜单五</DropdownItem>
         </DropdownMenu>
     </Dropdown>
     <Dropdown trigger="contextmenu">
         <Button type="text">右键触发 <Icon type="down"></Icon></Button>
         <DropdownMenu slot="menu">
-            <Dropdown-item>菜单一</Dropdown-item>
-            <Dropdown-item>菜单二</Dropdown-item>
-            <Dropdown-item disabled>菜单三</Dropdown-item>
-            <Dropdown-item>菜单四</Dropdown-item>
-            <Dropdown-item divided>菜单五</Dropdown-item>
+            <DropdownItem>菜单一</DropdownItem>
+            <DropdownItem>菜单二</DropdownItem>
+            <DropdownItem disabled>菜单三</DropdownItem>
+            <DropdownItem>菜单四</DropdownItem>
+            <DropdownItem divided>菜单五</DropdownItem>
         </DropdownMenu>
     </Dropdown>
     <Dropdown :visible="visible" trigger="custom" :dropdownMatchSelectWidth="false">
@@ -112,17 +112,17 @@
     <Dropdown>
         <Button type="text">嵌套菜单 <Icon type="down"></Icon></Button>
         <DropdownMenu slot="menu">
-            <Dropdown-item>菜单一</Dropdown-item>
-            <Dropdown-item>菜单二</Dropdown-item>
+            <DropdownItem>菜单一</DropdownItem>
+            <DropdownItem>菜单二</DropdownItem>
             <Dropdown placement="right-start">
-                <Dropdown-item>菜单三 <Icon type="right"></Icon></Dropdown-item>
+                <DropdownItem>菜单三 <Icon type="right"></Icon></DropdownItem>
                 <DropdownMenu slot="menu">
-                    <Dropdown-item>二级菜单一</Dropdown-item>
-                    <Dropdown-item>二级菜单二</Dropdown-item>
+                    <DropdownItem>二级菜单一</DropdownItem>
+                    <DropdownItem>二级菜单二</DropdownItem>
                 </DropdownMenu>
             </Dropdown>
-            <Dropdown-item>菜单四</Dropdown-item>
-            <Dropdown-item divided>菜单五</Dropdown-item>
+            <DropdownItem>菜单四</DropdownItem>
+            <DropdownItem divided>菜单五</DropdownItem>
         </DropdownMenu>
     </Dropdown>
 </template>

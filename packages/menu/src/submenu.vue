@@ -27,7 +27,6 @@
 
         <transition name="slideUp">
             <Drop v-show="dropTransitionShow"
-                  :min-width="200"
                   ref="dropDown"
                   :reference="this.$refs.reference"
                   :placement="placement"

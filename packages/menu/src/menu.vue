@@ -86,7 +86,6 @@
                 this.updateActiveKey();
             });
             this.$on('on-update-opened-key', (key) => {
-                console.log(key)
                 if(this.mode === 'vertical' && !this.collapse){
                     if (this.accordion) {
                         this.openedKeys = key || [];

@@ -4,7 +4,7 @@
   justify-content: space-between;
   height: 100%;
 
-  .logo {
+  .doc-header-logo {
     font-size: 14px;
     color: #333333;
 
@@ -20,7 +20,8 @@
     }
   }
 
-  .header-right {
-
+  .doc-header-right {
+    display: flex;
+    align-items: center;
   }
 }

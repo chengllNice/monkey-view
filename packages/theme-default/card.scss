@@ -37,11 +37,7 @@
     display: flex;
     font-size: $--font-size-title;
     font-weight: 600;
-    &::after{
-      content: '';
-      display: block;
-      clear: both;
-    }
+    @include clear-float;
   }
   @include e(header-title){
     color: $--color-text-title;

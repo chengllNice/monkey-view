@@ -1,16 +1,27 @@
 <template>
     <div class="doc-header">
-        <router-link class="logo" to="/">
+        <router-link class="doc-header-logo" to="/">
             <img src="https://chengllnice.github.io/static/images/monkey-ui/monkey-ui.svg" alt="">
             <span>Monkey-UI</span>
         </router-link>
-        <div class="header-right">
-            <Menu mode="horizontal" @select="langChange" size="large" :activeKey="lang">
-                <Submenu c-key="lang" :name="langMap[lang]">
-                    <MenuItem c-key="zh-CN" name="中文"></MenuItem>
-                    <MenuItem c-key="en-US" name="English"></MenuItem>
-                </Submenu>
+        <div class="doc-header-right">
+            <Menu mode="horizontal" :item-height="60">
+                <MenuItem c-key="docs" name="文档"></MenuItem>
+                <MenuItem c-key="components" name="组件"></MenuItem>
             </Menu>
+            <Dropdown>
+                <span>{{langMap[lang]}}</span>
+                <DropdownMenu slot="menu">
+                    <DropdownItem name="中文"></DropdownItem>
+                    <DropdownItem name="English"></DropdownItem>
+                </DropdownMenu>
+            </Dropdown>
+<!--            <Menu mode="horizontal" :item-height="60" @select="langChange" :activeKey="lang">-->
+<!--                <Submenu c-key="lang" :name="langMap[lang]">-->
+<!--                    <MenuItem c-key="zh-CN" name="中文"></MenuItem>-->
+<!--                    <MenuItem c-key="en-US" name="English"></MenuItem>-->
+<!--                </Submenu>-->
+<!--            </Menu>-->
         </div>
     </div>
 </template>
