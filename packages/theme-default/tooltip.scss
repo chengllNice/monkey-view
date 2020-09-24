@@ -66,7 +66,7 @@
     }
 
     &[x-placement="top-end"], &[x-placement="bottom-end"] {
-      .cl-tooltip__arrow{
+      @include e(arrow, false){
         right: #{$--popover-arrow-border-width * 2};
       }
     }

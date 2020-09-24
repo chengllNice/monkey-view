@@ -3,6 +3,18 @@ html,body{
   height: 100%;
   overflow: hidden;
   color: #515a6e;
+  //color: #5e6d82;
+}
+
+#app{
+  height: 100%;
+}
+
+.views-dev {
+  margin-top: 50px;
+  .views-dev-prop-item {
+    border-bottom: 1px solid #eeeff1;
+  }
 }
 
 .views{

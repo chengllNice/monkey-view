@@ -10,7 +10,7 @@
               }
           ]"
           :style="expandStyle"
-          @click.stop="handlerClick">
+          @click.stop="handleClick">
         <input type="hidden" :name="name" v-model="currentValue">
         <span :class="[`${classPrefix}__inner`]">
             <slot name="open" class="" v-if="currentValue === trueValue"></slot>
@@ -82,7 +82,7 @@
             })
         },
         methods: {
-            handlerClick() {
+            handleClick() {
                 if (this.isDisabled || this.loading) return;
 
                 const checked = this.currentValue === this.trueValue ? this.falseValue : this.trueValue;

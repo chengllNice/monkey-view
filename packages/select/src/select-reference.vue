@@ -95,7 +95,7 @@
             },
             computedPlaceholder() {
                 if (this.selectRoot.currentSelectedItems.length) return '';
-                return this.selectRoot.placeholder || this.t('cl.select.placeholder')
+                return this.selectRoot.placeholder || this.t('m.select.placeholder')
             },
             clearableShow() {
                 return !this.selectRoot.disabled && this.selectRoot.clearable && this.selectRoot.currentValue.length && this.isHover

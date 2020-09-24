@@ -8,6 +8,7 @@
 
   $padding-top: $--table-cell-padding-vertical-default;
   $padding-bottom: $--table-cell-padding-vertical-default;
+  $height: $--table-cell-height-default;
 
   $font-size: $--font-size-default;
 
@@ -16,42 +17,48 @@
     $padding-right: $--table-cell-padding-horizontal-mini;
     $padding-top: $--table-cell-padding-vertical-mini;
     $padding-bottom: $--table-cell-padding-vertical-mini;
+    $height: $--table-cell-height-mini;
     $font-size: $--font-size-mini;
   }@else if($size == 'small'){
     $padding-left: $--table-cell-padding-horizontal-small;
     $padding-right: $--table-cell-padding-horizontal-small;
     $padding-top: $--table-cell-padding-vertical-small;
     $padding-bottom: $--table-cell-padding-vertical-small;
+    $height: $--table-cell-height-small;
     $font-size: $--font-size-small;
   }@else if($size == 'large'){
     $padding-left: $--table-cell-padding-horizontal-large;
     $padding-right: $--table-cell-padding-horizontal-large;
     $padding-top: $--table-cell-padding-vertical-large;
     $padding-bottom: $--table-cell-padding-vertical-large;
+    $height: $--table-cell-height-large;
     $font-size: $--font-size-large;
   }
 
-  .cl-table-cell{
+  @include ci(table-cell){
     padding-left: $padding-left;
     padding-right: $padding-right;
   }
   th, td{
     padding-top: $padding-top;
     padding-bottom: $padding-bottom;
+    height: $height;
   }
-  .cl-table__footer{
+  @include e(footer, false){
     padding-left: $padding-left;
     padding-right: $padding-right;
     padding-top: $padding-top;
     padding-bottom: $padding-bottom;
+    height: $height;
   }
 
   font-size: $font-size;
 }
 
 @include c(table){
+  $table-selector: &;
+
   overflow: hidden;
-  line-height: normal;
   position: relative;
   table{
     width: 100%;
@@ -79,13 +86,12 @@
   td{
     @include utils-ellipsis();
 
-
-
-    &.cl-table-td__expand{
+    &#{$table-selector}-td__expand{
       word-break: break-all;
       white-space: normal;
     }
   }
+
 
   @include e(wrap){
     position: relative;
@@ -99,13 +105,7 @@
       border-top-right-radius: $--border-radius-default;
     }
 
-    @include ci(table-cell){
-      &:not(&--ellipsis){
-        text-overflow: inherit;
-      }
-    }
-
-    .cl-table-cell:not(.cl-table-cell--ellipsis){
+    #{$table-selector}-cell:not(#{$table-selector}-cell--ellipsis){
       text-overflow: inherit;
     }
   }
@@ -127,17 +127,17 @@
 
   @include m(border){
     border: $--border-default;
-    .cl-table__head table, .cl-table-fixed__head table{
+    #{$table-selector}__head table, #{$table-selector}-fixed__head table{
       border-bottom: none;
     }
-    .cl-table__body table, .cl-table-fixed__body table{
+    #{$table-selector}__body table, #{$table-selector}-fixed__body table{
       border-top: none;
     }
     th, td{
       border-right: $--border-default;
       border-bottom: $--border-default;
     }
-    .cl-table__footer{
+    #{$table-selector}__footer{
       border-bottom: $--border-default;
     }
   }
@@ -203,8 +203,10 @@
 
 
 @include c(table-row){
+  $table-row-selector: &;
+
   @include m(stripe-1){
-    &:not(.cl-table-row--hover) td{
+    &:not(#{$table-row-selector}--hover) td{
       background-color: $--table-head-th-background-color;
     }
   }
@@ -217,6 +219,8 @@
 }
 
 @include c(table-cell){
+  $table-cell-selector: &;
+
   white-space: normal;
   word-break: break-all;
   overflow: hidden;
@@ -231,13 +235,13 @@
       display: block;
       font-size: 18px;
       cursor: pointer;
-      line-height: normal;
+      line-height: 1;
       color: $--color-text-placeholder;
       &:hover{
         color: $--color-primary;
       }
     }
-    i.cl-table-cell__icon-active{
+    i#{$table-cell-selector}__icon-active{
       color: $--color-primary;
     }
   }
@@ -278,26 +282,25 @@
 }
 
 @include c(table-head-cell){
+  $table-head-cell-selector: &;
 
-  .cl-table-cell__icon{
+  @include ci(table-cell__icon){
     margin-left: 5px;
   }
 
   @include e(sort){
     i{
-      transform: scale(0.6);
-      &:nth-of-type(1){
-        transform-origin: bottom;
-      }
+      font-size: 12px;
       &:nth-of-type(2){
-        transform-origin: top;
         margin-top: -3px;
       }
     }
   }
 
   @include e(filter){
-
+    i{
+      font-size: 18px;
+    }
   }
 
   @include e(filter-list){
@@ -306,6 +309,7 @@
     box-shadow: $--box-shadow-default;
     background-color: $--color-white;
     font-weight: normal;
+    padding: 5px 0;
   }
 
   @include e(filter-footer){
@@ -325,7 +329,6 @@
     box-sizing: border-box;
     text-align: left;
     cursor: pointer;
-    line-height: normal;
     font-size: $--font-size-default;
     color: $--color-text-default;
     transition: all $--animation-time;
@@ -333,7 +336,7 @@
     &:hover{
       background-color: $--background-color-hover;
     }
-    &.cl-table-head-cell__filter-item-active{
+    &#{$table-head-cell-selector}__filter-item-active{
       background-color: $--background-color-hover;
       color: $--color-primary;
     }

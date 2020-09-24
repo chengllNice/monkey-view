@@ -1,5 +1,5 @@
 export default {
-    cl: {
+    m: {
         locale: 'en-US',
         select: {
             loading: 'Loading',

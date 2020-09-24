@@ -11,26 +11,26 @@
 ```html
 <template>
     <h4>指定时间在当前时间点之前</h4>
-    一分钟之内：<cl-time :time="baseTime1"></cl-time>
+    一分钟之内：<Time :time="baseTime1"></Time>
     <br>
-    一小时之内：<cl-time :time="baseTime2"></cl-time>
+    一小时之内：<Time :time="baseTime2"></Time>
     <br>
-    今天：<cl-time :time="baseTime3"></cl-time>
+    今天：<Time :time="baseTime3"></Time>
     <br>
-    昨天：<cl-time :time="baseTime4"></cl-time>
+    昨天：<Time :time="baseTime4"></Time>
     <br>
-    昨天之前：<cl-time :time="baseTime5"></cl-time>
+    昨天之前：<Time :time="baseTime5"></Time>
 
     <h4>指定时间在当前时间点之后</h4>
-    一分钟之内：<cl-time :time="baseTime6"></cl-time>
+    一分钟之内：<Time :time="baseTime6"></Time>
     <br>
-    一小时之内：<cl-time :time="baseTime7"></cl-time>
+    一小时之内：<Time :time="baseTime7"></Time>
     <br>
-    今天：<cl-time :time="baseTime8"></cl-time>
+    今天：<Time :time="baseTime8"></Time>
     <br>
-    明天：<cl-time :time="baseTime9"></cl-time>
+    明天：<Time :time="baseTime9"></Time>
     <br>
-    明天之后：<cl-time :time="baseTime10"></cl-time>
+    明天之后：<Time :time="baseTime10"></Time>
 </template>
 <script>
     export default {
@@ -67,11 +67,11 @@ type类型可取值`relative` `date` `datetime`
 
 ```html
 <template>
-    <cl-time :time="baseTime"></cl-time>
+    <Time :time="baseTime"></Time>
     <br>
-    <cl-time :time="baseTime" type="date"></cl-time>
+    <Time :time="baseTime" type="date"></Time>
     <br>
-    <cl-time :time="baseTime" type="datetime"></cl-time>
+    <Time :time="baseTime" type="datetime"></Time>
 </template>
 <script>
     export default {
@@ -89,17 +89,17 @@ type类型可取值`relative` `date` `datetime`
 
 :::demo format格式化
 
-format默认`YYYY-MM-DD hh:mm:ss`
+format默认`yyyy-MM-dd hh:mm:ss`
 
 ```html
 <template>
-    <cl-time :time="baseTime" format="YYYY年MM月DD日 hh:mm"></cl-time>
+    <Time :time="baseTime" format="yyyy年MM月dd日 hh:mm"></Time>
     <br>
-    <cl-time :time="baseTime2" format="YYYY年MM月DD日 hh:mm"></cl-time>
+    <Time :time="baseTime2" format="yyyy年MM月dd日 hh:mm"></Time>
     <br>
-    <cl-time :time="baseTime" type="date" format="YYYY年MM月DD日 hh:mm"></cl-time>
+    <Time :time="baseTime" type="date" format="yyyy年MM月dd日 hh:mm"></Time>
     <br>
-    <cl-time :time="baseTime" type="datetime" format="YYYY年MM月DD日 hh:mm"></cl-time>
+    <Time :time="baseTime" type="datetime" format="yyyy年MM月dd日 hh:mm"></Time>
 </template>
 <script>
     export default {
@@ -116,6 +116,27 @@ format默认`YYYY-MM-DD hh:mm:ss`
 :::
 
 
+:::demo 自动更新时间
+
+`interval`属性设置自动更新时间的间隔，单位：秒。
+
+```html
+<template>
+    <Time :time="baseTime" :interval="1"></Time>
+</template>
+<script>
+    export default {
+      data(){
+        return {
+          baseTime: new Date()
+        }
+      }
+    }
+</script>
+```
+:::
+
+
 
 ## API
 
@@ -124,6 +145,7 @@ format默认`YYYY-MM-DD hh:mm:ss`
 | 属性 | 类型 | 说明 | 默认值 |
 | ---- | ---- | ---- | ---- |
 | time | String、Date、Number | 必传参数，支持时间戳 | - |
-| type | String | `relative` `date` `datetime`,`relative`类型时，默认一分钟之内显示为（..秒前），一小时之内显示（..分钟前），今天显示（时间点），昨天显示（昨天+时间点），昨天之前显示（时间点） | auto |
-| format | String | 格式化时间显示，`date` `datetime`时有效，`relative`时按照指定的时间格式显示日期和时间 | YYYY-MM-DD hh:mm:ss |
+| type | String | `relative` `date` `datetime`,`relative`类型时，默认一分钟之内显示为（..秒前），一小时之内显示（..分钟前），今天显示（时间点），昨天显示（昨天+时间点），昨天之前显示（时间点） | relative |
+| interval | Number | 设置自动更新时间的间隔，单位：秒 | - |
+| format | String | 格式化时间显示，`date` `datetime`时有效，`relative`时按照指定的时间格式显示日期和时间 | yyyy-MM-dd hh:mm:ss |
 

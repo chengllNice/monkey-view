@@ -46,12 +46,12 @@
                 <Slider v-model="slider"></Slider>
             </FormItem>
             <FormItem name="switch" label="switch" :rules="rules.switch">
-                <cl-switch v-model="switchValue"></cl-switch>
+                <m-switch v-model="switchValue"></m-switch>
             </FormItem>
             <FormItem name="upload" label="upload" :rules="rules.upload" :validator-value="upload">
                 <Upload action="//jsonplaceholder.typicode.com/posts/"  :maxSize="500" :limit="5" :onSuccess="uploadSuccess" :onRemove="uploadRemove">
                     <Button>upload</Button>
-                    <div slot="tip" class="cl-upload__tip">只能上传jpg/png文件，大小不能超过500kb</div>
+                    <div slot="tip" class="m-upload__tip">只能上传jpg/png文件，大小不能超过500kb</div>
                 </Upload>
             </FormItem>
         </Form>

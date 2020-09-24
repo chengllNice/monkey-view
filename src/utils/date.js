@@ -4,81 +4,81 @@ export const dateObj = {
     month: [
         {
             id: 1,
-            name: t('cl.datePicker.months.m1')
+            name: t('m.datePicker.months.m1')
         },
         {
             id: 2,
-            name: t('cl.datePicker.months.m2')
+            name: t('m.datePicker.months.m2')
         },
         {
             id: 3,
-            name: t('cl.datePicker.months.m3')
+            name: t('m.datePicker.months.m3')
         },
         {
             id: 4,
-            name: t('cl.datePicker.months.m4')
+            name: t('m.datePicker.months.m4')
         },
         {
             id: 5,
-            name: t('cl.datePicker.months.m5')
+            name: t('m.datePicker.months.m5')
         },
         {
             id: 6,
-            name: t('cl.datePicker.months.m6')
+            name: t('m.datePicker.months.m6')
         },
         {
             id: 7,
-            name: t('cl.datePicker.months.m7')
+            name: t('m.datePicker.months.m7')
         },
         {
             id: 8,
-            name: t('cl.datePicker.months.m8')
+            name: t('m.datePicker.months.m8')
         },
         {
             id: 9,
-            name: t('cl.datePicker.months.m9')
+            name: t('m.datePicker.months.m9')
         },
         {
             id: 10,
-            name: t('cl.datePicker.months.m10')
+            name: t('m.datePicker.months.m10')
         },
         {
             id: 11,
-            name: t('cl.datePicker.months.m11')
+            name: t('m.datePicker.months.m11')
         },
         {
             id: 12,
-            name: t('cl.datePicker.months.m12')
+            name: t('m.datePicker.months.m12')
         }
     ],
     week: [
         {
             id: 0,
-            name: t('cl.datePicker.weeks.sun')
+            name: t('m.datePicker.weeks.sun')
         },
         {
             id: 1,
-            name: t('cl.datePicker.weeks.mon')
+            name: t('m.datePicker.weeks.mon')
         },
         {
             id: 2,
-            name: t('cl.datePicker.weeks.tue')
+            name: t('m.datePicker.weeks.tue')
         },
         {
             id: 3,
-            name: t('cl.datePicker.weeks.wed')
+            name: t('m.datePicker.weeks.wed')
         },
         {
             id: 4,
-            name: t('cl.datePicker.weeks.thu')
+            name: t('m.datePicker.weeks.thu')
         },
         {
             id: 5,
-            name: t('cl.datePicker.weeks.fri')
+            name: t('m.datePicker.weeks.fri')
         },
         {
             id: 6,
-            name: t('cl.datePicker.weeks.sat')
+            name: t('m.datePicker.weeks.sat')
         }
     ],
     reg: /d{1,4}|M{1,4}|yy(?:yy)?|([HhMsWm])\1?|[aA]|"[^"]*"|'[^']*'/g,

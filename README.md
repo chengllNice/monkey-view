@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://ant.design">
-    <img width="200" src="https://chengllnice.github.io/static/images/cl-ui/monkey-ui.svg">
+    <img width="200" src="https://chengllnice.github.io/static/images/monkey-ui/monkey-ui.svg">
   </a>
 </p>
 
@@ -11,7 +11,7 @@
 
 ## Docs
 
-**[1.0](https://chengllnice.github.io/cl-ui/)**
+**[0.1](https://chengllnice.github.io/monkey-ui/)**
 
 
 ## Install

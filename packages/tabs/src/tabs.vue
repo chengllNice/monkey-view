@@ -176,8 +176,6 @@
             Scroll,
             Icon
         },
-        created() {
-        },
         mounted() {
             this.$on('on-update-label-list', () => {
                 this.updateLabelList();

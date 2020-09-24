@@ -1,5 +1,5 @@
 export default {
-    cl: {
+    m: {
         locale: 'zh-CN',
         select: {
             loading: '加载中',

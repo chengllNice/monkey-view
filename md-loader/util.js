@@ -153,7 +153,7 @@ const renderContent = (tokens, idx) => {
     return `<code-wrap id="${titleId}">
                 <div slot="description">${descriptionHtml}</div>
                 <span slot="title">${titleHtml} <a href="#${titleId}" data-title="${titleHtml}">#</a></span>
-                <!--cl-ui-doc: ${sourceContent} :cl-ui-doc-->`;
+                <!--monkey-ui-doc: ${sourceContent} :monkey-ui-doc-->`;
   }
   return '</code-wrap>\n';
 };

@@ -43,16 +43,17 @@
                         size="small"
                         :disabled="changeTimeDisabled"
                         @click="changeTimeAndDate">
-                    {{isTime ? t('cl.datePicker.selectDate') : t('cl.datePicker.selectTime')}}
+                    {{isTime ? t('m.datePicker.selectDate') : t('m.datePicker.selectTime')}}
                 </Button>
                 <Button :class="[`${classPrefix}__footer-button`]"
                         size="small"
-                        @click="handleClean">{{t('cl.datePicker.clean')}}</Button>
+                        @click="handleClean">{{t('m.datePicker.clean')}}</Button>
                 <Button :class="[`${classPrefix}__footer-button`]"
                         type="primary"
                         size="small"
-                        @click="closeDropDown(true)">{{t('cl.datePicker.ok')}}</Button>
+                        @click="closeDropDown(true)">{{t('m.datePicker.ok')}}</Button>
             </div>
+            <DatePaneFooterSlot :class="[`${classPrefix}__footer`]" v-if="picker.$slots.paneFooter"></DatePaneFooterSlot>
         </div>
     </div>
 </template>
@@ -63,6 +64,7 @@
     import Button from 'packages/button'
     import {dateFormat} from "main/utils/date";
     import Locale from "main/mixins/locale";
+    import DatePaneFooterSlot from './date-pane-footer-slot'
 
     export default {
         name: "DatePane",
@@ -115,7 +117,8 @@
         },
         components: {
             DatePaneSingle,
-            Button
+            Button,
+            DatePaneFooterSlot
         },
         mounted() {
             this.$nextTick(()=>{

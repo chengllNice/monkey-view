@@ -95,10 +95,6 @@
                 return {}
             }
         },
-        components: {},
-        created() {
-
-        },
         mounted() {
             this.renderToHtml();
             if (this.always) {

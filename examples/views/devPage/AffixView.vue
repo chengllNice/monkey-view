@@ -3,16 +3,16 @@
         <div>contrent</div>
         <div>contrent</div>
         <div>contrent</div>
-        <cl-affix target="views-main-content">
-            <cl-button style="position: relative; left: 200px;" type="primary">affix</cl-button>
-        </cl-affix>
+        <Affix target="views-main-content">
+            <Button style="position: relative; left: 200px;" type="primary">affix</Button>
+        </Affix>
         <!--<div>contrent111</div>-->
         <!--<div>contrent111</div>-->
         <!--<div>contrent111</div>-->
         <!--<div class="affix-view-pos">-->
-            <!--<cl-affix target="views-main-content">-->
-                <!--<cl-button type="primary">affix</cl-button>-->
-            <!--</cl-affix>-->
+            <!--<Affix target="views-main-content">-->
+                <!--<Button type="primary">affix</Button>-->
+            <!--</Affix>-->
         <!--</div>-->
 
         <!--<div>contrent222</div>-->
@@ -39,9 +39,9 @@
         <!--<div>contrent222</div>-->
         <!--<div>contrent222</div>-->
         <!--<div>contrent222</div>-->
-        <!--<cl-affix target="views-main-content" bottom="20">-->
-            <!--<cl-button type="primary">affix-fixed-bottom</cl-button>-->
-        <!--</cl-affix>-->
+        <!--<Affix target="views-main-content" bottom="20">-->
+            <!--<Button type="primary">affix-fixed-bottom</Button>-->
+        <!--</Affix>-->
     </div>
 </template>
 

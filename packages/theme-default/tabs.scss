@@ -1,6 +1,46 @@
 @import "./base/var";
 @import "./config/mixins/index.scss";
 
+
+@mixin tabSize($size){
+  $font-size: $--font-size-default;
+  $nav-item-wrap-margin-right: 12px;
+  $nav-item-padding-horizontal: 16px;
+  $nav-item-padding-vertical: 8px;
+
+  @if($size == mini){
+    $font-size: $--font-size-mini;
+    $nav-item-wrap-margin-right: 4px;
+    $nav-item-padding-horizontal: 12px;
+    $nav-item-padding-vertical: 4px;
+  }@else if($size == small){
+    $font-size: $--font-size-small;
+    $nav-item-wrap-margin-right: 8px;
+    $nav-item-padding-horizontal: 14px;
+    $nav-item-padding-vertical: 6px;
+  }@else if($size == large){
+    $font-size: $--font-size-large;
+    $nav-item-wrap-margin-right: 16px;
+    $nav-item-padding-horizontal: 16px;
+    $nav-item-padding-vertical: 8px;
+  }
+
+  @include e(header, false){
+    font-size: $font-size;
+  }
+  @include e(nav-item-wrap, false){
+    margin-right: $nav-item-wrap-margin-right;
+    & > {
+      @include e(nav-item, false){
+        padding: $nav-item-padding-vertical $nav-item-padding-horizontal;
+      }
+    }
+    &:nth-last-of-type(1){
+      margin: 0;
+    }
+  }
+}
+
 @include c(tabs){
   width: 100%;
   @include e(header){
@@ -114,71 +154,19 @@
 
 
   @include m(mini){
-    @include e(header, false){
-      font-size: $--font-size-mini;
-    }
-    @include e(nav-item-wrap, false){
-      margin-right: 4px;
-      & > {
-        @include e(nav-item, false){
-          padding: 4px 12px;
-        }
-      }
-      &:nth-last-of-type(1){
-        margin: 0;
-      }
-    }
+    @include tabSize(mini)
   }
 
   @include m(small){
-    @include e(header, false){
-      font-size: $--font-size-small;
-    }
-    @include e(nav-item-wrap, false){
-      margin-right: 8px;
-      & > {
-        @include e(nav-item, false){
-          padding: 6px 14px;
-        }
-      }
-      &:nth-last-of-type(1){
-        margin: 0;
-      }
-    }
+    @include tabSize(small)
   }
 
   @include m(default){
-    @include e(header, false){
-      font-size: $--font-size-default;
-    }
-    @include e(nav-item-wrap, false){
-      margin-right: 12px;
-      & > {
-        @include e(nav-item, false){
-          padding: 8px 16px;
-        }
-      }
-      &:nth-last-of-type(1){
-        margin: 0;
-      }
-    }
+    @include tabSize(default)
   }
 
   @include m(large){
-    @include e(header, false){
-      font-size: $--font-size-large;
-    }
-    @include e(nav-item-wrap, false){
-      margin-right: 16px;
-      & > {
-        @include e(nav-item, false){
-          padding: 8px 16px;
-        }
-      }
-      &:nth-last-of-type(1){
-        margin: 0;
-      }
-    }
+    @include tabSize(large)
   }
 
 

@@ -1,24 +1,24 @@
 <template>
     <div class="cascader-view">
 <!--        clearable: {{value}}-->
-<!--        <cl-cascader v-model="value" :data="data" clearable @change="handleChange" loading></cl-cascader>-->
+<!--        <Cascader v-model="value" :data="data" clearable @change="handleChange" loading></Cascader>-->
 
         value1: {{value1}}
-        <cl-cascader v-model="value1" :data="data"></cl-cascader>
+        <Cascader v-model="value1" :data="data"></Cascader>
 
 
 <!--        value2: {{value2}}-->
-<!--        <cl-cascader v-model="value2" :data="data" change-on-select trigger="hover"></cl-cascader>-->
+<!--        <Cascader v-model="value2" :data="data" change-on-select trigger="hover"></Cascader>-->
 
 <!--        valueLoading: {{valueLoading}}-->
-<!--        <cl-cascader v-model="valueLoading" :data="dataLoading" :loadData="handleLoadData"></cl-cascader>-->
+<!--        <Cascader v-model="valueLoading" :data="dataLoading" :loadData="handleLoadData"></Cascader>-->
 
 <!--        valueFilterable: {{valueFilterable}}-->
-<!--        <cl-cascader v-model="valueFilterable" :data="data" filterable change-on-select trigger="hover"></cl-cascader>-->
+<!--        <Cascader v-model="valueFilterable" :data="data" filterable change-on-select trigger="hover"></Cascader>-->
 
 
 <!--        <h4>Panel使用</h4>-->
-<!--        <cl-cascader-panel v-model="panelValue" :data="data"></cl-cascader-panel>-->
+<!--        <Cascader-panel v-model="panelValue" :data="data"></Cascader-panel>-->
     </div>
 </template>
 
@@ -203,7 +203,7 @@
                     ]
                 }
 
-                return new Promise((resolve, reject) => {
+                return new Promise((resolve) => {
                     setTimeout(()=>{
                         resolve(result);
                     }, 3000)

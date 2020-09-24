@@ -10,12 +10,14 @@
                       :key="index"
                       @mouseenter.native="trMouseEnter(row.__index)"
                       @mouseleave.native="trMouseLeave(row.__index)">
-                <td v-for="column in columns"
+                <td v-for="(column, columnIndex) in columns"
                     :key="column.__id"
                     :class="[
-                            fixed && column.fixed !== fixed && 'is-hidden',
-                            column.className
-                        ]"
+                        fixed && column.fixed !== fixed && 'is-hidden',
+                        column.className
+                    ]"
+                    v-bind="getSpan(row, column, index, columnIndex)"
+                    v-if="spanShow(row, column, index, columnIndex)"
                     @click.stop="rowClick(row, column)"
                     @dblclick.stop="rowDbCkick(row, column)">
                     <table-cell :row="row" :column="column"></table-cell>
@@ -39,7 +41,7 @@
             <td :class="[
                         fixed && 'is-hidden'
                     ]"
-                :colspan="colgroupColumns.length">{{t('cl.table.emptyData')}}
+                :colspan="colgroupColumns.length">{{t('m.table.emptyData')}}
             </td>
         </tr>
         </tbody>
@@ -120,6 +122,40 @@
             rowDbCkick(row, column) {
                 this.tableRoot.rowDbCkick(row, column);
                 this.tableRoot.cellDbCkick(row, column);
+            },
+            getSpan(row, column, rowIndex, columnIndex){
+                let spanMethod = this.tableRoot.spanMethod;
+                if(spanMethod && typeof spanMethod === 'function'){
+                    const result = spanMethod({
+                        row,
+                        column,
+                        rowIndex,
+                        columnIndex
+                    });
+                    let rowspan = 1;
+                    let colspan = 1;
+                    if(Array.isArray(result) && result.length === 2){
+                        rowspan = result[0];
+                        colspan = result[1];
+                    }else if(typeof result === 'object'){
+                        rowspan = result.rowspan;
+                        colspan = result.colspan;
+                    }
+                    if(typeof rowspan !== 'number' || typeof colspan !== 'number'){
+                        rowspan = 1;
+                        colspan = 1;
+                    }
+                    return {
+                        rowspan,
+                        colspan
+                    }
+                }else {
+                    return {}
+                }
+            },
+            spanShow(row, column, rowIndex, columnIndex){
+                const result = this.getSpan(row, column, rowIndex, columnIndex);
+                return !(('rowspan' in result && result.rowspan === 0) || ('colspan' in result && result.colspan === 0));
             }
         }
     }

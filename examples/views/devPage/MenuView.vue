@@ -667,47 +667,47 @@
         </Menu>
 
 
-        <div class="viewDes">
+        <div class="views-dev">
             <h3>API</h3>
             <h4>menu props</h4>
 
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：width</b></p>
                 <p><b>类型：String, Number</b></p>
                 <p><b>说明：</b>mode=vertical时有效</p>
                 <p><b>默认值：</b>240</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：theme</b></p>
                 <p><b>类型：String</b></p>
                 <p><b>说明：</b>主题，可选值light/dark/green</p>
                 <p><b>默认值：</b>light</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：size</b></p>
                 <p><b>类型：String</b></p>
                 <p><b>说明：</b>尺寸，可选值small/default/large</p>
                 <p><b>默认值：</b>default</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：activeKey</b></p>
                 <p><b>类型：String</b></p>
                 <p><b>说明：</b>当前激活菜单的key值，只对menuItem组件的key值有效</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：openKeys</b></p>
                 <p><b>类型：Array</b></p>
                 <p><b>说明：</b>展开的submenu的key值集合</p>
                 <p><b>默认值：</b>[]</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：accordion</b></p>
                 <p><b>类型：Boolean</b></p>
                 <p><b>说明：</b>是否开始手风琴模式，开启后每次最多展开一个submenu</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：mode</b></p>
                 <p><b>类型：String</b></p>
                 <p><b>说明：</b>菜单类型，可选值vertical(垂直)/horizontal(水平)</p>
@@ -715,35 +715,35 @@
             </div>
         </div>
 
-        <div class="viewDes">
+        <div class="views-dev">
             <h3>API</h3>
             <h4>menuItem props</h4>
 
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：cKey</b></p>
                 <p><b>类型：String</b></p>
                 <p><b>说明：</b>必填，菜单的位置标识</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：name</b></p>
                 <p><b>类型：String</b></p>
                 <p><b>说明：</b>菜单的名字</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：disabled</b></p>
                 <p><b>类型：Boolean</b></p>
                 <p><b>说明：</b>菜单是否禁用</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：icon</b></p>
                 <p><b>类型：String</b></p>
                 <p><b>说明：</b>菜单名字左侧的图标</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：to</b></p>
                 <p><b>类型：Object, String</b></p>
                 <p><b>说明：</b>router-link的to属性</p>
@@ -751,41 +751,41 @@
             </div>
         </div>
 
-        <div class="viewDes">
+        <div class="views-dev">
             <h3>API</h3>
             <h4>submenu props</h4>
 
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：cKey</b></p>
                 <p><b>类型：String</b></p>
                 <p><b>说明：</b>必填，菜单的位置标识</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：name</b></p>
                 <p><b>类型：String</b></p>
                 <p><b>说明：</b>菜单的名字</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：disabled</b></p>
                 <p><b>类型：Boolean</b></p>
                 <p><b>说明：</b>菜单是否禁用</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：icon</b></p>
                 <p><b>类型：String</b></p>
                 <p><b>说明：</b>菜单名字左侧的图标</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：hideDropIcon</b></p>
                 <p><b>类型：Boolean</b></p>
                 <p><b>说明：</b>是否隐藏右侧下拉图标</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：forbidden</b></p>
                 <p><b>类型：Boolean</b></p>
                 <p><b>说明：</b>是否禁用展开收起，和disabled不一样的是不控制样式，在某些情况下会比较有用</p>
@@ -793,11 +793,11 @@
             </div>
         </div>
 
-        <div class="viewDes">
+        <div class="views-dev">
             <h3>API</h3>
             <h4>menuGroup props</h4>
 
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：name</b></p>
                 <p><b>类型：String</b></p>
                 <p><b>说明：</b>菜单的名字</p>
@@ -805,36 +805,36 @@
             </div>
         </div>
 
-        <div class="viewDes">
+        <div class="views-dev">
             <h3>API</h3>
             <h4>menu event</h4>
 
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>事件名：select</b></p>
                 <p><b>说明：</b>选中菜单时触发,返回当前选中的菜单的key值</p>
                 <p><b>返回值：</b>key</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>事件名：open-change</b></p>
                 <p><b>说明：</b>submenu展开收起时触发，返回第一个参数为当前触发展开收起的submenu的key值，第二个参数为所有展开项的key数组</p>
                 <p><b>返回值：</b>key, openedKeys</p>
             </div>
         </div>
 
-        <div class="viewDes">
+        <div class="views-dev">
             <h3>API</h3>
             <h4>menuGroup slot</h4>
 
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>名称：title</b></p>
                 <p><b>说明：</b>自定义title标题</p>
             </div>
         </div>
-        <div class="viewDes">
+        <div class="views-dev">
             <h3>API</h3>
             <h4>submenu slot</h4>
 
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>名称：title</b></p>
                 <p><b>说明：</b>自定义title标题</p>
             </div>

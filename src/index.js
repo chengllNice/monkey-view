@@ -1,4 +1,3 @@
-import Config from 'main/config/config'
 
 import Layout from '../packages/layout'
 import Menu from '../packages/menu'
@@ -113,8 +112,8 @@ const components = {
 };
 
 const prefixComponents = {
-    [`${Config.componentPrefix}Switch`]: Switch,
-    [`${Config.componentPrefix}Image`]: Image,
+    'm-switch': Switch,
+    'm-image': Image,
 };
 
 const install = (Vue, opts = {}) => {
@@ -125,7 +124,6 @@ const install = (Vue, opts = {}) => {
 
     Object.keys(components).forEach(key => {
         Vue.component(key, components[key]);
-        Vue.component(`${Config.componentPrefix}${key}`, components[key]);
     });
     Object.keys(prefixComponents).forEach(key => {
         Vue.component(key, prefixComponents[key]);

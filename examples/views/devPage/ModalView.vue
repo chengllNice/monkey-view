@@ -253,101 +253,101 @@
         </Modal>
 
 
-        <div class="viewDes">
+        <div class="views-dev">
             <h3>API</h3>
             <h4>modal props</h4>
 
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：transition</b></p>
                 <p><b>类型：Array</b></p>
                 <p><b>说明：</b>自定义modal进入和离开的动画，第一个值为遮罩层的动画，第二个为modal的动画</p>
                 <p><b>默认值：</b>['fade', 'fade']</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：width</b></p>
                 <p><b>类型：String, Number</b></p>
                 <p><b>说明：</b>对话框宽度，可设置百分比</p>
                 <p><b>默认值：</b>520</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：value</b></p>
                 <p><b>类型：Boolean</b></p>
                 <p><b>说明：</b>对话框是否显示，可以使用v-model双向绑定</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：fullscreen</b></p>
                 <p><b>类型：Boolean</b></p>
                 <p><b>说明：</b>是否全屏显示</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：footerHide</b></p>
                 <p><b>类型：Boolean</b></p>
                 <p><b>说明：</b>隐藏footer</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：closable</b></p>
                 <p><b>类型：Boolean</b></p>
                 <p><b>说明：</b>是否显示右上角关闭按钮</p>
                 <p><b>默认值：</b>true</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：cancelText</b></p>
                 <p><b>类型：String</b></p>
                 <p><b>说明：</b>取消按钮的文字</p>
                 <p><b>默认值：</b>取消</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：okText</b></p>
                 <p><b>类型：String</b></p>
                 <p><b>说明：</b>确认按钮的文字</p>
                 <p><b>默认值：</b>确定</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：styles</b></p>
                 <p><b>类型：Object</b></p>
                 <p><b>说明：</b>设置modal的样式</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：title</b></p>
                 <p><b>类型：String</b></p>
                 <p><b>说明：</b>标题</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：loading</b></p>
                 <p><b>类型：Boolean</b></p>
                 <p><b>说明：</b>点击确定按钮时，确定按钮是否显示loading状态，开启则需要手动关闭对话框</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：coverClosable</b></p>
                 <p><b>类型：Boolean</b></p>
                 <p><b>说明：</b>是否禁用点击遮罩层关闭对话框</p>
                 <p><b>默认值：</b>true</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：coverShow</b></p>
                 <p><b>类型：Boolean</b></p>
                 <p><b>说明：</b>是否显示遮罩层</p>
                 <p><b>默认值：</b>true</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：bodyScroll</b></p>
                 <p><b>类型：Boolean</b></p>
                 <p><b>说明：</b>开启时在modal-body内容高度超出时滚动，modal的高度不会超出视口的高度。如果不开启此项，内容高度自动，超出时会出现浏览器的滚动条</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：modalTop</b></p>
                 <p><b>类型：String, Number</b></p>
                 <p><b>说明：</b>对话框距离视口顶部的距离</p>
                 <p><b>默认值：</b>100</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：renderHtml</b></p>
                 <p><b>类型：HTMLElement, Boolean</b></p>
                 <p><b>说明：</b>指定对话框渲染到的HTML元素，默认渲染到body中。</p>
@@ -355,41 +355,41 @@
             </div>
         </div>
 
-        <div class="viewDes">
+        <div class="views-dev">
             <h3>API</h3>
             <h4>modal event</h4>
 
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>事件名：cancel</b></p>
                 <p><b>说明：</b>关闭对话框时触发</p>
                 <p><b>返回值：</b>状态</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>事件名：ok</b></p>
                 <p><b>说明：</b>点击确定按钮时触发</p>
                 <p><b>返回值：</b>状态</p>
             </div>
         </div>
 
-        <div class="viewDes">
+        <div class="views-dev">
             <h3>API</h3>
             <h4>modal slot</h4>
 
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>名称：close</b></p>
                 <p><b>说明：</b>自定义右上角关闭按钮</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>名称：header</b></p>
                 <p><b>说明：</b>自定义页头内容</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>名称：footer</b></p>
                 <p><b>说明：</b>自定义页脚内容</p>
             </div>
         </div>
 
-        <div class="viewDes">
+        <div class="views-dev">
             <h3>API</h3>
             <h4>modal instance</h4>
             <p>通过一下方式调用：</p>
@@ -402,43 +402,43 @@
             </ul>
 
             <p>参数config为对象，具体如下：</p>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：width</b></p>
                 <p><b>类型：</b>String, Number</p>
                 <p><b>说明：</b>宽度</p>
                 <p><b>默认值：</b>350</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：title</b></p>
                 <p><b>类型：</b>String</p>
                 <p><b>说明：</b>标题</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：content</b></p>
                 <p><b>类型：</b>String, Array</p>
                 <p><b>说明：</b>内容。当类型为Array时，分行显示</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：okText</b></p>
                 <p><b>类型：</b>String</p>
                 <p><b>说明：</b>取消按钮的文本。confirm类型时有效</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：cancelText</b></p>
                 <p><b>类型：</b>String</p>
                 <p><b>说明：</b>确认按钮的文本</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：okButtonLoading</b></p>
                 <p><b>类型：</b>Boolean</p>
                 <p><b>说明：</b>确定按钮的loading状态</p>
                 <p><b>默认值：</b>false</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：type</b></p>
                 <p><b>类型：</b>String</p>
                 <p><b>说明：</b>布局类型，可选值left/default</p>

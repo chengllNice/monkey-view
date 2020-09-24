@@ -8,6 +8,7 @@
   box-sizing: border-box;
   z-index: $--popover-z-index;
   width: inherit;
+  //min-width: 150px;
 
 
   &[x-placement^="top"], &[x-placement^="bottom"] {

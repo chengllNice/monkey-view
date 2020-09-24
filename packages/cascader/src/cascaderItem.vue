@@ -88,6 +88,7 @@
                             this.parentComponent.setCurrentData('children', item, result);
                             this.parentComponent.setCurrentData('__loading', item, false);
                         }).catch(e=>{
+                            console.log(e)
                             this.parentComponent.setCurrentData('__loading', item, false);
                         });
                     }

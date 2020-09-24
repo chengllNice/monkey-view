@@ -6,10 +6,10 @@
              (column.ellipsis || column.tooltip) && `${classPrefixCell}--ellipsis`,
          ]">
         <template v-if="renderType === 'selection'">
-            <checkbox :class="[`${classPrefixCell}__checkbox`]"
+            <Checkbox :class="[`${classPrefixCell}__checkbox`]"
                       v-model="column.__isChecked"
                       :disabled="column.__isDisabled"
-                      @change="checkboxChange"></checkbox>
+                      @change="checkboxChange"></Checkbox>
         </template>
         <template v-if="renderType === 'index'">
             #
@@ -34,31 +34,32 @@
             <span v-if="column.filterSlot || (column.filters && Array.isArray(column.filters))"
                   :class="[`${classPrefixCell}__icon`, `${classPrefix}__filter`]"
                   v-click-outside.capture="handleClickOutside">
-                <Icon type="filter"
-                      :class="[
-                           column.__isFilterChecked && `${classPrefixCell}__icon-active`
-                      ]"
-                      ref="reference"
-                      @click.stop="filterShow"></Icon>
-                <Drop v-show="visible"
-                      ref="dropDown"
-                      :reference="this.$refs.reference"
-                      :dropdownMatchSelectWidth="false"
-                      :placement="column.placement || 'bottom'"
-                      :render-html="renderHtml"
-                      :min-width="false"
-                      v-model="visible">
+                <span ref="reference">
+                    <Icon type="filter-fill"
+                          :class="[
+                              column.__isFilterChecked && `${classPrefixCell}__icon-active`
+                          ]"
+                          @click.stop="filterShow"></Icon>
+                </span>
+                <transition name="slideUp">
+                    <Drop v-show="visible"
+                          ref="dropDown"
+                          :reference="$refs.reference"
+                          :placement="column.placement || 'bottom'"
+                          :render-html="renderHtml"
+                          :min-width="false"
+                          v-model="visible">
+                        <!--todo 由于slot的组件状态更新有问题，暂时注释-->
+<!--                    <template v-if="column.filterSlot">-->
+<!--                        <table-slot-head :column="column" :slot-name="column.filterSlot"></table-slot-head>-->
+<!--                    </template>-->
 
-                    <template v-if="column.filterSlot">
-                        <table-slot-head :column="column" :slot-name="column.filterSlot"></table-slot-head>
-                    </template>
-
-                    <div v-else-if="!column.filterMultiple" :class="[`${classPrefix}__filter-list`]">
+                    <div v-if="!column.filterMultiple" :class="[`${classPrefix}__filter-list`]">
                         <div :class="[
                                  `${classPrefix}__filter-item`,
                                  !column.__filterCheckedValues.length && `${classPrefix}__filter-item-active`
                              ]"
-                             @click.self="filterHandle()">{{t('cl.table.all')}}</div>
+                             @click.self="filterHandle()">{{t('m.table.all')}}</div>
                         <div :class="[
                                  `${classPrefix}__filter-item`,
                                  column.__filterCheckedValues.includes(item.value) && `${classPrefix}__filter-item-active`
@@ -69,23 +70,24 @@
                     </div>
 
                     <div v-else-if="column.filterMultiple" :class="[`${classPrefix}__filter-list`]">
-                        <checkbox-group v-model="filterMultipleValue">
+                        <CheckboxGroup v-model="filterMultipleValue">
                             <div :class="[
                                      `${classPrefix}__filter-item`,
                                      column.__filterCheckedValues.includes(item.value) && `${classPrefix}__filter-item-active`
                                  ]"
                                  v-for="item in column.filters"
                                  :key="item.value">
-                                    <checkbox :label="item.value">{{item.label}}</checkbox>
+                                    <Checkbox :label="item.value">{{item.label}}</Checkbox>
                             </div>
-                        </checkbox-group>
+                        </CheckboxGroup>
                         <div :class="[`${classPrefix}__filter-footer`]">
                             <Button size="mini" type="primary"
-                                    @click="filterMultiple">{{t('cl.table.filter')}}</Button>
-                            <Button size="mini" @click="resetFilterMultiple">{{t('cl.table.reset')}}</Button>
+                                    @click="filterMultiple">{{t('m.table.filter')}}</Button>
+                            <Button size="mini" @click="resetFilterMultiple">{{t('m.table.reset')}}</Button>
                         </div>
                     </div>
                 </Drop>
+                </transition>
             </span>
         </template>
     </div>
@@ -97,10 +99,10 @@
     import CheckboxGroup from 'packages/checkbox-group'
     import Button from 'packages/button'
     import Drop from 'packages/base/drop'
-    import tableSlotHead from './table-slot-head'
     import {directive as clickOutside} from 'v-click-outside-x';
     import Locale from 'main/mixins/locale'
     import Icon from 'packages/icon'
+    import tableSlotHead from './table-slot-head'
 
     export default {
         name: "TableHeadCell",

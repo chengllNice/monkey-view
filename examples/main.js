@@ -1,9 +1,8 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './routers/index'
-import store from './store'
 import 'packages/theme-default/index.scss'
-import ClUi from 'main/index.js'
+import MonkeyUI from 'main/index.js'
 import './assets/common.scss'
 
 import CodeWrap from './components/code-wrap.vue'
@@ -31,10 +30,9 @@ Vue.use(VueClipboard);
 
 Vue.config.productionTip = false
 
-Vue.use(ClUi);
+Vue.use(MonkeyUI);
 
 new Vue({
   router,
-  store,
   render: h => h(App)
 }).$mount('#app')

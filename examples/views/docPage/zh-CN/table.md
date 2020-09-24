@@ -12,13 +12,13 @@
 
 ```html
 <template>
-    <cl-table :data="data" :columns="columns" :hover="hover">
+    <Table :data="data" :columns="columns" :hover="hover">
         <template slot="footer">
             footer
         </template>
-    </cl-table>
+    </Table>
     <h4>禁用行的hover效果</h4>
-    <cl-switch v-model="hover"></cl-switch>
+    <m-switch v-model="hover"></m-switch>
 </template>
 <script>
     export default {
@@ -82,13 +82,13 @@
 ```html
 <template>
     <h4>mini</h4>
-    <cl-table size="mini" :data="data" :columns="columns"></cl-table>
+    <Table size="mini" :data="data" :columns="columns"></Table>
     <h4>small</h4>
-    <cl-table size="small" :data="data" :columns="columns"></cl-table>
+    <Table size="small" :data="data" :columns="columns"></Table>
     <h4>default</h4>
-    <cl-table :data="data" :columns="columns"></cl-table>
+    <Table :data="data" :columns="columns"></Table>
     <h4>large</h4>
-    <cl-table size="large" :data="data" :columns="columns"></cl-table>
+    <Table size="large" :data="data" :columns="columns"></Table>
 </template>
 <script>
     export default {
@@ -150,7 +150,7 @@
 
 ```html
 <template>
-    <cl-table :data="data" :columns="columns" stripe></cl-table>
+    <Table :data="data" :columns="columns" stripe></Table>
 </template>
 <script>
     export default {
@@ -217,7 +217,7 @@
 
 ```html
 <template>
-    <cl-table :data="data" :columns="columns" stripe border></cl-table>
+    <Table :data="data" :columns="columns" stripe border></Table>
 </template>
 <script>
     export default {
@@ -284,7 +284,7 @@
 
 ```html
 <template>
-    <cl-table :data="data" :columns="columns" stripe border height="400px"></cl-table>
+    <Table :data="data" :columns="columns" stripe border height="400px"></Table>
 </template>
 <script>
     export default {
@@ -340,12 +340,12 @@
 
 ```html
 <template>
-    <cl-table :data="data" :columns="columns" stripe border height="400px">
+    <Table :data="data" :columns="columns" stripe border height="400px">
         <template slot="operation" slot-scope="data">
-            <cl-button type="primary" size="mini">编辑</cl-button>
-            <cl-button type="danger" size="mini">删除</cl-button>
+            <Button type="primary" size="mini">编辑</Button>
+            <Button type="danger" size="mini">删除</Button>
         </template>
-    </cl-table>
+    </Table>
 </template>
 <script>
     export default {
@@ -450,9 +450,9 @@
 
 ```html
 <template>
-    <cl-button @click="selectAll(true)">全选</cl-button>
-    <cl-button @click="selectAll(false)">取消全选</cl-button>
-    <cl-table :data="data" :columns="columns" stripe border ref="table"></cl-table>
+    <Button @click="selectAll(true)">全选</Button>
+    <Button @click="selectAll(false)">取消全选</Button>
+    <Table :data="data" :columns="columns" stripe border ref="table"></Table>
 </template>
 <script>
     export default {
@@ -539,9 +539,9 @@
 
 ```html
 <template>
-    <cl-button @click="sortName">排序name列</cl-button>
-    <cl-button @click="clearSort">清除排序</cl-button>
-    <cl-table :data="data" :columns="columns" stripe border ref="table"></cl-table>
+    <Button @click="sortName">排序name列</Button>
+    <Button @click="clearSort">清除排序</Button>
+    <Table :data="data" :columns="columns" stripe border ref="table"></Table>
 </template>
 <script>
     export default {
@@ -628,7 +628,7 @@
 
 ```html
 <template>
-    <cl-table :data="data" :columns="columns" stripe border @filter-change="filterChange"></cl-table>
+    <Table :data="data" :columns="columns" stripe border @filter-change="filterChange"></Table>
 </template>
 <script>
     export default {
@@ -756,102 +756,6 @@
 
 
 
-:::demo 自定义筛选
-
-设置`columns`中的`filterSlot`可以自定义实现筛选，值为字符串类型。
-
-```html
-<template>
-    <cl-table :data="data" :columns="columns" stripe border>
-        <template slot="date">
-            <cl-date-picker v-model="filterDate" always-show-pane placement="bottom-end" @change="filterDateChange"><span></span></cl-date-picker>
-        </template>
-    </cl-table>
-</template>
-<script>
-    export default {
-        data(){
-            return {
-                filterDate: '',
-                columns: [
-                    {
-                        key: 'name',
-                        title: '姓名',
-                    },
-                    {
-                        key: 'age',
-                        title: '年龄',
-                    },
-                    {
-                        key: 'email',
-                        title: '邮箱',
-                    },
-                    {
-                        key: 'phone',
-                        title: '手机号',
-                    },
-                    {
-                        key: 'department',
-                        title: '部门',
-                    },
-                    {
-                        key: 'address',
-                        title: '地址',
-                    },
-                    {
-                        key: 'create_date',
-                        title: '创建日期',
-                        filterSlot: 'date',
-                        placement: 'bottom-end'
-                    },
-                ],
-                data: [],
-                allData: [],
-            }
-        },
-        mounted(){
-            this.data = [];
-            this.allData = [];
-           
-            let departments = ['前端部', '运维部', '测试部', '数据库研发中心'];
-            for (let i = 0; i < 5; i++){
-                let date = new Date();
-                date.setDate(i);
-                this.allData.push({
-                    name: 'Name' + i,
-                    age: 20 + parseInt(i),
-                    email: 'Email' + i,
-                    phone: 'Phone' + i,
-                    department: '业务平台部/研发部/' + departments[i % 4],
-                    address: '北京市海淀区上地三街西口',
-                    performance: '10000' + i,
-                    create_date: date.toDateString()
-                })
-            } 
-            this.data = this.allData;
-        },
-        methods: {
-            filterDateChange(value){
-                if(!value){
-                    this.data = this.allData;
-                    return;
-                }
-                let selectDate = new Date(value);
-                this.data = this.allData.filter(item=>{
-                    let t = new Date(item.create_date);
-                    return t.getTime() === selectDate.getTime();
-                })
-            }
-        }
-    }
-</script>
-
-```
-
-:::
-
-
-
 :::demo 自定义模板
 
 设置`columns`中某一列的`slot`可以自定义内容模板，`slotHead`可以自定义表头模板。
@@ -863,14 +767,14 @@ slotHead的`slot-scope`有一个参数当前列数据。
 
 ```html
 <template>
-    <cl-table :data="data" :columns="columns" stripe border>
+    <Table :data="data" :columns="columns" stripe border>
         <template slot="operation" slot-scope="data">
-            <cl-button type="danger" size="mini">删除</cl-button>
+            <Button type="danger" size="mini">删除</Button>
         </template>
         <template slot="operationHead" slot-scope="data">
             operationHead
         </template>
-    </cl-table>
+    </Table>
 </template>
 <script>
     export default {
@@ -939,33 +843,33 @@ slotHead的`slot-scope`有一个参数当前列数据。
 
 ```html
 <template>
-    <cl-table :data="data" :columns="columns" stripe>
+    <Table :data="data" :columns="columns" stripe>
         <template slot="expand" slot-scope="data">
-            <cl-list :split="false" :hover="false">
-                <cl-list-row>
-                    <cl-list-item  label="姓名" :value="data.row.name"></cl-list-item>
-                </cl-list-row>
-                <cl-list-row>
-                    <cl-list-item  label="年龄" :value="data.row.age"></cl-list-item>
-                </cl-list-row>
-                <cl-list-row>
-                    <cl-list-item  label="邮箱" :value="data.row.email"></cl-list-item>
-                </cl-list-row>
-                <cl-list-row>
-                    <cl-list-item  label="部门" :value="data.row.department"></cl-list-item>
-                </cl-list-row>
-                <cl-list-row>
-                    <cl-list-item  label="地址" :value="data.row.address"></cl-list-item>
-                </cl-list-row>
-                 <cl-list-row>
-                    <cl-list-item  label="绩效" :value="data.row.performance"></cl-list-item>
-                </cl-list-row>
-                <cl-list-row>
-                    <cl-list-item  label="创建时间" :value="data.row.create_date"></cl-list-item>
-                </cl-list-row>
-            </cl-list>
+            <List :split="false" :hover="false">
+                <ListRow>
+                    <List-item  label="姓名" :value="data.row.name"></List-item>
+                </ListRow>
+                <ListRow>
+                    <List-item  label="年龄" :value="data.row.age"></List-item>
+                </ListRow>
+                <ListRow>
+                    <List-item  label="邮箱" :value="data.row.email"></List-item>
+                </ListRow>
+                <ListRow>
+                    <List-item  label="部门" :value="data.row.department"></List-item>
+                </ListRow>
+                <ListRow>
+                    <List-item  label="地址" :value="data.row.address"></List-item>
+                </ListRow>
+                 <ListRow>
+                    <List-item  label="绩效" :value="data.row.performance"></List-item>
+                </ListRow>
+                <ListRow>
+                    <List-item  label="创建时间" :value="data.row.create_date"></List-item>
+                </ListRow>
+            </List>
         </template>
-    </cl-table>
+    </Table>
 </template>
 <script>
     export default {
@@ -1027,7 +931,7 @@ slotHead的`slot-scope`有一个参数当前列数据。
 
 ```html
 <template>
-    <cl-table :data="data" :columns="columns" stripe></cl-table>
+    <Table :data="data" :columns="columns" stripe border></Table>
 </template>
 <script>
     export default {
@@ -1098,6 +1002,110 @@ slotHead的`slot-scope`有一个参数当前列数据。
 :::
 
 
+:::demo 多行多列表格
+
+设置`span-method`属性可实现多行多列表格。
+
+该方法参数对象有4个：
+
+- `row`: 当前行
+- `column`: 当前列
+- `rowIndex`: 当前行索引
+- `columnIndex`: 当前列索引
+
+该方法可以返回一个包含两个数字的数组，第一个值为`rowspan`，第二个值为`colspan`；也可以返回一个对象，键为`rowspan`和`colspan`。
+
+
+```html
+<template>
+    <Table :data="data" :columns="columns" border :span-method="spanMethod"></Table>
+</template>
+<script>
+    export default {
+        data(){
+            return {
+                columns: [
+                    {
+                        title: '模块',
+                        key: 'module'
+                    },
+                    {
+                        title: '一级类目',
+                        key: 'oneLevelName'
+                    },
+                    {
+                        title: '权重',
+                        key: 'weight'
+                    },
+                    {
+                        title: '标准评分',
+                        key: 'score'
+                    },
+                    {
+                        title: '权重得分',
+                        key: 'weightScore'
+                    }
+                ],
+                data: [
+                    {
+                        module: '项目基本信息',
+                        oneLevelName: '项目基本概况',
+                        weight: '20%',
+                        score: '80',
+                        weightScore: '16',
+                    },
+                    {
+                        module: '项目基本信息',
+                        oneLevelName: '项目团队信息',
+                        weight: '30%',
+                        score: '90',
+                        weightScore: '27',
+                    },
+                    {
+                        module: '项目基本信息',
+                        oneLevelName: '项目热度',
+                        weight: '50%',
+                        score: '100',
+                        weightScore: '50',
+                    },
+                    {
+                        module: '合计',
+                        oneLevelName: '合计',
+                        weight: '100%',
+                        score: '270',
+                        weightScore: '93',
+                    }
+                ],
+            }
+        },
+        methods: {
+            spanMethod({ row, column, rowIndex, columnIndex }){
+                if (rowIndex === 0 && columnIndex === 0) {
+                    return [3, 1];
+                } else if([1, 2].includes(rowIndex) && columnIndex === 0) {
+                    return [0, 0];
+                }
+                if (rowIndex === 3 && columnIndex === 0) {
+                    return {
+                        rowspan: 1,
+                        colspan: 2
+                    };
+                } else if(rowIndex === 3 && columnIndex === 1){
+                    return {
+                        rowspan: 0,
+                        colspan: 0
+                    };
+                }
+            }
+        }
+    }
+</script>
+
+```
+
+:::
+
+
 :::demo 加载中
 
 设置`loading`属性可以控制加载中的状态，实现异步数据加载时的loading状态。
@@ -1105,9 +1113,9 @@ slotHead的`slot-scope`有一个参数当前列数据。
 
 ```html
 <template>
-    <cl-table :data="data" :columns="columns" stripe :loading="loading"></cl-table>
+    <Table :data="data" :columns="columns" stripe border :loading="loading"></Table>
     <h4>切换加载中的状态</h4>
-    <cl-switch v-model="loading"></cl-switch>
+    <m-switch v-model="loading"></m-switch>
 </template>
 <script>
     export default {
@@ -1185,8 +1193,8 @@ slotHead的`slot-scope`有一个参数当前列数据。
 
 ```html
 <template>
-    <cl-table :data="data" :columns="columns" :hover="hover" :loading="loading"></cl-table>
-    <cl-page :total="pageInfo.total" :page="pageInfo.page" :pageSize="pageInfo.pageSize" background @change="pageChange" />
+    <Table :data="data" :columns="columns" :hover="hover" :loading="loading"></Table>
+    <Page :total="pageInfo.total" :page="pageInfo.page" :pageSize="pageInfo.pageSize" background @change="pageChange" />
 </template>
 <script>
     export default {
@@ -1272,6 +1280,7 @@ slotHead的`slot-scope`有一个参数当前列数据。
 | showHeader | Boolean | 是否显示表头 | true |
 | size | String | 表格尺寸，可选值 `mini` `small` `large`或者不设置 | - |
 | loading | Boolean | 表格数据加载状态 | - |
+| span-method | Function | 该方法设置多行多列表格，详见示例 | - |
 
 
 ### Table event
@@ -1328,7 +1337,6 @@ slotHead的`slot-scope`有一个参数当前列数据。
 | sort | String, Boolean | 列排序，可选值 `true` `ascend` `descend` `remote`, 值为true是开始排序功能，值为ascend默认显示升序排列，descend默认显示降序排列，remote自定义排序，可以监听`sort-change`事件实现 | - |
 | filters | Array | 筛选数据，例如：`[{label: '筛选一', value: '0'}]`的形式，每项必须包含label和value，此时可以监听`filter-change`事件实现数据筛选 | - |
 | filterMultiple | Boolean | 是否开启多选筛选 | - |
-| filterSlot | String | 自定义筛选的下拉内容 | - |
 | slot | String | 自定义表格数据模板的插槽name名称，`slot-scope`数据包括`row`行数据，`column`列数据 | - |
 | slotHead | String | 自定义表格表头数据模板的插槽name名称，`slot-scope`数据包括`column`列数据 | - |
 | children | Array | 表头嵌套 | - |

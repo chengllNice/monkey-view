@@ -89,10 +89,6 @@
         components: {
             Icon
         },
-        created() {
-        },
-        mounted() {
-        },
         methods: {
             handlerClose() {
                 this.$emit('close')

@@ -119,10 +119,10 @@
         },
         computed: {
             localOkText() {
-                return this.okText === null ? null : (this.okText ? this.okText : this.t('cl.drawer.okText'));
+                return this.okText === null ? null : (this.okText ? this.okText : this.t('m.drawer.okText'));
             },
             localCancelText() {
-                return this.cancelText === null ? null : (this.cancelText ? this.cancelText : this.t('cl.drawer.cancelText'));
+                return this.cancelText === null ? null : (this.cancelText ? this.cancelText : this.t('m.drawer.cancelText'));
             },
             drawerStyle() {
                 let style = {};

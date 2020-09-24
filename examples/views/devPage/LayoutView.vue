@@ -13,7 +13,7 @@
             <span slot="close">隐藏trigger</span>
         </m-switch>
         <div>
-            定义收起的宽度： <m-input type="number" v-model="collapsedWidth"></m-input>
+            定义收起的宽度： <Input type="number" v-model="collapsedWidth"></Input>
         </div>
         <Layout>
             <Header class="center">header</Header>
@@ -171,35 +171,35 @@
         </Layout>
 
 
-        <div class="viewDes">
+        <div class="views-dev">
             <h3>API</h3>
             <h4>sider props</h4>
 
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：value</b></p>
                 <p><b>类型：Boolean</b></p>
                 <p><b>说明：</b>控制展开收起，可以使用v-model双向绑定，true(收起),false(展开)</p>
                 <p><b>默认值：</b></p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：width</b></p>
                 <p><b>类型：String, Number</b></p>
                 <p><b>说明：</b>宽度</p>
                 <p><b>默认值：</b>200</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：height</b></p>
                 <p><b>类型：String, Number</b></p>
                 <p><b>说明：</b>设置滚动的高度</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：collapsedWidth</b></p>
                 <p><b>类型：String, Number</b></p>
                 <p><b>说明：</b>收起时的宽度</p>
                 <p><b>默认值：</b>60</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：hideTrigger</b></p>
                 <p><b>类型：Boolean</b></p>
                 <p><b>说明：</b>是否隐藏trigger</p>
@@ -207,26 +207,26 @@
             </div>
         </div>
 
-        <div class="viewDes">
+        <div class="views-dev">
             <h3>API</h3>
             <h4>sider event</h4>
 
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>事件名：collapse</b></p>
                 <p><b>说明：</b>展开收起时触发</p>
                 <p><b>返回值：</b>value</p>
             </div>
         </div>
 
-        <div class="viewDes">
+        <div class="views-dev">
             <h3>API</h3>
             <h4>sider slot</h4>
 
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>名称：header</b></p>
                 <p><b>说明：</b>定义header</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>名称：trigger</b></p>
                 <p><b>说明：</b>自定义trigger</p>
             </div>
@@ -332,7 +332,7 @@
 <style lang="scss">
     .sider-close{
         .fixed-layout-submenu{
-            .cl-submenu__title{
+            .m-submenu__title{
                 padding: 0 16px;
             }
         }

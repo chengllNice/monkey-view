@@ -92,7 +92,7 @@
         },
         computed: {
             localEmptyText() {
-                return this.emptyText ? this.emptyText : this.t('cl.tree.emptyData');
+                return this.emptyText ? this.emptyText : this.t('m.tree.emptyData');
             },
             isEmpty() {
                 if (this.currentData && this.currentData.length) {
@@ -106,8 +106,6 @@
         },
         components: {
             TreeNode
-        },
-        created() {
         },
         mounted() {
             this.$nextTick(() => {

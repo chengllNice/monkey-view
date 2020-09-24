@@ -11,8 +11,8 @@
 
 ```html
 <template>
-    <cl-tag>标签</cl-tag>
-    <cl-tag v-show="showBase" closable @close="closeClick">标签</cl-tag>
+    <Tag>标签</Tag>
+    <Tag v-show="showBase" closable @close="closeClick">标签</Tag>
 </template>
 <script>
     export default {
@@ -38,10 +38,10 @@
 
 ```html
 <template>
-    <cl-tag size="mini">标签</cl-tag>
-    <cl-tag size="small">标签</cl-tag>
-    <cl-tag>标签</cl-tag>
-    <cl-tag size="large">标签</cl-tag>
+    <Tag size="mini">标签</Tag>
+    <Tag size="small">标签</Tag>
+    <Tag>标签</Tag>
+    <Tag size="large">标签</Tag>
 </template>
 ```
 :::
@@ -53,8 +53,8 @@
 
 ```html
 <template>
-    <cl-tag ghost>标签</cl-tag>
-    <cl-tag ghost v-show="showGhost" closable @close="closeClick('Ghost')">标签</cl-tag>
+    <Tag ghost>标签</Tag>
+    <Tag ghost v-show="showGhost" closable @close="closeClick('Ghost')">标签</Tag>
 </template>
 <script>
     export default {
@@ -81,33 +81,33 @@
 ```html
 <template>
     <h4>内置颜色</h4>
-    <cl-tag>标签</cl-tag>
-    <cl-tag color="primary">标签</cl-tag>
-    <cl-tag color="danger">标签</cl-tag>
-    <cl-tag color="warning">标签</cl-tag>
-    <cl-tag color="success">标签</cl-tag>
-    <cl-tag color="info">标签</cl-tag>
-    <cl-tag color="default-o">标签</cl-tag>
-    <cl-tag color="primary-o">标签</cl-tag>
-    <cl-tag color="danger-o">标签</cl-tag>
-    <cl-tag color="warning-o">标签</cl-tag>
-    <cl-tag color="success-o">标签</cl-tag>
-    <cl-tag color="info-o">标签</cl-tag>
+    <Tag>标签</Tag>
+    <Tag color="primary">标签</Tag>
+    <Tag color="danger">标签</Tag>
+    <Tag color="warning">标签</Tag>
+    <Tag color="success">标签</Tag>
+    <Tag color="info">标签</Tag>
+    <Tag color="default-o">标签</Tag>
+    <Tag color="primary-o">标签</Tag>
+    <Tag color="danger-o">标签</Tag>
+    <Tag color="warning-o">标签</Tag>
+    <Tag color="success-o">标签</Tag>
+    <Tag color="info-o">标签</Tag>
     <h4>自定义颜色#000000</h4>
-    <cl-tag color="#000000">标签</cl-tag>
-    <cl-tag color="#000000" closable>标签</cl-tag>
-    <cl-tag color="#000000" ghost>标签</cl-tag>
-    <cl-tag color="#000000" closable ghost>标签</cl-tag>
+    <Tag color="#000000">标签</Tag>
+    <Tag color="#000000" closable>标签</Tag>
+    <Tag color="#000000" ghost>标签</Tag>
+    <Tag color="#000000" closable ghost>标签</Tag>
     <h4>自定义颜色#87d068</h4>
-    <cl-tag color="#87d068">标签</cl-tag>
-    <cl-tag color="#87d068" closable>标签</cl-tag>
-    <cl-tag color="#87d068" ghost>标签</cl-tag>
-    <cl-tag color="#87d068" closable ghost>标签</cl-tag>
+    <Tag color="#87d068">标签</Tag>
+    <Tag color="#87d068" closable>标签</Tag>
+    <Tag color="#87d068" ghost>标签</Tag>
+    <Tag color="#87d068" closable ghost>标签</Tag>
     <h4>自定义颜色#ffa2d3</h4>
-    <cl-tag color="#ffa2d3">标签</cl-tag>
-    <cl-tag color="#ffa2d3" closable>标签</cl-tag>
-    <cl-tag color="#ffa2d3" ghost>标签</cl-tag>
-    <cl-tag color="#ffa2d3" closable ghost>标签</cl-tag>
+    <Tag color="#ffa2d3">标签</Tag>
+    <Tag color="#ffa2d3" closable>标签</Tag>
+    <Tag color="#ffa2d3" ghost>标签</Tag>
+    <Tag color="#ffa2d3" closable ghost>标签</Tag>
 </template>
 ```
 :::
@@ -119,11 +119,11 @@
 
 ```html
 <template>
-    <cl-tag color="primary" checkable>标签</cl-tag>
-    <cl-tag color="danger" checkable>标签</cl-tag>
-    <cl-tag color="warning" checkable>标签</cl-tag>
-    <cl-tag color="success" checkable>标签</cl-tag>
-    <cl-tag color="info" checkable>标签</cl-tag>
+    <Tag color="primary" checkable>标签</Tag>
+    <Tag color="danger" checkable>标签</Tag>
+    <Tag color="warning" checkable>标签</Tag>
+    <Tag color="success" checkable>标签</Tag>
+    <Tag color="info" checkable>标签</Tag>
 </template>
 ```
 :::
@@ -135,10 +135,10 @@
 
 ```html
 <template>
-    <cl-tag v-for="item in tagList" :key="item.id" closable @close="tagClose(item)">{{item.name}}</cl-tag>
+    <Tag v-for="item in tagList" :key="item.id" closable @close="tagClose(item)">{{item.name}}</Tag>
     <p>添加</p>
-    <cl-input ref="tagInput" v-model="tagInputValue" v-show="showInput" size="mini" @enter="inputEnter" style="width: 78px;" @blur="blurInput"></cl-input>
-    <cl-tag v-show="!showInput" @click="newTagClick"><Icon type="plus"></Icon> New Tag</cl-tag>
+    <Input ref="tagInput" v-model="tagInputValue" v-show="showInput" size="mini" @enter="inputEnter" style="width: 78px;" @blur="blurInput"></Input>
+    <Tag v-show="!showInput" @click="newTagClick"><Icon type="plus"></Icon> New Tag</Tag>
 </template>
 <script>
     export default {

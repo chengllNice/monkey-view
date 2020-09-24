@@ -10,9 +10,9 @@ const md = require('./config');
 module.exports = function (source) {
   const content = md.render(source);
 
-  const startTag = '<!--cl-ui-doc:';
+  const startTag = '<!--monkey-ui-doc:';
   const startTagLen = startTag.length;
-  const endTag = ':cl-ui-doc-->';
+  const endTag = ':monkey-ui-doc-->';
   const endTagLen = endTag.length;
 
   let componenetsString = '';
@@ -30,7 +30,7 @@ module.exports = function (source) {
     const html = stripTemplate(commentContent);
     const script = stripScript(commentContent);
     let demoComponentContent = genInlineComponentText(html, script);
-    const demoComponentName = `cl-ui-demo${id}`;
+    const demoComponentName = `monkey-ui-demo${id}`;
     output.push(`<template slot="source"><${demoComponentName} /></template>`);
     componenetsString += `${JSON.stringify(demoComponentName)}: ${demoComponentContent},`;
 
@@ -62,7 +62,7 @@ module.exports = function (source) {
 
   let dealComponent = `
     <template>
-      <section class="doc-article cl-ui-doc">
+      <section class="doc-article monkey-ui-doc">
         ${output.join('')}
       </section>
     </template>

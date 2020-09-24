@@ -80,10 +80,11 @@
         },
         computed: {
             expandStyle() {
-                return {
-                    width: this.dropdownMatchSelectWidth ? this.width : 'auto',
-                    minWidth: this.minWidth === true ? this.width : (this.minWidth ? (parseInt(this.minWidth) + 'px') : ''),
-                }
+                let style = {width: 'auto'};
+                if(this.dropdownMatchSelectWidth) style = {width: this.width}
+                if(this.minWidth === true) style = {...style, minWidth: this.width}
+                if(this.minWidth !== true && this.minWidth) style = {...style, minWidth: parseInt(this.minWidth) + 'px'}
+                return style;
             },
         },
         mounted() {
@@ -129,7 +130,9 @@
             },
             updatePopper() {
                 if (isServer) return;
-                this.setWidth();
+                this.$nextTick(() => {
+                    this.setWidth();
+                })
                 this.popperJS ? this.popperJS.update() : this.$nextTick(this.createPopper());
             },
             renderToHtml(){

@@ -4,41 +4,52 @@
             className,
          ]"
          v-click-outside.capture="handleClickOutside">
-        <div :class="[`${classPrefix}__reference`]" ref="reference">
-            <slot>
-                <sn-input v-model="dateInputValue"
-                          ref="timeInput"
-                          :suffix="suffix"
-                          :prefix="prefix"
-                          :size="computedSize"
-                          :disabled="disabled"
-                          :clearable="clearable"
-                          :placeholder="placeholder"
-                          :readonly="readonlyInput"
-                          @enter="handleEnter"
-                          @click.native="handleFocus"
-                          @clear="handleClear"></sn-input>
-            </slot>
-        </div>
-        <transition :name="transition">
-            <Drop v-show="visible && !disabled"
-                  ref="dropDown"
-                  :class="dropdownClassName"
-                  :reference="this.$refs.reference"
-                  :placement="placement"
-                  :min-width="false"
-                  :dropdownMatchSelectWidth="false"
-                  :render-html="renderHtml"
-                  v-model="visible">
-                <div :class="[`${classPrefix}__drop-down-inner`]">
-                    <date-pane picker-type='time'
-                               v-model="dateValue"
-                               :is-range="isRange"
-                               :type="type"
-                               @change="handleDateValueChange"/>
-                </div>
-            </Drop>
-        </transition>
+        <template v-if="!onlyShowPane">
+            <div :class="[`${classPrefix}__reference`]" ref="reference">
+                <slot>
+                    <Input v-model="dateInputValue"
+                           ref="timeInput"
+                           :suffix="suffix"
+                           :prefix="prefix"
+                           :size="computedSize"
+                           :disabled="disabled"
+                           :clearable="clearable"
+                           :placeholder="placeholder"
+                           :readonly="readonlyInput"
+                           @enter="handleEnter"
+                           @click.native="handleFocus"
+                           @clear="handleClear"></Input>
+                </slot>
+            </div>
+            <transition :name="transition">
+                <Drop v-show="visible && !disabled"
+                      ref="dropDown"
+                      :class="dropdownClassName"
+                      :reference="this.$refs.reference"
+                      :placement="placement"
+                      :min-width="false"
+                      :dropdownMatchSelectWidth="false"
+                      :render-html="renderHtml"
+                      v-model="visible">
+                    <div :class="[`${classPrefix}__drop-down-inner`]">
+                        <date-pane picker-type='time'
+                                   v-model="dateValue"
+                                   :is-range="isRange"
+                                   :type="type"
+                                   @change="handleDateValueChange"/>
+                    </div>
+                </Drop>
+            </transition>
+        </template>
+        <template v-else>
+            <div :class="[`${classPrefix}__drop-down-inner`]">
+                <date-pane picker-type='time'
+                           v-model="dateValue"
+                           :is-range="isRange"
+                           :type="type"
+                           @change="handleDateValueChange"/>
+            </div>
+        </template>
     </div>
 </template>
 
@@ -143,6 +154,7 @@
             },//两个时间之间的分隔符
             className: String,//选择器的类名
             dropdownClassName: String,//时间下拉框的类名
+            onlyShowPane: Boolean,//是否只显示pane日期框
         },
         data() {
             return {
@@ -170,7 +182,7 @@
         components: {
             Drop,
             DatePane,
-            'sn-input': Input
+            Input
         },
         mounted() {
             this.initDateValue();

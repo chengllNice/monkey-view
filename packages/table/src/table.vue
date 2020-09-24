@@ -127,6 +127,9 @@
                 type: Boolean,
                 default: true
             },//是否开启行hover的效果
+            spanMethod: {
+                type: Function
+            }
         },
         data() {
             return {
@@ -150,7 +153,7 @@
         },
         computed: {
             localEmptyText() {
-                return this.emptyText ? this.emptyText : this.t('cl.table.emptyData');
+                return this.emptyText ? this.emptyText : this.t('m.table.emptyData');
             },
             tableStyle() {
                 let style = {};

@@ -12,9 +12,6 @@ export default {
             defaultLoad: true,//是否是默认第一次加载数据
         }
     },
-    mounted(){
-
-    },
     methods: {
         //深度克隆并给指定data添加初始值
         deepCloneData(data, parentItem){

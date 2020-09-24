@@ -22,7 +22,7 @@
                 <div :class="[`${classPrefix}__footer`]">
                     <Icon type="circle-plus" @click="handleAction('zoomIn')"></Icon>
                     <Icon type="remove" @click="handleAction('zoomOut')"></Icon>
-                    <Icon type="look-up" @click="handleAction('toggle')"></Icon>
+                    <Icon :type="actionToggle === 'max' ? 'look' : 'renew'" @click="handleAction('toggle')"></Icon>
                     <Icon type="refresh" @click="handleAction('rotateLeft')"></Icon>
                     <Icon type="refresh" @click="handleAction('rotateRight')"></Icon>
                 </div>
@@ -63,14 +63,14 @@
                     translateX: 0,
                     translateY: 0,
                 },
-                actionToggle: 'limit', //nomral正常 limit限制最大宽高
+                actionToggle: 'max', //nomral正常 max限制最大宽高
             }
         },
         computed: {
             imageStyle() {
                 let {scale, rotate, translateX, translateY} = this.transform;
                 let style = {};
-                if (this.actionToggle === 'limit') {
+                if (this.actionToggle === 'max') {
                     style = {
                         maxWidth: '100%',
                         maxHeight: '100%',
@@ -127,7 +127,7 @@
                         scale = scale - this.everyScale;
                         break;
                     case 'toggle':
-                        this.actionToggle = this.actionToggle === 'limit' ? 'normal' : 'limit';
+                        this.actionToggle = this.actionToggle === 'max' ? 'normal' : 'max';
                         break;
                     case 'rotateLeft':
                         rotate = rotate + this.everyRotate;

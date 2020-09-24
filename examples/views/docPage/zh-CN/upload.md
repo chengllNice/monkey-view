@@ -21,10 +21,10 @@
 
 ```html
 <template>
-    <cl-upload action="//jsonplaceholder.typicode.com/posts/" accept=".jpg,.png" :format="['jpg', 'png']" :maxSize="500" :limit="5" :onExceed="exceedHandler">
-        <cl-button>upload</cl-button>
-        <div slot="tip" class="cl-upload__tip">只能上传jpg/png文件，大小不能超过500kb</div>
-    </cl-upload>
+    <Upload action="//jsonplaceholder.typicode.com/posts/" accept=".jpg,.png" :format="['jpg', 'png']" :maxSize="500" :limit="5" :onExceed="exceedHandler">
+        <Button>upload</Button>
+        <div slot="tip" class="Upload__tip">只能上传jpg/png文件，大小不能超过500kb</div>
+    </Upload>
 </template>
 <script>
     export default {
@@ -63,10 +63,10 @@
 
 ```html
 <template>
-    <cl-upload action="//jsonplaceholder.typicode.com/posts/" multiple>
-        <cl-button>upload</cl-button>
-        <div slot="tip" class="cl-upload__tip">可以一次选择多个文件上传</div>
-    </cl-upload>
+    <Upload action="//jsonplaceholder.typicode.com/posts/" multiple>
+        <Button>upload</Button>
+        <div slot="tip" class="Upload__tip">可以一次选择多个文件上传</div>
+    </Upload>
 </template>
 ```
 :::
@@ -78,11 +78,11 @@
 
 ```html
 <template>
-    <cl-upload action="//jsonplaceholder.typicode.com/posts/" 
+    <Upload action="//jsonplaceholder.typicode.com/posts/" 
     :file-list="fileList" :before-upload="beforeUploadHandler">
-        <cl-button>select file</cl-button>
-    </cl-upload>
-    <cl-button type="primary" :disabled="!fileList.length" :loading="loading" @click="clickHandler">click upload file</cl-button>
+        <Button>select file</Button>
+    </Upload>
+    <Button type="primary" :disabled="!fileList.length" :loading="loading" @click="clickHandler">click upload file</Button>
 </template>
 <script>
     export default {
@@ -120,10 +120,10 @@
 
 ```html
 <template>
-    <cl-upload action="//jsonplaceholder.typicode.com/posts/" drag>
+    <Upload action="//jsonplaceholder.typicode.com/posts/" drag>
         <Icon type="cloud-upload" style="color: #2d8cf0;"></Icon>
         <div class="doc-upload-title">drag upload file</div>
-    </cl-upload>
+    </Upload>
 </template>
 ```
 :::
@@ -135,7 +135,7 @@
 
 ```html
 <template>
-    <cl-upload action="//jsonplaceholder.typicode.com/posts/" 
+    <Upload action="//jsonplaceholder.typicode.com/posts/" 
     drag 
     listType="picture-card" 
     :file-list="fileListPictureCard" 
@@ -144,10 +144,10 @@
     :onSuccess="handlerSuccess">
         <Icon type="plus"></Icon>
         <div>上传文件</div>
-    </cl-upload>
-    <cl-modal v-model="modalVisible" footer-hide>
+    </Upload>
+    <Modal v-model="modalVisible" footer-hide>
         <img :src="modalFile.url" width="100%" alt="" />
-    </cl-modal>
+    </Modal>
 </template>
 <script>
     export default {
@@ -193,13 +193,13 @@
 
 ```html
 <template>
-    <cl-upload action="//jsonplaceholder.typicode.com/posts/" 
+    <Upload action="//jsonplaceholder.typicode.com/posts/" 
     listType="picture" 
     :file-list="fileListPicture" 
     :onRemove="handlerRemove" 
     :onSuccess="handlerSuccess">
-        <cl-button>upload</cl-button>
-    </cl-upload>
+        <Button>upload</Button>
+    </Upload>
 </template>
 <script>
     export default {

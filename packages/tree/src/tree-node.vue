@@ -95,11 +95,6 @@
             Icon,
             Checkbox
         },
-        created() {
-        },
-        mounted() {
-
-        },
         methods: {
             handleClick(item) {
                 if(this.parentComponent.expandClickOnNode){
@@ -116,6 +111,7 @@
                             this.parentComponent.setReduceDataProp(item,'children', result);
                             this.parentComponent.setReduceDataProp(item,'__loading', false);
                         }).catch(e => {
+                            console.log(e)
                             this.parentComponent.setReduceDataProp(item,'__loading', false);
                         });
                     }

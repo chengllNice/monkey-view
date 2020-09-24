@@ -12,24 +12,24 @@
 
 ```html
 <template>
-    <cl-tabs v-model="activeTab">
-        <cl-tab-pane label="标签一" c-key="1" disabled>
+    <Tabs v-model="activeTab">
+        <TabPane label="标签一" c-key="1" disabled>
             标签一内容
-        </cl-tab-pane>
-        <cl-tab-pane label="标签二" c-key="2">
+        </TabPane>
+        <TabPane label="标签二" c-key="2">
             标签二内容
-        </cl-tab-pane>
-        <cl-tab-pane c-key="3">
+        </TabPane>
+        <TabPane c-key="3">
             <div slot="label">标签三</div>
             标签三内容
-        </cl-tab-pane>
-        <cl-tab-pane label="标签四" c-key="4" disabled>
+        </TabPane>
+        <TabPane label="标签四" c-key="4" disabled>
             标签四内容
-        </cl-tab-pane>
-        <cl-tab-pane label="标签五" c-key="5">
+        </TabPane>
+        <TabPane label="标签五" c-key="5">
             标签五内容
-        </cl-tab-pane>
-    </cl-tabs>
+        </TabPane>
+    </Tabs>
 </template>
 <script>
     export default {
@@ -53,60 +53,60 @@
 ```html
 <template>
     <h4>mini</h4>
-    <cl-tabs size="mini">
-        <cl-tab-pane label="标签一" c-key="1">
+    <Tabs size="mini">
+        <TabPane label="标签一" c-key="1">
             标签一内容
-        </cl-tab-pane>
-        <cl-tab-pane label="标签二" c-key="2">
+        </TabPane>
+        <TabPane label="标签二" c-key="2">
             标签二内容
-        </cl-tab-pane>
-        <cl-tab-pane c-key="3">
+        </TabPane>
+        <TabPane c-key="3">
             <div slot="label">标签三</div>
             标签三内容
-        </cl-tab-pane>
-    </cl-tabs>
+        </TabPane>
+    </Tabs>
     
     <h4>small</h4>
-    <cl-tabs size="small">
-        <cl-tab-pane label="标签一" c-key="1">
+    <Tabs size="small">
+        <TabPane label="标签一" c-key="1">
             标签一内容
-        </cl-tab-pane>
-        <cl-tab-pane label="标签二" c-key="2">
+        </TabPane>
+        <TabPane label="标签二" c-key="2">
             标签二内容
-        </cl-tab-pane>
-        <cl-tab-pane c-key="3">
+        </TabPane>
+        <TabPane c-key="3">
             <div slot="label">标签三</div>
             标签三内容
-        </cl-tab-pane>
-    </cl-tabs>
+        </TabPane>
+    </Tabs>
     
     <h4>default</h4>
-    <cl-tabs>
-        <cl-tab-pane label="标签一" c-key="1">
+    <Tabs>
+        <TabPane label="标签一" c-key="1">
             标签一内容
-        </cl-tab-pane>
-        <cl-tab-pane label="标签二" c-key="2">
+        </TabPane>
+        <TabPane label="标签二" c-key="2">
             标签二内容
-        </cl-tab-pane>
-        <cl-tab-pane c-key="3">
+        </TabPane>
+        <TabPane c-key="3">
             <div slot="label">标签三</div>
             标签三内容
-        </cl-tab-pane>
-    </cl-tabs>
+        </TabPane>
+    </Tabs>
     
     <h4>large</h4>
-    <cl-tabs size="large">
-        <cl-tab-pane label="标签一" c-key="1">
+    <Tabs size="large">
+        <TabPane label="标签一" c-key="1">
             标签一内容
-        </cl-tab-pane>
-        <cl-tab-pane label="标签二" c-key="2">
+        </TabPane>
+        <TabPane label="标签二" c-key="2">
             标签二内容
-        </cl-tab-pane>
-        <cl-tab-pane c-key="3">
+        </TabPane>
+        <TabPane c-key="3">
             <div slot="label">标签三</div>
             标签三内容
-        </cl-tab-pane>
-    </cl-tabs>
+        </TabPane>
+    </Tabs>
 </template>
 
 ```
@@ -120,18 +120,18 @@
 
 ```html
 <template>
-    <cl-tabs type="card">
-        <cl-tab-pane label="标签一" c-key="1">
+    <Tabs type="card">
+        <TabPane label="标签一" c-key="1">
             标签一内容
-        </cl-tab-pane>
-        <cl-tab-pane label="标签二" c-key="2">
+        </TabPane>
+        <TabPane label="标签二" c-key="2">
             标签二内容
-        </cl-tab-pane>
-        <cl-tab-pane c-key="3">
+        </TabPane>
+        <TabPane c-key="3">
             <div slot="label">标签三</div>
             标签三内容
-        </cl-tab-pane>
-    </cl-tabs>
+        </TabPane>
+    </Tabs>
 </template>
 
 ```
@@ -145,19 +145,19 @@
 
 ```html
 <template>
-    <cl-tabs align="left">
-        <cl-button size="small" slot="extra">ADD</cl-button>
-        <cl-tab-pane label="标签一" c-key="1">
+    <Tabs align="left">
+        <Button size="small" slot="extra">ADD</Button>
+        <TabPane label="标签一" c-key="1">
             标签一内容
-        </cl-tab-pane>
-        <cl-tab-pane label="标签二" c-key="2">
+        </TabPane>
+        <TabPane label="标签二" c-key="2">
             标签二内容
-        </cl-tab-pane>
-        <cl-tab-pane c-key="3">
+        </TabPane>
+        <TabPane c-key="3">
             <div slot="label">标签三</div>
             标签三内容
-        </cl-tab-pane>
-    </cl-tabs>
+        </TabPane>
+    </Tabs>
 </template>
 
 ```
@@ -172,46 +172,46 @@
 ```html
 <template>
     <h4>left</h4>
-    <cl-tabs align="left">
-        <cl-tab-pane label="标签一" c-key="1">
+    <Tabs align="left">
+        <TabPane label="标签一" c-key="1">
             标签一内容
-        </cl-tab-pane>
-        <cl-tab-pane label="标签二" c-key="2">
+        </TabPane>
+        <TabPane label="标签二" c-key="2">
             标签二内容
-        </cl-tab-pane>
-        <cl-tab-pane c-key="3">
+        </TabPane>
+        <TabPane c-key="3">
             <div slot="label">标签三</div>
             标签三内容
-        </cl-tab-pane>
-    </cl-tabs>
+        </TabPane>
+    </Tabs>
     
     <h4>center</h4>
-    <cl-tabs align="center">
-        <cl-tab-pane label="标签一" c-key="1">
+    <Tabs align="center">
+        <TabPane label="标签一" c-key="1">
             标签一内容
-        </cl-tab-pane>
-        <cl-tab-pane label="标签二" c-key="2">
+        </TabPane>
+        <TabPane label="标签二" c-key="2">
             标签二内容
-        </cl-tab-pane>
-        <cl-tab-pane c-key="3">
+        </TabPane>
+        <TabPane c-key="3">
             <div slot="label">标签三</div>
             标签三内容
-        </cl-tab-pane>
-    </cl-tabs>
+        </TabPane>
+    </Tabs>
     
     <h4>right</h4>
-    <cl-tabs align="right">
-        <cl-tab-pane label="标签一" c-key="1">
+    <Tabs align="right">
+        <TabPane label="标签一" c-key="1">
             标签一内容
-        </cl-tab-pane>
-        <cl-tab-pane label="标签二" c-key="2">
+        </TabPane>
+        <TabPane label="标签二" c-key="2">
             标签二内容
-        </cl-tab-pane>
-        <cl-tab-pane c-key="3">
+        </TabPane>
+        <TabPane c-key="3">
             <div slot="label">标签三</div>
             标签三内容
-        </cl-tab-pane>
-    </cl-tabs>
+        </TabPane>
+    </Tabs>
 </template>
 
 ```
@@ -225,18 +225,18 @@
 
 ```html
 <template>
-    <cl-tabs border type="card">
-        <cl-tab-pane label="标签一" c-key="1">
+    <Tabs border type="card">
+        <TabPane label="标签一" c-key="1">
             标签一内容
-        </cl-tab-pane>
-        <cl-tab-pane label="标签二" c-key="2">
+        </TabPane>
+        <TabPane label="标签二" c-key="2">
             标签二内容
-        </cl-tab-pane>
-        <cl-tab-pane c-key="3">
+        </TabPane>
+        <TabPane c-key="3">
             <div slot="label">标签三</div>
             标签三内容
-        </cl-tab-pane>
-    </cl-tabs>
+        </TabPane>
+    </Tabs>
 </template>
 
 ```
@@ -250,18 +250,18 @@
 
 ```html
 <template>
-    <cl-tabs closable type="card" @tab-remove="tabRemove">
-        <cl-tab-pane label="标签一" c-key="1">
+    <Tabs closable type="card" @tab-remove="tabRemove">
+        <TabPane label="标签一" c-key="1">
             标签一内容
-        </cl-tab-pane>
-        <cl-tab-pane label="标签二" c-key="2">
+        </TabPane>
+        <TabPane label="标签二" c-key="2">
             标签二内容
-        </cl-tab-pane>
-        <cl-tab-pane c-key="3">
+        </TabPane>
+        <TabPane c-key="3">
             <div slot="label">标签三</div>
             标签三内容
-        </cl-tab-pane>
-    </cl-tabs>
+        </TabPane>
+    </Tabs>
 </template>
 <script>
     export default {
@@ -289,18 +289,18 @@
 
 ```html
 <template>
-    <cl-tabs :animation="false" type="card">
-        <cl-tab-pane label="标签一" c-key="1">
+    <Tabs :animation="false" type="card">
+        <TabPane label="标签一" c-key="1">
             标签一内容
-        </cl-tab-pane>
-        <cl-tab-pane label="标签二" c-key="2">
+        </TabPane>
+        <TabPane label="标签二" c-key="2">
             标签二内容
-        </cl-tab-pane>
-        <cl-tab-pane c-key="3">
+        </TabPane>
+        <TabPane c-key="3">
             <div slot="label">标签三</div>
             标签三内容
-        </cl-tab-pane>
-    </cl-tabs>
+        </TabPane>
+    </Tabs>
 </template>
 
 ```
@@ -314,31 +314,31 @@
 
 ```html
 <template>
-    <cl-tabs :nav-style="navStyle">
-        <cl-tab-pane label="标签一" c-key="1">
+    <Tabs :nav-style="navStyle">
+        <TabPane label="标签一" c-key="1">
             标签一内容
-        </cl-tab-pane>
-        <cl-tab-pane label="标签二" c-key="2">
+        </TabPane>
+        <TabPane label="标签二" c-key="2">
             标签二内容
-        </cl-tab-pane>
-        <cl-tab-pane c-key="3">
+        </TabPane>
+        <TabPane c-key="3">
             <div slot="label">标签三</div>
             标签三内容
-        </cl-tab-pane>
-    </cl-tabs>
+        </TabPane>
+    </Tabs>
     
-    <cl-tabs type="card" :nav-style="navStyle">
-        <cl-tab-pane label="标签一" c-key="1">
+    <Tabs type="card" :nav-style="navStyle">
+        <TabPane label="标签一" c-key="1">
             标签一内容
-        </cl-tab-pane>
-        <cl-tab-pane label="标签二" c-key="2">
+        </TabPane>
+        <TabPane label="标签二" c-key="2">
             标签二内容
-        </cl-tab-pane>
-        <cl-tab-pane c-key="3">
+        </TabPane>
+        <TabPane c-key="3">
             <div slot="label">标签三</div>
             标签三内容
-        </cl-tab-pane>
-    </cl-tabs>
+        </TabPane>
+    </Tabs>
 </template>
 <script>
     export default {

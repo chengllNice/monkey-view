@@ -2,7 +2,7 @@
     <div :class="[`${classPrefix}`]" v-click-outside.capture="handleClickOutside">
         <div :class="[`${classPrefix}__reference`]" ref="reference" @click.stop="handleInputClick">
             <slot>
-                <sn-input v-model="inputValue"
+                <Input v-model="inputValue"
                           :class="[`${classPrefix}__reference-input`]"
                           :disabled="disabled"
                           :size="computedSize"
@@ -22,7 +22,7 @@
                                   visible && `${classPrefix}__suffix-icon-open`,
                               ]"></Icon>
                     </template>
-                </sn-input>
+                </Input>
             </slot>
         </div>
 
@@ -120,13 +120,13 @@
                 return this.size;
             },
             computedPlaceholder() {
-                return this.placeholder ? this.placeholder : this.t('cl.cascader.placeholder');
+                return this.placeholder ? this.placeholder : this.t('m.cascader.placeholder');
             },
             computedEmptyText() {
-                return this.emptyText ? this.emptyText : this.t('cl.cascader.emptyData');
+                return this.emptyText ? this.emptyText : this.t('m.cascader.emptyData');
             },
             computedLoadingText() {
-                return this.loadingText ? this.loadingText : this.t('cl.cascader.loading');
+                return this.loadingText ? this.loadingText : this.t('m.cascader.loading');
             },
             readonly() {
                 if (this.disabled) return true;
@@ -147,7 +147,7 @@
             }
         },
         components: {
-            'sn-input': Input,
+            Input,
             Icon,
             Drop,
             CascaderPanel,

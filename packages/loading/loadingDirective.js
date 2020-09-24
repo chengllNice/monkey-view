@@ -56,7 +56,7 @@ export default {
         value && loading.show();
         !value && loading.close();
     },
-    inserted(el, binding){
+    inserted(el){
         let position = window.getComputedStyle && window.getComputedStyle(el,null)['position'];
         position = el.currentStyle && el.currentStyle['position'];
         if(!['relative', 'absolute'].includes(position)) el.style.position = 'relative';

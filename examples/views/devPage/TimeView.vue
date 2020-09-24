@@ -1,10 +1,10 @@
 <template>
     <div class="TimeView">
-        <cl-time :time="baseTime" format="YYYY-MM hh:mm"></cl-time>
+        <Time :time="baseTime" format="yyyy-MM hh:mm"></Time>
         <br>
-        <cl-time :time="baseTime" type="date"></cl-time>
+        <Time :time="baseTime" type="date"></Time>
         <br>
-        <cl-time :time="baseTime" type="datetime"></cl-time>
+        <Time :time="baseTime" type="datetime"></Time>
     </div>
 </template>
 

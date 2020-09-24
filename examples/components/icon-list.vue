@@ -16,10 +16,10 @@
 
 <script>
     export default {
-        name: "icon-list",
+        name: "IconList",
         data() {
             return {
-                commonPrefix: 'cl-icon',
+                commonPrefix: 'm-icon',
                 search: '',
                 allList: [
                     'plus',
@@ -106,7 +106,9 @@
 
                     'eye-open',
                     'eye-close',
+                    'filter1',
                     'filter',
+                    'filter-fill',
                     'grid',
                     'home',
                     'home-fill',
@@ -172,6 +174,9 @@
                     'code-close',
                     'hot',
                     'hot-fill',
+                    'look',
+                    'renew',
+                    'skeleton',
 
                     'weibo',
                     'qq',
@@ -205,7 +210,3 @@
         }
     }
 </script>
-
-<style scoped>
-
-</style>

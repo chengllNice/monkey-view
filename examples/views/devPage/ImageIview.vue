@@ -1,11 +1,11 @@
 <template>
     <div class="image-iview">
-<!--        <cl-image class="image-iview-el" fit="fill" :src="src" :preview-list="srcList"></cl-image>-->
-<!--        <cl-image class="image-iview-el" fit="contain" :src="src"></cl-image>-->
-<!--        <cl-image class="image-iview-el" fit="cover" :src="src"></cl-image>-->
-<!--        <cl-image class="image-iview-el" fit="none" :src="src"></cl-image>-->
-<!--        <cl-image class="image-iview-el" fit="scale-down" :src="src"></cl-image>-->
-        <cl-image class="image-iview-el" fit="fill" :src="src1"></cl-image>
+<!--        <m-image class="image-iview-el" fit="fill" :src="src" :preview-list="srcList"></m-image>-->
+<!--        <m-image class="image-iview-el" fit="contain" :src="src"></m-image>-->
+<!--        <m-image class="image-iview-el" fit="cover" :src="src"></m-image>-->
+<!--        <m-image class="image-iview-el" fit="none" :src="src"></m-image>-->
+<!--        <m-image class="image-iview-el" fit="scale-down" :src="src"></m-image>-->
+        <m-image class="image-iview-el" fit="fill" :src="src1"></m-image>
     </div>
 </template>
 

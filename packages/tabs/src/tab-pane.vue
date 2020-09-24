@@ -59,9 +59,6 @@
                 }
             }
         },
-        components: {},
-        created() {
-        },
         mounted() {
             this.triggerUpdate();
         },

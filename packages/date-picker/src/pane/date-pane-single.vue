@@ -9,10 +9,10 @@
             </span>
             <span :class="[`${classPrefix}__header-date`]">
                 <span :class="[`${classPrefix}__header-date-label`]"
-                      @click.stop="updateCurrentType('year')">{{year}}{{t('cl.datePicker.year')}} </span>
+                      @click.stop="updateCurrentType('year')">{{year}}{{t('m.datePicker.year')}} </span>
                 <span :class="[`${classPrefix}__header-date-label`]"
                       @click.stop="updateCurrentType('month')"
-                      v-if="headerMonthShow">{{month}}{{t('cl.datePicker.month')}}</span>
+                      v-if="headerMonthShow">{{month}}{{t('m.datePicker.month')}}</span>
             </span>
             <span :class="[`${classPrefix}__header-next`]">
                 <Icon type="right" @click.stop="jumpDate('next-month')" v-if="dateChangeIconShow"></Icon>
@@ -21,7 +21,7 @@
         </div>
         <div :class="[`${classPrefix}__header`]" v-if="showTimeHeader">
             <span :class="[`${classPrefix}__header-date`]">
-                {{index === 0 ? t('cl.datePicker.startTime') : t('cl.datePicker.endTime')}}
+                {{index === 0 ? t('m.datePicker.startTime') : t('m.datePicker.endTime')}}
             </span>
         </div>
         <div :class="[`${classPrefix}__body`]">

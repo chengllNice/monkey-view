@@ -178,14 +178,14 @@
     <Checkbox v-model="controlChecked" :disabled="controlDisabled">Checkbox</Checkbox>
     <p>controlChecked: {{controlChecked}}</p>
     <p>controlDisabled: {{controlDisabled}}</p>
-    <Switch width="90" v-model="controlChecked">
+    <m-switch width="90" v-model="controlChecked">
         <template slot="open">Checked</template>
         <template slot="close">UnChecked</template>
-    </Switch>
-    <Switch width="90" v-model="controlDisabled">
+    </m-switch>
+    <m-switch width="90" v-model="controlDisabled">
         <template slot="open">Disabled</template>
         <template slot="close">UnDisabled</template>
-    </Switch>
+    </m-switch>
 </template>
 <script>
     export default {

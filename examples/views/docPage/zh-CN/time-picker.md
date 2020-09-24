@@ -14,14 +14,14 @@
 
 ```html
 <template>
-    <cl-row :gutter="16">
-        <cl-col>
-            <cl-time-picker placeholder="请选择时间" clearable></cl-time-picker>
-        </cl-col>
-        <cl-col>
-            <cl-time-picker type="timerange" placement="bottom-end" placeholder="请选择时间范围" clearable></cl-time-picker>
-        </cl-col>
-    </cl-row>
+    <Row :gutter="16">
+        <Col>
+            <TimePicker placeholder="请选择时间" clearable></TimePicker>
+        </Col>
+        <Col>
+            <TimePicker type="timerange" placement="bottom-end" placeholder="请选择时间范围" clearable></TimePicker>
+        </Col>
+    </Row>
 </template>
 ```
 
@@ -34,17 +34,17 @@
 
 ```html
 <template>
-    <cl-row :gutter="16">
-        <cl-col>
-            <cl-time-picker v-model="time1" format="HH时mm分ss秒" placeholder="请选择时间"></cl-time-picker>
-        </cl-col>
-        <cl-col>
-            <cl-time-picker v-model="time2" format="HH,mm,ss" placeholder="请选择时间"></cl-time-picker>
-        </cl-col>
-        <cl-col>
-            <cl-time-picker v-model="time3" type="timerange" format="HH时mm分ss秒" placeholder="请选择时间范围"></cl-time-picker>
-        </cl-col>
-    </cl-row>
+    <Row :gutter="16">
+        <Col>
+            <TimePicker v-model="time1" format="HH时mm分ss秒" placeholder="请选择时间"></TimePicker>
+        </Col>
+        <Col>
+            <TimePicker v-model="time2" format="HH,mm,ss" placeholder="请选择时间"></TimePicker>
+        </Col>
+        <Col>
+            <TimePicker v-model="time3" type="timerange" format="HH时mm分ss秒" placeholder="请选择时间范围"></TimePicker>
+        </Col>
+    </Row>
 </template>
 <script>
     export default {
@@ -69,14 +69,14 @@
 
 ```html
 <template>
-    <cl-row :gutter="16">
-        <cl-col>
-            <cl-time-picker format="HH:mm" placeholder="请选择时间"></cl-time-picker>
-        </cl-col>
-        <cl-col>
-            <cl-time-picker format="HH:mm" type="timerange" placeholder="请选择时间范围"></cl-time-picker>
-        </cl-col>
-    </cl-row>
+    <Row :gutter="16">
+        <Col>
+            <TimePicker format="HH:mm" placeholder="请选择时间"></TimePicker>
+        </Col>
+        <Col>
+            <TimePicker format="HH:mm" type="timerange" placeholder="请选择时间范围"></TimePicker>
+        </Col>
+    </Row>
 </template>
 ```
 
@@ -95,17 +95,17 @@
 
 ```html
 <template>
-    <cl-row :gutter="16">
-        <cl-col>
-            <cl-time-picker :disabledHours="[0,1,2]" :disabledMinutes="[0,1,2]" placeholder="请选择时间"></cl-time-picker>
-        </cl-col>
-        <cl-col>
-            <cl-time-picker :disabledHours="[0,1,2]" :disabledMinutes="[0,1,2]" hideDisabledOptions placeholder="请选择时间"></cl-time-picker>
-        </cl-col>
-        <cl-col>
-            <cl-time-picker type="timerange" :disabledHours="[0,1,2]" :disabledMinutes="[0,1,2]" placeholder="请选择时间范围"></cl-time-picker>
-        </cl-col>
-    </cl-row>
+    <Row :gutter="16">
+        <Col>
+            <TimePicker :disabledHours="[0,1,2]" :disabledMinutes="[0,1,2]" placeholder="请选择时间"></TimePicker>
+        </Col>
+        <Col>
+            <TimePicker :disabledHours="[0,1,2]" :disabledMinutes="[0,1,2]" hideDisabledOptions placeholder="请选择时间"></TimePicker>
+        </Col>
+        <Col>
+            <TimePicker type="timerange" :disabledHours="[0,1,2]" :disabledMinutes="[0,1,2]" placeholder="请选择时间范围"></TimePicker>
+        </Col>
+    </Row>
 </template>
 <script>
     export default {
@@ -180,14 +180,14 @@
 
 ```html
 <template>
-    <cl-row :gutter="16">
-        <cl-col>
-            <cl-time-picker confirm placeholder="请选择日期"></cl-time-picker>
-        </cl-col>
-        <cl-col>
-            <cl-time-picker type="timerange" confirm placeholder="请选择日期范围"></cl-time-picker>
-        </cl-col>
-    </cl-row>
+    <Row :gutter="16">
+        <Col>
+            <TimePicker confirm placeholder="请选择日期"></TimePicker>
+        </Col>
+        <Col>
+            <TimePicker type="timerange" confirm placeholder="请选择日期范围"></TimePicker>
+        </Col>
+    </Row>
 </template>
 <script>
     export default {
@@ -215,16 +215,16 @@
 
 ```html
 <template>
-    <cl-row :gutter="16">
-        <cl-col>
+    <Row :gutter="16">
+        <Col>
             <h4>只读</h4>
-            <cl-time-picker placeholder="请选择时间" readonly></cl-time-picker>
-        </cl-col>
-        <cl-col>
+            <TimePicker placeholder="请选择时间" readonly></TimePicker>
+        </Col>
+        <Col>
             <h4>不可输入</h4>
-            <cl-time-picker type="timerange" placeholder="请选择时间范围" :editable="false"></cl-time-picker>
-        </cl-col>
-    </cl-row>
+            <TimePicker type="timerange" placeholder="请选择时间范围" :editable="false"></TimePicker>
+        </Col>
+    </Row>
 </template>
 <script>
     export default {
@@ -246,7 +246,7 @@
 
 ```html
 <template>
-    <cl-time-picker placeholder="请选择时间" disabled></cl-time-picker>
+    <TimePicker placeholder="请选择时间" disabled></TimePicker>
 </template>
 <script>
     export default {
@@ -268,9 +268,9 @@
 
 ```html
 <template>
-    <cl-time-picker placeholder="请选择时间" :open="open">
-        <cl-button type="text" @click="open = !open">触发时间框打开关闭</cl-button>
-    </cl-time-picker>
+    <TimePicker placeholder="请选择时间" :open="open">
+        <Button type="text" @click="open = !open">触发时间框打开关闭</Button>
+    </TimePicker>
 </template>
 <script>
     export default {
@@ -286,30 +286,64 @@
 :::
 
 
+:::demo 只显示时间框
+
+设置`only-show-pane`属性只显示日期框。
+
+```html
+<template>
+    <TimePicker v-model="time" only-show-pane @change="handleChange">
+        <template slot="paneFooter">
+            <Button size="small" @click="handleClear">清除</Button>
+        </template>
+    </TimePicker>
+</template>
+<script>
+    export default {
+        data(){
+            return {
+                time: ''
+            }
+        },
+        methods: {
+            handleChange(value){
+                this.$Message.info('selectd value is ' + value)
+            },
+            handleClear(){
+                this.time = '';
+            }   
+        }
+    }
+</script>
+```
+
+:::
+
+
 :::demo 尺寸
 
 设置`size`属性控制尺寸大小，可选值 `mini` `small` `large`或者不设置。
 
 ```html
 <template>
-    <cl-row :gutter="16">
-        <cl-col>
+    <Row :gutter="16">
+        <Col>
             <h4>Mini</h4>
-            <cl-time-picker placeholder="请选择时间" size="mini"></cl-time-picker>
-        </cl-col>
-        <cl-col>
+            <TimePicker placeholder="请选择时间" size="mini"></TimePicker>
+        </Col>
+        <Col>
             <h4>Small</h4>
-            <cl-time-picker placeholder="请选择时间" size="small"></cl-time-picker>
-        </cl-col>
-        <cl-col>
+            <TimePicker placeholder="请选择时间" size="small"></TimePicker>
+        </Col>
+        <Col>
             <h4>Default</h4>
-            <cl-time-picker placeholder="请选择时间"></cl-time-picker>
-        </cl-col>
-        <cl-col>
+            <TimePicker placeholder="请选择时间"></TimePicker>
+        </Col>
+        <Col>
             <h4>Large</h4>
-            <cl-time-picker placeholder="请选择时间" size="large"></cl-time-picker>
-        </cl-col>
-    </cl-row>
+            <TimePicker placeholder="请选择时间" size="large"></TimePicker>
+        </Col>
+    </Row>
 </template>
 <script>
     export default {
@@ -355,6 +389,7 @@
 | separator | String | 两个时间之间的分隔符 | ～ |
 | className | String | 选择器的类名 | - |
 | dropdownClassName | String | 选择器下拉框的类名 | - |
+| only-show-pane | Boolean | 只显示时间框 | - |
 | renderHtml | HTMLElement, Boolean | 定义时间下拉框渲染的位置，如果为`true`则渲染到body中，可以指定渲染的元素 | false |
 
 
@@ -373,6 +408,7 @@
 | 名称 | 说明 |
 | ---- | ---- |
 | - | 自定义触发器 |
+| paneFooter | 自定义日期选择框底部内容 |
 
 
 ### TimePicker methods

@@ -1,155 +1,155 @@
 <template>
     <div class="BadgeView">
         <h4>综合</h4>
-        <ClBadge :count="badgeValue" :showZero="badgeshowZero" :dot="badgeDot">
-            <ClButton>按钮</ClButton>
-        </ClBadge>
+        <Badge :count="badgeValue" :showZero="badgeshowZero" :dot="badgeDot">
+            <Button>按钮</Button>
+        </Badge>
         <br>
-        <ClButtonGroup>
-            <ClButton type="primary" icon="plus" @click="handlerClick('add')"></ClButton>
-            <ClButton type="primary" icon="minus" @click="handlerClick('minus')"></ClButton>
-        </ClButtonGroup>
-        <ClSwitch v-model="badgeshowZero" width="120px">
+        <ButtonGroup>
+            <Button type="primary" icon="plus" @click="handlerClick('add')"></Button>
+            <Button type="primary" icon="minus" @click="handlerClick('minus')"></Button>
+        </ButtonGroup>
+        <m-switch v-model="badgeshowZero" width="120px">
             <span slot="open">showZero=true</span>
             <span slot="close">showZero=false</span>
-        </ClSwitch>
-        <ClSwitch v-model="badgeDot" width="80px">
+        </m-switch>
+        <m-switch v-model="badgeDot" width="80px">
             <span slot="open">dot=true</span>
             <span slot="close">dot=false</span>
-        </ClSwitch>
+        </m-switch>
 
         <h4>普通</h4>
-        <ClBadge :count="10">
-            <ClButton>按钮</ClButton>
-        </ClBadge>
+        <Badge :count="10">
+            <Button>按钮</Button>
+        </Badge>
         <br>
-        <ClBadge :count="150">
-            <ClButton>按钮</ClButton>
-        </ClBadge>
+        <Badge :count="150">
+            <Button>按钮</Button>
+        </Badge>
 
         <h4>dot点</h4>
-        <ClBadge :count="150" dot>
-            <ClButton>按钮dot</ClButton>
-        </ClBadge>
+        <Badge :count="150" dot>
+            <Button>按钮dot</Button>
+        </Badge>
 
         <h4>text</h4>
-        <ClBadge :count="150" text="new">
-            <ClButton>按钮Text</ClButton>
-        </ClBadge>
+        <Badge :count="150" text="new">
+            <Button>按钮Text</Button>
+        </Badge>
 
         <h4>独立使用</h4>
-        <ClBadge :count="10"></ClBadge>
-        <ClBadge :count="10" dot></ClBadge>
+        <Badge :count="10"></Badge>
+        <Badge :count="10" dot></Badge>
 
         <h4>内置颜色</h4>
-        <ClBadge :count="150" color="primary">
-            <ClButton>按钮Text</ClButton>
-        </ClBadge>
-        <ClBadge :count="150" color="error">
-            <ClButton>按钮Text</ClButton>
-        </ClBadge>
-        <ClBadge :count="150" color="success">
-            <ClButton>按钮Text</ClButton>
-        </ClBadge>
-        <ClBadge :count="150" color="warning">
-            <ClButton>按钮Text</ClButton>
-        </ClBadge>
-        <ClBadge :count="150" color="info">
-            <ClButton>按钮Text</ClButton>
-        </ClBadge>
-        <ClBadge :count="150" dot color="primary">
-            <ClButton>按钮Text</ClButton>
-        </ClBadge>
-        <ClBadge :count="150" dot color="error">
-            <ClButton>按钮Text</ClButton>
-        </ClBadge>
-        <ClBadge :count="150" dot color="success">
-            <ClButton>按钮Text</ClButton>
-        </ClBadge>
-        <ClBadge :count="150" dot color="warning">
-            <ClButton>按钮Text</ClButton>
-        </ClBadge>
-        <ClBadge :count="150" dot color="info">
-            <ClButton>按钮Text</ClButton>
-        </ClBadge>
+        <Badge :count="150" color="primary">
+            <Button>按钮Text</Button>
+        </Badge>
+        <Badge :count="150" color="error">
+            <Button>按钮Text</Button>
+        </Badge>
+        <Badge :count="150" color="success">
+            <Button>按钮Text</Button>
+        </Badge>
+        <Badge :count="150" color="warning">
+            <Button>按钮Text</Button>
+        </Badge>
+        <Badge :count="150" color="info">
+            <Button>按钮Text</Button>
+        </Badge>
+        <Badge :count="150" dot color="primary">
+            <Button>按钮Text</Button>
+        </Badge>
+        <Badge :count="150" dot color="error">
+            <Button>按钮Text</Button>
+        </Badge>
+        <Badge :count="150" dot color="success">
+            <Button>按钮Text</Button>
+        </Badge>
+        <Badge :count="150" dot color="warning">
+            <Button>按钮Text</Button>
+        </Badge>
+        <Badge :count="150" dot color="info">
+            <Button>按钮Text</Button>
+        </Badge>
         <h4>自定义颜色</h4>
-        <ClBadge :count="150" color="#c8c8c8">
-            <ClButton>#c8c8c8</ClButton>
-        </ClBadge>
-        <ClBadge :count="150" color="#ffa2d3">
-            <ClButton>#ffa2d3</ClButton>
-        </ClBadge>
+        <Badge :count="150" color="#c8c8c8">
+            <Button>#c8c8c8</Button>
+        </Badge>
+        <Badge :count="150" color="#ffa2d3">
+            <Button>#ffa2d3</Button>
+        </Badge>
         <h4>多彩</h4>
-        <ClBadge text="150" color="#c8c8c8"></ClBadge>
+        <Badge text="150" color="#c8c8c8"></Badge>
         <h4>状态status</h4>
-        <ClBadge status="success" text="success"></ClBadge>
+        <Badge status="success" text="success"></Badge>
         <br>
-        <ClBadge status="warning" text="warning"></ClBadge>
+        <Badge status="warning" text="warning"></Badge>
         <br>
-        <ClBadge status="error" text="error"></ClBadge>
+        <Badge status="error" text="error"></Badge>
         <br>
-        <ClBadge status="default" text="default"></ClBadge>
+        <Badge status="default" text="default"></Badge>
         <br>
-        <ClBadge status="processing" text="processing"></ClBadge>
+        <Badge status="processing" text="processing"></Badge>
         <h4>offset偏移</h4>
-        <ClBadge :count="20" :offset="[20, 0]">
-            <ClButton>按钮offset</ClButton>
-        </ClBadge>
+        <Badge :count="20" :offset="[20, 0]">
+            <Button>按钮offset</Button>
+        </Badge>
 
 
-        <div class="viewDes">
+        <div class="views-dev">
             <h3>API</h3>
             <h4>badge props</h4>
 
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：count</b></p>
                 <p><b>类型：Number</b></p>
                 <p><b>说明：</b>-</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：overflowCount</b></p>
                 <p><b>类型：Number</b></p>
                 <p><b>说明：</b>-</p>
                 <p><b>默认值：</b>99</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：dot</b></p>
                 <p><b>类型：Boolean</b></p>
                 <p><b>说明：</b>可选值true/false</p>
                 <p><b>默认值：</b>false</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：showZero</b></p>
                 <p><b>类型：Boolean</b></p>
                 <p><b>说明：</b>可选值true/false</p>
                 <p><b>默认值：</b>false</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：text</b></p>
                 <p><b>类型：String</b></p>
                 <p><b>说明：</b>自定义显示内容，如果设置了status则为点状态的文本</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：status</b></p>
                 <p><b>类型：String</b></p>
                 <p><b>说明：</b>可选值success/error/warning/processing/default</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：color</b></p>
                 <p><b>类型：String</b></p>
                 <p><b>说明：</b>自定义badge的颜色</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：offset</b></p>
                 <p><b>类型：Array</b></p>
                 <p><b>说明：</b>badge的位置偏移，格式为[x,y]</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：title</b></p>
                 <p><b>类型：String</b></p>
                 <p><b>说明：</b>设置鼠标经过badge的提示，默认text或者count</p>

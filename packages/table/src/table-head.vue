@@ -19,7 +19,7 @@
                         @click.stop="sortHandle(column)">
                         <table-head-cell :column="column" :sortType="sortType"></table-head-cell>
                     </th>
-                    <th class="cl-table-head__scroll-th" v-if="$parent.showVerticalScrollBar" :rowspan="columns.length"></th>
+                    <th :class="[`${classPrefix}__scroll-th`]" v-if="$parent.showVerticalScrollBar" :rowspan="columns.length"></th>
                 </table-tr>
             </template>
         </thead>

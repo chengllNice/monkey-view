@@ -2,21 +2,16 @@
     <div class="left-nav">
         <Menu :activeKey="activeMenu" width="auto">
             <MenuGroup v-for="(groupItem, groupIndex) in siderData"
-                         :key="groupIndex"
-                         :name="groupItem.name">
+                       :key="groupIndex"
+                       :name="groupItem.name">
                 <template v-if="groupItem.childrens">
                     <MenuItem v-for="menuItem in groupItem.childrens"
-                                :key="menuItem.item"
-                                :c-key="menuItem.key"
-                                :disabled="menuItem.disabled"
-                                :icon="menuItem.icon"
-                                :name="menuItem.name"
-                                :to="{path: mode + menuItem.link, query: menuItem.query}">
-                        <!--<router-link class="left-nav-menu-item" :to="{path: menuItem.link, query: menuItem.query}">-->
-                        <!---->
-                        <!--</router-link>-->
-                        <!--<Icon :class="menuItem.icon"></Icon>-->
-                        <!--<span>{{menuItem.name}}</span>-->
+                              :key="menuItem.item"
+                              :c-key="menuItem.key"
+                              :disabled="menuItem.disabled"
+                              :icon="menuItem.icon"
+                              :name="menuItem.name"
+                              :to="{path: mode + menuItem.link, query: menuItem.query}">
                     </MenuItem>
                 </template>
             </MenuGroup>
@@ -26,8 +21,9 @@
 
 <script>
     import Config from 'examples/config'
+
     export default {
-        name: "leftNav",
+        name: "LeftNav",
         data() {
             return {
                 siderData: [
@@ -390,10 +386,6 @@
                 lang: Config.defaultLang
             }
         },
-        computed: {},
-        components: {},
-        created() {
-        },
         mounted() {
             this.setActiveMenu();
         },
@@ -418,16 +410,3 @@
         }
     }
 </script>
-
-<style lang="scss">
-    .left-nav {
-        padding: 20px 0;
-        background-color: #ffffff;
-        /*i {*/
-            /*font-size: 14px;*/
-        /*}*/
-        span{
-            font-size: 12px;
-        }
-    }
-</style>

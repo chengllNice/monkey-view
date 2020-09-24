@@ -39,8 +39,10 @@
     }
 
     @include when(expand){
-      .cl-tree-node__expand-icon i{
-        transform: rotate(90deg);
+      @include e(expand-icon, false){
+        i{
+          transform: rotate(90deg);
+        }
       }
     }
     @include when(disabled){

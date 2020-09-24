@@ -1,91 +1,91 @@
 <template>
     <div class="ListView">
-        <cl-list border header="large header" footer="footer">
-            <cl-list-row>
-                <cl-list-item label="label1" value="value"></cl-list-item>
-                <cl-list-item label="label2" value="value"></cl-list-item>
-                <cl-list-item label="label3" value="value"></cl-list-item>
-            </cl-list-row>
-            <cl-list-row>
-                <cl-list-item label="label4" value="value"></cl-list-item>
-                <cl-list-item label="label5" value="value"></cl-list-item>
-                <cl-list-item label="label6" value="value"></cl-list-item>
-            </cl-list-row>
-            <cl-list-row>
-                <cl-list-item label="label7" value="value"></cl-list-item>
-                <cl-list-item label="label8" value="value"></cl-list-item>
-                <cl-list-item label="label9" value="value"></cl-list-item>
-            </cl-list-row>
-            <cl-list-row>
-                <cl-list-item label="label10" value="value">
+        <List border header="large header" footer="footer">
+            <List-row>
+                <ListItem label="label1" value="value"></ListItem>
+                <ListItem label="label2" value="value"></ListItem>
+                <ListItem label="label3" value="value"></ListItem>
+            </List-row>
+            <List-row>
+                <ListItem label="label4" value="value"></ListItem>
+                <ListItem label="label5" value="value"></ListItem>
+                <ListItem label="label6" value="value"></ListItem>
+            </List-row>
+            <List-row>
+                <ListItem label="label7" value="value"></ListItem>
+                <ListItem label="label8" value="value"></ListItem>
+                <ListItem label="label9" value="value"></ListItem>
+            </List-row>
+            <List-row>
+                <ListItem label="label10" value="value">
                     <div slot="value">valuevaluevaluevaluevaluevalue</div>
-                </cl-list-item>
-            </cl-list-row>
-        </cl-list>
+                </ListItem>
+            </List-row>
+        </List>
 
         <!--<h4>size border</h4>-->
-        <!--<cl-list>-->
-            <!--<cl-list-item>这是一段文本1。</cl-list-item>-->
-            <!--<cl-list-item>这是一段文本2。</cl-list-item>-->
-            <!--<cl-list-item>这是一段文本3。</cl-list-item>-->
-        <!--</cl-list>-->
+        <!--<List>-->
+            <!--<ListItem>这是一段文本1。</ListItem>-->
+            <!--<ListItem>这是一段文本2。</ListItem>-->
+            <!--<ListItem>这是一段文本3。</ListItem>-->
+        <!--</List>-->
         <!--<br>-->
-        <!--<cl-list size="mini" border header="mini header" footer="footer">-->
-            <!--<cl-list-item>这是一段文本1。</cl-list-item>-->
-            <!--<cl-list-item>这是一段文本2。</cl-list-item>-->
-            <!--<cl-list-item>这是一段文本3。</cl-list-item>-->
-        <!--</cl-list>-->
+        <!--<List size="mini" border header="mini header" footer="footer">-->
+            <!--<ListItem>这是一段文本1。</ListItem>-->
+            <!--<ListItem>这是一段文本2。</ListItem>-->
+            <!--<ListItem>这是一段文本3。</ListItem>-->
+        <!--</List>-->
         <!--<br>-->
-        <!--<cl-list size="small" border header="small header" footer="footer">-->
-            <!--<cl-list-item>这是一段文本1。</cl-list-item>-->
-            <!--<cl-list-item>这是一段文本2。</cl-list-item>-->
-            <!--<cl-list-item>这是一段文本3。</cl-list-item>-->
-        <!--</cl-list>-->
+        <!--<List size="small" border header="small header" footer="footer">-->
+            <!--<ListItem>这是一段文本1。</ListItem>-->
+            <!--<ListItem>这是一段文本2。</ListItem>-->
+            <!--<ListItem>这是一段文本3。</ListItem>-->
+        <!--</List>-->
         <!--<br>-->
-        <!--<cl-list border header="default header" footer="footer">-->
-            <!--<cl-list-item>这是一段文本1。</cl-list-item>-->
-            <!--<cl-list-item>这是一段文本2。</cl-list-item>-->
-            <!--<cl-list-item>这是一段文本3。</cl-list-item>-->
-        <!--</cl-list>-->
+        <!--<List border header="default header" footer="footer">-->
+            <!--<ListItem>这是一段文本1。</ListItem>-->
+            <!--<ListItem>这是一段文本2。</ListItem>-->
+            <!--<ListItem>这是一段文本3。</ListItem>-->
+        <!--</List>-->
         <!--<br>-->
-        <!--<cl-list size="large" border header="large header" footer="footer">-->
-            <!--<cl-list-item>这是一段文本1。</cl-list-item>-->
-            <!--<cl-list-item>这是一段文本2。</cl-list-item>-->
-            <!--<cl-list-item>这是一段文本3。</cl-list-item>-->
-        <!--</cl-list>-->
+        <!--<List size="large" border header="large header" footer="footer">-->
+            <!--<ListItem>这是一段文本1。</ListItem>-->
+            <!--<ListItem>这是一段文本2。</ListItem>-->
+            <!--<ListItem>这是一段文本3。</ListItem>-->
+        <!--</List>-->
 
         <!--<br>-->
-        <!--<cl-list type="meta" border header="large header" footer="footer">-->
-            <!--<cl-list-item avatar="https://dev-file.iviewui.com/userinfoPDvn9gKWYihR24SpgC319vXY8qniCqj4/avatar"-->
+        <!--<List type="meta" border header="large header" footer="footer">-->
+            <!--<ListItem avatar="https://dev-file.iviewui.com/userinfoPDvn9gKWYihR24SpgC319vXY8qniCqj4/avatar"-->
                           <!--title="title"-->
                           <!--description="descriptiondescription">-->
                 <!--contentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontent-->
                 <!--<div slot="extra">extra</div>-->
-            <!--</cl-list-item>-->
-            <!--<cl-list-item avatar="https://dev-file.iviewui.com/userinfoPDvn9gKWYihR24SpgC319vXY8qniCqj4/avatar"-->
+            <!--</ListItem>-->
+            <!--<ListItem avatar="https://dev-file.iviewui.com/userinfoPDvn9gKWYihR24SpgC319vXY8qniCqj4/avatar"-->
                           <!--title="titletitletitletitletitletitletitletitletitletitletitletitletitletitletitle"-->
                           <!--description="descriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescription">-->
                 <!--<div slot="extra">extra</div>-->
-            <!--</cl-list-item>-->
-            <!--<cl-list-item title="title" description="descriptiondescription"></cl-list-item>-->
-            <!--<cl-list-item>-->
+            <!--</ListItem>-->
+            <!--<ListItem title="title" description="descriptiondescription"></ListItem>-->
+            <!--<ListItem>-->
                 <!--<div slot="title">title</div>-->
                 <!--<div slot="description">description</div>-->
                 <!--content-->
                 <!--<div slot="extra">extra</div>-->
-            <!--</cl-list-item>-->
-            <!--<cl-list-item type="default">这是一段文本3。</cl-list-item>-->
-        <!--</cl-list>-->
+            <!--</ListItem>-->
+            <!--<ListItem type="default">这是一段文本3。</ListItem>-->
+        <!--</List>-->
 
 
-        <!--<cl-list type="meta" border :split="false" header="我的音乐列表">-->
-            <!--<cl-list-item v-for="item in listData" :key="item.id" :title="item.title" :description="item.description">-->
+        <!--<List type="meta" border :split="false" header="我的音乐列表">-->
+            <!--<ListItem v-for="item in listData" :key="item.id" :title="item.title" :description="item.description">-->
                 <!--<div slot="extra">-->
-                    <!--<cl-button type="text" size="mini"><Icon type="heart"></Icon></cl-button>-->
-                    <!--<cl-button type="text" size="mini"><Icon type="plus"></Icon></cl-button>-->
+                    <!--<Button type="text" size="mini"><Icon type="heart"></Icon></Button>-->
+                    <!--<Button type="text" size="mini"><Icon type="plus"></Icon></Button>-->
                 <!--</div>-->
-            <!--</cl-list-item>-->
-        <!--</cl-list>-->
+            <!--</ListItem>-->
+        <!--</List>-->
     </div>
 </template>
 

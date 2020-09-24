@@ -14,7 +14,7 @@
     <Row :gutter="10">
         <Col>
             <h4>slot模式</h4>
-            <Select v-model="valueBase">
+            <Select v-model="valueBase" renderHtml>
                 <Option v-for="item in valueBaseOption" :key="item.value" :value="item.value" :label="item.label">{{item.label}}</Option>
             </Select>
         </Col>

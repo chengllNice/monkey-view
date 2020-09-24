@@ -12,7 +12,7 @@
 
 ```html
 <template>
-    <m-input placeholder="placeholder" v-model="valueBase" style="width: 300px"></m-input>
+    <Input placeholder="placeholder" v-model="valueBase" style="width: 300px"></Input>
 </template>
 <script>
     export default {
@@ -38,19 +38,19 @@
     <Row :gutter="16">
         <Col>
             <h4>input</h4>
-            <m-input disabled placeholder="placeholder" v-model="valueDisabled"></m-input>
+            <Input disabled placeholder="placeholder" v-model="valueDisabled"></Input>
         </Col>
         <Col>
             <h4>number</h4>
-            <m-input type="number" disabled placeholder="placeholder" v-model="valueDisabled"></m-input>
+            <Input type="number" disabled placeholder="placeholder" v-model="valueDisabled"></Input>
         </Col>
         <Col>
             <h4>search</h4>
-            <m-input type="search" disabled placeholder="placeholder" v-model="valueDisabled"></m-input>
+            <Input type="search" disabled placeholder="placeholder" v-model="valueDisabled"></Input>
         </Col>
         <Col>
             <h4>password</h4>
-            <m-input type="password" disabled placeholder="placeholder" v-model="valueDisabled"></m-input>
+            <Input type="password" disabled placeholder="placeholder" v-model="valueDisabled"></Input>
         </Col>
     </Row>
 </template>
@@ -77,16 +77,16 @@
 <template>
     <Row :gutter="10">
         <Col>
-            <m-input size="mini" placeholder="mini placeholder" v-model="valueSizeMini"></m-input>
+            <Input size="mini" placeholder="mini placeholder" v-model="valueSizeMini"></Input>
         </Col>
         <Col>
-            <m-input size="small" placeholder="small placeholder" v-model="valueSizeSmall"></m-input>
+            <Input size="small" placeholder="small placeholder" v-model="valueSizeSmall"></Input>
         </Col>
         <Col>
-            <m-input placeholder="default placeholder" v-model="valueSizeDefault"></m-input>
+            <Input placeholder="default placeholder" v-model="valueSizeDefault"></Input>
         </Col>
         <Col>
-            <m-input size="large" placeholder="large placeholder" v-model="valueSizeLarge"></m-input>
+            <Input size="large" placeholder="large placeholder" v-model="valueSizeLarge"></Input>
         </Col>
     </Row>
 </template>
@@ -114,7 +114,7 @@
 
 ```html
 <template>
-    <m-input placeholder="placeholder" clearable v-model="valueClearable" style="width: 300px"></m-input>
+    <Input placeholder="placeholder" clearable v-model="valueClearable" style="width: 300px"></Input>
 </template>
 <script>
     export default {
@@ -138,18 +138,18 @@
 ```html
 <template>
     <h4>属性方式</h4>
-    <m-input placeholder="placeholder" v-model="valuePrefix" prefix="user-fill" style="width: 300px"></m-input>
+    <Input placeholder="placeholder" v-model="valuePrefix" prefix="user-fill" style="width: 300px"></Input>
     <br>
-    <m-input placeholder="placeholder" v-model="valueSuffix" suffix="search" style="width: 300px"></m-input>
+    <Input placeholder="placeholder" v-model="valueSuffix" suffix="search" style="width: 300px"></Input>
 
     <h4>slot方式</h4>
-    <m-input placeholder="placeholder" v-model="valuePrefixSlot" style="width: 300px">
+    <Input placeholder="placeholder" v-model="valuePrefixSlot" style="width: 300px">
         <Icon slot="prefix" type="user-fill"></Icon>
-    </m-input>
+    </Input>
     <br>
-    <m-input placeholder="placeholder" v-model="valueSuffixSlot" style="width: 300px">
+    <Input placeholder="placeholder" v-model="valueSuffixSlot" style="width: 300px">
         <Icon slot="suffix" type="search"></Icon>
-    </m-input>
+    </Input>
 </template>
 <script>
     export default {
@@ -175,19 +175,19 @@
 
 ```html
 <template>
-    <m-input placeholder="placeholder" v-model="valuePrepend">
+    <Input placeholder="placeholder" v-model="valuePrepend">
         <span slot="prepend">http://</span>
         <span slot="append">.com</span>
-    </m-input>
+    </Input>
     <br>
-    <m-input placeholder="placeholder" v-model="valueAppend">
+    <Input placeholder="placeholder" v-model="valueAppend">
         <Select slot="prepend" style="width: 70px;" v-model="inputPrependSelect" :option="inputPrependSelectOptions" :dropdownMatchSelectWidth="false"></Select>
         <Select slot="append" style="width: 70px;" v-model="inputAppendSelect" :option="inputAppendSelectOptions" :dropdownMatchSelectWidth="false"></Select>
-    </m-input>
+    </Input>
     <br>
-    <m-input placeholder="placeholder" v-model="valuePrepend">
+    <Input placeholder="placeholder" v-model="valuePrepend">
         <Icon slot="append" type="setting"></Icon>
-    </m-input>
+    </Input>
 </template>
 <script>
     export default {
@@ -241,11 +241,11 @@
 
 ```html
 <template>
-    <m-input type="search" placeholder="placeholder" v-model="valueSearch"></m-input>
+    <Input type="search" placeholder="placeholder" v-model="valueSearch"></Input>
     <br>
-    <m-input type="search" placeholder="placeholder" v-model="valueSearch1" suffixButton></m-input>
+    <Input type="search" placeholder="placeholder" v-model="valueSearch1" suffixButton></Input>
     <br>
-    <m-input type="search" placeholder="placeholder" v-model="valueSearch2" suffixButton="Search"></m-input>
+    <Input type="search" placeholder="placeholder" v-model="valueSearch2" suffixButton="Search"></Input>
 </template>
 <script>
     export default {
@@ -270,13 +270,13 @@
 
 ```html
 <template>
-    <m-input type="password" placeholder="placeholder" v-model="valuePassword"></m-input>
+    <Input type="password" placeholder="placeholder" v-model="valuePassword"></Input>
     <br>
-    <m-input type="password" placeholder="placeholder" v-model="valuePassword1" :showPasswordIcon="false"></m-input>
+    <Input type="password" placeholder="placeholder" v-model="valuePassword1" :showPasswordIcon="false"></Input>
     <br>
-    <m-input type="password" placeholder="placeholder" v-model="valuePassword2">
+    <Input type="password" placeholder="placeholder" v-model="valuePassword2">
         <Icon slot="suffix" type="password"></Icon>
-    </m-input>
+    </Input>
 </template>
 <script>
     export default {
@@ -301,15 +301,15 @@
 
 ```html
 <template>
-    <m-input type="number" placeholder="placeholder" v-model="valueNumber"></m-input>
+    <Input type="number" placeholder="placeholder" v-model="valueNumber"></Input>
     <h4>step=2</h4>
-    <m-input type="number" placeholder="placeholder" v-model="valueNumber1" :step="2"></m-input>
+    <Input type="number" placeholder="placeholder" v-model="valueNumber1" :step="2"></Input>
     <h4>step=false</h4>
-    <m-input type="number" placeholder="placeholder" v-model="valueNumber2" :step="false"></m-input>
+    <Input type="number" placeholder="placeholder" v-model="valueNumber2" :step="false"></Input>
     <h4>stepType='right'</h4>
-    <m-input type="number" placeholder="placeholder" v-model="valueNumber3" stepType="right"></m-input>
+    <Input type="number" placeholder="placeholder" v-model="valueNumber3" stepType="right"></Input>
     <h4>限制最大最小值及小数位：min=0,max=100,precision=2</h4>
-    <m-input type="number" placeholder="placeholder" v-model="valueNumber4" :min="0" :max="100" :precision="2"></m-input>
+    <Input type="number" placeholder="placeholder" v-model="valueNumber4" :min="0" :max="100" :precision="2"></Input>
 </template>
 <script>
     export default {
@@ -336,14 +336,14 @@
 
 ```html
 <template>
-    <m-input type="textarea" placeholder="placeholder" v-model="valueTextarea"></m-input>
+    <Input type="textarea" placeholder="placeholder" v-model="valueTextarea"></Input>
     <h4>自适应高度</h4>
-    <m-input type="textarea" placeholder="placeholder" v-model="valueTextarea1" autosize></m-input>
-    <m-input type="textarea" placeholder="placeholder" v-model="valueTextarea2" :autosize="{minRows: 3, maxRows: 6}"></m-input>
+    <Input type="textarea" placeholder="placeholder" v-model="valueTextarea1" autosize></Input>
+    <Input type="textarea" placeholder="placeholder" v-model="valueTextarea2" :autosize="{minRows: 3, maxRows: 6}"></Input>
     <h4>设置文本域大小</h4>
-    <m-input type="textarea" placeholder="placeholder" v-model="valueTextarea3" :rows="5"></m-input>
+    <Input type="textarea" placeholder="placeholder" v-model="valueTextarea3" :rows="5"></Input>
     <h4>限制输入长度并显示输入长度：maxLength=20,showLimitLabel</h4>
-    <m-input type="textarea" placeholder="placeholder" v-model="valueTextarea4" :maxLength="20" showLimitLabel></m-input>
+    <Input type="textarea" placeholder="placeholder" v-model="valueTextarea4" :maxLength="20" showLimitLabel></Input>
 </template>
 <script>
     export default {

@@ -1,14 +1,14 @@
 <template>
     <Layout class="views">
         <Header class="views-header">
-            <CHeader></CHeader>
+            <doc-header></doc-header>
         </Header>
         <Layout class="views-layout">
             <Sider hide-trigger width="240">
                 <LeftNav></LeftNav>
             </Sider>
             <Content class="views-main-content" ref="viewsMainContent">
-                <div class="view-main-content-card">
+                <div class="views-main-content-card">
                     <Row :gutter="16">
                         <Col style="padding: 16px;">
 <!--                            <keep-alive>-->
@@ -22,7 +22,7 @@
                     </Row>
                 </div>
                 <Footer class="views-main-content-footer">
-                    <CFooter></CFooter>
+                    <doc-footer></doc-footer>
                 </Footer>
             </Content>
         </Layout>
@@ -31,29 +31,20 @@
 
 <script>
     import LeftNav from '../components/left-nav'
-    import CHeader from '../components/header'
-    import CFooter from '../components/footer'
+    import DocHeader from '../components/doc-header'
+    import DocFooter from '../components/doc-footer'
     import AnchorsLink from '../components/anchors-link'
 
     export default {
-        name: "views",
+        name: "Views",
         data() {
             return {}
         },
-        computed: {},
         components: {
             LeftNav,
-            CHeader,
-            CFooter,
+            DocHeader,
+            DocFooter,
             AnchorsLink
-        },
-        created() {
-        },
-        mounted() {
-
-        },
-        methods: {
-
         },
         watch: {
             '$route': function () {
@@ -64,31 +55,3 @@
         }
     }
 </script>
-
-<style lang="scss" scoped>
-    .views {
-        height: 100%;
-        overflow: hidden;
-        .views-header {
-            background-color: #ffffff;
-            box-shadow: 0 2px 2px #e7eae5;
-        }
-        .views-layout {
-            flex: 1;
-            overflow: hidden;
-            margin-top: 10px;
-        }
-        .views-main-content {
-            background-color: #ffffff;
-            overflow: auto;
-            position: relative;
-        }
-        .view-main-content-card {
-            overflow: hidden;
-            padding: 8px 0 8px 16px;
-        }
-        .views-main-content-footer{
-            margin-top: 50px;
-        }
-    }
-</style>

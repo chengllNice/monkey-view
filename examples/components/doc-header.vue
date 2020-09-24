@@ -1,7 +1,7 @@
 <template>
-    <div class="header">
+    <div class="doc-header">
         <router-link class="logo" to="/">
-            <img src="https://chengllnice.github.io/static/images/cl-ui/monkey-ui.svg" alt="">
+            <img src="https://chengllnice.github.io/static/images/monkey-ui/monkey-ui.svg" alt="">
             <span>Monkey-UI</span>
         </router-link>
         <div class="header-right">
@@ -17,8 +17,9 @@
 
 <script>
     import Config from 'examples/config'
+
     export default {
-        name: "Cheader",
+        name: "DocHeader",
         data() {
             return {
                 lang: Config.defaultLang,
@@ -27,10 +28,6 @@
                     'en-US': 'English',
                 }
             }
-        },
-        computed: {},
-        components: {},
-        created() {
         },
         mounted() {
             this.setLang();
@@ -45,7 +42,7 @@
                     path: path
                 })
             },
-            setLang(){
+            setLang() {
                 this.lang = Config.langTypes.includes(this.$route.path.split('/')[1]) ? this.$route.path.split('/')[1] : Config.defaultLang;
             }
         },
@@ -56,31 +53,3 @@
         }
     }
 </script>
-
-<style lang="scss">
-    .header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: 100%;
-
-        .logo {
-            font-size: 14px;
-            color: #333333;
-
-            img{
-                width: 40px;
-                height: 40px;
-                vertical-align: middle;
-                margin-top: -5px;
-            }
-            span{
-                vertical-align: middle;
-            }
-        }
-
-        .header-right {
-
-        }
-    }
-</style>

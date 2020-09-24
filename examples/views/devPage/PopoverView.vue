@@ -98,59 +98,59 @@
         </div>
 
 
-        <div class="viewDes">
+        <div class="views-dev">
             <h3>API</h3>
             <h4>popover props</h4>
 
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：placement</b></p>
                 <p><b>类型：String</b></p>
                 <p><b>说明：</b>提示框出现的位置，可选值top/top-start/top-end/bottom/bottom-start/bottom-end/left/left-start/left-end/right/right-start/right-end</p>
                 <p><b>默认值：</b>bottom</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：trigger</b></p>
                 <p><b>类型：String</b></p>
                 <p><b>说明：</b>触发方式，可选值hover/click/focus</p>
                 <p><b>默认值：</b>click</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：title</b></p>
                 <p><b>类型：String</b></p>
                 <p><b>说明：</b>标题</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：content</b></p>
                 <p><b>类型：String</b></p>
                 <p><b>说明：</b>显示的正文内容</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：width</b></p>
                 <p><b>类型：String, Number</b></p>
                 <p><b>说明：</b>宽度</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：wordWrap</b></p>
                 <p><b>类型：Boolean</b></p>
                 <p><b>说明：</b>开启自动换行</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：disabled</b></p>
                 <p><b>类型：Boolean</b></p>
                 <p><b>说明：</b>禁用</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：transition</b></p>
                 <p><b>类型：String</b></p>
                 <p><b>说明：</b>自定义动画效果</p>
                 <p><b>默认值：</b>fade</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：renderHtml</b></p>
                 <p><b>类型：HTMLElement, Boolean</b></p>
                 <p><b>说明：</b>自定义元素插入的位置，默认渲染到body中</p>
@@ -158,19 +158,19 @@
             </div>
         </div>
 
-        <div class="viewDes">
+        <div class="views-dev">
             <h3>API</h3>
             <h4>popover slot</h4>
 
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>名称：-</b></p>
                 <p><b>说明：</b>触发控件</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>名称：title</b></p>
                 <p><b>说明：</b>标题</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>名称：content</b></p>
                 <p><b>说明：</b>提示框内容</p>
             </div>

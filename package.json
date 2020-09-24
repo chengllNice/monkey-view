@@ -1,13 +1,13 @@
 {
-  "name": "cl-ui",
-  "version": "0.1.0",
+  "name": "monkey-ui",
+  "version": "0.0.1",
   "private": true,
-  "title": "cl-ui",
+  "title": "monkey-ui",
   "description": "一套基于Vue2.0的高质量的UI框架",
-  "homepage": "https://chengllnice.github.io/cl-ui/",
+  "homepage": "https://chengllnice.github.io/monkey-ui/",
   "author": "程路路",
   "keywords": [
-    "cl-ui",
+    "monkey-ui",
     "vue",
     "vue.js",
     "component",
@@ -16,7 +16,7 @@
   "main": "./src/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/chengllNice/cl-ui"
+    "url": "https://github.com/chengllNice/monkey-ui"
   },
   "license": "MIT",
   "scripts": {

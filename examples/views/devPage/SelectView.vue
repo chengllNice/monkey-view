@@ -273,108 +273,108 @@
         </div>
 
 
-        <div class="viewDes">
+        <div class="views-dev">
             <h3>API</h3>
             <h4>select props</h4>
 
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：name</b></p>
                 <p><b>类型：String</b></p>
                 <p><b>说明：</b>原生name属性</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：value</b></p>
                 <p><b>类型：String, Number, Array</b></p>
                 <p><b>说明：</b>绑定的值，可以使用v-model双向绑定。多选时值为Array类型时</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：disabled</b></p>
                 <p><b>类型：Boolean</b></p>
                 <p><b>说明：</b>禁用</p>
                 <p><b>默认值：</b>false</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：placeholder</b></p>
                 <p><b>类型：String</b></p>
                 <p><b>说明：</b>占位文本</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：size</b></p>
                 <p><b>类型：String</b></p>
                 <p><b>说明：</b>尺寸，可选值small/default/large或者不设置</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：option</b></p>
                 <p><b>类型：Array</b></p>
                 <p><b>说明：</b>select的选项列表。设置此项后不用再插入Option组件。值类型如：[{value: '', label: '', disabled:
                     true}],其中value为选中时的返回值，label为展示信息，disabled控制是否可选</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：transition</b></p>
                 <p><b>类型：String</b></p>
                 <p><b>说明：</b>可自定义下拉框的动画效果</p>
                 <p><b>默认值：</b>fade</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：multiple</b></p>
                 <p><b>类型：Boolean</b></p>
                 <p><b>说明：</b>多选</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：clearable</b></p>
                 <p><b>类型：Boolean</b></p>
                 <p><b>说明：</b>开启清除</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：emptyText</b></p>
                 <p><b>类型：String</b></p>
                 <p><b>说明：</b>数据为空时的显示文本</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：filterable</b></p>
                 <p><b>类型：Boolean</b></p>
                 <p><b>说明：</b>开始搜索（本地数据搜索）</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：remote</b></p>
                 <p><b>类型：Boolean</b></p>
                 <p><b>说明：</b>开启远程搜索（需要自己控制数据）</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：loading</b></p>
                 <p><b>类型：Boolean</b></p>
                 <p><b>说明：</b>远程搜索时显示loading加载中的效果</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：maxHeight</b></p>
                 <p><b>类型：String, Number</b></p>
                 <p><b>说明：</b>设置下拉框的最大高度，超出后滚动</p>
                 <p><b>默认值：</b>200px</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：placement</b></p>
                 <p><b>类型：String</b></p>
                 <p><b>说明：</b>设置下拉框显示的位置</p>
                 <p><b>默认值：</b>bottom-start</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：valueLable</b></p>
                 <p><b>类型：Boolean</b></p>
                 <p><b>说明：</b>默认返回值只有value。设置此项返回值为value,label组成的对象</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：dropdownMatchSelectWidth</b></p>
                 <p><b>类型：Boolean</b></p>
                 <p><b>说明：</b>下拉框宽度默认和选择框同宽，文本超出后省略。设置此项后当内容比较长时下拉框宽度自动拉伸。下拉框最小和选择框同宽</p>
@@ -382,44 +382,44 @@
             </div>
         </div>
 
-        <div class="viewDes">
+        <div class="views-dev">
             <h3>API</h3>
             <h4>select event</h4>
 
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>事件名：change</b></p>
                 <p><b>说明：</b>选中option变化时触发，默认返回value，如需返回label，详见属性valueLabel</p>
                 <p><b>返回值：</b>当前项value</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>事件名：remote-change</b></p>
                 <p><b>说明：</b>远程搜索搜索词变化时触发</p>
                 <p><b>返回值：</b>搜索词</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>事件名：clear</b></p>
                 <p><b>说明：</b>点击清空按钮时触发</p>
                 <p><b>返回值：</b>-</p>
             </div>
         </div>
 
-        <div class="viewDes">
+        <div class="views-dev">
             <h3>API</h3>
             <h4>option props</h4>
 
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：value</b></p>
                 <p><b>类型：String, Number</b></p>
                 <p><b>说明：</b>选项值</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：label</b></p>
                 <p><b>类型：String, Number</b></p>
                 <p><b>说明：</b>选项显示的内容。默认在无slot内容时显示此项的内容。在通过slot自定义option显示内容时，此项为必填项。默认根据此项进行搜索</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：disabled</b></p>
                 <p><b>类型：Boolean</b></p>
                 <p><b>说明：</b>禁用</p>
@@ -427,11 +427,11 @@
             </div>
         </div>
 
-        <div class="viewDes">
+        <div class="views-dev">
             <h3>API</h3>
             <h4>optionGroup props</h4>
 
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：label</b></p>
                 <p><b>类型：String</b></p>
                 <p><b>说明：</b>分组的组名</p>

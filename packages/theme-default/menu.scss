@@ -290,7 +290,7 @@
 @include c(submenu){
   position: relative;
 
-  [class*='cl-icon'] {
+  [class*='m-icon'] {
     vertical-align: middle;
     margin-right: 10px;
     font-size: 16px;
@@ -409,7 +409,7 @@
     transition: all $--animation-time ease-in-out;
   }
 
-  & [class*='cl-icon'] {
+  & [class*='m-icon'] {
     vertical-align: middle;
     margin-right: 10px;
     font-size: 16px;

@@ -18,7 +18,7 @@
 
 - `Sider`组件实现了基本的侧导航功能，支持手风琴和全展开的样式，请根据业务相应的扩展。
 
-<m-alter type="info" showIcon>注意：采用 flex 布局实现，注意 <a href="https://caniuse.com/#search=flex" target="_blank">浏览器兼容性</a> 的问题。</m-alter>
+<Alter type="info" showIcon>注意：采用 flex 布局实现，注意 <a href="https://caniuse.com/#search=flex" target="_blank">浏览器兼容性</a> 的问题。</Alter>
 
 
 ## 代码示例
@@ -160,7 +160,7 @@
         </m-switch>
     </div>
     <br>
-    <div>定义收起的宽度： <m-input type="number" v-model="collapsedWidth"></m-input></div>
+    <div>定义收起的宽度： <Input type="number" v-model="collapsedWidth"></Input></div>
 </template>
 <script>
     export default {

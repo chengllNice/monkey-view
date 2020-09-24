@@ -6,7 +6,7 @@
 
 :::demo 基础用法
 
-渲染后形式为`<i class="cl-icon cl-icon-setting"></i>`的标签。
+渲染后形式为`<i class="m-icon m-icon-setting"></i>`的标签。
 
 ```html
 <template>

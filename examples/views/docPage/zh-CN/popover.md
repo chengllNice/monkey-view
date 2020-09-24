@@ -23,7 +23,7 @@
         <Button>foucs激活</Button>
     </Popover>
     <Popover title="提示" trigger="focus" content="content">
-        <m-input placeholder="input focus" />
+        <Input placeholder="input focus" />
     </Popover>
     <Popover title="提示" width="150px" wordWrap content="contentcontentcontentcontentcontentcontent">
         <Button>换行显示</Button>

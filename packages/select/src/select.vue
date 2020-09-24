@@ -33,7 +33,7 @@
                         <div ref="scrollInner">
                             <div v-if="loading" :class="[`${classPrefix}__loading`]">
                                 <Icon type="loading" class="animation-rotate"></Icon>
-                                {{t('cl.select.loading')}}
+                                {{t('m.select.loading')}}
                             </div>
 
                             <div v-else-if="isEmpty"
@@ -158,7 +158,7 @@
                 return !this.currentOption.length
             },
             localEmptyText() {
-                return this.emptyText || this.t('cl.select.emptyData');
+                return this.emptyText || this.t('m.select.emptyData');
             },
             dropInnerStyle() {
                 return {height: this.scrollInnerHeight + 'px'}

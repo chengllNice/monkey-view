@@ -178,7 +178,7 @@ $picture-thumbnial-height: #{$--upload-picture-height - $--upload-picture-paddin
     transform: translate(-100%, -50%);
     transition: color $--animation-time;
     line-height: normal;
-    [class*='cl-icon']{
+    [class*='m-icon']{
       font-size: $--upload-picture-icon-font-size;
     }
 
@@ -197,7 +197,7 @@ $picture-thumbnial-height: #{$--upload-picture-height - $--upload-picture-paddin
     transform: translate(0%, -50%);
     transition: color $--animation-time;
     line-height: normal;
-    [class*='cl-icon']{
+    [class*='m-icon']{
       font-size: $--upload-picture-icon-font-size;
     }
 

@@ -2,52 +2,52 @@
     <div class="TreeView">
 
 <!--        <h4>normal</h4>-->
-<!--        <cl-tree :data="treeData" ref="tree"></cl-tree>-->
+<!--        <Tree :data="treeData" ref="tree"></Tree>-->
 
 
 <!--        <h4>filter</h4>-->
-<!--        <cl-input v-model="filterValue" @change="filterChange"></cl-input>-->
-<!--        <cl-tree :data="treeData" ref="tree"></cl-tree>-->
+<!--        <Input v-model="filterValue" @change="filterChange"></Input>-->
+<!--        <Tree :data="treeData" ref="tree"></Tree>-->
 
 <!--        <h4>slot</h4>-->
-<!--        <cl-tree :data="treeDataLoad" :expand-click-on-node="false" ref="tree">-->
+<!--        <Tree :data="treeDataLoad" :expand-click-on-node="false" ref="tree">-->
 <!--            <template slot-scope="data">-->
 <!--                {{data.data.label}}-->
-<!--                <cl-button-group>-->
-<!--                    <cl-button icon="plus" type="primary" size="mini" @click="add(data)"></cl-button>-->
-<!--                    <cl-button icon="remove" size="mini" @click="remove(data)"></cl-button>-->
-<!--                </cl-button-group>-->
+<!--                <ButtonGroup>-->
+<!--                    <Button icon="plus" type="primary" size="mini" @click="add(data)"></Button>-->
+<!--                    <Button icon="remove" size="mini" @click="remove(data)"></Button>-->
+<!--                </ButtonGroup>-->
 <!--            </template>-->
-<!--        </cl-tree>-->
+<!--        </Tree>-->
 
 <!--        <h4>renderContent</h4>-->
-<!--        <cl-tree :data="treeData" :render-content="renderContent" ref="tree"></cl-tree>-->
+<!--        <Tree :data="treeData" :render-content="renderContent" ref="tree"></Tree>-->
 
 <!--        <h4>LoadData</h4>-->
-<!--        <cl-tree :data="treeDataLoad" :load-data="handleLoadData" ref="tree"></cl-tree>-->
+<!--        <Tree :data="treeDataLoad" :load-data="handleLoadData" ref="tree"></Tree>-->
 
 
 <!--        <h4>icon</h4>-->
-<!--        <cl-tree :data="treeData" ref="tree" expand-icon-class="file"></cl-tree>-->
+<!--        <Tree :data="treeData" ref="tree" expand-icon-class="file"></Tree>-->
 
             <h4>icon</h4>
-            <cl-tree :data="treeData" ref="tree" hide-icon></cl-tree>
+            <Tree :data="treeData" ref="tree" hide-icon></Tree>
 
 
 <!--        <h4>checkedKeys</h4>-->
-<!--        <cl-tree :data="treeData" show-checkbox :checked-keys="checkedKeys" ref="tree"></cl-tree>-->
+<!--        <Tree :data="treeData" show-checkbox :checked-keys="checkedKeys" ref="tree"></Tree>-->
 
 <!--        <h4>checkedKeys &#45;&#45; check-strictly</h4>-->
-<!--        <cl-tree :data="treeData" show-checkbox check-strictly :checked-keys="checkedKeys" ref="tree"></cl-tree>-->
+<!--        <Tree :data="treeData" show-checkbox check-strictly :checked-keys="checkedKeys" ref="tree"></Tree>-->
 
 <!--        <h4>expandKeys</h4>-->
-<!--        <cl-tree :data="treeData" :expand-keys="expandKeys" ref="tree"></cl-tree>-->
+<!--        <Tree :data="treeData" :expand-keys="expandKeys" ref="tree"></Tree>-->
 
 <!--        <h4>手风琴</h4>-->
-<!--        <cl-tree :data="treeData" accordion ref="tree"></cl-tree>-->
+<!--        <Tree :data="treeData" accordion ref="tree"></Tree>-->
 
 <!--        <h4>显示checkbox</h4>-->
-<!--        <cl-tree :data="checkedData" show-checkbox ref="tree"></cl-tree>-->
+<!--        <Tree :data="checkedData" show-checkbox ref="tree"></Tree>-->
     </div>
 </template>
 
@@ -296,8 +296,8 @@
                             }),
                             h('span', data.label),
                         ]),
-                        h('ClButtonGroup', [
-                            h('ClButton', {
+                        h('ButtonGroup', [
+                            h('Button', {
                                 props: {
                                     type: 'primary',
                                     icon: 'plus',
@@ -309,7 +309,7 @@
                                     }
                                 }
                             }),
-                            h('ClButton', {
+                            h('Button', {
                                 props: {
                                     icon: 'minus',
                                     size: 'mini',
@@ -374,7 +374,7 @@
                         }
                     ]
                 }
-                return new Promise((resolve, reject) => {
+                return new Promise((resolve) => {
                     setTimeout(()=>{
                         resolve(result)
                     }, 3000)

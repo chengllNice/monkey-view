@@ -135,11 +135,11 @@
 
   @include when(disabled){
     cursor: not-allowed;
-    opacity: 0.4;
+    opacity: $--opacity-disabled;
   }
 
   @include when(loading){
-    opacity: 0.4;
+    opacity: $--opacity-disabled;
     &::before{
       display: inline-block;
     }

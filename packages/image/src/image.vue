@@ -10,7 +10,7 @@
             </slot>
         </div>
         <div v-else-if="isError" :class="[`${classPrefix}__error`]">
-            <slot name="error">{{t('cl.image.errorText')}}</slot>
+            <slot name="error">{{t('m.image.errorText')}}</slot>
         </div>
         <img v-else
              :class="[
@@ -37,7 +37,7 @@
     const isObjectFit = document.documentElement.style.objectFit !== undefined;
 
     export default {
-        name: `${Config.componentPrefix}Image`,
+        name: `MImage`,
         mixins: [Locale],
         props: {
             fit: {

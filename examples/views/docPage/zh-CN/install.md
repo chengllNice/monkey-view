@@ -7,7 +7,7 @@
 推荐使用`npm`的方式进行安装，这样可以更好和`webpack`进行配合。
 
 ```shell
-npm install cl-ui --save
+npm install monkey-ui --save
 ```
 
 

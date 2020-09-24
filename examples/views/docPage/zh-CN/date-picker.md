@@ -402,6 +402,40 @@
 :::
 
 
+:::demo 只显示日期框
+
+设置`only-show-pane`属性只显示日期框。
+
+```html
+<template>
+    <DatePicker v-model="pickerDate" type="date" only-show-pane @change="handleChange">
+        <template slot="paneFooter">
+            <Button size="small" @click="handleClear">清除</Button>
+        </template>
+    </DatePicker>
+</template>
+<script>
+    export default {
+        data(){
+            return {
+                pickerDate: ''
+            }
+        },
+        methods: {
+            handleChange(value){
+                this.$Message.info('selectd value is ' + value)
+            },
+            handleClear(){
+                this.pickerDate = '';
+            }   
+        }
+    }
+</script>
+```
+
+:::
+
+
 :::demo 尺寸
 
 设置`size`属性控制尺寸大小，可选值 `mini` `small` `large`或者不设置。
@@ -463,13 +497,14 @@
 | format | String | 输入框展示时间的格式化；详细见示例，具体格式见下面的日期格式说明 | - |
 | value-format | String | `v-model`绑定值时间的格式化；详细见示例，具体格式见下面的日期格式说明 | - |
 | shortcuts | Array | 自定义快捷方式，类型如`[{text: 'one', onClick(picker){}}]`，详细见示例 | - |
-| disabledDate | Function | 禁用日期，详细见示例 | - |
-| showWeekNumber | Boolean | 是否显示周数 | - |
+| disabled-date | Function | 禁用日期，详细见示例 | - |
+| show-week-number | Boolean | 是否显示周数 | - |
 | open | Boolean | 自定义控制打开关闭日期下拉框，此时选择器不会主动关闭，结合`slot`使用。 | - |
 | multiple | Boolean | 是否多选日期，`type=date`时有效 | - |
 | separator | String | range类型时，两个日期之间的分隔符 | ～ |
-| className | String | 选择器的类名 | - |
-| dropdownClassName | String | 选择器下拉框的类名 | - |
+| class-name | String | 选择器的类名 | - |
+| dropdown-class-name | String | 选择器下拉框的类名 | - |
+| only-show-pane | Boolean | 只显示日期框 | - |
 | renderHtml | HTMLElement, Boolean | 定义日期下拉框渲染的位置，如果为`true`则渲染到body中，可以指定渲染的元素 | false |
 
 
@@ -489,6 +524,7 @@
 | 名称 | 说明 |
 | ---- | ---- |
 | - | 自定义触发器 |
+| paneFooter | 自定义日期选择框底部内容 |
 
 
 ### DatePicker methods

@@ -11,17 +11,13 @@
 
 <script>
     export default {
-        name: "anchors-link",
+        name: "AnchorsLink",
         data() {
             return {
                 anchorLinkData: [],
                 active: '',
                 scrollTop: '',
             }
-        },
-        computed: {},
-        components: {},
-        created() {
         },
         mounted() {
             this.$nextTick(this.getAnchorLinkNav());
@@ -68,50 +64,3 @@
         }
     }
 </script>
-
-<style lang="scss" scoped>
-    .anchors-link {
-        border-left: 1px solid #eeeeee;
-        position: relative;
-        top: 0;
-        font-size: 12px;
-
-        .anchors-link-item {
-            padding: 8px 0 8px 16px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            color: #525252;
-            position: relative;
-
-            a {
-                color: #525252;
-
-                &:hover {
-                    color: #2d8cf0;
-                }
-            }
-
-            &:before {
-                content: '';
-                position: absolute;
-                left: 0;
-                top: 50%;
-                transform: translateY(-50%);
-                height: 60%;
-                width: 0;
-                border-left: 1px solid transparent;
-            }
-
-            &.is-active {
-                &:before {
-                    border-left: 1px solid #2d8cf0;
-                }
-
-                a {
-                    color: #2d8cf0;
-                }
-            }
-        }
-    }
-</style>

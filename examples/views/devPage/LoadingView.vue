@@ -1,23 +1,23 @@
 <template>
     <div class="loadingView">
         <h4>基础</h4>
-        <cl-loading size="mini" :visible="true" />
-        <cl-loading size="small" :visible="true" />
-        <cl-loading size="default" :visible="true" />
-        <cl-loading size="large" :visible="true" />
+        <Loading size="mini" :visible="true" />
+        <Loading size="small" :visible="true" />
+        <Loading size="default" :visible="true" />
+        <Loading size="large" :visible="true" />
 
         <h4>基础</h4>
-        <cl-loading fix :visible="false" />
+        <Loading fix :visible="false" />
 
         <h4>基础</h4>
-        <cl-loading fullscreen :visible="false" text="loading..." />
+        <Loading fullscreen :visible="false" text="loading..." />
 
-        <cl-button @click="loadingInstance">$Loading 3s后关闭</cl-button>
-        <cl-button @click="changeLoading('loading')">loading状态</cl-button>
+        <Button @click="loadingInstance">$Loading 3s后关闭</Button>
+        <Button @click="changeLoading('loading')">loading状态</Button>
         <div class="loading-d" v-loading:default:加载中...="loading"></div>
-        <cl-button @click="changeLoading('loading')">loading状态</cl-button>
+        <Button @click="changeLoading('loading')">loading状态</Button>
         <div class="loading-d" v-loading="loading"></div>
-        <cl-button @click="changeLoading('loading1')">loading1状态</cl-button>
+        <Button @click="changeLoading('loading1')">loading1状态</Button>
         <div class="loading-d" v-loading="loading1"></div>
     </div>
 </template>

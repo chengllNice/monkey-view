@@ -27,14 +27,19 @@
                 type: String,
                 default: ''
             },
+            //自动更新时间，单位：秒
+            interval: {
+                type: Number,
+            }
         },
         data() {
             return {
                 classPrefix: Config.classPrefix + '-time',
-                defaultFormat: 'YYYY-MM-DD hh:mm:ss',
+                defaultFormat: 'yyyy-MM-dd hh:mm:ss',
                 currentFormatDate: '',//日期格式化
                 currentFormatTime: '',//时间格式化
-                currentTime: ''
+                currentTime: '',
+                timer: null,
             }
         },
         mounted() {
@@ -44,12 +49,20 @@
             initFormat() {
                 let format = this.format || this.defaultFormat;
                 if (this.type === 'date') {
-                    format = this.format || 'YYYY-MM-DD'
+                    format = this.format || 'yyyy-MM-dd'
                 }
                 let splitIndex = format.indexOf(' ');
-                this.currentFormatDate = format.substring(0, splitIndex).trim() || 'YYYY-MM-DD';
+                this.currentFormatDate = format.substring(0, splitIndex).trim() || 'yyyy-MM-dd';
                 this.currentFormatTime = format.substring(splitIndex + 1).trim() || 'hh:mm:ss';
+
                 this.initCurrentTime();
+                if(this.interval !== undefined && this.interval > 0){
+                    let interval = parseInt(this.interval) * 1000;
+                    clearInterval(this.timer);
+                    this.timer = setInterval(() => {
+                        this.initCurrentTime();
+                    }, interval)
+                }
             },
             initCurrentTime() {
                 let time = '';
@@ -68,7 +81,7 @@
             },
             autoTime(time) {
                 if (!time) return;
-                let result = '';
+                let result = '刚刚';
                 let nowDate = new Date();
                 let yesterDate = new Date();
                 let tomorrowDate = new Date();
@@ -130,7 +143,9 @@
                 }
                 return result;
             },
-
+        },
+        destroyed() {
+            this.timer && clearInterval(this.timer);
         },
         watch: {
             value() {

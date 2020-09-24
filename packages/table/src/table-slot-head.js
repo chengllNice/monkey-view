@@ -9,8 +9,11 @@ export default {
     },
     render(h, context){
         const r = context.injections.tableRoot.$scopedSlots[context.props.slotName];
+        const className = context.data.class || {};
         if(r){
-            return h('div', r({
+            return h('div', {
+                'class': className
+            }, r({
                 column: context.props.column,
             }));
         }

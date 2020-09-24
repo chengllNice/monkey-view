@@ -54,10 +54,10 @@
         },
         computed: {
             localOkText() {
-                return this.okText === null ? null : (this.okText ? this.okText : this.t('cl.modal.okText'));
+                return this.okText === null ? null : (this.okText ? this.okText : this.t('m.modal.okText'));
             },
             localCancelText() {
-                return this.cancelText === null ? null : (this.cancelText ? this.cancelText : this.t('cl.modal.cancelText'));
+                return this.cancelText === null ? null : (this.cancelText ? this.cancelText : this.t('m.modal.cancelText'));
             },
             iconClass() {
                 let result;

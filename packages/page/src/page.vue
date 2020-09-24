@@ -114,14 +114,14 @@
              ]"
              :style="{order: orderList('jump')}"
              v-if="orderList('jump') > -1">
-                {{t('cl.page.goto')}}
+                {{t('m.page.goto')}}
                 <Input :class="[`${classPrefix}__jump-to-input`]"
                           type="number"
                           v-model="jumpToPage"
                           :step="false"
                           :size="size"
                           @enter="jumpToPageChange"/>
-                {{t('cl.page.page')}}
+                {{t('m.page.page')}}
         </div>
     </div>
 </template>
@@ -236,14 +236,14 @@
             },
             localeTotalText() {
                 if (!this.totalText) {
-                    return this.t('cl.page.total') + ' {total} ' + this.t('cl.page.item');
+                    return this.t('m.page.total') + ' {total} ' + this.t('m.page.item');
                 } else {
                     return this.totalText
                 }
             },
             localePageSizeText() {
                 if (!this.pageSizeText) {
-                    return '{pageSize} ' + this.t('cl.page.item') + '/' + this.t('cl.page.page');
+                    return '{pageSize} ' + this.t('m.page.item') + '/' + this.t('m.page.page');
                 } else {
                     return this.pageSizeText
                 }

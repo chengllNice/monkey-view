@@ -10,7 +10,7 @@
 
 ```html
 <template>
-    <cl-tree :data="data"></cl-tree>
+    <Tree :data="data"></Tree>
 </template>
 <script>
     export default {
@@ -92,7 +92,7 @@
 
 ```html
 <template>
-    <cl-tree :data="data" accordion></cl-tree>
+    <Tree :data="data" accordion></Tree>
 </template>
 <script>
     export default {
@@ -174,7 +174,7 @@
 
 ```html
 <template>
-    <cl-tree :data="data" show-checkbox></cl-tree>
+    <Tree :data="data" show-checkbox></Tree>
 </template>
 <script>
     export default {
@@ -273,7 +273,7 @@
 
 ```html
 <template>
-    <cl-tree :data="data" show-checkbox :expand-keys="expandKeys" :checked-keys="checkedKeys"></cl-tree>
+    <Tree :data="data" show-checkbox :expand-keys="expandKeys" :checked-keys="checkedKeys"></Tree>
 </template>
 <script>
     export default {
@@ -386,8 +386,8 @@
 
 ```html
 <template>
-    <cl-input v-model="searchValue" placeholder="请输入搜索关键词" type="search" @search="handleSearch"></cl-input>
-    <cl-tree :data="data" ref="tree"></cl-tree>
+    <Input v-model="searchValue" placeholder="请输入搜索关键词" type="search" @search="handleSearch"></Input>
+    <Tree :data="data" ref="tree"></Tree>
 </template>
 <script>
     export default {
@@ -471,7 +471,7 @@
 
 :::demo 自定义节点内容
 
-自定义节点的内容有两种方式。
+自定义节点的内容有两种方式，此时只能点击展开图标展开菜单。
 
 第一种方式：
 
@@ -491,27 +491,27 @@
 
 ```html
 <template>
-    <cl-row>
-        <cl-col>
+    <Row>
+        <Col>
             <h4>slot插槽方式</h4>
-            <cl-tree :data="data" :expand-click-on-node="false">
+            <Tree :data="data" :expand-click-on-node="false">
                 <div class="doc-tree-load-data" slot-scope="data">
                     <span>
                         <Icon type="file"></Icon>
                         {{data.data.label}}
                     </span>
-                    <cl-button-group>
-                        <cl-button icon="plus" type="primary" size="mini" @click="handleAdd(data)"></cl-button>
-                        <cl-button icon="minus" size="mini" @click="handleRemove(data)"></cl-button>
-                    </cl-button-group>
+                    <ButtonGroup>
+                        <Button icon="plus" type="primary" size="mini" @click="handleAdd(data)"></Button>
+                        <Button icon="minus" size="mini" @click="handleRemove(data)"></Button>
+                    </ButtonGroup>
                 </div>
-            </cl-tree>
-        </cl-col>
-        <cl-col>
+            </Tree>
+        </Col>
+        <Col>
             <h4>renderContent方式</h4>
-            <cl-tree :data="data" :expand-click-on-node="false" :render-content="renderContent"></cl-tree>
-        </cl-col>
-    </cl-row>
+            <Tree :data="data" :expand-click-on-node="false" :render-content="renderContent"></Tree>
+        </Col>
+    </Row>
     
 </template>
 <script>
@@ -599,8 +599,8 @@
                                 }),
                                 h('span', data.label),
                             ]),
-                            h('ClButtonGroup', [
-                                h('ClButton', {
+                            h('ButtonGroup', [
+                                h('Button', {
                                     props: {
                                         type: 'primary',
                                         icon: 'plus',
@@ -612,7 +612,7 @@
                                         }
                                     }
                                 }),
-                                h('ClButton', {
+                                h('Button', {
                                     props: {
                                         icon: 'minus',
                                         size: 'mini',
@@ -662,7 +662,7 @@ data数据中的`last`属性表示该节点是最后一级节点，最后一级�
 
 ```html
 <template>
-    <cl-tree :data="data" :load-data="loadData"></cl-tree>
+    <Tree :data="data" :load-data="loadData"></Tree>
 </template>
 <script>
     export default {

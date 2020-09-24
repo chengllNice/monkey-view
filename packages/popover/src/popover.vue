@@ -112,14 +112,14 @@
             },
             localeCancelText() {
                 if (!this.cancelText) {
-                    return this.t('cl.popover.cancelText')
+                    return this.t('m.popover.cancelText')
                 } else {
                     return this.cancelText
                 }
             },
             localeOkText() {
                 if (!this.okText) {
-                    return this.t('cl.popover.okText')
+                    return this.t('m.popover.okText')
                 } else {
                     return this.okText
                 }

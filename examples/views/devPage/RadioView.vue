@@ -45,35 +45,35 @@
             </RadioGroup>
         </div>
 
-        <div class="viewDes">
+        <div class="views-dev">
             <h3>API</h3>
             <h4>radio props</h4>
 
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：value</b></p>
                 <p><b>类型：Number, String, Boolean</b></p>
                 <p><b>说明：</b>只有单独使用是可以使用v-model绑定值。单独使用时没有设置label，选中时返回true；单独使用设置label时，选中返回label指定的值。组合使用时不支持设置该值</p>
                 <p><b>默认值：</b>false</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：label</b></p>
                 <p><b>类型：Number, String, Boolean</b></p>
                 <p><b>说明：</b>单独使用时选中时返回该值。组合使用时，如果使用组合的options属性，该项值为文字描述；使用slot时，选中时返回该值</p>
                 <p><b>默认值：</b>true</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：disabled</b></p>
                 <p><b>类型：Boolean</b></p>
                 <p><b>说明：</b>可选值true/false</p>
                 <p><b>默认值：</b>false</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：name</b></p>
                 <p><b>类型：String</b></p>
                 <p><b>说明：</b>原生name属性</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：size</b></p>
                 <p><b>类型：String</b></p>
                 <p><b>说明：</b>checkbox尺寸，可选值small/default/large</p>
@@ -81,29 +81,29 @@
             </div>
         </div>
 
-        <div class="viewDes">
+        <div class="views-dev">
             <h3>API</h3>
             <h4>radioGroup props</h4>
 
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：value</b></p>
                 <p><b>类型：String, Number, Boolean</b></p>
                 <p><b>说明：</b>指定当前选中的radio，使用v-model双向绑定。</p>
                 <p><b>默认值：</b>-</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：disabled</b></p>
                 <p><b>类型：Boolean</b></p>
                 <p><b>说明：</b>组合中的所有radio全部禁用</p>
                 <p><b>默认值：</b>false</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：size</b></p>
                 <p><b>类型：String</b></p>
                 <p><b>说明：</b>组合中所有radio的尺寸</p>
                 <p><b>默认值：</b>false</p>
             </div>
-            <div class="propItem">
+            <div class="views-dev-prop-item">
                 <p><b>属性：options</b></p>
                 <p><b>类型：Array</b></p>
                 <p><b>说明：</b>类似[{value: '0', label: 'checkbox'}]这样的数组，其中value指定当前项是否选中，label为当前项的文字描述</p>
