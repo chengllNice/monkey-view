@@ -9,19 +9,19 @@
                 <MenuItem c-key="docs" name="文档"></MenuItem>
                 <MenuItem c-key="components" name="组件"></MenuItem>
             </Menu>
-            <Dropdown>
-                <span>{{langMap[lang]}}</span>
+            <Dropdown class="doc-header-drop" trigger="click" @click-item="handleChangeVersion">
+                {{version}} <Icon type="down"></Icon>
                 <DropdownMenu slot="menu">
-                    <DropdownItem name="中文"></DropdownItem>
-                    <DropdownItem name="English"></DropdownItem>
+                    <DropdownItem v-for="(item, index) in versionMap" :key="index" :name="item">{{item}}</DropdownItem>
                 </DropdownMenu>
             </Dropdown>
-<!--            <Menu mode="horizontal" :item-height="60" @select="langChange" :activeKey="lang">-->
-<!--                <Submenu c-key="lang" :name="langMap[lang]">-->
-<!--                    <MenuItem c-key="zh-CN" name="中文"></MenuItem>-->
-<!--                    <MenuItem c-key="en-US" name="English"></MenuItem>-->
-<!--                </Submenu>-->
-<!--            </Menu>-->
+            <Dropdown class="doc-header-drop" trigger="click" @click-item="langChange">
+                {{langMap[lang]}} <Icon type="down"></Icon>
+                <DropdownMenu slot="menu">
+                    <DropdownItem v-for="(value, key) in langMap" :key="key" :name="key">{{value}}</DropdownItem>
+                </DropdownMenu>
+            </Dropdown>
+            <span class="doc-header-drop doc-header-github" @click="handleGo('github')"><Icon type="github" size="20"></Icon></span>
         </div>
     </div>
 </template>
@@ -37,7 +37,9 @@
                 langMap: {
                     'zh-CN': '中文',
                     'en-US': 'English',
-                }
+                },
+                version: Config.defaultVersion,
+                versionMap: Config.versionTypes
             }
         },
         mounted() {
@@ -55,6 +57,16 @@
             },
             setLang() {
                 this.lang = Config.langTypes.includes(this.$route.path.split('/')[1]) ? this.$route.path.split('/')[1] : Config.defaultLang;
+            },
+            handleChangeVersion(value){
+                this.version = value;
+            },
+            handleGo(type){
+                let url = '';
+                if(type === 'github'){
+                    url = 'https://github.com/chengllNice/monkey-ui'
+                }
+                window.open(url, '_black');
             }
         },
         watch: {

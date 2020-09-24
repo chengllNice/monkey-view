@@ -3,7 +3,7 @@
          v-click-outside.capture="handleClickOutside"
          @mouseenter="handleMouseEnter"
          @mouseleave="handleMouseLeave">
-        <div ref="reference" @click="handleClick" @contextmenu.prevent="handleRightClick">
+        <div :class="[`${classPrefix}__reference`]" ref="reference" @click="handleClick" @contextmenu.prevent="handleRightClick">
             <slot></slot>
         </div>
         <transition :name="transition">
@@ -37,11 +37,11 @@
             },
             placement: {
                 type: String,
-                default: 'bottom-start'
+                default: 'bottom'
             },
             dropdownMatchSelectWidth: {
                 type: Boolean,
-                default: true
+                default: false
             },
             trigger: {
                 type: String,
@@ -123,7 +123,7 @@
             },
             itemClick(name) {
                 if(this.hideOnClick) this.changeDropDown();
-                this.$emit('click', name);
+                this.$emit('click-item', name);
             }
         },
         watch: {

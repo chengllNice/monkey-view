@@ -998,6 +998,13 @@
       "font_class": "video-fill",
       "unicode": "e94e",
       "unicode_decimal": 59726
+    },
+    {
+      "icon_id": "64494023",
+      "name": "github",
+      "font_class": "github",
+      "unicode": "e94f",
+      "unicode_decimal": 59727
     }
   ]
 }

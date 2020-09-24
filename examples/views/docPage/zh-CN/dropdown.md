@@ -150,8 +150,8 @@
 | trigger | String | 触发菜单打开的方式,可选值`hover` `click` `contextmenu` `custom` | hover |
 | visible | Boolean | 是否打开 | false |
 | transition | String | 打开关闭的动画 | slideUp |
-| placement | String | 下拉菜单的位置 | bottom-start |
-| dropdownMatchSelectWidth | Boolean | 下拉框宽度是否和触发元素同宽 | true |
+| placement | String | 下拉菜单的位置 | bottom |
+| dropdownMatchSelectWidth | Boolean | 下拉框宽度是否和触发元素同宽 | false |
 | hide-on-click | Boolean | 点击item后是否关闭菜单 | true |
 | renderHtml | HTMLElement, Boolean | 下拉框渲染到的位置 | false |
 
@@ -160,7 +160,7 @@
 
 | 事件名 | 说明 | 返回值 |
 | ---- | ---- | ---- |
-| click | 点击菜单项触发,返回菜单项的name | name |
+| click-item | 点击菜单项触发,返回菜单项的name | name |
 | click-outside | 点击外部触发 | event |
 | visible-change | 可见状态变化时触发 | visible |
 

@@ -3,6 +3,10 @@
 
 @include c(dropdown){
   display: inline-block;
+
+  @include e(reference){
+    cursor: pointer;
+  }
 }
 
 

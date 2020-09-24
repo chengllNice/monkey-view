@@ -3,5 +3,9 @@ export default {
         'zh-CN',
         'en-US',
     ],
-    defaultLang: 'zh-CN'
+    defaultLang: 'zh-CN',
+    versionTypes: [
+        '0.0.1',
+    ],
+    defaultVersion: '0.0.1'
 };

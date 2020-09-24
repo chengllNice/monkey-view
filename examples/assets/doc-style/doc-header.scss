@@ -24,4 +24,15 @@
     display: flex;
     align-items: center;
   }
+
+  .doc-header-drop{
+    margin-left: 40px;
+  }
+
+  .doc-header-github{
+    cursor: pointer;
+    &:hover{
+      color: #17233d;
+    }
+  }
 }
