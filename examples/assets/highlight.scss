@@ -11,7 +11,7 @@ code{
   margin: 1px 3px;
   font-family: Consolas,Menlo,Courier,monospace;
 }
-pre code.html, pre code.shell{
+pre code.html, .md-html-no-demo pre code{
   padding: 10px 20px;
   display: block;
   font-size: 14px;
@@ -22,9 +22,10 @@ pre code.html{
   border: none;
   margin: 0;
 }
-pre code.shell{
+.md-html-no-demo pre code{
   background-color: #fafafa;
   margin: 0;
+  padding: 10px 20px;
 }
 
 .hljs-value, .hljs-string, .hljs-doctag{
@@ -45,4 +46,9 @@ pre code.shell{
 
 .hljs-keyword, .hljs-selector-tag, .hljs-subst{
   font-weight: 500;
+}
+
+
+.md-html-no-demo{
+  background-color: #fafafa;
 }

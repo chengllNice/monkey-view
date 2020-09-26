@@ -4,19 +4,16 @@
             <doc-header></doc-header>
         </Header>
         <Layout class="views-layout">
-            <Sider hide-trigger width="240">
-                <LeftNav></LeftNav>
+            <Sider class="views-sider" hide-trigger width="240">
+                <left-nav></left-nav>
             </Sider>
             <Content class="views-main-content" ref="viewsMainContent">
                 <div class="views-main-content-card">
                     <Row :gutter="16">
                         <Col style="padding: 16px;">
-<!--                            <keep-alive>-->
-<!--                                -->
-<!--                            </keep-alive>-->
                             <router-view></router-view>
                         </Col>
-                        <Col span="3">
+                        <Col span="4">
                             <anchors-link></anchors-link>
                         </Col>
                     </Row>
@@ -47,7 +44,7 @@
             AnchorsLink
         },
         watch: {
-            '$route': function () {
+            '$route.path': function () {
                 this.$nextTick(()=>{
                     this.$refs.viewsMainContent.$el.scrollTo(0, 0);
                 })

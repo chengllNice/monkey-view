@@ -1,5 +1,5 @@
 @import "./base/var";
-@import "./config/mixins/index.scss";
+@import "./mixins/index.scss";
 
 @include c(time){
   font-size: $--font-size-default;

@@ -152,9 +152,6 @@
             Drop,
             CascaderPanel,
         },
-        mounted() {
-
-        },
         methods: {
             setInputValue() {
                 if (this.format) {

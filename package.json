@@ -1,19 +1,19 @@
 {
   "name": "monkey-ui",
-  "version": "0.0.1",
-  "private": true,
+  "version": "0.1.0",
   "title": "monkey-ui",
   "description": "一套基于Vue2.0的高质量的UI框架",
   "homepage": "https://chengllnice.github.io/monkey-ui/",
   "author": "程路路",
   "keywords": [
     "monkey-ui",
+    "monkeyui",
     "vue",
     "vue.js",
     "component",
     "ui"
   ],
-  "main": "./src/index.js",
+  "main": "./dist/monkey-ui.umd.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/chengllNice/monkey-ui"
@@ -21,8 +21,13 @@
   "license": "MIT",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "clean": "rimraf dist",
+    "build:docs": "rimraf dist-docs && vue-cli-service build",
+    "build:locale": "rimraf dist/locale && node build/build.locale.js",
+    "build:umd": "npm run clean && vue-cli-service build --target lib --name monkey-ui src/index.js && node build/dist.file.deal.js",
+    "build:style": "rimraf dist/styles && gulp --gulpfile build/build.styles.js",
+    "build:deploy": "npm run build:umd && npm run build:style && npm run build:locale"
   },
   "dependencies": {
     "@vue/component-compiler-utils": "^3.0.0",
@@ -55,17 +60,32 @@
     "vuex": "^3.0.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/plugin-transform-modules-umd": "^7.10.4",
     "@vue/cli-plugin-babel": "^3.9.0",
     "@vue/cli-plugin-eslint": "^3.9.0",
     "@vue/cli-service": "^3.9.0",
+    "babel-core": "^6.26.3",
     "babel-eslint": "^10.0.1",
+    "babel-plugin-add-module-exports": "^1.0.4",
     "chinese2pinyin": "^1.0.1",
+    "del": "^5.1.0",
     "eslint": "^5.16.0",
     "eslint-plugin-markdown": "^1.0.0",
     "eslint-plugin-vue": "^5.0.0",
+    "file-save": "^0.2.0",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^4.1.0",
+    "gulp-uglifycss": "^1.1.0",
     "node-sass": "^4.12.0",
     "pinyin": "^2.9.0",
+    "rimraf": "^3.0.2",
     "sass-loader": "^7.1.0",
+    "uglify-js": "^3.10.4",
+    "uglifyjs-webpack-plugin": "^2.2.0",
     "vue-template-compiler": "^2.6.10"
   }
 }

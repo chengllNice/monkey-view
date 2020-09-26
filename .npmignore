@@ -1,0 +1,7 @@
+.*
+examples/
+build/
+md-loader/
+node_modules/
+docs-dist/
+*.md

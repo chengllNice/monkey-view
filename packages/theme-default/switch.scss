@@ -1,6 +1,6 @@
 @import "./base/var";
-@import "./config/mixins/index.scss";
-@import "./config/animations/rotate.scss";
+@import "./mixins/index.scss";
+@import "./mixins/animations/rotate.scss";
 
 @mixin switchSize($size){
   $width: $--switch-width-default;

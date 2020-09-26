@@ -163,17 +163,20 @@
                 if(this.name) text = this.name;
                 this.tooltipContent = text;
             },
-
+            setActive(key){
+                if(this.disabled) return;
+                this.active = this.cKey === key;
+            }
         },
         mounted() {
             this.$nextTick(()=>{
                 this.getTooltipContent();
+                this.setActive(this.menuComponent.currentActiveKey);
             })
         },
         watch: {
             'menuComponent.currentActiveKey': function (newVal) {
-                if(this.disabled) return;
-                this.active = this.cKey === newVal;
+                this.setActive(newVal);
             }
         }
     }

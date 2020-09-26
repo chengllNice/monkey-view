@@ -19,7 +19,7 @@
                 </Tooltip>
             </div>
             <SlideTransition>
-                <div v-show="openedCode" class="code-wrap-code-content" ref="codeContent" v-highlight>
+                <div v-show="openedCode" class="code-wrap-code-content" ref="codeContent">
                     <slot name="highlight"></slot>
                 </div>
             </SlideTransition>

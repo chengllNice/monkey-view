@@ -26,11 +26,12 @@
   }
 
   .doc-header-drop{
-    margin-left: 40px;
+    margin: 0 20px;
   }
 
   .doc-header-github{
     cursor: pointer;
+    margin-right: 0;
     &:hover{
       color: #17233d;
     }

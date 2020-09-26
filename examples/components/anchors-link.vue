@@ -4,7 +4,7 @@
              :class="{'is-active': active === item.hash}"
              v-for="(item, index) in anchorLinkData"
              :key="index">
-            <a :href="item.hash">{{item.text}}</a>
+            <a href="javascript:void(0);" @click="handleGoAnchors(item)">{{item.text}}</a>
         </div>
     </div>
 </template>
@@ -20,7 +20,11 @@
             }
         },
         mounted() {
-            this.$nextTick(this.getAnchorLinkNav());
+            this.$nextTick(()=>{
+                setTimeout(()=>{
+                    this.getAnchorLinkNav();
+                })
+            });
             document.querySelector('.views-main-content').addEventListener('scroll', (e) => {
                 this.scrollChange(e)
             }, false)
@@ -29,20 +33,28 @@
             getAnchorLinkNav() {
                 this.anchorLinkData = [];
                 const anchors = document.querySelectorAll('.code-wrap-des-content-title a');
+                this.active = '';
+                let routerHash = this.$route.hash;
                 if (anchors && anchors.length) {
+                    let activeAnchors = null;
                     anchors.forEach(item => {
                         let text = item.attributes['data-title'].value;
                         let hash = item.attributes['href'].value;
                         let scrollHeight = document.querySelector(hash).offsetTop;
                         let offsetHeight = document.querySelector(hash).offsetHeight;
-                        this.anchorLinkData.push({
-                            text,
-                            hash,
-                            scrollHeight,
-                            offsetHeight
-                        })
+
+                        let obj = {text, hash, scrollHeight, offsetHeight};
+                        this.anchorLinkData.push(obj);
+
+                        if(routerHash === hash){
+                            activeAnchors = obj;
+                        }
                     });
                     this.active = this.anchorLinkData[0].hash;
+                    if(activeAnchors){
+                        this.active = activeAnchors.hash;
+                        this.handleGoAnchors(activeAnchors);
+                    }
                 }
             },
             scrollChange(e) {
@@ -56,9 +68,22 @@
                     }
                 }
             },
+            handleGoAnchors(item){
+                let routeHash = this.$route.hash;
+                let hash = item.hash;
+                let scrollTo = item.scrollHeight;
+                if(routeHash !== hash) {
+                    this.$router.replace({
+                        hash: hash
+                    });
+                }
+                this.$nextTick(() => {
+                    document.querySelector('.views-main-content').scrollTo(0, scrollTo);
+                })
+            }
         },
         watch: {
-            '$route': function () {
+            '$route.path': function () {
                 this.getAnchorLinkNav();
             }
         }

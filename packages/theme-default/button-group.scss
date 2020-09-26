@@ -1,5 +1,5 @@
 @import "./base/var";
-@import "./config/mixins/index.scss";
+@import "./mixins/index.scss";
 
 @include c(button-group){
   display: inline-block;

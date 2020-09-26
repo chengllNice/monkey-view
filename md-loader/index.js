@@ -6,9 +6,10 @@ const {
   stripTemplate,
   fetch} = require('./util');
 const md = require('./config');
+const reg = /<template slot="highlight"><p><\/p>/g;
 
 module.exports = function (source) {
-  const content = md.render(source);
+  const content = md.render(source).replace(reg, '<template slot="highlight">');
 
   const startTag = '<!--monkey-ui-doc:';
   const startTagLen = startTag.length;
@@ -59,6 +60,7 @@ module.exports = function (source) {
   }
 
   output.push(content.slice(start));
+
 
   let dealComponent = `
     <template>

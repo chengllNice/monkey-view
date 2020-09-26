@@ -1,6 +1,8 @@
 .DS_Store
 node_modules
-/dist
+docs-dist
+examples
+md-loader
 
 # local env files
 .env.local

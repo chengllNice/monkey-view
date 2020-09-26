@@ -1,4 +1,3 @@
-
 import Layout from '../packages/layout'
 import Menu from '../packages/menu'
 import Button from '../packages/button'
@@ -111,9 +110,23 @@ const components = {
     Icon,
 };
 
-const prefixComponents = {
-    'm-switch': Switch,
-    'm-image': Image,
+const monkeyUI = {
+    ...components,
+    mButton: Button,
+    mCol: Col,
+    mContent: Layout.Content,
+    mForm: Form,
+    mFooter: Layout.Footer,
+    mHeader: Layout.Header,
+    mInput: Input,
+    mMenu: Menu,
+    mOption: Option,
+    mProgress: Progress,
+    mSelect: Select,
+    mSwitch: Switch,
+    mTable: Table,
+    mTime: Time,
+    mImage: Image,
 };
 
 const install = (Vue, opts = {}) => {
@@ -122,11 +135,8 @@ const install = (Vue, opts = {}) => {
     locale.use(opts.locale);
     locale.i18n(opts.i18n);
 
-    Object.keys(components).forEach(key => {
-        Vue.component(key, components[key]);
-    });
-    Object.keys(prefixComponents).forEach(key => {
-        Vue.component(key, prefixComponents[key]);
+    Object.keys(monkeyUI).forEach(key => {
+        Vue.component(key, monkeyUI[key]);
     });
 
     directive(Vue);
@@ -147,12 +157,13 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 const API = {
-    version: '0.0.1',
+    version: '0.1.0',
     locale: locale.use,
     i18n: locale.i18n,
     install,
-    ...components,
-    ...prefixComponents,
+    Switch,
+    Image,
+    ...monkeyUI,
 };
 
 export default API;

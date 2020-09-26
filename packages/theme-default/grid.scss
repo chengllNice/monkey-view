@@ -1,5 +1,5 @@
 @import "./base/var";
-@import "./config/mixins/index.scss";
+@import "./mixins/index.scss";
 
 @mixin res-grid($key, $map: $--media-points){
   @if map-has-key($map, $key){

@@ -14,6 +14,7 @@ const findContent = (tokens, idx) => {
     start++;
     if (tokens[start] && tokens[start].type === 'fence' && tokens[start].info === 'html') {
       sourceContent = tokens[start] && tokens[start].content;
+      tokens[start].demo = true;
     } else if (tokens[start] && tokens[start].nesting !== '-1') {
       descriptionContent += tokens[start].content ? markdownRender.render(tokens[start].content) : '';
       tokens[start].children && (tokens[start].children = []);
@@ -151,11 +152,12 @@ const renderContent = (tokens, idx) => {
     let sourceContent = contentObj.sourceContent;
 
     return `<code-wrap id="${titleId}">
-                <div slot="description">${descriptionHtml}</div>
-                <span slot="title">${titleHtml} <a href="#${titleId}" data-title="${titleHtml}">#</a></span>
-                <!--monkey-ui-doc: ${sourceContent} :monkey-ui-doc-->`;
+                <template slot="description">${descriptionHtml}</template>
+                <template slot="title">${titleHtml} <a href="#${titleId}" data-title="${titleHtml}">#</a></template>
+                <!--monkey-ui-doc:${sourceContent}:monkey-ui-doc-->
+                <template slot="highlight">`;
   }
-  return '</code-wrap>\n';
+  return '</template></code-wrap>\n';
 };
 // <div class="source" slot="source">${sourceContent}</div>
 

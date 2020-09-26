@@ -1,25 +1,25 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Views from '../views/views.vue'
+import Views from '../views/views'
 
 
-import devRouter from './devRouter'
-import docRouter from './docRouter'
+
+import devRouter from './dev-router'
+import docRouter from './docs-router'
 
 let routers = devRouter.concat(docRouter);
 
 Vue.use(Router);
 
 export default new Router({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes: [
-    {
-      path: '/',
-      name: 'views',
-      component: Views,
-      redirect: `/zh-CN/doc/introduce`,
-      children: routers
-    },
-  ]
+    mode: 'hash',
+    base: process.env.BASE_URL,
+    routes: [
+        {
+            path: '/',
+            component: Views,
+            redirect: `/zh-CN/guide`,
+        },
+        ...routers
+    ]
 })

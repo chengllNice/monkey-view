@@ -5,9 +5,9 @@
             <span>Monkey-UI</span>
         </router-link>
         <div class="doc-header-right">
-            <Menu mode="horizontal" :item-height="60">
-                <MenuItem c-key="docs" name="文档"></MenuItem>
-                <MenuItem c-key="components" name="组件"></MenuItem>
+            <Menu :active-key="menuActiveKey" mode="horizontal" :item-height="60" @select="handleMenuSelect">
+                <MenuItem c-key="guide" name="指南"></MenuItem>
+                <MenuItem c-key="component" name="组件"></MenuItem>
             </Menu>
             <Dropdown class="doc-header-drop" trigger="click" @click-item="handleChangeVersion">
                 {{version}} <Icon type="down"></Icon>
@@ -39,11 +39,13 @@
                     'en-US': 'English',
                 },
                 version: Config.defaultVersion,
-                versionMap: Config.versionTypes
+                versionMap: Config.versionTypes,
+                menuActiveKey: ''
             }
         },
         mounted() {
             this.setLang();
+            this.setMenuActiveKey();
         },
         methods: {
             langChange(value) {
@@ -63,15 +65,25 @@
             },
             handleGo(type){
                 let url = '';
-                if(type === 'github'){
-                    url = 'https://github.com/chengllNice/monkey-ui'
-                }
+                if(type === 'github') url = Config.github;
                 window.open(url, '_black');
+            },
+            handleMenuSelect(key){
+                this.$router.push({
+                    path: `/${this.lang}/${key}`
+                })
+            },
+            setMenuActiveKey(){
+                let path = this.$route.path;
+                path = path.substring(1);
+                let types = path.split('/');
+                this.menuActiveKey = types[1];
             }
         },
         watch: {
-            '$route': function () {
+            '$route.path': function () {
                 this.setLang();
+                this.setMenuActiveKey();
             }
         }
     }

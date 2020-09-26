@@ -5,7 +5,10 @@ const path = require('path');
 
 
 module.exports = {
+    publicPath: process.env.NODE_ENV === 'production'? '/monkey-ui' : '/',
     runtimeCompiler: true,
+    outputDir: './dist-docs',
+    assetsDir: 'static',
     // 配置插件
     configureWebpack: {
         entry: path.resolve(__dirname, './examples/main.js'),

@@ -1,5 +1,5 @@
 @import "./base/var";
-@import "./config/mixins/index";
+@import "./mixins/index.scss";
 
 $picture-thumbnial-height: #{$--upload-picture-height - $--upload-picture-padding * 2 - 2px};
 

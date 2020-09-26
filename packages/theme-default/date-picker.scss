@@ -1,5 +1,5 @@
 @import "./base/var";
-@import "./config/mixins/index.scss";
+@import "./mixins/index.scss";
 
 $pane-col-width-3: #{($--date-picker-em-width-default + $--date-picker-pane-margin * 2) * 7 / 3 - $--date-picker-pane-margin * 2};
 $pane-col-width-2: #{($--date-picker-em-width-default + $--date-picker-pane-margin * 2) * 7 / 2 - $--date-picker-pane-margin * 2};

@@ -66,16 +66,16 @@
                     target = document.getElementsByClassName(this.target)[0];
                 }
                 this.targetElement = target;
-                on(target, 'scroll', this.scrollHandler);
-                on(target, 'size', this.scrollHandler);
+                on(target, 'scroll', this.handleScroll);
+                on(target, 'size', this.handleScroll);
             });
         },
         destroyed() {
-            this.targetElement && off(this.targetElement, 'scroll', this.scrollHandler);
-            this.targetElement && off(this.targetElement, 'size', this.scrollHandler);
+            this.targetElement && off(this.targetElement, 'scroll', this.handleScroll);
+            this.targetElement && off(this.targetElement, 'size', this.handleScroll);
         },
         methods: {
-            scrollHandler() {
+            handleScroll() {
                 let scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
                 if(this.target){
                     scrollTop = this.targetElement.scrollTop;

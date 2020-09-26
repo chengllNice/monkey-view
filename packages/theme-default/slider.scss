@@ -1,5 +1,5 @@
 @import "./base/var";
-@import "./config/mixins/index";
+@import "./mixins/index";
 
 $slider-handle-height: #{$--slider-rail-height + 10px};
 

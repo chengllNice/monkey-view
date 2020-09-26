@@ -1,5 +1,5 @@
 @import "./base/var";
-@import "./config/mixins/index";
+@import "./mixins/index.scss";
 
 @include c(tree){
   background-color: $--color-white;

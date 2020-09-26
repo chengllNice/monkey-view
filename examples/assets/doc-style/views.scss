@@ -10,6 +10,19 @@
     overflow: hidden;
     margin-top: 10px;
   }
+  .views-sider{
+    background-color: #ffffff;
+    position: relative;
+    &:after{
+      content: '';
+      width: 1px;
+      height: 100%;
+      position: absolute;
+      right: 0;
+      top: 0;
+      background-color: #dcdee2;
+    }
+  }
   .views-main-content {
     background-color: #ffffff;
     overflow: auto;
