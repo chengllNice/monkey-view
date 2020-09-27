@@ -82,7 +82,9 @@
             loading: Boolean,
             size: {
                 type: String,
-                default: 'default',
+                default () {
+                    return !this.$MONKEY || this.$MONKEY.size === '' ? 'default' : this.$MONKEY.size;
+                },
                 validator(value) {
                     return ['mini', 'small', 'default', 'large'].includes(value);
                 }

@@ -89,7 +89,9 @@
             disabled: Boolean,
             size: {
                 type: String,
-                default: 'default',
+                default() {
+                    return !this.$MONKEY || this.$MONKEY.size === '' ? 'default' : this.$MONKEY.size;
+                },
                 validator(value) {
                     return ['mini', 'small', 'default', 'large'].includes(value)
                 }
@@ -145,9 +147,9 @@
             }
         },
         computed: {
-            computedSize(){
-                if(this.size !== 'default') return this.size;
-                if(this.form && this.form.size !== 'default') return this.form.size;
+            computedSize() {
+                if (this.size !== 'default') return this.size;
+                if (this.form && this.form.size !== 'default') return this.form.size;
                 return this.size;
             },
             isEmpty() {
@@ -167,30 +169,30 @@
                 return this.disabled || this.filterable ? '-1' : '0'
             },
             //开启多选限制的，此时除了已经选中的option 其他option全部disabled
-            openMultipleLimitDisabled(){
+            openMultipleLimitDisabled() {
                 return this.multiple && this.multipleLimit > 0 && this.currentValue.length >= this.multipleLimit
             },
             //计算多选时 超出限制数量时的截取
-            localCurrentSelectedItems(){
+            localCurrentSelectedItems() {
                 let data = this.currentSelectedItems;
                 let maxTagCount = this.maxTagCount;
-                if(this.multiple && maxTagCount > 0 && data.length > maxTagCount){
+                if (this.multiple && maxTagCount > 0 && data.length > maxTagCount) {
                     return data.slice(0, maxTagCount)
                 }
                 return data;
             },
             //计算多选时 超出显示数量显示的文本
-            localMaxTagText(){
+            localMaxTagText() {
                 let data = this.currentSelectedItems;
                 let maxTagCount = this.maxTagCount;
                 let maxTagText = `+ ${data.length - maxTagCount}...`;
-                if(this.maxTagText && typeof this.maxTagText === 'function') {
+                if (this.maxTagText && typeof this.maxTagText === 'function') {
                     maxTagText = this.maxTagText(data.length - maxTagCount);
                 }
                 return maxTagText;
             },
             //计算多选时 是否超出限制数量
-            showMaxTagText(){
+            showMaxTagText() {
                 let data = this.currentSelectedItems;
                 let maxTagCount = this.maxTagCount;
                 return this.multiple && maxTagCount > 0 && data.length > maxTagCount

@@ -56,6 +56,12 @@
                         link: '/guide/quick-start',
                         query: {},
                     },
+                    {
+                        key: 'i18n',
+                        name: '国际化',
+                        link: '/guide/i18n',
+                        query: {},
+                    },
                 ],
                 componentsData: [
                     {

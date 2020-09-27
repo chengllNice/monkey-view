@@ -141,6 +141,10 @@ const install = (Vue, opts = {}) => {
 
     directive(Vue);
 
+    Vue.prototype.$MONKEY = {
+        size: opts.size || '',
+    }
+
     Vue.prototype.$Modal = Modal.$Modal;
     Vue.prototype.$Message = Message;
     Vue.prototype.$Notice = Notice;

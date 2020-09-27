@@ -1,13 +1,8 @@
 const path = require('path');
-// const markdownLoaderOptions = require('./markdown-loader/index')
-
-// const mdLoaderOption = require('./md-loader/index');
-
 
 module.exports = {
     publicPath: process.env.NODE_ENV === 'production'? '/monkey-ui' : '/',
     runtimeCompiler: true,
-    outputDir: './dist-docs',
     assetsDir: 'static',
     // 配置插件
     configureWebpack: {

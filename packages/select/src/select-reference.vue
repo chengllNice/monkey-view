@@ -78,7 +78,6 @@
                 classPrefix: Config.classPrefix + '-select-reference',
                 currentValue: '',
                 selectRoot: this.$parent,
-
                 isHover: false,
                 isFocused: false,
             }
@@ -114,6 +113,9 @@
             'm-input': Input,
             Icon,
             Tag
+        },
+        mounted() {
+            this.$nextTick(() => this.setCurrentValue())
         },
         methods: {
             handleClick() {

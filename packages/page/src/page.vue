@@ -100,11 +100,11 @@
              :style="{order: orderList('pageSize')}"
              v-if="orderList('pageSize') > -1">
             <Select :class="[`${classPrefix}__page-size-select`]" v-model="currentPageSize" :size="size"
-                       @change="pageSizeChange">
+                    @change="pageSizeChange">
                 <Option v-for="item in currentPageSizeOption"
-                           :key="item.value"
-                           :value="item.value"
-                           :label="item.label"></Option>
+                        :key="item.value"
+                        :value="item.value"
+                        :label="item.label"></Option>
             </Select>
         </div>
 
@@ -114,14 +114,14 @@
              ]"
              :style="{order: orderList('jump')}"
              v-if="orderList('jump') > -1">
-                {{t('m.page.goto')}}
-                <Input :class="[`${classPrefix}__jump-to-input`]"
-                          type="number"
-                          v-model="jumpToPage"
-                          :step="false"
-                          :size="size"
-                          @enter="jumpToPageChange"/>
-                {{t('m.page.page')}}
+            {{t('m.page.goto')}}
+            <Input :class="[`${classPrefix}__jump-to-input`]"
+                   type="number"
+                   v-model="jumpToPage"
+                   :step="false"
+                   :size="size"
+                   @enter="jumpToPageChange"/>
+            {{t('m.page.page')}}
         </div>
     </div>
 </template>
