@@ -10,9 +10,7 @@ const del = require('del');
 gulp.task('css', () => {
     return gulp.src('../packages/theme-default/index.scss')
         .pipe(sass())
-        .pipe(autoprefixer({
-            browsers: ['last 2 versions', 'ie > 8']
-        }))
+        .pipe(autoprefixer())
         .pipe(cleanCSS())
         .pipe(uglifycss())
         .pipe(rename('monkey-ui.css'))
