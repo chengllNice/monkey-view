@@ -9,7 +9,7 @@ const fileList = fs.readdirSync(localePath);
 const transform = (filename, name, cb) => {
     require('@babel/core').transformFile(resolve(localePath, filename), {
         plugins: [
-            'add-module-exports',
+            // 'add-module-exports',
             ['@babel/plugin-transform-modules-umd', {loose: true}]
         ],
         moduleId: name
@@ -30,10 +30,10 @@ fileList
                 let code = result.code;
 
                 code = code
-                    .replace("define(\"", "define(\"monkey/locale/")
-                    .replace('global.', 'global.MONKEY.lang = global.MONKEY.lang || {}; \n    global.MONKEY.lang.');
+                    .replace("define(\"", "define(\"monkey/default/locale/")
+                    .replace('global.', 'global.MONKEY.default.lang = global.MONKEY.default.lang || {}; \n    global.MONKEY.default.lang.');
 
-                code = UglifyJS.minify(code).code;
+                // code = UglifyJS.minify(code).code;
 
                 const filepath = path.join(__dirname, '../dist/locale', name + '.js');
                 fileSave(filepath).write(code).end();

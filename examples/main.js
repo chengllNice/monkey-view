@@ -3,7 +3,6 @@ import App from './app.vue'
 import router from './routers/index'
 import 'packages/theme-default/index.scss'
 import MonkeyUI from 'main/index'
-import locale from 'monkey-ui/dist/locale/en-US'
 import './assets/common.scss'
 
 import CodeWrap from './components/code-wrap.vue'

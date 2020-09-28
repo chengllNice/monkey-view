@@ -1,7 +1,10 @@
 module.exports = {
   root: true,
   env: {
-    node: true
+    node: true,
+    browser: true,
+    commonjs: true,
+    es6: true
   },
   'extends': [
     'plugin:vue/essential',
@@ -16,7 +19,9 @@ module.exports = {
     }]
   },
   parserOptions: {
-    parser: 'babel-eslint'
+    parser: 'babel-eslint',
+    ecmaVersion: 6,
+    sourceType: "module"
   },
   plugins: [
     "markdown"

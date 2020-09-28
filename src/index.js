@@ -160,14 +160,13 @@ if (typeof window !== 'undefined' && window.Vue) {
     directive(window.Vue);
 }
 
-const API = {
-    version: '0.1.0',
+let API = {
+    version: process.env.VERSION,
     locale: locale.use,
     i18n: locale.i18n,
     install,
     Switch,
     Image,
-    ...monkeyUI,
+    ...components,
 };
-
 export default API;

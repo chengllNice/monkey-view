@@ -1,8 +1,0 @@
-{
-  "devDependencies": {
-    "vue-i18n": "^8.21.1"
-  },
-  "dependencies": {
-    "vue-i18n": "^8.21.1"
-  }
-}
