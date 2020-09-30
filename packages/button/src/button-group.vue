@@ -8,11 +8,11 @@
     import Config from 'main/config/config'
 
     export default {
-        name: "ButtonGroup",
+        name: 'ButtonGroup',
         data() {
             return {
-                classPrefix: Config.classPrefix + '-button-group',
+                classPrefix: Config.classPrefix + '-button-group'
             }
-        },
+        }
     }
 </script>

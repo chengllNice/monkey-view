@@ -25,18 +25,18 @@
 </template>
 
 <script>
-    import Config from 'main/config/config'
-    import Icon from 'packages/icon'
+    import Config from 'main/config/config';
+    import Icon from 'packages/icon';
 
     export default {
-        name: "Alter",
+        name: 'Alter',
         props: {
             type: {
                 type: String,
                 default: 'info',
                 validator(value) {
                     return ['success', 'info', 'warning', 'error'].includes(value);
-                },
+                }
             },
             transition: {
                 type: String,
@@ -48,19 +48,19 @@
                 type: String,
                 default: 'light',
                 validator(value) {
-                    return ['light', 'dark'].includes(value)
+                    return ['light', 'dark'].includes(value);
                 }
             }
         },
         data() {
             return {
                 classPrefix: Config.classPrefix + '-alter',
-                closed: false,
+                closed: false
             }
         },
         computed: {
             isDescription() {
-                return this.$slots.description
+                return this.$slots.description;
             },
             iconType() {
                 let icon = '';
@@ -78,7 +78,7 @@
                         icon = this.isDescription ? 'info' : 'info-fill';
                         break;
                 }
-                return icon
+                return icon;
             }
         },
         components: {

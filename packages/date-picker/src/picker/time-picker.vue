@@ -56,15 +56,15 @@
 <script>
     import Config from 'main/config/config'
     import Input from 'packages/input'
-    import {directive as clickOutside} from 'v-click-outside-x';
+    import { directive as clickOutside } from 'v-click-outside-x';
     import Drop from 'packages/base/drop'
     import DatePane from '../pane/date-pane.vue'
-    import {dateFormat, formatToDate} from "main/utils/date";
-    import { findComponent} from "main/utils/tool";
+    import { dateFormat, formatToDate } from 'main/utils/date';
+    import { findComponent } from 'main/utils/tool';
 
     export default {
-        name: "TimePicker",
-        directives: {clickOutside},
+        name: 'TimePicker',
+        directives: { clickOutside },
         provide() {
             return {
                 picker: this
@@ -82,23 +82,23 @@
             disabled: Boolean,
             disabledHours: {
                 type: Array,
-                default(){
+                default() {
                     return []
                 }
-            },//不可选的时
+            }, // 不可选的时
             disabledMinutes: {
                 type: Array,
-                default(){
+                default() {
                     return []
                 }
-            },//不可选的分
+            }, // 不可选的分
             disabledSeconds: {
                 type: Array,
-                default(){
+                default() {
                     return []
                 }
-            },//不可选的秒
-            hideDisabledOptions: Boolean,//是否隐藏disabled的时分秒
+            }, // 不可选的秒
+            hideDisabledOptions: Boolean, // 是否隐藏disabled的时分秒
             confirm: Boolean,
             readonly: Boolean,
             placeholder: String,
@@ -130,18 +130,18 @@
             editable: {
                 type: Boolean,
                 default: true
-            },//文本框是否可以输入
+            }, // 文本框是否可以输入
             placement: {
                 type: String,
                 default: 'bottom-start'
             },
             format: {
                 type: String,
-                default: 'HH:mm:ss',
+                default: 'HH:mm:ss'
             },
             valueFormat: {
                 type: String,
-                default: 'HH:mm:ss',
+                default: 'HH:mm:ss'
             },
             renderHtml: {
                 type: [HTMLElement, Boolean],
@@ -149,14 +149,14 @@
                     return false
                 }
             },
-            open: Boolean,//手动控制时间框的打开关闭
+            open: Boolean, // 手动控制时间框的打开关闭
             separator: {
                 type: String,
                 default: '~'
-            },//两个时间之间的分隔符
-            className: String,//选择器的类名
-            dropdownClassName: String,//时间下拉框的类名
-            onlyShowPane: Boolean,//是否只显示pane日期框
+            }, // 两个时间之间的分隔符
+            className: String, // 选择器的类名
+            dropdownClassName: String, // 时间下拉框的类名
+            onlyShowPane: Boolean// 是否只显示pane日期框
         },
         data() {
             return {
@@ -172,14 +172,14 @@
             isRange() {
                 return this.type.includes('range');
             },
-            computedSize(){
-                if(this.size !== 'default') return this.size;
-                if(this.form && this.form.size !== 'default') return this.form.size;
+            computedSize() {
+                if (this.size !== 'default') return this.size;
+                if (this.form && this.form.size !== 'default') return this.form.size;
                 return this.size;
             },
             readonlyInput() {
                 return this.readonly || !this.editable;
-            },
+            }
         },
         components: {
             Drop,
@@ -194,11 +194,11 @@
         methods: {
             initDateValue(val) {
                 let value = val || this.value;
-                if(value && Array.isArray(value)){
+                if (value && Array.isArray(value)) {
                     value = value.map(item => this.formatTimeToDate(item));
-                }else if(value){
+                } else if (value) {
                     value = [this.formatTimeToDate(value)]
-                }else {
+                } else {
                     value = [];
                 }
 
@@ -208,22 +208,22 @@
                     this.dateValue = value.length >= 1 ? [value[0]] : [];
                 }
             },
-            formatTimeToDate(time){
+            formatTimeToDate(time) {
                 let result = new Date();
-                if(time instanceof Date) result = time
-                else if(typeof time === 'string') {
+                if (time instanceof Date) result = time
+                else if (typeof time === 'string') {
                     let t = new Date(time);
-                    if(!isNaN(t.getTime())) {
+                    if (!isNaN(t.getTime())) {
                         result = t
                     } else {
                         t = formatToDate(time, this.valueFormat);
-                        if(t) result = t;
+                        if (t) result = t;
                     }
                 }
                 return result;
             },
             setValue(value) {
-                if(!Array.isArray(value)){
+                if (!Array.isArray(value)) {
                     value = new Date(value);
                 }
                 this.initDateValue(value);
@@ -232,37 +232,37 @@
             handleFocus() {
                 this.dropDownVisible(!this.visible);
             },
-            //转换输入的inputvalue为标准日期格式
-            handleEnter(value){
-                if(!value) return this.updateInputValue();
+            // 转换输入的inputvalue为标准日期格式
+            handleEnter(value) {
+                if (!value) return this.updateInputValue();
 
-                let result = [];
-                if(this.isRange && value.includes(this.separator)) value = value.split(this.separator)
+                const result = [];
+                if (this.isRange && value.includes(this.separator)) value = value.split(this.separator)
                 else value = [value];
 
                 let valid = true;
-                value.forEach(item=>{
-                    let v = formatToDate(item, this.format);
-                    if(valid) valid = !!v;
+                value.forEach(item => {
+                    const v = formatToDate(item, this.format);
+                    if (valid) valid = !!v;
                     result.push(v);
                 })
 
-                if(result.length && valid && JSON.stringify(result) !== JSON.stringify(this.dateValue)) {
+                if (result.length && valid && JSON.stringify(result) !== JSON.stringify(this.dateValue)) {
                     this.initDateValue(result);
                     this.handleDateValueChange();
-                }else {
+                } else {
                     this.updateInputValue()
                 }
             },
             handleClickOutside(event) {
                 if (this.visible) {
                     if (this.renderHtml !== false) {
-                        const {$el} = this.$refs.dropDown;
+                        const { $el } = this.$refs.dropDown;
                         if ($el === event.target || $el.contains(event.target)) {
                             return;
                         }
                     }
-                    this.$emit('click-outside',event);
+                    this.$emit('click-outside', event);
                     this.handleEnter(this.dateInputValue);
                     this.dropDownVisible(false);
                 }
@@ -277,46 +277,46 @@
                 this.$emit('clear');
             },
             updateInputValue() {
-                let dateValue = this.dateValue.map(item => dateFormat(item, this.format))
+                const dateValue = this.dateValue.map(item => dateFormat(item, this.format))
                 if (this.isRange) {
-                    if(dateValue.length === 2){
+                    if (dateValue.length === 2) {
                         this.dateInputValue = `${dateValue[0]} ${this.separator} ${dateValue[1]}`;
                     }
-                    if(dateValue.length === 0) this.dateInputValue = '';
+                    if (dateValue.length === 0) this.dateInputValue = '';
                 } else {
                     this.dateInputValue = dateValue[0] || '';
                 }
             },
-            focus(){
+            focus() {
                 this.$refs.timeInput && this.$refs.timeInput.focus();
             },
-            blur(){
+            blur() {
                 this.$refs.timeInput && this.$refs.timeInput.blur();
             },
-            handleDateValueChange(value){
+            handleDateValueChange(value) {
                 this.updateInputValue();
-                value = value ? value : this.dateValue;
+                value = value || this.dateValue;
                 let result = value.map(item => new Date(item));
-                if(this.valueFormat) result = result.map(item => dateFormat(item, this.valueFormat));
+                if (this.valueFormat) result = result.map(item => dateFormat(item, this.valueFormat));
 
                 if (this.isRange) {
                     this.$emit('input', result);
                     this.$emit('change', result);
                 } else {
-                    this.$emit('input',  result[0] || '');
+                    this.$emit('input', result[0] || '');
                     this.$emit('change', result[0] || '');
                 }
             }
         },
         watch: {
-            value(newVal, oldVal){
-                if(JSON.stringify(newVal) === JSON.stringify(oldVal)) return;
+            value(newVal, oldVal) {
+                if (JSON.stringify(newVal) === JSON.stringify(oldVal)) return;
                 this.initDateValue();
                 this.updateInputValue();
             },
-            open(newVal){
+            open(newVal) {
                 this.visible = newVal;
-            },
+            }
         }
     }
 </script>

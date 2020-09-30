@@ -8,11 +8,11 @@
     import Config from 'main/config/config'
 
     export default {
-        name: "Content",
+        name: 'Content',
         data() {
             return {
-                classPrefix: Config.classPrefix + '-content',
+                classPrefix: Config.classPrefix + '-content'
             }
-        },
+        }
     }
 </script>

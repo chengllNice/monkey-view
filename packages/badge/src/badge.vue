@@ -16,7 +16,7 @@
     import Config from 'main/config/config'
 
     export default {
-        name: "Badge",
+        name: 'Badge',
         props: {
             dot: Boolean,
             count: [Number, String],
@@ -24,7 +24,7 @@
                 type: Number,
                 default: 99
             },
-            showZero: Boolean,//默认0时不展示
+            showZero: Boolean, // 默认0时不展示
             text: String,
             status: {
                 type: String,
@@ -38,11 +38,11 @@
         },
         data() {
             return {
-                classPrefix: Config.classPrefix + '-badge',
+                classPrefix: Config.classPrefix + '-badge'
             }
         },
         computed: {
-            //状态点 或者 上标的显示
+            // 状态点 或者 上标的显示
             supShow() {
                 return !!this.status || this.showZero || parseFloat(this.count) !== 0
             },
@@ -65,12 +65,12 @@
                     };
                 }
                 if (Array.isArray(this.offset) && this.offset.length) {
-                    let x = parseFloat(this.offset[0]);
-                    let y = parseFloat(this.offset[1]);
+                    const x = parseFloat(this.offset[0]);
+                    const y = parseFloat(this.offset[1]);
                     style = {
                         ...style,
                         'margin-top': y + 'px',
-                        'margin-right': x + 'px',
+                        'margin-right': x + 'px'
                     }
                 }
                 return style;
@@ -82,6 +82,6 @@
                 if (this.dot || this.status) return '';
                 return this.title || this.text || parseFloat(this.count)
             }
-        },
+        }
     }
 </script>

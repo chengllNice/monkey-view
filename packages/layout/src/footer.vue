@@ -8,7 +8,7 @@
     import Config from 'main/config/config'
 
     export default {
-        name: "Footer",
+        name: 'Footer',
         props: {
             height: {
                 type: [String, Number],
@@ -17,14 +17,14 @@
         },
         data() {
             return {
-                classPrefix: Config.classPrefix + '-footer',
+                classPrefix: Config.classPrefix + '-footer'
             }
         },
         computed: {
             expandStyle() {
                 return {
-                    'height': parseFloat(this.height) + 'px',
-                    'line-height': parseFloat(this.height) + 'px',
+                    height: parseFloat(this.height) + 'px',
+                    'line-height': parseFloat(this.height) + 'px'
                 }
             }
         }

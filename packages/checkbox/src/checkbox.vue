@@ -31,10 +31,10 @@
 
 <script>
     import Config from 'main/config/config'
-    import {findComponent} from "main/utils/tool";
+    import { findComponent } from 'main/utils/tool';
 
     export default {
-        name: "Checkbox",
+        name: 'Checkbox',
         props: {
             value: {
                 type: [Number, String, Boolean],
@@ -58,7 +58,7 @@
                 validator(value) {
                     return ['mini', 'small', 'default', 'large'].includes(value)
                 }
-            },
+            }
         },
         data() {
             return {
@@ -67,19 +67,19 @@
                 isChecked: false,
                 showLabel: true,
                 checkboxGroup: findComponent(this, 'CheckboxGroup'),
-                form: findComponent(this, 'Form'),
+                form: findComponent(this, 'Form')
             }
         },
         computed: {
-            computedSize(){
-                if(this.size !== 'default') return this.size;
-                if(this.checkboxGroup && this.checkboxGroup.size !== 'default') return this.checkboxGroup.size;
-                if(this.form && this.form.size !== 'default') return this.form.size;
+            computedSize() {
+                if (this.size !== 'default') return this.size;
+                if (this.checkboxGroup && this.checkboxGroup.size !== 'default') return this.checkboxGroup.size;
+                if (this.form && this.form.size !== 'default') return this.form.size;
                 return this.size;
             },
             isDisabled() {
                 return this.checkboxGroup ? (this.checkboxGroup.disabled ? this.checkboxGroup.disabled : this.disabled) : this.disabled
-            },
+            }
         },
         mounted() {
             this.$nextTick(this.updateModel());
@@ -95,6 +95,7 @@
                     } else if (this.model === this.falseValue) {
                         value = this.falseValue;
                     } else {
+                        // eslint-disable-next-line no-throw-literal
                         throw 'Value should be trueValue or falseValue';
                     }
                     this.updateIsChecked(value);
@@ -103,7 +104,7 @@
                 });
             },
             updateIsChecked(value) {
-                this.isChecked = value === this.trueValue ? true : false;
+                this.isChecked = value === this.trueValue;
             },
             updateModel() {
                 if (this.checkboxGroup && Array.isArray(this.checkboxGroup.value)) {
@@ -112,7 +113,7 @@
                 } else {
                     this.model = this.value;
                 }
-            },
+            }
         },
         watch: {
             value: function (newVal) {
@@ -122,6 +123,7 @@
                 } else if (newVal === this.falseValue) {
                     this.model = this.falseValue;
                 } else {
+                    // eslint-disable-next-line no-throw-literal
                     throw 'Value should be trueValue or falseValue';
                 }
             },

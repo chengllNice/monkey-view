@@ -35,7 +35,7 @@
     import Locale from 'main/mixins/locale'
 
     export default {
-        name: "ModalConfirm",
+        name: 'ModalConfirm',
         mixins: [Locale],
         data() {
             return {
@@ -49,7 +49,7 @@
                 okButtonLoading: false,
                 loading: false,
                 icon: '',
-                type: '',//布局类型  两种(default, left)
+                type: ''// 布局类型  两种(default, left)
             }
         },
         computed: {
@@ -82,7 +82,7 @@
                         break;
                 }
                 return result;
-            },
+            }
         },
         components: {
             Modal,

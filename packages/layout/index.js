@@ -9,5 +9,4 @@ Layout.Header = Header;
 Layout.Footer = Footer;
 Layout.Content = Content;
 
-
 export default Layout

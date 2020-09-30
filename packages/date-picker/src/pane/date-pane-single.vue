@@ -78,11 +78,10 @@
     import DatePaneDate from './date-pane-date'
     import DatePaneYear from './date-pane-year'
     import DatePaneMonth from './date-pane-month'
-    import Locale from "main/mixins/locale";
-
+    import Locale from 'main/mixins/locale';
 
     export default {
-        name: "DatePaneSingle",
+        name: 'DatePaneSingle',
         mixins: [Locale],
         inject: ['picker'],
         props: {
@@ -93,11 +92,11 @@
             date: Array,
             hoverDate: Date,
             isRange: Boolean,
-            pickerType: String,
+            pickerType: String
         },
         data() {
             const currentType = ['date', 'daterange', 'datetime', 'datetimerange'].includes(this.type) ? 'date' : this.type;
-            let nowDate = new Date();
+            const nowDate = new Date();
             return {
                 classPrefix: Config.classPrefix + '-date-pane-single',
                 currentType: currentType,
@@ -105,7 +104,7 @@
                     year: nowDate.getFullYear(),
                     month: nowDate.getMonth() + 1,
                     date: nowDate.getDate()
-                },
+                }
             }
         },
         computed: {
@@ -123,7 +122,7 @@
             },
             showTimeHeader() {
                 return this.isRange && ['time', 'timerange'].includes(this.currentType)
-            },
+            }
         },
         components: {
             Icon,
@@ -166,7 +165,7 @@
                 } else if (this.type === 'week') {
                     this.currentType = 'week';
                 } else {
-                    let date = new Date(this.year, month - 1);
+                    const date = new Date(this.year, month - 1);
                     this.updateSelectDate([date]);
                 }
                 this.updateSingleDate('update-month', null, month);
@@ -179,9 +178,9 @@
                     year: year,
                     month: month,
                     jumpStep: this.yearJumpStep,
-                    index: this.index,
+                    index: this.index
                 });
-            },
-        },
+            }
+        }
     }
 </script>

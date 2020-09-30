@@ -24,7 +24,7 @@
     import Icon from 'packages/icon'
 
     export default {
-        name: "Tag",
+        name: 'Tag',
         props: {
             size: {
                 type: String,
@@ -51,7 +51,7 @@
             return {
                 classPrefix: Config.classPrefix + '-tag',
                 isHover: false,
-                isChecked: this.checked,
+                isChecked: this.checked
             }
         },
         computed: {
@@ -66,25 +66,25 @@
                 if (this.ghost) {
                     return {
                         'background-color': 'transparent',
-                        'color': this.color,
-                        'border-color': this.color,
+                        color: this.color,
+                        'border-color': this.color
                     };
                 }
                 return {
                     'background-color': this.color,
-                    'color': '#ffffff',
-                    'border-color': this.color,
+                    color: '#ffffff',
+                    'border-color': this.color
                 };
             },
             iconStyle() {
                 if (this.noCustomColor) return {};
                 if (this.ghost) {
                     return {
-                        'color': this.color
+                        color: this.color
                     };
                 }
                 return {
-                    'color': '#ffffff'
+                    color: '#ffffff'
                 };
             }
         },

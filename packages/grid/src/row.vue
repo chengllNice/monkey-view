@@ -7,11 +7,11 @@
 
 <script>
     import Config from 'main/config/config'
-    import {findComponentDirectChildrens} from "main/utils/tool";
+    import { findComponentDirectChildrens } from 'main/utils/tool';
     import Emitter from 'main/mixins/emitter'
 
     export default {
-        name: "Row",
+        name: 'Row',
         mixins: [Emitter],
         props: {
             type: {
@@ -40,18 +40,18 @@
         data() {
             return {
                 classPrefix: Config.classPrefix + '-row',
-                componentName: 'Row',
+                componentName: 'Row'
             }
         },
         computed: {
             rowClass() {
-                let classList = [
+                const classList = [
                     `${this.classPrefix}`,
                     {
                         [`${this.classPrefix}--${this.type}`]: this.type,
                         [`${this.classPrefix}--flex-${this.align}`]: this.align,
-                        [`${this.classPrefix}--flex-${this.justify}`]: this.justify,
-                    },
+                        [`${this.classPrefix}--flex-${this.justify}`]: this.justify
+                    }
                 ];
                 if ((this.align || this.justify) && !this.type) {
                     classList.push(`${this.classPrefix}--flex`)
@@ -63,7 +63,7 @@
                 if (this.gutter) {
                     style = {
                         marginLeft: -(this.gutter / 2) + 'px',
-                        marginRight: -(this.gutter / 2) + 'px',
+                        marginRight: -(this.gutter / 2) + 'px'
                     }
                 }
                 return style;
@@ -71,14 +71,14 @@
         },
         mounted() {
             this.$on('on-update-span', () => {
-                this.initNoSetColChildrenSpan();//设置没有设置span的col
+                this.initNoSetColChildrenSpan();// 设置没有设置span的col
             })
         },
         methods: {
             initNoSetColChildrenSpan() {
-                let colChildren = findComponentDirectChildrens(this, 'Col');
-                let allSpan = 0;//所有span之和
-                let noSpanComponents = [];//没有设置span的元素（不包括设置为0的）
+                const colChildren = findComponentDirectChildrens(this, 'Col');
+                let allSpan = 0;// 所有span之和
+                const noSpanComponents = [];// 没有设置span的元素（不包括设置为0的）
                 let noSpanComponentsNum = 0;
                 colChildren.forEach(item => {
                     if (item.currentSpan !== -1) allSpan += parseFloat(item.currentSpan);
@@ -87,10 +87,10 @@
                 noSpanComponentsNum = noSpanComponents.length;
 
                 // 还有剩余空间可分配
-                let freeSpace = 24 - parseFloat(allSpan);//剩余空间量
+                const freeSpace = 24 - parseFloat(allSpan);// 剩余空间量
                 if (freeSpace >= 1) {
-                    let average = Math.floor(freeSpace / noSpanComponentsNum);
-                    let _average = Math.floor(freeSpace % noSpanComponentsNum);//求余数，把余数的剩余量全部给最后一个元素
+                    const average = Math.floor(freeSpace / noSpanComponentsNum);
+                    const _average = Math.floor(freeSpace % noSpanComponentsNum);// 求余数，把余数的剩余量全部给最后一个元素
                     // 如果剩余空间按平均分配不足，则全局分配给第一个元素
                     if (average < 1) {
                         noSpanComponents[0].currentSpan = freeSpace;

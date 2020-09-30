@@ -1,4 +1,6 @@
-export default {
+import setLang from '../lang';
+
+const lang = {
     m: {
         locale: 'en-US',
         select: {
@@ -64,7 +66,11 @@ export default {
             filter: 'Filter'
         },
         tree: {
-            emptyData: 'No Data',
-        },
+            emptyData: 'No Data'
+        }
     }
-}
+};
+
+setLang(lang);
+
+export default lang;

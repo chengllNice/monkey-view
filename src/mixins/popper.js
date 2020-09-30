@@ -10,7 +10,7 @@ export default {
             type: String,
             default: 'bottom'
         },
-        reference: Object,//触发元素
+        reference: Object, // 触发元素
         popper: Object,
         offset: {
             type: Number,
@@ -27,11 +27,11 @@ export default {
                 return {
                     modifiers: {
                         computeStyle: {
-                            gpuAcceleration: false,
+                            gpuAcceleration: false
                         },
                         preventOverflow: {
                             boundariesElement: 'window'
-                        },
+                        }
                     }
                 }
             }
@@ -72,20 +72,18 @@ export default {
                 return;
             }
 
-
             const options = this.options;
             const clPopper = this.popper || this.$refs.popper;
             const reference = this.reference || this.$refs.reference;
 
             if (!clPopper || !reference) return;
-            if(this.renderHtml === false){
+            if (this.renderHtml === false) {
                 options.eventsEnabled = false;
             }
 
             if (this.popperJS && this.popperJS.hasOwnProperty('destroy')) {
                 this.popperJS.destroy();
             }
-
 
             options.placement = this.placement;
             !options.modifiers.offset && (options.modifiers.offset = {});

@@ -1,9 +1,9 @@
 
 export default {
     methods: {
-        setColWidth(column){
+        setColWidth(column) {
             let width = '';
-            if(this.columnsWidth[column.__id]){
+            if (this.columnsWidth[column.__id]) {
                 width = this.columnsWidth[column.__id].width;
             }
             return width;

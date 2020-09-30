@@ -1,3 +1,3 @@
 import Notice from './noticeInstance'
 
-export default Notice
+export default Notice;

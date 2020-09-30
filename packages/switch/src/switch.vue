@@ -21,10 +21,10 @@
 
 <script>
     import Config from 'main/config/config'
-    import {findComponent} from "main/utils/tool";
+    import { findComponent } from 'main/utils/tool';
 
     export default {
-        name: `MSwitch`,
+        name: 'MSwitch',
         props: {
             value: {
                 type: [String, Number, Boolean],
@@ -58,24 +58,24 @@
             return {
                 classPrefix: Config.classPrefix + '-switch',
                 currentValue: false,
-                form: findComponent(this, 'Form'),
+                form: findComponent(this, 'Form')
             }
         },
         computed: {
-            computedSize(){
-                if(this.size !== 'default') return this.size;
-                if(this.form && this.form.size !== 'default') return this.form.size;
+            computedSize() {
+                if (this.size !== 'default') return this.size;
+                if (this.form && this.form.size !== 'default') return this.form.size;
                 return this.size;
             },
             isDisabled() {
                 return this.disabled;
             },
             expandStyle() {
-                let width = parseFloat(this.width) + 'px';
+                const width = parseFloat(this.width) + 'px';
                 if (this.currentValue === this.trueValue) {
-                    return {'background-color': this.checkedColor, 'width': width}
+                    return { 'background-color': this.checkedColor, width: width }
                 }
-                return {'background-color': this.uncheckedColor, 'width': width}
+                return { 'background-color': this.uncheckedColor, width: width }
             }
         },
         mounted() {

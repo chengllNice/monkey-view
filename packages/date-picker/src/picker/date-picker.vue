@@ -62,16 +62,15 @@
 <script>
     import Config from 'main/config/config'
     import Input from 'packages/input'
-    import {directive as clickOutside} from 'v-click-outside-x';
+    import { directive as clickOutside } from 'v-click-outside-x';
     import Drop from 'packages/base/drop'
     import DatePane from '../pane/date-pane.vue'
-    import {dateFormat, formatToDate} from "main/utils/date";
-    import { findComponent} from "main/utils/tool";
-
+    import { dateFormat, formatToDate } from 'main/utils/date';
+    import { findComponent } from 'main/utils/tool';
 
     export default {
-        name: "DatePicker",
-        directives: {clickOutside},
+        name: 'DatePicker',
+        directives: { clickOutside },
         provide() {
             return {
                 picker: this
@@ -117,18 +116,18 @@
             editable: {
                 type: Boolean,
                 default: true
-            },//文本框是否可以输入
+            }, // 文本框是否可以输入
             placement: {
                 type: String,
                 default: 'bottom-start'
             },
             format: {
                 type: String,
-                default: '',
+                default: ''
             },
             valueFormat: {
                 type: String,
-                default: '',
+                default: ''
             },
             shortcuts: Array,
             disabledDate: Function,
@@ -139,15 +138,15 @@
                     return false
                 }
             },
-            open: Boolean,//手动控制日期框的打开关闭
-            multiple: Boolean,//多选日期
+            open: Boolean, // 手动控制日期框的打开关闭
+            multiple: Boolean, // 多选日期
             separator: {
                 type: String,
                 default: '~'
-            },//两个日期之间的分隔符
-            className: String,//选择器的类名
-            dropdownClassName: String,//日期下拉框的类名
-            onlyShowPane: Boolean,//是否只显示pane日期框
+            }, // 两个日期之间的分隔符
+            className: String, // 选择器的类名
+            dropdownClassName: String, // 日期下拉框的类名
+            onlyShowPane: Boolean// 是否只显示pane日期框
         },
         data() {
             return {
@@ -165,12 +164,12 @@
             readonlyInput() {
                 return this.readonly || !this.editable;
             },
-            computedSize(){
-                if(this.size !== 'default') return this.size;
-                if(this.form && this.form.size !== 'default') return this.form.size;
+            computedSize() {
+                if (this.size !== 'default') return this.size;
+                if (this.form && this.form.size !== 'default') return this.form.size;
                 return this.size;
             },
-            defaultFormatType(){
+            defaultFormatType() {
                 let result;
                 switch (this.type) {
                     case 'date':
@@ -220,22 +219,21 @@
                 let value = val || this.value;
 
                 let valid = true;
-                if(value && Array.isArray(value)){
-
+                if (value && Array.isArray(value)) {
                     value = value.map(item => {
-                        let v = formatToDate(item, this.formatType);
-                        if(!v || (v && isNaN(v.getTime()))) valid = false;
+                        const v = formatToDate(item, this.formatType);
+                        if (!v || (v && isNaN(v.getTime()))) valid = false;
                         return v;
                     });
-                }else if(value){
-                    let v = formatToDate(value, this.formatType);
-                    if(!v || (v && isNaN(v.getTime()))) valid = false;
+                } else if (value) {
+                    const v = formatToDate(value, this.formatType);
+                    if (!v || (v && isNaN(v.getTime()))) valid = false;
                     value = [v]
-                }else {
+                } else {
                     value = [];
                 }
 
-                if(!valid) return;
+                if (!valid) return;
 
                 if (this.multiple && this.type === 'date') {
                     this.dateValue = value;
@@ -248,7 +246,7 @@
                 }
             },
             setValue(value) {
-                if(!Array.isArray(value)){
+                if (!Array.isArray(value)) {
                     value = new Date(value);
                 }
                 this.initDateValue(value);
@@ -257,34 +255,34 @@
             handleFocus() {
                 this.dropDownVisible(true);
             },
-            //转换输入的inputvalue为标准日期格式
-            handleEnter(value){
-                if(!value) return this.updateInputValue();
+            // 转换输入的inputvalue为标准日期格式
+            handleEnter(value) {
+                if (!value) return this.updateInputValue();
 
-                let result = [];
-                if(this.isRange && value.includes(this.separator)) value = value.split(this.separator)
-                else if(this.multiple) value = value.split(',')
+                const result = [];
+                if (this.isRange && value.includes(this.separator)) value = value.split(this.separator)
+                else if (this.multiple) value = value.split(',')
                 else value = [value];
 
                 let valid = true;
-                value.forEach(item=>{
-                    let v = formatToDate(item, this.formatType);
-                    if(valid) valid = !!v;
+                value.forEach(item => {
+                    const v = formatToDate(item, this.formatType);
+                    if (valid) valid = !!v;
                     result.push(v);
                 })
 
-                if(JSON.stringify(result) === JSON.stringify(this.dateValue)) return;
-                if(result.length && valid) {
+                if (JSON.stringify(result) === JSON.stringify(this.dateValue)) return;
+                if (result.length && valid) {
                     this.initDateValue(result);
                     this.handleDateValueChange();
-                }else {
+                } else {
                     this.updateInputValue()
                 }
             },
             handleClickOutside(event) {
                 if (this.visible) {
                     if (this.renderHtml !== false) {
-                        const {$el} = this.$refs.dropDown;
+                        const { $el } = this.$refs.dropDown;
                         if ($el === event.target || $el.contains(event.target)) {
                             return;
                         }
@@ -292,7 +290,7 @@
 
                     this.dropDownVisible(false);
                     this.handleEnter(this.dateInputValue);
-                    this.$emit('click-outside',event);
+                    this.$emit('click-outside', event);
                 }
             },
             dropDownVisible(visible) {
@@ -306,57 +304,57 @@
                 this.$emit('clear');
             },
             updateInputValue() {
-                let dateValue = this.dateValue.map(item => dateFormat(item, this.formatType))
+                const dateValue = this.dateValue.map(item => dateFormat(item, this.formatType))
                 if (this.multiple && this.type === 'date') {
                     this.dateInputValue = dateValue.join(',');
                 } else {
                     if (this.isRange) {
-                        if(dateValue.length === 2){
+                        if (dateValue.length === 2) {
                             this.dateInputValue = `${dateValue[0]} ${this.separator} ${dateValue[1]}`;
                         }
-                        if(dateValue.length === 0) this.dateInputValue = '';
+                        if (dateValue.length === 0) this.dateInputValue = '';
                     } else {
                         this.dateInputValue = dateValue[0] || '';
                     }
                 }
             },
-            focus(){
+            focus() {
                 this.$refs.dateInput && this.$refs.dateInput.focus();
             },
-            blur(){
+            blur() {
                 this.$refs.dateInput && this.$refs.dateInput.blur();
             },
-            dateClick(selectValue){
+            dateClick(selectValue) {
                 this.$emit('date-click', selectValue);
             },
-            handleDateValueChange(value){
+            handleDateValueChange(value) {
                 this.updateInputValue();
-                value = value ? value : this.dateValue;
+                value = value || this.dateValue;
                 let result = value.map(item => new Date(item));
-                if(this.valueFormat) result = result.map(item => dateFormat(item, this.valueFormat));
+                if (this.valueFormat) result = result.map(item => dateFormat(item, this.valueFormat));
 
                 if (this.isRange) {
-                    if(result.length === 2 || !result.length){
+                    if (result.length === 2 || !result.length) {
                         this.$emit('input', result);
                         this.$emit('change', result);
                     }
                 } else if (this.multiple && this.type === 'date') {
                     this.$emit('input', result);
                     this.$emit('change', result);
-                }else {
-                    this.$emit('input',  result[0] || '');
+                } else {
+                    this.$emit('input', result[0] || '');
                     this.$emit('change', result[0] || '');
                 }
             }
         },
         watch: {
-            value(newVal, oldVal){
-                if(JSON.stringify(newVal) === JSON.stringify(oldVal)) return;
+            value(newVal, oldVal) {
+                if (JSON.stringify(newVal) === JSON.stringify(oldVal)) return;
                 this.initDateValue();
                 // this.handleDateValueChange();
                 this.updateInputValue();
             },
-            open(newVal){
+            open(newVal) {
                 this.visible = newVal;
             }
         }

@@ -13,7 +13,7 @@
     import Emitter from 'main/mixins/emitter'
 
     export default {
-        name: "Collapse",
+        name: 'Collapse',
         mixins: [Emitter],
         props: {
             value: [String, Array],
@@ -48,7 +48,7 @@
         },
         methods: {
             initOpenedKey() {
-                this.currentOpenedKey = typeof this.value === "string" ? [this.value] : this.value;
+                this.currentOpenedKey = typeof this.value === 'string' ? [this.value] : this.value;
             },
             updateOpenedKey(key) {
                 if (this.accordion) {
@@ -59,7 +59,7 @@
                     }
                 } else {
                     if (Array.isArray(this.currentOpenedKey) && this.currentOpenedKey.includes(key)) {
-                        let index = this.currentOpenedKey.indexOf(key);
+                        const index = this.currentOpenedKey.indexOf(key);
                         this.currentOpenedKey.splice(index, 1)
                     } else {
                         this.currentOpenedKey.push(key)

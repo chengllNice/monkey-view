@@ -1,3 +1,3 @@
-import ClScroll from './src/scroll'
+import MScroll from './src/scroll'
 
-export default ClScroll
+export default MScroll

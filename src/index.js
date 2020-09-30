@@ -27,8 +27,8 @@ import Card from '../packages/card'
 import Drawer from '../packages/drawer'
 import Table from '../packages/table'
 import Collapse from '../packages/collapse'
-import {Row, Col} from '../packages/grid'
-import {Tabs, TabPane} from '../packages/tabs'
+import { Row, Col } from '../packages/grid'
+import { Tabs, TabPane } from '../packages/tabs'
 import Tree from '../packages/tree'
 import Page from '../packages/page'
 import List from '../packages/list'
@@ -107,7 +107,7 @@ const components = {
     SkeletonItem: Skeleton.Item,
     Cascader,
     CascaderPanel: Cascader.panel,
-    Icon,
+    Icon
 };
 
 const monkeyUI = {
@@ -126,7 +126,7 @@ const monkeyUI = {
     mSwitch: Switch,
     mTable: Table,
     mTime: Time,
-    mImage: Image,
+    mImage: Image
 };
 
 const install = (Vue, opts = {}) => {
@@ -142,7 +142,7 @@ const install = (Vue, opts = {}) => {
     directive(Vue);
 
     Vue.prototype.$MONKEY = {
-        size: opts.size || '',
+        size: opts.size || ''
     }
 
     Vue.prototype.$Modal = Modal.$Modal;
@@ -160,13 +160,13 @@ if (typeof window !== 'undefined' && window.Vue) {
     directive(window.Vue);
 }
 
-let API = {
+const API = {
     version: process.env.VERSION,
     locale: locale.use,
     i18n: locale.i18n,
     install,
     Switch,
     Image,
-    ...components,
+    ...components
 };
 export default API;

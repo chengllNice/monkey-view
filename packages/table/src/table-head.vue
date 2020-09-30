@@ -33,7 +33,7 @@
     import tableMixins from './table-mixins'
 
     export default {
-        name: "TableHead",
+        name: 'TableHead',
         mixins: [tableMixins],
         inject: ['tableRoot'],
         props: {
@@ -61,9 +61,9 @@
             }
         },
         computed: {
-            tableHeadStyle(){
-                let style = {};
-                if(this.headStyle && this.headStyle.width) style.width = this.headStyle.width
+            tableHeadStyle() {
+                const style = {};
+                if (this.headStyle && this.headStyle.width) style.width = this.headStyle.width
                 return style;
             }
         },
@@ -71,22 +71,18 @@
             TableTr,
             TableHeadCell
         },
-        created() {
-        },
-        mounted() {
-        },
         methods: {
-            sortHandle(column){
+            sortHandle(column) {
                 this.tableRoot.headClick(column);
-                if(!column.__sort || !this.sortType.includes(column.sort)) return;
+                if (!column.__sort || !this.sortType.includes(column.sort)) return;
                 let type = true;
-                if(column.__sort === 'ascend'){
+                if (column.__sort === 'ascend') {
                     type = 'descend';
-                }else if(column.__sort === 'descend'){
+                } else if (column.__sort === 'descend') {
                     type = true;
-                }else if(column.__sort === true){
+                } else if (column.__sort === true) {
                     type = 'ascend';
-                }else{
+                } else {
                     type = 'remote'
                 }
                 this.tableRoot.sortHandle(column, type);

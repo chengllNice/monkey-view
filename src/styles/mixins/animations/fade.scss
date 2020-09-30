@@ -1,0 +1,235 @@
+@import "./base";
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes slideUpIn {
+    0% {
+        opacity: 0;
+        transform-origin: 0 0;
+        transform: translateY(-6px);
+    }
+    100% {
+        opacity: 1;
+        transform-origin: 0 0;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUpOut {
+    0% {
+        opacity: 1;
+        transform-origin: 0% 0%;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform-origin: 0% 0%;
+        transform: translateY(-6px);
+    }
+}
+
+@keyframes MessageFadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -100%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+@keyframes MessageFadeOut {
+    from {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+    to {
+        opacity: 0;
+        transform: translate(-50%, -100%);
+    }
+}
+
+
+@keyframes AlterFadeIn {
+    from {
+        opacity: 0;
+        height: 0;
+        transform-origin: 0 0;
+        transform: scaleY(0);
+    }
+    to {
+        opacity: 1;
+        height: 100%;
+        transform-origin: 0 0;
+        transform: scaleY(1);
+    }
+}
+
+@keyframes AlterFadeOut {
+    from {
+        opacity: 1;
+        height: 100%;
+        transform-origin: 0 0;
+        transform: scaleY(1);
+    }
+    to {
+        opacity: 0;
+        height: 0;
+        transform-origin: 0 0;
+        transform: scaleY(0);
+    }
+}
+
+
+@keyframes DrawerMoveRightIn {
+    from {
+        opacity: 0;
+        transform-origin: 0 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform-origin: 0 0;
+        transform: translateX(0);
+    }
+}
+
+@keyframes DrawerMoveRightOut {
+    from {
+        opacity: 1;
+        transform-origin: 0 0;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform-origin: 0 0;
+        transform: translateX(100%);
+    }
+}
+
+@keyframes DrawerMoveLeftIn {
+    from {
+        opacity: 0;
+        transform-origin: 0 0;
+        transform: translateX(-100%);
+    }
+    to {
+        opacity: 1;
+        transform-origin: 0 0;
+        transform: translateX(0);
+    }
+}
+
+@keyframes DrawerMoveLeftOut {
+    from {
+        opacity: 1;
+        transform-origin: 0 0;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform-origin: 0 0;
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes DrawerMoveTopIn {
+    from {
+        opacity: 0;
+        transform-origin: 0 0;
+        transform: translateY(-100%);
+    }
+    to {
+        opacity: 1;
+        transform-origin: 0 0;
+        transform: translateY(0);
+    }
+}
+
+@keyframes DrawerMoveTopOut {
+    from {
+        opacity: 1;
+        transform-origin: 0 0;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform-origin: 0 0;
+        transform: translateY(-100%);
+    }
+}
+
+@keyframes DrawerMoveBottomIn {
+    from {
+        opacity: 0;
+        transform-origin: 0 0;
+        transform: translateY(100%);
+    }
+    to {
+        opacity: 1;
+        transform-origin: 0 0;
+        transform: translateY(0);
+    }
+}
+
+@keyframes DrawerMoveBottomOut {
+    from {
+        opacity: 1;
+        transform-origin: 0 0;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform-origin: 0 0;
+        transform: translateY(100%);
+    }
+}
+
+@include animation-base(fade, fade) {
+    animation-timing-function: ease-in-out;
+}
+
+@include animation-base(slideUp, slideUp) {
+    animation-timing-function: ease-in-out;
+}
+
+@include animation-base(MessageFade, MessageFade) {
+    animation-timing-function: ease-in-out;
+}
+
+@include animation-base(AlterFade, AlterFade) {
+    animation-timing-function: ease-in-out;
+}
+
+@include animation-base(DrawerMoveRight, DrawerMoveRight) {
+    animation-timing-function: ease-in-out;
+}
+
+@include animation-base(DrawerMoveLeft, DrawerMoveLeft) {
+    animation-timing-function: ease-in-out;
+}
+
+@include animation-base(DrawerMoveTop, DrawerMoveTop) {
+    animation-timing-function: ease-in-out;
+}
+
+@include animation-base(DrawerMoveBottom, DrawerMoveBottom) {
+    animation-timing-function: ease-in-out;
+}

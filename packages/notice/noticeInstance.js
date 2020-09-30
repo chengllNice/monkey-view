@@ -2,27 +2,27 @@ import Vue from 'vue'
 import Notice from './src/notice'
 
 const NoticeInstance = Vue.extend(Notice);
-let NoticeInstances = {
+const NoticeInstances = {
     topLeft: [],
     topRight: [],
     bottomLeft: [],
-    bottomRight: [],
+    bottomRight: []
 };
 
 // 不可配置项的默认值
-let defaultNoConfigOptions = {
-    type: 'open',//值有success error warning info open 默认为open
-    isOnlyTitle: false,//是否只有title
-    currentPosition: 85,//当前notice距离顶部的top值 或者距离底部的bottom值
-    noticeItemDis: 10,//每个notice之间的间距
-    onCloseComputed: function () {},//计算当前notice距离顶部的top值 或者距离底部的bottom值
+const defaultNoConfigOptions = {
+    type: 'open', // 值有success error warning info open 默认为open
+    isOnlyTitle: false, // 是否只有title
+    currentPosition: 85, // 当前notice距离顶部的top值 或者距离底部的bottom值
+    noticeItemDis: 10, // 每个notice之间的间距
+    onCloseComputed: function () {}// 计算当前notice距离顶部的top值 或者距离底部的bottom值
 };
 
 // 提供全局配置的参数
 let globalConfigOptions = {
-    position: 85,//第一个notice距离顶部或者底部的距离
-    duration: 4500,//自动关闭的延时
-    placement: 'topRight',//出现的位置 topLeft topRight bottomLeft BottomRight 默认topRight
+    position: 85, // 第一个notice距离顶部或者底部的距离
+    duration: 4500, // 自动关闭的延时
+    placement: 'topRight'// 出现的位置 topLeft topRight bottomLeft BottomRight 默认topRight
 };
 
 // 可配置项的默认值
@@ -30,22 +30,22 @@ const defaultOptions = {
     title: '',
     content: '',
     duration: 4500,
-    background: false,//是否显示背景色
+    background: false, // 是否显示背景色
     placement: globalConfigOptions.placement,
-    onClose: function () {},//关闭的回调
+    onClose: function () {}// 关闭的回调
 };
 const instanceType = {
-    open: "open",
-    config: "config",
-    success: "success",
-    error: "error",
-    warning: "warning",
-    info: "info",
+    open: 'open',
+    config: 'config',
+    success: 'success',
+    error: 'error',
+    warning: 'warning',
+    info: 'info'
 };
 
 const topComputed = (placement) => {
-    let len = NoticeInstances[placement].length;
-    let firstNoticeDisTop = defaultNoConfigOptions.currentPosition;
+    const len = NoticeInstances[placement].length;
+    const firstNoticeDisTop = defaultNoConfigOptions.currentPosition;
     if (len > 1) {
         let NoticeHeight = 0;
         NoticeInstances[placement].forEach(item => {
@@ -57,10 +57,10 @@ const topComputed = (placement) => {
 };
 
 const closeAfter = (placement) => {
-    let currentIndex = NoticeInstances[placement].findIndex(item=>{
+    let currentIndex = NoticeInstances[placement].findIndex(item => {
        return item.duration !== 0
     });
-    let NoticeHeight = currentIndex > -1 ? NoticeInstances[placement][currentIndex].$el.offsetHeight : 0;
+    const NoticeHeight = currentIndex > -1 ? NoticeInstances[placement][currentIndex].$el.offsetHeight : 0;
     currentIndex > -1 && NoticeInstances[placement].splice(currentIndex, 1);
 
     currentIndex = currentIndex === -1 ? NoticeInstances[placement].length : currentIndex;
@@ -68,15 +68,15 @@ const closeAfter = (placement) => {
     NoticeInstances[placement].forEach((item, index) => {
         if (item.visible && index >= currentIndex) {
             item.currentPosition = item.currentPosition - (NoticeHeight + defaultNoConfigOptions.noticeItemDis);
-        }else if(!item.visible){
+        } else if (!item.visible) {
             NoticeInstances[placement].splice(index, 1);
         }
     });
 };
 
 const initInstall = (opts) => {
-    let CreateInstance = new NoticeInstance({
-        el: document.createElement('div'),
+    const CreateInstance = new NoticeInstance({
+        el: document.createElement('div')
     });
     document.body.appendChild(CreateInstance.$el);
     NoticeInstances[opts.placement].push(CreateInstance);
@@ -93,17 +93,16 @@ const initInstall = (opts) => {
     return CreateInstance;
 };
 
-
 const notice = (type, options) => {
     // 如果单独没有配置duration，则默认按照全局配置生效
-    if(!options.hasOwnProperty('duration')){
+    if (!options.hasOwnProperty('duration')) {
         options.duration = globalConfigOptions.duration;
     }
-    let opts = Object.assign({
+    const opts = Object.assign({
         placement: globalConfigOptions.placement
     }, defaultOptions, options, defaultNoConfigOptions, {
         type,
-        isOnlyTitle: !options.content,
+        isOnlyTitle: !options.content
     });
     return initInstall(opts);
 };
@@ -114,11 +113,11 @@ const configGlobal = (options) => {
     defaultNoConfigOptions.currentPosition = globalConfigOptions.position;
 };
 
-let exportObj = {};
+const exportObj = {};
 
 Object.keys(instanceType).forEach(key => {
     exportObj[key] = (options) => {
-        if(key === 'config'){
+        if (key === 'config') {
             return configGlobal(options);
         }
         return notice(key, options);

@@ -46,16 +46,16 @@
 <script>
     import Config from 'main/config/config'
     import Popper from 'main/mixins/popper'
-    import {directive as clickOutside} from 'v-click-outside-x';
-    import {on, off} from "main/utils/dom";
+    import { directive as clickOutside } from 'v-click-outside-x';
+    import { on, off } from 'main/utils/dom';
     import Locale from 'main/mixins/locale'
     import Icon from 'packages/icon'
     import Button from 'packages/button'
 
     export default {
-        name: "Popover",
+        name: 'Popover',
         mixins: [Popper, Locale],
-        directives: {clickOutside},
+        directives: { clickOutside },
         props: {
             placement: {
                 type: String,
@@ -96,9 +96,9 @@
         data() {
             return {
                 classPrefix: Config.classPrefix + '-popover',
-                hoverTimer: null,//hover延时
+                hoverTimer: null, // hover延时
                 isInput: false,
-                popperHover: false,
+                popperHover: false
             }
         },
         computed: {
@@ -107,8 +107,8 @@
             },
             expandStyle() {
                 if (this.width === undefined) return {};
-                let width = this.width.toString().includes('px') ? this.width : this.width + 'px';
-                return Object.assign({}, {width: width})
+                const width = this.width.toString().includes('px') ? this.width : this.width + 'px';
+                return Object.assign({}, { width: width })
             },
             localeCancelText() {
                 if (!this.cancelText) {
@@ -123,7 +123,7 @@
                 } else {
                     return this.okText
                 }
-            },
+            }
         },
         components: {
             Icon,
@@ -250,7 +250,7 @@
                 } else {
                     this.renderHtml.appendChild(this.$refs.popper);
                 }
-            },
+            }
         }
     }
 </script>

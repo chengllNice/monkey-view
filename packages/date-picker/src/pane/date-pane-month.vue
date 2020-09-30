@@ -20,36 +20,36 @@
 
 <script>
     import Config from 'main/config/config'
-    import { dateObj} from "main/utils/date";
+    import { dateObj } from 'main/utils/date';
 
     export default {
-        name: "DatePaneMonth",
+        name: 'DatePaneMonth',
         props: {
             type: String,
             year: Number,
             month: Number,
             date: {
                 type: Array,
-                default(){
+                default() {
                     return []
                 }
             },
             currentDate: Object,
-            index: Number,
+            index: Number
         },
-        data(){
+        data() {
             return {
                 classPrefix: Config.classPrefix + '-date-pane-month',
                 classPrefixItem: Config.classPrefix + '-date-pane-item',
-                monthList: [],
+                monthList: []
             }
         },
         computed: {
-            selectedMonth(){
-                let month = this.date[this.index] ? this.date[this.index].getMonth() + 1 : null;
+            selectedMonth() {
+                const month = this.date[this.index] ? this.date[this.index].getMonth() + 1 : null;
                 return this.type === 'month' ? month : this.month;
             },
-            isSelectYear(){
+            isSelectYear() {
                 return this.date[this.index] ? this.date[this.index].getFullYear() === this.year : false;
             }
         },
@@ -58,13 +58,13 @@
         },
         methods: {
             // 获取年份列表
-            setMonthList(year){
-                if(!year && !this.year) return;
-                let monthList = dateObj.month;
-                let newMonthList = [];
+            setMonthList(year) {
+                if (!year && !this.year) return;
+                const monthList = dateObj.month;
+                const newMonthList = [];
                 let row = [];
-                monthList.forEach((item, index)=>{
-                    if(index % 3 === 0){
+                monthList.forEach((item, index) => {
+                    if (index % 3 === 0) {
                         row = [];
                         newMonthList.push(row);
                     }
@@ -72,9 +72,9 @@
                 });
                 this.monthList = newMonthList;
             },
-            handleSelectMonth(month){
+            handleSelectMonth(month) {
                 this.$emit('update-month', month.id);
-            },
+            }
         },
         watch: {
             month() {

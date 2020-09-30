@@ -52,7 +52,7 @@
     import Icon from 'packages/icon'
 
     export default {
-        name: "Progress",
+        name: 'Progress',
         props: {
             percent: {
                 type: Number,
@@ -87,35 +87,35 @@
                 type: Boolean,
                 default: true
             },
-            infoInside: Boolean,//只在line模式下有效
+            infoInside: Boolean, // 只在line模式下有效
             railColor: String,
             barColor: String,
             width: {
                 type: [String, Number],
                 default: 126
-            },//circle模式下有效
+            }// circle模式下有效
         },
         data() {
             return {
-                classPrefix: Config.classPrefix + '-progress',
+                classPrefix: Config.classPrefix + '-progress'
             }
         },
         computed: {
             railStyle() {
                 let style = {
                     'border-radius': parseFloat(this.strokeWidth) + 'px',
-                    'background': this.railColor
+                    background: this.railColor
                 };
                 if (this.vertical) {
                     style = {
                         ...style,
-                        'width': parseFloat(this.strokeWidth) + 'px',
+                        width: parseFloat(this.strokeWidth) + 'px'
                     }
                 } else {
                     style = {
                         ...style,
-                        'height': parseFloat(this.strokeWidth) + 'px',
-                        'line-height': parseFloat(this.strokeWidth) + 'px',
+                        height: parseFloat(this.strokeWidth) + 'px',
+                        'line-height': parseFloat(this.strokeWidth) + 'px'
                     }
                 }
                 return style
@@ -123,17 +123,17 @@
             barStyle() {
                 let style = {
                     ...this.railStyle,
-                    'background': this.barColor,
+                    background: this.barColor
                 };
                 if (this.vertical) {
                     style = {
                         ...style,
-                        'height': this.percent + '%',
+                        height: this.percent + '%'
                     }
                 } else {
                     style = {
                         ...style,
-                        'width': this.percent + '%'
+                        width: this.percent + '%'
                     }
                 }
                 return style;
@@ -146,7 +146,7 @@
                 }
                 style = {
                     'line-height': parseFloat(this.strokeWidth) + 'px',
-                    'font-size': fontSize + 'px',
+                    'font-size': fontSize + 'px'
                 };
                 return style;
             },
@@ -250,6 +250,6 @@
         },
         components: {
             Icon
-        },
+        }
     }
 </script>

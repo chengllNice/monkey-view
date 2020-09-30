@@ -59,7 +59,7 @@
     import Locale from 'main/mixins/locale'
 
     export default {
-        name: "Modal",
+        name: 'Modal',
         mixins: [Locale],
         props: {
             transition: {
@@ -73,7 +73,7 @@
                 default: 520
             },
             height: {
-                type: [String, Number],
+                type: [String, Number]
             },
             value: Boolean,
             fullscreen: Boolean,
@@ -81,7 +81,7 @@
             closable: {
                 type: Boolean,
                 default: true
-            },//是否显示右上角关闭按钮
+            }, // 是否显示右上角关闭按钮
             cancelText: String,
             okText: String,
             styles: Object,
@@ -98,12 +98,12 @@
             closeRemoveDom: {
                 type: Boolean,
                 default: false
-            },//是否关闭之后移除dom
-            bodyScroll: Boolean,//body内容自动滚动,
+            }, // 是否关闭之后移除dom
+            bodyScroll: Boolean, // body内容自动滚动,
             modalTop: {
                 type: [String, Number],
                 default: 100
-            },//值为center时垂直居中（暂时没做居中）
+            }, // 值为center时垂直居中（暂时没做居中）
             renderHtml: {
                 type: [HTMLElement, Boolean],
                 default: function () {
@@ -119,7 +119,7 @@
                 showHead: true,
                 okButtonLoading: false,
                 observer: null,
-                bodyStyle: {},
+                bodyStyle: {}
             }
         },
         computed: {
@@ -130,19 +130,19 @@
                 return this.cancelText === null ? null : (this.cancelText ? this.cancelText : this.t('m.modal.cancelText'));
             },
             modalStyle() {
-                let style = {};
+                const style = {};
                 const widthPar = parseFloat(this.width);
                 const modalTop = parseFloat(this.modalTop);
                 const isWidthPer = this.width.toString().includes('%');
                 const isModalTopPer = this.modalTop.toString().includes('%');
-                let width = isWidthPer ? `${widthPar}%` : `${widthPar}px`;
-                let top = isModalTopPer ? `${modalTop}%` : `${modalTop}px`;
+                const width = isWidthPer ? `${widthPar}%` : `${widthPar}px`;
+                const top = isModalTopPer ? `${modalTop}%` : `${modalTop}px`;
 
                 const styles = this.styles ? this.styles : {};
 
-                Object.assign(style, styles, {width: width, top: top});
+                Object.assign(style, styles, { width: width, top: top });
                 return style;
-            },
+            }
         },
         components: {
             Button,
@@ -164,7 +164,7 @@
         },
         watch: {
             value(newVal) {
-                if(newVal) this.wrapHidden = !newVal;
+                if (newVal) this.wrapHidden = !newVal;
                 this.visible = newVal;
             }
         },
@@ -179,15 +179,15 @@
             },
             modalBodyResize() {
                 if (!this.$refs.modal) return;
-                let diffHeight = 20;
-                let modalHeight = this.$refs.modal.offsetHeight;
-                let modalTop = parseFloat(this.modalTop);
+                const diffHeight = 20;
+                const modalHeight = this.$refs.modal.offsetHeight;
+                const modalTop = parseFloat(this.modalTop);
 
-                let modalHeaderHeight = this.showHead && this.$refs.modalHeader.offsetHeight;
+                const modalHeaderHeight = this.showHead && this.$refs.modalHeader.offsetHeight;
 
-                let modalFooterHeight = !this.footerHide && this.$refs.modalFooter.offsetHeight;
+                const modalFooterHeight = !this.footerHide && this.$refs.modalFooter.offsetHeight;
 
-                let modalWrapHeight = this.$refs.modalWrap.offsetHeight;
+                const modalWrapHeight = this.$refs.modalWrap.offsetHeight;
 
                 let bodyHeight = 'auto';
 
@@ -238,13 +238,13 @@
                     this.handleClose();
                 }
             },
-            handleAfterLeave(){
+            handleAfterLeave() {
                 this.wrapHidden = true;
-                if(this.closeRemoveDom){
+                if (this.closeRemoveDom) {
                     this.handleRemoveDom();
                 }
             },
-            handleRemoveDom(){
+            handleRemoveDom() {
                 this.$el.parentNode && this.$el.parentNode.removeChild(this.$el);
             }
         }

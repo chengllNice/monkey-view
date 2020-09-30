@@ -41,7 +41,7 @@
     import uploadAjax from './ajax'
 
     export default {
-        name: "Upload",
+        name: 'Upload',
         props: {
             name: {
                 type: String,
@@ -126,23 +126,18 @@
                 }
             },
             headers: Object,
-            data: Object,
+            data: Object
         },
         data() {
             return {
                 classPrefix: Config.classPrefix + '-upload',
                 uploadFiles: [],
                 tempIndex: 1,
-                dragOver: false,
+                dragOver: false
             }
         },
-        computed: {},
         components: {
             UploadList
-        },
-        created() {
-        },
-        mounted() {
         },
         methods: {
             handlerClick() {
@@ -212,7 +207,6 @@
                 }
             },
             postFile(file) {
-
                 this.handlerStart(file);
 
                 const option = {
@@ -242,20 +236,20 @@
                     size: file.size,
                     percent: 0,
                     uid: file.uid,
-                    file: file,
+                    file: file
                 };
                 _file.url = this.createFileUrl(_file);
                 this.uploadFiles.push(_file);
                 this.onChange(_file, this.uploadFiles);
             },
             handlerProgress(e, file) {
-                let _file = this.getFile(file);
+                const _file = this.getFile(file);
                 _file.percent = e.percent || 0;
                 _file.status = 'uploading';
                 this.onProgress(e, _file, this.uploadFiles);
             },
             hanlderSuccess(res, file) {
-                let _file = this.getFile(file);
+                const _file = this.getFile(file);
                 if (_file) {
                     _file.status = 'done';
                     _file.response = res;
@@ -265,7 +259,7 @@
                 }
             },
             handlerError(err, response, file) {
-                let _file = this.getFile(file);
+                const _file = this.getFile(file);
                 _file.status = 'fail';
                 this.uploadFiles.splice(this.uploadFiles.indexOf(_file), 1);
 
@@ -284,7 +278,7 @@
                 }
             },
             getFile(file) {
-                let uploadList = this.uploadFiles;
+                const uploadList = this.uploadFiles;
                 let target;
                 uploadList.every(item => {
                     target = file.uid === item.uid ? item : null;
@@ -294,7 +288,7 @@
             },
             formatFileType(file) {
                 if (!this.format.length) return true;
-                let fileFormat = file.name.split('.').pop().toLocaleLowerCase();
+                const fileFormat = file.name.split('.').pop().toLocaleLowerCase();
                 return this.format.includes(fileFormat)
             },
             createFileUrl(file) {
@@ -309,7 +303,7 @@
                     }
                 }
                 return url;
-            },
+            }
             // emitChange(){
             //     this.$emit('change', this.fileList)
             // }

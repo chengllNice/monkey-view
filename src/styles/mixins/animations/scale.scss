@@ -1,0 +1,32 @@
+@import "./base";
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes scaleOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+}
+
+@include animation-base(scale, scale) {
+    animation-timing-function: linear;
+    animation-duration: 0.2s;
+}
+
+@include animation-base(loading-scale, loading-scale) {
+    animation-timing-function: linear;
+}

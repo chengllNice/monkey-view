@@ -30,7 +30,7 @@
     import Icon from 'packages/icon'
 
     export default {
-        name: "Message",
+        name: 'Message',
         data() {
             return {
                 classPrefix: Config.classPrefix + '-message',
@@ -43,7 +43,7 @@
                 timer: null,
                 closed: false,
                 background: false,
-                closable: false,
+                closable: false
             }
         },
         computed: {
@@ -72,7 +72,7 @@
                 return result;
             },
             expandStyle() {
-                return {top: parseFloat(this.currentPosition) + 'px'}
+                return { top: parseFloat(this.currentPosition) + 'px' }
             }
         },
         components: {

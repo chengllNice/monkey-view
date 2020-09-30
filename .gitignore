@@ -2,7 +2,7 @@
 node_modules
 docs-dist
 examples
-md-loader
+build/md-loader
 
 # local env files
 .env.local

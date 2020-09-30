@@ -3,10 +3,10 @@ import Vue from 'vue'
 import ModalConfirm from './src/modalConfirm.vue'
 
 const ModalInstance = Vue.extend(ModalConfirm);
-let exportObj = {};
+const exportObj = {};
 let ModalInstances = [];
 
-let confirmType = {
+const confirmType = {
   info: 'info',
   success: 'success',
   warning: 'warning',
@@ -15,24 +15,24 @@ let confirmType = {
 };
 
 // 可配置项的默认值
-let defaultOptions = {
+const defaultOptions = {
   title: '',
   width: 350,
   closable: false,
   loading: false,
   okText: '',
   cancelText: '',
-  type: '',
+  type: ''
 };
 
-let initInstall = (opts) => {
-  let Instance = new ModalInstance({
+const initInstall = (opts) => {
+  const Instance = new ModalInstance({
     el: document.createElement('div')
   });
   document.body.appendChild(Instance.$el);
 
   opts.icon = opts.key;
-  Object.keys(opts).forEach(props=>{
+  Object.keys(opts).forEach(props => {
     Instance[props] = opts[props];
   });
   Instance.show(true);
@@ -40,19 +40,18 @@ let initInstall = (opts) => {
   return Instance;
 };
 
-Object.keys(confirmType).forEach(key=>{
+Object.keys(confirmType).forEach(key => {
   exportObj[key] = (props = {}) => {
-    let opts = Object.assign({}, defaultOptions, props, {key});
+    const opts = Object.assign({}, defaultOptions, props, { key });
     initInstall(opts);
   };
 });
 
 exportObj.remove = () => {
-  ModalInstances.forEach(item=>{
+  ModalInstances.forEach(item => {
     item.remove();
   });
   ModalInstances = [];
 };
 
 export default exportObj
-

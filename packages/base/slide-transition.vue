@@ -13,13 +13,13 @@
 
 <script>
     export default {
-        name: "SlideTransition",
+        name: 'SlideTransition',
         props: {
             appear: Boolean,
             transitionClass: {
                 type: String,
                 default: 'slide-transition'
-            },
+            }
         },
         methods: {
             // --------
@@ -28,7 +28,7 @@
             beforeEnter(el) {
                 el.classList.add(this.transitionClass);
 
-                if(!el.originStyle) el.originStyle = {};
+                if (!el.originStyle) el.originStyle = {};
                 el.originStyle.paddingTop = el.style.paddingTop;
                 el.originStyle.paddingBottom = el.style.paddingBottom;
 
@@ -58,7 +58,7 @@
             // 离开时
             // --------
             beforeLeave(el) {
-                if(!el.originStyle) el.originStyle = {};
+                if (!el.originStyle) el.originStyle = {};
                 el.originStyle.paddingTop = el.style.paddingTop;
                 el.originStyle.paddingBottom = el.style.paddingBottom;
                 el.originStyle.overflow = el.style.overflow;
@@ -80,7 +80,7 @@
                 el.style.paddingTop = el.originStyle.paddingTop;
                 el.style.paddingBottom = el.originStyle.paddingBottom;
                 el.style.overflow = el.originStyle.overflow;
-            },
+            }
         }
     }
 </script>

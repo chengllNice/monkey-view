@@ -135,7 +135,7 @@
     import Icon from 'packages/icon'
 
     export default {
-        name: "Page",
+        name: 'Page',
         mixins: [Locale],
         props: {
             page: {
@@ -155,7 +155,7 @@
                 default() {
                     return [10, 20, 30, 40]
                 }
-            },//pageSize切换配置
+            }, // pageSize切换配置
             maxPage: {
                 type: Number,
                 default: 5,
@@ -170,23 +170,23 @@
                     return ['default', 'mini'].includes(value)
                 }
             },
-            background: Boolean,//是否为分页添加背景
-            border: Boolean,//是否为分页添加边框
-            hidenOnlySinglePage: Boolean,//当只有一页时是否隐藏
+            background: Boolean, // 是否为分页添加背景
+            border: Boolean, // 是否为分页添加边框
+            hidenOnlySinglePage: Boolean, // 当只有一页时是否隐藏
             preText: String,
             nextText: String,
             order: {
                 type: String,
                 default: ''
-            },//排序及显示
+            }, // 排序及显示
             totalText: {
                 type: String,
                 default: ''
-            },//定义总数量显示方式
+            }, // 定义总数量显示方式
             pageSizeText: {
                 type: String,
                 default: ''
-            },//定义pageSize选项的显示方式
+            }// 定义pageSize选项的显示方式
         },
         data() {
             return {
@@ -197,7 +197,7 @@
                 currentPageSizeOption: [],
                 currentSelectPageSize: '',
                 jumpPreIcon: 'more',
-                jumpNextIcon: 'more',
+                jumpNextIcon: 'more'
             }
         },
         computed: {
@@ -206,7 +206,7 @@
             },
             // page前后多少项展示
             pagePreNextItemLenSHow() {
-                return (this.maxPage - 3) / 2;//3为 第一页 最后一页和当前页
+                return (this.maxPage - 3) / 2;// 3为 第一页 最后一页和当前页
             },
             pageItemPreShow() {
                 return this.allPage > this.maxPage && this.currentPage >= this.maxPage - this.pagePreNextItemLenSHow

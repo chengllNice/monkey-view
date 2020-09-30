@@ -8,7 +8,7 @@ const del = require('del');
 
 // 编译sass
 gulp.task('css', () => {
-    return gulp.src('../packages/theme-default/index.scss')
+    return gulp.src('../src/styles/index.scss')
         .pipe(sass())
         .pipe(autoprefixer())
         .pipe(cleanCSS())
@@ -19,10 +19,9 @@ gulp.task('css', () => {
 
 // 拷贝fonts
 gulp.task('fonts', () => {
-    return gulp.src('../packages/theme-default/fonts/*.*')
+    return gulp.src('../src/styles/fonts/*.*')
         .pipe(gulp.dest('../dist/styles/fonts'));
 });
-
 
 // 删除styles
 gulp.task('clean', async (done) => {

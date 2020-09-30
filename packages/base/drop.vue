@@ -12,13 +12,12 @@
     const Popper = isServer ? function () {
     } : require('popper.js/dist/umd/popper.js');
 
-
     export default {
-        name: "Drop",
+        name: 'Drop',
         props: {
-            //是否和选择器同宽
+            // 是否和选择器同宽
             dropdownMatchSelectWidth: Boolean,
-            //最小宽为选择器的宽度
+            // 最小宽为选择器的宽度
             minWidth: {
                 type: [Boolean, Number],
                 default: true
@@ -27,7 +26,7 @@
                 type: String,
                 default: 'bottom-start'
             },
-            reference: {},//触发元素
+            reference: {}, // 触发元素
             popper: {},
             value: {
                 type: Boolean,
@@ -39,7 +38,7 @@
                     return {
                         modifiers: {
                             computeStyle: {
-                                gpuAcceleration: false,
+                                gpuAcceleration: false
                             },
                             preventOverflow: {
                                 boundariesElement: 'window'
@@ -48,7 +47,7 @@
                     }
                 }
             },
-            //false渲染到当前位置 true渲染到body中 html类型渲染到指定位置
+            // false渲染到当前位置 true渲染到body中 html类型渲染到指定位置
             renderHtml: {
                 type: [HTMLElement, Boolean],
                 default: function () {
@@ -61,7 +60,7 @@
                 classPrefix: Config.classPrefix + '-drop',
                 visible: false,
                 width: '',
-                boundariesElement: null,
+                boundariesElement: null
             }
         },
         watch: {
@@ -80,12 +79,12 @@
         },
         computed: {
             expandStyle() {
-                let style = {width: 'auto'};
-                if(this.dropdownMatchSelectWidth) style = {width: this.width}
-                if(this.minWidth === true) style = {...style, minWidth: this.width}
-                if(this.minWidth !== true && this.minWidth) style = {...style, minWidth: parseInt(this.minWidth) + 'px'}
+                let style = { width: 'auto' };
+                if (this.dropdownMatchSelectWidth) style = { width: this.width }
+                if (this.minWidth === true) style = { ...style, minWidth: this.width }
+                if (this.minWidth !== true && this.minWidth) style = { ...style, minWidth: parseInt(this.minWidth) + 'px' }
                 return style;
-            },
+            }
         },
         mounted() {
             this.visible = this.value;
@@ -96,7 +95,7 @@
         },
         methods: {
             setWidth() {
-                let width = this.$parent && this.$parent.$el && (this.$parent.$el.offsetWidth || 0);
+                const width = this.$parent && this.$parent.$el && (this.$parent.$el.offsetWidth || 0);
                 this.width = width + 'px';
             },
             createPopper() {
@@ -106,7 +105,6 @@
                 if (!/^(top|bottom|left|right)(-start|-end)?$/g.test(this.placement)) {
                     return;
                 }
-
 
                 const options = this.options;
                 const clPopper = this.$el;
@@ -135,14 +133,14 @@
                 })
                 this.popperJS ? this.popperJS.update() : this.$nextTick(this.createPopper());
             },
-            renderToHtml(){
-                if((typeof this.renderHtml === 'boolean' && this.renderHtml === false) || !this.renderHtml) return;
-                if((typeof this.renderHtml === 'boolean' && this.renderHtml === true)){
+            renderToHtml() {
+                if ((typeof this.renderHtml === 'boolean' && this.renderHtml === false) || !this.renderHtml) return;
+                if ((typeof this.renderHtml === 'boolean' && this.renderHtml === true)) {
                     document.body.appendChild(this.$el);
-                }else{
+                } else {
                     this.renderHtml.appendChild(this.$el);
                 }
-            },
+            }
         },
         updated() {
             this.$nextTick(() => {

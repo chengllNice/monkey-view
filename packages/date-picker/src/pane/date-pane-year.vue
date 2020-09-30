@@ -20,10 +20,10 @@
 
 <script>
     import Config from 'main/config/config'
-    import {yearListInit} from "main/utils/date";
+    import { yearListInit } from 'main/utils/date';
 
     export default {
-        name: "DatePaneYear",
+        name: 'DatePaneYear',
         props: {
             type: String,
             year: Number,
@@ -35,13 +35,13 @@
                 }
             },
             currentDate: Object,
-            index: Number,
+            index: Number
         },
         data() {
             return {
                 classPrefix: Config.classPrefix + '-date-pane-year',
                 classPrefixItem: Config.classPrefix + '-date-pane-item',
-                yearList: [],
+                yearList: []
             }
         },
         computed: {
@@ -56,8 +56,8 @@
             // 获取年份列表
             setYearList(year) {
                 if (!year && !this.year) return;
-                let yearList = yearListInit(year || this.year);
-                let newYearList = [];
+                const yearList = yearListInit(year || this.year);
+                const newYearList = [];
                 let row = [];
                 yearList.forEach((item, index) => {
                     if (index % 3 === 0) {
@@ -70,7 +70,7 @@
             },
             handleSelectYear(year) {
                 this.$emit('update-year', year.id);
-            },
+            }
         },
         watch: {
             year() {

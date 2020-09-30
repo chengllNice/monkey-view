@@ -6,7 +6,7 @@
     import Config from 'main/config/config'
 
     export default {
-        name: "Icon",
+        name: 'Icon',
         props: {
             type: String,
             customIcon: String,
@@ -15,17 +15,17 @@
         },
         data() {
             return {
-                classPrefix: `${Config.classPrefix}-icon`,
+                classPrefix: `${Config.classPrefix}-icon`
             }
         },
         computed: {
             iconClass() {
-                let isPrefix = this.type && this.type.indexOf(this.classPrefix) === 0;
+                const isPrefix = this.type && this.type.indexOf(this.classPrefix) === 0;
                 return [
                     this.type && `${this.classPrefix}`,
                     this.customIcon && `${this.customIcon}`,
                     this.type && isPrefix && `${this.type}`,
-                    this.type && !isPrefix && `${this.classPrefix}-${this.type}`,
+                    this.type && !isPrefix && `${this.classPrefix}-${this.type}`
                 ]
             },
             iconStyle() {

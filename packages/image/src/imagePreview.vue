@@ -35,10 +35,10 @@
     import Config from 'main/config/config'
     import Icon from 'packages/icon'
     import Locale from 'main/mixins/locale'
-    import {on, off} from "main/utils/dom";
+    import { on, off } from 'main/utils/dom';
 
     export default {
-        name: "ImagePreview",
+        name: 'ImagePreview',
         mixins: [Locale],
         props: {
             list: {
@@ -46,39 +46,39 @@
                 default: function () {
                     return []
                 }
-            },
+            }
         },
         data() {
             return {
                 classPrefix: Config.classPrefix + '-image-preview',
                 visible: false,
                 selectedIndex: 0,
-                minScale: 0.1,//最小缩小
-                maxScale: 10,//最大放大
-                everyScale: 0.1,//每次缩放的倍数
-                everyRotate: 90,//每次旋转角度
+                minScale: 0.1, // 最小缩小
+                maxScale: 10, // 最大放大
+                everyScale: 0.1, // 每次缩放的倍数
+                everyRotate: 90, // 每次旋转角度
                 transform: {
                     scale: 1,
                     rotate: 0,
                     translateX: 0,
-                    translateY: 0,
+                    translateY: 0
                 },
-                actionToggle: 'max', //nomral正常 max限制最大宽高
+                actionToggle: 'max' // nomral正常 max限制最大宽高
             }
         },
         computed: {
             imageStyle() {
-                let {scale, rotate, translateX, translateY} = this.transform;
+                const { scale, rotate, translateX, translateY } = this.transform;
                 let style = {};
                 if (this.actionToggle === 'max') {
                     style = {
                         maxWidth: '100%',
-                        maxHeight: '100%',
+                        maxHeight: '100%'
                     }
                 }
                 return {
                     ...style,
-                    transform: `scale(${scale}) rotate(${rotate}deg) translateX(${translateX}px) translateY(${translateY}px)`,
+                    transform: `scale(${scale}) rotate(${rotate}deg) translateX(${translateX}px) translateY(${translateY}px)`
                 }
             }
         },
@@ -118,7 +118,7 @@
                 this.$emit('close');
             },
             handleAction(action) {
-                let {scale, rotate} = this.transform;
+                let { scale, rotate } = this.transform;
                 switch (action) {
                     case 'zoomIn':
                         scale = scale + this.everyScale;
@@ -147,10 +147,10 @@
             },
             handleImageMouseDown(e) {
                 e.preventDefault();
-                let {translateX, translateY} = this.transform;
-                let x = e.pageX;
-                let y = e.pageY;
-                let handleDrag = (ev) => {
+                const { translateX, translateY } = this.transform;
+                const x = e.pageX;
+                const y = e.pageY;
+                const handleDrag = (ev) => {
                     this.transform.translateX = translateX + ev.pageX - x;
                     this.transform.translateY = translateY + ev.pageY - y;
                 };
@@ -160,7 +160,7 @@
                 });
             },
             handleChange(type) {
-                let len = this.list.length;
+                const len = this.list.length;
                 if (type === 'left') {
                     this.selectedIndex--;
                     if (this.selectedIndex < 0) {

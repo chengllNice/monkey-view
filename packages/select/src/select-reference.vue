@@ -71,7 +71,7 @@
     import Locale from 'main/mixins/locale'
 
     export default {
-        name: "SelectReference",
+        name: 'SelectReference',
         mixins: [Locale],
         data() {
             return {
@@ -79,7 +79,7 @@
                 currentValue: '',
                 selectRoot: this.$parent,
                 isHover: false,
-                isFocused: false,
+                isFocused: false
             }
         },
         computed: {
@@ -89,7 +89,7 @@
                     this.selectRoot.multiple && `${this.classPrefix}--multiple`,
                     this.selectRoot.disabled && `${this.classPrefix}--disabled`,
                     this.selectRoot.multiple && (this.selectRoot.visible || this.isFocused) && `${this.classPrefix}--focus`,
-                    this.selectRoot.multiple && this.isHover && `${this.classPrefix}--hover`,
+                    this.selectRoot.multiple && this.isHover && `${this.classPrefix}--hover`
                 ]
             },
             computedPlaceholder() {
@@ -101,13 +101,13 @@
             },
             inputStyle() {
                 if (!this.selectRoot.currentSelectedItems.length) {
-                    return {width: '100%'}
+                    return { width: '100%' }
                 }
                 if (this.selectRoot.multiple && this.selectRoot.filterable) {
-                    return {width: (this.currentValue.length * 12 + 32) + 'px'};
+                    return { width: (this.currentValue.length * 12 + 32) + 'px' };
                 }
-                return {width: '0px'};
-            },
+                return { width: '0px' };
+            }
         },
         components: {
             'm-input': Input,
@@ -136,7 +136,7 @@
             },
             handleMultipleInput(e) {
                 if (!this.selectRoot.multiple || !this.selectRoot.filterable || this.selectRoot.disabled) return;
-                let value = e.target.value;
+                const value = e.target.value;
                 this.currentValue = value;
                 this.handleChange(value);
                 this.selectRoot.updateDropdownPosition();
@@ -158,19 +158,19 @@
                     this.currentValue = this.selectRoot.currentSelectedItems.length ? this.selectRoot.currentSelectedItems[0].label : '';
                 } else {
                     this.currentValue = '';
-                    //多选筛选 选择之后需要重新计算高度
+                    // 多选筛选 选择之后需要重新计算高度
                     this.selectRoot.setScrollInnerHeight();
                 }
             }
         },
         watch: {
             'selectRoot.currentValue': function (newVal, oldVal) {
-                if(JSON.stringify(newVal) ===  JSON.stringify(oldVal)) return;
+                if (JSON.stringify(newVal) === JSON.stringify(oldVal)) return;
                 this.setCurrentValue();
             },
             'selectRoot.visible': function (val) {
                 !val && this.setCurrentValue();
-            },
+            }
         }
     }
 </script>

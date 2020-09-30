@@ -5,8 +5,7 @@ export const deepClone = (data) => {
         if (data instanceof Array) {
             result = [];
             dataType = 'array';
-        }
-        else {
+        } else {
             result = {};
             dataType = 'object';
         }
@@ -19,7 +18,8 @@ export const deepClone = (data) => {
             result.push(deepClone(data[i]))
         }
     } else if (dataType === 'object') {
-        for (let i in data) {
+        // eslint-disable-next-line no-unused-vars
+        for (const i in data) {
             result[i] = deepClone(data[i]);
         }
     }
@@ -31,14 +31,14 @@ export const deepClone = (data) => {
  * @returns {number}
  */
 export const getScrollBarWidth = () => {
-    let div = document.createElement('div');
+    const div = document.createElement('div');
     div.style.width = '100px';
     div.style.height = '100px';
     div.style.overflow = 'scroll';
 
     document.body.appendChild(div);
 
-    let scrollBarWidth = div.offsetWidth - div.clientWidth;
+    const scrollBarWidth = div.offsetWidth - div.clientWidth;
 
     document.body.removeChild(div);
 
@@ -52,7 +52,7 @@ export const getScrollBarWidth = () => {
  */
 export const createRandom = (length) => {
     let result = '';
-    for (let i = 0; i < length; i++){
+    for (let i = 0; i < length; i++) {
         result += Math.floor(Math.random() * 10);
     }
     return result;
@@ -67,10 +67,10 @@ export const createRandom = (length) => {
 export const getObjectValueByPath = function(obj, path) {
     try {
         if ((typeof obj === 'object' || Array.isArray(obj)) && path) {
-            let pathArray = path.split('.');
-            let getValue = function(obj, pathArray) {
-                let key = pathArray.shift();
-                if (typeof obj[key] == 'undefined' || obj[key] == null) {
+            const pathArray = path.split('.');
+            const getValue = function(obj, pathArray) {
+                const key = pathArray.shift();
+                if (typeof obj[key] === 'undefined' || obj[key] == null) {
                     return '';
                 }
                 if (pathArray.length === 0) {
@@ -95,16 +95,16 @@ export const getObjectValueByPath = function(obj, path) {
  */
 export const colorToRgba = (color, alpha = 1) => {
     // 16进制颜色值的正则
-    let reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
+    const reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
 
-    if(typeof color !== 'string') return color;
-    if(!reg.test(color)) return color;
+    if (typeof color !== 'string') return color;
+    if (!reg.test(color)) return color;
 
     // 把颜色值变成小写
     color = color.toLowerCase();
     // 如果只有三位的值，需变成六位，如：#fff => #ffffff
     if (color.length === 4) {
-        let colorNew = "#";
+        let colorNew = '#';
         for (let i = 1; i < 4; i += 1) {
             colorNew += color.slice(i, i + 1).concat(color.slice(i, i + 1));
         }
@@ -113,9 +113,7 @@ export const colorToRgba = (color, alpha = 1) => {
     // 处理六位的颜色值，转为RGBA
     var colorChange = [];
     for (var i = 1; i < 7; i += 2) {
-        colorChange.push(parseInt("0x" + color.slice(i, i + 2)));
+        colorChange.push(parseInt('0x' + color.slice(i, i + 2)));
     }
-    return `rgba(${colorChange.join(",")}, ${alpha})`;
+    return `rgba(${colorChange.join(',')}, ${alpha})`;
 };
-
-

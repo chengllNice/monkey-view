@@ -13,19 +13,19 @@
 
 <script>
     import Config from 'main/config/config'
-    import {findComponent, findComponents} from 'main/utils/tool'
+    import { findComponent, findComponents } from 'main/utils/tool'
 
     export default {
-        name: "MenuGroup",
+        name: 'MenuGroup',
         props: {
-            name: String,
+            name: String
         },
         data() {
             return {
                 classPrefix: Config.classPrefix + '-menu-group',
                 componentName: 'MenuGroup',
                 menuComponent: findComponent(this, 'Menu'),
-                parentSubMenuComponentNum: findComponents(this, 'Submenu').length,//父级元素有多少个subMenu组件
+                parentSubMenuComponentNum: findComponents(this, 'Submenu').length// 父级元素有多少个subMenu组件
             }
         },
         computed: {
@@ -37,14 +37,14 @@
                     style = {
                         'padding-left': padding + 'px'
                     }
-                }else {
+                } else {
                     let _p = (this.parentSubMenuComponentNum * padding + padding / 2);
-                    if(_p < padding) _p = padding;
-                    let itemHeight = parseInt(this.menuComponent.itemHeight);
+                    if (_p < padding) _p = padding;
+                    const itemHeight = parseInt(this.menuComponent.itemHeight);
 
-                    if(this.menuComponent.collapse) _p = padding - padding / 2;
+                    if (this.menuComponent.collapse) _p = padding - padding / 2;
                     style = {
-                        'height': itemHeight + 'px',
+                        height: itemHeight + 'px',
                         'line-height': itemHeight + 'px',
                         'padding-left': _p + 'px'
                     }
@@ -55,6 +55,6 @@
                     'padding-right': padding + 'px'
                 }
             }
-        },
+        }
     }
 </script>

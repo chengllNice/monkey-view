@@ -23,32 +23,32 @@
     import Loading from 'packages/loading'
 
     export default {
-        name: "List",
+        name: 'List',
         props: {
             border: Boolean,
             hover: {
                 type: Boolean,
                 default: true
-            },//是否需要hover效果
+            }, // 是否需要hover效果
             split: {
                 type: Boolean,
                 default: true
-            },//是否显示分割线
+            }, // 是否显示分割线
             header: String,
             footer: String,
             loading: Boolean,
             type: {
                 type: String,
-                default: '',
-            },//可选值meta
+                default: ''
+            }, // 可选值meta
             gutter: {
                 type: [String, Number],
                 default: 10
-            },//list-row类型时item列之间的间隔，此时type属性不起作用
+            }, // list-row类型时item列之间的间隔，此时type属性不起作用
             labelWidth: {
                 type: [String, Number],
                 default: 100
-            },//list-row类型时有效
+            }, // list-row类型时有效
             size: {
                 type: String,
                 default () {
@@ -63,8 +63,8 @@
             return {
                 classPrefix: Config.classPrefix + '-list',
                 componentName: 'List',
-                everyRowItemLen: [],//每一个list-row下item的数量的数组
-                itemWidth: '0%',
+                everyRowItemLen: [], // 每一个list-row下item的数量的数组
+                itemWidth: '0%'
             }
         },
         components: {
@@ -73,13 +73,13 @@
         mounted() {
             this.$on('on-update-item-width', (len) => {
                 this.everyRowItemLen.push(len);
-                let sortArr = this.everyRowItemLen.sort((a, b) => {
+                const sortArr = this.everyRowItemLen.sort((a, b) => {
                     return a - b;
                 }).reverse();
                 if (sortArr && sortArr.length) {
                     this.itemWidth = 100 / sortArr[0] + '%'
                 }
             })
-        },
+        }
     }
 </script>

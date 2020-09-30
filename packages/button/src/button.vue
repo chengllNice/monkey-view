@@ -24,7 +24,7 @@
     import Icon from 'packages/icon'
 
     export default {
-        name: "Button",
+        name: 'Button',
         props: {
             disabled: Boolean,
             type: {
@@ -39,38 +39,36 @@
                 default () {
                     return !this.$MONKEY || this.$MONKEY.size === '' ? 'default' : this.$MONKEY.size;
                 },
-                validator(value){
+                validator(value) {
                     return ['mini', 'small', 'default', 'large'].includes(value)
                 }
             },
             block: Boolean,
             loading: Boolean,
             circle: Boolean,
-            icon: String,
+            icon: String
         },
         data() {
             return {
                 classPrefix: Config.classPrefix + '-button',
-                onlyIconCircle: true,//是否只是icon的circle
+                onlyIconCircle: true// 是否只是icon的circle
             }
         },
         computed: {},
         components: {
             Icon
         },
-        created() {
-        },
         mounted() {
-            this.$nextTick(()=>{
+            this.$nextTick(() => {
                 this.isOnlyIconCircle();
             })
         },
         methods: {
-            isOnlyIconCircle(){
-                let slotDefault = this.$slots.default;
-                if(slotDefault){
-                    slotDefault.forEach(item=>{
-                        if(item.text){
+            isOnlyIconCircle() {
+                const slotDefault = this.$slots.default;
+                if (slotDefault) {
+                    slotDefault.forEach(item => {
+                        if (item.text) {
                             this.onlyIconCircle = false
                         }
                     })

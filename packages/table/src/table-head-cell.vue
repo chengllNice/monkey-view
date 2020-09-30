@@ -99,14 +99,14 @@
     import CheckboxGroup from 'packages/checkbox-group'
     import Button from 'packages/button'
     import Drop from 'packages/base/drop'
-    import {directive as clickOutside} from 'v-click-outside-x';
+    import { directive as clickOutside } from 'v-click-outside-x';
     import Locale from 'main/mixins/locale'
     import Icon from 'packages/icon'
     import tableSlotHead from './table-slot-head'
 
     export default {
-        name: "TableHeadCell",
-        directives: {clickOutside},
+        name: 'TableHeadCell',
+        directives: { clickOutside },
         mixins: [Locale],
         props: {
             column: Object,
@@ -118,7 +118,7 @@
                 classPrefix: Config.classPrefix + '-table-head-cell',
                 classPrefixCell: Config.classPrefix + '-table-cell',
                 renderType: 'normal',
-                isDefaultSort: null,//初始化时默认的排序方式
+                isDefaultSort: null, // 初始化时默认的排序方式
                 visible: false,
                 filterMultipleValue: [],
                 renderHtml: true
@@ -133,14 +133,12 @@
             Drop,
             tableSlotHead
         },
-        created() {
-        },
         mounted() {
             this.setRenderType();
         },
         methods: {
             setRenderType() {
-                let type = this.column.type;
+                const type = this.column.type;
                 switch (type) {
                     case 'selection':
                         this.renderType = 'selection';
@@ -165,7 +163,7 @@
             handleClickOutside(event) {
                 if (this.visible && (this.column.filterMultiple || this.column.filterSlot)) {
                     if (this.renderHtml !== false) {
-                        const {$el} = this.$refs.dropDown;
+                        const { $el } = this.$refs.dropDown;
                         if ($el === event.target || $el.contains(event.target)) {
                             return;
                         }
@@ -198,7 +196,7 @@
                     }
                 },
                 deep: true,
-                immediate: true,
+                immediate: true
             },
             isDefaultSort: {
                 handler(newVal) {

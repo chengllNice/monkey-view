@@ -63,7 +63,7 @@
 
 <script>
     import Config from 'main/config/config'
-    import {directive as clickOutside} from 'v-click-outside-x';
+    import { directive as clickOutside } from 'v-click-outside-x';
     import SelectReference from './select-reference.vue'
     import Scroll from 'packages/scroll'
     import Drop from 'packages/base/drop'
@@ -71,11 +71,11 @@
     import Mixins from './mixins'
     import RenderOption from './render-option'
     import Option from './option'
-    import {findComponent} from "main/utils/tool";
+    import { findComponent } from 'main/utils/tool';
 
     export default {
-        name: "Select",
-        directives: {clickOutside},
+        name: 'Select',
+        directives: { clickOutside },
         mixins: [Locale, Mixins],
         provide() {
             return {
@@ -104,18 +104,18 @@
             multiple: Boolean,
             clearable: Boolean,
             emptyText: String,
-            filterable: Boolean,//开启搜索
-            remote: Boolean,//开启远程搜索
-            loading: Boolean,//正在远程搜索
-            allowCreate: Boolean,//是否允许新建
-            //多选限制最多显示的tag数量，其他折叠 0不折叠
+            filterable: Boolean, // 开启搜索
+            remote: Boolean, // 开启远程搜索
+            loading: Boolean, // 正在远程搜索
+            allowCreate: Boolean, // 是否允许新建
+            // 多选限制最多显示的tag数量，其他折叠 0不折叠
             maxTagCount: {
                 type: Number,
                 default: 0
             },
-            //超出最大数量限制时显示的内容，参数为当前选中的数量
+            // 超出最大数量限制时显示的内容，参数为当前选中的数量
             maxTagText: Function,
-            //多选限制选择的数量 0不限制
+            // 多选限制选择的数量 0不限制
             multipleLimit: {
                 type: Number,
                 default: 0
@@ -135,7 +135,7 @@
             },
             renderHtml: {
                 type: [HTMLElement, Boolean],
-                default: false,
+                default: false
             }
         },
         data() {
@@ -143,7 +143,7 @@
                 optionPrefix: Config.classPrefix + '-option',
                 classPrefix: Config.classPrefix + '-select',
                 componentName: 'Select',
-                form: findComponent(this, 'Form'),
+                form: findComponent(this, 'Form')
             }
         },
         computed: {
@@ -163,38 +163,38 @@
                 return this.emptyText || this.t('m.select.emptyData');
             },
             dropInnerStyle() {
-                return {height: this.scrollInnerHeight + 'px'}
+                return { height: this.scrollInnerHeight + 'px' }
             },
             referenceTabIndex() {
                 return this.disabled || this.filterable ? '-1' : '0'
             },
-            //开启多选限制的，此时除了已经选中的option 其他option全部disabled
+            // 开启多选限制的，此时除了已经选中的option 其他option全部disabled
             openMultipleLimitDisabled() {
                 return this.multiple && this.multipleLimit > 0 && this.currentValue.length >= this.multipleLimit
             },
-            //计算多选时 超出限制数量时的截取
+            // 计算多选时 超出限制数量时的截取
             localCurrentSelectedItems() {
-                let data = this.currentSelectedItems;
-                let maxTagCount = this.maxTagCount;
+                const data = this.currentSelectedItems;
+                const maxTagCount = this.maxTagCount;
                 if (this.multiple && maxTagCount > 0 && data.length > maxTagCount) {
                     return data.slice(0, maxTagCount)
                 }
                 return data;
             },
-            //计算多选时 超出显示数量显示的文本
+            // 计算多选时 超出显示数量显示的文本
             localMaxTagText() {
-                let data = this.currentSelectedItems;
-                let maxTagCount = this.maxTagCount;
+                const data = this.currentSelectedItems;
+                const maxTagCount = this.maxTagCount;
                 let maxTagText = `+ ${data.length - maxTagCount}...`;
                 if (this.maxTagText && typeof this.maxTagText === 'function') {
                     maxTagText = this.maxTagText(data.length - maxTagCount);
                 }
                 return maxTagText;
             },
-            //计算多选时 是否超出限制数量
+            // 计算多选时 是否超出限制数量
             showMaxTagText() {
-                let data = this.currentSelectedItems;
-                let maxTagCount = this.maxTagCount;
+                const data = this.currentSelectedItems;
+                const maxTagCount = this.maxTagCount;
                 return this.multiple && maxTagCount > 0 && data.length > maxTagCount
             }
         },
@@ -204,6 +204,6 @@
             Scroll,
             RenderOption,
             Option
-        },
+        }
     }
 </script>

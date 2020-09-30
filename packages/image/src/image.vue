@@ -31,13 +31,13 @@
 <script>
     import Config from 'main/config/config'
     import Loading from 'packages/loading'
-    import Locale from "main/mixins/locale";
+    import Locale from 'main/mixins/locale';
     import ImagePreview from './imagePreview.vue'
 
     const isObjectFit = document.documentElement.style.objectFit !== undefined;
 
     export default {
-        name: `MImage`,
+        name: 'MImage',
         mixins: [Locale],
         props: {
             fit: {
@@ -72,7 +72,7 @@
                 return {
                     'z-index': this.zIndex
                 }
-            },
+            }
         },
         components: {
             ImagePreview,
@@ -97,7 +97,7 @@
         },
         methods: {
             initImage() {
-                let img = new Image();
+                const img = new Image();
                 img.onload = (e) => this.loadImage(e, img)
                 img.onerror = (e) => this.errorLoadImage(e)
                 img.src = this.src;
@@ -124,16 +124,16 @@
                     left: '50%',
                     transform: 'translate(-50%, -50%)'
                 };
-                let clientWidth = this.$el && this.$el.clientWidth;
-                let clientHeight = this.$el && this.$el.clientHeight;
-                let imageWidth = this.imageWidth;
-                let imageHeight = this.imageHeight;
+                const clientWidth = this.$el && this.$el.clientWidth;
+                const clientHeight = this.$el && this.$el.clientHeight;
+                const imageWidth = this.imageWidth;
+                const imageHeight = this.imageHeight;
 
                 if (!imageHeight || !clientHeight || !imageWidth || !clientWidth) {
                     return style;
                 }
 
-                const scaleVertical = imageWidth / imageHeight < 1;//图片的垂直比例
+                const scaleVertical = imageWidth / imageHeight < 1;// 图片的垂直比例
 
                 let fit = this.fit;
 
@@ -148,15 +148,15 @@
                 let c = {};
                 switch (fit) {
                     case 'none':
-                        style = {...style, width: 'auto', height: 'auto'}
+                        style = { ...style, width: 'auto', height: 'auto' }
                         break;
                     case 'contain':
-                        c = scaleVertical ? {width: 'auto'} : {height: 'auto'};
-                        style = {...style, ...c}
+                        c = scaleVertical ? { width: 'auto' } : { height: 'auto' };
+                        style = { ...style, ...c }
                         break;
                     case 'cover':
-                        c = scaleVertical ? {height: 'auto'} : {width: 'auto'};
-                        style = {...style, ...c}
+                        c = scaleVertical ? { height: 'auto' } : { width: 'auto' };
+                        style = { ...style, ...c }
                         break;
                 }
                 return style;

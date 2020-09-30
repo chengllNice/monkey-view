@@ -33,12 +33,12 @@
 <script>
     import Config from 'main/config/config'
     import Tooltip from 'packages/tooltip'
-    import {on, off} from "main/utils/dom";
+    import { on, off } from 'main/utils/dom';
     import elementResizeDetectorMaker from 'element-resize-detector';
-    import { colorToRgba} from "main/utils/global";
+    import { colorToRgba } from 'main/utils/global';
 
     export default {
-        name: "Slider",
+        name: 'Slider',
         props: {
             value: [Array, Number],
             min: {
@@ -73,7 +73,7 @@
                 }
             },
             railColor: String,
-            barColor: String,
+            barColor: String
         },
         data() {
             return {
@@ -86,7 +86,7 @@
                 moveType: '',
                 sliderLength: 0,
                 observer: null,
-                isHover: false,
+                isHover: false
             }
         },
         computed: {
@@ -106,11 +106,11 @@
                 return this.max - this.min;
             },
             railStyle() {
-                return this.railColor ? {'background-color': this.railColor} : {};
+                return this.railColor ? { 'background-color': this.railColor } : {};
             },
             handleStyle() {
                 let style = {
-                    left: this.minPosition + '%',
+                    left: this.minPosition + '%'
                 };
                 if (this.vertical) {
                     style = {
@@ -143,12 +143,12 @@
                 }
                 return this.currentValue.map(i => Number(i.toFixed(fixedLength)))
             },
-            handleRelStyle(){
+            handleRelStyle() {
                 let style = {};
-                if(this.barColor) {
-                    let color = colorToRgba(this.barColor, 0.2);
-                    style = {'border-color': this.barColor};
-                    if(this.isHover) style = {...style, 'box-shadow': `0 0 0 4px ${color}`}
+                if (this.barColor) {
+                    const color = colorToRgba(this.barColor, 0.2);
+                    style = { 'border-color': this.barColor };
+                    if (this.isHover) style = { ...style, 'box-shadow': `0 0 0 4px ${color}` }
                 }
                 return style;
             }
@@ -169,13 +169,13 @@
                 this.initCurrentValue();
             },
             emitValue(newVal) {
-                let value = this.range ? newVal : newVal[0];
+                const value = this.range ? newVal : newVal[0];
                 this.$emit('input', value);
-            },
+            }
         },
         methods: {
             initCurrentValue() {
-                let value = Array.isArray(this.value) ? this.value : [this.value];
+                const value = Array.isArray(this.value) ? this.value : [this.value];
                 this.currentValue = this.checkLimits(value);
             },
             checkLimits([min, max]) {
@@ -225,7 +225,7 @@
             handleChangePosition(newPos, type) {
                 const index = (type || this.moveType) === 'min' ? 0 : 1;
                 newPos = index === 0 ? this.checkLimits([newPos, this.max])[0] : this.checkLimits([this.min, newPos])[1];
-                let value = this.currentValue;
+                const value = this.currentValue;
                 value[index] = newPos - this.stepDecimal(newPos, this.step);
 
                 this.currentValue = [...value];
@@ -236,9 +236,9 @@
             },
             stepDecimal(pos, step) {
                 if (step < 1) {
-                    let sl = step.toString(),
-                        multiple = 1,
-                        m;
+                    const sl = step.toString();
+                    let multiple = 1;
+                    let m;
                     try {
                         m = sl.split('.')[1].length;
                     } catch (e) {
@@ -254,11 +254,11 @@
                 this.dragging = false;
                 const currentPos = this.getPoint(event);
                 const sliderOffsetLeft = this.$refs.slider.getBoundingClientRect().left;
-                let newPos = ((currentPos - sliderOffsetLeft) / this.sliderLength * this.rangeValue) + this.min;
+                const newPos = ((currentPos - sliderOffsetLeft) / this.sliderLength * this.rangeValue) + this.min;
                 this.handleChangePosition(newPos, 'min');
             },
             emitChange() {
-                let value = this.range ? this.emitValue : this.emitValue[0];
+                const value = this.range ? this.emitValue : this.emitValue[0];
                 this.$emit('change', value);
             },
             getSliderLength() {

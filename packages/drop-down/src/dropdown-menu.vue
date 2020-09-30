@@ -8,11 +8,11 @@
     import Config from 'main/config/config'
 
     export default {
-        name: "DropdownMenu",
-        data(){
+        name: 'DropdownMenu',
+        data() {
             return {
-                classPrefix: Config.classPrefix + '-dropdown-menu',
+                classPrefix: Config.classPrefix + '-dropdown-menu'
             }
-        },
+        }
     }
 </script>

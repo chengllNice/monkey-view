@@ -61,7 +61,7 @@
     import Locale from 'main/mixins/locale'
 
     export default {
-        name: "Drawer",
+        name: 'Drawer',
         mixins: [Locale],
         props: {
             width: {
@@ -71,7 +71,7 @@
             height: {
                 type: [String, Number],
                 default: 260
-            },//只在top bottom时有效
+            }, // 只在top bottom时有效
             placement: {
                 type: String,
                 default: 'right',
@@ -84,10 +84,10 @@
             closable: {
                 type: Boolean,
                 default: true
-            },//是否显示右上角关闭按钮
+            }, // 是否显示右上角关闭按钮
             cancelText: String,
             okText: String,
-            styles: Object,//中间层的样式
+            styles: Object, // 中间层的样式
             title: String,
             loading: Boolean,
             coverClosable: {
@@ -114,7 +114,7 @@
                 okButtonLoading: false,
                 observer: null,
                 bodyStyle: {},
-                timer: null,
+                timer: null
             }
         },
         computed: {
@@ -125,15 +125,15 @@
                 return this.cancelText === null ? null : (this.cancelText ? this.cancelText : this.t('m.drawer.cancelText'));
             },
             drawerStyle() {
-                let style = {};
+                const style = {};
                 const widthPar = parseFloat(this.width);
                 let width = this.width.toString().includes('%') ? `${widthPar}%` : `${widthPar}px`;
                 width = ['top', 'bottom'].includes(this.placement) ? '100%' : width;
-                let height = ['top', 'bottom'].includes(this.placement) ? (parseFloat(this.height) + 'px') : '100%';
+                const height = ['top', 'bottom'].includes(this.placement) ? (parseFloat(this.height) + 'px') : '100%';
 
                 const styles = this.styles ? this.styles : {};
 
-                Object.assign(style, styles, {width: width, height: height});
+                Object.assign(style, styles, { width: width, height: height });
                 return style;
             },
             drawerTransition() {
@@ -159,8 +159,6 @@
             Button,
             Scroll,
             Icon
-        },
-        created() {
         },
         mounted() {
             this.$nextTick(() => {
@@ -204,11 +202,11 @@
 
             drawerBodyResize() {
                 if (!this.$refs.drawer) return;
-                let drawerHeight = this.$refs.drawer.offsetHeight;
+                const drawerHeight = this.$refs.drawer.offsetHeight;
 
-                let drawerHeaderHeight = this.showHead && this.$refs.drawerHeader.offsetHeight;
+                const drawerHeaderHeight = this.showHead && this.$refs.drawerHeader.offsetHeight;
 
-                let drawerFooterHeight = !this.footerHide && this.$refs.drawerFooter.offsetHeight;
+                const drawerFooterHeight = !this.footerHide && this.$refs.drawerFooter.offsetHeight;
 
                 let bodyHeight = 'auto';
 
@@ -249,7 +247,7 @@
                 if (this.coverClosable) {
                     this.handleClose();
                 }
-            },
+            }
         }
     }
 </script>

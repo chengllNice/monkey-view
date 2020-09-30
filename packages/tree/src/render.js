@@ -9,26 +9,26 @@ export default {
         type: String,
         renderContent: Function,
         data: Object,
-        root: Array,
+        root: Array
     },
     render: (h, ctx) => {
-        if(ctx.props.type === 'slot'){
+        if (ctx.props.type === 'slot') {
             const r = ctx.injections.treeRoot.$scopedSlots.default;
-            if(r){
+            if (r) {
                 return h('div', r({
                     root: ctx.props.root,
-                    data: ctx.props.data,
+                    data: ctx.props.data
                 }));
             }
             return null;
-        }else if(ctx.props.type === 'render'){
+        } else if (ctx.props.type === 'render') {
             const params = {
                 root: ctx.props.root,
                 data: ctx.props.data
             };
             let renderContent = ctx.props.renderContent(h, params);
 
-            if(typeof renderContent === 'string'){
+            if (typeof renderContent === 'string') {
                 renderContent = Vue.extend({
                     template: renderContent
                 });

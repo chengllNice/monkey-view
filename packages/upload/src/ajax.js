@@ -1,13 +1,12 @@
 
-
 const getBody = (xhr) => {
   const text = xhr.responseText || xhr.response;
 
-  if(!text) return text;
+  if (!text) return text;
 
   try {
     return JSON.parse(text)
-  }catch (e) {
+  } catch (e) {
     return text
   }
 };
@@ -22,16 +21,16 @@ const getError = (action, option, xhr) => {
 };
 
 const uploadAjax = (option) => {
-  if(typeof XMLHttpRequest === 'undefined'){
+  if (typeof XMLHttpRequest === 'undefined') {
     return
   }
 
   const xhr = new XMLHttpRequest();
   const action = option.action;
 
-  if(xhr.upload){
+  if (xhr.upload) {
     xhr.upload.onprogress = function progress(e) {
-      if(e.total > 0){
+      if (e.total > 0) {
         e.percent = e.loaded / e.total * 100
       }
       option.onProgress(e);
@@ -40,8 +39,8 @@ const uploadAjax = (option) => {
 
   const formData = new FormData();
 
-  if(option.data){
-    Object.keys(option.data).map(key=>{
+  if (option.data) {
+    Object.keys(option.data).map(key => {
       formData.append(key, option.data[key])
     })
   }
@@ -53,7 +52,7 @@ const uploadAjax = (option) => {
   };
 
   xhr.onload = function onload() {
-    if(xhr.status < 200 || xhr.status >= 300){
+    if (xhr.status < 200 || xhr.status >= 300) {
       return option.onError(getError(action, option, xhr), getBody(xhr));
     }
     option.onSuccess(getBody(xhr));
@@ -63,8 +62,9 @@ const uploadAjax = (option) => {
 
   const headers = option.headers || {};
 
-  for (let item in  headers){
-    if(headers.hasOwnProperty(item) && headers[item] !== null){
+  // eslint-disable-next-line no-unused-vars
+  for (const item in headers) {
+    if (headers.hasOwnProperty(item) && headers[item] !== null) {
       xhr.setRequestHeader(item, headers[item])
     }
   }

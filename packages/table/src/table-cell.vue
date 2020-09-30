@@ -42,7 +42,7 @@
     import Icon from 'packages/icon'
 
     export default {
-        name: "TableCell",
+        name: 'TableCell',
         inject: ['tableRoot'],
         props: {
             row: {
@@ -51,33 +51,27 @@
                     return {}
                 }
             },
-            column: Object,
+            column: Object
         },
         data() {
             return {
                 classPrefix: Config.classPrefix + '-table-cell',
                 observer: null,
-                renderType: 'normal',
+                renderType: 'normal'
             }
         },
-        computed: {},
         components: {
             Tooltip,
             Checkbox,
             tableSlot,
             Icon
         },
-        created() {
-        },
         mounted() {
             this.setRenderType();
         },
-        beforeDestroy() {
-
-        },
         methods: {
             setRenderType() {
-                let type = this.column.slot ? 'slot' : this.column.type;
+                const type = this.column.slot ? 'slot' : this.column.type;
                 switch (type) {
                     case 'slot':
                         this.renderType = 'slot';

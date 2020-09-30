@@ -28,10 +28,10 @@
 
 <script>
     import Config from 'main/config/config'
-    import {findComponent} from "main/utils/tool";
+    import { findComponent } from 'main/utils/tool';
 
     export default {
-        name: "Radio",
+        name: 'Radio',
         props: {
             name: String,
             value: {
@@ -49,13 +49,13 @@
                 validator(value) {
                     return ['mini', 'small', 'default', 'large'].includes(value)
                 }
-            },
+            }
         },
         data() {
             return {
                 classPrefix: Config.classPrefix + '-radio',
                 radioGroup: findComponent(this, 'RadioGroup'),
-                form: findComponent(this, 'Form'),
+                form: findComponent(this, 'Form')
             }
         },
         computed: {
@@ -70,12 +70,12 @@
             isDisabled() {
                 return this.radioGroup ? this.radioGroup.disabled || this.disabled : this.disabled
             },
-            computedSize(){
-                if(this.size !== 'default') return this.size;
-                if(this.radioGroup && this.radioGroup.size !== 'default') return this.radioGroup.size;
-                if(this.form && this.form.size !== 'default') return this.form.size;
+            computedSize() {
+                if (this.size !== 'default') return this.size;
+                if (this.radioGroup && this.radioGroup.size !== 'default') return this.radioGroup.size;
+                if (this.form && this.form.size !== 'default') return this.form.size;
                 return this.size;
-            },
+            }
         },
         methods: {
             handleChange() {
@@ -84,6 +84,6 @@
                     this.radioGroup ? this.radioGroup.dispatch('change', this.model) : this.$emit('change', this.model);
                 });
             }
-        },
+        }
     }
 </script>

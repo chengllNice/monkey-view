@@ -28,11 +28,11 @@
     import Icon from 'packages/icon'
 
     export default {
-        name: "Loading",
+        name: 'Loading',
         props: {
             visible: {
                 type: Boolean,
-                default: false,
+                default: false
             },
             type: {
                 type: String,
@@ -52,12 +52,12 @@
             },
             fix: {
                 type: Boolean,
-                default: false,
-            },//固定 此时会相对于最近的定位父及元素定位 如果没有定位父及元素则相对于body定位
+                default: false
+            }, // 固定 此时会相对于最近的定位父及元素定位 如果没有定位父及元素则相对于body定位
             fullscreen: {
                 type: Boolean,
-                default: false,
-            },//覆盖整个屏幕
+                default: false
+            }// 覆盖整个屏幕
         },
         data() {
             return {

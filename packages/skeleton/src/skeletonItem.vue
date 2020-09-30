@@ -6,7 +6,7 @@
     import Config from 'main/config/config'
 
     export default {
-        name: "SkeletonItem",
+        name: 'SkeletonItem',
         props: {
             type: {
                 type: String,
@@ -18,11 +18,11 @@
             animation: {
                 type: Boolean,
                 default: false
-            },
+            }
         },
         data() {
             return {
-                classPrefix: Config.classPrefix + '-skeleton-item',
+                classPrefix: Config.classPrefix + '-skeleton-item'
             }
         },
         computed: {
@@ -30,9 +30,9 @@
                 return [
                     `${this.classPrefix}`,
                     `${this.classPrefix}--${this.type}`,
-                    this.animation && `${this.classPrefix}--animation`,
+                    this.animation && `${this.classPrefix}--animation`
                 ]
-            },
+            }
         }
     }
 </script>

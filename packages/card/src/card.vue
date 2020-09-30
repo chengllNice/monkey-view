@@ -25,7 +25,7 @@
     import Config from 'main/config/config'
 
     export default {
-        name: "Card",
+        name: 'Card',
         props: {
             title: String,
             noBorder: Boolean,
@@ -34,7 +34,7 @@
         },
         data() {
             return {
-                classPrefix: Config.classPrefix + '-card',
+                classPrefix: Config.classPrefix + '-card'
             }
         },
         computed: {
@@ -45,8 +45,8 @@
                 return this.$slots.footer
             },
             bodyStyle() {
-                return {'padding': parseFloat(this.bodyPadding) + 'px'}
+                return { padding: parseFloat(this.bodyPadding) + 'px' }
             }
-        },
+        }
     }
 </script>

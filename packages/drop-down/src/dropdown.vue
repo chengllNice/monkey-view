@@ -25,11 +25,11 @@
 <script>
     import Config from 'main/config/config'
     import Drop from 'packages/base/drop'
-    import {directive as clickOutside} from 'v-click-outside-x';
+    import { directive as clickOutside } from 'v-click-outside-x';
 
     export default {
-        name: "Dropdown",
-        directives: {clickOutside},
+        name: 'Dropdown',
+        directives: { clickOutside },
         props: {
             transition: {
                 type: String,
@@ -60,7 +60,7 @@
             },
             renderHtml: {
                 type: [HTMLElement, Boolean],
-                default: true,
+                default: true
             }
         },
         data() {
@@ -68,14 +68,11 @@
                 classPrefix: Config.classPrefix + '-dropdown',
                 componentName: 'Dropdown',
                 currentVisible: this.visible,
-                timer: null,
+                timer: null
             }
         },
         components: {
             Drop
-        },
-        mounted() {
-
         },
         methods: {
             handleMouseEnter() {
@@ -107,12 +104,12 @@
             handleClickOutside(event) {
                 if (this.currentVisible) {
                     if (this.trigger === 'click' || this.trigger === 'contextmenu') {
-                        const {$el} = this.$refs.dropDown;
+                        const { $el } = this.$refs.dropDown;
                         if ($el !== event.target && !$el.contains(event.target)) {
                             this.changeDropDown();
                             return;
                         }
-                        if(this.hideOnClick) this.changeDropDown();
+                        if (this.hideOnClick) this.changeDropDown();
                     }
                     this.$emit('click-outside', event);
                 }
@@ -122,7 +119,7 @@
                 this.$emit('update:visible', this.currentVisible);
             },
             itemClick(name) {
-                if(this.hideOnClick) this.changeDropDown();
+                if (this.hideOnClick) this.changeDropDown();
                 this.$emit('click-item', name);
             }
         },

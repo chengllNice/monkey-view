@@ -1,3 +1,3 @@
-import Affix from './src/affix'
+import Affix from './src/affix';
 
-export default Affix
+export default Affix;

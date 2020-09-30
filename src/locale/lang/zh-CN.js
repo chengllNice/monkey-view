@@ -1,4 +1,6 @@
-export default {
+import setLang from '../lang';
+
+const lang = {
     m: {
         locale: 'zh-CN',
         select: {
@@ -64,7 +66,7 @@ export default {
             filter: '筛选'
         },
         tree: {
-            emptyData: '暂无数据',
+            emptyData: '暂无数据'
         },
         image: {
             errorText: '加载失败'
@@ -75,4 +77,8 @@ export default {
             placeholder: '请选择'
         }
     }
-}
+};
+
+setLang(lang)
+
+export default lang;

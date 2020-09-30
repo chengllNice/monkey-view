@@ -31,13 +31,13 @@
     import Icon from 'packages/icon'
 
     export default {
-        name: "Notice",
+        name: 'Notice',
         data() {
             return {
                 classPrefix: Config.classPrefix + '-notice',
-                placement: '',//出现的位置
-                type: 'open',//默认值
-                isOnlyTitle: false,//是否只有标题
+                placement: '', // 出现的位置
+                type: 'open', // 默认值
+                isOnlyTitle: false, // 是否只有标题
                 title: '',
                 content: '',
                 duration: 0,
@@ -50,7 +50,7 @@
                 closed: false,
                 timer: null,
                 onCloseComputed: function () {},
-                onClose: function () {},
+                onClose: function () {}
             }
         },
         computed: {
@@ -59,7 +59,7 @@
                 let right = 0;
                 let top = 0;
                 let bottom = 0;
-                let width = this.width;
+                const width = this.width;
 
                 if (['topLeft', 'bottomLeft'].includes(this.placement)) {
                     left = 0;

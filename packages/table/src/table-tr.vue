@@ -13,7 +13,7 @@
     import Config from 'main/config/config'
 
     export default {
-        name: "TableTr",
+        name: 'TableTr',
         inject: ['tableRoot'],
         props: {
             type: {
@@ -29,7 +29,7 @@
         },
         data() {
             return {
-                classPrefix: Config.classPrefix + '-table-row',
+                classPrefix: Config.classPrefix + '-table-row'
             }
         },
         computed: {
@@ -39,12 +39,6 @@
                 }
                 return ''
             }
-        },
-        components: {},
-        created() {
-        },
-        mounted() {
-        },
-        methods: {}
+        }
     }
 </script>

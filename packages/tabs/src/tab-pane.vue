@@ -9,11 +9,11 @@
 
 <script>
     import Config from 'main/config/config'
-    import {findComponent} from "main/utils/tool";
+    import { findComponent } from 'main/utils/tool';
     import Emitter from 'main/mixins/emitter'
 
     export default {
-        name: "TabPane",
+        name: 'TabPane',
         mixins: [Emitter],
         props: {
             label: {
@@ -25,7 +25,7 @@
                 required: true
             },
             disabled: Boolean,
-            order: Number,//在pane使用v-if时并不会按照预期的顺序进行排序，此时可以使用order属性设置顺序（此值需要大于0并且不可重复）
+            order: Number// 在pane使用v-if时并不会按照预期的顺序进行排序，此时可以使用order属性设置顺序（此值需要大于0并且不可重复）
         },
         data() {
             return {
@@ -43,7 +43,7 @@
                 return label;
             },
             tabPaneIndex() {
-                let currentPane = this.parentTabsComponent.labelList.filter(item => {
+                const currentPane = this.parentTabsComponent.labelList.filter(item => {
                     return item.cKey === this.cKey
                 });
                 let index = -1;

@@ -101,10 +101,10 @@
     import Icon from 'packages/icon'
     import Button from 'packages/button'
     import calcTextareaHeight from './calcTextareaHeight';
-    import {findComponent} from "main/utils/tool";
+    import { findComponent } from 'main/utils/tool';
 
     export default {
-        name: "Input",
+        name: 'Input',
         props: {
             type: {
                 type: String,
@@ -134,20 +134,20 @@
             autosize: [Boolean, Object],
             rows: Number,
             cols: Number,
-            showLimitLabel: Boolean,//显示限制字数，input和textarea时有效
+            showLimitLabel: Boolean, // 显示限制字数，input和textarea时有效
             showPasswordIcon: {
                 type: [Boolean, Object],
                 default: true
-            },//显示password的icon, 对象时{close: 关闭时的icon, open: 打开时的icon}
-            suffix: String,//后定位的图标，textarea时无效
-            prefix: String,//前定位的图标，textarea时无效
-            suffixButton: [Boolean, String],//true是显示搜索button  string时为button内容  false不显示，textarea时无效
-            clearable: Boolean,//清除，textarea时无效
+            }, // 显示password的icon, 对象时{close: 关闭时的icon, open: 打开时的icon}
+            suffix: String, // 后定位的图标，textarea时无效
+            prefix: String, // 前定位的图标，textarea时无效
+            suffixButton: [Boolean, String], // true是显示搜索button  string时为button内容  false不显示，textarea时无效
+            clearable: Boolean, // 清除，textarea时无效
             step: {
                 type: [Boolean, Number],
                 default: 1
-            },//Number类型时有效，false不显示，true显示，number计数器步长
-            stepType: String,//right
+            }, // Number类型时有效，false不显示，true显示，number计数器步长
+            stepType: String, // right
             inputStyle: {
                 type: Object,
                 default: function () {
@@ -160,18 +160,18 @@
                 classPrefix: Config.classPrefix + '-input',
                 classPrefixTextArea: Config.classPrefix + '-textarea',
                 modelValue: undefined,
-                expandStyle: {},//额外的样式
+                expandStyle: {}, // 额外的样式
                 hovering: false,
                 showPasswordVisible: false,
-                composition: false,//中文输入
+                composition: false, // 中文输入
                 form: findComponent(this, 'Form'),
-                formItem: findComponent(this, 'FormItem'),
+                formItem: findComponent(this, 'FormItem')
             }
         },
         computed: {
-            computedSize(){
-                if(this.size !== 'default') return this.size;
-                if(this.form && this.form.size !== 'default') return this.form.size;
+            computedSize() {
+                if (this.size !== 'default') return this.size;
+                if (this.form && this.form.size !== 'default') return this.form.size;
                 return this.size;
             },
             isDisabled() {
@@ -187,25 +187,24 @@
                     this.showClearable ||
                     ((this.suffix || this.$slots.suffix) && ['input', 'password', 'search', 'number'].includes(this.type));
             },
-            //number类型 step禁用
-            numberStepDisabled(){
-                let result = {min: false, max: false};
-                if(this.type === 'number'){
-                    if(typeof this.min === 'number' && this.min >= parseFloat(this.modelValue)) result.min = true;
-                    if(typeof this.max === 'number' && this.max <= parseFloat(this.modelValue)) result.max = true;
+            // number类型 step禁用
+            numberStepDisabled() {
+                const result = { min: false, max: false };
+                if (this.type === 'number') {
+                    if (typeof this.min === 'number' && this.min >= parseFloat(this.modelValue)) result.min = true;
+                    if (typeof this.max === 'number' && this.max <= parseFloat(this.modelValue)) result.max = true;
                 }
                 return result;
             },
             suffixIconClass() {
-                let prefix = Config.classPrefix;
-                let result = [];
+                const prefix = Config.classPrefix;
+                const result = [];
                 if (this.showClearable) result.push(`${prefix}-icon-error-fill`)
                 else if (this.suffix) result.push(`${prefix}-icon-${this.suffix}`)
                 else if (this.type === 'number' && !this.stepType && this.step) {
                     result.push(`${prefix}-icon-plus`, `${this.classPrefix}__suffix-step`);
-                    if(this.numberStepDisabled.max) result.push(`${this.classPrefix}__step-disabled`)
-                }
-                else if (this.type === 'search') result.push(`${prefix}-icon-search`)
+                    if (this.numberStepDisabled.max) result.push(`${this.classPrefix}__step-disabled`)
+                } else if (this.type === 'search') result.push(`${prefix}-icon-search`)
                 else if (this.type === 'password' && this.showPasswordIcon) {
                     if (this.showPasswordIcon === true) this.showPasswordVisible ? result.push(`${prefix}-icon-eye-close`) : result.push(`${prefix}-icon-eye-open`)
                     else if (typeof this.showPasswordIcon === 'object') this.showPasswordVisible ? result.push(this.showPasswordIcon.close) : result.push(this.showPasswordIcon.open)
@@ -216,13 +215,11 @@
             showPrefix() {
                 if (this.type === 'textarea') return false;
                 return (this.prefix || this.$slots.prefix) || (this.type === 'number' && this.step && !this.stepType)
-            },
+            }
         },
         components: {
             Button,
             Icon
-        },
-        created() {
         },
         mounted() {
             this.$nextTick(() => {
@@ -242,7 +239,7 @@
                 return this.$refs.input || this.$refs.textarea;
             },
             checkedModelValue(newValue) {
-                let val = newValue !== undefined ? (newValue + '') : '';
+                const val = newValue !== undefined ? (newValue + '') : '';
                 let result = val;
                 if (this.type === 'number') {
                     let mark = null;
@@ -251,11 +248,11 @@
                     }
                     result = val.replace(/\.{2,}/g, '.').replace(/(^[^\d])|[^\d|^.]/g, '');
                     mark && (result = mark + result);
-                    let index = result.indexOf('.');
+                    const index = result.indexOf('.');
                     if (index > -1) {
-                        let arr = result.split('.');
+                        const arr = result.split('.');
                         if (arr.length > 2) {
-                            let lastIndex = result.lastIndexOf('.');
+                            const lastIndex = result.lastIndexOf('.');
                             result = result.substring(0, lastIndex);
                         }
                         let a = result.substring(index + 1);
@@ -274,7 +271,6 @@
                     if (result < this.min) {
                         result = this.min.toString();
                     }
-
                 } else if (['input', 'textarea'].includes(this.type)) {
                     result = result.length > this.maxLength ? result.substring(0, this.maxLength) : result;
                 }
@@ -350,7 +346,7 @@
             },
             resizeTextarea() {
                 if (this.type !== 'textarea' || !this.autosize) return;
-                let {minRows, maxRows} = this.autosize;
+                const { minRows, maxRows } = this.autosize;
                 this.expandStyle = calcTextareaHeight(this.getInputEl(), minRows, maxRows);
             },
             handleSuffixClick() {

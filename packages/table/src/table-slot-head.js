@@ -7,14 +7,14 @@ export default {
         column: Object,
         slotName: String
     },
-    render(h, context){
+    render(h, context) {
         const r = context.injections.tableRoot.$scopedSlots[context.props.slotName];
         const className = context.data.class || {};
-        if(r){
+        if (r) {
             return h('div', {
-                'class': className
+                class: className
             }, r({
-                column: context.props.column,
+                column: context.props.column
             }));
         }
         return null;

@@ -1,0 +1,53 @@
+@import "./base/var";
+@import "./mixins/index.scss";
+
+@include c(dropdown) {
+    display: inline-block;
+
+    @include e(reference) {
+        cursor: pointer;
+    }
+}
+
+
+@include c(dropdown-menu) {
+    border: $--border-default;
+    box-shadow: $--box-shadow-default;
+    background-color: $--color-white;
+    padding: 5px 0;
+
+    @include ci(dropdown) {
+        width: 100%;
+    }
+}
+
+@include c(dropdown-item) {
+    padding: $--dropdown-item-padding-vertical $--dropdown-item-padding-horizontal;
+    cursor: pointer;
+    color: $--color-text-default;
+    position: relative;
+    transition: background $--animation-time ease-in-out;
+    line-height: normal;
+    &:not(.is-disabled):hover {
+        background-color: $--background-color-hover;
+    }
+
+    @include m(divided) {
+        margin-top: 12px;
+        &:before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: -6px;
+            left: 0;
+            height: 12px;
+            width: 100%;
+            border-top: $--border-default;
+        }
+    }
+
+    @include when(disabled) {
+        color: $--color-text-disabled;
+        cursor: not-allowed;
+    }
+}

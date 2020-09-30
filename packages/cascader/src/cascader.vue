@@ -49,19 +49,19 @@
 
 <script>
     import Config from 'main/config/config'
-    import {directive as clickOutside} from 'v-click-outside-x';
+    import { directive as clickOutside } from 'v-click-outside-x';
     import Drop from 'packages/base/drop'
     import CascaderPanel from './cascaderPanel'
     import Input from 'packages/input'
     import Icon from 'packages/icon'
     import Mixin from './mixin'
-    import {findComponent} from "main/utils/tool";
+    import { findComponent } from 'main/utils/tool';
 
-    import Locale from "main/mixins/locale";
+    import Locale from 'main/mixins/locale';
 
     export default {
-        name: "Cascader",
-        directives: {clickOutside},
+        name: 'Cascader',
+        directives: { clickOutside },
         mixins: [Mixin, Locale],
         props: {
             transition: {
@@ -90,7 +90,7 @@
                 }
             },
             format: {
-                type: Function,
+                type: Function
             },
             filterable: {
                 type: Boolean,
@@ -101,7 +101,7 @@
                 default: function () {
                     return false
                 }
-            },
+            }
         },
         data() {
             return {
@@ -109,16 +109,16 @@
                 componentName: 'Cascader',
                 inputValue: '',
                 visible: false,
-                openFilterable: false,//开启搜索
-                currentFilterableData: [],//搜索到的数据
+                openFilterable: false, // 开启搜索
+                currentFilterableData: [], // 搜索到的数据
                 isHover: false,
                 form: findComponent(this, 'Form')
             }
         },
         computed: {
-            computedSize(){
-                if(this.size !== 'default') return this.size;
-                if(this.form && this.form.size !== 'default') return this.form.size;
+            computedSize() {
+                if (this.size !== 'default') return this.size;
+                if (this.form && this.form.size !== 'default') return this.form.size;
                 return this.size;
             },
             computedPlaceholder() {
@@ -152,12 +152,12 @@
             Input,
             Icon,
             Drop,
-            CascaderPanel,
+            CascaderPanel
         },
         methods: {
             setInputValue() {
                 if (this.format) {
-                    let result = this.format(this.currentLabel, this.currentSelectedData);
+                    const result = this.format(this.currentLabel, this.currentSelectedData);
                     if (typeof result === 'string') {
                         this.inputValue = result;
                     }
@@ -182,7 +182,7 @@
                 this.openFilterable = !!value;
                 this.currentFilterableData = [];
                 if (this.filterable) {
-                    //用户搜索改变
+                    // 用户搜索改变
                     this.currentFilterableData = this.searchFilter(value);
                 }
             },
@@ -197,19 +197,19 @@
             handleClickOutside(event) {
                 if (this.visible) {
                     if (this.renderHtml !== false) {
-                        const {$el} = this.$refs.dropDown;
+                        const { $el } = this.$refs.dropDown;
                         if ($el === event.target || $el.contains(event.target)) {
                             return;
                         }
                     }
                 }
-                //如果是可搜索 在失去焦点时重置label数据
+                // 如果是可搜索 在失去焦点时重置label数据
                 if (this.filterable) {
                     this.handleValueChange(this.currentData, this.currentValue);
                 }
                 this.$emit('click-outside', event);
                 this.dropDownVisible(false);
-            },
+            }
         },
         watch: {
             data: {
@@ -218,7 +218,7 @@
                 },
                 deep: true,
                 immediate: true
-            },
+            }
         }
     }
 </script>

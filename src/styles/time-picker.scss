@@ -1,0 +1,22 @@
+@import "./base/var";
+@import "./mixins/index.scss";
+
+@include c(time-picker) {
+    display: inline-block;
+    font-size: $--font-size-default;
+    vertical-align: middle;
+    @include e(reference) {
+
+    }
+
+    @include e(drop-down-inner) {
+        position: relative;
+        width: 100%;
+        box-sizing: border-box;
+        overflow: hidden;
+        border: $--border-default;
+        border-radius: $--border-radius-default;
+        box-shadow: $--box-shadow-default;
+        background-color: $--color-white;
+    }
+}

@@ -45,29 +45,28 @@
 </template>
 
 <script>
-
     export default {
-        name: "LoadingSvg",
+        name: 'LoadingSvg',
         props: {
             type: String,
             size: String,
-            color: String,
+            color: String
         },
         data() {
             return {
                 defaultSize: {
-                    'mini': 24,
-                    'small': 28,
-                    'default': 32,
-                    'large': 36
+                    mini: 24,
+                    small: 28,
+                    default: 32,
+                    large: 36
                 },
                 defaultR: {
-                    'mini': 2,
-                    'small': 2.5,
-                    'default': 3,
-                    'large': 3.5
+                    mini: 2,
+                    small: 2.5,
+                    default: 3,
+                    large: 3.5
                 },
-                svgColor: this.color || '#2d8cf0',
+                svgColor: this.color || '#2d8cf0'
             }
         },
         computed: {
@@ -84,10 +83,10 @@
                 return this.defaultR[this.size];
             },
             svgCx() {
-                let dis = (this.svgWidth - this.svgR * 2 * 3) / 4;
-                let cx1 = dis + this.svgR;
-                let cx2 = dis * 2 + this.svgR * 3;
-                let cx3 = dis * 3 + this.svgR * 5;
+                const dis = (this.svgWidth - this.svgR * 2 * 3) / 4;
+                const cx1 = dis + this.svgR;
+                const cx2 = dis * 2 + this.svgR * 3;
+                const cx3 = dis * 3 + this.svgR * 5;
                 return [cx1, cx2, cx3]
             }
         }

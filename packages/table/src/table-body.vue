@@ -54,11 +54,11 @@
     import TableCell from './table-cell.vue'
     import tableMixins from './table-mixins'
     import TableExpand from './table-expand'
-    import {emitDataFormat} from "./util";
+    import { emitDataFormat } from './util';
     import Locale from 'main/mixins/locale'
 
     export default {
-        name: "TableBody",
+        name: 'TableBody',
         mixins: [tableMixins, Locale],
         inject: ['tableRoot'],
         props: {
@@ -83,12 +83,12 @@
             return {
                 classPrefix: Config.classPrefix + '-table-body',
                 classPrefixTd: Config.classPrefix + '-table-td',
-                emitDataFormat: emitDataFormat,
+                emitDataFormat: emitDataFormat
             }
         },
         computed: {
             tableBodyStyle() {
-                let style = {};
+                const style = {};
                 if (this.bodyStyle && this.bodyStyle.width) style.width = this.bodyStyle.width;
                 return style;
             }
@@ -97,10 +97,6 @@
             TableTr,
             TableCell,
             TableExpand
-        },
-        created() {
-        },
-        mounted() {
         },
         methods: {
             trMouseEnter(__id) {
@@ -123,9 +119,9 @@
                 this.tableRoot.rowDbCkick(row, column);
                 this.tableRoot.cellDbCkick(row, column);
             },
-            getSpan(row, column, rowIndex, columnIndex){
-                let spanMethod = this.tableRoot.spanMethod;
-                if(spanMethod && typeof spanMethod === 'function'){
+            getSpan(row, column, rowIndex, columnIndex) {
+                const spanMethod = this.tableRoot.spanMethod;
+                if (spanMethod && typeof spanMethod === 'function') {
                     const result = spanMethod({
                         row,
                         column,
@@ -134,14 +130,14 @@
                     });
                     let rowspan = 1;
                     let colspan = 1;
-                    if(Array.isArray(result) && result.length === 2){
+                    if (Array.isArray(result) && result.length === 2) {
                         rowspan = result[0];
                         colspan = result[1];
-                    }else if(typeof result === 'object'){
+                    } else if (typeof result === 'object') {
                         rowspan = result.rowspan;
                         colspan = result.colspan;
                     }
-                    if(typeof rowspan !== 'number' || typeof colspan !== 'number'){
+                    if (typeof rowspan !== 'number' || typeof colspan !== 'number') {
                         rowspan = 1;
                         colspan = 1;
                     }
@@ -149,11 +145,11 @@
                         rowspan,
                         colspan
                     }
-                }else {
+                } else {
                     return {}
                 }
             },
-            spanShow(row, column, rowIndex, columnIndex){
+            spanShow(row, column, rowIndex, columnIndex) {
                 const result = this.getSpan(row, column, rowIndex, columnIndex);
                 return !(('rowspan' in result && result.rowspan === 0) || ('colspan' in result && result.colspan === 0));
             }

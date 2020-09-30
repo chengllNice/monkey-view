@@ -28,19 +28,19 @@
     import OptionGroup from './option-group'
 
     export default {
-        name: "RenderOption",
+        name: 'RenderOption',
         props: {
-          option: {
-              type: Array,
-              default(){
-                  return []
-              }
-          }
+            option: {
+                type: Array,
+                default() {
+                    return []
+                }
+            }
         },
-        data(){
+        data() {
             return {
                 prefix: Config.classPrefix,
-                classPrefix: Config.classPrefix + '-render-option',
+                classPrefix: Config.classPrefix + '-render-option'
             }
         },
         components: {

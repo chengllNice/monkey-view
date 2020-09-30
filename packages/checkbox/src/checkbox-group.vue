@@ -18,7 +18,7 @@
     import Checkbox from './checkbox.vue'
 
     export default {
-        name: "CheckboxGroup",
+        name: 'CheckboxGroup',
         props: {
             value: Array,
             disabled: Boolean,
@@ -27,14 +27,14 @@
                 default: 'default',
                 validator(value) {
                     return ['mini', 'small', 'default', 'large'].includes(value)
-                },
+                }
             },
             options: Array
         },
         data() {
             return {
                 classPrefix: Config.classPrefix + '-checkbox-group',
-                componentName: 'CheckboxGroup',
+                componentName: 'CheckboxGroup'
             }
         },
         components: {
@@ -42,7 +42,7 @@
         },
         methods: {
             dispatch(type, label, value) {
-                let index = this.value.indexOf(label);
+                const index = this.value.indexOf(label);
                 index > -1 && this.value.splice(index, 1);
                 value && this.value.push(label);
                 type === 'input' && this.$emit('input', this.value);

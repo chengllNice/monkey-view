@@ -5,21 +5,22 @@ const extendLoadingInstance = Vue.extend(Loading);
 let loadingInstance;
 
 // 不可配置项的默认值
-let defaultNoConfigOptions = {
+const defaultNoConfigOptions = {
     fix: false,
-    fullscreen: true,
+    fullscreen: true
 };
 
 // 可配置项的默认值
-let defaultOptions = {
+const defaultOptions = {
     text: '',
     type: 'default',
-    size: 'default',
+    size: 'default'
 };
 
 const initInstall = (opts) => {
+    // eslint-disable-next-line new-cap
     loadingInstance = new extendLoadingInstance({
-        el: document.createElement('div'),
+        el: document.createElement('div')
     });
     document.body.appendChild(loadingInstance.$el);
     Object.keys(opts).forEach(key => {
@@ -30,15 +31,15 @@ const initInstall = (opts) => {
 };
 
 const openLoading = (options) => {
-    if(typeof options === 'string'){
+    if (typeof options === 'string') {
         options = {
             text: options
         };
     }
     options = Object.assign({}, defaultOptions, options, defaultNoConfigOptions);
-    let defaultKeys = Object.keys({...defaultOptions, ...defaultNoConfigOptions});
-    Object.keys(options).forEach(key=>{
-        if(!defaultKeys.includes(key)) delete options[key]
+    const defaultKeys = Object.keys({ ...defaultOptions, ...defaultNoConfigOptions });
+    Object.keys(options).forEach(key => {
+        if (!defaultKeys.includes(key)) delete options[key]
     });
     return initInstall(options);
 };
@@ -48,10 +49,10 @@ const closeLoading = () => {
 };
 
 export default {
-    open(options){
+    open(options) {
         return openLoading(options);
     },
-    close(){
+    close() {
         return closeLoading();
     }
 };

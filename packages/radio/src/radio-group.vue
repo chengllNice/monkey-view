@@ -16,7 +16,7 @@
     import Radio from './radio.vue'
 
     export default {
-        name: "RadioGroup",
+        name: 'RadioGroup',
         props: {
             value: [String, Number, Boolean],
             disabled: Boolean,
@@ -32,7 +32,7 @@
         data() {
             return {
                 classPrefix: Config.classPrefix + '-radio-group',
-                componentName: 'RadioGroup',
+                componentName: 'RadioGroup'
             }
         },
         components: {

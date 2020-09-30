@@ -12,7 +12,7 @@
     import Mixins from './mixins'
 
     export default {
-        name: "Tree",
+        name: 'Tree',
         mixins: [Locale, Mixins],
         provide() {
             return {
@@ -26,12 +26,12 @@
                     return []
                 }
             },
-            //相邻数据节点之间水平缩进大小，单位px
+            // 相邻数据节点之间水平缩进大小，单位px
             indent: {
                 type: [String, Number],
                 default: 16
             },
-            //过滤node节点执行的方法 暂时不用
+            // 过滤node节点执行的方法 暂时不用
             filterNodeMethods: {
                 type: Function,
                 default() {
@@ -40,28 +40,28 @@
                     }
                 }
             },
-            //是否默认展开所有数据
+            // 是否默认展开所有数据
             defaultExpandAll: Boolean,
-            //隐藏节点前的图标(包括展开收起和加载中的图标)
+            // 隐藏节点前的图标(包括展开收起和加载中的图标)
             hideIcon: Boolean,
-            //自定义展开收起图标
+            // 自定义展开收起图标
             expandIconClass: {
                 type: String,
                 default: 'right'
             },
-            //自定义加载中的图标
+            // 自定义加载中的图标
             loadingIconClass: {
                 type: String,
                 default: 'loading'
             },
-            //异步加载数据的方法，参数为当前选择项，返回Promise
+            // 异步加载数据的方法，参数为当前选择项，返回Promise
             loadData: {
                 type: Function
             },
-            accordion: Boolean,//手风琴模式，开启后每次最多展开一个子菜单
+            accordion: Boolean, // 手风琴模式，开启后每次最多展开一个子菜单
             emptyText: String,
             showCheckbox: Boolean,
-            checkStrictly: Boolean,//显示checkbox的情况下是否遵循父子不相关联
+            checkStrictly: Boolean, // 显示checkbox的情况下是否遵循父子不相关联
             expandKeys: {
                 type: Array,
                 default() {
@@ -80,14 +80,14 @@
             expandClickOnNode: {
                 type: Boolean,
                 default: true
-            },//是否在点击节点的时候收起或展开
+            }// 是否在点击节点的时候收起或展开
         },
         data() {
             return {
                 classPrefix: Config.classPrefix + '-tree',
                 componentName: 'Tree',
                 renderType: 'normal',
-                filterLoading: false,//搜索中
+                filterLoading: false// 搜索中
             }
         },
         computed: {
@@ -96,7 +96,7 @@
             },
             isEmpty() {
                 if (this.currentData && this.currentData.length) {
-                    let visibleData = this.currentData.filter(item => {
+                    const visibleData = this.currentData.filter(item => {
                         return !!item.__visible
                     });
                     return !visibleData.length;
@@ -146,7 +146,7 @@
                         item.__visible = false;
                         item.__expand = false;
                     });
-                    let data = this.getDataByfilterValue(value);
+                    const data = this.getDataByfilterValue(value);
                     data.forEach(item => {
                         this.setReduceDataProp(item, '__visible', true);
                         this.setReduceDataProp(item, '__expand', true);
@@ -158,19 +158,19 @@
                 });
             },
 
-            //提供给上层调用的
+            // 提供给上层调用的
             getData() {
                 return JSON.parse(JSON.stringify(this.reduceData));
             },
 
             expandChange(item) {
-                let expandData = this.getExpandNodes();
+                const expandData = this.getExpandNodes();
                 this.$emit('expand-change', expandData, item);
             },
             checkChange(item) {
-                let checkedData = this.getCheckedNodes();
+                const checkedData = this.getCheckedNodes();
                 this.$emit('check-change', checkedData, item);
             }
-        },
+        }
     }
 </script>

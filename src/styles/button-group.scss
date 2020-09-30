@@ -1,0 +1,49 @@
+@import "./base/var";
+@import "./mixins/index.scss";
+
+@include c(button-group) {
+    display: inline-block;
+    font-size: 0; //解决换行间隔的问题
+    line-height: normal;
+
+    @include c(button) {
+        position: relative;
+
+        &:hover,
+        &:focus,
+        &:active {
+            z-index: 2;
+        }
+
+        &:first-child {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        &:last-child {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+        &:not(:first-child):not(:last-child) {
+            border-radius: 0;
+        }
+        &:not(:last-child) {
+            margin-right: -1px;
+        }
+
+        @include m(type-primary, false, true) {
+            border-left-color: mix($--color-black, $--button-border-color-primary, $--button-active-percent);
+        }
+        @include m(type-success, false, true) {
+            border-left-color: mix($--color-black, $--button-border-color-success, $--button-active-percent);
+        }
+        @include m(type-info, false, true) {
+            border-left-color: mix($--color-black, $--button-border-color-info, $--button-active-percent);
+        }
+        @include m(type-danger, false, true) {
+            border-left-color: mix($--color-black, $--button-border-color-danger, $--button-active-percent);
+        }
+        @include m(type-warning, false, true) {
+            border-left-color: mix($--color-black, $--button-border-color-warning, $--button-active-percent);
+        }
+    }
+}

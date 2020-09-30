@@ -36,10 +36,10 @@
     import Config from 'main/config/config'
     import Scroll from 'packages/scroll'
     import Icon from 'packages/icon'
-    import {findComponent} from "main/utils/tool";
+    import { findComponent } from 'main/utils/tool';
 
     export default {
-        name: "CascaderItem",
+        name: 'CascaderItem',
         props: {
             data: {
                 type: Array,
@@ -53,24 +53,24 @@
             }
         },
         computed: {
-            computedLable(){
+            computedLable() {
                 return function (item) {
-                    if(!this.isCascader) return ;
-                    let searchValue = this.parentComponent.inputValue;
-                    let replaceValue = `<span class="${this.classPrefix}__label-match">${searchValue}</span>`
+                    if (!this.isCascader) return;
+                    const searchValue = this.parentComponent.inputValue;
+                    const replaceValue = `<span class="${this.classPrefix}__label-match">${searchValue}</span>`
                     return item.__pathLabel.replace(searchValue, replaceValue);
                 }
             }
         },
         data() {
-            let cascader = findComponent(this, 'Cascader');
-            let cascaderPanel = findComponent(this, 'CascaderPanel');
+            const cascader = findComponent(this, 'Cascader');
+            const cascaderPanel = findComponent(this, 'CascaderPanel');
             return {
                 classPrefix: Config.classPrefix + '-cascader-item',
                 visible: false,
                 currentValue: '',
                 isCascader: !!cascader,
-                parentComponent: cascader ? cascader : cascaderPanel
+                parentComponent: cascader || cascaderPanel
             }
         },
         components: {
@@ -79,15 +79,15 @@
         },
         methods: {
             handleClick(item) {
-                if(this.parentComponent.disabled || item.disabled || item.loading) return;
-                if(this.parentComponent.loadData && !item.last && (!item.children || !item.children.length)){
+                if (this.parentComponent.disabled || item.disabled || item.loading) return;
+                if (this.parentComponent.loadData && !item.last && (!item.children || !item.children.length)) {
                     this.parentComponent.setCurrentData('__loading', item, true);
-                    let promise = this.parentComponent.loadData(item);
-                    if(typeof promise === 'object' && promise.then){
-                        promise.then((result)=>{
+                    const promise = this.parentComponent.loadData(item);
+                    if (typeof promise === 'object' && promise.then) {
+                        promise.then((result) => {
                             this.parentComponent.setCurrentData('children', item, result);
                             this.parentComponent.setCurrentData('__loading', item, false);
-                        }).catch(e=>{
+                        }).catch(e => {
                             console.log(e)
                             this.parentComponent.setCurrentData('__loading', item, false);
                         });
@@ -95,9 +95,9 @@
                 }
                 this.handleTrigger(item);
             },
-            handleMouseover(item){
-                if(this.parentComponent.disabled || item.disabled) return;
-                if(this.parentComponent.trigger === 'hover'){
+            handleMouseover(item) {
+                if (this.parentComponent.disabled || item.disabled) return;
+                if (this.parentComponent.trigger === 'hover') {
                     this.parentComponent.setCurrentData('__visible', item, true);
                     this.parentComponent.setCurrentData('__selected', item, true);
                     // if(this.parentComponent.changeOnSelect && item.__more){
@@ -109,11 +109,11 @@
                     // }
                 }
             },
-            handleTrigger(item){
+            handleTrigger(item) {
                 // if(item.__visible) return;
                 this.parentComponent.setCurrentData('__visible', item, true);
                 this.parentComponent.setCurrentData('__selected', item, true);
-                if(!item.__more || this.parentComponent.changeOnSelect){
+                if (!item.__more || this.parentComponent.changeOnSelect) {
                     this.parentComponent.filterSelectedValue(item);
                 }
             }

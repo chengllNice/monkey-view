@@ -11,11 +11,11 @@
     import Config from 'main/config/config'
 
     export default {
-        name: "Layout",
+        name: 'Layout',
         data() {
             return {
                 classPrefix: Config.classPrefix + '-layout',
-                hasSider: false,
+                hasSider: false
             }
         },
         mounted() {

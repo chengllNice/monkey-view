@@ -1,0 +1,127 @@
+@import "./base/var";
+@import "./mixins/index.scss";
+
+@mixin res-grid($key, $map: $--media-points) {
+    @if map-has-key($map, $key) {
+        @media only screen and #{inspect(map-get($map, $key))} {
+            &--span-#{$key}-0 {
+                display: none;
+            }
+            @for $i from 0 through 24 {
+                &--span-#{$key}-#{$i} {
+                    width: (1 / 24 * $i * 100) * 1%;
+                }
+
+                &--offset-#{$key}-#{$i} {
+                    margin-left: (1 / 24 * $i * 100) * 1%;
+                }
+
+                &--pull-#{$key}-#{$i} {
+                    position: relative;
+                    right: (1 / 24 * $i * 100) * 1%;
+                }
+
+                &--push-#{$key}-#{$i} {
+                    position: relative;
+                    left: (1 / 24 * $i * 100) * 1%;
+                }
+
+                &--order-#{$key}-#{$i} {
+                    order: $i;
+                }
+            }
+            @content;
+        }
+    } @else {
+        @warn 'Error, Not Set Media'
+    }
+}
+
+@mixin colInit() {
+    @for $i from 0 through 24 {
+        &--span-#{$i} {
+            width: (1 / 24 * $i * 100) * 1%;
+        }
+
+        &--offset-#{$i} {
+            margin-left: (1 / 24 * $i * 100) * 1%;
+        }
+
+        &--pull-#{$i} {
+            position: relative;
+            right: (1 / 24 * $i * 100) * 1%;
+        }
+
+        &--push-#{$i} {
+            position: relative;
+            left: (1 / 24 * $i * 100) * 1%;
+        }
+
+        &--order-#{$i} {
+            order: $i;
+        }
+    }
+}
+
+@include c(row) {
+    display: block;
+    position: relative;
+
+    @include clear-float;
+
+    @include m(flex) {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        &:after {
+            display: none;
+        }
+
+        //align
+        @include m(flex-top) {
+            align-items: flex-start;
+        }
+        @include m(flex-middle) {
+            align-items: center;
+        }
+        @include m(flex-bottom) {
+            align-items: flex-end;
+        }
+
+
+        //justify
+        @include m(flex-start) {
+            justify-content: flex-start;
+        }
+        @include m(flex-end) {
+            justify-content: flex-end;
+        }
+        @include m(flex-center) {
+            justify-content: center;
+        }
+        @include m(flex-space-around) {
+            justify-content: space-around;
+        }
+        @include m(flex-space-between) {
+            justify-content: space-between;
+        }
+
+    }
+}
+
+@include c(col) {
+    float: left;
+    flex: 0 0 auto;
+    @include colInit();
+    @include m(span-0) {
+        display: none;
+    }
+
+    @include res-grid(xs);
+    @include res-grid(sm);
+    @include res-grid(md);
+    @include res-grid(lg);
+    @include res-grid(xl);
+    @include res-grid(xxl);
+}

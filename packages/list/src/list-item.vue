@@ -40,29 +40,29 @@
 
 <script>
     import Config from 'main/config/config'
-    import {findComponent, findComponentDirect} from "main/utils/tool";
+    import { findComponent, findComponentDirect } from 'main/utils/tool';
     import Emitter from 'main/mixins/emitter'
 
     export default {
-        name: "ListItem",
+        name: 'ListItem',
         mixins: [Emitter],
         props: {
             type: {
                 type: String,
-                default: '',//可选值meta default
+                default: ''// 可选值meta default
             },
             title: String,
-            label: [String, Number],//list-row类型时可用
-            value: [String, Number],//list-row类型时可用
+            label: [String, Number], // list-row类型时可用
+            value: [String, Number], // list-row类型时可用
             description: String,
-            avatar: String,
+            avatar: String
         },
         data() {
             return {
                 classPrefix: Config.classPrefix + '-list-item',
                 componentName: 'ListItem',
                 parentListComponent: findComponent(this, 'List'),
-                parentListRowComponent: findComponentDirect(this, 'ListRow'),
+                parentListRowComponent: findComponentDirect(this, 'ListRow')
             }
         },
         computed: {
@@ -80,7 +80,7 @@
                         style = {
                             ...style,
                             paddingLeft: this.parentListComponent.gutter / 2 + 'px',
-                            paddingRight: this.parentListComponent.gutter / 2 + 'px',
+                            paddingRight: this.parentListComponent.gutter / 2 + 'px'
                         }
                     }
                 }
@@ -91,10 +91,10 @@
                     width: parseFloat(this.parentListComponent.labelWidth) + 'px'
                 }
             },
-            isFirstItemNoBorder(){
+            isFirstItemNoBorder() {
                 return this.parentListComponent && this.parentListComponent.border && !(this.parentListComponent.header || this.parentListComponent.$slots.header)
             },
-            isLastItemNoBorder(){
+            isLastItemNoBorder() {
                 return this.parentListComponent && this.parentListComponent.border && !(this.parentListComponent.footer || this.parentListComponent.$slots.footer)
             }
         },

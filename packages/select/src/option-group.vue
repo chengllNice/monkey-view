@@ -13,26 +13,26 @@
     import Config from 'main/config/config'
 
     export default {
-        name: "OptionGroup",
+        name: 'OptionGroup',
         props: {
             label: {
                 type: String,
                 default: ''
-            },
+            }
         },
         data() {
             return {
                 classPrefix: Config.classPrefix + '-option-group',
                 componentName: 'OptionGroup',
-                show: true,
+                show: true
             }
         },
         computed: {
-            groupClass(){
+            groupClass() {
                 return [
                     `${this.classPrefix}`
                 ]
-            },
+            }
         },
         mounted() {
             this.$nextTick(this.setShow());
@@ -41,11 +41,12 @@
             setShow() {
                 let result = true;
                 if (this.$slots.default) {
-                    let childrenOptionShowArr = [];
-                    for (let option of this.$slots.default) {
-                        let Instance = option.componentInstance;
-                        let Options = option.componentOptions;
-                        let tag = (Instance && Instance.componentName) || (Options && Options.tag);
+                    const childrenOptionShowArr = [];
+                    // eslint-disable-next-line no-unused-vars
+                    for (const option of this.$slots.default) {
+                        const Instance = option.componentInstance;
+                        const Options = option.componentOptions;
+                        const tag = (Instance && Instance.componentName) || (Options && Options.tag);
                         if (tag === 'Option') {
                             childrenOptionShowArr.push(Instance.show || false);
                         }

@@ -42,10 +42,10 @@
 
 <script>
     import Config from 'main/config/config'
-    import {dateOnMonth, dateObj, dateFormat} from "main/utils/date";
+    import { dateOnMonth, dateObj, dateFormat } from 'main/utils/date';
 
     export default {
-        name: "DatePaneDate",
+        name: 'DatePaneDate',
         inject: ['picker'],
         props: {
             type: String,
@@ -60,7 +60,7 @@
             currentDate: Object,
             isRange: Boolean,
             hoverDate: Date,
-            index: Number,
+            index: Number
         },
         data() {
             return {
@@ -68,19 +68,19 @@
                 classPrefixItem: Config.classPrefix + '-date-pane-item',
                 dateList: [],
                 weekList: dateObj.week,
-                selectDate: [],
+                selectDate: []
             }
         },
         computed: {
-            isWeekSelect(){
+            isWeekSelect() {
                 return function (rowDate) {
                     rowDate = rowDate.map(item => item.format);
-                    let select = dateFormat(this.selectDate[this.index]);
+                    const select = dateFormat(this.selectDate[this.index]);
                     return rowDate.includes(select);
                 }
             },
-            dateItemColClass(){
-                let selectDate = this.selectDate.map(item => dateFormat(item))
+            dateItemColClass() {
+                const selectDate = this.selectDate.map(item => dateFormat(item))
                 return function (dateItem) {
                     return [
                         `${this.classPrefixItem}__col`,
@@ -89,7 +89,7 @@
                         !dateItem.isNowMonth && `${this.classPrefixItem}__no-now-month`,
                         this.type !== 'week' && selectDate.includes(dateItem.format) && dateItem.isNowMonth && `${this.classPrefixItem}__selected`,
                         !selectDate.includes(dateItem.format) && dateItem.isBetween && `${this.classPrefixItem}__between`,
-                        dateItem.isDisabled && `${this.classPrefixItem}__disabled`,
+                        dateItem.isDisabled && `${this.classPrefixItem}__disabled`
                     ]
                 }
             }
@@ -101,9 +101,9 @@
             // 获取日期列表
             setDateList() {
                 if (!this.year || !this.month) return;
-                let dateList = dateOnMonth(this.year, this.month);
+                const dateList = dateOnMonth(this.year, this.month);
 
-                let newDateList = [];
+                const newDateList = [];
                 let row = [];
                 dateList.forEach((item, index) => {
                     item.isBetween = false;
@@ -130,7 +130,7 @@
                 if (this.selectDate.length === 2) {
                     this.clearHover();
                 }
-                let _date = date.key;
+                const _date = date.key;
                 _date.setHours(0);
                 _date.setMinutes(0);
                 _date.setSeconds(0);
@@ -138,21 +138,21 @@
                 this.$emit('updateDate', [_date]);
                 this.picker && this.picker.dateClick(_date);
             },
-            handleSelectWeek(row){
-                if(this.type === 'date') return;
-                let date = row[4];
-                //如果该周中存在禁用的项则不可选
-                let index = row.findIndex(item => item.isDisabled);
-                if(index >= 0) return;
+            handleSelectWeek(row) {
+                if (this.type === 'date') return;
+                const date = row[4];
+                // 如果该周中存在禁用的项则不可选
+                const index = row.findIndex(item => item.isDisabled);
+                if (index >= 0) return;
                 this.$emit('updateWeek', [date.key]);
             },
             mouseEnter(dateItem) {
-                if(this.type === 'week') return;
+                if (this.type === 'week') return;
                 if (this.isRange && this.selectDate.length === 1) {
                     if (dateItem.isNowMonth) {
                         dateItem.isBetween = true;
                     }
-                    this.$emit('hover-date', dateItem.key);//range时清除另一个date-pane的hover效果
+                    this.$emit('hover-date', dateItem.key);// range时清除另一个date-pane的hover效果
                 }
             },
             mouseLeave(dateItem) {
@@ -208,7 +208,7 @@
                 this.setDateList();
             },
             date(newVal) {
-                if(!newVal) return;
+                if (!newVal) return;
                 this.selectDate = newVal || [];
                 if (newVal.length === 1 && this.isRange) {
                     this.clearHover();

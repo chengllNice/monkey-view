@@ -1,6 +1,6 @@
 const path = require('path');
 // const webpack = require('webpack');
-const {merge} = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const webpackBaseConfig = require('./webpack.build.base.js');
 const CompressionPlugin = require('compression-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
@@ -19,6 +19,7 @@ module.exports = merge(webpackBaseConfig, {
         filename: 'monkey-ui.min.js',
         library: 'MONKEY',
         libraryTarget: 'umd',
+        libraryExport: 'default',
         umdNamedDefine: true
     },
     externals: {

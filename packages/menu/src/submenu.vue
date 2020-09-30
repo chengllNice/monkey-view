@@ -49,12 +49,12 @@
     import Config from 'main/config/config'
     import SlideTransition from '../../base/slide-transition.vue'
     import Icon from 'packages/icon'
-    import {findComponent, findComponents, findComponentChildrens, findComponentDirect} from "main/utils/tool";
+    import { findComponent, findComponents, findComponentChildrens, findComponentDirect } from 'main/utils/tool';
     import Emitter from 'main/mixins/emitter'
     import Drop from 'packages/base/drop'
 
     export default {
-        name: "Submenu",
+        name: 'Submenu',
         mixins: [Emitter],
         props: {
             cKey: {
@@ -65,7 +65,7 @@
             icon: String,
             disabled: Boolean,
             hideDropIcon: Boolean,
-            forbidden: Boolean,//禁止展开（但不是disabled，不控制样式）
+            forbidden: Boolean// 禁止展开（但不是disabled，不控制样式）
         },
         data() {
             return {
@@ -77,8 +77,8 @@
                 menuDirectComponent: findComponentDirect(this, 'Menu'),
                 parentSubmenuComponents: findComponents(this, 'Submenu'),
                 childrenMenuItemComponents: findComponentChildrens(this, 'MenuItem'),
-                parentSubMenuComponentNum: findComponents(this, 'Submenu').length,//父级元素有多少个subMenu组件
-                timer: null,
+                parentSubMenuComponentNum: findComponents(this, 'Submenu').length, // 父级元素有多少个subMenu组件
+                timer: null
             }
         },
         computed: {
@@ -86,25 +86,25 @@
                 let style = {};
                 let padding = this.menuComponent.defaultPadding;
                 if (this.menuComponent.mode === 'horizontal') {
-                    if(!this.menuDirectComponent) padding = 10;
+                    if (!this.menuDirectComponent) padding = 10;
                     style = {
-                        'padding-left': padding + 'px',
+                        'padding-left': padding + 'px'
                     }
-                    if(this.menuDirectComponent){
+                    if (this.menuDirectComponent) {
                         style = {
                             ...style,
                             'padding-left': padding + 'px',
-                            'height': parseInt(this.menuComponent.itemHeight) + 'px',
-                            'line-height': parseInt(this.menuComponent.itemHeight) + 'px',
+                            height: parseInt(this.menuComponent.itemHeight) + 'px',
+                            'line-height': parseInt(this.menuComponent.itemHeight) + 'px'
                         }
                     }
-                }else {
+                } else {
                     style = {
-                        'height': parseInt(this.menuComponent.itemHeight) + 'px',
+                        height: parseInt(this.menuComponent.itemHeight) + 'px',
                         'line-height': parseInt(this.menuComponent.itemHeight) + 'px',
                         'padding-left': ((this.parentSubMenuComponentNum + 1) * padding) + 'px'
                     }
-                    if(this.menuComponent.collapse){
+                    if (this.menuComponent.collapse) {
                         style = {
                             ...style,
                             'padding-left': padding + 'px'
@@ -117,7 +117,7 @@
                 }
             },
             parentSubmenuComponentkeys() {
-                let keys = [];
+                const keys = [];
                 this.parentSubmenuComponents.forEach(item => {
                     keys.push(item.cKey)
                 });
@@ -138,26 +138,26 @@
                 }
                 return 'bottom-start'
             },
-            dropIconStyle(){
+            dropIconStyle() {
                 let padding = this.menuComponent.defaultPadding;
                 if (this.menuComponent.mode === 'horizontal' && !this.menuDirectComponent) {
                     padding = 10;
                 }
                 return {
-                    'right': padding + 'px'
+                    right: padding + 'px'
                 }
             },
-            dropRenderHtml(){
-                let isParentSubmenu = this.$parent.$parent.componentName === 'Submenu';
-                if(this.menuComponent.mode === 'horizontal' && isParentSubmenu) return false;
-                if(this.menuComponent.mode === 'vertical' && this.menuComponent.collapse && isParentSubmenu) return false;
+            dropRenderHtml() {
+                const isParentSubmenu = this.$parent.$parent.componentName === 'Submenu';
+                if (this.menuComponent.mode === 'horizontal' && isParentSubmenu) return false;
+                if (this.menuComponent.mode === 'vertical' && this.menuComponent.collapse && isParentSubmenu) return false;
                 return true;
             },
-            verticalTransitionShow(){
+            verticalTransitionShow() {
                 return this.menuComponent.mode === 'vertical' && !this.menuComponent.collapse && this.opened && !this.disabled;
             },
-            dropTransitionShow(){
-                let mode = this.menuComponent.mode === 'horizontal' || (this.menuComponent.mode === 'vertical' && this.menuComponent.collapse);
+            dropTransitionShow() {
+                const mode = this.menuComponent.mode === 'horizontal' || (this.menuComponent.mode === 'vertical' && this.menuComponent.collapse);
                 return mode && this.opened && !this.disabled;
             }
         },
@@ -213,8 +213,8 @@
                 }
             },
             closeSubmenuChildren() {
-                //关闭该组件下的所有submenu子组件
-                let childrens = findComponentChildrens(this, 'Submenu');
+                // 关闭该组件下的所有submenu子组件
+                const childrens = findComponentChildrens(this, 'Submenu');
                 childrens.forEach(item => {
                     if (item.opened) {
                         this.parentEmit('Menu', 'on-update-opened-key', item.cKey);
@@ -224,16 +224,16 @@
             },
             menuItemChildrenActive() {
                 if (this.disabled || this.forbidden) return;
-                let activeChildren = findComponentChildrens(this, 'MenuItem').filter(item => {
+                const activeChildren = findComponentChildrens(this, 'MenuItem').filter(item => {
                     return item.cKey === this.menuComponent.currentActiveKey
                 });
                 this.active = !!activeChildren.length;
             },
-            forbiddenUpdateOpenKeys(){
-                if(this.forbidden){
+            forbiddenUpdateOpenKeys() {
+                if (this.forbidden) {
                     this.opened = false;
-                    let openkeys = this.menuComponent && this.menuComponent.openedKeys;
-                    if(openkeys.includes(this.cKey)){
+                    const openkeys = this.menuComponent && this.menuComponent.openedKeys;
+                    if (openkeys.includes(this.cKey)) {
                         this.parentEmit('Menu', 'on-update-opened-key', this.cKey)
                     }
                 }

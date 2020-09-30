@@ -1,0 +1,10 @@
+@import "./base/var";
+@import "./mixins/index.scss";
+
+@include c(affix) {
+    display: inline-block;
+    vertical-align: middle;
+    @include e(slot) {
+        z-index: 3000;
+    }
+}

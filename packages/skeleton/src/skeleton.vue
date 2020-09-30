@@ -32,7 +32,7 @@
     import SkeletonItem from './skeletonItem'
 
     export default {
-        name: "Skeleton",
+        name: 'Skeleton',
         props: {
             type: {
                 type: String,
@@ -53,16 +53,16 @@
             return {
                 classPrefix: Config.classPrefix + '-skeleton',
                 railColor: '#cccccc',
-                strokeWidth: 20,
+                strokeWidth: 20
             }
         },
         computed: {
             railStyle() {
                 return {
-                    'background': this.railColor,
-                    'height': parseFloat(this.strokeWidth) + 'px',
+                    background: this.railColor,
+                    height: parseFloat(this.strokeWidth) + 'px'
                 }
-            },
+            }
         }
     }
 </script>

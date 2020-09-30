@@ -7,12 +7,12 @@ export default {
         columns: Array,
         row: Object
     },
-    render(h, context){
-        const r = context.injections.tableRoot.$scopedSlots["expand"];
-        if(r){
+    render(h, context) {
+        const r = context.injections.tableRoot.$scopedSlots['expand'];
+        if (r) {
             return h('div', r({
                 row: context.props.row,
-                columns: context.props.columns,
+                columns: context.props.columns
             }));
         }
         return null;

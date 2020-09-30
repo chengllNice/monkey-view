@@ -1,0 +1,101 @@
+@import "./base/var";
+@import "./mixins/index.scss";
+
+$layout-background-color: #344058;
+
+@include c(layout) {
+    display: flex;
+    flex-direction: column;
+    flex: auto;
+    background-color: $--background-color-base;
+
+    @include m(has-sider) {
+        flex-direction: row;
+    }
+}
+
+@include c(sider) {
+    background-color: $layout-background-color;
+    color: $--color-white;
+    transition: width $--animation-time ease-in-out;
+    position: relative;
+    min-width: 0;
+    padding-bottom: 50px;
+    flex: 0 0 auto;
+
+    @include m(hideTrigger) {
+        padding-bottom: 0;
+    }
+
+    @include e(header) {
+        height: 60px;
+        line-height: 60px;
+        width: 100%;
+        overflow: hidden;
+    }
+    @include e(content) {
+        width: 100%;
+        overflow: hidden;
+    }
+    @include e(trigger) {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        overflow: hidden;
+        text-align: center;
+        color: $--color-white;
+        height: 50px;
+        line-height: 50px;
+        cursor: pointer;
+        @include e(trigger-icon) {
+            font-size: $--font-size-large;
+            transition: all $--animation-time;
+        }
+    }
+
+    @include m(close) {
+        @include e(trigger-icon, false) {
+            transform: rotate(180deg);
+        }
+    }
+
+    @include e(zero-trigger) {
+        position: absolute;
+        top: 50px;
+        right: -36px;
+        width: 36px;
+        height: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $layout-background-color;
+        color: $--color-white;
+        border-radius: $--border-radius-default;
+        cursor: pointer;
+        transition: opacity $--animation-time;
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+}
+
+@include c(content) {
+    flex: auto;
+}
+
+@include c(header) {
+    background-color: $layout-background-color;
+    padding: 0 50px;
+    color: $--color-default;
+    flex: 0 0 auto;
+    font-size: $--font-size-default;
+}
+
+@include c(footer) {
+    background-color: $layout-background-color;
+    color: $--color-default;
+    flex: 0 0 auto;
+    padding: 0 50px;
+    font-size: $--font-size-default;
+}

@@ -6,25 +6,25 @@
 
 <script>
     import Config from 'main/config/config'
-    import {findComponent, findComponentDirectChildrens} from "main/utils/tool";
+    import { findComponent, findComponentDirectChildrens } from 'main/utils/tool';
     import Emitter from 'main/mixins/emitter'
 
     export default {
-        name: "ListRow",
+        name: 'ListRow',
         mixins: [Emitter],
         data() {
             return {
                 classPrefix: Config.classPrefix + '-list-row',
                 componentName: 'ListRow',
                 parentListComponent: findComponent(this, 'List'),
-                itemLen: 0,//list-item的数量
+                itemLen: 0// list-item的数量
             }
         },
         computed: {
             rowStyle() {
                 return {
                     marginLeft: -this.parentListComponent.gutter / 2 + 'px',
-                    marginRight: -this.parentListComponent.gutter / 2 + 'px',
+                    marginRight: -this.parentListComponent.gutter / 2 + 'px'
                 }
             }
         },
@@ -35,7 +35,7 @@
         },
         methods: {
             updateItemWidth() {
-                let listItemChildren = findComponentDirectChildrens(this, 'ListItem');
+                const listItemChildren = findComponentDirectChildrens(this, 'ListItem');
                 return listItemChildren.length;
             }
         }

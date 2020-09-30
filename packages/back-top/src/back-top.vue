@@ -11,19 +11,19 @@
 </template>
 
 <script>
-    import Config from 'main/config/config'
-    import Icon from 'packages/icon'
-    import {on, off, scrollTop} from "main/utils/dom";
+    import Config from 'main/config/config';
+    import Icon from 'packages/icon';
+    import { on, off, scrollTop } from 'main/utils/dom';
 
     export default {
-        name: "BackTop",
+        name: 'BackTop',
         props: {
-            //设置需要监听滚动的元素的类名，此类名需要唯一
+            // 设置需要监听滚动的元素的类名，此类名需要唯一
             target: {
-              type: String,
-              default: ''
+                type: String,
+                default: ''
             },
-            //设置触发显示的高度
+            // 设置触发显示的高度
             height: {
                 type: [String, Number],
                 default: 400
@@ -45,14 +45,14 @@
             return {
                 classPrefix: Config.classPrefix + '-back-top',
                 visible: false,
-                targetElement: null,//监听滚动的元素
+                targetElement: null// 监听滚动的元素
             }
         },
         computed: {
-            backTopStyle(){
+            backTopStyle() {
                 return {
                     bottom: parseInt(this.bottom) + 'px',
-                    right: parseInt(this.right) + 'px',
+                    right: parseInt(this.right) + 'px'
                 }
             }
         },
@@ -60,9 +60,9 @@
             Icon
         },
         mounted() {
-            this.$nextTick(()=>{
+            this.$nextTick(() => {
                 let target = window;
-                if(this.target){
+                if (this.target) {
                     target = document.getElementsByClassName(this.target)[0];
                 }
                 this.targetElement = target;
@@ -77,14 +77,14 @@
         methods: {
             handleScroll() {
                 let scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
-                if(this.target){
+                if (this.target) {
                     scrollTop = this.targetElement.scrollTop;
                 }
                 this.visible = scrollTop >= parseInt(this.height);
             },
-            backTopClick(){
+            backTopClick() {
                 let scrollTopForm = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
-                if(this.target){
+                if (this.target) {
                     scrollTopForm = this.targetElement.scrollTop;
                 }
                 scrollTop(this.targetElement, scrollTopForm, 0, this.duration);

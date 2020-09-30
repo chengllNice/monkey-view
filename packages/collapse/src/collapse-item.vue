@@ -26,12 +26,12 @@
 <script>
     import Config from 'main/config/config'
     import Emitter from 'main/mixins/emitter'
-    import {findComponent} from "main/utils/tool";
+    import { findComponent } from 'main/utils/tool';
     import SlideTransition from 'packages/base/slide-transition.vue'
     import Icon from 'packages/icon'
 
     export default {
-        name: "CollapseItem",
+        name: 'CollapseItem',
         mixins: [Emitter],
         props: {
             cKey: {
@@ -40,7 +40,7 @@
             },
             name: String,
             disabled: Boolean,
-            hideArrow: Boolean,
+            hideArrow: Boolean
         },
         data() {
             return {

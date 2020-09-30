@@ -7,16 +7,16 @@ const isServer = Vue.prototype.$isServer;
  * 绑定事件
  */
 export const on = (function () {
-  if(isServer) return function () {};
-  if(document.addEventListener){
+  if (isServer) return function () {};
+  if (document.addEventListener) {
     return function (element, event, handler) {
-      if(element && event && handler){
+      if (element && event && handler) {
         element.addEventListener(event, handler, false);
       }
     }
-  }else{
+  } else {
     return function (element, event, handler) {
-      if(element && event && handler){
+      if (element && event && handler) {
         element.attachEvent('on' + event, handler)
       }
     }
@@ -27,14 +27,14 @@ export const on = (function () {
  * 解除绑定的事件
  */
 export const off = (function () {
-  if(isServer) return;
-  if(document.removeEventListener){
+  if (isServer) return;
+  if (document.removeEventListener) {
     return function (element, event, handler) {
       if (element && event) {
         element.removeEventListener(event, handler, false);
       }
     }
-  }else{
+  } else {
     return function (element, event, handler) {
       if (element && event) {
         element.detachEvent('on' + event, handler)
@@ -42,7 +42,6 @@ export const off = (function () {
     }
   }
 })();
-
 
 /**
  * scrollTop animation
@@ -62,19 +61,19 @@ export const scrollTop = (el, from = 0, to, duration = 500) => {
             }
         )
     }
-    let step = Math.ceil(Math.abs(from - to) / duration * 50);
+    const step = Math.ceil(Math.abs(from - to) / duration * 50);
 
-    let scrollTo = (start, end, step) => {
-        if(start === end) return;
+    const scrollTo = (start, end, step) => {
+        if (start === end) return;
 
         let dis = (start + step > end) ? end : start + step;
-        if(start > end){
+        if (start > end) {
             dis = (start - step < end) ? end : start - step;
         }
 
-        if(el === window){
+        if (el === window) {
             window.scrollTo(dis, dis);
-        }else{
+        } else {
             el.scrollTop = dis;
         }
         window.requestAnimationFrame(() => scrollTo(dis, end, step));

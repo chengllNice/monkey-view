@@ -32,9 +32,9 @@
     import elementResizeDetectorMaker from 'element-resize-detector';
 
     export default {
-        name: "Sider",
+        name: 'Sider',
         props: {
-            value: Boolean,//展开收起
+            value: Boolean, // 展开收起
             width: {
                 type: [Number, String],
                 default: 240
@@ -48,7 +48,7 @@
             showZeroTrigger: {
                 type: Boolean,
                 default: true
-            },
+            }
         },
         data() {
             return {
@@ -59,7 +59,7 @@
                 collapsed: this.value || false,
                 scrollOption: {
                     scrollPanel: {
-                        scrollingX: false,
+                        scrollingX: false
                     }
                 }
             }
@@ -71,7 +71,7 @@
                     width = parseFloat(this.collapsedWidth);
                 }
                 return {
-                    'width': width + 'px',
+                    width: width + 'px'
                 };
             },
             computedShowZeroTrigger() {
@@ -95,13 +95,13 @@
                 this.$emit('input', this.collapsed)
             },
             setContentStyle() {
-                let height = parseFloat(this.height) || this.$el.offsetHeight;
-                let headerHeight = this.$refs.header ? this.$refs.header.offsetHeight : 0;
-                let triggerHeight = this.$refs.trigger ? this.$refs.trigger.offsetHeight : 0;
+                const height = parseFloat(this.height) || this.$el.offsetHeight;
+                const headerHeight = this.$refs.header ? this.$refs.header.offsetHeight : 0;
+                const triggerHeight = this.$refs.trigger ? this.$refs.trigger.offsetHeight : 0;
                 this.contentStyle = {
                     height: (height - headerHeight - triggerHeight) + 'px'
                 };
-            },
+            }
         },
         watch: {
             value(newVal) {

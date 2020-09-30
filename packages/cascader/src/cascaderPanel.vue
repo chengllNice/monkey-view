@@ -12,13 +12,13 @@
     import Config from 'main/config/config'
     import CascaderItem from './cascaderItem'
     import Mixin from './mixin'
-    import {findComponent} from "main/utils/tool";
+    import { findComponent } from 'main/utils/tool';
 
     export default {
-        name: "CascaderPanel",
+        name: 'CascaderPanel',
         mixins: [Mixin],
         data() {
-            let cascader = findComponent(this, 'Cascader');
+            const cascader = findComponent(this, 'Cascader');
             return {
                 classPrefix: Config.classPrefix + '-cascader-panel',
                 componentName: 'CascaderPanel',
@@ -31,14 +31,14 @@
         },
         watch: {
             data: {
-                handler(){
-                    if(!this.parentComponent){
+                handler() {
+                    if (!this.parentComponent) {
                         this.initCurrentData();
                     }
                 },
                 deep: true,
                 immediate: true
-            },
+            }
 
         }
     }

@@ -1,4 +1,4 @@
-import {deepClone} from "main/utils/global";
+import { deepClone } from 'main/utils/global';
 
 export const randomStr = (len = 32) => {
     const $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
@@ -17,13 +17,13 @@ export const randomStr = (len = 32) => {
  * @returns {Array}
  */
 export const getAllColumns = (cols, parentCols) => {
-    let result = [];
+    const result = [];
     cols.forEach(item => {
-        if(!item.hide){
-            if(parentCols){
+        if (!item.hide) {
+            if (parentCols) {
                 item.__parentId = parentCols.__id;
                 item.__level = parentCols.__level + 1;
-            }else{
+            } else {
                 item.__level = 1;
             }
             if (item.children) {
@@ -35,52 +35,50 @@ export const getAllColumns = (cols, parentCols) => {
     return result;
 };
 
-
 export const setGroupTableHead = (columns) => {
-    let deepColumns = [];
-    columns.forEach(item=>{
-        if(!item.__parentId){
+    const deepColumns = [];
+    columns.forEach(item => {
+        if (!item.__parentId) {
             deepColumns.push(item)
         }
     });
 
-    let maxLevel = 1;//children最大层次
+    let maxLevel = 1;// children最大层次
 
     const setColSpanforColumns = (column, parentColumn) => {
-        if(parentColumn){
+        if (parentColumn) {
             column.__level = parentColumn.__level + 1;
-            if(maxLevel < column.__level) maxLevel = column.__level;
+            if (maxLevel < column.__level) maxLevel = column.__level;
         }
 
-        if(column.children){
+        if (column.children) {
             let __colSpan = 0;
-            column.children.forEach(subColumn=>{
+            column.children.forEach(subColumn => {
                 setColSpanforColumns(subColumn, column);
                 __colSpan += subColumn.__colSpan;
             });
             column.__colSpan = __colSpan;
-        }else{
+        } else {
             column.__colSpan = 1;
         }
     };
 
-    deepColumns.forEach((item)=>{
+    deepColumns.forEach((item) => {
         item.__level = 1;
         setColSpanforColumns(item);
     });
 
-
-    let headRows = [];
-    for (let i = 0; i < maxLevel; i++){
+    const headRows = [];
+    for (let i = 0; i < maxLevel; i++) {
         headRows.push([]);
     }
 
-    let allColumns = getAllColumns(deepColumns);
+    const allColumns = getAllColumns(deepColumns);
 
-    allColumns.forEach(item=>{
-        if(item.children){
+    allColumns.forEach(item => {
+        if (item.children) {
             item.__rowSpan = 1;
-        }else{
+        } else {
             item.__rowSpan = maxLevel - item.__level + 1;
         }
         headRows[item.__level - 1].push(item);
@@ -94,91 +92,87 @@ export const setGroupTableHead = (columns) => {
  * @param cols
  */
 export const setCloneColumnsDefaultProps = (cols) => {
-    let columns = deepClone(getAllColumns(cols));
+    const columns = deepClone(getAllColumns(cols));
 
-    columns.forEach((column, index)=>{
-        column.__isChecked = column.isChecked || false;//全选的状态
-        column.__isDisabled = column.isDisabled || false;//全选的状态
+    columns.forEach((column, index) => {
+        column.__isChecked = column.isChecked || false;// 全选的状态
+        column.__isDisabled = column.isDisabled || false;// 全选的状态
 
-        let columnsWidth = column.width ? parseFloat(column.width) : '';
-        let columnsMinWidth = column.minWidth ? parseFloat(column.minWidth) : '';
+        const columnsWidth = column.width ? parseFloat(column.width) : '';
+        const columnsMinWidth = column.minWidth ? parseFloat(column.minWidth) : '';
 
         column.__index = index;
         column.__width = Math.max(columnsWidth, columnsMinWidth);
         column.__sort = column.sort || false;
-        column.__filterCheckedValues = [];//筛选项的value值，数组类型
-        column.__isFilterChecked = false;//是否确认筛选
+        column.__filterCheckedValues = [];// 筛选项的value值，数组类型
+        column.__isFilterChecked = false;// 是否确认筛选
     });
 
     return columns;
 };
 
-
 export const removeBodyColumnsHaveChildren = (columns) => {
-    let newBodyCloneColumns = [];
-    columns.forEach(item=>{
-        if(!item.children){
+    const newBodyCloneColumns = [];
+    columns.forEach(item => {
+        if (!item.children) {
             newBodyCloneColumns.push(item)
         }
     });
     return newBodyCloneColumns;
 };
 
-
 export const sortFixedColumns = (columns, fixedType) => {
-    let left = [];
-    let center = [];
-    let right = [];
-    let result = [];
-    columns.filter(item=>{
-        if(item.fixed && item.fixed === 'left'){
+    const left = [];
+    const center = [];
+    const right = [];
+    const result = [];
+    columns.filter(item => {
+        if (item.fixed && item.fixed === 'left') {
             left.push(item);
-        }else if(item.fixed && item.fixed === 'right'){
+        } else if (item.fixed && item.fixed === 'right') {
             right.push(item);
-        }else{
+        } else {
             center.push(item)
         }
     });
 
-    if(fixedType && fixedType === 'right'){
+    if (fixedType && fixedType === 'right') {
         result.push(...right, ...center, ...left);
-    }else{
+    } else {
         result.push(...left, ...center, ...right);
     }
     return result;
 };
 
-
 export const fixedIds = (columns, fixedType) => {
-    let ids = [];
-    columns.forEach(item=>{
-        if(item.__width && item.fixed && item.fixed === fixedType){
+    const ids = [];
+    columns.forEach(item => {
+        if (item.__width && item.fixed && item.fixed === fixedType) {
             ids.push(item.__id)
         }
     });
     return ids;
 };
 
-
 export const emitDataFormat = (data) => {
-    let type = data instanceof Array ? 'array' : (data instanceof Object ? 'object' : '');
-    if(!type) return;
-    let result = type === 'array' ? [] : {};
-    if(type === 'array'){
-        data.forEach(item=>{
-            if(item instanceof Object){
-                let obj = {};
-                Object.keys(item).forEach(key=>{
-                    if(typeof key === 'string' && !key.includes('__')){
+    const type = data instanceof Array ? 'array' : (data instanceof Object ? 'object' : '');
+    if (!type) return;
+    const result = type === 'array' ? [] : {};
+    if (type === 'array') {
+        data.forEach(item => {
+            if (item instanceof Object) {
+                const obj = {};
+                Object.keys(item).forEach(key => {
+                    if (typeof key === 'string' && !key.includes('__')) {
                         obj[key] = item[key]
                     }
                 });
                 result.push(obj);
             }
         });
-    }else{
-        Object.keys(data).forEach(key=>{
-            if(typeof key === 'string' && !key.includes('__')){
+    } else {
+        Object.keys(data).forEach(key => {
+            if (typeof key === 'string' && !key.includes('__')) {
                 result[key] = data[key]
             }
         });

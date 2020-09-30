@@ -23,7 +23,6 @@
             </div>
         </div>
 
-
         <div :class="[`${classPrefix}__right-col`]" :style="fixedRightStyle"
              v-if="fixed === 'right' && $parent.showVerticalScrollBar"></div>
     </div>
@@ -33,12 +32,12 @@
     import Config from 'main/config/config'
     import TableHead from './table-head.vue'
     import TableBody from './table-body.vue'
-    import {fixedIds} from "./util";
-    import {getScrollBarWidth} from "main/utils/global";
-    import {on, off} from "main/utils/dom";
+    import { fixedIds } from './util';
+    import { getScrollBarWidth } from 'main/utils/global';
+    import { on, off } from 'main/utils/dom';
 
     export default {
-        name: "TableFixed",
+        name: 'TableFixed',
         props: {
             fixed: String,
             headColumns: Array,
@@ -54,14 +53,14 @@
         data() {
             return {
                 classPrefix: Config.classPrefix + '-table-fixed',
-                headerHeight: 0,
+                headerHeight: 0
             }
         },
         computed: {
             styleObj() {
-                let style = {};
+                const style = {};
                 let width = 0;
-                let fixedId = fixedIds(this.bodyColumns, this.fixed);
+                const fixedId = fixedIds(this.bodyColumns, this.fixed);
                 Object.keys(this.columnsWidth).forEach(key => {
                     if (fixedId.includes(key)) {
                         width += this.columnsWidth[key].width
@@ -90,7 +89,7 @@
                 return {
                     width: this.$parent.scrollBarWidth + 'px',
                     height: this.headerHeight - 1 + 'px',
-                    right: -this.$parent.scrollBarWidth + 'px',
+                    right: -this.$parent.scrollBarWidth + 'px'
                 };
             }
         },
@@ -127,9 +126,9 @@
                 if (deltaY > 0 && body.scrollHeight - body.clientHeight > currentScrollTop) {
                     event.preventDefault();
                 }
-                //body.scrollTop += deltaY;
+                // body.scrollTop += deltaY;
                 let step = 0;
-                let timeId = setInterval(() => {
+                const timeId = setInterval(() => {
                     step += 5;
                     if (deltaY > 0) {
                         body.scrollTop += 2;

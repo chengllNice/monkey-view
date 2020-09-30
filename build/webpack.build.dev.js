@@ -1,6 +1,6 @@
 const path = require('path');
 // const webpack = require('webpack');
-const {merge} = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const webpackBaseConfig = require('./webpack.build.base.js');
 
 process.env.NODE_ENV = 'production';
@@ -17,6 +17,7 @@ module.exports = merge(webpackBaseConfig, {
         filename: 'monkey-ui.js',
         library: 'MONKEY',
         libraryTarget: 'umd',
+        libraryExport: 'default',
         umdNamedDefine: true
     },
     externals: {
@@ -26,7 +27,7 @@ module.exports = merge(webpackBaseConfig, {
             commonjs2: 'vue',
             amd: 'vue'
         }
-    },
+    }
     // plugins: [
     //     // @todo
     //     new webpack.DefinePlugin({

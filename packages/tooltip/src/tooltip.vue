@@ -29,7 +29,7 @@
     import Popper from 'main/mixins/popper'
 
     export default {
-        name: "Tooltip",
+        name: 'Tooltip',
         mixins: [Popper],
         props: {
             placement: {
@@ -47,7 +47,7 @@
             disabled: Boolean,
             maxWidth: [String, Number],
             always: Boolean,
-            //popper距离target的偏移
+            // popper距离target的偏移
             offset: {
                 type: Number,
                 default: 10
@@ -64,32 +64,32 @@
                 classPrefix: Config.classPrefix + '-tooltip',
                 hoverTimer: null,
                 popperHover: false,
-                targetHover: false,
+                targetHover: false
             }
         },
         computed: {
             expandStyle() {
-                let style = {
+                const style = {
                     'background-color': this.backgroundColor,
-                    'color': this.textColor
+                    color: this.textColor
                 };
                 if (this.maxWidth !== undefined) {
-                    let maxWidth = parseFloat(this.maxWidth) + 'px';
-                    return {'max-width': maxWidth, ...style}
+                    const maxWidth = parseFloat(this.maxWidth) + 'px';
+                    return { 'max-width': maxWidth, ...style }
                 }
                 return style
             },
-            popperStyle(){
-                if(this.placement.includes('bottom') || this.placement.includes('top')){
+            popperStyle() {
+                if (this.placement.includes('bottom') || this.placement.includes('top')) {
                     return {
                         'padding-top': this.offset + 'px',
-                        'padding-bottom': this.offset + 'px',
+                        'padding-bottom': this.offset + 'px'
                     }
                 }
-                if(this.placement.includes('left') || this.placement.includes('right')){
+                if (this.placement.includes('left') || this.placement.includes('right')) {
                     return {
                         'padding-left': this.offset + 'px',
-                        'padding-right': this.offset + 'px',
+                        'padding-right': this.offset + 'px'
                     }
                 }
                 return {}
@@ -152,7 +152,7 @@
                 } else {
                     this.renderHtml.appendChild(this.$refs.popper);
                 }
-            },
+            }
         }
     }
 </script>

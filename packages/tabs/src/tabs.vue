@@ -53,13 +53,13 @@
 
 <script>
     import Config from 'main/config/config'
-    import {findComponentDirectChildrens} from "main/utils/tool";
+    import { findComponentDirectChildrens } from 'main/utils/tool';
     import Emitter from 'main/mixins/emitter'
     import Scroll from 'packages/scroll'
     import Icon from 'packages/icon'
 
     export default {
-        name: "Tabs",
+        name: 'Tabs',
         mixins: [Emitter],
         props: {
             value: String,
@@ -87,7 +87,7 @@
                     return ['left', 'center', 'right'].includes(value)
                 }
             },
-            border: Boolean,//是否需要边框
+            border: Boolean, // 是否需要边框
             navStyle: {
                 type: Object,
                 default() {
@@ -97,14 +97,14 @@
                         defaultColor: '',
                         activeColor: '',
                         defaultBorderColor: '',
-                        activeBorderColor: '',
+                        activeBorderColor: ''
                     }
                 }
-            },//自定义nav样式
+            }, // 自定义nav样式
             animation: {
                 type: Boolean,
                 default: true
-            },//是否需要动画效果
+            }// 是否需要动画效果
         },
         data() {
             return {
@@ -114,30 +114,30 @@
                 activeTabIndex: '',
                 scrollOption: {
                     scrollPanel: {
-                        scrollingY: false,
+                        scrollingY: false
                     },
                     bar: {
-                        onlyShowBarOnScroll: false,
+                        onlyShowBarOnScroll: false
                     }
                 }
             }
         },
         computed: {
             contentStyle() {
-                let x = (this.activeTabIndex * 100);
+                const x = (this.activeTabIndex * 100);
                 return {
                     transform: `translateX(${-x}%)`
                 }
             },
             navItemStyle() {
                 return function (item) {
-                    let {defaultBackground, activeBackground, defaultColor, activeColor, defaultBorderColor, activeBorderColor} = this.navStyle;
+                    const { defaultBackground, activeBackground, defaultColor, activeColor, defaultBorderColor, activeBorderColor } = this.navStyle;
                     let style = {
-                        backgroundColor: defaultBackground ? defaultBackground : '',
-                        color: defaultColor ? defaultColor : '',
+                        backgroundColor: defaultBackground || '',
+                        color: defaultColor || ''
                     };
                     if (this.activeTabIndex === item.index) {
-                        style = {...style, backgroundColor: activeBackground, color: activeColor}
+                        style = { ...style, backgroundColor: activeBackground, color: activeColor }
                     }
                     if (item.hover && !item.disabled) {
                         style = {
@@ -153,7 +153,7 @@
                                 borderTopStyle: 'solid',
                                 borderTopColor: defaultBorderColor,
                                 borderLeftColor: defaultBorderColor,
-                                borderRightColor: defaultBorderColor,
+                                borderRightColor: defaultBorderColor
                             };
                         }
                         if (this.activeTabIndex === item.index) {
@@ -161,13 +161,13 @@
                                 ...style,
                                 borderTopColor: activeBorderColor,
                                 borderLeftColor: activeBorderColor,
-                                borderRightColor: activeBorderColor,
+                                borderRightColor: activeBorderColor
                             }
                         }
                     } else if (this.type === 'line' && activeBorderColor && this.activeTabIndex === item.index) {
                         style = {
                             ...style,
-                            borderBottomColor: activeBorderColor,
+                            borderBottomColor: activeBorderColor
                         }
                     }
                     return style;
@@ -208,7 +208,7 @@
                 this.updateActiveTabIndex(this.value);
             },
             updateActiveTabIndex(value) {
-                let activePane = this.labelList.filter(item => {
+                const activePane = this.labelList.filter(item => {
                     return item.cKey === value
                 });
                 this.activeTabIndex = '';
@@ -243,7 +243,7 @@
                 this.updateActiveTabIndex(newVal);
             },
             activeTabIndex(newVal) {
-                let activePane = this.labelList.filter(item => {
+                const activePane = this.labelList.filter(item => {
                     return item.index === newVal
                 });
                 if (activePane && activePane.length) {

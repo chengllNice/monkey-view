@@ -55,7 +55,7 @@
     import Icon from 'packages/icon'
 
     export default {
-        name: "UploadList",
+        name: 'UploadList',
         props: {
             fileList: {
                 type: Array,
@@ -63,21 +63,16 @@
                     return []
                 }
             },
-            listType: String,
+            listType: String
         },
         data() {
             return {
-                classPrefix: Config.classPrefix + '-upload-list',
+                classPrefix: Config.classPrefix + '-upload-list'
             }
         },
-        computed: {},
         components: {
             Progress,
             Icon
-        },
-        created() {
-        },
-        mounted() {
         },
         methods: {
             parsePercentage(val) {
