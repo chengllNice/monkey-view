@@ -45,7 +45,16 @@ Modern browsers and Internet Explorer 10+.
 
 Join discussion group with QQ scan code
 
-![](https://chengllnice.github.io/static/images/monkey-ui/monkey-ui-qq.jpg)
+<img src="https://chengllnice.github.io/static/images/monkey-ui/monkey-ui-qq.jpg" />
+<img src="https://chengllnice.github.io/static/images/monkey-ui/monkey-ui-wechat.png" />
+
+
+## Donation
+
+If you find Element useful
+
+<img src="https://chengllnice.github.io/static/images/monkey-ui/monkey-ui-pay-wechat.jpg" />
+<img src="https://chengllnice.github.io/static/images/monkey-ui/monkey-ui-pay-al.png" />
 
 
 ## License
