@@ -1,7 +1,7 @@
 {
-  "name": "monkey-ui",
+  "name": "monkey-view",
   "version": "0.1.0",
-  "title": "monkey-ui",
+  "title": "MonkeyUI",
   "description": "一套基于Vue2.0的高质量的UI框架",
   "homepage": "https://chengllnice.github.io/monkey-ui/",
   "author": "程路路",

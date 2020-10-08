@@ -5,3 +5,5 @@ md-loader/
 node_modules/
 docs-dist/
 *.md
+babel.config.js
+vue.config.js

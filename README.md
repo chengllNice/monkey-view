@@ -8,8 +8,12 @@
 <h3 align="center">A high quality UI by Vue.js 2.0 for web.</h3>
 
 
-[![Monkey UI](https://img.shields.io/npm/v/monkey-ui)](https://www.npmjs.org/package/monkey-ui)
-[![License MIT](https://img.shields.io/badge/License-MIT-brightgreen)](License)
+[![Monkey UI](https://travis-ci.com/chengllNice/monkey-ui.svg?branch=master&status=passed)](https://www.npmjs.com/package/monkey-view)
+[![Monkey UI](https://img.shields.io/npm/dm/monkey-ui?color=brightgreen)](hhttps://www.npmjs.com/package/monkey-view)
+[![Monkey UI](https://img.shields.io/npm/v/monkey-view?color=blue)](hhttps://www.npmjs.com/package/monkey-view)
+[![Monkey UI](https://img.badgesize.io/https:/unpkg.com/monkey-view@0.1.0/dist/monkey-ui.min.js?compression=gzip&label=gzip%20size:%20JS)](hhttps://www.npmjs.com/package/monkey-view)
+[![Monkey UI](https://img.badgesize.io/https:/unpkg.com/monkey-view@0.1.0/dist/styles/monkey-ui.css?label=gzip%20size%3A%20CSS&compression=gzip)](hhttps://www.npmjs.com/package/monkey-view)
+[![License MIT](https://img.shields.io/badge/License-MIT-green)](License)
 
 ## Docs
 
