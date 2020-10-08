@@ -11695,7 +11695,7 @@ $export($export.S, 'Number', { MIN_SAFE_INTEGER: -0x1fffffffffffff });
 /* 105 */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"name\":\"v-click-outside-x\",\"version\":\"4.1.0\",\"description\":\"Vue directive to react on clicks outside an element.\",\"homepage\":\"https://github.com/Xotic750/v-click-outside-x.git\",\"author\":{\"name\":\"Graham Fairweather\",\"email\":\"xotic750@gmail.com\"},\"copyright\":\"Copyright (c) 2018-present\",\"keywords\":[\"vue\",\"click\",\"outside\",\"directive\"],\"files\":[\"dist\",\"src\"],\"module\":\"dist/v-click-outside-x.esm.js\",\"main\":\"dist/v-click-outside-x.js\",\"typings\":\"types/index.d.ts\",\"jsdelivr\":\"dist/v-click-outside-x.min.js\",\"scripts\":{\"build:esm\":\"mkdirp dist && babel -s true --env-name esm src/v-click-outside-x.js -o dist/v-click-outside-x.esm.js\",\"build:base\":\"webpack --bail --progress --profile --colors\",\"build\":\"npm run build:esm && cross-env NODE_ENV=production npm run build:base --\",\"build:dev\":\"npm run build:base --\",\"clean\":\"rimraf dist && npm run clean:coverage\",\"clean:coverage\":\"rimraf __tests__/coverage\",\"lint\":\"eslint -f 'node_modules/eslint-friendly-formatter' --ext .js,.json .\",\"lint-fix\":\"npm run lint -- --fix\",\"report\":\"npm run build -- --env.report\",\"report:dev\":\"npm run build:dev -- --env.report\",\"security\":\"npm audit\",\"security-fix\":\"npm run security -- fix\",\"start\":\"nodemon --exec \\\"npm run build\\\" --watch src\",\"test\":\"npm run clean:coverage && jest\",\"test:ci\":\"npm run test -- --ci --maxWorkers=2\",\"test:ci-coveralls\":\"npm run test:ci -- --coverage --coverageReporters=text-lcov | coveralls\",\"test:coverage\":\"npm run test -- --coverage\"},\"license\":\"MIT\",\"repository\":{\"type\":\"git\",\"url\":\"https://github.com/Xotic750/v-click-outside-x.git\"},\"bugs\":{\"url\":\"https://github.com/Xotic750/v-click-outside-x/issues\"},\"dependencies\":{},\"devDependencies\":{\"@babel/cli\":\"^7.8.3\",\"@babel/core\":\"^7.8.3\",\"@babel/node\":\"^7.8.3\",\"@babel/plugin-transform-property-mutators\":\"^7.8.3\",\"@babel/plugin-transform-runtime\":\"^7.8.3\",\"@babel/preset-env\":\"^7.8.3\",\"@babel/runtime\":\"^7.8.3\",\"@types/jest\":\"^24.0.25\",\"@types/node\":\"^13.1.6\",\"@types/webpack\":\"^4.41.2\",\"@typescript-eslint/eslint-plugin\":\"^2.16.0\",\"@typescript-eslint/parser\":\"^2.16.0\",\"@xotic750/eslint-config-recommended\":\"^1.2.0\",\"babel-core\":\"^7.0.0-0\",\"babel-eslint\":\"^10.0.3\",\"babel-loader\":\"^8.0.6\",\"babel-plugin-lodash\":\"^3.3.4\",\"caniuse-lite\":\"^1.0.30001020\",\"coveralls\":\"^3.0.9\",\"cross-env\":\"^6.0.3\",\"eslint\":\"^6.8.0\",\"eslint-friendly-formatter\":\"^4.0.1\",\"eslint-import-resolver-webpack\":\"^0.12.1\",\"eslint-loader\":\"^3.0.3\",\"eslint-plugin-babel\":\"^5.3.0\",\"eslint-plugin-compat\":\"^3.3.0\",\"eslint-plugin-css-modules\":\"^2.11.0\",\"eslint-plugin-eslint-comments\":\"^3.1.2\",\"eslint-plugin-html\":\"^6.0.0\",\"eslint-plugin-import\":\"^2.20.0\",\"eslint-plugin-jest\":\"^22.17.0\",\"eslint-plugin-jsdoc\":\"^20.3.0\",\"eslint-plugin-json\":\"^1.4.0\",\"eslint-plugin-lodash\":\"^6.0.0\",\"eslint-plugin-no-use-extend-native\":\"^0.4.1\",\"eslint-plugin-prefer-object-spread\":\"^1.2.1\",\"eslint-plugin-prettier\":\"^3.1.2\",\"eslint-plugin-promise\":\"^4.2.1\",\"eslint-plugin-sort-class-members\":\"^1.6.0\",\"eslint-plugin-switch-case\":\"^1.1.2\",\"jest\":\"^24.9.0\",\"jest-cli\":\"^24.9.0\",\"jest-file\":\"^1.0.0\",\"lodash\":\"^4.17.15\",\"lodash-webpack-plugin\":\"^0.11.5\",\"mkdirp\":\"^0.5.1\",\"nodemon\":\"^2.0.2\",\"prettier\":\"^1.19.1\",\"rimraf\":\"^3.0.0\",\"source-map-loader\":\"^0.2.4\",\"strip-ansi\":\"^6.0.0\",\"terser-webpack-plugin\":\"^2.3.2\",\"typescript\":\"^3.7.4\",\"webpack\":\"^4.41.5\",\"webpack-bundle-analyzer\":\"^3.6.0\",\"webpack-cli\":\"^3.3.10\",\"webpack-global-object-x\":\"^1.0.0\",\"webpack-merge\":\"^4.2.2\"},\"engines\":{\"node\":\">=8.11.4\",\"npm\":\">=6.10.1\"},\"browserslist\":[\"> 1%\",\"Explorer >= 9\"],\"__npminstall_done\":\"Thu Oct 01 2020 09:24:21 GMT+0800 (中国标准时间)\",\"_from\":\"v-click-outside-x@4.1.0\",\"_resolved\":\"https://registry.npm.taobao.org/v-click-outside-x/download/v-click-outside-x-4.1.0.tgz\"}");
+module.exports = JSON.parse("{\"name\":\"v-click-outside-x\",\"version\":\"4.1.0\",\"description\":\"Vue directive to react on clicks outside an element.\",\"homepage\":\"https://github.com/Xotic750/v-click-outside-x.git\",\"author\":{\"name\":\"Graham Fairweather\",\"email\":\"xotic750@gmail.com\"},\"copyright\":\"Copyright (c) 2018-present\",\"keywords\":[\"vue\",\"click\",\"outside\",\"directive\"],\"files\":[\"dist\",\"src\"],\"module\":\"dist/v-click-outside-x.esm.js\",\"main\":\"dist/v-click-outside-x.js\",\"typings\":\"types/index.d.ts\",\"jsdelivr\":\"dist/v-click-outside-x.min.js\",\"scripts\":{\"build:esm\":\"mkdirp dist && babel -s true --env-name esm src/v-click-outside-x.js -o dist/v-click-outside-x.esm.js\",\"build:base\":\"webpack --bail --progress --profile --colors\",\"build\":\"npm run build:esm && cross-env NODE_ENV=production npm run build:base --\",\"build:dev\":\"npm run build:base --\",\"clean\":\"rimraf dist && npm run clean:coverage\",\"clean:coverage\":\"rimraf __tests__/coverage\",\"lint\":\"eslint -f 'node_modules/eslint-friendly-formatter' --ext .js,.json .\",\"lint-fix\":\"npm run lint -- --fix\",\"report\":\"npm run build -- --env.report\",\"report:dev\":\"npm run build:dev -- --env.report\",\"security\":\"npm audit\",\"security-fix\":\"npm run security -- fix\",\"start\":\"nodemon --exec \\\"npm run build\\\" --watch src\",\"test\":\"npm run clean:coverage && jest\",\"test:ci\":\"npm run test -- --ci --maxWorkers=2\",\"test:ci-coveralls\":\"npm run test:ci -- --coverage --coverageReporters=text-lcov | coveralls\",\"test:coverage\":\"npm run test -- --coverage\"},\"license\":\"MIT\",\"repository\":{\"type\":\"git\",\"url\":\"https://github.com/Xotic750/v-click-outside-x.git\"},\"bugs\":{\"url\":\"https://github.com/Xotic750/v-click-outside-x/issues\"},\"dependencies\":{},\"devDependencies\":{\"@babel/cli\":\"^7.8.3\",\"@babel/core\":\"^7.8.3\",\"@babel/node\":\"^7.8.3\",\"@babel/plugin-transform-property-mutators\":\"^7.8.3\",\"@babel/plugin-transform-runtime\":\"^7.8.3\",\"@babel/preset-env\":\"^7.8.3\",\"@babel/runtime\":\"^7.8.3\",\"@types/jest\":\"^24.0.25\",\"@types/node\":\"^13.1.6\",\"@types/webpack\":\"^4.41.2\",\"@typescript-eslint/eslint-plugin\":\"^2.16.0\",\"@typescript-eslint/parser\":\"^2.16.0\",\"@xotic750/eslint-config-recommended\":\"^1.2.0\",\"babel-core\":\"^7.0.0-0\",\"babel-eslint\":\"^10.0.3\",\"babel-loader\":\"^8.0.6\",\"babel-plugin-lodash\":\"^3.3.4\",\"caniuse-lite\":\"^1.0.30001020\",\"coveralls\":\"^3.0.9\",\"cross-env\":\"^6.0.3\",\"eslint\":\"^6.8.0\",\"eslint-friendly-formatter\":\"^4.0.1\",\"eslint-import-resolver-webpack\":\"^0.12.1\",\"eslint-loader\":\"^3.0.3\",\"eslint-plugin-babel\":\"^5.3.0\",\"eslint-plugin-compat\":\"^3.3.0\",\"eslint-plugin-css-modules\":\"^2.11.0\",\"eslint-plugin-eslint-comments\":\"^3.1.2\",\"eslint-plugin-html\":\"^6.0.0\",\"eslint-plugin-import\":\"^2.20.0\",\"eslint-plugin-jest\":\"^22.17.0\",\"eslint-plugin-jsdoc\":\"^20.3.0\",\"eslint-plugin-json\":\"^1.4.0\",\"eslint-plugin-lodash\":\"^6.0.0\",\"eslint-plugin-no-use-extend-native\":\"^0.4.1\",\"eslint-plugin-prefer-object-spread\":\"^1.2.1\",\"eslint-plugin-prettier\":\"^3.1.2\",\"eslint-plugin-promise\":\"^4.2.1\",\"eslint-plugin-sort-class-members\":\"^1.6.0\",\"eslint-plugin-switch-case\":\"^1.1.2\",\"jest\":\"^24.9.0\",\"jest-cli\":\"^24.9.0\",\"jest-file\":\"^1.0.0\",\"lodash\":\"^4.17.15\",\"lodash-webpack-plugin\":\"^0.11.5\",\"mkdirp\":\"^0.5.1\",\"nodemon\":\"^2.0.2\",\"prettier\":\"^1.19.1\",\"rimraf\":\"^3.0.0\",\"source-map-loader\":\"^0.2.4\",\"strip-ansi\":\"^6.0.0\",\"terser-webpack-plugin\":\"^2.3.2\",\"typescript\":\"^3.7.4\",\"webpack\":\"^4.41.5\",\"webpack-bundle-analyzer\":\"^3.6.0\",\"webpack-cli\":\"^3.3.10\",\"webpack-global-object-x\":\"^1.0.0\",\"webpack-merge\":\"^4.2.2\"},\"engines\":{\"node\":\">=8.11.4\",\"npm\":\">=6.10.1\"},\"browserslist\":[\"> 1%\",\"Explorer >= 9\"],\"__npminstall_done\":\"Thu Oct 08 2020 00:48:58 GMT+0800 (中国标准时间)\",\"_from\":\"v-click-outside-x@4.1.0\",\"_resolved\":\"https://registry.npm.taobao.org/v-click-outside-x/download/v-click-outside-x-4.1.0.tgz\"}");
 
 /***/ }),
 /* 106 */
@@ -39000,14 +39000,18 @@ function imagePreview_objectSpread(target) { for (var i = 1; i < arguments.lengt
 
         case 'toggle':
           this.actionToggle = this.actionToggle === 'max' ? 'normal' : 'max';
+          rotate = 0;
+          scale = 1;
+          this.transform.translateX = 0;
+          this.transform.translateY = 0;
           break;
 
         case 'rotateLeft':
-          rotate = rotate + this.everyRotate;
+          rotate = rotate - this.everyRotate;
           break;
 
         case 'rotateRight':
-          rotate = rotate - this.everyRotate;
+          rotate = rotate + this.everyRotate;
           break;
       }
 
@@ -39061,7 +39065,7 @@ function imagePreview_objectSpread(target) { for (var i = 1; i < arguments.lengt
     }
   }
 });
-// CONCATENATED MODULE: ./node_modules/_babel-loader@8.1.0@babel-loader/lib?sourceMap!./node_modules/_vue-loader@14.2.4@vue-loader/lib/template-compiler?{"id":"data-v-6fdfcf98","hasScoped":false,"optionsId":"0","buble":{"transforms":{}}}!./node_modules/_vue-loader@14.2.4@vue-loader/lib/selector.js?type=template&index=0!./packages/image/src/imagePreview.vue
+// CONCATENATED MODULE: ./node_modules/_babel-loader@8.1.0@babel-loader/lib?sourceMap!./node_modules/_vue-loader@14.2.4@vue-loader/lib/template-compiler?{"id":"data-v-c4d385b2","hasScoped":false,"optionsId":"0","buble":{"transforms":{}}}!./node_modules/_vue-loader@14.2.4@vue-loader/lib/selector.js?type=template&index=0!./packages/image/src/imagePreview.vue
 var imagePreview_render = function render() {
   var _vm = this;
 
@@ -39151,6 +39155,7 @@ var imagePreview_render = function render() {
       }
     }
   }), _vm._v(" "), _c('Icon', {
+    class: [_vm.classPrefix + "__refresh-left"],
     attrs: {
       "type": "refresh"
     },
@@ -39776,6 +39781,10 @@ src_skeleton.Item = src_skeletonItem;
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -39869,7 +39878,7 @@ src_skeleton.Item = src_skeletonItem;
     }
   }
 });
-// CONCATENATED MODULE: ./node_modules/_babel-loader@8.1.0@babel-loader/lib?sourceMap!./node_modules/_vue-loader@14.2.4@vue-loader/lib/template-compiler?{"id":"data-v-0825f408","hasScoped":false,"optionsId":"0","buble":{"transforms":{}}}!./node_modules/_vue-loader@14.2.4@vue-loader/lib/selector.js?type=template&index=0!./packages/cascader/src/cascaderItem.vue
+// CONCATENATED MODULE: ./node_modules/_babel-loader@8.1.0@babel-loader/lib?sourceMap!./node_modules/_vue-loader@14.2.4@vue-loader/lib/template-compiler?{"id":"data-v-1631f335","hasScoped":false,"optionsId":"0","buble":{"transforms":{}}}!./node_modules/_vue-loader@14.2.4@vue-loader/lib/selector.js?type=template&index=0!./packages/cascader/src/cascaderItem.vue
 var cascaderItem_render = function render() {
   var _vm = this;
 
@@ -39919,16 +39928,14 @@ var cascaderItem_render = function render() {
         "type": "right"
       }
     }) : _vm._e()], 1)];
-  })], 2)], 1), _vm._v(" "), _c('div', {
-    class: [_vm.classPrefix + "__expand"]
-  }, [_vm._l(_vm.data, function (item) {
+  })], 2)], 1), _vm._v(" "), _vm._l(_vm.data, function (item) {
     return [item.children && item.children.length && item.__visible ? _c('cascader-item', {
       key: item.value,
       attrs: {
         "data": item.children
       }
     }) : _vm._e()];
-  })], 2)]);
+  })], 2);
 };
 
 var cascaderItem_staticRenderFns = [];
