@@ -7,7 +7,9 @@
 <h1 align="center">Monkey-UI</h1>
 <h3 align="center">A high quality UI by Vue.js 2.0 for web.</h3>
 
-## 组件尚未完善，后续更新中...
+
+[![Monkey UI](https://img.shields.io/npm/v/monkey-ui)](https://www.npmjs.org/package/monkey-ui)
+[![License MIT](https://img.shields.io/badge/License-MIT-brightgreen)](License)
 
 ## Docs
 
