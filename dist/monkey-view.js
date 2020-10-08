@@ -36624,7 +36624,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 var API = src_objectSpread({
-  version: '0.1.0',
+  version: '0.1.0-alpha.0',
   locale: locale.use,
   i18n: locale.i18n,
   install: src_install,
