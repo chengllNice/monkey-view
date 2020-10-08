@@ -59,8 +59,8 @@ Join discussion group with QQ scan code
 
 If you find MonkeyUI useful
 
-<img width="200" src="https://chengllnice.github.io/static/images/monkey-ui/monkey-ui-pay-wechat.jpg" />
-<img width="200" src="https://chengllnice.github.io/static/images/monkey-ui/monkey-ui-pay-al.png" />
+<img width="200" src="https://chengllnice.github.io/static/images/monkey-ui/monkey-ui-pay-wechat.png" />
+<img width="200" src="https://chengllnice.github.io/static/images/monkey-ui/monkey-ui-pay-al.jpg" />
 
 
 ## License
