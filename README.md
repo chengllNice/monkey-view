@@ -41,6 +41,13 @@ Vue.component(Button.name, Button)
 Modern browsers and Internet Explorer 10+.
 
 
+## Join Discussion Group
+
+Join discussion group with QQ scan code
+
+![](https://chengllnice.github.io/static/images/monkey-ui/monkey-ui-qq.jpg)
+
+
 ## License
 [MIT](LICENSE)
 
