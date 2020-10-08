@@ -1,6 +1,6 @@
 .DS_Store
 node_modules
-docs-dist
+dist-docs
 examples
 build/md-loader
 
