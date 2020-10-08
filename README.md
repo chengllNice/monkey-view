@@ -11,8 +11,8 @@
 [![Monkey View](https://travis-ci.com/chengllNice/monkey-view.svg?branch=master&status=passed)](https://www.npmjs.com/package/monkey-view)
 [![Monkey View](https://img.shields.io/npm/dm/monkey-view?color=brightgreen)](hhttps://www.npmjs.com/package/monkey-view)
 [![Monkey View](https://img.shields.io/npm/v/monkey-view?color=blue)](hhttps://www.npmjs.com/package/monkey-view)
-[![Monkey View](https://img.badgesize.io/https:/unpkg.com/monkey-view/dist/monkey-view.min.js?compression=gzip&label=gzip%20size:%20JS)](hhttps://www.npmjs.com/package/monkey-view)
-[![Monkey View](https://img.badgesize.io/https:/unpkg.com/monkey-view/dist/styles/monkey-view.css?label=gzip%20size%3A%20CSS&compression=gzip)](hhttps://www.npmjs.com/package/monkey-view)
+[![Monkey View](https://img.badgesize.io/https:/unpkg.com/monkey-view@0.1.0-alpha.0/dist/monkey-view.min.js?compression=gzip&label=gzip%20size:%20JS)](hhttps://www.npmjs.com/package/monkey-view)
+[![Monkey View](https://img.badgesize.io/https:/unpkg.com/monkey-view@0.1.0-alpha.0/dist/styles/monkey-view.css?label=gzip%20size%3A%20CSS&compression=gzip)](hhttps://www.npmjs.com/package/monkey-view)
 [![License MIT](https://img.shields.io/badge/License-MIT-green)](License)
 
 ## Docs
