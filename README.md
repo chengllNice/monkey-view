@@ -17,7 +17,7 @@
 
 ## Docs
 
-**[0.1](https://chengllnice.github.io/monkey-ui/)**
+<a href="https://chengllnice.github.io/monkey-ui/" target="_blank">0.1</a>
 
 
 ## Install
