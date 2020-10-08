@@ -29,8 +29,6 @@ if [[ -z $opt_commit || -z $opt_version ]]; then
     exit 0
 fi
 
-cd ../
-
 mkdir temp-docs
 
 npm run build:docs
@@ -49,8 +47,8 @@ mkdir $opt_version
 
 cd ../../../
 
-mv dist-docs/ temp-docs/chengllNice.github.io/monkey-view/$opt_version
-mv dist-docs/ temp-docs/chengllNice.github.io/monkey-view
+cp dist-docs/ temp-docs/chengllNice.github.io/monkey-view/$opt_version
+cp dist-docs/ temp-docs/chengllNice.github.io/monkey-view
 
 rm -rf dist-docs
 
