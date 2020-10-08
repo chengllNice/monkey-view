@@ -41,7 +41,7 @@ echo "git clone start..."
 git clone https://github.com/chengllNice/chengllNice.github.io.git
 echo "git clone end..."
 
-cd chengllNice.github.io/monkey-ui
+cd chengllNice.github.io/monkey-view
 
 rm -rf $opt_version
 
@@ -49,8 +49,8 @@ mkdir $opt_version
 
 cd ../../../
 
-mv dist-docs/ temp-docs/chengllNice.github.io/monkey-ui/$opt_version
-mv dist-docs/ temp-docs/chengllNice.github.io/monkey-ui
+mv dist-docs/ temp-docs/chengllNice.github.io/monkey-view/$opt_version
+mv dist-docs/ temp-docs/chengllNice.github.io/monkey-view
 
 rm -rf dist-docs
 

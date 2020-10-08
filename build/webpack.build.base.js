@@ -65,7 +65,7 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.vue'],
         alias: {
-            'monkey-ui': resolve('/'),
+            'monkey-view': resolve('/'),
             packages: resolve('packages'),
             examples: resolve('examples'),
             main: resolve('src')

@@ -14,7 +14,7 @@ module.exports = merge(webpackBaseConfig, {
     output: {
         path: path.resolve(__dirname, '../dist'),
         publicPath: '/dist/',
-        filename: 'monkey-ui.js',
+        filename: 'monkey-view.js',
         library: 'MONKEY',
         libraryTarget: 'umd',
         libraryExport: 'default',

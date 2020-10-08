@@ -13,7 +13,7 @@ gulp.task('css', () => {
         .pipe(autoprefixer())
         .pipe(cleanCSS())
         .pipe(uglifycss())
-        .pipe(rename('monkey-ui.css'))
+        .pipe(rename('monkey-view.css'))
         .pipe(gulp.dest('../dist/styles'));
 });
 

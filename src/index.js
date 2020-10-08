@@ -110,7 +110,7 @@ const components = {
     Icon
 };
 
-const monkeyUI = {
+const monkeyView = {
     ...components,
     mButton: Button,
     mCol: Col,
@@ -135,8 +135,8 @@ const install = (Vue, opts = {}) => {
     locale.use(opts.locale);
     locale.i18n(opts.i18n);
 
-    Object.keys(monkeyUI).forEach(key => {
-        Vue.component(key, monkeyUI[key]);
+    Object.keys(monkeyView).forEach(key => {
+        Vue.component(key, monkeyView[key]);
     });
 
     directive(Vue);
