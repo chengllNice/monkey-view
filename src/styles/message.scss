@@ -1,0 +1,83 @@
+@import "./base/var";
+@import "./mixins/index.scss";
+
+@include c(message) {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: $--color-white;
+    box-shadow: $--box-shadow-default;
+    padding: $--message-vertical-padding $--message-horizontal-padding;
+    font-size: $--font-size-default;
+    border-radius: $--border-radius-default;
+    transition: top $--animation-time;
+    line-height: normal;
+    color: $--color-text-default;
+
+    @include e(icon) {
+        margin-right: 5px;
+        font-size: $--message-icon-font-size;
+        vertical-align: middle;
+    }
+
+    @include e(icon-closable) {
+        margin-left: 30px;
+        font-size: #{$--message-icon-font-size - 4px};
+        color: $--color-text-icon;
+        vertical-align: middle;
+        cursor: pointer;
+        &:hover {
+            color: $--color-text-default;
+        }
+    }
+
+    @include e(content) {
+        vertical-align: middle;
+    }
+
+    @include m(info) {
+        @include m(background, false, true) {
+            background-color: mix($--color-info, $--color-white, 10%);
+            box-shadow: none;
+            border: 1px solid mix($--color-info, $--color-white, 30%);
+        }
+        @include e(icon, false) {
+            color: $--color-info;
+        }
+    }
+    @include m(success) {
+        @include m(background, false, true) {
+            background-color: mix($--color-success, $--color-white, 10%);
+            box-shadow: none;
+            border: 1px solid mix($--color-success, $--color-white, 30%);
+        }
+        @include e(icon, false) {
+            color: $--color-success;
+        }
+    }
+    @include m(error) {
+        @include m(background, false, true) {
+            background-color: mix($--color-danger, $--color-white, 10%);
+            box-shadow: none;
+            border: 1px solid mix($--color-danger, $--color-white, 30%);
+        }
+        @include e(icon, false) {
+            color: $--color-danger;
+        }
+    }
+    @include m(warning) {
+        @include m(background, false, true) {
+            background-color: mix($--color-warning, $--color-white, 10%);
+            box-shadow: none;
+            border: 1px solid mix($--color-warning, $--color-white, 30%);
+        }
+        @include e(icon, false) {
+            color: $--color-warning;
+        }
+    }
+    @include m(loading) {
+        @include e(icon, false) {
+            color: $--color-default;
+        }
+    }
+}

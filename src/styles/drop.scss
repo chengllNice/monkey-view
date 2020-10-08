@@ -1,0 +1,19 @@
+@import "./base/var";
+@import "./mixins/index.scss";
+
+@include c(drop) {
+    display: inline-block;
+    padding: 5px 0;
+    box-sizing: border-box;
+    z-index: $--popover-z-index;
+    width: inherit;
+    //min-width: 150px;
+
+
+    &[x-placement^="top"], &[x-placement^="bottom"] {
+        padding: 5px 0;
+    }
+    &[x-placement^="left"], &[x-placement^="right"] {
+        padding: 0 5px;
+    }
+}

@@ -1,0 +1,216 @@
+@import "./base/var";
+@import "./base/config";
+@import "./mixins/index.scss";
+
+@mixin button-type($type) {
+    $background-color: $--color-white;
+    $font-color: $--color-text-default;
+    $border-color: $--button-border-color-default;
+
+    @if ($type == 'primary') {
+        $background-color: $--color-primary;
+        $font-color: $--color-white;
+        $border-color: $--button-border-color-primary;
+    } @else if ($type == 'danger') {
+        $background-color: $--color-danger;
+        $font-color: $--color-white;
+        $border-color: $--button-border-color-danger;
+    } @else if ($type == 'warning') {
+        $background-color: $--color-warning;
+        $font-color: $--color-white;
+        $border-color: $--button-border-color-warning;
+    } @else if ($type == 'success') {
+        $background-color: $--color-success;
+        $font-color: $--color-white;
+        $border-color: $--button-border-color-success;
+    } @else if ($type == 'info') {
+        $background-color: $--color-info;
+        $font-color: $--color-white;
+        $border-color: $--button-border-color-info;
+    } @else if ($type == 'text') {
+        $background-color: transparent;
+        $font-color: $--button-font-color-text;
+        $border-color: transparent;
+    }
+
+    background-color: $background-color;
+    color: $font-color;
+    border-color: $border-color;
+
+    $hover-background-color: mix($--color-white, $background-color, $--button-hover-percent);
+    $hover-font-color: $--color-white;
+    $hover-border-color: mix($--color-white, $border-color, $--button-hover-percent);
+
+    $active-background-color: mix($--color-black, $background-color, $--button-active-percent);
+    $active-font-color: $--color-white;
+    $active-border-color: mix($--color-black, $border-color, $--button-active-percent);
+
+    $disabled-background-color: mix($background-color, $--color-white);
+    $disabled-font-color: $--color-white;
+    $disabled-border-color: mix($border-color, $--color-white);
+
+    @if ($type == 'default') {
+        $hover-background-color: $--color-white;
+        $hover-font-color: $--color-primary;
+        $hover-border-color: $--color-primary;
+
+        $active-background-color: $--color-white;
+        $active-font-color: mix($--color-black, $--color-primary, $--button-active-percent);
+        $active-border-color: mix($--color-black, $--color-primary, $--button-active-percent);
+
+        $disabled-background-color: $--color-white;
+        $disabled-font-color: $--color-text-disabled;
+        $disabled-border-color: $--border-color-disabled;
+    } @else if ($type == 'text') {
+        $hover-background-color: transparent;
+        $hover-font-color: mix($--color-black, $--button-font-color-text, 10%);
+        $hover-border-color: transparent;
+
+        $active-background-color: transparent;
+        $active-font-color: mix($--color-black, $--button-font-color-text, 20%);
+        $active-border-color: transparent;
+
+        $disabled-background-color: transparent;
+        $disabled-font-color: $--color-text-disabled;
+        $disabled-border-color: transparent;
+    }
+
+    &:not(.is-disabled):not(.is-loading):hover,
+    &:not(.is-disabled):not(.is-loading):focus {
+        color: $hover-font-color;
+        background-color: $hover-background-color;
+        border-color: $hover-border-color;
+    }
+
+    &:not(.is-disabled):not(.is-loading):active {
+        color: $active-font-color;
+        background-color: $active-background-color;
+        border-color: $active-border-color;
+    }
+
+    &.is-disabled, &.is-loading {
+        &,
+        &:hover,
+        &:focus,
+        &:active {
+            cursor: not-allowed;
+            color: $disabled-font-color;
+            background-color: $disabled-background-color;
+            border-color: $disabled-border-color;
+        }
+    }
+    &.is-loading {
+        &,
+        &:hover,
+        &:focus,
+        &:active {
+            cursor: default;
+        }
+    }
+}
+
+@mixin button-size($size) {
+    $height: $--height-default;
+    $padding-horizontal: $--button-padding-horizontal-default;
+    $font-size: $--font-size-default;
+    $border-radius: $--border-radius-default;
+    @if ($size == 'mini') {
+        $height: $--height-mini;
+        $padding-horizontal: $--button-padding-horizontal-mini;
+        $font-size: $--font-size-mini;
+    } @else if ($size == 'small') {
+        $height: $--height-small;
+        $padding-horizontal: $--button-padding-horizontal-small;
+        $font-size: $--font-size-small;
+    } @else if ($size == 'large') {
+        $height: $--height-large;
+        $padding-horizontal: $--button-padding-horizontal-large;
+        $font-size: $--font-size-large;
+    }
+
+    height: $height;
+    line-height: $height;
+    padding-left: $padding-horizontal;
+    padding-right: $padding-horizontal;
+    font-size: $font-size;
+    border-radius: $border-radius;
+
+
+    @include m(circle, false, true) {
+        width: $height;
+        border-radius: $height;
+        padding: 0;
+    }
+    @include m(circle-text, false, true) {
+        width: auto;
+        padding: 0 $padding-horizontal;
+    }
+}
+
+
+@include c(button) {
+    display: inline-block;
+    line-height: 1;
+    outline: none;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all $--animation-time ease-in-out;
+    border-width: $--border-width-default;
+    border-style: $--border-style-default;
+
+    & [class*='m-icon-'] {
+        & + span {
+            margin-left: 5px;
+        }
+    }
+
+    @include m(type-default) {
+        @include button-type(default);
+    }
+
+    @include m(type-primary) {
+        @include button-type(primary);
+    }
+
+    @include m(type-danger) {
+        @include button-type(danger);
+    }
+
+    @include m(type-warning) {
+        @include button-type(warning);
+    }
+
+    @include m(type-success) {
+        @include button-type(success);
+    }
+
+    @include m(type-info) {
+        @include button-type(info);
+    }
+
+    @include m(type-text) {
+        @include button-type(text);
+    }
+
+
+    @include m(size-mini) {
+        @include button-size(mini);
+    }
+
+    @include m(size-small) {
+        @include button-size(small);
+    }
+
+    @include m(size-default) {
+        @include button-size(default);
+    }
+
+    @include m(size-large) {
+        @include button-size(large);
+    }
+
+    @include m(block) {
+        width: 100%;
+        display: block;
+    }
+}

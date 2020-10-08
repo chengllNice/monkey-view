@@ -1,0 +1,411 @@
+@import "./base/var";
+@import "./mixins/index.scss";
+
+
+@mixin inputSize($size) {
+    $height: $--height-default;
+    $font-size: $--font-size-default;
+    $padding-append: $--button-padding-horizontal-default;
+    $padding-input: $--input-padding-horizontal-default;
+    @if ($size == 'mini') {
+        $height: $--height-mini;
+        $font-size: $--font-size-mini;
+        $padding-append: $--button-padding-horizontal-mini;
+        $padding-input: $--input-padding-horizontal-mini;
+    } @else if ($size == 'small') {
+        $height: $--height-small;
+        $font-size: $--font-size-small;
+        $padding-append: $--button-padding-horizontal-small;
+        $padding-input: $--input-padding-horizontal-small;
+    } @else if ($size == 'large') {
+        $height: $--height-large;
+        $font-size: $--font-size-large;
+        $padding-append: $--button-padding-horizontal-large;
+        $padding-input: $--input-padding-horizontal-large;
+    }
+
+    font-size: $font-size;
+    @include e(source, false) {
+        height: $height;
+        font-size: $font-size;
+        padding-left: $padding-input;
+        padding-right: $padding-input;
+    }
+
+    //input
+    @include e(source-prefix, false) {
+        padding-left: $--input-suffix-width;
+    }
+    @include e(source-suffix, false) {
+        padding-right: $--input-suffix-width;
+    }
+    @include e((prepend, append), false) {
+        height: $height;
+        padding: 0 $padding-append;
+
+        @include ci(select) {
+            height: #{$height - 2px};
+            margin: 0 -#{$padding-append + 1px};
+            input {
+                min-height: auto;
+                height: #{$height - 2px};
+
+                &:focus {
+                    box-shadow: none;
+                }
+            }
+            //@include e(suffix, false){
+            //  line-height: #{$height - 2px};
+            //}
+        }
+    }
+
+    @include e((prefix, suffix), false) {
+        font-size: $font-size;
+    }
+
+    //number
+    @include m(number, false, true) {
+        @include e(source-prefix, false) {
+            padding-left: #{$--input-suffix-width + $padding-input};
+        }
+        @include e(source-suffix, false) {
+            padding-right: #{$--input-suffix-width + $padding-input};
+        }
+    }
+}
+
+@mixin textareaSize($size) {
+    $height: $--height-default;
+    $font-size: $--font-size-default;
+    $padding-input: $--input-padding-horizontal-default;
+    @if ($size == 'mini') {
+        $height: $--height-mini;
+        $font-size: $--font-size-mini;
+        $padding-input: $--input-padding-horizontal-mini;
+    } @else if ($size == 'small') {
+        $height: $--height-small;
+        $font-size: $--font-size-small;
+        $padding-input: $--input-padding-horizontal-small;
+    } @else if ($size == 'large') {
+        $height: $--height-large;
+        $font-size: $--font-size-large;
+        $padding-input: $--input-padding-horizontal-large;
+    }
+    @include e(source, false) {
+        min-height: $height;
+        font-size: $font-size;
+        padding-left: $padding-input;
+        padding-right: $padding-input;
+    }
+}
+
+@include c(input) {
+    display: table;
+    line-height: normal;
+    //transition: border-color $--animation-time ease-in-out;
+    position: relative;
+    //top: -1px;
+    width: 100%;
+    //vertical-align: middle;
+    border-collapse: separate;
+
+    &:hover,
+    &:focus,
+    &:active {
+        @include e(source, false) {
+            border-color: $--color-primary;
+        }
+    }
+
+
+    @include e(source, false) {
+        display: table-cell;
+        outline: none;
+        box-sizing: border-box;
+        width: 100%;
+        vertical-align: middle;
+        border-radius: $--border-radius-default;
+        background-color: $--color-white;
+        border: $--border-default;
+        color: $--color-text-default;
+        transition: border-color $--animation-time ease-in-out, box-shadow $--animation-time ease-in-out;
+        position: relative;
+
+        &, &:after, &:before {
+            box-sizing: border-box;
+        }
+
+        &::placeholder {
+            color: $--color-text-placeholder;
+        }
+
+        &:focus {
+            border-color: $--color-primary;
+            box-shadow: 0 0 0 2px mix($--color-primary, $--color-white, $--button-hover-percent);
+        }
+    }
+    @include e(source-prepend, false) {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+    @include e(source-append, false) {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    @include e((prepend, append), false) {
+        display: table-cell;
+        box-sizing: border-box;
+        vertical-align: middle;
+        width: 1px;
+        position: relative;
+        color: $--color-text-icon;
+        cursor: default;
+        border: $--border-default;
+        background-color: $--input-background-color-append-prepend;
+        border-radius: $--border-radius-default;
+
+        @include ci(select) {
+            vertical-align: middle;
+            input {
+                background-color: transparent;
+                border: none;
+                color: $--color-text-icon;
+            }
+        }
+    }
+    @include e(prepend, false) {
+        border-right: none;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+    @include e((append, append-button), false) {
+        border-left: none;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+
+    @include e((prefix, suffix), false) {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        z-index: 2;
+        text-align: center;
+        width: $--input-suffix-width;
+        box-sizing: border-box;
+        height: calc(100% - 2px);
+
+        @include e((prefix-slot, suffix-slot), false) {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @include e((suffix-icon, prefix-icon), false) {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            cursor: pointer;
+            &::before {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+        @include e((suffix-step, prefix-step), false) {
+            background-color: $--background-color-base;
+            &:hover,
+            &:focus,
+            &:active {
+                color: $--color-primary;
+            }
+        }
+        @include e(suffix-step, false) {
+            border-left: $--border-default;
+        }
+        @include e(prefix-step, false) {
+            border-right: $--border-default;
+        }
+        @include e(suffix-step-up, false) {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 50%;
+            width: 100%;
+            cursor: pointer;
+            border-bottom: $--border-default;
+        }
+        @include e(suffix-step-down, false) {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 50%;
+            width: 100%;
+            cursor: pointer;
+        }
+        @include e(step-disabled, false) {
+            color: $--color-text-disabled;
+            background-color: $--background-color-disabled;
+            cursor: not-allowed;
+            &:hover,
+            &:focus,
+            &:active {
+                color: $--color-text-disabled;
+            }
+        }
+
+    }
+    @include e(prefix, false) {
+        left: 1px;
+    }
+    @include e(suffix, false) {
+        right: 1px;
+    }
+    @include e(suffix-limit, false) {
+        height: calc(100% - 2px);
+        position: absolute;
+        padding-right: 10px;
+        padding-left: 10px;
+        top: 50%;
+        right: 1px;
+        transform: translateY(-50%);
+        display: flex;
+        align-items: center;
+        text-align: right;
+        background-color: $--color-white;
+        color: $--color-text-icon;
+    }
+
+
+    @include m(mini) {
+        @include inputSize(mini);
+    }
+    @include m(small) {
+        @include inputSize(small);
+    }
+    @include m(default) {
+        @include inputSize(default);
+    }
+    @include m(large) {
+        @include inputSize(large);
+    }
+    //抵消 size 带来的padding
+    @include e(append-button-wrap, false) {
+        padding: 0;
+        border: none;
+        background-color: transparent;
+    }
+
+
+    @include when(disabled) {
+        cursor: not-allowed;
+        @include e(source, false) {
+            cursor: not-allowed;
+            background-color: $--background-color-disabled;
+            border-color: $--border-color-disabled;
+            color: $--color-text-disabled;
+
+            &:hover,
+            &:focus,
+            &:active {
+                border-color: $--border-color-disabled;
+            }
+        }
+
+        @include e((prefix-icon, suffix-icon), false) {
+            cursor: not-allowed;
+            color: $--color-text-disabled;
+            &:hover,
+            &:focus,
+            &:active {
+                color: $--color-text-disabled;
+            }
+        }
+    }
+}
+
+@include c(textarea) {
+    display: inline-block;
+    width: 100%;
+    line-height: normal;
+    transition: all $--animation-time ease-in-out;
+    position: relative;
+    //vertical-align: middle;
+    border-collapse: separate;
+
+    @include e(source, false) {
+        max-width: 100%;
+        width: 100%;
+        vertical-align: middle;
+        outline: none;
+        box-sizing: border-box;
+        transition: all $--animation-time ease-in-out;
+        height: auto;
+        border-radius: $--border-radius-default;
+        background-color: $--color-white;
+        border: $--border-default;
+        padding-top: $--input-padding-vertical-default;
+        padding-bottom: $--input-padding-vertical-default;
+        color: $--color-text-default;
+
+        &::placeholder {
+            color: $--color-text-placeholder;
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+            border-color: $--color-primary;
+        }
+
+        &:focus {
+            box-shadow: 0 0 0 2px mix($--color-primary, $--color-white, $--button-hover-percent);
+        }
+    }
+
+    @include e(suffix-limit, false) {
+        position: absolute;
+        padding: 5px 10px;
+        bottom: 1px;
+        right: 1px;
+        color: $--color-text-icon;
+    }
+
+    @include when(disabled) {
+        cursor: not-allowed;
+        @include e(source, false) {
+            cursor: not-allowed;
+            background-color: $--background-color-disabled;
+            border-color: $--border-color-disabled;
+            color: $--color-text-disabled;
+
+            &:hover,
+            &:focus,
+            &:active {
+                border-color: $--border-color-disabled;
+            }
+        }
+    }
+
+    @include m(mini) {
+        @include textareaSize(mini);
+    }
+
+    @include m(small) {
+        @include textareaSize(small);
+    }
+
+    @include m(default) {
+        @include textareaSize(default);
+    }
+
+    @include m(large) {
+        @include textareaSize(large);
+    }
+}

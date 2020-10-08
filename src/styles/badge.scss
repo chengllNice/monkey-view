@@ -1,0 +1,156 @@
+@import "./base/var";
+@import "./mixins/index.scss";
+
+$sup-height-half: #{$--badge-sup-height / 2};
+
+@include c(badge) {
+    display: inline-block;
+    position: relative;
+
+    @include e(sup) {
+        font-family: 'Monospaced Number';
+        display: inline-block;
+        box-sizing: border-box;
+        position: absolute;
+        top: -$sup-height-half;
+        right: 0;
+        z-index: 1;
+        transform: translateX(50%);
+        height: $--badge-sup-height;
+        border-radius: $sup-height-half;
+        border: 1px solid transparent;
+        color: $--color-white;
+        font-size: $--badge-sup-font-size;
+        min-width: $--badge-sup-height;
+        background-color: $--color-danger;
+        box-shadow: 0 0 0 1px $--color-white;
+        line-height: #{$--badge-sup-height - 2px};
+        vertical-align: middle;
+        text-align: center;
+        padding: 0 6px;
+        @include utils-ellipsis();
+    }
+
+    @include m(dot) {
+        @include e(sup, false) {
+            width: 8px;
+            height: 8px;
+            border-radius: 4px;
+            top: -4px;
+            padding: 0;
+            min-width: 8px;
+        }
+    }
+
+    @include m(alone) {
+        @include e(sup, false) {
+            position: relative;
+            top: auto;
+            transform: translateX(0);
+        }
+    }
+
+    @include m(primary) {
+        @include e(sup, false) {
+            background-color: $--color-primary;
+        }
+    }
+
+    @include m(success) {
+        @include e(sup, false) {
+            background-color: $--color-success;
+        }
+    }
+
+    @include m(error) {
+        @include e(sup, false) {
+            background-color: $--color-danger;
+        }
+    }
+
+    @include m(warning) {
+        @include e(sup, false) {
+            background-color: $--color-warning;
+        }
+    }
+
+    @include m(info) {
+        @include e(sup, false) {
+            background-color: $--color-info;
+        }
+    }
+
+
+    @include m(status) {
+        @include e(sup, false) {
+            width: 8px;
+            height: 8px;
+            border-radius: 4px;
+            position: relative;
+            top: auto;
+            transform: translateX(0);
+            padding: 0;
+            min-width: 8px;
+        }
+
+        @include e(status-text, false) {
+            margin-left: 6px;
+        }
+    }
+
+    @include m(status-success) {
+        @include e(sup, false) {
+            background-color: $--color-success;
+        }
+    }
+
+    @include m(status-error) {
+        @include e(sup, false) {
+            background-color: $--color-danger;
+        }
+    }
+
+    @include m(status-warning) {
+        @include e(sup, false) {
+            background-color: $--color-warning;
+        }
+    }
+
+    @include m(status-default) {
+        @include e(sup, false) {
+            background-color: $--background-color-base;
+        }
+    }
+
+    @include m(status-processing) {
+        @include e(sup, false) {
+            background-color: $--color-primary;
+            overflow: inherit;
+            position: relative;
+
+            &:after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border: 1px solid $--color-primary;
+                border-radius: 50%;
+                box-sizing: border-box;
+                animation: statusProcessing 1.2s ease-in-out infinite;
+            }
+        }
+    }
+}
+
+@keyframes statusProcessing {
+    from {
+        transform: scale(0.8);
+        opacity: 0.5;
+    }
+    to {
+        transform: scale(2.4);
+        opacity: 0;
+    }
+}

@@ -1,0 +1,59 @@
+@import "../base/var";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    :after, :before {
+        box-sizing: border-box;
+    }
+}
+
+body {
+    font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, 微软雅黑, Arial, sans-serif;
+    font-weight: 400;
+    font-size: $--font-size-default;
+    color: $--color-text-default;
+    -webkit-font-smoothing: antialiased;
+    line-height: $--line-height-default;
+}
+
+a {
+    color: $--color-primary;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+        color: mix($--color-white, $--color-primary, $--button-hover-percent);
+    }
+
+    &:active {
+        color: mix($--color-black, $--color-primary, $--button-active-percent);
+    }
+}
+
+h1 {
+    font-size: #{$--font-size-default + 6px};
+}
+
+h2 {
+    font-size: #{$--font-size-default + 4px};
+}
+
+h3 {
+    font-size: #{$--font-size-default + 2px};
+}
+
+h4, h5, h6, p {
+    font-size: inherit;
+}
+
+textarea {
+    font-family: inherit;
+}
+
+//img {
+//    vertical-align: middle;
+//}
+
