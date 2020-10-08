@@ -185,7 +185,7 @@
 
     @include e(title) {
         padding: 7px 16px;
-        color: $--color-text-legend;
+        color: $--color-text-des;
     }
 
     @include e(wrap) {
@@ -236,12 +236,12 @@
     @include m(disabled) {
         background-color: $--background-color-disabled;
         border-color: $--border-color-disabled;
-        color: $--color-disabled;
+        color: $--color-text-disabled;
         cursor: not-allowed;
 
         @include e((multiple-input, multiple-tag), false) {
             cursor: not-allowed;
-            color: $--color-disabled;
+            color: $--color-text-disabled;
         }
     }
 

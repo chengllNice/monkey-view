@@ -23,34 +23,30 @@ $--color-info: #13c2c2 !default;
 //$--color-info: #2db7f5 !default;
 $--color-white: #ffffff !default;
 $--color-black: #000000 !default;
-$--color-expand: #c0c4cc !default;
-$--color-disabled: #dcdee2 !default;
 
 /*-----Animation-----*/
 $--animation-time: 0.3s;
-//$--animation-time-: 0.4s;
 
 
 /*-----text-color-----*/
 $--color-text-default: #515a6e !default;
-$--color-text-placeholder: $--color-expand !default;
-$--color-text-disabled: $--color-disabled !default;
+$--color-text-placeholder: #c0c4cc !default;
+$--color-text-disabled: #dcdee2 !default;
 $--color-text-icon: #808695 !default;
-$--color-text-des: #999999 !default;
+$--color-text-des: #808695 !default;
 $--color-text-title: #17233d !default;
-$--color-text-legend: #999999 !default;
 $--color-text-empty: #999999 !default;
 
 
 /*-----border-color-----*/
 $--border-color-default: #e9e9eb !default; //#dcdee2 #e9e9eb
 $--border-color-disabled: #e8e8e8 !default; //#c5c8ce
-$--border-color-primary: #2d8cf0 !default;
-$--border-color-danger: #ed4014 !default;
-$--border-color-warning: #f8ac59 !default;
-$--border-color-success: #19be6b !default;
+$--border-color-primary: $--color-primary !default;
+$--border-color-danger: $--color-danger !default;
+$--border-color-warning: $--color-warning !default;
+$--border-color-success: $--color-success !default;
 //$--border-color-success: #42b983 !default;
-$--border-color-info: #13c2c2 !default;
+$--border-color-info: $--color-info !default;
 
 
 /*-----background-color-----*/
@@ -72,17 +68,16 @@ $--border-default: $--border-width-default $--border-style-default $--border-col
 /*-----box-shadow-----*/
 //$--box-shadow-default: 0 2px 12px 0 rgba(0, 0, 0, .1) !default;
 $--box-shadow-default: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04) !default;
-//card
-$--box-shadow-content: 0 1px 6px rgba(0, 0, 0, 0.2) !default;
-
 
 /*-----font-----*/
-$--font-size-base: 14px !default;
 $--font-size-default: 14px !default;
 $--font-size-small: 12px !default;
 $--font-size-mini: 10px !default;
 $--font-size-large: 16px !default;
 $--font-size-title: 16px !default;
+
+$--font-path: './fonts' !default;
+$--font-family: 'iconfont' !default;
 
 
 /*-----zIndex-----*/
@@ -109,6 +104,8 @@ $--media-points: (
         'xxl': (min-width: $--xxl),
 );
 
+/*-----card-----*/
+$--card-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2) !default;
 
 /*-----page-----*/
 $--page-jump-color: $--color-text-des !default;
@@ -166,7 +163,7 @@ $--menu-theme-light-active-background-color: $--background-color-hover !default;
 $--menu-theme-light-active-border-color: mix($--color-white, $--color-primary, 80%) !default;
 $--menu-theme-light-font-color: $--color-text-default !default;
 $--menu-theme-light-horizontal-border-color: $--border-color-primary !default;
-$--menu-theme-light-group-title-font-color: #909399 !default;
+$--menu-theme-light-group-title-font-color: $--color-text-des !default;
 
 $--menu-theme-dark-background-color: #344058 !default;
 $--menu-theme-dark-active-background-color: #252d3d !default;

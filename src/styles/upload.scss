@@ -42,13 +42,8 @@ $picture-thumbnial-height: #{$--upload-picture-height - $--upload-picture-paddin
             border-color: $--border-color-primary;
         }
 
-        //@include e(target-slot, false){
-        //  transform: translateY(50%);
-        //}
-
         i {
             font-size: 32px;
-            color: $--color-text-legend;
         }
     }
 
@@ -66,7 +61,7 @@ $picture-thumbnial-height: #{$--upload-picture-height - $--upload-picture-paddin
         border: $--border-default;
         border-style: dashed;
         vertical-align: top;
-        color: $--color-text-legend;
+        color: $--color-text-des;
         border-radius: $--border-radius-default;
         transition: all $--animation-time;
         position: relative;
@@ -80,7 +75,6 @@ $picture-thumbnial-height: #{$--upload-picture-height - $--upload-picture-paddin
 
         i {
             font-size: 32px;
-            color: $--color-text-legend;
         }
     }
 

@@ -89,7 +89,7 @@
         justify-content: center;
     }
     @include e(image) {
-        //transition: all $--animation-time ease-in-out;
+        transition: all $--animation-time ease-in-out;
     }
 
     @include e(footer) {
@@ -111,6 +111,10 @@
                 opacity: 1;
             }
         }
+    }
+
+    @include e(refresh-left){
+        transform: rotateY(180deg);
     }
 
     @include e((left, right)) {

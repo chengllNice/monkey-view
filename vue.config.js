@@ -1,9 +1,9 @@
 const path = require('path');
 
 module.exports = {
-    publicPath: process.env.NODE_ENV === 'production'? '/monkey-ui' : '/',
-    runtimeCompiler: true,
-    assetsDir: 'static',
+    // publicPath: process.env.NODE_ENV === 'production'? '/monkey-ui' : '',
+    // runtimeCompiler: true,
+    // assetsDir: 'static',
     // 配置插件
     configureWebpack: {
         entry: path.resolve(__dirname, './examples/main.js'),
@@ -32,7 +32,7 @@ module.exports = {
                             loader: path.resolve(__dirname, './build/md-loader/index.js')
                         }
                     ],
-                },
+                }
             ]
         },
         devServer: {

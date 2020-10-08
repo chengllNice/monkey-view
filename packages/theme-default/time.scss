@@ -1,7 +1,0 @@
-@import "./base/var";
-@import "./mixins/index.scss";
-
-@include c(time){
-  font-size: $--font-size-default;
-  color: $--color-text-default;
-}

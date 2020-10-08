@@ -36,6 +36,8 @@
 }
 
 @include c(cascader-panel) {
+    height: 200px;
+    line-height: normal;
     @include m(border) {
         display: inline-block;
         background-color: $--color-white;
@@ -45,17 +47,21 @@
 }
 
 @include c(cascader-item) {
-    height: 200px;
+    height: 100%;
     vertical-align: top;
+    display: inline-block;
+    font-size: 0;
     @include utils-ellipsis();
 
     @include e(label) {
+        height: 100%;
+        font-size: $--font-size-default;
         display: inline-block;
-        height: 200px;
         min-width: $--cascader-panel-item-min-width;
         vertical-align: top;
         padding: 5px 0;
         overflow: hidden;
+        border-left: $--border-default;
     }
     @include e(label-inner) {
         padding: 8px 10px;
@@ -76,7 +82,7 @@
 
     @include e(label-inner-disabled) {
         cursor: not-allowed;
-        color: $--color-disabled;
+        color: $--color-text-disabled;
         background-color: $--background-color-disabled;
     }
 
@@ -86,14 +92,5 @@
         right: 10px;
         transform: translateY(-50%);
         font-size: 14px;
-    }
-
-    @include e(expand) {
-        height: 100%;
-        display: inline-block;
-
-        @include e(label, false) {
-            border-left: $--border-default;
-        }
     }
 }

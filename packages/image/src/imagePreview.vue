@@ -23,7 +23,7 @@
                     <Icon type="circle-plus" @click="handleAction('zoomIn')"></Icon>
                     <Icon type="remove" @click="handleAction('zoomOut')"></Icon>
                     <Icon :type="actionToggle === 'max' ? 'look' : 'renew'" @click="handleAction('toggle')"></Icon>
-                    <Icon type="refresh" @click="handleAction('rotateLeft')"></Icon>
+                    <Icon type="refresh" :class="[`${classPrefix}__refresh-left`]" @click="handleAction('rotateLeft')"></Icon>
                     <Icon type="refresh" @click="handleAction('rotateRight')"></Icon>
                 </div>
             </div>
@@ -128,12 +128,16 @@
                         break;
                     case 'toggle':
                         this.actionToggle = this.actionToggle === 'max' ? 'normal' : 'max';
+                        rotate = 0;
+                        scale = 1;
+                        this.transform.translateX = 0;
+                        this.transform.translateY = 0;
                         break;
                     case 'rotateLeft':
-                        rotate = rotate + this.everyRotate;
+                        rotate = rotate - this.everyRotate;
                         break;
                     case 'rotateRight':
-                        rotate = rotate - this.everyRotate;
+                        rotate = rotate + this.everyRotate;
                         break;
                 }
                 if (scale <= this.minScale) {

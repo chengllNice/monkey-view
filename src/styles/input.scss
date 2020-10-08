@@ -250,13 +250,13 @@
             cursor: pointer;
         }
         @include e(step-disabled, false) {
-            color: $--color-disabled;
+            color: $--color-text-disabled;
             background-color: $--background-color-disabled;
             cursor: not-allowed;
             &:hover,
             &:focus,
             &:active {
-                color: $--color-disabled;
+                color: $--color-text-disabled;
             }
         }
 

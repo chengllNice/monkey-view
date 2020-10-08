@@ -21,14 +21,18 @@
                 </template>
             </scroll>
         </div>
-
-        <div :class="[`${classPrefix}__expand`]">
-            <template v-for="item in data">
-                <cascader-item v-if="item.children && item.children.length && item.__visible"
-                                   :key="item.value"
-                                   :data="item.children"></cascader-item>
-            </template>
-        </div>
+        <template v-for="item in data">
+            <cascader-item v-if="item.children && item.children.length && item.__visible"
+                           :key="item.value"
+                           :data="item.children"></cascader-item>
+        </template>
+<!--        <div :class="[`${classPrefix}__expand`]">-->
+<!--            <template v-for="item in data">-->
+<!--                <cascader-item v-if="item.children && item.children.length && item.__visible"-->
+<!--                               :key="item.value"-->
+<!--                               :data="item.children"></cascader-item>-->
+<!--            </template>-->
+<!--        </div>-->
     </div>
 </template>
 

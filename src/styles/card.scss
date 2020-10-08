@@ -12,7 +12,7 @@
     &:hover,
     &:focus,
     &:active {
-        box-shadow: $--box-shadow-content;
+        box-shadow: $--card-box-shadow;
         border-color: mix($--color-white, $--border-color-default, 20%);
     }
 

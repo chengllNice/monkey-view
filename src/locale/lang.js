@@ -1,4 +1,3 @@
-// using with vue-i18n in CDN
 /*eslint-disable */
 import Vue from 'vue';
 const isServer = Vue.prototype.$isServer;
@@ -12,4 +11,5 @@ export default function (lang) {
             MONKEY.langs[lang.m.locale] = lang;
         }
     }
-};
+}
+/*eslint-enable */
