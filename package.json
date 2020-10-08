@@ -22,6 +22,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "lint": "vue-cli-service lint",
+    "test": "npm run lint",
     "clean": "rimraf dist",
     "build:prod": "webpack --config build/webpack.build.prod.js",
     "build:dev": "webpack --config build/webpack.build.dev.js",
