@@ -1,0 +1,41 @@
+.views {
+    height: 100%;
+    overflow: hidden;
+
+    .views-header {
+        background-color: #ffffff;
+        box-shadow: 0 2px 2px #e7eae5;
+    }
+
+    .views-layout {
+        flex: 1;
+        overflow: hidden;
+        margin-top: 10px;
+    }
+
+    .views-sider {
+        background-color: #ffffff;
+        position: relative;
+
+        &:after {
+            content: '';
+            width: 1px;
+            height: 100%;
+            position: absolute;
+            right: 0;
+            top: 0;
+            background-color: #dcdee2;
+        }
+    }
+
+    .views-main-content {
+        background-color: #ffffff;
+        overflow: auto;
+        position: relative;
+    }
+
+    .views-main-content-card {
+        overflow: hidden;
+        padding: 8px 0 8px 16px;
+    }
+}

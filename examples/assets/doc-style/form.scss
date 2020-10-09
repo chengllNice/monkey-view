@@ -1,0 +1,14 @@
+.doc-form-item-wrap {
+    position: relative;
+
+    .doc-form-unit {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}
+
+.doc-form-item-slider {
+    padding-right: 30px;
+}

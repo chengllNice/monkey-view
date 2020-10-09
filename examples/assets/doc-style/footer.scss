@@ -1,0 +1,22 @@
+
+.doc-footer {
+  margin-top: 50px;
+  padding: 50px;
+  height: auto;
+  line-height: 2;
+  background-color: #17233d;
+  color: #ffffff;
+  //opacity: 0.9;
+
+  a {
+    color: #ffffff;
+
+    &:hover,
+    &:focus {
+      color: #2d8cf0;
+    }
+    &:active {
+      color: #2d8cf0;
+    }
+  }
+}

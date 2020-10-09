@@ -1,0 +1,78 @@
+@import "~monkey-view/src/styles/base/var.scss";
+
+.doc-color{
+  border-radius: 2px;
+  padding: 20px;
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.doc-color-dark{
+  color: #657180;
+}
+
+.doc-color-row{
+  margin-bottom: 20px;
+}
+
+.doc-color-value{
+  font-size: 14px;
+  opacity: 0.6;
+}
+
+.doc-color-primary {
+  background-color: $--color-primary;
+}
+
+.doc-color-primary-light {
+  background-color: mix($--color-white, $--color-primary, $--button-hover-percent);
+}
+
+.doc-color-primary-dark {
+  background-color: mix($--color-black, $--color-primary, $--button-active-percent);
+}
+
+.doc-color-success {
+  background-color: $--color-success;
+}
+
+.doc-color-info {
+  background-color: $--color-info;
+}
+
+.doc-color-warning {
+  background-color: $--color-warning;
+}
+
+.doc-color-danger {
+  background-color: $--color-danger;
+}
+
+.doc-color-default{
+  background-color: $--color-text-default;
+}
+
+.doc-color-title{
+  background-color: $--color-text-title;
+}
+
+.doc-color-des{
+  background-color: $--color-text-des;
+}
+
+.doc-color-disabled{
+  background-color: $--color-text-disabled;
+}
+
+.doc-color-placeholder{
+  background-color: $--color-text-placeholder;
+}
+
+.doc-color-border{
+  background-color: $--border-color-default;
+}
+
+.doc-color-background{
+  background-color: $--background-color-base;
+}
