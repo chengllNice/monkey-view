@@ -27,8 +27,8 @@ import Card from '../packages/card'
 import Drawer from '../packages/drawer'
 import Table from '../packages/table'
 import Collapse from '../packages/collapse'
-import { Row, Col } from '../packages/grid'
-import { Tabs, TabPane } from '../packages/tabs'
+import Grid from '../packages/grid'
+import Tabs from '../packages/tabs'
 import Tree from '../packages/tree'
 import Page from '../packages/page'
 import List from '../packages/list'
@@ -45,6 +45,7 @@ import Image from '../packages/image'
 import Skeleton from '../packages/skeleton'
 import Cascader from '../packages/cascader'
 import Icon from '../packages/icon'
+import Timeline from '../packages/timeline'
 
 import locale from './locale/index';
 
@@ -83,15 +84,15 @@ const components = {
     Table,
     Collapse,
     CollapseItem: Collapse.Item,
-    Row,
-    Col,
+    Row: Grid.Row,
+    Col: Grid.Col,
     Tabs,
-    TabPane,
+    TabPane: Tabs.Pane,
     Tree,
     Page,
     List,
-    ListItem: List.item,
-    ListRow: List.row,
+    ListItem: List.Item,
+    ListRow: List.Row,
     Loading: Loading,
     BackTop,
     Affix,
@@ -106,14 +107,16 @@ const components = {
     Skeleton,
     SkeletonItem: Skeleton.Item,
     Cascader,
-    CascaderPanel: Cascader.panel,
-    Icon
+    CascaderPanel: Cascader.Panel,
+    Icon,
+    Timeline,
+    TimelineItem: Timeline.Item
 };
 
 const monkeyView = {
     ...components,
     mButton: Button,
-    mCol: Col,
+    mCol: Grid.Col,
     mContent: Layout.Content,
     mForm: Form,
     mFooter: Layout.Footer,

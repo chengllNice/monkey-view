@@ -351,6 +351,13 @@
                                 query: {}
                             },
                             {
+                                key: 'timeline',
+                                name: 'timeline时间轴',
+                                icon: 'time',
+                                link: '/component/timeline',
+                                query: {}
+                            },
+                            {
                                 key: 'image',
                                 name: 'Image图片',
                                 icon: 'picture',

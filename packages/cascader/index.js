@@ -1,6 +1,6 @@
 import Cascader from './src/cascader'
 import CascaderPanel from './src/cascaderPanel'
 
-Cascader.panel = CascaderPanel
+Cascader.Panel = CascaderPanel
 
 export default Cascader

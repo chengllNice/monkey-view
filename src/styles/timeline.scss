@@ -1,0 +1,108 @@
+@import "./base/var";
+@import "./mixins/index.scss";
+
+$node-size: 13px;
+$tail-left: 6px;
+$node-size-custom: 40px;
+
+
+@mixin timelineTheme($node-type, $color){
+    @include e(node-blue){
+
+    }
+    @include e(node-red){
+
+    }
+    @include e(node-green){
+
+    }
+    @include e(node-gray){
+
+    }
+}
+
+@include c(timeline) {
+    color: $--color-text-default;
+    font-size: $--font-size-default;
+}
+
+@include c(timeline-item) {
+    position: relative;
+    padding-bottom: 20px;
+    @include e(tail) {
+        position: absolute;
+        left: $tail-left;
+        width: 0;
+        height: 100%;
+        border-left: $--border-default;
+    }
+    @include e(node) {
+        position: absolute;
+        left: 0;
+        line-height: 1;
+        overflow: hidden;
+        border-radius: 50%;
+    }
+    @include e(node-default) {
+        width: $node-size;
+        height: $node-size;
+        border-width: $--border-width-default;
+        border-style: $--border-style-default;
+    }
+    @include e(node-blue){
+        @include e(node-circle, false, true){
+            border-color: $--color-primary;
+            background-color: $--color-white;
+        }
+        @include e(node-disc, false, true){
+            border-color: $--color-primary;
+            background-color: $--color-primary;
+        }
+    }
+    @include e(node-red){
+        @include e(node-circle, false, true){
+            border-color: $--color-danger;
+            background-color: $--color-white;
+        }
+        @include e(node-disc, false, true){
+            border-color: $--color-danger;
+            background-color: $--color-danger;
+        }
+    }
+    @include e(node-green){
+        @include e(node-circle, false, true){
+            border-color: $--color-success;
+            background-color: $--color-white;
+        }
+        @include e(node-disc, false, true){
+            border-color: $--color-success;
+            background-color: $--color-success;
+        }
+    }
+    @include e(node-gray){
+        @include e(node-circle, false, true){
+            border-color: $--border-color-default;
+            background-color: $--color-white;
+        }
+        @include e(node-disc, false, true){
+            border-color: $--border-color-default;
+            background-color: $--border-color-default;
+        }
+    }
+    @include e(node-custom) {
+        max-width: $node-size-custom;
+        height: auto;
+        transform: translateX(calc(-50% + #{$tail-left})) translateY(calc(-50% + #{$node-size / 2}));
+    }
+    @include e(content) {
+        padding-left: 26px;
+        position: relative;
+        top: -3px;
+    }
+
+    &:last-child{
+        @include e(tail, false) {
+            display: none;
+        }
+    }
+}

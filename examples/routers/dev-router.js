@@ -43,7 +43,8 @@ const routerComponents = [
     'image',
     'skeleton',
     'cascader',
-    'tree'
+    'tree',
+    'timeline',
 ];
 
 const routers = [];

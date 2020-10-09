@@ -29,7 +29,7 @@
 
 <script>
     import Config from 'main/config/config'
-    import SkeletonItem from './skeletonItem'
+    import SkeletonItem from './skeleton-item'
 
     export default {
         name: 'Skeleton',
