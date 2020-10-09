@@ -10,6 +10,7 @@
                 <Row><a href="https://github.com/" target="_blank">更新日志</a></Row>
                 <Row><a href="https://github.com/chengllNice/monkey-view/issues" target="_blank">反馈建议</a></Row>
                 <Row><a href="https://github.com/" target="_blank">加入我们</a></Row>
+                <Row><a href="https://segmentfault.com/blog/monkey-view" target="_blank">SegmentFault</a></Row>
             </Col>
         </Row>
     </div>
