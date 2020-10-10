@@ -45,6 +45,7 @@ const routerComponents = [
     'cascader',
     'tree',
     'timeline',
+    'steps',
 ];
 
 const routers = [];

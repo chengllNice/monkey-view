@@ -1,0 +1,229 @@
+@import "./base/var";
+@import "./mixins/index.scss";
+
+@mixin stepSize($size, $direction){
+	$height: $--height-default;
+	$font-size: $--font-size-default;
+	$font-size-icon: 20px;
+	$font-size-custom-icon: 24px;
+
+	@if($size == small){
+		$height: $--height-mini;
+		$font-size: $--font-size-small;
+		$font-size-icon: $--font-size-small;
+		$font-size-custom-icon: 20px;
+	}
+
+	@if($direction == vertical){
+		$height: $--height-mini;
+		$font-size: $--font-size-default;
+		$font-size-icon: $--font-size-small;
+		$font-size-custom-icon: 20px;
+
+		@if($size == small){
+			$height: 20px;
+			$font-size: $--font-size-small;
+			$font-size-icon: $--font-size-small;
+			$font-size-custom-icon: 14px;
+		}
+
+		@include e(tail, false){
+			left: #{$height / 2 - 1px};
+			padding-top: #{$height + 4px};
+		}
+
+		@include e(main, false){
+			min-height: $height;
+			padding-left: #{$height + 10px};
+		}
+	}
+
+	@if($direction == horizontal){
+		@include e(tail, false){
+			top: #{$height / 2 - 1px};
+		}
+
+		@include e(description, false){
+			padding-left: #{$height + 10px};
+		}
+	}
+
+	@include e(node, false){
+		i{
+			font-size: $font-size-icon;
+		}
+	}
+	@include e(node-icon, false){
+		i{
+			font-size: $font-size-custom-icon;
+		}
+	}
+	@include e(node-inner, false){
+		width: $height;
+		height: $height;
+		font-size: $font-size;
+	}
+	@include e(title, false){
+		font-size: $font-size;
+		line-height: $height;
+	}
+}
+
+@include c(steps){
+	display: flex;
+	width: 100%;
+	font-size: 0;
+
+	@include m(vertical){
+		display: block;
+	}
+	@include m(horizontal){
+
+	}
+}
+
+@include c(step){
+	position: relative;
+	display: inline-block;
+	flex: 1;
+	overflow: hidden;
+
+	@include m(horizontal){
+		@include m(default, false, true){
+			@include stepSize(default, horizontal);
+		}
+
+		@include m(small, false, true){
+			@include stepSize(small, horizontal);
+		}
+
+		@include e(tail, false){
+			position: absolute;
+			left: 0;
+			width: 100%;
+			padding-right: 10px;
+		}
+		@include e(tail-inner, false){
+			height: 0;
+			width: 100%;
+			border-top: $--border-default;
+		}
+	}
+
+	@include m(vertical){
+		display: block;
+		position: relative;
+		@include m(default, false, true){
+			@include stepSize(default, vertical);
+		}
+
+		@include m(small, false, true){
+			@include stepSize(small, vertical);
+		}
+
+		@include e(tail, false){
+			position: absolute;
+			left: 0;
+			width: 0;
+			height: 100%;
+			padding-bottom: 4px;
+		}
+		@include e(tail-inner, false){
+			width: 0;
+			height: 100%;
+			border-left: $--border-default;
+		}
+
+		@include e(node, false){
+			float: left;
+			z-index: 2;
+		}
+
+		@include e(main, false){
+			display: block;
+			margin-bottom: 20px;
+		}
+
+		@include e(title, false){
+			display: block;
+		}
+	}
+
+	@include e(node){
+		position: relative;
+		display: inline-block;
+		background-color: $--color-white;
+	}
+	@include e(node-inner){
+		border: $--border-default;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-right: 10px;
+	}
+	@include e(node-icon){
+		@include e(node-inner, false){
+			border: none;
+		}
+	}
+
+	@include e(main){
+		position: relative;
+		display: inline;
+		vertical-align: top;
+		font-size: 0;
+	}
+
+	@include e(title){
+		background-color: $--color-white;
+		font-weight: 500;
+		display: inline-block;
+		white-space: nowrap;
+		padding-right: 10px;
+		color: $--color-text-des;
+	}
+
+	@include e(description){
+		word-break: break-word;
+		white-space: normal;
+		color: $--color-text-des;
+		font-size: $--font-size-small;
+	}
+
+	@include m(finish){
+		@include e(tail-inner, false){
+			border-color: $--color-primary;
+		}
+		@include e(node-inner, false){
+			background-color: $--color-white;
+			color: $--color-primary;
+			border-color: $--color-primary;
+		}
+
+	}
+	@include m(active){
+		@include e(node-inner, false){
+			background-color: $--color-primary;
+			color: $--color-white;
+			border-color: $--color-primary;
+		}
+		@include e(node-icon, false){
+			@include e(node-inner, false){
+				background-color: $--color-white;
+				color: $--color-primary;
+			}
+		}
+		@include e((title, description), false){
+			color: $--color-text-title;
+		}
+	}
+
+
+
+	&:last-child{
+		@include e(tail, false){
+			display: none;
+		}
+	}
+}

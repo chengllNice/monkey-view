@@ -54,7 +54,8 @@ const routerComponents = [
     'skeleton',
     'cascader',
     'tree',
-    'timeline'
+    'timeline',
+    'steps',
 ];
 
 const routers = [];

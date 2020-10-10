@@ -46,6 +46,7 @@ import Skeleton from '../packages/skeleton'
 import Cascader from '../packages/cascader'
 import Icon from '../packages/icon'
 import Timeline from '../packages/timeline'
+import Steps from '../packages/steps'
 
 import locale from './locale/index';
 
@@ -110,7 +111,9 @@ const components = {
     CascaderPanel: Cascader.Panel,
     Icon,
     Timeline,
-    TimelineItem: Timeline.Item
+    TimelineItem: Timeline.Item,
+    Steps,
+    Step: Steps.Step,
 };
 
 const monkeyView = {
