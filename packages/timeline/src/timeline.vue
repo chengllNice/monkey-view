@@ -1,5 +1,8 @@
 <template>
-    <div :class="[`${classPrefix}`]">
+    <div :class="[
+        `${classPrefix}`,
+        pending && `${classPrefix}--pending`,
+        ]">
         <slot></slot>
     </div>
 </template>
@@ -11,7 +14,22 @@
         name: "Timeline",
         props: {
             pending: Boolean,
-            nodeType: String
+            nodeType: String,
+            // 时间轴左侧宽度
+            leftWidth: {
+                type: [String, Number],
+            },
+            // 时间轴右侧宽度
+            rightWidth: {
+                type: [String, Number],
+            },
+            position: {
+                type: String,
+                default: 'right',
+                validator(value){
+                    return ['left', 'right'].includes(value)
+                }
+            }
         },
         data() {
             return {

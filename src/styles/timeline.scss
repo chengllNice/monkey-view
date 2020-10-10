@@ -5,40 +5,68 @@ $node-size: 13px;
 $tail-left: 6px;
 $node-size-custom: 40px;
 
-
-@mixin timelineTheme($node-type, $color){
-    @include e(node-blue){
-
-    }
-    @include e(node-red){
-
-    }
-    @include e(node-green){
-
-    }
-    @include e(node-gray){
-
-    }
-}
-
 @include c(timeline) {
+    $timeline-selector: &;
+
+    width: 100%;
     color: $--color-text-default;
     font-size: $--font-size-default;
+
+    @include m(pending){
+        #{$timeline-selector}-item:nth-last-of-type(2) > #{$timeline-selector}-item__content{
+            min-height: 48px;
+        }
+    }
 }
 
 @include c(timeline-item) {
     position: relative;
     padding-bottom: 20px;
+
+    @include e(label) {
+        position: absolute;
+        top: -3px;
+    }
+    @include e(label-left){
+        text-align: right;
+        padding-right: 26px;
+    }
+    @include e(label-right){
+        text-align: left;
+        padding-left: 26px;
+    }
+    @include e(content) {
+        padding-left: 26px;
+        text-align: left;
+        position: relative;
+        top: -3px;
+    }
+    @include e(content-left) {
+        padding-right: 26px;
+        text-align: right;
+        padding-left: 0;
+    }
+    @include e(content-right) {
+        padding-left: 26px;
+        text-align: left;
+    }
+    @include m(has-label){
+        @include e((tail, node), false){
+            transform: translateX(-50%);
+        }
+        @include e(node-custom, false) {
+            transform: translateX(-50%) translateY(calc(-50% + #{$node-size / 2}));
+        }
+    }
+
     @include e(tail) {
         position: absolute;
-        left: $tail-left;
         width: 0;
         height: 100%;
         border-left: $--border-default;
     }
     @include e(node) {
         position: absolute;
-        left: 0;
         line-height: 1;
         overflow: hidden;
         border-radius: 50%;
@@ -49,55 +77,81 @@ $node-size-custom: 40px;
         border-width: $--border-width-default;
         border-style: $--border-style-default;
     }
+    @include e(node-solid){
+        color: $--color-white;
+    }
+    @include e(node-custom) {
+        max-width: $node-size-custom;
+        height: auto;
+        padding: 2px;
+    }
+
     @include e(node-blue){
-        @include e(node-circle, false, true){
+        @include e(node-hollow, false, true){
+            color: $--color-primary;
             border-color: $--color-primary;
             background-color: $--color-white;
         }
-        @include e(node-disc, false, true){
+        @include e(node-solid, false, true){
             border-color: $--color-primary;
             background-color: $--color-primary;
         }
     }
     @include e(node-red){
-        @include e(node-circle, false, true){
+        @include e(node-hollow, false, true){
+            color: $--color-danger;
             border-color: $--color-danger;
             background-color: $--color-white;
         }
-        @include e(node-disc, false, true){
+        @include e(node-solid, false, true){
             border-color: $--color-danger;
             background-color: $--color-danger;
         }
     }
     @include e(node-green){
-        @include e(node-circle, false, true){
+        @include e(node-hollow, false, true){
+            color: $--color-success;
             border-color: $--color-success;
             background-color: $--color-white;
         }
-        @include e(node-disc, false, true){
+        @include e(node-solid, false, true){
             border-color: $--color-success;
             background-color: $--color-success;
         }
     }
     @include e(node-gray){
-        @include e(node-circle, false, true){
+        @include e(node-hollow, false, true){
+            color: $--border-color-default;
             border-color: $--border-color-default;
             background-color: $--color-white;
         }
-        @include e(node-disc, false, true){
+        @include e(node-solid, false, true){
             border-color: $--border-color-default;
             background-color: $--border-color-default;
         }
     }
-    @include e(node-custom) {
-        max-width: $node-size-custom;
-        height: auto;
-        transform: translateX(calc(-50% + #{$tail-left})) translateY(calc(-50% + #{$node-size / 2}));
+
+    @include m(left-no-label){
+        @include e(tail, false) {
+            right: $tail-left;
+        }
+        @include e(node, false) {
+            right: 0;
+        }
+        @include e(node-custom, false) {
+            transform: translateX(calc(50% - #{$tail-left})) translateY(calc(-50% + #{$node-size / 2}));
+        }
     }
-    @include e(content) {
-        padding-left: 26px;
-        position: relative;
-        top: -3px;
+    @include m(right-no-label){
+        @include e(tail, false) {
+            left: $tail-left;
+        }
+        @include e(node, false) {
+            left: 0;
+        }
+        @include e(node-custom, false) {
+            transform: translateX(calc(-50% + #{$tail-left})) translateY(calc(-50% + #{$node-size / 2}));
+        }
     }
 
     &:last-child{
