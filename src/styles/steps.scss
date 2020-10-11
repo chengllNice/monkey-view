@@ -1,56 +1,55 @@
 @import "./base/var";
 @import "./mixins/index.scss";
 
-@mixin stepSize($size, $direction){
+@mixin stepSize($direction, $type, $size){
 	$height: $--height-default;
+	$node-height: $--height-default;
 	$font-size: $--font-size-default;
-	$font-size-icon: 20px;
+	$font-size-finish-icon: 20px;
 	$font-size-custom-icon: 24px;
 
 	@if($size == small){
 		$height: $--height-mini;
+		$node-height: $--height-mini;
 		$font-size: $--font-size-small;
-		$font-size-icon: $--font-size-small;
+		$font-size-finish-icon: 14px;
 		$font-size-custom-icon: 20px;
+	}
+
+	@if($type == dot){
+		$node-height: 10px;
+		@if($size == small){
+			$node-height: 7px;
+		}
+		@include e(main, false){
+			margin-top: -$node-height;
+		}
 	}
 
 	@if($direction == vertical){
-		$height: $--height-mini;
-		$font-size: $--font-size-default;
-		$font-size-icon: $--font-size-small;
-		$font-size-custom-icon: 20px;
-
-		@if($size == small){
-			$height: 20px;
-			$font-size: $--font-size-small;
-			$font-size-icon: $--font-size-small;
-			$font-size-custom-icon: 14px;
-		}
-
 		@include e(tail, false){
-			left: #{$height / 2 - 1px};
-			padding-top: #{$height + 4px};
-		}
-
-		@include e(main, false){
-			min-height: $height;
-			padding-left: #{$height + 10px};
+			left: #{($node-height - 1) / 2};
+			padding-top: #{$node-height + 4px};
 		}
 	}
-
 	@if($direction == horizontal){
 		@include e(tail, false){
-			top: #{$height / 2 - 1px};
+			top: #{($node-height - 1) / 2};
+			padding-left: #{$node-height + 10px};
 		}
-
-		@include e(description, false){
-			padding-left: #{$height + 10px};
+		@include m(label-vertical, false, true){
+			@include m(algin-center, false, true){
+				@include e(tail, false){
+					padding-left: #{$node-height / 2};
+					padding-right: #{$node-height / 2 + 10px};
+				}
+			}
 		}
 	}
 
 	@include e(node, false){
 		i{
-			font-size: $font-size-icon;
+			font-size: $font-size-finish-icon;
 		}
 	}
 	@include e(node-icon, false){
@@ -59,8 +58,8 @@
 		}
 	}
 	@include e(node-inner, false){
-		width: $height;
-		height: $height;
+		width: $node-height;
+		height: $node-height;
 		font-size: $font-size;
 	}
 	@include e(title, false){
@@ -70,37 +69,59 @@
 }
 
 @include c(steps){
-	display: flex;
 	width: 100%;
-	font-size: 0;
+	margin: 10px 0;
 
 	@include m(vertical){
 		display: block;
 	}
 	@include m(horizontal){
-
+		display: flex;
 	}
 }
 
 @include c(step){
 	position: relative;
-	display: inline-block;
-	flex: 1;
-	overflow: hidden;
+	display: flex;
 
-	@include m(horizontal){
-		@include m(default, false, true){
-			@include stepSize(default, horizontal);
+	@include m(label-vertical){
+		display: block;
+		@include e(main, false){
+			margin-top: 0!important;
 		}
 
-		@include m(small, false, true){
-			@include stepSize(small, horizontal);
+		@include m(algin-center, false, true){
+			text-align: center;
+
+			&:last-child{
+				flex: 1;
+			}
+
+			@include e(tail, false){
+				left: 50%;
+			}
+		}
+	}
+
+	@include m(direction-horizontal){
+		flex: 1;
+		@include m(size-default, false, true){
+			@include stepSize(horizontal, null, default);
+			@include m(type-dot, false, true){
+				@include stepSize(horizontal, dot, default);
+			}
+		}
+
+		@include m(size-small, false, true){
+			@include stepSize(horizontal, null, small);
+			@include m(type-dot, false, true){
+				@include stepSize(horizontal, dot, small);
+			}
 		}
 
 		@include e(tail, false){
-			position: absolute;
-			left: 0;
 			width: 100%;
+			height: 0;
 			padding-right: 10px;
 		}
 		@include e(tail-inner, false){
@@ -108,22 +129,28 @@
 			width: 100%;
 			border-top: $--border-default;
 		}
+
+		@include e(title, false){
+			display: inline-block;
+		}
 	}
 
-	@include m(vertical){
-		display: block;
-		position: relative;
-		@include m(default, false, true){
-			@include stepSize(default, vertical);
+	@include m(direction-vertical){
+		@include m(size-default, false, true){
+			@include stepSize(vertical, null, default);
+			@include m(type-dot, false, true){
+				@include stepSize(vertical, dot, default);
+			}
 		}
 
-		@include m(small, false, true){
-			@include stepSize(small, vertical);
+		@include m(size-small, false, true){
+			@include stepSize(vertical, null, small);
+			@include m(type-dot, false, true){
+				@include stepSize(vertical, dot, default);
+			}
 		}
 
 		@include e(tail, false){
-			position: absolute;
-			left: 0;
 			width: 0;
 			height: 100%;
 			padding-bottom: 4px;
@@ -134,33 +161,110 @@
 			border-left: $--border-default;
 		}
 
-		@include e(node, false){
-			float: left;
-			z-index: 2;
-		}
-
-		@include e(main, false){
-			display: block;
-			margin-bottom: 20px;
-		}
-
 		@include e(title, false){
 			display: block;
 		}
 	}
 
+	@include m(type-default){
+		&:last-child{
+			flex: none;
+			@include e(tail, false){
+				display: none;
+			}
+		}
+	}
+	@include m(type-dot){
+		&:last-child{
+			flex: none;
+			@include e(tail, false){
+				display: none;
+			}
+		}
+
+		@include e(node-inner, false){
+			display: block;
+		}
+	}
+	@include m(type-nav){
+		border-bottom: $--border-default;
+		padding-top: 20px;
+		@include m(direction-horizontal, false, true){
+			justify-content: center;
+		}
+		&:last-child{
+			@include m(direction-horizontal, false, true){
+				&:after{
+					display: none;
+				}
+			}
+		}
+		@include e(tail, false){
+			width: 100%;
+			height: 0;
+			bottom: 0;
+			left: 0!important;
+			top: auto!important;
+			padding-top: 0!important;
+			padding-left: 0!important;
+			padding-right: 0!important;
+			padding-bottom: 0!important;
+		}
+		@include e(tail-inner, false){
+			width: 100%;
+			height: 0;
+			border-left: none;
+			border-top: $--border-default;
+		}
+
+		&:after{
+			content: '';
+			position: absolute;
+			top: 50%;
+			right: 0;
+			z-index: 3;
+			width: 15px;
+			height: 15px;
+			border-top-width: 2px;
+			border-top-style: $--border-style-default;
+			border-top-color: $--border-color-default;
+			border-right-width: 2px;
+			border-right-style: $--border-style-default;
+			border-right-color: $--border-color-default;
+			transform: rotate(45deg) translateX(50%) translateY(-50%);
+		}
+		@include m(direction-vertical, false, true){
+			&:after{
+				transform: rotate(45deg) translateX(-100%) translateY(-50%);
+			}
+		}
+	}
+
+	@include e(tail){
+		position: absolute;
+		left: 0;
+		z-index: 2;
+	}
+
 	@include e(node){
 		position: relative;
-		display: inline-block;
+		font-size: 0;
 		background-color: $--color-white;
 	}
+	@include e(node-progress){
+		position: absolute;
+		top: 0;
+		left: 0;
+		margin-top: -4px;
+		margin-left: -4px;
+	}
 	@include e(node-inner){
+		margin-right: 10px;
 		border: $--border-default;
 		border-radius: 50%;
-		display: flex;
+		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		margin-right: 10px;
 	}
 	@include e(node-icon){
 		@include e(node-inner, false){
@@ -170,15 +274,14 @@
 
 	@include e(main){
 		position: relative;
-		display: inline;
+		z-index: 3;
 		vertical-align: top;
-		font-size: 0;
+		padding-bottom: 20px;
 	}
 
 	@include e(title){
 		background-color: $--color-white;
-		font-weight: 500;
-		display: inline-block;
+		font-weight: 600;
 		white-space: nowrap;
 		padding-right: 10px;
 		color: $--color-text-des;
@@ -200,7 +303,16 @@
 			color: $--color-primary;
 			border-color: $--color-primary;
 		}
-
+	}
+	@include m(error){
+		@include e(node-inner, false){
+			background-color: $--color-white;
+			color: $--color-danger;
+			border-color: $--color-danger;
+		}
+		@include e((title, description), false){
+			color: $--color-danger;
+		}
 	}
 	@include m(active){
 		@include e(node-inner, false){
@@ -216,14 +328,6 @@
 		}
 		@include e((title, description), false){
 			color: $--color-text-title;
-		}
-	}
-
-
-
-	&:last-child{
-		@include e(tail, false){
-			display: none;
 		}
 	}
 }

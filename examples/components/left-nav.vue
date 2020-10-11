@@ -170,6 +170,13 @@
                                 icon: 'care-down',
                                 link: '/component/dropdown',
                                 query: {}
+                            },
+                            {
+                                key: 'steps',
+                                name: 'Steps步骤条',
+                                icon: 'care-down',
+                                link: '/component/steps',
+                                query: {}
                             }
                         ]
                     },
@@ -352,7 +359,7 @@
                             },
                             {
                                 key: 'timeline',
-                                name: 'timeline时间轴',
+                                name: 'Timeline时间轴',
                                 icon: 'time',
                                 link: '/component/timeline',
                                 query: {}
