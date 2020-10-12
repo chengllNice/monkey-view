@@ -57,6 +57,7 @@ const routerComponents = [
     'timeline',
     'steps',
     'breadcrumb',
+    'divider',
 ];
 
 const routers = [];
