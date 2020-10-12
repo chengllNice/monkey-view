@@ -177,6 +177,13 @@
                                 icon: 'care-down',
                                 link: '/component/steps',
                                 query: {}
+                            },
+                            {
+                                key: 'breadcrumb',
+                                name: 'Breadcrumb面包屑导航',
+                                icon: 'care-down',
+                                link: '/component/breadcrumb',
+                                query: {}
                             }
                         ]
                     },

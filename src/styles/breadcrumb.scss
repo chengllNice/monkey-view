@@ -1,0 +1,36 @@
+@import "./base/var";
+@import "./mixins/index.scss";
+
+@include c(breadcrumb){
+	font-size: $--font-size-default;
+}
+
+@include c(breadcrumb-item){
+	display: inline;
+	color: $--color-text-default;
+	a{
+		color: $--color-text-default;
+		&:hover,
+		&:focus,
+		&:active{
+			color: $--color-primary;
+		}
+	}
+	@include e(title){
+		display: inline;
+		font-weight: 400;
+	}
+	@include e(separator){
+		display: inline;
+		margin: 0 10px;
+	}
+
+	&:last-child{
+		@include e(title, false){
+			font-weight: 600;
+		}
+		@include e(separator, false){
+			display: none;
+		}
+	}
+}

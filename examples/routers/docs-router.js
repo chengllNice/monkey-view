@@ -56,6 +56,7 @@ const routerComponents = [
     'tree',
     'timeline',
     'steps',
+    'breadcrumb',
 ];
 
 const routers = [];

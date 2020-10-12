@@ -47,6 +47,7 @@ import Cascader from '../packages/cascader'
 import Icon from '../packages/icon'
 import Timeline from '../packages/timeline'
 import Steps from '../packages/steps'
+import Breadcrumb from '../packages/breadcrumb'
 
 import locale from './locale/index';
 
@@ -114,6 +115,8 @@ const components = {
     TimelineItem: Timeline.Item,
     Steps,
     Step: Steps.Step,
+    Breadcrumb,
+    BreadcrumbItem: Breadcrumb.Item,
 };
 
 const monkeyView = {
