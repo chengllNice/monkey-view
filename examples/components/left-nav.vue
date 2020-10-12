@@ -136,6 +136,13 @@
                                 icon: 'list-dot',
                                 link: '/component/list',
                                 query: {}
+                            },
+                            {
+                                key: 'divider',
+                                name: 'Divider分割线',
+                                icon: 'list-dot',
+                                link: '/component/divider',
+                                query: {}
                             }
                         ]
                     },

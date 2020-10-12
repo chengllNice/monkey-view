@@ -1,0 +1,68 @@
+@import "./base/var";
+@import "./mixins/index.scss";
+
+$divider-space: 24px;
+
+@include c(divider){
+	position: relative;
+	display: block;
+	height: 0;
+	width: 100%;
+	border-top-width: $--border-width-default;
+	border-top-style: $--border-style-default;
+	border-top-color: $--border-color-default;
+	font-size: $--font-size-default;
+	color: $--color-text-default;
+	@include m(horizontal){
+		margin-top: $divider-space;
+		margin-bottom: $divider-space;
+	}
+
+	@include m(dashed){
+		border-top-style: dashed;
+	}
+
+	@include m(vertical){
+		display: inline-block;
+		height: 1em;
+		width: 0;
+		margin-left: 8px;
+		margin-right: 8px;
+		vertical-align: middle;
+		border-top: none;
+		border-left-width: $--border-width-default;
+		border-left-style: $--border-style-default;
+		border-left-color: $--border-color-default;
+
+		@include m(dashed, false){
+			border-left-style: dashed;
+		}
+	}
+
+	@include e(inner){
+		background-color: $--color-white;
+		transform: translateY(-50%);
+		padding: 0 $divider-space;
+		color: $--color-text-title;
+		font-size: #{$--font-size-default + 2px};
+	}
+	@include m(left){
+		@include e(inner, false){
+			position: absolute;
+			left: 5%;
+		}
+	}
+	@include m(center){
+		@include e(inner, false){
+			position: absolute;
+			left: 50%;
+			transform: translateX(-50%) translateY(-50%);
+		}
+	}
+	@include m(right){
+		@include e(inner, false){
+			position: absolute;
+			right: 5%;
+		}
+	}
+}
