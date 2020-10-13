@@ -14,6 +14,7 @@
         },
         data() {
             return {
+                componentName: 'CarouselItem',
                 classPrefix: Config.classPrefix + '-carousel-item',
                 index: 0,
                 carouselParent: this.$parent
@@ -22,7 +23,7 @@
         computed: {
             carouselStyle(){
                 return {
-                    width: this.carouselParent.width + 'px',
+                    width: `${this.carouselParent.itemWidth}%`
                 }
             },
 

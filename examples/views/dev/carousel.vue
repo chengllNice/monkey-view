@@ -5,6 +5,9 @@
             <CarouselItem class="dev-carousel-pane">2</CarouselItem>
             <CarouselItem class="dev-carousel-pane">3</CarouselItem>
             <CarouselItem class="dev-carousel-pane">4</CarouselItem>
+            <CarouselItem class="dev-carousel-pane">5</CarouselItem>
+            <CarouselItem class="dev-carousel-pane">6</CarouselItem>
+            <CarouselItem class="dev-carousel-pane">7</CarouselItem>
         </Carousel>
     </div>
 </template>

@@ -12,18 +12,25 @@
                 ]"
                  v-for="(item, index) in childrenList"
                  :key="index" :style="indicatorItemStyle"
-                 @click="handleArrowClick(index)"
-                 @mouseenter="handleArrowMouseenter(index)"
-                 @mouseleave="handleArrowMouseleave(index)">{{item.label}}</div>
+                 @click="handleIndicatorClick(index)"
+                 @mouseenter="handleIndicatorMouseenter(index)"
+                 @mouseleave="handleIndicatorMouseleave(index)">{{item.label}}</div>
         </div>
-        <div :class="[`${classPrefix}__arrow`, `${classPrefix}__arrow-prev`]" :style="arrowStyle"><Icon type="left"></Icon></div>
-        <div :class="[`${classPrefix}__arrow`, `${classPrefix}__arrow-next`]" :style="arrowStyle"><Icon type="right"></Icon></div>
+        <div :class="[`${classPrefix}__arrow`, `${classPrefix}__arrow-prev`]"
+             :style="arrowStyle"
+             @click="handleArrowClick('prev')">
+            <Icon type="left"></Icon></div>
+        <div :class="[`${classPrefix}__arrow`, `${classPrefix}__arrow-next`]"
+             :style="arrowStyle"
+             @click="handleArrowClick('next')">
+            <Icon type="right"></Icon></div>
     </div>
 </template>
 
 <script>
     import Config from 'main/config/config'
     import Icon from 'packages/icon'
+    import { findComponentDirectChildrens} from "main/utils/tool";
 
     export default {
         name: "Carousel",
@@ -89,7 +96,7 @@
                 classPrefix: Config.classPrefix + '-carousel',
                 activeIndex: 0,
                 timer: null,
-                width: 0,
+                observer: null,
                 childrenList: [],
             }
         },
@@ -110,12 +117,15 @@
                 return style;
             },
             carouselInnerStyle(){
-                let translateX = this.width * this.activeIndex;
+                let translateX = this.itemWidth * this.activeIndex;
                 return {
                     height: parseInt(this.height) + 'px',
-                    width: ((this.childrenList.length - 1) * 100) + '%',
-                    transform: `translateX(-${translateX}px)`
+                    width: (this.childrenList.length * 100) + '%',
+                    transform: `translateX(-${translateX}%)`
                 }
+            },
+            itemWidth(){
+                return 100 / this.childrenList.length
             },
             arrowStyle(){
                 return {
@@ -129,12 +139,11 @@
         mounted() {
             this.$nextTick(() => {
                 this.setChildrenIndex();
-                this.width = this.$el.offsetWidth || 0;
             });
         },
         methods: {
             setChildrenIndex(){
-                const childrenList = this.$refs.carouselInner.$children;
+                const childrenList = findComponentDirectChildrens(this, 'CarouselItem');
                 this.childrenList = childrenList || [];
                 if(childrenList && childrenList.length){
                     childrenList.forEach((item, index) => {
@@ -145,17 +154,21 @@
             clearTimer(){
                 this.timer && clearInterval(this.timer)
             },
-            handleArrowClick(index){
+            handleIndicatorClick(index){
                 if(this.trigger !== 'click') return;
                 this.goToIndex(index);
             },
-            handleArrowMouseenter(index){
+            handleIndicatorMouseenter(index){
                 if(this.trigger !== 'hover') return;
                 this.goToIndex(index);
             },
-            handleArrowMouseleave(index){
+            handleIndicatorMouseleave(index){
                 if(this.trigger !== 'hover') return;
 
+            },
+            handleArrowClick(type){
+                if(type === 'prev') this.goToIndex(this.activeIndex - 1)
+                if(type === 'next') this.goToIndex(this.activeIndex + 1)
             },
             handleCarouselMouseenter(){
                 this.clearTimer();
@@ -167,13 +180,12 @@
                 if(typeof index === 'undefined'){
                     index = this.activeIndex + 1;
                 }
-                if(index > this.childrenList.length){
+                if(index > this.childrenList.length - 1){
                     index = 0;
                 }
                 if(index < 0){
                     index = this.childrenList.length - 1
                 }
-                console.log(index,'index')
                 this.activeIndex = index;
             },
             play(){
@@ -185,7 +197,7 @@
             }
         },
         destroyed() {
-            this.timer && clearInterval(this.timer)
+            this.timer && clearInterval(this.timer);
         }
     }
 </script>
