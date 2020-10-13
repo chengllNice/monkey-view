@@ -48,6 +48,7 @@ const routerComponents = [
     'steps',
     'breadcrumb',
     'divider',
+    'carousel',
 ];
 
 const routers = [];

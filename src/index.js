@@ -49,6 +49,7 @@ import Timeline from '../packages/timeline'
 import Steps from '../packages/steps'
 import Breadcrumb from '../packages/breadcrumb'
 import Divider from '../packages/divider'
+import Carousel from '../packages/carousel'
 
 import locale from './locale/index';
 
@@ -118,7 +119,9 @@ const components = {
     Step: Steps.Step,
     Breadcrumb,
     BreadcrumbItem: Breadcrumb.Item,
-    Divider
+    Divider,
+    Carousel,
+    CarouselItem: Carousel.Item,
 };
 
 const monkeyView = {

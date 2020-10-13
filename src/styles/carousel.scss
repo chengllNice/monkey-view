@@ -1,0 +1,87 @@
+@import "./base/var";
+@import "./mixins/index.scss";
+
+@include c(carousel){
+	position: relative;
+	overflow: hidden;
+	@include e(inner){
+		transition: all $--animation-time ease;
+	}
+
+	@include e(indicator){
+		display: inline-block;
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+	@include e(indicator-item){
+		display: inline-block;
+		width: 20px;
+		height: 3px;
+		background-color: $--background-color-base;
+		opacity: 0.3;
+		margin: 0 5px;
+		border-radius: 3px;
+		cursor: pointer;
+		transition: all $--animation-time ease;
+
+		&:hover{
+			opacity: 0.5;
+		}
+	}
+	@include e(indicator-item-active){
+		width: 26px;
+		height: 3px;
+		opacity: 1;
+		background-color: $--background-color-base;
+		&:hover{
+			opacity: 1;
+		}
+	}
+	@include m(indicator-none){
+		@include e(indicator, false){
+			display: none;
+		}
+	}
+	@include m(indicator-outside){
+		@include e(indicator, false){
+			bottom: -20px;
+		}
+	}
+	@include m(indicator-inside){
+		@include e(indicator, false){
+			bottom: 20px;
+		}
+	}
+	@include e(arrow){
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 36px;
+		height: 36px;
+		border-radius: 50%;
+		background-color: rgba(31, 45, 61, .11);
+		color: $--color-white;
+		text-align: center;
+		line-height: 36px;
+		cursor: pointer;
+		transition: background-color $--animation-time ease;
+
+		&:hover{
+			background-color: rgba(31, 45, 61, .5);
+		}
+	}
+	@include e(arrow-prev){
+		left: 20px;
+	}
+	@include e(arrow-next){
+		right: 20px;
+	}
+}
+
+
+@include c(carousel-item){
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+}
