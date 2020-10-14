@@ -1,14 +1,18 @@
 <template>
     <div class="dev-carousel">
-        <Carousel height="400">
+        <Carousel height="400" autoplay loop>
             <CarouselItem class="dev-carousel-pane">1</CarouselItem>
             <CarouselItem class="dev-carousel-pane">2</CarouselItem>
             <CarouselItem class="dev-carousel-pane">3</CarouselItem>
             <CarouselItem class="dev-carousel-pane">4</CarouselItem>
-            <CarouselItem class="dev-carousel-pane">5</CarouselItem>
-            <CarouselItem class="dev-carousel-pane">6</CarouselItem>
-            <CarouselItem class="dev-carousel-pane">7</CarouselItem>
         </Carousel>
+
+<!--        <Carousel height="400">-->
+<!--            <CarouselItem class="dev-carousel-pane" label="1">1</CarouselItem>-->
+<!--            <CarouselItem class="dev-carousel-pane" label="2">2</CarouselItem>-->
+<!--            <CarouselItem class="dev-carousel-pane" label="3">3</CarouselItem>-->
+<!--            <CarouselItem class="dev-carousel-pane" label="4">4</CarouselItem>-->
+<!--        </Carousel>-->
     </div>
 </template>
 

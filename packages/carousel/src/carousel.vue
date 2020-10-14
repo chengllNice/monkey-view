@@ -1,17 +1,23 @@
 <template>
     <div :class="carouselClass"
+         :style="carouselStyle"
          @mouseenter="handleCarouselMouseenter"
          @mouseleave="handleCarouselMouseleave">
-        <div :class="[`${classPrefix}__inner`]" ref="carouselInner" :style="carouselInnerStyle">
-            <slot></slot>
-        </div>
+        <template v-for="index in 2">
+            <div :class="[`${classPrefix}__inner`, `${classPrefix}__inner-${index}`]"
+                 :key="index"
+                 :style="carouselInnerStyle(index)">
+                <slot></slot>
+            </div>
+        </template>
         <div :class="[`${classPrefix}__indicator`]">
             <div :class="[
                     `${classPrefix}__indicator-item`,
                     activeIndex === index && `${classPrefix}__indicator-item-active`,
                 ]"
                  v-for="(item, index) in childrenList"
-                 :key="index" :style="indicatorItemStyle"
+                 :key="index"
+                 :style="indicatorItemStyle"
                  @click="handleIndicatorClick(index)"
                  @mouseenter="handleIndicatorMouseenter(index)"
                  @mouseleave="handleIndicatorMouseleave(index)">{{item.label}}</div>
@@ -95,8 +101,9 @@
             return {
                 classPrefix: Config.classPrefix + '-carousel',
                 activeIndex: 0,
+                arrowClickType: false,
+                currentInnerIndex: 1,
                 timer: null,
-                observer: null,
                 childrenList: [],
             }
         },
@@ -116,12 +123,51 @@
                 else style = {...(this.indicatorStyle || {}), ...style}
                 return style;
             },
-            carouselInnerStyle(){
-                let translateX = this.itemWidth * this.activeIndex;
+            carouselStyle(){
                 return {
                     height: parseInt(this.height) + 'px',
-                    width: (this.childrenList.length * 100) + '%',
-                    transform: `translateX(-${translateX}%)`
+                }
+            },
+            carouselInnerStyle(){
+                return function (index) {
+                    const len = this.childrenList.length;
+                    const width = len * 100;
+                    const activeIndex = this.activeIndex;
+                    let zIndex = index === this.currentInnerIndex ? 2 : 0;
+                    let translateX = 0;
+
+                    if(this.arrowClickType === 'prev'){
+                        if(index === this.currentInnerIndex){
+                            translateX = -(this.itemWidth * this.activeIndex);
+                        }else {
+                            translateX = this.itemWidth * (len - this.activeIndex);
+                        }
+                    }
+                    if(this.arrowClickType === 'next' || this.loop){
+                        if(index === this.currentInnerIndex){
+                            translateX = -(this.itemWidth * this.activeIndex);
+                        }else {
+                            translateX = this.itemWidth * (len - this.activeIndex);
+                        }
+                    }
+
+                    if(!this.arrowClickType){
+                        translateX = -(this.itemWidth * activeIndex)
+                    }
+
+                    if(activeIndex === 0 && index !== this.currentInnerIndex){
+                        translateX = -100;
+                    }
+                    if(activeIndex === len - 1 && index !== this.currentInnerIndex){
+                        translateX = 25;
+                    }
+                    return {
+                        width: `${width}%`,
+                        left: 0,
+                        // left: `${left}%`,
+                        zIndex,
+                        transform: `translateX(${translateX}%)`
+                    }
                 }
             },
             itemWidth(){
@@ -139,14 +185,15 @@
         mounted() {
             this.$nextTick(() => {
                 this.setChildrenIndex();
+                this.play();
             });
         },
         methods: {
             setChildrenIndex(){
                 const childrenList = findComponentDirectChildrens(this, 'CarouselItem');
-                this.childrenList = childrenList || [];
                 if(childrenList && childrenList.length){
-                    childrenList.forEach((item, index) => {
+                    this.childrenList = (childrenList || []).slice(0, childrenList.length / 2);
+                    this.childrenList.forEach((item, index) => {
                         item.index = index;
                     })
                 }
@@ -164,11 +211,22 @@
             },
             handleIndicatorMouseleave(index){
                 if(this.trigger !== 'hover') return;
-
             },
             handleArrowClick(type){
-                if(type === 'prev') this.goToIndex(this.activeIndex - 1)
-                if(type === 'next') this.goToIndex(this.activeIndex + 1)
+                this.arrowClickType = type;
+                if(type === 'prev') {
+                    if(this.activeIndex === 0){
+                        this.currentInnerIndex = this.currentInnerIndex === 1 ? 2 : 1;
+                    }
+                    this.goToIndex(this.activeIndex - 1);
+                }
+                if(type === 'next') {
+                    if(this.activeIndex === this.childrenList.length - 1){
+                        this.currentInnerIndex = this.currentInnerIndex === 1 ? 2 : 1;
+                    }
+                    this.goToIndex(this.activeIndex + 1)
+                }
+                // this.arrowClickType = false;
             },
             handleCarouselMouseenter(){
                 this.clearTimer();
@@ -192,7 +250,7 @@
                 if(!this.autoplay) return;
                 this.clearTimer();
                 this.timer = setInterval(() => {
-                    this.goToIndex();
+                    this.handleArrowClick('next');
                 }, this.interval);
             }
         },

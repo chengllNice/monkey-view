@@ -1,41 +1,52 @@
 @import "./base/var";
 @import "./mixins/index.scss";
 
+$indicator-background-color: $--background-color-base;
+//$indicator-background-color: #8391a5;
+
 @include c(carousel){
 	position: relative;
 	overflow: hidden;
 	@include e(inner){
-		transition: all $--animation-time ease;
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		transition: transform $--animation-time ease;
+	}
+	@include e(inner-1){
+		z-index: 2;
 	}
 
 	@include e(indicator){
 		display: inline-block;
 		position: absolute;
 		left: 50%;
+		z-index: 3;
 		transform: translateX(-50%);
 	}
 	@include e(indicator-item){
 		display: inline-block;
-		width: 20px;
-		height: 3px;
-		background-color: $--background-color-base;
+		padding: 1px 12px;
+		min-height: 3px;
+		line-height: 1;
+		background-color: $indicator-background-color;
 		opacity: 0.3;
-		margin: 0 5px;
+		font-size: 12px;
+		margin: 3px 5px;
 		border-radius: 3px;
 		cursor: pointer;
-		transition: all $--animation-time ease;
+		transition: transform $--animation-time ease, opacity $--animation-time ease;
 
 		&:hover{
-			opacity: 0.5;
+			opacity: 0.6;
 		}
 	}
 	@include e(indicator-item-active){
-		width: 26px;
-		height: 3px;
-		opacity: 1;
-		background-color: $--background-color-base;
+		transform: scale(1.2);
+		opacity: 0.9;
 		&:hover{
-			opacity: 1;
+			opacity: 0.9;
 		}
 	}
 	@include m(indicator-none){
@@ -45,17 +56,18 @@
 	}
 	@include m(indicator-outside){
 		@include e(indicator, false){
-			bottom: -20px;
+			bottom: -3px;
 		}
 	}
 	@include m(indicator-inside){
 		@include e(indicator, false){
-			bottom: 20px;
+			bottom: 3px;
 		}
 	}
 	@include e(arrow){
 		position: absolute;
 		top: 50%;
+		z-index: 3;
 		transform: translateY(-50%);
 		width: 36px;
 		height: 36px;
