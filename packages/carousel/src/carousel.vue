@@ -1,15 +1,16 @@
 <template>
     <div :class="carouselClass"
-         :style="carouselStyle"
          @mouseenter="handleCarouselMouseenter"
          @mouseleave="handleCarouselMouseleave">
-        <template v-for="index in 2">
-            <div :class="[`${classPrefix}__inner`, `${classPrefix}__inner-${index}`]"
-                 :key="index"
-                 :style="carouselInnerStyle(index)">
-                <slot></slot>
-            </div>
-        </template>
+        <div :class="[`${classPrefix}__container`]" :style="carouselContainerStyle">
+            <template v-for="index in 2">
+                <div :class="[`${classPrefix}__inner`, `${classPrefix}__inner-${index}`]"
+                     :key="index"
+                     :style="carouselInnerStyle(index)">
+                    <slot></slot>
+                </div>
+            </template>
+        </div>
         <div :class="[`${classPrefix}__indicator`]">
             <div :class="[
                     `${classPrefix}__indicator-item`,
@@ -48,7 +49,7 @@
             height: {
                 type: [String, Number],
             },
-            type: {
+            direction: {
                 type: String,
                 default: 'horizontal',
                 validator(value) {
@@ -113,6 +114,8 @@
                 return [
                     `${classPrefix}`,
                     `${classPrefix}--indicator-${this.indicator}`,
+                    `${classPrefix}--arrow-${this.arrow}`,
+                    `${classPrefix}--${this.direction}`,
                 ]
             },
             indicatorItemStyle(){
@@ -123,50 +126,62 @@
                 else style = {...(this.indicatorStyle || {}), ...style}
                 return style;
             },
-            carouselStyle(){
-                return {
+            carouselContainerStyle(){
+                let style = {
                     height: parseInt(this.height) + 'px',
                 }
+                if(this.direction === 'horizontal'){
+                    style = {
+                        ...style,
+                        width: (this.childrenList.length * 200) + '%',
+                    }
+                }
+                return style;
             },
             carouselInnerStyle(){
                 return function (index) {
                     const len = this.childrenList.length;
-                    const width = len * 100;
                     const activeIndex = this.activeIndex;
                     let zIndex = index === this.currentInnerIndex ? 2 : 0;
-                    let translateX = 0;
+                    let translate = 0;
 
-                    if(this.arrowClickType === 'prev'){
-                        if(index === this.currentInnerIndex){
-                            translateX = -(this.itemWidth * this.activeIndex);
-                        }else {
-                            translateX = this.itemWidth * (len - this.activeIndex);
+                    if(this.direction === 'horizontal'){
+                        if(this.arrowClickType === 'prev'){
+                            if(index === this.currentInnerIndex){
+                                translate = -(this.itemWidth * this.activeIndex);
+                            }else {
+                                translate = this.itemWidth * (len - this.activeIndex);
+                            }
                         }
-                    }
-                    if(this.arrowClickType === 'next' || this.loop){
-                        if(index === this.currentInnerIndex){
-                            translateX = -(this.itemWidth * this.activeIndex);
-                        }else {
-                            translateX = this.itemWidth * (len - this.activeIndex);
+                        if(this.arrowClickType === 'next'){
+                            if(index === this.currentInnerIndex){
+                                translate = -(this.itemWidth * this.activeIndex);
+                            }else {
+                                translate = this.itemWidth * (len - this.activeIndex);
+                            }
                         }
                     }
 
                     if(!this.arrowClickType){
-                        translateX = -(this.itemWidth * activeIndex)
+                        translate = -(this.itemWidth * activeIndex)
                     }
 
                     if(activeIndex === 0 && index !== this.currentInnerIndex){
-                        translateX = -100;
+                        translate = -100;
                     }
                     if(activeIndex === len - 1 && index !== this.currentInnerIndex){
-                        translateX = 25;
+                        translate = this.itemWidth;
+                    }
+
+                    if(this.direction === 'horizontal'){
+                        translate = `translateX(${translate}%)`;
+                    }
+                    if(this.direction === 'vertical'){
+                        translate = `translateY(${translate}%)`;
                     }
                     return {
-                        width: `${width}%`,
-                        left: 0,
-                        // left: `${left}%`,
                         zIndex,
-                        transform: `translateX(${translateX}%)`
+                        transform: translate
                     }
                 }
             },
@@ -211,17 +226,20 @@
             },
             handleIndicatorMouseleave(index){
                 if(this.trigger !== 'hover') return;
+                this.play();
             },
             handleArrowClick(type){
-                this.arrowClickType = type;
+                if(this.loop) {
+                    this.arrowClickType = type
+                }
                 if(type === 'prev') {
-                    if(this.activeIndex === 0){
+                    if(this.activeIndex === 0 && this.loop){
                         this.currentInnerIndex = this.currentInnerIndex === 1 ? 2 : 1;
                     }
                     this.goToIndex(this.activeIndex - 1);
                 }
                 if(type === 'next') {
-                    if(this.activeIndex === this.childrenList.length - 1){
+                    if(this.activeIndex === this.childrenList.length - 1 && this.loop){
                         this.currentInnerIndex = this.currentInnerIndex === 1 ? 2 : 1;
                     }
                     this.goToIndex(this.activeIndex + 1)
@@ -232,7 +250,7 @@
                 this.clearTimer();
             },
             handleCarouselMouseleave(){
-
+                this.play();
             },
             goToIndex(index){
                 if(typeof index === 'undefined'){
@@ -256,6 +274,14 @@
         },
         destroyed() {
             this.timer && clearInterval(this.timer);
+        },
+        watch: {
+            value(newVal){
+                this.activeIndex = newVal;
+            },
+            activeIndex(newVal){
+                this.$emit('input', newVal);
+            }
         }
     }
 </script>

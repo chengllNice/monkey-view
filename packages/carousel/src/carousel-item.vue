@@ -25,36 +25,13 @@
         },
         computed: {
             carouselStyle(){
-                return {
-                    width: `${this.carouselParent.itemWidth}%`
+                if(this.carouselParent.direction === 'horizontal'){
+                    return {
+                        width: `${this.carouselParent.itemWidth}%`
+                    }
                 }
+                return null;
             },
-            // carouselStyle(){
-            //     const activeIndex = this.carouselParent.activeIndex;
-            //     const arrowClickType = this.carouselParent.arrowClickType;
-            //     const len = this.carouselParent.childrenList.length;
-            //     let oldIndex = 0;
-            //     let left = this.index * 100;
-            //     let translateX = -(activeIndex * 100);
-            //     if(arrowClickType === 'prev') oldIndex = activeIndex + 1;
-            //     if(arrowClickType === 'next') oldIndex = activeIndex - 1;
-            //     if(oldIndex > len - 1){
-            //         oldIndex = 0;
-            //     }
-            //     if(oldIndex < 0){
-            //         oldIndex = len - 1;
-            //     }
-            //     console.log(oldIndex,'oldIndex')
-            //     if(this.carouselParent.arrowClickType === 'prev'){
-            //         if(activeIndex === len - 1 && activeIndex === this.index){
-            //             left = -100
-            //         }
-            //     }
-            //     return {
-            //         left: `${left}%`,
-            //         transform: `translateX(${translateX}%)`
-            //     }
-            // },
         },
         mounted() {
             this.$nextTick(this.carouselParent.setChildrenIndex());

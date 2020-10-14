@@ -1,21 +1,31 @@
 @import "./base/var";
 @import "./mixins/index.scss";
 
-$indicator-background-color: $--background-color-base;
+$indicator-background-color: rgba(31, 45, 61, .5);
 //$indicator-background-color: #8391a5;
 
 @include c(carousel){
 	position: relative;
 	overflow: hidden;
+	@include e(container){
+		position: relative;
+	}
 	@include e(inner){
-		position: absolute;
-		top: 0;
-		left: 0;
-		height: 100%;
+		position: relative;
+		width: 50%;
 		transition: transform $--animation-time ease;
 	}
-	@include e(inner-1){
-		z-index: 2;
+	@include e(inner-2){
+		position: absolute;
+		top: 0;
+	}
+	@include m(vertical){
+		@include e(container, false){
+			height: 300px;
+		}
+		@include e(inner, false){
+			width: 100%;
+		}
 	}
 
 	@include e(indicator){
@@ -32,6 +42,7 @@ $indicator-background-color: $--background-color-base;
 		line-height: 1;
 		background-color: $indicator-background-color;
 		opacity: 0.3;
+		color: $--color-white;
 		font-size: 12px;
 		margin: 3px 5px;
 		border-radius: 3px;
@@ -44,9 +55,9 @@ $indicator-background-color: $--background-color-base;
 	}
 	@include e(indicator-item-active){
 		transform: scale(1.2);
-		opacity: 0.9;
+		opacity: 1;
 		&:hover{
-			opacity: 0.9;
+			opacity: 1;
 		}
 	}
 	@include m(indicator-none){
@@ -56,7 +67,11 @@ $indicator-background-color: $--background-color-base;
 	}
 	@include m(indicator-outside){
 		@include e(indicator, false){
-			bottom: -3px;
+			position: relative;
+			transform: translateX(-50%);
+			@include e(indicator-item, false){
+				background-color: $indicator-background-color;
+			}
 		}
 	}
 	@include m(indicator-inside){
@@ -68,6 +83,7 @@ $indicator-background-color: $--background-color-base;
 		position: absolute;
 		top: 50%;
 		z-index: 3;
+		opacity: 0;
 		transform: translateY(-50%);
 		width: 36px;
 		height: 36px;
@@ -77,10 +93,25 @@ $indicator-background-color: $--background-color-base;
 		text-align: center;
 		line-height: 36px;
 		cursor: pointer;
-		transition: background-color $--animation-time ease;
+		transition: background-color $--animation-time ease, opacity $--animation-time ease-in-out;
 
 		&:hover{
 			background-color: rgba(31, 45, 61, .5);
+		}
+	}
+	@include m(arrow-always){
+		opacity: 1;
+	}
+	@include m(arrow-hover){
+		&:hover{
+			@include e(arrow, false){
+				opacity: 1;
+			}
+		}
+	}
+	@include m(arrow-never){
+		@include e(arrow, false){
+			display: none;
 		}
 	}
 	@include e(arrow-prev){
