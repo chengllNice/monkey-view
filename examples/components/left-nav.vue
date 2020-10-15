@@ -269,6 +269,13 @@
                                 query: {}
                             },
                             {
+                                key: 'color-picker',
+                                name: 'ColorPicker颜色选择器',
+                                icon: 'cloud-upload',
+                                link: '/component/color-picker',
+                                query: {}
+                            },
+                            {
                                 key: 'form',
                                 name: 'Form表单',
                                 icon: 'form',

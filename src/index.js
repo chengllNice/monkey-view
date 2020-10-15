@@ -50,6 +50,7 @@ import Steps from '../packages/steps'
 import Breadcrumb from '../packages/breadcrumb'
 import Divider from '../packages/divider'
 import Carousel from '../packages/carousel'
+import ColorPicker from '../packages/color-picker'
 
 import locale from './locale/index';
 
@@ -122,6 +123,7 @@ const components = {
     Divider,
     Carousel,
     CarouselItem: Carousel.Item,
+    ColorPicker
 };
 
 const monkeyView = {

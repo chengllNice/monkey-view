@@ -59,6 +59,7 @@ const routerComponents = [
     'breadcrumb',
     'divider',
     'carousel',
+    'color-picker',
 ];
 
 const routers = [];
