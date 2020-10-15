@@ -398,6 +398,13 @@
                                 icon: 'tree',
                                 link: '/component/tree',
                                 query: {}
+                            },
+                            {
+                                key: 'carousel',
+                                name: 'Carousel走马灯',
+                                icon: 'tree',
+                                link: '/component/carousel',
+                                query: {}
                             }
                         ]
                     },

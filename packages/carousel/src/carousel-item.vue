@@ -1,7 +1,5 @@
 <template>
-    <div :class="[
-            `${classPrefix}`,
-        ]"
+    <div :class="[`${classPrefix}`]"
          :style="carouselStyle">
         <slot></slot>
     </div>
@@ -35,9 +33,6 @@
         },
         mounted() {
             this.$nextTick(this.carouselParent.setChildrenIndex());
-        },
-        methods: {
-
         }
     }
 </script>

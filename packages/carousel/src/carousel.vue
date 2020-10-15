@@ -18,10 +18,10 @@
                 ]"
                  v-for="(item, index) in childrenList"
                  :key="index"
-                 :style="indicatorItemStyle"
+                 :style="indicatorItemStyle(index)"
                  @click="handleIndicatorClick(index)"
                  @mouseenter="handleIndicatorMouseenter(index)"
-                 @mouseleave="handleIndicatorMouseleave(index)">{{item.label}}</div>
+                 @mouseleave="handleIndicatorMouseleave">{{item.label}}</div>
         </div>
         <div :class="[`${classPrefix}__arrow`, `${classPrefix}__arrow-prev`]"
              :style="arrowStyle"
@@ -101,7 +101,7 @@
         data() {
             return {
                 classPrefix: Config.classPrefix + '-carousel',
-                activeIndex: 0,
+                activeIndex: this.value || 0,
                 arrowClickType: false,
                 currentInnerIndex: 1,
                 timer: null,
@@ -113,18 +113,20 @@
                 const classPrefix = this.classPrefix;
                 return [
                     `${classPrefix}`,
-                    `${classPrefix}--indicator-${this.indicator}`,
+                    this.direction === 'horizontal' && `${classPrefix}--indicator-${this.indicator}`,
                     `${classPrefix}--arrow-${this.arrow}`,
                     `${classPrefix}--${this.direction}`,
                 ]
             },
             indicatorItemStyle(){
-                let style = {
-                    transitionTimingFunction: this.easing,
+                return function(index) {
+                    let style = {
+                        ...(this.indicatorStyle || {}),
+                        transitionTimingFunction: this.easing,
+                    }
+                    if(this.activeIndex === index) style = {...(this.indicatorActiveStyle || {}), ...style}
+                    return style;
                 }
-                if(this.activeIndex === this.index) style = {...(this.indicatorActiveStyle || {}), ...style}
-                else style = {...(this.indicatorStyle || {}), ...style}
-                return style;
             },
             carouselContainerStyle(){
                 let style = {
@@ -144,33 +146,35 @@
                     const activeIndex = this.activeIndex;
                     let zIndex = index === this.currentInnerIndex ? 2 : 0;
                     let translate = 0;
+                    let step = 0;
+                    if(this.direction === 'horizontal') step = this.itemWidth;
+                    if(this.direction === 'vertical') step = 100 / len;
 
-                    if(this.direction === 'horizontal'){
-                        if(this.arrowClickType === 'prev'){
-                            if(index === this.currentInnerIndex){
-                                translate = -(this.itemWidth * this.activeIndex);
-                            }else {
-                                translate = this.itemWidth * (len - this.activeIndex);
-                            }
+
+                    if(this.arrowClickType === 'prev'){
+                        if(index === this.currentInnerIndex){
+                            translate = -(step * this.activeIndex);
+                        }else {
+                            translate = step * (len - this.activeIndex);
                         }
-                        if(this.arrowClickType === 'next'){
-                            if(index === this.currentInnerIndex){
-                                translate = -(this.itemWidth * this.activeIndex);
-                            }else {
-                                translate = this.itemWidth * (len - this.activeIndex);
-                            }
+                    }
+                    if(this.arrowClickType === 'next'){
+                        if(index === this.currentInnerIndex){
+                            translate = -(step * this.activeIndex);
+                        }else {
+                            translate = step * (len - this.activeIndex);
                         }
                     }
 
                     if(!this.arrowClickType){
-                        translate = -(this.itemWidth * activeIndex)
+                        translate = -(step * activeIndex)
                     }
 
                     if(activeIndex === 0 && index !== this.currentInnerIndex){
                         translate = -100;
                     }
                     if(activeIndex === len - 1 && index !== this.currentInnerIndex){
-                        translate = this.itemWidth;
+                        translate = step;
                     }
 
                     if(this.direction === 'horizontal'){
@@ -222,9 +226,10 @@
             },
             handleIndicatorMouseenter(index){
                 if(this.trigger !== 'hover') return;
+                this.clearTimer();
                 this.goToIndex(index);
             },
-            handleIndicatorMouseleave(index){
+            handleIndicatorMouseleave(){
                 if(this.trigger !== 'hover') return;
                 this.play();
             },
@@ -244,7 +249,15 @@
                     }
                     this.goToIndex(this.activeIndex + 1)
                 }
-                // this.arrowClickType = false;
+                this.$nextTick(() => {
+                    this.arrowClickType = false;
+                });
+            },
+            prev(){
+                this.handleArrowClick('prev');
+            },
+            next(){
+                this.handleArrowClick('next');
             },
             handleCarouselMouseenter(){
                 this.clearTimer();
@@ -253,6 +266,7 @@
                 this.play();
             },
             goToIndex(index){
+                let oldIndex = this.activeIndex;
                 if(typeof index === 'undefined'){
                     index = this.activeIndex + 1;
                 }
@@ -263,6 +277,7 @@
                     index = this.childrenList.length - 1
                 }
                 this.activeIndex = index;
+                this.$emit('change', index, oldIndex);
             },
             play(){
                 if(!this.autoplay) return;
@@ -281,6 +296,12 @@
             },
             activeIndex(newVal){
                 this.$emit('input', newVal);
+            },
+            autoplay(newVal){
+                newVal ? this.play() : this.clearTimer();
+            },
+            interval(){
+                this.play();
             }
         }
     }

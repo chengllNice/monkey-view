@@ -1,14 +1,18 @@
 <template>
     <div class="dev-carousel">
-<!--        <Carousel arrow="hover" indicator="outside" loop>-->
-<!--            <CarouselItem class="dev-carousel-pane">1</CarouselItem>-->
-<!--            <CarouselItem class="dev-carousel-pane">2</CarouselItem>-->
-<!--            <CarouselItem class="dev-carousel-pane">3</CarouselItem>-->
-<!--            <CarouselItem class="dev-carousel-pane">4</CarouselItem>-->
-<!--            <CarouselItem class="dev-carousel-pane">5</CarouselItem>-->
-<!--        </Carousel>-->
+        <Carousel arrow="hover" loop trigger="hover">
+            <CarouselItem class="dev-carousel-pane">1</CarouselItem>
+            <CarouselItem class="dev-carousel-pane">2</CarouselItem>
+            <CarouselItem class="dev-carousel-pane">3</CarouselItem>
+            <CarouselItem class="dev-carousel-pane">4</CarouselItem>
+            <CarouselItem class="dev-carousel-pane">5</CarouselItem>
+        </Carousel>
 
-            <Carousel direction="vertical">
+        <br>
+        <hr>
+        <br>
+
+            <Carousel v-model="active2" direction="vertical" indicator="outside">
                 <CarouselItem class="dev-carousel-pane">1</CarouselItem>
                 <CarouselItem class="dev-carousel-pane">2</CarouselItem>
                 <CarouselItem class="dev-carousel-pane">3</CarouselItem>
@@ -29,7 +33,7 @@
     export default {
         data(){
             return {
-
+                active2: 2
             }
         }
     }
@@ -39,12 +43,12 @@
 .dev-carousel{
     padding: 50px;
     .dev-carousel-pane{
-        height: 400px;
+        height: 300px;
         color: #ffffff;
         background-color: #6caff5;
         text-align: center;
         font-size: 30px;
-        line-height: 400px;
+        line-height: 300px;
     }
 }
 </style>

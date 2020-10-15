@@ -14,6 +14,7 @@ $indicator-background-color: rgba(31, 45, 61, .5);
 		position: relative;
 		width: 50%;
 		transition: transform $--animation-time ease;
+		font-size: 0;
 	}
 	@include e(inner-2){
 		position: absolute;
@@ -25,6 +26,21 @@ $indicator-background-color: rgba(31, 45, 61, .5);
 		}
 		@include e(inner, false){
 			width: 100%;
+		}
+		@include e(indicator, false){
+			left: auto;
+			right: 15px;
+			top: 50%;
+			transform: translateY(-50%);
+		}
+		@include e(indicator-item, false){
+			display: block;
+			padding: 12px 1px;
+			min-width: 3px;
+			margin: 10px 3px;
+		}
+		@include e(arrow, false){
+			display: none;
 		}
 	}
 
@@ -100,7 +116,9 @@ $indicator-background-color: rgba(31, 45, 61, .5);
 		}
 	}
 	@include m(arrow-always){
-		opacity: 1;
+		@include e(arrow, false){
+			opacity: 1;
+		}
 	}
 	@include m(arrow-hover){
 		&:hover{
@@ -127,4 +145,5 @@ $indicator-background-color: rgba(31, 45, 61, .5);
 	display: inline-block;
 	width: 100%;
 	height: 100%;
+	font-size: $--font-size-default;
 }
