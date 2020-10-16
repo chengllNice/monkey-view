@@ -14,7 +14,6 @@
                   v-model="visible">
                 <div :class="[`${classPrefix}__drop-down-inner`]">
                     <SaturationPanel></SaturationPanel>
-                    111
                     <Hue></Hue>
                 </div>
             </Drop>

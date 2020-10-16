@@ -7,7 +7,35 @@
 
 @include c(saturation-panel){
 	width: 240px;
-	height: 140px;
+	height: 180px;
+	position: relative;
+	@include e(white){
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(90deg,#fff,hsla(0,0%,100%,0));
+	}
+	@include e(black){
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(0deg,#000,transparent);
+	}
+	@include e(cursor){
+		position: absolute;
+
+	}
+	@include e(circle){
+		width: 4px;
+		height: 4px;
+		border-radius: 50%;
+		box-shadow: 0 0 0 1.5px #fff, inset 0 0 1px 1px rgba(0,0,0,.3), 0 0 1px 2px rgba(0,0,0,.4);
+		transform: translate(-2px,-2px);
+	}
 }
 
 @include c(hue){
